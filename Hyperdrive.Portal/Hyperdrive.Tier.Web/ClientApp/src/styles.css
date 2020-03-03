@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+*
+{
+font-size: 18px !important;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif' !important;
+}
+
+
+/* LOADING SPINNER*/
+.spinner-container
+{
+width: 100%;
+height: 100%;
+top: 0%;
+bottom: 0%;
+background-color: #400080;
+z-index: 1;
+position: absolute;
+}
+
+.spinner {      
+top: 50%;
+left: 50%;
+position: relative;
+width: 40px;
+height: 40px;
+background-color: #F5F5F5;
+
+-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+/* SPINNER ANIMATION */
+@-webkit-keyframes sk-rotateplane {
+0% { -webkit-transform: perspective(120px) }
+50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+0% { 
+transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+} 50% { 
+transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+} 100% { 
+transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+}
+}
+
+/* ANGULAR MATERIAL OVERRIDE */
+.container {
+    width: 100%;
+    padding:0% !important;
+    margin:0% !important;  
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label{
+    color: #400080 !important;
+}

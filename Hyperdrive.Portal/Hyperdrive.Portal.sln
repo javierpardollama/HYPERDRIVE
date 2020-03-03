@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Constants", "Hyperdrive.Tier.Constants\Hyperdrive.Tier.Constants.csproj", "{DAB78C4B-CB95-4CFA-BD39-F752505C2258}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Contexts", "Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj", "{A348E9CF-9958-4881-8D40-C06D777A68BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Entities", "Hyperdrive.Tier.Entities\Hyperdrive.Tier.Entities.csproj", "{B283C7E4-AECF-40C6-AE0B-36E84C6F96C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.ExceptionHandling", "Hyperdrive.Tier.ExceptionHandling\Hyperdrive.Tier.ExceptionHandling.csproj", "{6677A661-2128-42E2-A0A6-A69AF590898D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Logging", "Hyperdrive.Tier.Logging\Hyperdrive.Tier.Logging.csproj", "{D9113DAD-C6E2-40E0-955D-1AD9C5B517C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Mappings", "Hyperdrive.Tier.Mappings\Hyperdrive.Tier.Mappings.csproj", "{FB3F0CCC-C046-4F66-9E8D-C8D20F86C094}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Services", "Hyperdrive.Tier.Services\Hyperdrive.Tier.Services.csproj", "{085E2939-1412-4044-9AA7-7EA0AE47DDE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Settings", "Hyperdrive.Tier.Settings\Hyperdrive.Tier.Settings.csproj", "{E3B7679C-2AA8-4050-B2E0-7F16B102896A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.ViewModels", "Hyperdrive.Tier.ViewModels\Hyperdrive.Tier.ViewModels.csproj", "{BA695092-9A06-4DBA-A791-DED9A87CD007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Web", "Hyperdrive.Tier.Web\Hyperdrive.Tier.Web.csproj", "{7CF04BA5-AA30-4A7D-849C-8EA105415833}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAB78C4B-CB95-4CFA-BD39-F752505C2258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAB78C4B-CB95-4CFA-BD39-F752505C2258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAB78C4B-CB95-4CFA-BD39-F752505C2258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAB78C4B-CB95-4CFA-BD39-F752505C2258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A348E9CF-9958-4881-8D40-C06D777A68BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A348E9CF-9958-4881-8D40-C06D777A68BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A348E9CF-9958-4881-8D40-C06D777A68BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A348E9CF-9958-4881-8D40-C06D777A68BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B283C7E4-AECF-40C6-AE0B-36E84C6F96C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B283C7E4-AECF-40C6-AE0B-36E84C6F96C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B283C7E4-AECF-40C6-AE0B-36E84C6F96C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B283C7E4-AECF-40C6-AE0B-36E84C6F96C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6677A661-2128-42E2-A0A6-A69AF590898D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6677A661-2128-42E2-A0A6-A69AF590898D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6677A661-2128-42E2-A0A6-A69AF590898D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6677A661-2128-42E2-A0A6-A69AF590898D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9113DAD-C6E2-40E0-955D-1AD9C5B517C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9113DAD-C6E2-40E0-955D-1AD9C5B517C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9113DAD-C6E2-40E0-955D-1AD9C5B517C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9113DAD-C6E2-40E0-955D-1AD9C5B517C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3F0CCC-C046-4F66-9E8D-C8D20F86C094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3F0CCC-C046-4F66-9E8D-C8D20F86C094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3F0CCC-C046-4F66-9E8D-C8D20F86C094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3F0CCC-C046-4F66-9E8D-C8D20F86C094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{085E2939-1412-4044-9AA7-7EA0AE47DDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{085E2939-1412-4044-9AA7-7EA0AE47DDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{085E2939-1412-4044-9AA7-7EA0AE47DDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{085E2939-1412-4044-9AA7-7EA0AE47DDE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B7679C-2AA8-4050-B2E0-7F16B102896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B7679C-2AA8-4050-B2E0-7F16B102896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B7679C-2AA8-4050-B2E0-7F16B102896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B7679C-2AA8-4050-B2E0-7F16B102896A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA695092-9A06-4DBA-A791-DED9A87CD007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA695092-9A06-4DBA-A791-DED9A87CD007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA695092-9A06-4DBA-A791-DED9A87CD007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA695092-9A06-4DBA-A791-DED9A87CD007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF04BA5-AA30-4A7D-849C-8EA105415833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF04BA5-AA30-4A7D-849C-8EA105415833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF04BA5-AA30-4A7D-849C-8EA105415833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF04BA5-AA30-4A7D-849C-8EA105415833}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D7BEBFD-D844-4D02-8F0A-BEB8F000233A}
+	EndGlobalSection
+EndGlobal

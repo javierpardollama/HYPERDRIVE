@@ -1,0 +1,61 @@
+.container
+{
+position: absolute;
+}
+.auth-card
+{
+position: relative;
+left: 50%;
+top: 40px;
+width: 400px;
+}
+
+.auth-header-image {
+background-image: url('/iconos/Hyperdrive_500px.png');
+background-size: cover;
+}
+
+.modal-content-line
+{
+clear: both;
+padding:8px;
+}
+
+.modal-option-image{
+height: 40px;
+width: 40px;
+border-radius: 50%;
+flex-shrink: 0;
+object-fit: cover;
+float:left;
+margin-right:8px;
+}
+
+.modal-mail-image{
+background-image: url('/iconos/Envelope_500px.png');
+background-size: cover;
+}
+
+.modal-password-image{
+background-image: url('/iconos/Password_500px.png');
+background-size: cover;
+}  
+
+/* MATERIAL OVERRIDE */
+mat-card-header
+{
+padding:8px;
+background-color: #400080;
+}
+
+/* MATERIAL OVERRIDE */
+mat-card-title{
+    color: #FFFFFF;
+}
+
+/* MATERIAL OVERRIDE */
+mat-card-content
+{
+overflow: hidden; 
+background-color: #F5F5F5;
+}
