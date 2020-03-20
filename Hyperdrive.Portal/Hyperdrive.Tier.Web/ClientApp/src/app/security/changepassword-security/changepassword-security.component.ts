@@ -52,8 +52,10 @@ export class ChangePasswordSecurityComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: SecurityPasswordChange) {
-    this.securityService.ChangePassword(viewModel).subscribe(user => { localStorage.setItem('User', JSON.stringify(user)); });
+  async onSubmit(viewModel: SecurityPasswordChange) {
+    let user = await this.securityService.ChangePassword(viewModel);
+
+    localStorage.setItem('User', JSON.stringify(user));
   }
 
   // Get User from Storage

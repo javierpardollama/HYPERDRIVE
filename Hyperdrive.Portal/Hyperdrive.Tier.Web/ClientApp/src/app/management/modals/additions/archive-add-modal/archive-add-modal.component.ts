@@ -62,19 +62,18 @@ export class ArchiveAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: BinaryAddArchive) {
+  async onSubmit(viewModel: BinaryAddArchive) {
 
-    this.archiveService.AddArchive(this.binaryService.EncodeAddArchive(viewModel)).subscribe(viewArchive => {
+    let archive = await this.archiveService.AddArchive(this.binaryService.EncodeAddArchive(viewModel));
 
-      if (viewArchive !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
+    if (archive !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 
   // Get User from Storage

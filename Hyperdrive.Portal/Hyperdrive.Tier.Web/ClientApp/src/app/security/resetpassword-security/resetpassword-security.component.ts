@@ -51,8 +51,10 @@ export class ResetPasswordSecurityComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: SecurityPasswordReset) {
-    this.securityService.ResetPassword(viewModel).subscribe(user => { localStorage.setItem('User', JSON.stringify(user)); });
+  async onSubmit(viewModel: SecurityPasswordReset) {
+    let user = await this.securityService.ResetPassword(viewModel);
+
+    localStorage.setItem('User', JSON.stringify(user));
   }
 
   onNavigate() {

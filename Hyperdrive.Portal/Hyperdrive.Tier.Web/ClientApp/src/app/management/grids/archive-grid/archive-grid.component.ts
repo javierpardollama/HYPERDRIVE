@@ -60,12 +60,10 @@ export class ArchiveGridComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllArchiveByApplicationUserId() {
-    this.archiveService.FindAllArchiveByApplicationUserId(this.User.Id).subscribe(poblaciones => {
-      this.ELEMENT_DATA = poblaciones;
+  public async FindAllArchiveByApplicationUserId() {
+    this.ELEMENT_DATA = await this.archiveService.FindAllArchiveByApplicationUserId(this.User.Id);
 
-      this.SetupMyTableSettings();
-    });
+    this.SetupMyTableSettings();
   }
 
   // Setup Table Settings

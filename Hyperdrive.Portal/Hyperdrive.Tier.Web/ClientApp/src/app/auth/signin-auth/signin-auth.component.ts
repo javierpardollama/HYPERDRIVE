@@ -51,8 +51,10 @@ export class SignInAuthComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AuthSignIn) {
-    this.authService.SignIn(viewModel).subscribe(user => { localStorage.setItem('User', JSON.stringify(user)); });
+  async onSubmit(viewModel: AuthSignIn) {
+    let user = await this.authService.SignIn(viewModel);
+
+    localStorage.setItem('User', JSON.stringify(user));
   }
 
   onNavigate() {

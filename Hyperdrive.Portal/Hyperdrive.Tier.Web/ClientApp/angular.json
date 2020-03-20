@@ -121,5 +121,8 @@
       }
     }
   },
-  "defaultProject": "Hyperdrive.Tier.Web"
+  "defaultProject": "Hyperdrive.Tier.Web",
+  "cli": {
+    "analytics": "aae4c763-230e-4ccd-ab38-887055e9595e"
+  }
 }

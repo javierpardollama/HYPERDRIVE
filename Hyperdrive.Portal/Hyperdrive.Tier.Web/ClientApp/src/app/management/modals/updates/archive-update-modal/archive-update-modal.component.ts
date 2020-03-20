@@ -67,20 +67,30 @@ export class ArchiveUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: BinaryUpdateArchive) {
+  async onSubmit(viewModel: BinaryUpdateArchive) {
 
-    this.archiveService.UpdateArchive(this.binaryService.EncodeUpdateArchive(viewModel)).subscribe(viewArchive => {
+    let archive = await this.archiveService.UpdateArchive(this.binaryService.EncodeUpdateArchive(viewModel));
 
-      if (viewArchive !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
+    if (archive !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
+
+    this.dialogRef.close();
+  }
+
+  onDelete(viewModel: BinaryUpdateArchive) {
+    this.archiveService.RemoveArchiveById(viewModel.Id).subscribe(archive => {
+
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });
-
   }
 
   // Get User from Storage

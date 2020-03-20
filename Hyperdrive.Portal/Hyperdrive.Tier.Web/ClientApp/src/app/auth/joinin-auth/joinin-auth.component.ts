@@ -50,8 +50,10 @@ export class JoinInAuthComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AuthSignIn) {
-    this.authService.JoinIn(viewModel).subscribe(user => localStorage.setItem('User', JSON.stringify(user)));
+  async onSubmit(viewModel: AuthSignIn) {
+    let user = await this.authService.JoinIn(viewModel);
+
+    localStorage.setItem('User', JSON.stringify(user));
   }
 
   onNavigate() {

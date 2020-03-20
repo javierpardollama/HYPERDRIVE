@@ -29,34 +29,34 @@ export class ArchiveService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public UpdateArchive(viewModel: UpdateArchive): Observable<ViewArchive> {
+    public UpdateArchive(viewModel: UpdateArchive): Promise<ViewArchive> {
         return this.httpClient.put<ViewArchive>('api/archive/updatearchive', viewModel)
-            .pipe(catchError(this.HandleError<ViewArchive>('UpdateArchive', undefined)));
+            .pipe(catchError(this.HandleError<ViewArchive>('UpdateArchive', undefined))).toPromise();
     }
 
-    public FindAllArchive(): Observable<ViewArchive[]> {
+    public FindAllArchive(): Promise<ViewArchive[]> {
         return this.httpClient.get<ViewArchive[]>('api/archive/findallarchive')
-            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchive', [])));
+            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchive', []))).toPromise();
     }
 
-    public FindAllArchiveByApplicationUserId(id: number): Observable<ViewArchive[]> {
+    public FindAllArchiveByApplicationUserId(id: number): Promise<ViewArchive[]> {
         return this.httpClient.get<ViewArchive[]>('api/archive/findallarchivebyapplicationuserid/' + id)
-            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchiveByApplicationUserId', [])));
+            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchiveByApplicationUserId', []))).toPromise();
     }
 
-    public FindAllSharedArchiveByApplicationUserId(id: number): Observable<ViewArchive[]> {
+    public FindAllSharedArchiveByApplicationUserId(id: number): Promise<ViewArchive[]> {
         return this.httpClient.get<ViewArchive[]>('api/archive/findallsharedarchivebyapplicationuserid/' + id)
-            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllSharedArchiveByApplicationUserId', [])));
+            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllSharedArchiveByApplicationUserId', []))).toPromise();
     }
 
-    public FindAllArchiveVersionByArchiveId(id: number): Observable<ViewArchiveVersion[]> {
+    public FindAllArchiveVersionByArchiveId(id: number): Promise<ViewArchiveVersion[]> {
         return this.httpClient.get<ViewArchiveVersion[]>('api/archive/findallarchiveversionbyarchiveid/' + id)
-            .pipe(catchError(this.HandleError<ViewArchiveVersion[]>('FindAllArchiveVersionByArchiveId', [])));
+            .pipe(catchError(this.HandleError<ViewArchiveVersion[]>('FindAllArchiveVersionByArchiveId', []))).toPromise();
     }
 
-    public AddArchive(viewModel: AddArchive): Observable<ViewArchive> {
+    public AddArchive(viewModel: AddArchive): Promise<ViewArchive> {
         return this.httpClient.post<ViewArchive>('api/archive/addarchive', viewModel)
-            .pipe(catchError(this.HandleError<ViewArchive>('AddArchive', undefined)));
+            .pipe(catchError(this.HandleError<ViewArchive>('AddArchive', undefined))).toPromise();
     }
 
     public RemoveArchiveById(id: number) {

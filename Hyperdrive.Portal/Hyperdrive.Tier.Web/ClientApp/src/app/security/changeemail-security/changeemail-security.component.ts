@@ -53,8 +53,10 @@ export class ChangeEmailSecurityComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: SecurityEmailChange) {
-    this.securityService.ChangeEmail(viewModel).subscribe(user => { localStorage.setItem('User', JSON.stringify(user)); });
+  async onSubmit(viewModel: SecurityEmailChange) {
+    let user = await this.securityService.ChangeEmail(viewModel);
+
+    localStorage.setItem('User', JSON.stringify(user));
   }
 
   // Get User from Storage

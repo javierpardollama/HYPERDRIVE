@@ -26,14 +26,14 @@ export class AuthService extends BaseService {
     super(httpClient, matSnackBar);
   }
 
-  public SignIn(viewModel: AuthSignIn) {
+  public SignIn(viewModel: AuthSignIn) : Promise<ViewApplicationUser> {
 
     return this.httpClient.post<ViewApplicationUser>('api/auth/signin', viewModel)
-      .pipe(catchError(this.HandleError<ViewApplicationUser>('SignIn', undefined)));
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('SignIn', undefined))).toPromise();
   }
 
-  public JoinIn(viewModel: AuthJoinIn) {
+  public JoinIn(viewModel: AuthJoinIn) : Promise<ViewApplicationUser> {
     return this.httpClient.post<ViewApplicationUser>('api/auth/joinin', viewModel)
-      .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined)));
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined))).toPromise();
   }
 }

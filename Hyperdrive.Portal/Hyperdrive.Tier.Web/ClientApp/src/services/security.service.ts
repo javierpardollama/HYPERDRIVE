@@ -30,18 +30,18 @@ export class SecurityService extends BaseService {
     super(httpClient, matSnackBar);
   }
 
-  public ResetPassword(viewModel: SecurityPasswordReset): Observable<ViewApplicationUser> {
+  public ResetPassword(viewModel: SecurityPasswordReset): Promise<ViewApplicationUser> {
     return this.httpClient.put<ViewApplicationUser>('api/applicationuser/changepassword', viewModel)
-      .pipe(catchError(this.HandleError<ViewApplicationUser>('ResetPassword', undefined)));
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('ResetPassword', undefined))).toPromise();
   }
 
-  public ChangePassword(viewModel: SecurityPasswordChange): Observable<ViewApplicationUser> {
+  public ChangePassword(viewModel: SecurityPasswordChange): Promise<ViewApplicationUser> {
     return this.httpClient.put<ViewApplicationUser>('api/applicationuser/changepassword', viewModel)
-      .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePassword', undefined)));
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePassword', undefined))).toPromise();
   }
 
-  public ChangeEmail(viewModel: SecurityEmailChange): Observable<ViewApplicationUser> {
+  public ChangeEmail(viewModel: SecurityEmailChange): Promise<ViewApplicationUser> {
     return this.httpClient.put<ViewApplicationUser>('api/applicationuser/changeemail', viewModel)
-      .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeEmail', undefined)));
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeEmail', undefined))).toPromise();
   }
 }

@@ -60,12 +60,10 @@ export class ArchiveSharedGridComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllSharedArchiveByApplicationUserId() {
-    this.archiveService.FindAllSharedArchiveByApplicationUserId(this.User.Id).subscribe(poblaciones => {
-      this.ELEMENT_DATA = poblaciones;
+  public async FindAllSharedArchiveByApplicationUserId() {
+    this.ELEMENT_DATA = await this.archiveService.FindAllSharedArchiveByApplicationUserId(this.User.Id);
 
-      this.SetupMyTableSettings();
-    });
+    this.SetupMyTableSettings();
   }
 
   // Setup Table Settings
