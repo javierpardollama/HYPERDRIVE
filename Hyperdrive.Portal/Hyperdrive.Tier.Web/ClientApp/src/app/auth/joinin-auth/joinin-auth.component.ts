@@ -54,6 +54,8 @@ export class JoinInAuthComponent implements OnInit {
     let user = await this.authService.JoinIn(viewModel);
 
     localStorage.setItem('User', JSON.stringify(user));
+
+    this.router.navigate(['/']);
   }
 
   onNavigate() {
