@@ -175,10 +175,6 @@ import {
       },
     ])
   ],
-  entryComponents: [
-    ArchiveAddModalComponent,
-    ArchiveUpdateModalComponent
-  ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
