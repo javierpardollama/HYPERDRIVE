@@ -31,17 +31,17 @@ export class SecurityService extends BaseService {
   }
 
   public ResetPassword(viewModel: SecurityPasswordReset): Promise<ViewApplicationUser> {
-    return this.httpClient.put<ViewApplicationUser>('api/applicationuser/changepassword', viewModel)
+    return this.httpClient.put<ViewApplicationUser>('api/security/changepassword', viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ResetPassword', undefined))).toPromise();
   }
 
   public ChangePassword(viewModel: SecurityPasswordChange): Promise<ViewApplicationUser> {
-    return this.httpClient.put<ViewApplicationUser>('api/applicationuser/changepassword', viewModel)
+    return this.httpClient.put<ViewApplicationUser>('api/security/changepassword', viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePassword', undefined))).toPromise();
   }
 
   public ChangeEmail(viewModel: SecurityEmailChange): Promise<ViewApplicationUser> {
-    return this.httpClient.put<ViewApplicationUser>('api/applicationuser/changeemail', viewModel)
+    return this.httpClient.put<ViewApplicationUser>('api/security/changeemail', viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeEmail', undefined))).toPromise();
   }
 }

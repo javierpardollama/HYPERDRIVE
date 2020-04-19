@@ -3,18 +3,18 @@ import { ViewLink } from './../../viewmodels/views/viewlink';
 import { NavigationService } from './../../services/navigation.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-management',
+  templateUrl: './management.component.html',
+  styleUrls: ['./management.component.css']
 })
-export class HomeComponent {
+export class ManagementComponent implements OnInit {
 
   NavigationLinks: ViewLink[];
 
   // Constructor
   constructor(
     private navigationService: NavigationService) {
-    this.NavigationLinks = this.navigationService.GetHomeNavigationLinks();
+    this.NavigationLinks = this.navigationService.GetManagementNavigationLinks();
   }
 
   // Life Cicle

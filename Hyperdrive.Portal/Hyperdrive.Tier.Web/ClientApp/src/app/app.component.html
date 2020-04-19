@@ -4,14 +4,7 @@
       <div class="spinner"></div>
     </div>
   </app-nav-menu>
-
-  <nav mat-tab-nav-bar>
-    <a mat-tab-link *ngFor="let Tab of NavigationTabs" [routerLink]="Tab.Link" routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive">
-      {{Tab.Label}}
-    </a>
-  </nav>
-
+ 
   <div class="container">
     <router-outlet></router-outlet>
   </div>

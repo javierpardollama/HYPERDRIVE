@@ -56,7 +56,7 @@ export class SignInAuthComponent implements OnInit {
 
     localStorage.setItem('User', JSON.stringify(user));
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/'])
   }
 
   onNavigate() {

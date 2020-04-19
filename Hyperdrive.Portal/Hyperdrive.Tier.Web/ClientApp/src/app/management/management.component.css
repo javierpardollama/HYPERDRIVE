@@ -1,0 +1,46 @@
+.management-menu *{
+    color:#FFFFFF !important;
+    }
+    
+    .management-menu ul{
+    list-style: none;
+    }
+    
+    .management-menu li{
+    background-color: #3f51b5 !important;
+    overflow: hidden;
+    margin:4% !important;  
+    float: left;
+    width: 300px;
+    }
+    
+    .management-menu li a{
+    margin:4% !important;  
+    display: flex;
+    
+    }
+    
+    .management-option-link{
+    float: left;
+    margin-top: 40px;
+    margin-left: 40px;
+    }
+    
+    .management-menu-option-image{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    float:left;    
+    }
+    
+    .management-menu-archives-image{
+    background-image: url('/iconos/User_500px.png');
+    background-size: cover;
+    }  
+    
+    .management-menu-shared-archives-image{
+    background-image: url('/iconos/Role_500px.png');
+    background-size: cover;
+    }  

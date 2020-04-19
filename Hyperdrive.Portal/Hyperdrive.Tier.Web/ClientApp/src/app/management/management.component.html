@@ -2,12 +2,12 @@
   <div class="spinner"></div>
 </div>
 
-<div class="home-menu">
+<div class="management-menu">
   <ul>
     <li *ngFor="let Link of NavigationLinks" [routerLinkActive]='Link.Link'>
       <a class="text-dark" [routerLink]='Link.Link'>
         <div class={{Link.Class}}></div>
-        <span class="home-option-link">{{Link.Label}}</span>
+        <span class="management-option-link">{{Link.Label}}</span>
       </a>
     </li>
   </ul>

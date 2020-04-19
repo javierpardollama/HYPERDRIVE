@@ -1,0 +1,45 @@
+.security-menu *{
+color:#FFFFFF !important;
+}
+
+.security-menu ul{
+list-style: none;
+}
+
+.security-menu li{
+background-color: #3f51b5 !important;
+overflow: hidden;
+margin:4% !important;  
+float: left;
+width: 300px;
+}
+
+.security-menu li a{
+margin:4% !important;  
+display: flex;
+}
+
+.security-option-link{
+float: left;
+margin-top: 40px;
+margin-left: 40px;
+}
+
+.security-menu-option-image{
+height: 120px;
+width: 120px;
+border-radius: 50%;
+flex-shrink: 0;
+object-fit: cover;
+float:left;    
+}
+
+.security-menu-email-change-image{
+background-image: url('/iconos/Email_Change_500px.png');
+background-size: cover;
+}  
+
+.security-menu-password-change-image{
+background-image: url('/iconos/Password_Change_500px.png');
+background-size: cover;
+}  
