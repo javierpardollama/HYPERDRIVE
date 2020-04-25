@@ -7,10 +7,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+using Serilog;
+
 namespace Hyperdrive.Tier.Web
 {
+    /// <summary>
+    /// Represents a <see cref="Program"/> class.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main
+        /// </summary>
+        /// <param name="args">Injected <see cref="string[]"/></param>
         public static void Main(string[] args)
         {
             using IWebHost host = BuildWebHost(args);
@@ -19,8 +28,21 @@ namespace Hyperdrive.Tier.Web
             host.Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
+        /// <summary>
+        /// Builds WebHost
+        /// </summary>
+        /// <param name="args">Injected <see cref="string[]"/></param>
+        /// <returns></returns>
+        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration))
+            .Build();
 
+        /// <summary>
+        /// Applies WebHost Migrations
+        /// </summary>
+        /// <param name="serviceProvider">Injected <see cref="IServiceProvider"/></param>
         public static void ApplyWebHostMigrations(IServiceProvider serviceProvider)
         {
             using IServiceScope serviceScope = serviceProvider.CreateScope();
