@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -17,6 +18,8 @@ namespace Hyperdrive.Tier.Services.Interfaces
         SymmetricSecurityKey GenerateSymmetricSecurityKey();
 
         SigningCredentials GenerateSigningCredentials(SymmetricSecurityKey symmetricSecurityKey);
+
+        DateTime GenerateTokenExpirationDate();
 
         List<Claim> GenerateJwtClaims(ApplicationUser applicationUser);
     }
