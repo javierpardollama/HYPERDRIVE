@@ -23,9 +23,9 @@ namespace Hyperdrive.Tier.Services.Classes
         public JwtSecurityToken GenerateJwtToken(ApplicationUser applicationUser)
         {
             return new JwtSecurityToken(
-                JwtSettings.JwtIssuer,
-                JwtSettings.JwtAudience,
-                GenerateJwtClaims(applicationUser),
+                issuer: JwtSettings.JwtIssuer,
+                audience: JwtSettings.JwtAudience,
+                claims: GenerateJwtClaims(applicationUser),
                 expires: GenerateTokenExpirationDate(),
                 signingCredentials: GenerateSigningCredentials(GenerateSymmetricSecurityKey())
             );
