@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
-using Hyperdrive.Tier.ViewModels.Classes.Auth;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
@@ -70,7 +69,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            Context.ApplicationUserArchive.RemoveRange(Context.ApplicationUserArchive.ToList());
+            Context.ApplicationUser.RemoveRange(Context.ApplicationUser.ToList());
 
             Context.Archive.RemoveRange(Context.Archive.ToList());
 
