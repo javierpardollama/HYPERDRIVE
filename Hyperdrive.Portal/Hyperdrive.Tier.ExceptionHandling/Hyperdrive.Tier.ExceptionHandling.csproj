@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Copyright>2020 Javier Pardo</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/javierpardollama/HYPERDRIVE/tree/master/Hyperdrive.Portal/Hyperdrive.Tier.ExceptionHandling</PackageProjectUrl>
