@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Tier.Contexts.Extensions
 {
+    /// <summary>
+    /// Represents a <see cref="FiltersExtension"/> class.
+    /// </summary>
     public static class FiltersExtension
     {
+        /// <summary>
+        /// Extends Customized Filters
+        /// </summary>
+        /// <param name="this">Injected <see cref="ModelBuilder"/></param>
         public static void AddCustomizedFilters(this ModelBuilder @this)
         {
             // Configure entity filters      

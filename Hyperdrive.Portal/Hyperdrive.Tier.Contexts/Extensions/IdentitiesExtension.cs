@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Tier.Contexts.Extensions
 {
+    /// <summary>
+    /// Represents a <see cref="IdentitiesExtension"/> class.
+    /// </summary>
     public static class IdentitiesExtension
     {
+        /// <summary>
+        /// Extends Customized Identities
+        /// </summary>
+        /// <param name="this">Injected <see cref="ModelBuilder"/></param>
         public static void AddCustomizedIdentities(this ModelBuilder @this)
         {
             @this.Entity<ApplicationUserRole>(applicationUserRole =>

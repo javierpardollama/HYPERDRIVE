@@ -7,8 +7,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Hyperdrive.Tier.Mappings.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="LoggingProfile"/> class
+    /// </summary>
     public static class LoggingProfile
     {
+        /// <summary>
+        /// Instance of <see cref="Dictionary{Enum, LogLevel}"/>
+        /// </summary>
         public static readonly Dictionary<Enum, LogLevel> LogLevelMapings = new Dictionary<Enum, LogLevel>
     {
     { ApplicationEvents.InsertItem, LogLevel.Information },
