@@ -98,7 +98,7 @@ namespace Hyperdrive.Tier.Logging.Classes
         private static void WriteInformationDiagnostics(string @logData) => System.Diagnostics.Trace.TraceInformation(@logData);
 
         /// <summary>
-        /// Writes Information Diagnostics
+        /// Writes Error Diagnostics
         /// </summary>
         /// <param name="logData">Injected <see cref="string"/></param>
         private static void WriteErrorDiagnostics(string @logData) => System.Diagnostics.Trace.TraceError(@logData);
