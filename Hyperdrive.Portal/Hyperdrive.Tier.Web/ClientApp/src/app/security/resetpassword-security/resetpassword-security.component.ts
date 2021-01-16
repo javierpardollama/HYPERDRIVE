@@ -22,7 +22,7 @@ import { ExpressionAppVariants } from './../../../variants/expression.app.varian
 @Component({
   selector: 'app-resetpassword-security',
   templateUrl: './resetpassword-security.component.html',
-  styleUrls: ['./resetpassword-security.component.css']
+  styleUrls: ['./resetpassword-security.component.scss']
 })
 export class ResetPasswordSecurityComponent implements OnInit {
 

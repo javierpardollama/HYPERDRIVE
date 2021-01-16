@@ -30,7 +30,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 @Component({
   selector: 'app-archive-update-modal',
   templateUrl: './archive-update-modal.component.html',
-  styleUrls: ['./archive-update-modal.component.css']
+  styleUrls: ['./archive-update-modal.component.scss']
 })
 export class ArchiveUpdateModalComponent implements OnInit {
 

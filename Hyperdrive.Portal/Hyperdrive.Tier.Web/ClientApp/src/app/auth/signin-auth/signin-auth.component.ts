@@ -22,7 +22,7 @@ import { ExpressionAppVariants } from './../../../variants/expression.app.varian
 @Component({
   selector: 'app-signin-auth',
   templateUrl: './signin-auth.component.html',
-  styleUrls: ['./signin-auth.component.css']
+  styleUrls: ['./signin-auth.component.scss']
 })
 export class SignInAuthComponent implements OnInit {
 

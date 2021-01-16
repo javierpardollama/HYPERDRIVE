@@ -26,7 +26,7 @@ import {
 @Component({
   selector: 'app-archive-grid',
   templateUrl: './archive-grid.component.html',
-  styleUrls: ['./archive-grid.component.css']
+  styleUrls: ['./archive-grid.component.scss']
 })
 export class ArchiveGridComponent implements OnInit {
 

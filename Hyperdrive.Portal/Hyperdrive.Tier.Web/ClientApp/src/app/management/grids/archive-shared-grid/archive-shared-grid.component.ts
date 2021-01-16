@@ -26,7 +26,7 @@ import {
 @Component({
   selector: 'app-archive-shared-grid',
   templateUrl: './archive-shared-grid.component.html',
-  styleUrls: ['./archive-shared-grid.component.css']
+  styleUrls: ['./archive-shared-grid.component.scss']
 })
 export class ArchiveSharedGridComponent implements OnInit {
 

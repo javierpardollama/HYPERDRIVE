@@ -83,6 +83,7 @@ import {
 import {
   ArchiveUpdateModalComponent
 } from './management/modals/updates/archive-update-modal/archive-update-modal.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -125,55 +126,7 @@ import {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomeComponent,
-        pathMatch: 'full',
-        canActivate: [SignInGuard]
-      },
-      // App-Auth
-      {
-        path: 'auth/joinin',
-        component: JoinInAuthComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'auth/signin',
-        component: SignInAuthComponent,
-        pathMatch: 'full'
-      },
-      // App-Security
-      {
-        path: 'security/changeemail',
-        component: ChangeEmailSecurityComponent,
-        pathMatch: 'full',
-        canActivate: [SignInGuard]
-      },
-      {
-        path: 'security/changepassword',
-        component: ChangePasswordSecurityComponent,
-        pathMatch: 'full',
-        canActivate: [SignInGuard]
-      },
-      {
-        path: 'security/resetpassword',
-        component: ResetPasswordSecurityComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'management/archives',
-        component: ArchiveGridComponent,
-        pathMatch: 'full',
-        canActivate: [SignInGuard]
-      },
-      {
-        path: 'management/sharedarchives',
-        component: ArchiveSharedGridComponent,
-        pathMatch: 'full',
-        canActivate: [SignInGuard]
-      },
-    ])
+    AppRoutingModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

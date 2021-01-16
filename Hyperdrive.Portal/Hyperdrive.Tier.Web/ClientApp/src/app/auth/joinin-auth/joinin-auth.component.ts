@@ -21,7 +21,7 @@ import { ExpressionAppVariants } from './../../../variants/expression.app.varian
 @Component({
   selector: 'app-joinin-auth',
   templateUrl: './joinin-auth.component.html',
-  styleUrls: ['./joinin-auth.component.css']
+  styleUrls: ['./joinin-auth.component.scss']
 })
 export class JoinInAuthComponent implements OnInit {
 
