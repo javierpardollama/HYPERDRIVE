@@ -194,7 +194,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             await CheckName(viewModel);
 
-            Archive archive = new Archive
+            Archive archive = new()
             {
                 Name = viewModel.Name,
                 By = await FindApplicationUserByEmail(viewModel.By.Email),
@@ -229,7 +229,7 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 ApplicationUser applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive arenalPoblacion = new ApplicationUserArchive
+                ApplicationUserArchive arenalPoblacion = new()
                 {
                     Archive = entity,
                     ApplicationUser = applicationUser,
@@ -241,7 +241,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public void AddArchiveVersion(AddArchive viewModel, Archive entity)
         {
-            ArchiveVersion archiveVersion = new ArchiveVersion
+            ArchiveVersion archiveVersion = new()
             {
                 Archive = entity,
                 Data = viewModel.Data,
@@ -287,7 +287,7 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 ApplicationUser applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive arenalPoblacion = new ApplicationUserArchive
+                ApplicationUserArchive arenalPoblacion = new()
                 {
                     Archive = entity,
                     ApplicationUser = applicationUser,
@@ -299,7 +299,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public void UpdateArchiveVersion(UpdateArchive viewModel, Archive entity)
         {
-            ArchiveVersion archiveVersion = new ArchiveVersion
+            ArchiveVersion archiveVersion = new()
             {
                 Archive = entity,
                 Data = viewModel.Data,

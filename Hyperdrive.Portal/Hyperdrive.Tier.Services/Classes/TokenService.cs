@@ -49,10 +49,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public List<Claim> GenerateJwtClaims(ApplicationUser applicationUser)
         {
             return new List<Claim>
-            {
-                new Claim(
-                    JwtRegisteredClaimNames.Sub,
-                    applicationUser.Email),
+            {               
                 new Claim(
                     JwtRegisteredClaimNames.Jti,
                     Guid.NewGuid().ToString()),
@@ -68,6 +65,9 @@ namespace Hyperdrive.Tier.Services.Classes
                 new Claim(
                     JwtRegisteredClaimNames.Aud,
                     JwtSettings.JwtAudience),
+                new Claim(
+                    ClaimTypes.System,
+                    Environment.MachineName)
             };
         }
     }

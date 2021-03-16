@@ -55,7 +55,7 @@ namespace Hyperdrive.Tier.ExceptionHandling.Middlewares
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            ViewException viewException = new ViewException
+            ViewException viewException = new()
             {
                 StatusCode = context.Response.StatusCode,
                 Message = exception.Message
