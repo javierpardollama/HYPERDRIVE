@@ -50,11 +50,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [SetUp]
         public void Setup()
         {
-            SetUpJwtSettings();
+            SetUpContextOptions();
 
-            SetUpConfiguration();
-
-            SetUpOptions();
+            SetUpJwtOptions();
 
             SetUpServices();
 
@@ -64,9 +62,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpContext();
 
-            TokenService = new TokenService(Configuration);
+            TokenService = new TokenService(JwtOptions);
 
-            Service = new SecurityService(Mapper, Logger, Configuration, UserManager, TokenService);
+            Service = new SecurityService(Mapper, Logger, JwtOptions, UserManager, TokenService);
         }
 
         /// <summary>
