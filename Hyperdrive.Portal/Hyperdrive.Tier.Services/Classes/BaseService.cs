@@ -68,11 +68,14 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Initializes a new Instance of <see cref="BaseService"/>
         /// </summary>
+        /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
         public BaseService(
+            ILogger @logger,
             IOptions<JwtSettings> @jwtSettings
            )
         {
+            Logger = @logger;
             JwtSettings = @jwtSettings;
         }
     }
