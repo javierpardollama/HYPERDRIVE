@@ -118,7 +118,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void SignIn()
         {
-            AuthSignIn viewModel = new AuthSignIn()
+            AuthSignIn viewModel = new()
             {
                 Email = "firstuser@email.com",
                 Password = "P@55w0rd"
@@ -136,7 +136,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task JoinIn()
         {
-            AuthJoinIn viewModel = new AuthJoinIn()
+            AuthJoinIn viewModel = new()
             {
                 Email = "fifthuser@email.com",
                 Password = "P@55w0rd"
@@ -165,7 +165,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void CheckEmail()
         {
-            AuthJoinIn viewModel = new AuthJoinIn()
+            AuthJoinIn viewModel = new()
             {
                 Email = "firstuser@email.com",
                 Password = "P@55w0rd"

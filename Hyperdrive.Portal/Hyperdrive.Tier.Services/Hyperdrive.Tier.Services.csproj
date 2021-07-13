@@ -21,9 +21,4 @@
     <ProjectReference Include="..\Hyperdrive.Tier.Settings\Hyperdrive.Tier.Settings.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

@@ -189,7 +189,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task AddArchive()
         {
-            AddArchive @addArchive = new AddArchive()
+            AddArchive @addArchive = new()
             {
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
@@ -211,7 +211,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void AddApplicationUserArchive() 
         {
-            AddArchive @addArchive = new AddArchive()
+            AddArchive @addArchive = new()
             {
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
@@ -233,7 +233,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void AddArchiveVersion() 
         {
-            AddArchive @addArchive = new AddArchive()
+            AddArchive @addArchive = new()
             {
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
@@ -255,7 +255,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateArchive()
         {
-            UpdateArchive @updateArchive = new UpdateArchive()
+            UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x=>x.Id).ToList(),
@@ -278,7 +278,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void UpdateApplicationUserArchive()
         {
-            UpdateArchive @updateArchive = new UpdateArchive()
+            UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
@@ -301,7 +301,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void UpdateArchiveVersion()
         {
-            UpdateArchive @updateArchive = new UpdateArchive()
+            UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
@@ -324,7 +324,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            UpdateArchive @updateArchive = new UpdateArchive()
+            UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
                 ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),

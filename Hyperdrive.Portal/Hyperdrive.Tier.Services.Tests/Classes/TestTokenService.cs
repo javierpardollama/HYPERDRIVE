@@ -112,7 +112,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void WriteJwtToken()
         {
-            JwtSecurityToken JwtSecurityToken = new JwtSecurityToken();
+            JwtSecurityToken JwtSecurityToken = new();
 
             Service.WriteJwtToken(JwtSecurityToken);
 

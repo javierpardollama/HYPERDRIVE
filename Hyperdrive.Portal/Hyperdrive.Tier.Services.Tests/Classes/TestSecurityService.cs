@@ -131,7 +131,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task ResetPassword()
         {
-            SecurityPasswordReset viewModel = new SecurityPasswordReset()
+            SecurityPasswordReset viewModel = new()
             {
                 Email = Context.ApplicationUser.FirstOrDefault(x => x.Email == "firstuser@email.com").Email,
                 NewPassword = "P@55w0rd"
@@ -148,7 +148,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void ChangePassword()
         {
-            SecurityPasswordChange viewModel = new SecurityPasswordChange()
+            SecurityPasswordChange viewModel = new()
             {
                 CurrentPassword = "P@55w0rd",
                 NewPassword = "P@55w0rd",
@@ -171,7 +171,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task ChangeEmail()
         {
-            SecurityEmailChange viewModel = new SecurityEmailChange()
+            SecurityEmailChange viewModel = new()
             {
                 NewEmail = "newthirduser@email.com",
                 ApplicationUser = new ViewApplicationUser
