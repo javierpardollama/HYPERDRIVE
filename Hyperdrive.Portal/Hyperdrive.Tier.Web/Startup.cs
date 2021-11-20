@@ -1,5 +1,3 @@
-using System;
-
 using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Classes;
@@ -11,7 +9,6 @@ using Hyperdrive.Tier.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +16,8 @@ using Microsoft.Extensions.Hosting;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+
+using System;
 
 namespace Hyperdrive.Tier.Web
 {
@@ -125,17 +124,13 @@ namespace Hyperdrive.Tier.Web
         /// <param name="env">Injected <see cref="IWebHostEnvironment"/></param>
         public void Configure(IApplicationBuilder @app, IWebHostEnvironment @env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
-                @app.UseDeveloperExceptionPage();
-                @app.UseCustomizedExceptionMiddlewares();
-            }
-            else
-            {
-                @app.UseCustomizedExceptionMiddlewares();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 @app.UseHsts();
-            }
+            }          
+
+            @app.UseCustomizedExceptionMiddlewares();
 
             @app.UseAuthentication();
 
