@@ -104,8 +104,7 @@ namespace Hyperdrive.Tier.Web
             // Add customized Cross Origin Requests to the services container.
             @services.AddCustomizedCrossOriginRequests(JwtSettings);
 
-            @services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest)
-            .AddNewtonsoftJson(options =>
+            @services.AddMvc().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.Formatting = Formatting.Indented;
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

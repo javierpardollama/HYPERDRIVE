@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-
-    <Copyright>2020 Javier Pardo</Copyright>
+    <TargetFramework>net6.0</TargetFramework>
+    <Copyright>2021 Javier Pardo</Copyright>
     <PackageProjectUrl>https://github.com/javierpardollama/HYPERDRIVE/tree/master/Hyperdrive.Portal/Hyperdrive.Tier.Services.Tests</PackageProjectUrl>
     <RepositoryUrl>https://github.com/javierpardollama/HYPERDRIVE/tree/master/Hyperdrive.Portal/Hyperdrive.Tier.Services.Tests</RepositoryUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
@@ -14,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="nunit" Version="3.13.2" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
   </ItemGroup>
 
