@@ -70,7 +70,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Sets Up Context
         /// </summary>
         /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext @context)
+        private static void SetUpContext(ApplicationContext @context)
         {
             @context.ApplicationUser.Add(new ApplicationUser { Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, ApplicationUserRoles = new List<ApplicationUserRole>() });
             @context.ApplicationUser.Add(new ApplicationUser { Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ApplicationUserRoles = new List<ApplicationUserRole>() });

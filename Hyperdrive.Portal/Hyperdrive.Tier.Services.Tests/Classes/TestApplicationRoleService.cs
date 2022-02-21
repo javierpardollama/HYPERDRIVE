@@ -141,14 +141,14 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateApplicationRole()
         {
-            UpdateApplicationRole viewModel = new UpdateApplicationRole()
+            UpdateApplicationRole @ViewModel = new()
             {
                 Id = Context.ApplicationRole.FirstOrDefault().Id,
                 Name = "Role 21",
                 ImageUri = "URL/Role_21_500px.png",
             };
 
-            await Service.UpdateApplicationRole(viewModel);
+            await Service.UpdateApplicationRole(@ViewModel);
 
             Assert.Pass();
         }
@@ -160,13 +160,13 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task AddApplicationRole()
         {
-            AddApplicationRole viewModel = new AddApplicationRole()
+            AddApplicationRole @ViewModel = new()
             {
                 Name = "Role 41",
                 ImageUri = "URL/Role_41_500px.png",
             };
 
-            await Service.AddApplicationRole(viewModel);
+            await Service.AddApplicationRole(@ViewModel);
 
             Assert.Pass();
         }
@@ -177,13 +177,13 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddApplicationRole viewModel = new AddApplicationRole()
+            AddApplicationRole @ViewModel = new()
             {
                 Name = "Role 2",
                 ImageUri = "URL/Role_2_500px.png",
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(viewModel));
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@ViewModel));
 
             Assert.Pass();
         }
