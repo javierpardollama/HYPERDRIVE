@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\Hyperdrive.Tier.Constants\Hyperdrive.Tier.Constants.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Tier.ViewModels\Hyperdrive.Tier.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
