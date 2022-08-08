@@ -40,7 +40,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             return new JwtSecurityToken(
                 issuer: JwtSettings.Value.JwtIssuer,
-                audience: JwtSettings.Value.JwtAudiences.FirstOrDefault(),
+                audience: null,
                 claims: GenerateJwtClaims(@applicationUser),
                 expires: GenerateTokenExpirationDate(),
                 signingCredentials: GenerateSigningCredentials(GenerateSymmetricSecurityKey())
@@ -102,12 +102,10 @@ namespace Hyperdrive.Tier.Services.Classes
                     JwtRegisteredClaimNames.Iss,
                     JwtSettings.Value.JwtIssuer),
                 new Claim(
-                    JwtRegisteredClaimNames.Aud,
-                    JwtSettings.Value.JwtAudiences.FirstOrDefault()),
-                new Claim(
                     ClaimTypes.System,
                     Environment.MachineName)
-            };
+            }.Union(JwtSettings.Value.JwtAudiences.Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
+            .ToList();
         }
     }
 }
