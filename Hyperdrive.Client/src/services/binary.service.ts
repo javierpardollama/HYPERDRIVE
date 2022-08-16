@@ -26,11 +26,11 @@ export class BinaryService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public EncodeAddArchive(viewModel: BinaryAddArchive): AddArchive {
+    public async EncodeAddArchive(viewModel: BinaryAddArchive): Promise<AddArchive> {
         const resultModel: AddArchive =
         {
             By: viewModel.By,
-            Data: this.ArchiveDataToBinary(viewModel.Data),
+            Data: new Int8Array(await viewModel.Data.arrayBuffer()),
             Size: viewModel.Data.size,
             Name: viewModel.Data.name,
             Type: viewModel.Data.type
@@ -39,32 +39,17 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public EncodeUpdateArchive(viewModel: BinaryUpdateArchive): UpdateArchive {
+    public async EncodeUpdateArchive(viewModel: BinaryUpdateArchive): Promise<UpdateArchive> {
         const resultModel: UpdateArchive =
         {
             Id: viewModel.Id,
             By: viewModel.By,
-            Data: this.ArchiveDataToBinary(viewModel.Data),
+            Data: new Int8Array(await viewModel.Data.arrayBuffer()),
             Name: viewModel.Data.name,
             Size: viewModel.Data.size,
             Type: viewModel.Data.type
         };
 
         return resultModel;
-    }
-
-    public ArchiveDataToBinary(data: File): ArrayBuffer | string | null {
-
-        const reader = new FileReader();
-
-        let buffer: ArrayBuffer | string | null;
-
-        reader.onloadend = () => {
-            buffer = reader.result;
-        };
-
-        reader.readAsDataURL(data);
-
-        return buffer;
     }
 }

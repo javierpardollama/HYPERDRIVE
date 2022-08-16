@@ -64,7 +64,7 @@ export class ArchiveAddModalComponent implements OnInit {
   // Form Actions
   async onSubmit(viewModel: BinaryAddArchive) {
 
-    let archive = await this.archiveService.AddArchive(this.binaryService.EncodeAddArchive(viewModel));
+    let archive = await this.archiveService.AddArchive(await this.binaryService.EncodeAddArchive(viewModel));
 
     if (archive !== undefined) {
       this.matSnackBar.open(
