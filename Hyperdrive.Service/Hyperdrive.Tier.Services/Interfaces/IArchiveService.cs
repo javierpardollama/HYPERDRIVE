@@ -10,36 +10,36 @@ namespace Hyperdrive.Tier.Services.Interfaces
 {
     public interface IArchiveService : IBaseService
     {
-        Task<Archive> FindArchiveById(int id);
+        Task<Archive> FindArchiveById(int @id);
 
-        Task RemoveArchiveById(int id);
+        Task RemoveArchiveById(int @id);
 
         Task<IList<ViewArchive>> FindAllArchive();
 
-        Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int id);
+        Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int @id);
 
-        Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int id);
+        Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int @id);
 
-        Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int id);
+        Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id);
 
-        Task<ApplicationUser> FindApplicationUserByEmail(string email);
+        Task<ApplicationUser> FindApplicationUserByEmail(string @email);
 
-        Task<ApplicationUser> FindApplicationUserById(int id);
+        Task<ApplicationUser> FindApplicationUserById(int @id);
 
-        Task<ViewArchive> AddArchive(AddArchive viewModel);
+        Task<ViewArchive> AddArchive(AddArchive @viewModel);
 
-        void AddApplicationUserArchive(AddArchive viewModel, Archive entity);
+        void AddApplicationUserArchive(AddArchive @viewModel, Archive @entity);
 
-        void AddArchiveVersion(AddArchive viewModel, Archive entity);
+        void AddArchiveVersion(AddArchive @viewModel, Archive @entity);
 
-        Task<ViewArchive> UpdateArchive(UpdateArchive viewModel);
+        Task<ViewArchive> UpdateArchive(UpdateArchive @viewModel);
 
-        void UpdateApplicationUserArchive(UpdateArchive viewModel, Archive entity);
+        void UpdateApplicationUserArchive(UpdateArchive @viewModel, Archive @entity);
 
-        void UpdateArchiveVersion(UpdateArchive viewModel, Archive entity);
+        void UpdateArchiveVersion(UpdateArchive @viewModel, Archive @entity);
 
-        Task<Archive> CheckName(AddArchive viewModel);
+        Task<Archive> CheckName(AddArchive @viewModel);
 
-        Task<Archive> CheckName(UpdateArchive viewModel);
+        Task<Archive> CheckName(UpdateArchive @viewModel);
     }
 }

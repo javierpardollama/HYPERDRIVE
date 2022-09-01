@@ -16,27 +16,27 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        Task<ApplicationUser> FindApplicationUserByEmail(string email);
+        Task<ApplicationUser> FindApplicationUserByEmail(string @email);
 
         /// <summary>
         /// Resets Password
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
-        Task<ViewApplicationUser> ResetPassword(SecurityPasswordReset viewModel);
+        Task<ViewApplicationUser> ResetPassword(SecurityPasswordReset @viewModel);
 
         /// <summary>
         /// Changes Password
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
-        Task<ViewApplicationUser> ChangePassword(SecurityPasswordChange viewModel);
+        Task<ViewApplicationUser> ChangePassword(SecurityPasswordChange @viewModel);
 
         /// <summary>
         /// Changes Email
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
-        Task<ViewApplicationUser> ChangeEmail(SecurityEmailChange viewModel);
+        Task<ViewApplicationUser> ChangeEmail(SecurityEmailChange @viewModel);
     }
 }

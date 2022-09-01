@@ -68,12 +68,12 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthSignIn @viewModel)
         {
-            SignInResult signInResult = await SignInManager.PasswordSignInAsync(@viewModel.Email,
+            SignInResult @signInResult = await SignInManager.PasswordSignInAsync(@viewModel.Email,
                                                                                 @viewModel.Password,
                                                                                 false,
                                                                                 true);
 
-            if (signInResult.Succeeded)
+            if (@signInResult.Succeeded)
             {
                 ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
 
@@ -129,13 +129,13 @@ namespace Hyperdrive.Tier.Services.Classes
                 });
 
                 // Log
-                string logData = @applicationUser.GetType().Name
+                string @logData = @applicationUser.GetType().Name
                     + " with Email "
                     + @applicationUser.Email
                     + " logged in at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteUserAuthenticatedLog(logData);
+                Logger.WriteUserAuthenticatedLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }

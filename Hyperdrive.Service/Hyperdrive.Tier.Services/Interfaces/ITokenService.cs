@@ -19,14 +19,14 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <param name="applicationUser">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="JwtSecurityToken"/></returns>
-        JwtSecurityToken GenerateJwtToken(ApplicationUser applicationUser);
+        JwtSecurityToken GenerateJwtToken(ApplicationUser @applicationUser);
 
         /// <summary>
         /// Writes Jwt Token
         /// </summary>
         /// <param name="jwtSecurityToken">>Injected <see cref="JwtSecurityToken"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
-        string WriteJwtToken(JwtSecurityToken jwtSecurityToken);
+        string WriteJwtToken(JwtSecurityToken @jwtSecurityToken);
 
         /// <summary>
         /// Generates Symmetric Security Key
@@ -39,7 +39,7 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <param name="symmetricSecurityKey">>Injected <see cref="SymmetricSecurityKey"/></param>
         /// <returns>Instance of <see cref="SigningCredentials"/></returns>
-        SigningCredentials GenerateSigningCredentials(SymmetricSecurityKey symmetricSecurityKey);
+        SigningCredentials GenerateSigningCredentials(SymmetricSecurityKey @symmetricSecurityKey);
 
         /// <summary>
         /// Generates Token Expiration Date 
@@ -52,6 +52,6 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <param name="applicationUser">>Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="List{Claim}"/></returns>
-        List<Claim> GenerateJwtClaims(ApplicationUser applicationUser);
+        List<Claim> GenerateJwtClaims(ApplicationUser @applicationUser);
     }
 }

@@ -16,13 +16,13 @@ namespace Hyperdrive.Tier.Service.Extensions
         /// </summary>
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>
         /// <param name="JwtSettings">Injected <see cref="JwtSettings"/></param>
-        public static void AddCustomizedCrossOriginRequests(this IServiceCollection @this, JwtSettings JwtSettings)
+        public static void AddCustomizedCrossOriginRequests(this IServiceCollection @this, JwtSettings @JwtSettings)
         {
             @this.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins(JwtSettings.JwtAudiences.ToArray()).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+                    policy.WithOrigins(@JwtSettings.JwtAudiences.ToArray()).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
                 });
             });
         }

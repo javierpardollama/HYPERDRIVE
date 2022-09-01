@@ -50,11 +50,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteUpdateItemLog(this ILogger @this,
-                                              string logData)
+                                              string @logData)
         {
-            @this.Emit(ApplicationEvents.UpdateItem, logData);
+            @this.Emit(ApplicationEvents.UpdateItem, @logData);
 
-            WriteInformationDiagnostics(logData);
+            WriteInformationDiagnostics(@logData);
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteDeleteItemLog(this ILogger @this,
-                                              string logData)
+                                              string @logData)
         {
-            @this.Emit(ApplicationEvents.DeleteItem, logData);
+            @this.Emit(ApplicationEvents.DeleteItem, @logData);
 
-            WriteInformationDiagnostics(logData);
+            WriteInformationDiagnostics(@logData);
         }
 
         /// <summary>
@@ -76,11 +76,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteInsertItemLog(this ILogger @this,
-                                              string logData)
+                                              string @logData)
         {
-            @this.Emit(ApplicationEvents.InsertItem, logData);
+            @this.Emit(ApplicationEvents.InsertItem, @logData);
 
-            WriteInformationDiagnostics(logData);
+            WriteInformationDiagnostics(@logData);
         }
 
         /// <summary>
@@ -89,11 +89,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteGetItemFoundLog(this ILogger @this,
-                                                string logData)
+                                                string @logData)
         {
-            @this.Emit(ApplicationEvents.GetItemFound, logData);
+            @this.Emit(ApplicationEvents.GetItemFound, @logData);
 
-            WriteErrorDiagnostics(logData);
+            WriteErrorDiagnostics(@logData);
         }
 
         /// <summary>
@@ -102,11 +102,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteUserAuthenticatedLog(this ILogger @this,
-                                                     string logData)
+                                                     string @logData)
         {
-            @this.Emit(ApplicationEvents.UserAuthenticated, logData);
+            @this.Emit(ApplicationEvents.UserAuthenticated, @logData);
 
-            WriteInformationDiagnostics(logData);
+            WriteInformationDiagnostics(@logData);
         }
 
         /// <summary>
@@ -115,11 +115,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteUserNotAuthenticatedLog(this ILogger @this,
-                                                        string logData)
+                                                        string @logData)
         {
-            @this.Emit(ApplicationEvents.UserNotAuthenticated, logData);
+            @this.Emit(ApplicationEvents.UserNotAuthenticated, @logData);
 
-            WriteErrorDiagnostics(logData);
+            WriteErrorDiagnostics(@logData);
         }
 
         /// <summary>
@@ -128,11 +128,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WritePasswordRestoredLog(this ILogger @this,
-                                                        string logData)
+                                                        string @logData)
         {
-            @this.Emit(ApplicationEvents.PasswordRestored, logData);
+            @this.Emit(ApplicationEvents.PasswordRestored, @logData);
 
-            WriteInformationDiagnostics(logData);
+            WriteInformationDiagnostics(@logData);
         }
 
         /// <summary>
@@ -141,11 +141,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="this">Injected <see cref="ILogger"/></param>
         /// <param name="logData">Injected <see cref="string"/></param>
         public static void WriteEmailRestoredLog(this ILogger @this,
-                                                       string logData)
+                                                       string @logData)
         {
-            @this.Emit(ApplicationEvents.EmailRestored, logData);
+            @this.Emit(ApplicationEvents.EmailRestored, @logData);
 
-            WriteInformationDiagnostics(logData);
+            WriteInformationDiagnostics(@logData);
         }
 
         /// <summary>
@@ -172,11 +172,11 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// </summary>
         /// <param name="appEventData">Injected <see cref="Enum"/></param>
         /// <returns>Instance of <see cref="LogLevel"/></returns>
-        private static LogLevel GetApplicationEventLevel(Enum appEventData)
+        private static LogLevel GetApplicationEventLevel(Enum @appEventData)
         {
-            if (LoggingProfile.LogLevelMapings.ContainsKey(appEventData))
+            if (LoggingProfile.LogLevelMapings.ContainsKey(@appEventData))
             {
-                return LoggingProfile.LogLevelMapings[appEventData];
+                return LoggingProfile.LogLevelMapings[@appEventData];
             }
             else
             {

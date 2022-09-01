@@ -31,92 +31,92 @@ namespace Hyperdrive.Tier.Services.Classes
             UserManager = userManager;
         }
 
-        public async Task<Archive> FindArchiveById(int id)
+        public async Task<Archive> FindArchiveById(int @id)
         {
-            Archive archive = await Context.Archive
+            Archive @archive = await Context.Archive
                  .TagWith("FindArchiveById")
                  .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (archive == null)
+            if (@archive == null)
             {
                 // Log
-                string logData = archive.GetType().Name
+                string @logData = @archive.GetType().Name
                     + " with Id "
                     + id
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(archive.GetType().Name
+                throw new Exception(@archive.GetType().Name
                     + " with Id "
                     + id
                     + " does not exist");
             }
 
-            return archive;
+            return @archive;
         }
 
-        public async Task RemoveArchiveById(int id)
+        public async Task RemoveArchiveById(int @id)
         {
-            Archive archive = await FindArchiveById(id);
+            Archive @archive = await FindArchiveById(@id);
 
-            Context.Archive.Remove(archive);
+            Context.Archive.Remove(@archive);
 
             await Context.SaveChangesAsync();
 
             // Log
-            string logData = archive.GetType().Name
+            string @logData = @archive.GetType().Name
                 + " with Id "
                 + archive.Id
                 + " was removed at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteDeleteItemLog(logData);
+            Logger.WriteDeleteItemLog(@logData);
         }
 
         public async Task<IList<ViewArchive>> FindAllArchive()
         {
-            ICollection<Archive> archives = await Context.Archive
+            ICollection<Archive> @archives = await Context.Archive
                 .TagWith("FindAllArchive")
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.By)
                 .ToListAsync();
 
-            return Mapper.Map<IList<ViewArchive>>(archives);
+            return Mapper.Map<IList<ViewArchive>>(@archives);
         }
 
-        public async Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int id)
+        public async Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int @id)
         {
-            ICollection<Archive> archives = await Context.Archive
+            ICollection<Archive> @archives = await Context.Archive
                .TagWith("FindAllArchiveByApplicationUserId")
                .AsQueryable()
                .AsNoTracking()
                .Include(x => x.By)
-               .Where(x => x.By.Id == id)
+               .Where(x => x.By.Id == @id)
                .ToListAsync();
 
-            return Mapper.Map<IList<ViewArchive>>(archives);
+            return Mapper.Map<IList<ViewArchive>>(@archives);
         }
 
-        public async Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int id)
+        public async Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int @id)
         {
-            ICollection<Archive> archives = await Context.ApplicationUserArchive
+            ICollection<Archive> @archives = await Context.ApplicationUserArchive
                .TagWith("FindAllSharedArchiveByApplicationUserId")
                .AsQueryable()
                .AsNoTracking()
                .Include(x => x.ApplicationUser)
                .Include(x => x.Archive)
                .ThenInclude(x => x.By)
-               .Where(x => x.ApplicationUser.Id == id)
+               .Where(x => x.ApplicationUser.Id == @id)
                .Select(x => x.Archive)
                .ToListAsync();
 
-            return Mapper.Map<IList<ViewArchive>>(archives);
+            return Mapper.Map<IList<ViewArchive>>(@archives);
         }
 
-        public async Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int id)
+        public async Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id)
         {
             ICollection<ArchiveVersion> versions = await Context.ArchiveVersion
                .TagWith("FindAllArchiveVersionByArchiveId")
@@ -124,53 +124,53 @@ namespace Hyperdrive.Tier.Services.Classes
                .AsNoTracking()
                .Include(x => x.Archive)
                .ThenInclude(x => x.By)
-               .Where(x => x.Archive.Id == id)
+               .Where(x => x.Archive.Id == @id)
                .ToListAsync();
 
-            return Mapper.Map<IList<ViewArchiveVersion>>(versions);
+            return Mapper.Map<IList<ViewArchiveVersion>>(@versions);
         }
 
-        public async Task<ApplicationUser> FindApplicationUserByEmail(string email)
+        public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
-            ApplicationUser applicationUser = await UserManager.Users
+            ApplicationUser @applicationUser = await UserManager.Users
                 .TagWith("FindApplicationUserByEmail")
                 .AsQueryable()
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
-                .FirstOrDefaultAsync(x => x.Email == email);
+                .FirstOrDefaultAsync(x => x.Email == @email);
 
-            if (applicationUser == null)
+            if (@applicationUser == null)
             {
                 // Log
-                string logData = applicationUser.GetType().Name
+                string @logData = @applicationUser.GetType().Name
                     + " with Email "
-                    + email
+                    + @email
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(applicationUser.GetType().Name
+                throw new Exception(@applicationUser.GetType().Name
                     + " with Email "
                     + email
                     + " does not exist");
             }
 
-            return applicationUser;
+            return @applicationUser;
         }
 
-        public async Task<ApplicationUser> FindApplicationUserById(int id)
+        public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
-            ApplicationUser applicationUser = await UserManager.Users
+            ApplicationUser @applicationUser = await UserManager.Users
                 .TagWith("FindApplicationUserById")
                 .AsQueryable()
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (applicationUser == null)
+            if (@applicationUser == null)
             {
                 // Log
                 string logData = applicationUser.GetType().Name
@@ -179,190 +179,190 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(applicationUser.GetType().Name
+                throw new Exception(@applicationUser.GetType().Name
                     + " with Id "
                     + id
                     + " does not exist");
             }
 
-            return applicationUser;
+            return @applicationUser;
         }
 
-        public async Task<ViewArchive> AddArchive(AddArchive viewModel)
+        public async Task<ViewArchive> AddArchive(AddArchive @viewModel)
         {
-            await CheckName(viewModel);
+            await CheckName(@viewModel);
 
-            Archive archive = new()
+            Archive @archive = new()
             {
-                Name = viewModel.Name,
-                By = await FindApplicationUserByEmail(viewModel.By.Email),
+                Name = @viewModel.Name,
+                By = await FindApplicationUserByEmail(@viewModel.By.Email),
                 ApplicationUserArchives = new List<ApplicationUserArchive>(),
                 ArchiveVersions = new List<ArchiveVersion>()
             };
 
-            await Context.Archive.AddAsync(archive);
+            await Context.Archive.AddAsync(@archive);
 
-            AddApplicationUserArchive(viewModel, archive);
+            AddApplicationUserArchive(@viewModel, @archive);
 
-            AddArchiveVersion(viewModel, archive);
+            AddArchiveVersion(@viewModel, @archive);
 
             await Context.SaveChangesAsync();
 
             // Log
-            string logData = archive.GetType().Name
+            string @logData = archive.GetType().Name
                 + " with Id "
                 + archive.Id
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(@logData);
 
-            return Mapper.Map<ViewArchive>(archive);
+            return Mapper.Map<ViewArchive>(@archive);
         }
 
-        public void AddApplicationUserArchive(AddArchive viewModel,
-                                             Archive entity)
+        public void AddApplicationUserArchive(AddArchive @viewModel,
+                                             Archive @entity)
         {
-            viewModel.ApplicationUsersId.AsQueryable().ToList().ForEach(async x =>
+            @viewModel.ApplicationUsersId.AsQueryable().ToList().ForEach(async x =>
             {
-                ApplicationUser applicationUser = await FindApplicationUserById(x);
+                ApplicationUser @applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive arenalPoblacion = new()
+                ApplicationUserArchive @arenalPoblacion = new()
                 {
-                    Archive = entity,
-                    ApplicationUser = applicationUser,
+                    Archive = @entity,
+                    ApplicationUser = @applicationUser,
                 };
 
-                entity.ApplicationUserArchives.Add(arenalPoblacion);
+                entity.ApplicationUserArchives.Add(@arenalPoblacion);
             });
         }
 
-        public void AddArchiveVersion(AddArchive viewModel, Archive entity)
+        public void AddArchiveVersion(AddArchive @viewModel, Archive @entity)
         {
-            ArchiveVersion archiveVersion = new()
+            ArchiveVersion @archiveVersion = new()
             {
-                Archive = entity,
-                Data = viewModel.Data,
-                Size = viewModel.Size,
-                Type = viewModel.Type
+                Archive = @entity,
+                Data = @viewModel.Data,
+                Size = @viewModel.Size,
+                Type = @viewModel.Type
             };
 
-            entity.ArchiveVersions.Add(archiveVersion);
+            @entity.ArchiveVersions.Add(@archiveVersion);
         }
 
-        public async Task<ViewArchive> UpdateArchive(UpdateArchive viewModel)
+        public async Task<ViewArchive> UpdateArchive(UpdateArchive @viewModel)
         {
-            await CheckName(viewModel);
+            await CheckName(@viewModel);
 
-            Archive archive = await FindArchiveById(viewModel.Id);
-            archive.Name = viewModel.Name;
-            archive.By = await FindApplicationUserByEmail(viewModel.By.Email);
-            archive.ApplicationUserArchives = new List<ApplicationUserArchive>();
+            Archive @archive = await FindArchiveById(@viewModel.Id);
+            @archive.Name = viewModel.Name;
+            @archive.By = await FindApplicationUserByEmail(@viewModel.By.Email);
+            @archive.ApplicationUserArchives = new List<ApplicationUserArchive>();
 
-            Context.Archive.Update(archive);
+            Context.Archive.Update(@archive);
 
-            UpdateApplicationUserArchive(viewModel, archive);
+            UpdateApplicationUserArchive(@viewModel, @archive);
 
-            UpdateArchiveVersion(viewModel, archive);
+            UpdateArchiveVersion(@viewModel, @archive);
 
             await Context.SaveChangesAsync();
 
             // Log
-            string logData = archive.GetType().Name
+            string @logData = @archive.GetType().Name
                 + " with Id "
-                + archive.Id
+                + @archive.Id
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(logData);
+            Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewArchive>(archive);
+            return Mapper.Map<ViewArchive>(@archive);
         }
 
-        public void UpdateApplicationUserArchive(UpdateArchive viewModel, Archive entity)
+        public void UpdateApplicationUserArchive(UpdateArchive @viewModel, Archive @entity)
         {
-            viewModel.ApplicationUsersId.AsQueryable().ToList().ForEach(async x =>
+            @viewModel.ApplicationUsersId.AsQueryable().ToList().ForEach(async x =>
             {
-                ApplicationUser applicationUser = await FindApplicationUserById(x);
+                ApplicationUser @applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive arenalPoblacion = new()
+                ApplicationUserArchive @arenalPoblacion = new()
                 {
-                    Archive = entity,
-                    ApplicationUser = applicationUser,
+                    Archive = @entity,
+                    ApplicationUser = @applicationUser,
                 };
 
-                entity.ApplicationUserArchives.Add(arenalPoblacion);
+                @entity.ApplicationUserArchives.Add(@arenalPoblacion);
             });
         }
 
-        public void UpdateArchiveVersion(UpdateArchive viewModel, Archive entity)
+        public void UpdateArchiveVersion(UpdateArchive @viewModel, Archive @entity)
         {
-            ArchiveVersion archiveVersion = new()
+            ArchiveVersion @archiveVersion = new()
             {
-                Archive = entity,
-                Data = viewModel.Data,
-                Size = viewModel.Size,
-                Type = viewModel.Type
+                Archive = @entity,
+                Data = @viewModel.Data,
+                Size = @viewModel.Size,
+                Type = @viewModel.Type
             };
 
-            entity.ArchiveVersions.Add(archiveVersion);
+            @entity.ArchiveVersions.Add(@archiveVersion);
         }
 
-        public async Task<Archive> CheckName(AddArchive viewModel)
+        public async Task<Archive> CheckName(AddArchive @viewModel)
         {
-            Archive archive = await Context.Archive
+            Archive @archive = await Context.Archive
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
 
-            if (archive != null)
+            if (@archive != null)
             {
                 // Log
-                string logData = archive.GetType().Name
+                string @logData = @archive.GetType().Name
                     + " with Name "
-                    + archive.Name
+                    + @archive.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(archive.GetType().Name
+                throw new Exception(@archive.GetType().Name
                     + " with Name "
-                    + viewModel.Name
+                    + @viewModel.Name
                     + " already exists");
             }
 
-            return archive;
+            return @archive;
         }
 
 
-        public async Task<Archive> CheckName(UpdateArchive viewModel)
+        public async Task<Archive> CheckName(UpdateArchive @viewModel)
         {
-            Archive archive = await Context.Archive
+            Archive @archive = await Context.Archive
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != @viewModel.Id);
 
-            if (archive != null)
+            if (@archive != null)
             {
                 // Log
-                string logData = archive.GetType().Name
+                string @logData = @archive.GetType().Name
                     + " with Name "
-                    + archive.Name
+                    + @archive.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(archive.GetType().Name
+                throw new Exception(@archive.GetType().Name
                     + " with Name "
-                    + viewModel.Name
+                    + @viewModel.Name
                     + " already exists");
             }
 
-            return archive;
+            return @archive;
         }
     }
 }

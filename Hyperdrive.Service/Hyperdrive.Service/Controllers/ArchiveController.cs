@@ -22,15 +22,15 @@ namespace Hyperdrive.Tier.Web.Controllers
 
         [HttpGet]
         [Route("findallarchivebyapplicationuserid/{id}")]
-        public async Task<IActionResult> FindAllArchiveByApplicationUserId(int id) => new JsonResult(value: await Service.FindAllArchiveByApplicationUserId(id));
+        public async Task<IActionResult> FindAllArchiveByApplicationUserId(int @id) => new JsonResult(value: await Service.FindAllArchiveByApplicationUserId(@id));
 
         [HttpGet]
         [Route("findallsharedarchivebyapplicationuserid/{id}")]
-        public async Task<IActionResult> FindAllSharedArchiveByApplicationUserId(int id) => new JsonResult(value: await Service.FindAllSharedArchiveByApplicationUserId(id));
+        public async Task<IActionResult> FindAllSharedArchiveByApplicationUserId(int @id) => new JsonResult(value: await Service.FindAllSharedArchiveByApplicationUserId(@id));
 
         [HttpGet]
         [Route("findallarchiveversionbyarchiveid/{id}")]
-        public async Task<IActionResult> FindAllArchiveVersionByArchiveId(int id) => new JsonResult(value: await Service.FindAllArchiveVersionByArchiveId(id));
+        public async Task<IActionResult> FindAllArchiveVersionByArchiveId(int @id) => new JsonResult(value: await Service.FindAllArchiveVersionByArchiveId(@id));
 
         [HttpGet]
         [Route("findallarchive")]
@@ -38,17 +38,17 @@ namespace Hyperdrive.Tier.Web.Controllers
 
         [HttpPost]
         [Route("addarchive")]
-        public async Task<IActionResult> AddArchive([FromBody]AddArchive viewModel) => new JsonResult(value: await Service.AddArchive(viewModel));
+        public async Task<IActionResult> AddArchive([FromBody]AddArchive @viewModel) => new JsonResult(value: await Service.AddArchive(@viewModel));
 
         [HttpPut]
         [Route("updatearchive")]
-        public async Task<IActionResult> UpdateArchive([FromBody]UpdateArchive viewModel) => new JsonResult(value: await Service.UpdateArchive(viewModel));
+        public async Task<IActionResult> UpdateArchive([FromBody]UpdateArchive @viewModel) => new JsonResult(value: await Service.UpdateArchive(@viewModel));
 
         [HttpDelete]
         [Route("removearchivebyid/{id}")]
-        public async Task<IActionResult> RemoveArchiveById(int id)
+        public async Task<IActionResult> RemoveArchiveById(int @id)
         {
-            await Service.RemoveArchiveById(id);
+            await Service.RemoveArchiveById(@id);
 
             return new JsonResult((int)HttpStatusCode.OK);
         }

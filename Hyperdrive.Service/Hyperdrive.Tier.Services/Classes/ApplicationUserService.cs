@@ -129,7 +129,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string logData = @applicationUser.GetType().Name
+            string @logData = @applicationUser.GetType().Name
                 + " with Id"
                 + @applicationUser.Id
                 + " was modified at "

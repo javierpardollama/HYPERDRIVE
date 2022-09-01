@@ -18,7 +18,7 @@ namespace Hyperdrive.Tier.Service.Extensions
         /// </summary>
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>
         /// <param name="JwtSettings">Injected <see cref="JwtSettings"/></param>
-        public static void AddCustomizedAuthentication(this IServiceCollection @this, JwtSettings JwtSettings)
+        public static void AddCustomizedAuthentication(this IServiceCollection @this, JwtSettings @JwtSettings)
         {
             @this.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
@@ -29,9 +29,9 @@ namespace Hyperdrive.Tier.Service.Extensions
                        ValidateAudience = true,
                        ValidateLifetime = true,
                        ValidateIssuerSigningKey = true,
-                       ValidIssuer = JwtSettings.JwtIssuer,
-                       ValidAudiences = JwtSettings.JwtAudiences,
-                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.JwtKey))
+                       ValidIssuer = @JwtSettings.JwtIssuer,
+                       ValidAudiences = @JwtSettings.JwtAudiences,
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@JwtSettings.JwtKey))
                    };
                });
         }

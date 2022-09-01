@@ -18,10 +18,10 @@ namespace Hyperdrive.Tier.Web.Controllers
 
         [HttpPost]
         [Route("signin")]
-        public async Task<IActionResult> SignIn([FromBody]AuthSignIn viewModel) => new JsonResult(value: await Service.SignIn(viewModel));
+        public async Task<IActionResult> SignIn([FromBody]AuthSignIn @viewModel) => new JsonResult(value: await Service.SignIn(@viewModel));
 
         [HttpPost]
         [Route("joinin")]
-        public async Task<IActionResult> JoinIn([FromBody]AuthJoinIn viewModel) => new JsonResult(value: await Service.JoinIn(viewModel));
+        public async Task<IActionResult> JoinIn([FromBody]AuthJoinIn @viewModel) => new JsonResult(value: await Service.JoinIn(@viewModel));
     }
 }
