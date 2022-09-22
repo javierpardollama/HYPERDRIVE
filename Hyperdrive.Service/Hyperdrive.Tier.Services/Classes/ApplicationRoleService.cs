@@ -57,7 +57,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @applicationRole.GetType().Name
+            string @logData = nameof(@applicationRole)
                 + " with Id "
                 + @applicationRole.Id
                 + " was added at "
@@ -83,7 +83,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole != null)
             {
                 // Log
-                string @logData = @applicationRole.GetType().Name
+                string @logData = nameof(@applicationRole)
                     + " with Name "
                     + @applicationRole.Name
                     + " was already found at "
@@ -91,7 +91,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@applicationRole.GetType().Name
+                throw new Exception(nameof(@applicationRole)
                     + " with Name "
                     + viewModel.Name
                     + " already exists");
@@ -115,7 +115,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole != null)
             {
                 // Log
-                string @logData = @applicationRole.GetType().Name
+                string @logData = nameof(@applicationRole)
                     + " with Name "
                     + applicationRole.Name
                     + " was already found at "
@@ -123,7 +123,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@applicationRole.GetType().Name
+                throw new Exception(nameof(@applicationRole)
                     + " with Name "
                     + viewModel.Name
                     + " already exists");
@@ -160,7 +160,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole == null)
             {
                 // Log
-                string @logData = @applicationRole.GetType().Name
+                string @logData = nameof(@applicationRole)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -168,7 +168,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@applicationRole.GetType().Name
+                throw new Exception(nameof(@applicationRole)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -191,7 +191,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @applicationRole.GetType().Name
+            string @logData = nameof(@applicationRole)
                 + " with Id "
                 + @applicationRole.Id
                 + " was removed at "
@@ -220,7 +220,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @applicationRole.GetType().Name
+            string @logData = nameof(@applicationRole)
                 + " with Id "
                 + @applicationRole.Id
                 + " was modified at "

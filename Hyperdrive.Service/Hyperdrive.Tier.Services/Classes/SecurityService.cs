@@ -74,7 +74,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 });
 
                 // Log
-                string @logData = @applicationUser.GetType().Name
+                string @logData = nameof(@applicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Password at "
@@ -108,7 +108,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser == null)
             {
                 // Log
-                string @logData = @applicationUser.GetType().Name
+                string @logData = nameof(@applicationUser)
                     + " with Email "
                     + @email
                     + " was not found at "
@@ -116,7 +116,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@applicationUser.GetType().Name
+                throw new Exception(nameof(@applicationUser)
                     + " with Email "
                     + @email
                     + " does not exist");
@@ -148,7 +148,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 });
 
                 // Log
-                string @logData = @applicationUser.GetType().Name
+                string @logData = nameof(@applicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Password at "
@@ -187,7 +187,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 });
 
                 // Log
-                string @logData = @applicationUser.GetType().Name
+                string @logData = nameof(@applicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Email at "

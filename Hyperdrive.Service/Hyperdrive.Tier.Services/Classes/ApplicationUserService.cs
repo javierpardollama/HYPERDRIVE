@@ -71,7 +71,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser == null)
             {
                 // Log
-                string @logData = @applicationUser.GetType().Name
+                string @logData = nameof(@applicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " was not found at "
@@ -79,7 +79,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@applicationUser.GetType().Name
+                throw new Exception(nameof(@applicationUser)
                     + " with Email "
                     + applicationUser.Email
                     + " does not exist");
@@ -102,7 +102,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @applicationUser.GetType().Name
+            string @logData = nameof(@applicationUser)
                 + " with Id "
                 + @applicationUser.Id
                 + " was removed at "
@@ -129,7 +129,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @applicationUser.GetType().Name
+            string @logData = nameof(@applicationUser)
                 + " with Id"
                 + @applicationUser.Id
                 + " was modified at "
@@ -175,7 +175,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole == null)
             {
                 // Log
-                string @logData = @applicationRole.GetType().Name
+                string @logData = nameof(@applicationRole)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -183,7 +183,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@applicationRole.GetType().Name
+                throw new Exception(nameof(@applicationRole)
                     + " with Id "
                     + @id
                     + " does not exist");

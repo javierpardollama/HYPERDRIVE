@@ -40,7 +40,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@archive == null)
             {
                 // Log
-                string @logData = @archive.GetType().Name
+                string @logData = nameof(@archive)
                     + " with Id "
                     + id
                     + " was not found at "
@@ -48,7 +48,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@archive.GetType().Name
+                throw new Exception(nameof(@archive)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -66,7 +66,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @archive.GetType().Name
+            string @logData = nameof(@archive)
                 + " with Id "
                 + archive.Id
                 + " was removed at "
@@ -143,7 +143,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser == null)
             {
                 // Log
-                string @logData = @applicationUser.GetType().Name
+                string @logData = nameof(@applicationUser)
                     + " with Email "
                     + @email
                     + " was not found at "
@@ -151,7 +151,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@applicationUser.GetType().Name
+                throw new Exception(nameof(@applicationUser)
                     + " with Email "
                     + email
                     + " does not exist");
@@ -173,7 +173,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser == null)
             {
                 // Log
-                string logData = applicationUser.GetType().Name
+                string logData = nameof(applicationUser)
                     + " with Id "
                     + id
                     + " was not found at "
@@ -181,7 +181,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@applicationUser.GetType().Name
+                throw new Exception(nameof(@applicationUser)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -211,7 +211,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = archive.GetType().Name
+            string @logData = nameof(archive)
                 + " with Id "
                 + archive.Id
                 + " was added at "
@@ -270,7 +270,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @archive.GetType().Name
+            string @logData = nameof(@archive)
                 + " with Id "
                 + @archive.Id
                 + " was modified at "
@@ -320,7 +320,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@archive != null)
             {
                 // Log
-                string @logData = @archive.GetType().Name
+                string @logData = nameof(@archive)
                     + " with Name "
                     + @archive.Name
                     + " was already found at "
@@ -328,7 +328,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@archive.GetType().Name
+                throw new Exception(nameof(@archive)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -348,7 +348,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@archive != null)
             {
                 // Log
-                string @logData = @archive.GetType().Name
+                string @logData = nameof(@archive)
                     + " with Name "
                     + @archive.Name
                     + " was already found at "
@@ -356,7 +356,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@archive.GetType().Name
+                throw new Exception(nameof(@archive)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
