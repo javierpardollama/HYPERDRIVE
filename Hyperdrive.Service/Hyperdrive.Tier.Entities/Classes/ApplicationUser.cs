@@ -33,6 +33,16 @@ namespace Hyperdrive.Tier.Entities.Classes
         public bool Deleted { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="Name"/>
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="SurName"/>
+        /// </summary>
+        public string SurName { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserRoles"/>
         /// </summary>
         public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; }
@@ -51,6 +61,11 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// Gets or Sets <see cref="ApplicationUserTokens"/>
         /// </summary>
         public virtual ICollection<ApplicationUserToken> ApplicationUserTokens { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Archives"/>
+        /// </summary>
+        public virtual ICollection<Archive> Archives { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserArchives"/>

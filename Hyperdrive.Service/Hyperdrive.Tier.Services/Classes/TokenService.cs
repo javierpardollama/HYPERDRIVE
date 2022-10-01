@@ -99,8 +99,17 @@ namespace Hyperdrive.Tier.Services.Classes
                     ClaimTypes.Email,
                     @applicationUser.Email),
                 new Claim(
+                    ClaimTypes.Name,
+                    @applicationUser.Name),
+                new Claim(
+                    ClaimTypes.Surname,
+                    @applicationUser.SurName),
+                new Claim(
                     JwtRegisteredClaimNames.Iss,
-                    JwtSettings.Value.JwtIssuer),
+                    JwtSettings.Value.JwtIssuer),              
+                new Claim(
+                    JwtRegisteredClaimNames.AuthTime,
+                    DateTime.Now.ToString()),
                 new Claim(
                     ClaimTypes.System,
                     Environment.MachineName)

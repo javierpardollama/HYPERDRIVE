@@ -197,6 +197,9 @@ namespace Hyperdrive.Tier.Services.Classes
             Archive @archive = new()
             {
                 Name = @viewModel.Name,
+                Folder = @viewModel.Folder,
+                Locked = @viewModel.Locked,
+                System = false,
                 By = await FindApplicationUserByEmail(@viewModel.By.Email),
                 ApplicationUserArchives = new List<ApplicationUserArchive>(),
                 ArchiveVersions = new List<ArchiveVersion>()
@@ -211,9 +214,9 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(archive)
+            string @logData = nameof(@archive)
                 + " with Id "
-                + archive.Id
+                + @archive.Id
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
@@ -257,9 +260,11 @@ namespace Hyperdrive.Tier.Services.Classes
             await CheckName(@viewModel);
 
             Archive @archive = await FindArchiveById(@viewModel.Id);
-            @archive.Name = viewModel.Name;
+            @archive.Name = @viewModel.Name;
+            @archive.Folder = @viewModel.Folder;
+            @archive.Locked = @viewModel.Locked;
+            @archive.System = false;
             @archive.By = await FindApplicationUserByEmail(@viewModel.By.Email);
-            @archive.ApplicationUserArchives = new List<ApplicationUserArchive>();
 
             Context.Archive.Update(@archive);
 

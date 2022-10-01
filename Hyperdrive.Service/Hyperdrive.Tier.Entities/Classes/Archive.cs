@@ -1,5 +1,5 @@
 ﻿using Hyperdrive.Tier.Entities.Interfaces;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {
+    [Index(nameof(Name))]
     public class Archive : IKey, IBase
     {
         public Archive()
@@ -22,13 +23,22 @@ namespace Hyperdrive.Tier.Entities.Classes
         public DateTime LastModified { get; set; }
 
         [Required]
-        public bool Deleted { get; set; }
+        public bool Deleted { get; set; }      
 
         [Required]
         public virtual ApplicationUser By { get; set; }
 
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public bool Folder { get; set; }
+
+        [Required]
+        public bool System { get; set; }
+
+        [Required]
+        public bool Locked { get; set; }
 
         public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; }
 

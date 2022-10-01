@@ -14,6 +14,10 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Additions
 
         public string Name { get; set; }
 
+        public bool Folder { get; set; }
+
+        public bool Locked { get; set; }
+
         public byte[] Data { get; set; }
 
         public float Size { get; set; }

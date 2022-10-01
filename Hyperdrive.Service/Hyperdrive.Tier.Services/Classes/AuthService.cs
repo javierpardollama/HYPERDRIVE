@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -163,7 +164,8 @@ namespace Hyperdrive.Tier.Services.Classes
                 NormalizedEmail = @viewModel.Email,
                 NormalizedUserName = @viewModel.Email,
                 LastModified = DateTime.Now,
-                Deleted = false
+                Deleted = false,
+                Archives = new List<Archive>() { new Archive() { Folder = true, Locked = true, System = true, Name = "root", ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>() } }
             };
 
             IdentityResult @identityResult = await UserManager.CreateAsync(@applicationUser,

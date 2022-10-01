@@ -23,14 +23,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         [Required]
         public bool Deleted { get; set; }
 
-        [Required]
         public byte[] Data { get; set; }
 
-        [Required]
-        public float Size { get; set; }
+        public float? Size { get; set; }
 
-        [Required]
         public string Type { get; set; }
+
+        public bool Locked { get; set; }
 
         [Required]
         public virtual Archive Archive { get; set; }

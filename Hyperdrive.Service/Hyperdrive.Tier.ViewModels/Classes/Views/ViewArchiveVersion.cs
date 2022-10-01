@@ -15,13 +15,19 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         [XmlElement("id")]
         public int Id { get; set; }
 
+        [XmlElement("data")]
+        public byte[] Data { get; set; }
+
+        [XmlElement("size")]
+        public float Size { get; set; }
+
+        [XmlElement("type")]
+        public string Type { get; set; }
+
         [XmlElement("last-modified")]
         public DateTime LastModified { get; set; }
 
         [XmlElement("archive")]
         public virtual ViewArchive Archive { get; set; }
-
-        [XmlElement("name")]
-        public string Name => Archive?.Name;
     }
 }

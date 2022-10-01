@@ -23,6 +23,12 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         [XmlElement("email")]
         public string Email { get; set; }
 
+        [XmlElement("name")]
+        public string Name { get; set; }
+
+        [XmlElement("surname")]
+        public string SurName { get; set; }
+
         [XmlElement("initial")]
         public string Initial => Email?[..1].ToUpper();
 

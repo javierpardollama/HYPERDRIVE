@@ -4,5 +4,7 @@ import { ViewArchive } from './viewarchive';
 
 export interface ViewArchiveVersion extends ViewKey, ViewBase {
     Archive: ViewArchive;
-    Name: string;
+    Data: ArrayBuffer | string | null;
+    Size: number;
+    Type: string;
 }
