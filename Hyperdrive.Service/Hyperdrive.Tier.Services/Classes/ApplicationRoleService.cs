@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
@@ -10,10 +14,6 @@ using Hyperdrive.Tier.ViewModels.Classes.Views;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {

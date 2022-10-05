@@ -1,9 +1,9 @@
-﻿using Hyperdrive.Tier.Constants.Enums;
+﻿using System;
+
+using Hyperdrive.Tier.Constants.Enums;
 using Hyperdrive.Tier.Mappings.Classes;
 
 using Microsoft.Extensions.Logging;
-
-using System;
 
 namespace Hyperdrive.Tier.Logging.Classes
 {

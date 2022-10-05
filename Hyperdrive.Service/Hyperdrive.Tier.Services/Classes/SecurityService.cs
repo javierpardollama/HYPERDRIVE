@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+using AutoMapper;
 
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
@@ -11,10 +15,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {

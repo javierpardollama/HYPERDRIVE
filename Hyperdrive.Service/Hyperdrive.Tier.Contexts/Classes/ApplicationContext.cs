@@ -1,13 +1,13 @@
-﻿using Hyperdrive.Tier.Contexts.Extensions;
+﻿using System;
+using System.Threading.Tasks;
+
+using Hyperdrive.Tier.Contexts.Extensions;
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-
-using System;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Contexts.Classes
 {
