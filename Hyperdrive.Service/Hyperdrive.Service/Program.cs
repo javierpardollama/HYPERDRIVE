@@ -97,7 +97,7 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseResponseCaching();
 
-app.MapControllers();
+@app.MapControllers();
 
 @app.MapHealthChecks("/healthz");
 

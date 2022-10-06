@@ -10,15 +10,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hyperdrive.Tier.Web.Controllers
 {
+    /// <summary>
+    /// Represents a <see cref="ArchiveController"/> class. Inherits <see cref="ControllerBase"/>
+    /// </summary>
     [Route("api/archive")]
     [Produces("application/json")]
     [Authorize]
     [ApiController]
     public class ArchiveController : ControllerBase
     {
+        /// <summary>
+        /// Instance of <see cref="IArchiveService"/>
+        /// </summary>
         private readonly IArchiveService Service;
 
-        public ArchiveController(IArchiveService service) => Service = service;
+        /// <summary>
+        /// Initializes a new Instance of <see cref="ArchiveController"/>
+        /// </summary>
+        /// <param name="service">Injected <see cref="IArchiveService"/></param>
+        public ArchiveController(IArchiveService @service) => Service = @service;
 
         [HttpGet]
         [Route("findallarchivebyapplicationuserid/{id}")]

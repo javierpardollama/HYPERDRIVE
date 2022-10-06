@@ -8,14 +8,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hyperdrive.Tier.Web.Controllers
 {
+    /// <summary>
+    /// Represents a <see cref="SecurityController"/> class. Inherits <see cref="ControllerBase"/>
+    /// </summary>
     [Route("api/security")]
     [Produces("application/json")]
     [ApiController]
     public class SecurityController : ControllerBase
     {
+        /// <summary>
+        /// Instance of <see cref="ISecurityService"/>
+        /// </summary>
         private readonly ISecurityService Service;
 
-        public SecurityController(ISecurityService service) => Service = service;
+        /// <summary>
+        /// Initializes a new Instance of <see cref="SecurityController"/>
+        /// </summary>
+        /// <param name="service">Injected <see cref="ISecurityService"/></param>
+        public SecurityController(ISecurityService @service) => Service = @service;
 
         [HttpPut]
         [Route("resetpassword")]

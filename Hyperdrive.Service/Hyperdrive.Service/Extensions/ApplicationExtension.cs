@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyperdrive.Tier.Service.Extensions
 {
+    /// <summary>
+    /// Represents a <see cref="ApplicationExtension"/> class.
+    /// </summary>
     public static class ApplicationExtension
     {
         /// <summary>

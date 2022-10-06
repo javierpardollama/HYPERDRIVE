@@ -29,8 +29,6 @@ namespace Hyperdrive.Tier.Entities.Classes
 
         public string Type { get; set; }
 
-        public bool Locked { get; set; }
-
         [Required]
         public virtual Archive Archive { get; set; }
     }
