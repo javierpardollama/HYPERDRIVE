@@ -200,7 +200,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 Folder = @viewModel.Folder,
                 Locked = @viewModel.Locked,
                 System = false,
-                By = await FindApplicationUserByEmail(@viewModel.By.Email),
+                By = await FindApplicationUserById(@viewModel.ApplicationUserId),
                 ApplicationUserArchives = new List<ApplicationUserArchive>(),
                 ArchiveVersions = new List<ArchiveVersion>()
             };

@@ -1,7 +1,7 @@
 ﻿namespace Hyperdrive.Tier.Services.Interfaces
 {
     /// <summary>
-    /// Represents a <see cref="ISecurityService"/> interface.
+    /// Represents a <see cref="IBaseService"/> interface.
     /// </summary>
     public interface IBaseService
     {

@@ -196,11 +196,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = "foutharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser()
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id,                   
             };
 
             await Service.AddArchive(@addArchive);
@@ -218,11 +214,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = "fiftharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser()
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id,
             };
 
             Service.AddApplicationUserArchive(@addArchive, Context.Archive.FirstOrDefault());
@@ -240,11 +232,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = "sixtharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser()
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id,
             };
 
             Service.AddArchiveVersion(@addArchive, Context.Archive.FirstOrDefault());
