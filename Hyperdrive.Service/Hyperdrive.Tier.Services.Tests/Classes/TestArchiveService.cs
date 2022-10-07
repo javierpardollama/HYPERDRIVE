@@ -172,19 +172,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             await Service.FindAllArchiveVersionByArchiveId(Context.Archive.FirstOrDefault().Id);
 
             Assert.Pass();
-        }
-
-        /// <summary>
-        /// Finds Application User By Email
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task FindApplicationUserByEmail()
-        {
-            await Service.FindApplicationUserByEmail(Context.ApplicationUser.FirstOrDefault().Email);
-
-            Assert.Pass();
-        }
+        }      
 
         [Test]
         public async Task AddArchive()
@@ -251,11 +239,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser() 
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id                   
             };
 
             await Service.UpdateArchive(@updateArchive);
@@ -274,11 +258,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser()
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id
             };
 
             Service.UpdateApplicationUserArchive(@updateArchive, Context.Archive.FirstOrDefault());
@@ -297,11 +277,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser()
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id
             };
 
             Service.UpdateArchiveVersion(@updateArchive, Context.Archive.FirstOrDefault());
@@ -320,11 +296,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                By = new ViewApplicationUser()
-                {
-                    Id = Context.ApplicationUser.FirstOrDefault().Id,
-                    Email = Context.ApplicationUser.FirstOrDefault().Email
-                }
+                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id
             };
 
             Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@updateArchive));

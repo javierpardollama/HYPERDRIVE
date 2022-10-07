@@ -22,8 +22,6 @@ namespace Hyperdrive.Tier.Services.Interfaces
 
         Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id);
 
-        Task<ApplicationUser> FindApplicationUserByEmail(string @email);
-
         Task<ApplicationUser> FindApplicationUserById(int @id);
 
         Task<ViewArchive> AddArchive(AddArchive @viewModel);

@@ -5,9 +5,9 @@ using Hyperdrive.Tier.ViewModels.Interfaces.Updates;
 namespace Hyperdrive.Tier.ViewModels.Classes.Updates
 {
     /// <summary>
-    /// Represents a <see cref="UpdateApplicationUser"/> class. Implements <see cref="IUpdateBase"/>
+    /// Represents a <see cref="UpdateApplicationUser"/> class. Inherits <see cref="UpdateBase"/>
     /// </summary>
-    public class UpdateApplicationUser : IUpdateBase
+    public class UpdateApplicationUser : UpdateBase
     {
         /// <summary>
         /// Initializes a new Instance of <see cref="UpdateApplicationUser"/>
@@ -17,9 +17,14 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         }
 
         /// <summary>
-        /// Gets or Sets <see cref="Id"/>
+        /// Gets or Sets <see cref="Name"/>
         /// </summary>
-        public int Id { get; set; }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="SurName"/>
+        /// </summary>
+        public string SurName { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationRolesId"/>

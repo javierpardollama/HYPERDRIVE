@@ -128,37 +128,7 @@ namespace Hyperdrive.Tier.Services.Classes
                .ToListAsync();
 
             return Mapper.Map<IList<ViewArchiveVersion>>(@versions);
-        }
-
-        public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
-        {
-            ApplicationUser @applicationUser = await UserManager.Users
-                .TagWith("FindApplicationUserByEmail")
-                .AsQueryable()
-                .Include(x => x.ApplicationUserTokens)
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
-                .FirstOrDefaultAsync(x => x.Email == @email);
-
-            if (@applicationUser == null)
-            {
-                // Log
-                string @logData = nameof(@applicationUser)
-                    + " with Email "
-                    + @email
-                    + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
-
-                Logger.WriteGetItemNotFoundLog(@logData);
-
-                throw new Exception(nameof(@applicationUser)
-                    + " with Email "
-                    + email
-                    + " does not exist");
-            }
-
-            return @applicationUser;
-        }
+        }      
 
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
@@ -264,7 +234,7 @@ namespace Hyperdrive.Tier.Services.Classes
             @archive.Folder = @viewModel.Folder;
             @archive.Locked = @viewModel.Locked;
             @archive.System = false;
-            @archive.By = await FindApplicationUserByEmail(@viewModel.By.Email);
+            @archive.By = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             Context.Archive.Update(@archive);
 

@@ -17,11 +17,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         }
 
         /// <summary>
-        /// Gets or Sets <see cref="By"/>
-        /// </summary>
-        public virtual ViewApplicationUser By { get; set; }
-
-        /// <summary>
         /// Gets or Sets <see cref="Name"/>
         /// </summary>
         public string Name { get; set; }

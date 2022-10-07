@@ -3,9 +3,9 @@
 namespace Hyperdrive.Tier.ViewModels.Classes.Updates
 {
     /// <summary>
-    /// Represents a <see cref="UpdateApplicationRole"/> class. Inplemennts <see cref="IUpdateBase"/>
+    /// Represents a <see cref="UpdateApplicationRole"/> class. Inherits <see cref="UpdateBase"/>
     /// </summary>
-    public class UpdateApplicationRole : IUpdateBase
+    public class UpdateApplicationRole : UpdateBase
     {
         /// <summary>
         /// Initializes a new Instance of <see cref="UpdateApplicationRole"/>
@@ -13,11 +13,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         public UpdateApplicationRole()
         {
         }
-
-        /// <summary>
-        /// Gets or Sets <see cref="Id"/>
-        /// </summary>
-        public int Id { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Name"/>

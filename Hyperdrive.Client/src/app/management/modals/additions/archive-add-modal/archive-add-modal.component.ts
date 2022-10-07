@@ -57,7 +57,7 @@ export class ArchiveAddModalComponent implements OnInit {
       [Validators.required]],
       Data: [TextAppVariants.AppEmptyCoreText,
       [Validators.required]],
-      By: [this.User, [Validators.required]]
+      ApplicationUserId: [this.User.Id, [Validators.required]]
     });
   }
 
