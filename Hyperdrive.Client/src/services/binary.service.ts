@@ -29,11 +29,13 @@ export class BinaryService extends BaseService {
     public async EncodeAddArchive(viewModel: BinaryAddArchive): Promise<AddArchive> {
         const resultModel: AddArchive =
         {
-            By: viewModel.By,
+            ApplicationUserId: viewModel.ApplicationUserId,
             Data: new Int8Array(await viewModel.Data.arrayBuffer()),
             Size: viewModel.Data.size,
             Name: viewModel.Data.name,
-            Type: viewModel.Data.type
+            Type: viewModel.Data.type,
+            Folder: viewModel.Folder,
+            Locked: viewModel.Locked
         };
 
         return resultModel;
@@ -43,11 +45,13 @@ export class BinaryService extends BaseService {
         const resultModel: UpdateArchive =
         {
             Id: viewModel.Id,
-            By: viewModel.By,
+            ApplicationUserId: viewModel.ApplicationUserId,
             Data: new Int8Array(await viewModel.Data.arrayBuffer()),
             Name: viewModel.Data.name,
             Size: viewModel.Data.size,
-            Type: viewModel.Data.type
+            Type: viewModel.Data.type,
+            Folder: viewModel.Folder,
+            Locked: viewModel.Locked
         };
 
         return resultModel;

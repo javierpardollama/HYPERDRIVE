@@ -58,8 +58,6 @@ export class ArchiveUpdateModalComponent implements OnInit {
   CreateForm() {
     this.formGroup = this.formBuilder.group({
       Id: [this.data.Id, [Validators.required]],
-      Name: [this.data.Name,
-      [Validators.required]],
       Data: [TextAppVariants.AppEmptyCoreText,
       [Validators.required]],
       ApplicationUserId: [this.User.Id, [Validators.required]]
@@ -71,7 +69,7 @@ export class ArchiveUpdateModalComponent implements OnInit {
 
     let archive = await this.archiveService.UpdateArchive(await this.binaryService.EncodeUpdateArchive(viewModel));
 
-    if (archive !== undefined) {
+    if (archive) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
@@ -81,20 +79,20 @@ export class ArchiveUpdateModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onDelete(viewModel: BinaryUpdateArchive) {
-    this.archiveService.RemoveArchiveById(viewModel.Id).subscribe(archive => {
+  async onDelete(viewModel: BinaryUpdateArchive) {
+    await this.archiveService.RemoveArchiveById(viewModel.Id);
 
-      this.matSnackBar.open(
-        TextAppVariants.AppOperationSuccessCoreText,
-        TextAppVariants.AppOkButtonText,
-        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    this.matSnackBar.open(
+      TextAppVariants.AppOperationSuccessCoreText,
+      TextAppVariants.AppOkButtonText,
+      { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
+
   }
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User'));
+    this.User = JSON.parse(localStorage.getItem('User')!);
   }
 }

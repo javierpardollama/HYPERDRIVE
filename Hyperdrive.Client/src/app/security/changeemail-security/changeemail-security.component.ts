@@ -45,7 +45,7 @@ export class ChangeEmailSecurityComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.User = JSON.parse(localStorage.getItem('User'));
+    this.User = JSON.parse(localStorage.getItem('User')!);
 
     this.CreateForm();
   }

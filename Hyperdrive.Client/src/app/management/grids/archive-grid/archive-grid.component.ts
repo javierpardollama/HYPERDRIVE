@@ -56,7 +56,7 @@ export class ArchiveGridComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User'));
+    this.User = JSON.parse(localStorage.getItem('User')!);
   }
 
   // Get Data from Service

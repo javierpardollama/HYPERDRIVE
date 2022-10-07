@@ -52,9 +52,7 @@ export class ArchiveAddModalComponent implements OnInit {
 
   // Form
   CreateForm() {
-    this.formGroup = this.formBuilder.group({
-      Name: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required]],
+    this.formGroup = this.formBuilder.group({      
       Data: [TextAppVariants.AppEmptyCoreText,
       [Validators.required]],
       ApplicationUserId: [this.User.Id, [Validators.required]]
@@ -66,7 +64,7 @@ export class ArchiveAddModalComponent implements OnInit {
 
     let archive = await this.archiveService.AddArchive(await this.binaryService.EncodeAddArchive(viewModel));
 
-    if (archive !== undefined) {
+    if (archive) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
@@ -78,6 +76,6 @@ export class ArchiveAddModalComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User'));
+    this.User = JSON.parse(localStorage.getItem('User')!);
   }
 }

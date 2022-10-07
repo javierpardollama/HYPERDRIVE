@@ -1,6 +1,6 @@
-import { ViewApplicationUser } from '../views/viewapplicationuser';
-
 export interface BinaryAddArchive {
-    By: ViewApplicationUser;
+    ApplicationUserId: number;
     Data: File;
+    Folder: boolean;
+    Locked: boolean;
 }
