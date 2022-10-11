@@ -106,15 +106,18 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.SurName),
                 new Claim(
                     JwtRegisteredClaimNames.Iss,
-                    JwtSettings.Value.JwtIssuer),              
+                    JwtSettings.Value.JwtIssuer),
                 new Claim(
                     JwtRegisteredClaimNames.AuthTime,
                     DateTime.Now.ToString()),
                 new Claim(
                     ClaimTypes.System,
                     Environment.MachineName)
-            }.Union(JwtSettings.Value.JwtAudiences.Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
-            .ToList();
+            }.Union(JwtSettings.Value.JwtAudiences
+                .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
+             .Union(@applicationUser.ApplicationUserRoles
+                .Select(@applicationUserRole => new Claim(ClaimTypes.Role, @applicationUserRole?.ApplicationRole?.Name)))
+             .ToList();
         }
     }
 }
