@@ -23,8 +23,8 @@ namespace Hyperdrive.Tier.Settings.Classes
         public IList<string> JwtAudiences { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="JwtExpireDays"/>
+        /// Gets or Sets <see cref="JwtExpireMinutes"/>
         /// </summary>
-        public double JwtExpireDays { get; set; }
+        public double JwtExpireMinutes { get; set; }
     }
 }

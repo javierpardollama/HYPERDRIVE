@@ -71,14 +71,14 @@ namespace Hyperdrive.Tier.Services.Classes
         public SigningCredentials GenerateSigningCredentials(SymmetricSecurityKey @symmetricSecurityKey)
         {
             return new SigningCredentials(@symmetricSecurityKey,
-                                          SecurityAlgorithms.HmacSha256);
+                                          SecurityAlgorithms.HmacSha256Signature);
         }
 
         /// <summary>
         /// Generates Token Expiration Date 
         /// </summary>
         /// <returns>Instance of <see cref="DateTime"/></returns>
-        public DateTime GenerateTokenExpirationDate() => DateTime.Now.AddDays(JwtSettings.Value.JwtExpireDays);
+        public DateTime GenerateTokenExpirationDate() => DateTime.Now.AddMinutes(JwtSettings.Value.JwtExpireMinutes);
 
         /// <summary>
         /// Generates Jwt Claims

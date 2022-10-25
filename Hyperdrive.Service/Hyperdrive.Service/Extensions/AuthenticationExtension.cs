@@ -25,13 +25,16 @@ namespace Hyperdrive.Tier.Service.Extensions
                {
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
+                       RequireAudience = true,
+                       RequireExpirationTime = true,
+                       RequireSignedTokens = true,
                        ValidateIssuer = true,
                        ValidateAudience = true,
                        ValidateLifetime = true,
                        ValidateIssuerSigningKey = true,
                        ValidIssuer = @JwtSettings.JwtIssuer,
                        ValidAudiences = @JwtSettings.JwtAudiences,
-                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@JwtSettings.JwtKey))
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@JwtSettings.JwtKey))                       
                    };
                });
         }
