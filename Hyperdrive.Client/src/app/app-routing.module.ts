@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SignInGuard } from 'src/guards/signin.guard';
+import { SignInGuard } from '../guards/signin.guard';
 import { JoinInAuthComponent } from './auth/joinin-auth/joinin-auth.component';
 import { SignInAuthComponent } from './auth/signin-auth/signin-auth.component';
 import { HomeComponent } from './home/home.component';

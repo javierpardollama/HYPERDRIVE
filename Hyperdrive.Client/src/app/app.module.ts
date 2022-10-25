@@ -12,7 +12,6 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
 
-import { RouterModule } from '@angular/router';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,11 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 
-// Guards
-import { SignInGuard } from './../guards/signin.guard';
-
 // Interceptors
-import { AuthInterceptor } from './../interceptors/auth.interceptor';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // App
 import { AppComponent } from './app.component';
