@@ -109,7 +109,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         public void SetUpJwtOptions() => JwtOptions = Options.Create(new JwtSettings()
         {
             JwtAudiences = new List<string>() { "https://localhost:4200" },
-            JwtExpireDays = 30,
+            JwtExpireMinutes = 60,
             JwtIssuer = "https://localhost:15208",
             JwtKey = "SOME_RANDOM_KEY_DO_NOT_SHARE"
         });
