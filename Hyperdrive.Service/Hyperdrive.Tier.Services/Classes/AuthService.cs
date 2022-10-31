@@ -164,8 +164,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 NormalizedEmail = @viewModel.Email,
                 NormalizedUserName = @viewModel.Email,
                 LastModified = DateTime.Now,
-                Deleted = false,
-                Archives = new List<Archive>() { new Archive() { Folder = true, Locked = true, System = true, Name = "root", ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>() } }
+                Deleted = false
             };
 
             IdentityResult @identityResult = await UserManager.CreateAsync(@applicationUser,
