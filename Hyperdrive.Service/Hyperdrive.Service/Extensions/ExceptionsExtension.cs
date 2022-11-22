@@ -12,8 +12,8 @@ namespace Hyperdrive.Tier.Service.Extensions
         /// <summary>
         /// Extends Customized Exception MiddleWare
         /// </summary>
-        /// <param name="this">Injected <see cref="IApplicationBuilder"/></param>
-        public static void UseCustomizedExceptionMiddlewares(this IApplicationBuilder @this)
+        /// <param name="this">Injected <see cref="WebApplication"/></param>
+        public static void UseCustomizedExceptionMiddlewares(this WebApplication @this)
         {
             @this.UseMiddleware<ExceptionMiddleware>();
         }
