@@ -81,7 +81,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 throw new Exception(nameof(@applicationUser)
                     + " with Email "
-                    + applicationUser.Email
+                    + @applicationUser.Email
                     + " does not exist");
             }
 
@@ -122,7 +122,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
             @applicationUser.ApplicationUserRoles = new List<ApplicationUserRole>();
             @applicationUser.Name = @viewModel.Name;
-            applicationUser.SurName = @viewModel.SurName;
+            @applicationUser.SurName = @viewModel.SurName;
 
             Context.ApplicationUser.Update(@applicationUser);
 

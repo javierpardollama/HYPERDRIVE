@@ -118,7 +118,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id)
         {
-            ICollection<ArchiveVersion> versions = await Context.ArchiveVersion
+            ICollection<ArchiveVersion> @versions = await Context.ArchiveVersion
                .TagWith("FindAllArchiveVersionByArchiveId")
                .AsQueryable()
                .AsNoTracking()
@@ -143,7 +143,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser == null)
             {
                 // Log
-                string logData = nameof(applicationUser)
+                string logData = nameof(@applicationUser)
                     + " with Id "
                     + id
                     + " was not found at "
@@ -208,7 +208,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     ApplicationUser = @applicationUser,
                 };
 
-                entity.ApplicationUserArchives.Add(@arenalPoblacion);
+                @entity.ApplicationUserArchives.Add(@arenalPoblacion);
             });
         }
 
