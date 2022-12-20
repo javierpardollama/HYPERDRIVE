@@ -19,5 +19,12 @@ namespace Hyperdrive.Tier.Entities.Interfaces
         /// </summary>
         [Required]
         bool Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Version"/>
+        /// </summary>
+        [Timestamp]
+        [ConcurrencyCheck]
+        public byte[] Version { get; set; }
     }
 }

@@ -23,6 +23,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         [Required]
         public bool Deleted { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="Version"/>
+        /// </summary>
+        [Timestamp]
+        [ConcurrencyCheck]
+        public byte[] Version { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual Archive Archive { get; set; }

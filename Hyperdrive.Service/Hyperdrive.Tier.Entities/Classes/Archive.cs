@@ -71,6 +71,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         public bool Locked { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="Version"/>
+        /// </summary>
+        [Timestamp]
+        [ConcurrencyCheck]
+        public byte[] Version { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserArchives"/>
         /// </summary>
         public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; }

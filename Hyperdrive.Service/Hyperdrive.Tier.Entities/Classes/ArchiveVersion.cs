@@ -54,6 +54,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="Version"/>
+        /// </summary>
+        [Timestamp]
+        [ConcurrencyCheck]
+        public byte[] Version { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="Archive"/>
         /// </summary>
         [Required]

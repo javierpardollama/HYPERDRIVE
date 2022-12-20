@@ -32,6 +32,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         public bool Deleted { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="Version"/>
+        /// </summary>
+        [Timestamp]
+        [ConcurrencyCheck]
+        public byte[] Version { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="ApplicationUser"/>
         /// </summary>
         public virtual ApplicationUser ApplicationUser { get; set; }
