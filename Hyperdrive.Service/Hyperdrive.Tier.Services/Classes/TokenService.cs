@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -105,6 +106,9 @@ namespace Hyperdrive.Tier.Services.Classes
                     ClaimTypes.Surname,
                     @applicationUser.SurName),
                 new Claim(
+                    ClaimTypes.MobilePhone,
+                    @applicationUser.PhoneNumber),
+                new Claim(
                     JwtRegisteredClaimNames.Iss,
                     JwtSettings.Value.JwtIssuer),
                 new Claim(
@@ -112,7 +116,10 @@ namespace Hyperdrive.Tier.Services.Classes
                     DateTime.Now.ToString()),
                 new Claim(
                     ClaimTypes.System,
-                    Environment.MachineName)
+                    Environment.MachineName),
+                new Claim(
+                    ClaimTypes.Locality,
+                    CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
             }.Union(JwtSettings.Value.JwtAudiences
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
              .Union(@applicationUser.ApplicationUserRoles
