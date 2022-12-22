@@ -72,7 +72,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public SigningCredentials GenerateSigningCredentials(SymmetricSecurityKey @symmetricSecurityKey)
         {
             return new SigningCredentials(@symmetricSecurityKey,
-                                          SecurityAlgorithms.HmacSha256Signature);
+                                          SecurityAlgorithms.EcdsaSha512Signature);
         }
 
         /// <summary>
