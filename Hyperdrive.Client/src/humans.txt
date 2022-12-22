@@ -1,0 +1,31 @@
+/* TEAM */
+
+
+Senior Full-Stack Developer: Javier Pardo Llama
+                            
+LinkedIn: https://www.linkedin.com/in/javierpardollama
+                            
+GitHub: https://github.com/javierpardollama
+                            
+Location: Bilbao, Bizkaia, España.
+                         
+                 
+                        [...]		
+
+							
+/* THANKS */					
+						
+                 
+                        [...]                    
+
+                            
+/* SITE */
+
+                            
+Last update: 2022/12/22 
+                            
+Standards: HTML5, CSS3,..
+                            
+Components: Angular, SCSS, HTML, TypeScript.
+                            
+Software: Node.js, Angular CLI, Visual Studio Code
