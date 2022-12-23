@@ -33,14 +33,14 @@ namespace Hyperdrive.Tier.Entities.Classes
         public bool Deleted { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="Name"/>
+        /// Gets or Sets <see cref="FirstName"/>
         /// </summary>
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="SurName"/>
+        /// Gets or Sets <see cref="LastName"/>
         /// </summary>
-        public string SurName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Version"/>

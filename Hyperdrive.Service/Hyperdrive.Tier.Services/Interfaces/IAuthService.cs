@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
+
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Interfaces
 {

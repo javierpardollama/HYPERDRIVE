@@ -103,7 +103,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
-                .FirstOrDefaultAsync(x => x.Email == @email);
+                .FirstOrDefaultAsync(x => x.Email == @email.Trim());
 
             if (@applicationUser == null)
             {
@@ -134,7 +134,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
 
-            IdentityResult @identityResult = await UserManager.ResetPasswordAsync(@applicationUser, await UserManager.GeneratePasswordResetTokenAsync(@applicationUser), @viewModel.NewPassword);
+            IdentityResult @identityResult = await UserManager.ResetPasswordAsync(@applicationUser, await UserManager.GeneratePasswordResetTokenAsync(@applicationUser), @viewModel.NewPassword.Trim());
 
             if (@identityResult.Succeeded)
             {
@@ -173,7 +173,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
 
-            IdentityResult @identityResult = await UserManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail, await UserManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail));
+            IdentityResult @identityResult = await UserManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail.Trim(), await UserManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail.Trim()));
 
             if (@identityResult.Succeeded)
             {

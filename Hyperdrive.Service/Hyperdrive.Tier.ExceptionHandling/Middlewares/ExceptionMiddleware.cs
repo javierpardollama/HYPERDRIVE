@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Hyperdrive.Tier.ViewModels.Classes.Views;
+
+using Microsoft.AspNetCore.Http;
+
+using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-
-using Hyperdrive.Tier.ViewModels.Classes.Views;
-
-using Microsoft.AspNetCore.Http;
 
 namespace Hyperdrive.Tier.ExceptionHandling.Middlewares
 {

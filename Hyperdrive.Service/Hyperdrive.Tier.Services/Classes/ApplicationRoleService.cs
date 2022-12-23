@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
@@ -14,6 +10,10 @@ using Hyperdrive.Tier.ViewModels.Classes.Views;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -46,10 +46,10 @@ namespace Hyperdrive.Tier.Services.Classes
 
             ApplicationRole @applicationRole = new()
             {
-                Name = @viewModel.Name,
-                NormalizedName = @viewModel.Name,
+                Name = @viewModel.Name.Trim(),
+                NormalizedName = @viewModel.Name.Trim().ToUpper(),
                 ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
-                ImageUri = @viewModel.ImageUri,
+                ImageUri = @viewModel.ImageUri.Trim(),
             };
 
             await Context.ApplicationRole.AddAsync(@applicationRole);
@@ -78,7 +78,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ApplicationRole @applicationRole = await Context.ApplicationRole
                 .AsNoTracking()
                 .TagWith("CheckName")
-                .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
+                .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@applicationRole != null)
             {
@@ -110,7 +110,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ApplicationRole @applicationRole = await Context.ApplicationRole
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@applicationRole != null)
             {
@@ -211,9 +211,9 @@ namespace Hyperdrive.Tier.Services.Classes
 
             ApplicationRole @applicationRole = await FindApplicationRoleById(@viewModel.Id);
 
-            @applicationRole.Name = @viewModel.Name;
-            @applicationRole.NormalizedName = @viewModel.Name;
-            @applicationRole.ImageUri = @viewModel.ImageUri;
+            @applicationRole.Name = @viewModel.Name.Trim();
+            @applicationRole.NormalizedName = @viewModel.Name.Trim().ToUpper();
+            @applicationRole.ImageUri = @viewModel.ImageUri.Trim();
 
             Context.ApplicationRole.Update(@applicationRole);
 

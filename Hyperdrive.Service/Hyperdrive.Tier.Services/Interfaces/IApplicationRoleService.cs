@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Interfaces
 {

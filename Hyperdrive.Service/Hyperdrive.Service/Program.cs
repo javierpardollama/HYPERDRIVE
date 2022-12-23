@@ -1,6 +1,3 @@
-using System;
-using System.Text.Json.Serialization;
-
 using Hyperdrive.Tier.Contexts.Classes;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Mappings.Classes;
@@ -15,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Serilog;
+
+using System;
+using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 

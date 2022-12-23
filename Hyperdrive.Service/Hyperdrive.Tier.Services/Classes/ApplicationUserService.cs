@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
@@ -14,6 +9,11 @@ using Hyperdrive.Tier.ViewModels.Classes.Views;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -121,8 +121,8 @@ namespace Hyperdrive.Tier.Services.Classes
             ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.Id);
 
             @applicationUser.ApplicationUserRoles = new List<ApplicationUserRole>();
-            @applicationUser.Name = @viewModel.Name;
-            @applicationUser.SurName = @viewModel.SurName;
+            @applicationUser.FirstName = @viewModel.FirstName.Trim();
+            @applicationUser.LastName = @viewModel.LastName.Trim();
 
             Context.ApplicationUser.Update(@applicationUser);
 

@@ -101,10 +101,10 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.Email),
                 new Claim(
                     ClaimTypes.Name,
-                    @applicationUser.Name),
+                    @applicationUser.FirstName),
                 new Claim(
                     ClaimTypes.Surname,
-                    @applicationUser.SurName),
+                    @applicationUser.LastName),
                 new Claim(
                     ClaimTypes.MobilePhone,
                     @applicationUser.PhoneNumber),

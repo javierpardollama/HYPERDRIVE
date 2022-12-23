@@ -157,12 +157,12 @@ namespace Hyperdrive.Tier.Services.Classes
 
             ApplicationUser @applicationUser = new()
             {
-                UserName = @viewModel.Email,
-                Email = @viewModel.Email,
+                UserName = @viewModel.Email.Trim(),
+                Email = @viewModel.Email.Trim(),
                 ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
                 SecurityStamp = DateTime.Now.ToBinary().ToString(),
-                NormalizedEmail = @viewModel.Email,
-                NormalizedUserName = @viewModel.Email,
+                NormalizedEmail = @viewModel.Email.Trim().ToUpper(),
+                NormalizedUserName = @viewModel.Email.Trim().ToUpper(),
                 LastModified = DateTime.Now,
                 Deleted = false
             };
@@ -193,7 +193,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
-                .FirstOrDefaultAsync(x => x.Email == @email);
+                .FirstOrDefaultAsync(x => x.Email == @email.Trim());
 
             if (@applicationUser == null)
             {
@@ -225,7 +225,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ApplicationUser @applicationUser = await UserManager.Users
               .AsNoTracking()
               .TagWith("CheckEmail")
-              .FirstOrDefaultAsync(x => x.Email == @viewModel.Email);
+              .FirstOrDefaultAsync(x => x.Email == @viewModel.Email.Trim());
 
             if (@applicationUser != null)
             {

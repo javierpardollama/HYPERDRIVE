@@ -166,7 +166,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
             Archive @archive = new()
             {
-                Name = @viewModel.Name,
+                Name = @viewModel.Name.Trim(),
                 Folder = @viewModel.Folder,
                 Locked = @viewModel.Locked,
                 System = false,
@@ -230,7 +230,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await CheckName(@viewModel);
 
             Archive @archive = await FindArchiveById(@viewModel.Id);
-            @archive.Name = @viewModel.Name;
+            @archive.Name = @viewModel.Name.Trim();
             @archive.Folder = @viewModel.Folder;
             @archive.Locked = @viewModel.Locked;
             @archive.System = false;
@@ -318,7 +318,7 @@ namespace Hyperdrive.Tier.Services.Classes
             Archive @archive = await Context.Archive
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@archive != null)
             {

@@ -7,8 +7,8 @@ import { ViewApplicationUserArchive } from './viewapplicationuserarchive';
 
 export interface ViewApplicationUser extends ViewKey, ViewBase {
   Email: string;
-  Name: string;
-  SurName: string;
+  FirstName: string;
+  LastName: string;
   Initial: string;
   ApplicationUserRoles: ViewApplicationUserRole[];
   ApplicationRoles: ViewApplicationRole[];
