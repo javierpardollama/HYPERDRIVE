@@ -46,8 +46,8 @@ namespace Hyperdrive.Tier.Services.Classes
 
             ApplicationRole @applicationRole = new()
             {
-                Name = @viewModel.Name.Trim(),
-                NormalizedName = @viewModel.Name.Trim().ToUpper(),
+                Name = @viewModel.Name?.Trim(),
+                NormalizedName = @viewModel.Name?.Trim().ToUpper(),
                 ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
                 ImageUri = @viewModel.ImageUri.Trim(),
             };
@@ -211,8 +211,8 @@ namespace Hyperdrive.Tier.Services.Classes
 
             ApplicationRole @applicationRole = await FindApplicationRoleById(@viewModel.Id);
 
-            @applicationRole.Name = @viewModel.Name.Trim();
-            @applicationRole.NormalizedName = @viewModel.Name.Trim().ToUpper();
+            @applicationRole.Name = @viewModel.Name?.Trim();
+            @applicationRole.NormalizedName = @viewModel.Name?.Trim().ToUpper();
             @applicationRole.ImageUri = @viewModel.ImageUri.Trim();
 
             Context.ApplicationRole.Update(@applicationRole);
