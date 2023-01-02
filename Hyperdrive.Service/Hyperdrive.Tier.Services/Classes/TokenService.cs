@@ -118,6 +118,9 @@ namespace Hyperdrive.Tier.Services.Classes
                     ClaimTypes.System,
                     Environment.MachineName),
                 new Claim(
+                    ClaimTypes.Version,
+                    System.Environment.OSVersion.VersionString),
+                new Claim(
                     ClaimTypes.Locality,
                     CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
             }.Union(JwtSettings.Value.JwtAudiences
