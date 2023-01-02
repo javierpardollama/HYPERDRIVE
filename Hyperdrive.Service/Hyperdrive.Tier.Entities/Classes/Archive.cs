@@ -18,6 +18,8 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// </summary>
         public Archive()
         {
+            this.ApplicationUserArchives = new HashSet<ApplicationUserArchive>();
+            this.ArchiveVersions = new HashSet<ArchiveVersion>();
         }
 
         /// <summary>

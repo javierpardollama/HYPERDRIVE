@@ -18,6 +18,8 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// </summary>
         public ApplicationRole()
         {
+            this.ApplicationUserRoles = new HashSet<ApplicationUserRole>();
+            this.ApplicationRoleClaims = new HashSet<ApplicationRoleClaim>();
         }
 
         /// <summary>
