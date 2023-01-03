@@ -18,8 +18,6 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// </summary>
         public ApplicationRole()
         {
-            this.ApplicationUserRoles = new HashSet<ApplicationUserRole>();
-            this.ApplicationRoleClaims = new HashSet<ApplicationRoleClaim>();
         }
 
         /// <summary>
@@ -50,11 +48,11 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserRoles"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; }
+        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; } = new HashSet<ApplicationUserRole>();
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationRoleClaims"/>
         /// </summary>
-        public virtual ICollection<ApplicationRoleClaim> ApplicationRoleClaims { get; set; }
+        public virtual ICollection<ApplicationRoleClaim> ApplicationRoleClaims { get; set; } = new HashSet<ApplicationRoleClaim>();
     }
 }

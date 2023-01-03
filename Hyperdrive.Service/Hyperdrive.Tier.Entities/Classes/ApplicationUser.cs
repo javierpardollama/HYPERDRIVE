@@ -18,12 +18,6 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// </summary>
         public ApplicationUser()
         {
-            this.ApplicationUserRoles = new HashSet<ApplicationUserRole>();
-            this.ApplicationUserClaims = new HashSet<ApplicationUserClaim>();
-            this.ApplicationUserLogins = new HashSet<ApplicationUserLogin>();
-            this.ApplicationUserTokens = new HashSet<ApplicationUserToken>();
-            this.Archives = new HashSet<Archive>();
-            this.ApplicationUserArchives = new HashSet<ApplicationUserArchive>();
         }
 
         /// <summary>
@@ -58,31 +52,31 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserRoles"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; }
+        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; } = new HashSet<ApplicationUserRole>();
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserClaims"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserClaim> ApplicationUserClaims { get; set; }
+        public virtual ICollection<ApplicationUserClaim> ApplicationUserClaims { get; set; } = new HashSet<ApplicationUserClaim>();
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserLogins"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserLogin> ApplicationUserLogins { get; set; }
+        public virtual ICollection<ApplicationUserLogin> ApplicationUserLogins { get; set; } = new HashSet<ApplicationUserLogin>();
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserTokens"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserToken> ApplicationUserTokens { get; set; }
+        public virtual ICollection<ApplicationUserToken> ApplicationUserTokens { get; set; } = new HashSet<ApplicationUserToken>();
 
         /// <summary>
         /// Gets or Sets <see cref="Archives"/>
         /// </summary>
-        public virtual ICollection<Archive> Archives { get; set; }
+        public virtual ICollection<Archive> Archives { get; set; } = new HashSet<Archive>();
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserArchives"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; }
+        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; } = new HashSet<ApplicationUserArchive>();
     }
 }

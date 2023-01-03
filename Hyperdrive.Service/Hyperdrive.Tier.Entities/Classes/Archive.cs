@@ -18,8 +18,6 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// </summary>
         public Archive()
         {
-            this.ApplicationUserArchives = new HashSet<ApplicationUserArchive>();
-            this.ArchiveVersions = new HashSet<ArchiveVersion>();
         }
 
         /// <summary>
@@ -82,11 +80,11 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserArchives"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; }
+        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; } = new HashSet<ApplicationUserArchive>();
 
         /// <summary>
         /// Gets or Sets <see cref="ArchiveVersions"/>
         /// </summary>
-        public virtual ICollection<ArchiveVersion> ArchiveVersions { get; set; }
+        public virtual ICollection<ArchiveVersion> ArchiveVersions { get; set; } = new HashSet<ArchiveVersion>();
     }
 }
