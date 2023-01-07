@@ -23,6 +23,7 @@ namespace Hyperdrive.Tier.Service.Extensions
             @this.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
                {
+                   options.ClaimsIssuer = @JwtSettings.JwtIssuer;
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
                        RequireAudience = true,
