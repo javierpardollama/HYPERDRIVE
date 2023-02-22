@@ -119,7 +119,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     Environment.MachineName),
                 new Claim(
                     ClaimTypes.Version,
-                    System.Environment.OSVersion.VersionString),
+                    Environment.OSVersion.VersionString),
                 new Claim(
                     ClaimTypes.Locality,
                     CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
