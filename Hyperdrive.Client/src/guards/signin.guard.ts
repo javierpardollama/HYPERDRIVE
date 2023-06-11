@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {
-    CanActivate,
+import {    
     Router
 } from '@angular/router';
 
@@ -11,9 +10,9 @@ import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
     providedIn: 'root'
 })
 
-export class SignInGuard implements CanActivate {
+export class SignInGuard {
 
-    private User: ViewApplicationUser;
+    private User?: ViewApplicationUser = undefined;
 
     private Activated = false;
 
@@ -23,7 +22,7 @@ export class SignInGuard implements CanActivate {
 
         this.GetLocalUser();
 
-        if (this.User === null) {
+        if (!this.User) {
             this.router.navigateByUrl('auth/signin');
         } else {
             this.Activated = true;
