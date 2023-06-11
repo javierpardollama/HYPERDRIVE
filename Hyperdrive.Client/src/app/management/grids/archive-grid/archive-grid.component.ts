@@ -30,16 +30,16 @@ import {
 })
 export class ArchiveGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  public ELEMENT_DATA: ViewArchive[];
+  public ELEMENT_DATA: ViewArchive[] = [];
 
   public displayedColumns: string[] = ['Id', 'Name', 'LastModified'];
 
-  public dataSource: MatTableDataSource<ViewArchive>;
+  public dataSource: MatTableDataSource<ViewArchive> = new MatTableDataSource<ViewArchive>();
 
-  public User: ViewApplicationUser;
+  public User!: ViewApplicationUser;
 
   // Constructor
   constructor(

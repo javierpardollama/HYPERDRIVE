@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {    
+import {
     Router
 } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
 
 export class SignInGuard {
 
-    private User?: ViewApplicationUser = undefined;
+    private User!: ViewApplicationUser;
 
     private Activated = false;
 
@@ -33,6 +33,6 @@ export class SignInGuard {
 
     // Get User from Storage
     public GetLocalUser() {
-        this.User = JSON.parse(localStorage.getItem('User'));
+        this.User = JSON.parse(localStorage.getItem('User')!);
     }
 }

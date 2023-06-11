@@ -31,9 +31,9 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class ArchiveAddModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
-  public User: ViewApplicationUser;
+  public User!: ViewApplicationUser;
 
   // Constructor
   constructor(
@@ -52,7 +52,7 @@ export class ArchiveAddModalComponent implements OnInit {
 
   // Form
   CreateForm() {
-    this.formGroup = this.formBuilder.group({      
+    this.formGroup = this.formBuilder.group({
       Data: [TextAppVariants.AppEmptyCoreText,
       [Validators.required]],
       ApplicationUserId: [this.User.Id, [Validators.required]]
