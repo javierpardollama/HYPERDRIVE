@@ -115,6 +115,12 @@ namespace Hyperdrive.Tier.Services.Classes
                     JwtRegisteredClaimNames.AuthTime,
                     DateTime.Now.ToString()),
                 new Claim(
+                    JwtRegisteredClaimNames.Iat,
+                    DateTime.Now.ToString()),
+                new Claim(
+                    JwtRegisteredClaimNames.Exp,
+                    GenerateTokenExpirationDate().ToString()),
+                new Claim(
                     ClaimTypes.System,
                     Environment.MachineName),
                 new Claim(
