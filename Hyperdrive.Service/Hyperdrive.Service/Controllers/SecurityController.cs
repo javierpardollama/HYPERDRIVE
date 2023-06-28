@@ -27,15 +27,30 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <param name="service">Injected <see cref="ISecurityService"/></param>
         public SecurityController(ISecurityService @service) => Service = @service;
 
+        /// <summary>
+        /// Resets Password
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("resetpassword")]
         public async Task<IActionResult> ResetPassword([FromBody]SecurityPasswordReset @viewModel) => new JsonResult(value: await Service.ResetPassword(@viewModel));
 
+        /// <summary>
+        /// Changes Password
+        /// </summary>
+        /// <param name="viewModel">njected <see cref="SecurityPasswordReset"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("changepassword")]
         [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody]SecurityPasswordChange @viewModel) => new JsonResult(value: await Service.ChangePassword(@viewModel));
 
+        /// <summary>
+        /// Changes Email
+        /// </summary>
+        /// <param name="viewModel">njected <see cref="SecurityEmailChange"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("changeemail")]
         [Authorize]

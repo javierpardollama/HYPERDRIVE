@@ -26,10 +26,20 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <param name="service">Injected <see cref="IAuthService"/></param>
         public AuthController(IAuthService @service) => Service = @service;
 
+        /// <summary>
+        /// Signs In
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AuthSignIn"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("signin")]
         public async Task<IActionResult> SignIn([FromBody]AuthSignIn @viewModel) => new JsonResult(value: await Service.SignIn(@viewModel));
 
+        /// <summary>
+        /// Joins In
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("joinin")]
         public async Task<IActionResult> JoinIn([FromBody]AuthJoinIn @viewModel) => new JsonResult(value: await Service.JoinIn(@viewModel));
