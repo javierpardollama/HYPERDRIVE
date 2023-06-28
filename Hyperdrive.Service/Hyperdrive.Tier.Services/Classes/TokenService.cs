@@ -94,7 +94,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     JwtRegisteredClaimNames.Jti,
                     Guid.NewGuid().ToString()),
                 new Claim(
-                    ClaimTypes.NameIdentifier,
+                    ClaimTypes.Sid,
                     @applicationUser.Id.ToString()),
                 new Claim(
                     ClaimTypes.Email,
