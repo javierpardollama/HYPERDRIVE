@@ -68,7 +68,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Services = new ServiceCollection();
 
             Services
-                .AddDbContext<ApplicationContext>(o => o.UseSqlite("Data Source=kingpin.db"))
+                .AddDbContext<ApplicationContext>(o => o.UseSqlite("Data Source=hyperdrive.db"))
                 .AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {
                     options.Lockout = new LockoutOptions()
