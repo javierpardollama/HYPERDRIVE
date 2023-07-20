@@ -43,9 +43,13 @@ export class ChangeEmailSecurityComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
-
+    this.GetLocalUser();
     this.CreateForm();
+  }
+
+  // Get User from Storage
+  public GetLocalUser() {
+    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
   }
 
   // Form
@@ -54,8 +58,9 @@ export class ChangeEmailSecurityComponent implements OnInit {
       ApplicationUser: [this.User,
       Validators.required],
       NewEmail: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required,
-      Validators.pattern(ExpressionAppVariants.AppMailExpression)]],
+      [
+        Validators.required,
+      ]],
     });
   }
 

@@ -41,9 +41,13 @@ export class ChangePasswordSecurityComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.User = JSON.parse(localStorage.getItem('User')!);
-
+    this.GetLocalUser();
     this.CreateForm();
+  }
+
+  // Get User from Storage
+  public GetLocalUser() {
+    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
   }
 
   // Form
@@ -68,9 +72,9 @@ export class ChangePasswordSecurityComponent implements OnInit {
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-        localStorage.setItem('User', JSON.stringify(user));
+      localStorage.setItem('User', JSON.stringify(user));
     }
-    
+
     this.dialogRef.close();
   }
 }

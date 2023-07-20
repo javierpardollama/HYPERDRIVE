@@ -16,7 +16,6 @@ import { AuthService } from './../../../services/auth.service';
 import { AuthSignIn } from './../../../viewmodels/auth/authsignin';
 
 import { TextAppVariants } from './../../../variants/text.app.variants';
-import { ExpressionAppVariants } from './../../../variants/expression.app.variants';
 
 @Component({
   selector: 'app-joinin-auth',
@@ -42,8 +41,9 @@ export class JoinInAuthComponent implements OnInit {
   CreateForm() {
     this.formGroup = this.formBuilder.group({
       Email: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required,
-      Validators.pattern(ExpressionAppVariants.AppMailExpression)]],
+      [
+        Validators.required,
+      ]],
       Password: [TextAppVariants.AppEmptyCoreText,
       [Validators.required]]
     });
