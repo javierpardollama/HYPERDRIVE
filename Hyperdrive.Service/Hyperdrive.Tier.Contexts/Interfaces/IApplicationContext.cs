@@ -15,37 +15,37 @@ namespace Hyperdrive.Tier.Contexts.Interfaces
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationRole}"/>
         /// </summary>
-        DbSet<ApplicationRole> ApplicationRole { get; set; }
+        DbSet<ApplicationRole> Roles { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationRoleClaim}"/>
         /// </summary>
-        DbSet<ApplicationRoleClaim> ApplicationRoleClaim { get; set; }
+        DbSet<ApplicationRoleClaim> RoleClaims { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUser}"/>
         /// </summary>
-        DbSet<ApplicationUser> ApplicationUser { get; set; }
+        DbSet<ApplicationUser> Users { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserClaim}"/>
         /// </summary>
-        DbSet<ApplicationUserClaim> ApplicationUserClaim { get; set; }
+        DbSet<ApplicationUserClaim> UserClaims { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserLogin}"/>
         /// </summary>
-        DbSet<ApplicationUserLogin> ApplicationUserLogin { get; set; }
+        DbSet<ApplicationUserLogin> UserLogins { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserRole}"/>
         /// </summary>
-        DbSet<ApplicationUserRole> ApplicationUserRole { get; set; }
+        DbSet<ApplicationUserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
         /// </summary>
-        DbSet<ApplicationUserToken> ApplicationUserToken { get; set; }
+        DbSet<ApplicationUserToken> UserTokens { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Archive}"/>

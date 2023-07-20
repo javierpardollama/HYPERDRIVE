@@ -64,8 +64,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            Context.ApplicationUser.RemoveRange(Context.ApplicationUser.ToList());
-            Context.ApplicationRole.RemoveRange(Context.ApplicationRole.ToList());
+            Context.Users.RemoveRange(Context.Users.ToList());
+            Context.Roles.RemoveRange(Context.Roles.ToList());
 
             Context.SaveChanges();
         }
@@ -91,9 +91,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpContext()
         {
-            Context.ApplicationRole.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
-            Context.ApplicationRole.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
-            Context.ApplicationRole.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
 
             Context.SaveChanges();
         }
@@ -117,7 +117,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task FindApplicationRoleById()
         {
-            await Service.FindApplicationRoleById(Context.ApplicationRole.FirstOrDefault().Id);
+            await Service.FindApplicationRoleById(Context.Roles.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -129,7 +129,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task RemoveApplicationRoleById()
         {
-            await Service.RemoveApplicationRoleById(Context.ApplicationRole.FirstOrDefault().Id);
+            await Service.RemoveApplicationRoleById(Context.Roles.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -143,7 +143,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             UpdateApplicationRole @ViewModel = new()
             {
-                Id = Context.ApplicationRole.FirstOrDefault().Id,
+                Id = Context.Roles.FirstOrDefault().Id,
                 Name = "Role 21",
                 ImageUri = "URL/Role_21_500px.png",
             };

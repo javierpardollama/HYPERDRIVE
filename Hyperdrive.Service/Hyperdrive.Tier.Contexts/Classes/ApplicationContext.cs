@@ -27,37 +27,37 @@ namespace Hyperdrive.Tier.Contexts.Classes
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationRole}"/>
         /// </summary>
-        public virtual DbSet<ApplicationRole> ApplicationRole { get; set; }
+        public override DbSet<ApplicationRole> Roles { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationRoleClaim}"/>
         /// </summary>
-        public virtual DbSet<ApplicationRoleClaim> ApplicationRoleClaim { get; set; }
+        public override DbSet<ApplicationRoleClaim> RoleClaims { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUser}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public override DbSet<ApplicationUser> Users { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserClaim}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUserClaim> ApplicationUserClaim { get; set; }
+        public override DbSet<ApplicationUserClaim> UserClaims { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserLogin}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUserLogin> ApplicationUserLogin { get; set; }
+        public override DbSet<ApplicationUserLogin> UserLogins { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserRole}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUserRole> ApplicationUserRole { get; set; }
+        public override DbSet<ApplicationUserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUserToken> ApplicationUserToken { get; set; }
+        public override DbSet<ApplicationUserToken> UserTokens { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Archive}"/>

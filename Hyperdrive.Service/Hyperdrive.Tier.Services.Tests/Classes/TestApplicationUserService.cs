@@ -64,8 +64,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            Context.ApplicationUser.RemoveRange(Context.ApplicationUser.ToList());
-            Context.ApplicationRole.RemoveRange(Context.ApplicationRole.ToList());
+            Context.Users.RemoveRange(Context.Users.ToList());
+            Context.Roles.RemoveRange(Context.Roles.ToList());
 
             Context.SaveChanges();
         }
@@ -91,13 +91,13 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpContext()
         {
-            Context.ApplicationUser.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
-            Context.ApplicationUser.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
-            Context.ApplicationUser.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
+            Context.Users.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
+            Context.Users.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
+            Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
 
-            Context.ApplicationRole.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
-            Context.ApplicationRole.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
-            Context.ApplicationRole.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
 
             Context.SaveChanges();
         }
@@ -121,7 +121,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task FindApplicationUserById()
         {
-            await Service.FindApplicationUserById(Context.ApplicationUser.FirstOrDefault().Id);
+            await Service.FindApplicationUserById(Context.Users.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -133,7 +133,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task RemoveApplicationUserById()
         {
-            await Service.RemoveApplicationUserById(Context.ApplicationUser.FirstOrDefault().Id);
+            await Service.RemoveApplicationUserById(Context.Users.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -147,8 +147,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             UpdateApplicationUser viewModel = new()
             {
-                Id = Context.ApplicationUser.FirstOrDefault().Id,
-                ApplicationRolesId = new List<int> { Context.ApplicationRole.FirstOrDefault().Id }
+                Id = Context.Users.FirstOrDefault().Id,
+                ApplicationRolesId = new List<int> { Context.Users.FirstOrDefault().Id }
             };
 
             await Service.UpdateApplicationUser(viewModel);
@@ -164,11 +164,11 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             UpdateApplicationUser viewModel = new()
             {
-                Id = Context.ApplicationUser.FirstOrDefault().Id,
+                Id = Context.Users.FirstOrDefault().Id,
                 ApplicationRolesId = new List<int> { 2 }
             };
 
-            Service.UpdateApplicationUserRole(viewModel, Context.ApplicationUser.FirstOrDefault());
+            Service.UpdateApplicationUserRole(viewModel, Context.Users.FirstOrDefault());
 
             Assert.Pass();
         }
@@ -180,7 +180,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task FindApplicationRoleById()
         {
-            await Service.FindApplicationRoleById(Context.ApplicationRole.FirstOrDefault().Id);
+            await Service.FindApplicationRoleById(Context.Roles.FirstOrDefault().Id);
 
             Assert.Pass();
         }

@@ -67,7 +67,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            Context.ApplicationUser.RemoveRange(Context.ApplicationUser.ToList());
+            Context.Users.RemoveRange(Context.Users.ToList());
 
             Context.Archive.RemoveRange(Context.Archive.ToList());
 
@@ -95,9 +95,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpContext()
         {
-            Context.ApplicationUser.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
-            Context.ApplicationUser.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
-            Context.ApplicationUser.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
+            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
+            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
+            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
 
             Context.Archive.Add(new Archive { LastModified = DateTime.Now, Deleted = false, ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>(), Name = "firstarchive.txt" });
             Context.Archive.Add(new Archive { LastModified = DateTime.Now, Deleted = false, ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>(), Name = "secondarchive.txt" });
@@ -141,7 +141,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllArchiveByApplicationUserId()
         {
-            await Service.FindAllArchiveByApplicationUserId(Context.ApplicationUser.FirstOrDefault().Id);
+            await Service.FindAllArchiveByApplicationUserId(Context.Users.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -149,7 +149,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllSharedArchiveByApplicationUserId()
         {
-            await Service.FindAllSharedArchiveByApplicationUserId(Context.ApplicationUser.FirstOrDefault().Id);
+            await Service.FindAllSharedArchiveByApplicationUserId(Context.Users.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -161,7 +161,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public async Task FindApplicationUserById()
         {
-            await Service.FindApplicationUserById(Context.ApplicationUser.FirstOrDefault().Id);
+            await Service.FindApplicationUserById(Context.Users.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -179,12 +179,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             AddArchive @addArchive = new()
             {
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = "foutharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id,                   
+                ApplicationUserId = Context.Users.FirstOrDefault().Id,                   
             };
 
             await Service.AddArchive(@addArchive);
@@ -197,12 +197,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             AddArchive @addArchive = new()
             {
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = "fiftharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id,
+                ApplicationUserId = Context.Users.FirstOrDefault().Id,
             };
 
             Service.AddApplicationUserArchive(@addArchive, Context.Archive.FirstOrDefault());
@@ -215,12 +215,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             AddArchive @addArchive = new()
             {
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = "sixtharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id,
+                ApplicationUserId = Context.Users.FirstOrDefault().Id,
             };
 
             Service.AddArchiveVersion(@addArchive, Context.Archive.FirstOrDefault());
@@ -234,12 +234,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x=>x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x=>x.Id).ToList(),
                 Data = new byte[10],
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id                   
+                ApplicationUserId = Context.Users.FirstOrDefault().Id                   
             };
 
             await Service.UpdateArchive(@updateArchive);
@@ -253,12 +253,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id
+                ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
             Service.UpdateApplicationUserArchive(@updateArchive, Context.Archive.FirstOrDefault());
@@ -272,12 +272,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id
+                ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
             Service.UpdateArchiveVersion(@updateArchive, Context.Archive.FirstOrDefault());
@@ -291,12 +291,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             UpdateArchive @updateArchive = new()
             {
                 Id = Context.Archive.FirstOrDefault().Id,
-                ApplicationUsersId = Context.ApplicationUser.ToList().Select(x => x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = Context.Archive.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.ApplicationUser.FirstOrDefault().Id
+                ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
             Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@updateArchive));

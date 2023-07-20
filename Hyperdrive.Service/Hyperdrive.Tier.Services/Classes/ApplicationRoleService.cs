@@ -52,7 +52,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 ImageUri = @viewModel.ImageUri.Trim(),
             };
 
-            await Context.ApplicationRole.AddAsync(@applicationRole);
+            await Context.Roles.AddAsync(@applicationRole);
 
             await Context.SaveChangesAsync();
 
@@ -75,7 +75,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> CheckName(AddApplicationRole @viewModel)
         {
-            ApplicationRole @applicationRole = await Context.ApplicationRole
+            ApplicationRole @applicationRole = await Context.Roles
                 .AsNoTracking()
                 .TagWith("CheckName")
                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
@@ -107,7 +107,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> CheckName(UpdateApplicationRole @viewModel)
         {
-            ApplicationRole @applicationRole = await Context.ApplicationRole
+            ApplicationRole @applicationRole = await Context.Roles
                  .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
@@ -138,7 +138,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationRole}}"/></returns>
         public async Task<ICollection<ViewApplicationRole>> FindAllApplicationRole()
         {
-            ICollection<ApplicationRole> @applicationRoles = await Context.ApplicationRole
+            ICollection<ApplicationRole> @applicationRoles = await Context.Roles
                 .TagWith("FindAllApplicationRole")
                 .AsNoTracking()
                 .ToListAsync();
@@ -153,7 +153,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> FindApplicationRoleById(int @id)
         {
-            ApplicationRole @applicationRole = await Context.ApplicationRole.
+            ApplicationRole @applicationRole = await Context.Roles.
                 TagWith("FindApplicationRoleById")
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
@@ -186,7 +186,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationRole @applicationRole = await FindApplicationRoleById(@id);
 
-            Context.ApplicationRole.Remove(@applicationRole);
+            Context.Roles.Remove(@applicationRole);
 
             await Context.SaveChangesAsync();
 
@@ -215,7 +215,7 @@ namespace Hyperdrive.Tier.Services.Classes
             @applicationRole.NormalizedName = @viewModel.Name?.Trim().ToUpper();
             @applicationRole.ImageUri = @viewModel.ImageUri.Trim();
 
-            Context.ApplicationRole.Update(@applicationRole);
+            Context.Roles.Update(@applicationRole);
 
             await Context.SaveChangesAsync();
 

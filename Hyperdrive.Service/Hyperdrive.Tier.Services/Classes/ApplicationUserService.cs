@@ -41,7 +41,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationUser}}"/></returns>
         public async Task<ICollection<ViewApplicationUser>> FindAllApplicationUser()
         {
-            ICollection<ApplicationUser> @applicationUsers = await Context.ApplicationUser
+            ICollection<ApplicationUser> @applicationUsers = await Context.Users
                .TagWith("FindAllApplicationUser")
                .AsQueryable()
                .AsNoTracking()
@@ -60,7 +60,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
-            ApplicationUser @applicationUser = await Context.ApplicationUser
+            ApplicationUser @applicationUser = await Context.Users
                .TagWith("FindApplicationUserById")
                .AsQueryable()
                .Include(x => x.ApplicationUserTokens)
@@ -97,7 +97,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(@id);
 
-            Context.ApplicationUser.Remove(@applicationUser);
+            Context.Users.Remove(@applicationUser);
 
             await Context.SaveChangesAsync();
 
@@ -124,7 +124,7 @@ namespace Hyperdrive.Tier.Services.Classes
             @applicationUser.FirstName = @viewModel.FirstName?.Trim();
             @applicationUser.LastName = @viewModel.LastName?.Trim();
 
-            Context.ApplicationUser.Update(@applicationUser);
+            Context.Users.Update(@applicationUser);
 
             UpdateApplicationUserRole(@viewModel, @applicationUser);
 
@@ -170,7 +170,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> FindApplicationRoleById(int @id)
         {
-            ApplicationRole @applicationRole = await Context.ApplicationRole
+            ApplicationRole @applicationRole = await Context.Roles
                 .TagWith("FindApplicationRoleById")
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
