@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import { ViewApplicationUser } from './../../viewmodels/views/viewapplicationuser';
+import { TextAppVariants } from '../../variants/text.app.variants';
 
 @Component({
   selector: 'app-nav-menu',
@@ -40,7 +41,7 @@ export class NavMenuComponent implements OnInit {
   display() {
     this.GetLocalUser();
 
-    if (this.User !== null) {
+    if (this.User) {
       this.isVisible = true;
     }
 
@@ -49,6 +50,6 @@ export class NavMenuComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User'));
+    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
   }
 }

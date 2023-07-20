@@ -21,9 +21,7 @@ import { ViewApplicationUser } from './../../../viewmodels/views/viewapplication
 import { TextAppVariants } from './../../../variants/text.app.variants';
 
 import { ExpressionAppVariants } from './../../../variants/expression.app.variants';
-
-import { TimeAppVariants } from 'src/variants/time.app.variants';
-
+import { TimeAppVariants } from '../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-changeemail-security',
@@ -45,7 +43,7 @@ export class ChangeEmailSecurityComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.User = JSON.parse(localStorage.getItem('User')!);
+    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
 
     this.CreateForm();
   }
@@ -65,14 +63,14 @@ export class ChangeEmailSecurityComponent implements OnInit {
   async onSubmit(viewModel: SecurityEmailChange) {
     let user = await this.securityService.ChangeEmail(viewModel);
 
-    if (user !== undefined) {
+    if (user) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-        localStorage.setItem('User', JSON.stringify(user));
-    }  
+      localStorage.setItem('User', JSON.stringify(user));
+    }
 
     this.dialogRef.close();
   }

@@ -16,7 +16,7 @@ import { BaseService } from './base.service';
 
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -32,12 +32,12 @@ export class AuthService extends BaseService {
 
   public SignIn(viewModel: AuthSignIn) : Promise<ViewApplicationUser> {
 
-    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.ApiService}api/auth/signin`, viewModel)
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/auth/signin`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('SignIn', undefined))));
   }
 
   public JoinIn(viewModel: AuthJoinIn) : Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.ApiService}api/auth/joinin`, viewModel)
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/auth/joinin`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined))));
   }
 }

@@ -5,6 +5,7 @@ import {
 } from '@angular/router';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
+import { TextAppVariants } from '../variants/text.app.variants';
 
 @Injectable({
     providedIn: 'root'
@@ -33,6 +34,6 @@ export class SignInGuard {
 
     // Get User from Storage
     public GetLocalUser() {
-        this.User = JSON.parse(localStorage.getItem('User')!);
+        this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
     }
 }

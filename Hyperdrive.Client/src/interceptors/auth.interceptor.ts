@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
+import { TextAppVariants } from '../variants/text.app.variants';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     this.GetLocalUser();
 
-    if (this.User !== null) {
+    if (this.User) {
       req = req.clone({
         setHeaders: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -40,6 +41,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User'));
+    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
   }
 }

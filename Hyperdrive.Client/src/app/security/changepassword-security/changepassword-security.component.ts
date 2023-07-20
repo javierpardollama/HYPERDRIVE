@@ -19,8 +19,7 @@ import { SecurityPasswordChange } from './../../../viewmodels/security/securityp
 import { ViewApplicationUser } from './../../../viewmodels/views/viewapplicationuser';
 
 import { TextAppVariants } from './../../../variants/text.app.variants';
-
-import { TimeAppVariants } from 'src/variants/time.app.variants';
+import { TimeAppVariants } from '../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-changepassword-security',
@@ -63,7 +62,7 @@ export class ChangePasswordSecurityComponent implements OnInit {
   async onSubmit(viewModel: SecurityPasswordChange) {
     let user = await this.securityService.ChangePassword(viewModel);
 
-    if (user !== undefined) {
+    if (user) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,

@@ -22,6 +22,7 @@ import {
 import {
   ArchiveAddModalComponent
 } from './../../modals/additions/archive-add-modal/archive-add-modal.component';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
 
 @Component({
   selector: 'app-archive-grid',
@@ -56,7 +57,7 @@ export class ArchiveGridComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User')!);
+    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
   }
 
   // Get Data from Service

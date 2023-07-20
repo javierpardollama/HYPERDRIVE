@@ -18,6 +18,8 @@ import { SecurityPasswordReset } from './../../../viewmodels/security/securitypa
 import { TextAppVariants } from './../../../variants/text.app.variants';
 
 import { ExpressionAppVariants } from './../../../variants/expression.app.variants';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TimeAppVariants } from '../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-resetpassword-security',
@@ -32,7 +34,8 @@ export class ResetPasswordSecurityComponent implements OnInit {
   constructor(
     private router: Router,
     private securityService: SecurityService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private matSnackBar: MatSnackBar) { }
 
   // Life Cicle
   ngOnInit() {
@@ -54,7 +57,14 @@ export class ResetPasswordSecurityComponent implements OnInit {
   async onSubmit(viewModel: SecurityPasswordReset) {
     let user = await this.securityService.ResetPassword(viewModel);
 
-    localStorage.setItem('User', JSON.stringify(user));
+    if (user) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+
+      localStorage.setItem('User', JSON.stringify(user));
+    }
   }
 
   onNavigate() {
