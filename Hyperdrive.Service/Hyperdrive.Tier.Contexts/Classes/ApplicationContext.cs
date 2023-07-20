@@ -62,17 +62,17 @@ namespace Hyperdrive.Tier.Contexts.Classes
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Archive}"/>
         /// </summary>
-        public virtual DbSet<Archive> Archive { get; set; }
+        public virtual DbSet<Archive> Archives { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserArchive}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUserArchive> ApplicationUserArchive { get; set; }
+        public virtual DbSet<ApplicationUserArchive> ApplicationUserArchives { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ArchiveVersion}"/>
         /// </summary>
-        public virtual DbSet<ArchiveVersion> ArchiveVersion { get; set; }
+        public virtual DbSet<ArchiveVersion> ArchiveVersions { get; set; }
 
         /// <summary>
         /// Saves Changes Syncronously

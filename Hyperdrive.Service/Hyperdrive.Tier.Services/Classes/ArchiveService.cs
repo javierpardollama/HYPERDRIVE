@@ -33,7 +33,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<Archive> FindArchiveById(int @id)
         {
-            Archive @archive = await Context.Archive
+            Archive @archive = await Context.Archives
                  .TagWith("FindArchiveById")
                  .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -61,7 +61,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             Archive @archive = await FindArchiveById(@id);
 
-            Context.Archive.Remove(@archive);
+            Context.Archives.Remove(@archive);
 
             await Context.SaveChangesAsync();
 
@@ -77,7 +77,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<IList<ViewArchive>> FindAllArchive()
         {
-            ICollection<Archive> @archives = await Context.Archive
+            ICollection<Archive> @archives = await Context.Archives
                 .TagWith("FindAllArchive")
                 .AsQueryable()
                 .AsNoTracking()
@@ -89,7 +89,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int @id)
         {
-            ICollection<Archive> @archives = await Context.Archive
+            ICollection<Archive> @archives = await Context.Archives
                .TagWith("FindAllArchiveByApplicationUserId")
                .AsQueryable()
                .AsNoTracking()
@@ -102,7 +102,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int @id)
         {
-            ICollection<Archive> @archives = await Context.ApplicationUserArchive
+            ICollection<Archive> @archives = await Context.ApplicationUserArchives
                .TagWith("FindAllSharedArchiveByApplicationUserId")
                .AsQueryable()
                .AsNoTracking()
@@ -118,7 +118,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id)
         {
-            ICollection<ArchiveVersion> @versions = await Context.ArchiveVersion
+            ICollection<ArchiveVersion> @versions = await Context.ArchiveVersions
                .TagWith("FindAllArchiveVersionByArchiveId")
                .AsQueryable()
                .AsNoTracking()
@@ -175,7 +175,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 ArchiveVersions = new List<ArchiveVersion>()
             };
 
-            await Context.Archive.AddAsync(@archive);
+            await Context.Archives.AddAsync(@archive);
 
             AddApplicationUserArchive(@viewModel, @archive);
 
@@ -236,7 +236,7 @@ namespace Hyperdrive.Tier.Services.Classes
             @archive.System = false;
             @archive.By = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
-            Context.Archive.Update(@archive);
+            Context.Archives.Update(@archive);
 
             UpdateApplicationUserArchive(@viewModel, @archive);
 
@@ -287,7 +287,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<Archive> CheckName(AddArchive @viewModel)
         {
-            Archive @archive = await Context.Archive
+            Archive @archive = await Context.Archives
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
@@ -315,7 +315,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<Archive> CheckName(UpdateArchive @viewModel)
         {
-            Archive @archive = await Context.Archive
+            Archive @archive = await Context.Archives
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);

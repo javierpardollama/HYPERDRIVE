@@ -50,17 +50,17 @@ namespace Hyperdrive.Tier.Contexts.Interfaces
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Archive}"/>
         /// </summary>
-        DbSet<Archive> Archive { get; set; }
+        DbSet<Archive> Archives { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationUserArchive}"/>
         /// </summary>
-        DbSet<ApplicationUserArchive> ApplicationUserArchive { get; set; }
+        DbSet<ApplicationUserArchive> ApplicationUserArchives { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ArchiveVersion}"/>
         /// </summary>
-        DbSet<ArchiveVersion> ArchiveVersion { get; set; }
+        DbSet<ArchiveVersion> ArchiveVersions { get; set; }
 
         /// <summary>
         /// Saves Changes Syncronously

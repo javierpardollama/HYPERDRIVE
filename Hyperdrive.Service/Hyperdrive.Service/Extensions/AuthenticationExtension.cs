@@ -24,6 +24,8 @@ namespace Hyperdrive.Tier.Service.Extensions
                .AddJwtBearer(options =>
                {
                    options.ClaimsIssuer = @JwtSettings.JwtIssuer;
+                   options.Authority = @JwtSettings.JwtIssuer;
+                   options.SaveToken = true;
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
                        RequireAudience = true,
