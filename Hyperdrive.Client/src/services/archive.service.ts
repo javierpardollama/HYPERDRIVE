@@ -47,13 +47,13 @@ export class ArchiveService extends BaseService {
     }
 
     public FindPaginatedArchiveByApplicationUserId(page: FilterPageArchive): Promise<ViewPage<ViewArchive>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallarchivebyapplicationuserid`, page)
-            .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindAllArchiveByApplicationUserId', undefined))));
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findpaginatedarchivebyapplicationuserid`, page)
+            .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindPaginatedArchiveByApplicationUserId', undefined))));
     }
 
     public FindPaginatedSharedArchiveByApplicationUserId(page: FilterPageArchive): Promise<ViewPage<ViewArchive>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallsharedarchivebyapplicationuserid/`, page)
-            .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindAllSharedArchiveByApplicationUserId', undefined))));
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findpaginatedsharedarchivebyapplicationuserid`, page)
+            .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindPaginatedSharedArchiveByApplicationUserId', undefined))));
     }
 
     public FindAllArchiveVersionByArchiveId(id: number): Promise<ViewArchiveVersion[]> {
