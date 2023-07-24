@@ -22,7 +22,11 @@ namespace Hyperdrive.Tier.Service.Extensions
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins(@JwtSettings.JwtAudiences.ToArray()).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+                    policy.WithOrigins(@JwtSettings.JwtAudiences.ToArray())
+                                                                  .AllowCredentials()
+                                                                  .AllowAnyMethod()
+                                                                  .AllowAnyHeader()
+                                                                  .Build();
                 });
             });
         }
