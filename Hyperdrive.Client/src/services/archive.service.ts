@@ -4,6 +4,10 @@ import { UpdateArchive } from './../viewmodels/updates/updatearchive';
 
 import { ViewArchive } from './../viewmodels/views/viewarchive';
 
+import { ViewPage } from './../viewmodels/views/viewpage';
+
+import { FilterPageArchive } from '../viewmodels/filters/filterpagearchive';
+
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,7 +23,6 @@ import { BaseService } from './base.service';
 import { ViewArchiveVersion } from './../viewmodels/views/viewarchiveversion';
 
 import { environment } from './../environments/environment';
-import { ViewPage } from 'src/viewmodels/views/viewpage';
 
 @Injectable({
     providedIn: 'root',
@@ -43,18 +46,18 @@ export class ArchiveService extends BaseService {
             .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchive', []))));
     }
 
-    public FindPaginatedArchiveByApplicationUserId(id: number): Promise<ViewPage<ViewArchive>> {
-        return firstValueFrom(this.httpClient.get<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallarchivebyapplicationuserid/` + id)
+    public FindPaginatedArchiveByApplicationUserId(page: FilterPageArchive): Promise<ViewPage<ViewArchive>> {
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallarchivebyapplicationuserid`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindAllArchiveByApplicationUserId', undefined))));
     }
 
-    public FindPaginatedSharedArchiveByApplicationUserId(id: number): Promise<ViewPage<ViewArchive>> {
-        return firstValueFrom(this.httpClient.get<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallsharedarchivebyapplicationuserid/` + id)
+    public FindPaginatedSharedArchiveByApplicationUserId(page: FilterPageArchive): Promise<ViewPage<ViewArchive>> {
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallsharedarchivebyapplicationuserid/`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindAllSharedArchiveByApplicationUserId', undefined))));
     }
 
     public FindAllArchiveVersionByArchiveId(id: number): Promise<ViewArchiveVersion[]> {
-        return firstValueFrom(this.httpClient.get<ViewArchiveVersion[]>(`${environment.Api.Service}api/archive/findallarchiveversionbyarchiveid/` + id)
+        return firstValueFrom(this.httpClient.get<ViewArchiveVersion[]>(`${environment.Api.Service}api/archive/findallarchiveversionbyarchiveid/${id}`)
             .pipe(catchError(this.HandleError<ViewArchiveVersion[]>('FindAllArchiveVersionByArchiveId', []))));
     }
 
@@ -64,7 +67,7 @@ export class ArchiveService extends BaseService {
     }
 
     public RemoveArchiveById(id: number): Promise<void> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/archive/removearchivebyid/` + id)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/archive/removearchivebyid/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveArchiveById', undefined))));
     }
 }

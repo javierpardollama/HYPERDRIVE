@@ -22,7 +22,7 @@ import {
   ArchiveAddModalComponent
 } from './../../modals/additions/archive-add-modal/archive-add-modal.component';
 import { TextAppVariants } from '../../../../variants/text.app.variants';
-import { FilterPage } from './../../../../viewmodels/filters/filterpage';
+import { FilterPageArchive } from '../../../../viewmodels/filters/filterpagearchive';
 import { ViewScroll } from './../../../../viewmodels/views/viewscroll';
 
 @Component({
@@ -40,7 +40,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public User!: ViewApplicationUser;
 
-  public page: FilterPage =
+  public page: FilterPageArchive =
     {
       Index: 0,
       Size: 15,
@@ -76,7 +76,9 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Get Data from Service
   public async FindPaginatedArchiveByApplicationUserId() {
-    const view = await this.archiveService.FindPaginatedArchiveByApplicationUserId(this.User.Id);
+    this.page.ApplicationUserId = this.User.Id;
+
+    const view = await this.archiveService.FindPaginatedArchiveByApplicationUserId(this.page);
 
     this.page.Length = view.Length;
 
@@ -98,7 +100,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.FindPaginatedArchiveByApplicationUserId();
     });
   }
@@ -108,7 +110,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.FindPaginatedArchiveByApplicationUserId();
     });
   }
