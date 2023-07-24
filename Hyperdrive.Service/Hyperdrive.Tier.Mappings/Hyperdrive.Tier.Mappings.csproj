@@ -13,7 +13,7 @@
 
 	<ItemGroup>
     <ProjectReference Include="..\Hyperdrive.Tier.Constants\Hyperdrive.Tier.Constants.csproj" />
-    <ProjectReference Include="..\Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Tier.Entities\Hyperdrive.Tier.Entities.csproj" />
     <ProjectReference Include="..\Hyperdrive.Tier.ViewModels\Hyperdrive.Tier.ViewModels.csproj" />
   </ItemGroup>
 
