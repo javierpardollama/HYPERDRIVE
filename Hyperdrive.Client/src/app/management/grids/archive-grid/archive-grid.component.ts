@@ -22,8 +22,8 @@ import {
   ArchiveAddModalComponent
 } from './../../modals/additions/archive-add-modal/archive-add-modal.component';
 import { TextAppVariants } from '../../../../variants/text.app.variants';
-import { FilterPage } from 'src/viewmodels/filters/filterpage';
-import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FilterPage } from './../../../../viewmodels/filters/filterpage';
+import { ViewScroll } from './../../../../viewmodels/views/viewscroll';
 
 @Component({
   selector: 'app-archive-grid',
@@ -62,7 +62,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.GetLocalUser();
-    this.FindAllArchiveByApplicationUserId();
+    this.FindPaginatedArchiveByApplicationUserId();
   }
 
   ngOnDestroy(): void {
@@ -75,10 +75,12 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // Get Data from Service
-  public async FindAllArchiveByApplicationUserId() {
-    const view = await this.archiveService.FindAllArchiveByApplicationUserId(this.User.Id);
+  public async FindPaginatedArchiveByApplicationUserId() {
+    const view = await this.archiveService.FindPaginatedArchiveByApplicationUserId(this.User.Id);
 
-    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view);
+    this.page.Length = view.Length;
+
+    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
 
     this.dataSource.data = this.ELEMENT_DATA;
   }
@@ -97,7 +99,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllArchiveByApplicationUserId();
+      this.FindPaginatedArchiveByApplicationUserId();
     });
   }
 
@@ -107,7 +109,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllArchiveByApplicationUserId();
+      this.FindPaginatedArchiveByApplicationUserId();
     });
   }
 
@@ -117,7 +119,7 @@ export class ArchiveGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (scroll.IsReached()) {
       this.page.Index++;
-      await this.FindAllArchiveByApplicationUserId();
+      await this.FindPaginatedArchiveByApplicationUserId();
     }
   }
 

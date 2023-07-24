@@ -25,8 +25,8 @@ import {
   ArchiveAddModalComponent
 } from './../../modals/additions/archive-add-modal/archive-add-modal.component';
 import { TextAppVariants } from '../../../../variants/text.app.variants';
-import { FilterPage } from 'src/viewmodels/filters/filterpage';
-import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FilterPage } from './../../../../viewmodels/filters/filterpage';
+import { ViewScroll } from './../../../../viewmodels/views/viewscroll';
 
 @Component({
   selector: 'app-archive-shared-grid',
@@ -64,7 +64,7 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
 
   ngAfterViewInit(): void {
     this.GetLocalUser();
-    this.FindAllSharedArchiveByApplicationUserId();
+    this.FindPaginatedSharedArchiveByApplicationUserId();
   }
 
   ngOnDestroy(): void {
@@ -77,10 +77,12 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
   }
 
   // Get Data from Service
-  public async FindAllSharedArchiveByApplicationUserId() {
-    const view = await this.archiveService.FindAllSharedArchiveByApplicationUserId(this.User.Id);
+  public async FindPaginatedSharedArchiveByApplicationUserId() {
+    const view = await this.archiveService.FindPaginatedSharedArchiveByApplicationUserId(this.User.Id);
 
-    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view);
+    this.page.Length = view.Length;
+
+    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
 
     this.dataSource.data = this.ELEMENT_DATA;
   }
@@ -99,7 +101,7 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllSharedArchiveByApplicationUserId();
+      this.FindPaginatedSharedArchiveByApplicationUserId();
     });
   }
 
@@ -109,7 +111,7 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllSharedArchiveByApplicationUserId();
+      this.FindPaginatedSharedArchiveByApplicationUserId();
     });
   }
 
@@ -119,7 +121,7 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
 
     if (scroll.IsReached()) {
       this.page.Index++;
-      await this.FindAllSharedArchiveByApplicationUserId();
+      await this.FindPaginatedSharedArchiveByApplicationUserId();
     }
   }
 }

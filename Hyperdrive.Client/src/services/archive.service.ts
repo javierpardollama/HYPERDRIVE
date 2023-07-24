@@ -19,6 +19,7 @@ import { BaseService } from './base.service';
 import { ViewArchiveVersion } from './../viewmodels/views/viewarchiveversion';
 
 import { environment } from './../environments/environment';
+import { ViewPage } from 'src/viewmodels/views/viewpage';
 
 @Injectable({
     providedIn: 'root',
@@ -42,14 +43,14 @@ export class ArchiveService extends BaseService {
             .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchive', []))));
     }
 
-    public FindAllArchiveByApplicationUserId(id: number): Promise<ViewArchive[]> {
-        return firstValueFrom(this.httpClient.get<ViewArchive[]>(`${environment.Api.Service}api/archive/findallarchivebyapplicationuserid/` + id)
-            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllArchiveByApplicationUserId', []))));
+    public FindPaginatedArchiveByApplicationUserId(id: number): Promise<ViewPage<ViewArchive>> {
+        return firstValueFrom(this.httpClient.get<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallarchivebyapplicationuserid/` + id)
+            .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindAllArchiveByApplicationUserId', undefined))));
     }
 
-    public FindAllSharedArchiveByApplicationUserId(id: number): Promise<ViewArchive[]> {
-        return firstValueFrom(this.httpClient.get<ViewArchive[]>(`${environment.Api.Service}api/archive/findallsharedarchivebyapplicationuserid/` + id)
-            .pipe(catchError(this.HandleError<ViewArchive[]>('FindAllSharedArchiveByApplicationUserId', []))));
+    public FindPaginatedSharedArchiveByApplicationUserId(id: number): Promise<ViewPage<ViewArchive>> {
+        return firstValueFrom(this.httpClient.get<ViewPage<ViewArchive>>(`${environment.Api.Service}api/archive/findallsharedarchivebyapplicationuserid/` + id)
+            .pipe(catchError(this.HandleError<ViewPage<ViewArchive>>('FindAllSharedArchiveByApplicationUserId', undefined))));
     }
 
     public FindAllArchiveVersionByArchiveId(id: number): Promise<ViewArchiveVersion[]> {
