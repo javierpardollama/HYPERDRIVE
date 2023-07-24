@@ -25,7 +25,7 @@ import { TextAppVariants } from './../../../variants/text.app.variants';
 })
 export class SignInAuthComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
   // Constructor
   constructor(
@@ -54,9 +54,11 @@ export class SignInAuthComponent implements OnInit {
   async onSubmit(viewModel: AuthSignIn) {
     let user = await this.authService.SignIn(viewModel);
 
-    localStorage.setItem('User', JSON.stringify(user));
+    if (user) {
+      localStorage.setItem('User', JSON.stringify(user));
 
-    this.router.navigate(['/'])
+      this.router.navigate(['/']);
+    }
   }
 
   onNavigate() {

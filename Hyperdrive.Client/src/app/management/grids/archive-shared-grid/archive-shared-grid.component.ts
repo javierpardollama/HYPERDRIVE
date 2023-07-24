@@ -1,5 +1,7 @@
 import {
+  AfterViewInit,
   Component,
+  OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -23,16 +25,15 @@ import {
   ArchiveAddModalComponent
 } from './../../modals/additions/archive-add-modal/archive-add-modal.component';
 import { TextAppVariants } from '../../../../variants/text.app.variants';
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 
 @Component({
   selector: 'app-archive-shared-grid',
   templateUrl: './archive-shared-grid.component.html',
   styleUrls: ['./archive-shared-grid.component.scss']
 })
-export class ArchiveSharedGridComponent implements OnInit {
-
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public ELEMENT_DATA: ViewArchive[] = [];
 
@@ -42,6 +43,13 @@ export class ArchiveSharedGridComponent implements OnInit {
 
   public User!: ViewApplicationUser;
 
+  public page: FilterPage =
+    {
+      Index: 0,
+      Size: 15,
+      Length: 0
+    };
+
   // Constructor
   constructor(
     private archiveService: ArchiveService,
@@ -50,9 +58,17 @@ export class ArchiveSharedGridComponent implements OnInit {
   }
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
+    window.addEventListener('scroll', this.TurnThePage, true);
+  }
+
+  ngAfterViewInit(): void {
     this.GetLocalUser();
     this.FindAllSharedArchiveByApplicationUserId();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.TurnThePage, true);
   }
 
   // Get User from Storage
@@ -62,22 +78,17 @@ export class ArchiveSharedGridComponent implements OnInit {
 
   // Get Data from Service
   public async FindAllSharedArchiveByApplicationUserId() {
-    this.ELEMENT_DATA = await this.archiveService.FindAllSharedArchiveByApplicationUserId(this.User.Id);
+    const view = await this.archiveService.FindAllSharedArchiveByApplicationUserId(this.User.Id);
 
-    this.SetupMyTableSettings();
+    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view);
+
+    this.dataSource.data = this.ELEMENT_DATA;
   }
 
-  // Setup Table Settings
-  public SetupMyTableSettings() {
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   // Filter Data
-  public ApplyMyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  public ApplyMyFilter(target: EventTarget | null) {
+    this.dataSource.filter = (target as HTMLInputElement).value.trim().toLowerCase();
   }
 
   // Get Record from Table
@@ -100,5 +111,15 @@ export class ArchiveSharedGridComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.FindAllSharedArchiveByApplicationUserId();
     });
+  }
+
+  private TurnThePage = async (event: Event): Promise<void> => {
+
+    let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
+
+    if (scroll.IsReached()) {
+      this.page.Index++;
+      await this.FindAllSharedArchiveByApplicationUserId();
+    }
   }
 }

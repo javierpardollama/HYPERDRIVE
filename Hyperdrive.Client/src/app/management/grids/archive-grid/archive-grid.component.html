@@ -1,4 +1,4 @@
-<div *ngIf="!dataSource" class="spinner-container">
+<div *ngIf="dataSource.data.length == 0" class="spinner-container">
     <div class="spinner"></div>
 </div>
 
@@ -8,7 +8,7 @@
     <button mat-raised-button color="primary" class="add-button" (click)="AddRecord()"><span>Add New</span></button>
 
     <mat-form-field class="grid-filter">
-        <input matInput (keyup)="ApplyMyFilter($event.target.value)" placeholder="Filter">
+        <input matInput (keyup)="ApplyMyFilter($event.target)" placeholder="Filter">
     </mat-form-field>
 
     <div class="mat-elevation-z8">
@@ -36,7 +36,5 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="GetRecord(row)">
             </tr>
         </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
 </div>

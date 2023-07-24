@@ -18,7 +18,7 @@ import { TextAppVariants } from '../variants/text.app.variants';
 
 export class AuthInterceptor implements HttpInterceptor {
 
-  private User: ViewApplicationUser;
+  private User!: ViewApplicationUser;
 
   constructor() { }
 

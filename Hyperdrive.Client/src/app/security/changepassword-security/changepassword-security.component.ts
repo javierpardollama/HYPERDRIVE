@@ -28,9 +28,9 @@ import { TimeAppVariants } from '../../../variants/time.app.variants';
 })
 export class ChangePasswordSecurityComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
-  public User: ViewApplicationUser;
+  public User!: ViewApplicationUser;
 
   // Constructor
   constructor(
