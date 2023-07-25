@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
@@ -139,17 +140,17 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         [Test]
-        public async Task FindAllArchiveByApplicationUserId()
+        public async Task FindPaginatedArchiveByApplicationUserId()
         {
-            await Service.FindAllArchiveByApplicationUserId(Context.Users.FirstOrDefault().Id);
+            await Service.FindPaginatedArchiveByApplicationUserId(new FilterPageArchive { Index = 1, Size = 5, ApplicationUserId = Context.Users.FirstOrDefault().Id });
 
             Assert.Pass();
         }
 
         [Test]
-        public async Task FindAllSharedArchiveByApplicationUserId()
+        public async Task FindPaginatedSharedArchiveByApplicationUserId()
         {
-            await Service.FindAllSharedArchiveByApplicationUserId(Context.Users.FirstOrDefault().Id);
+            await Service.FindPaginatedSharedArchiveByApplicationUserId(new FilterPageArchive { Index = 1, Size = 5, ApplicationUserId = Context.Users.FirstOrDefault().Id });
 
             Assert.Pass();
         }

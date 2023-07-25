@@ -1,5 +1,6 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
@@ -16,9 +17,9 @@ namespace Hyperdrive.Tier.Services.Interfaces
 
         Task<IList<ViewArchive>> FindAllArchive();
 
-        Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int @id);
+        Task<ViewPage<ViewArchive>> FindPaginatedArchiveByApplicationUserId(FilterPageArchive @viewModel);
 
-        Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int @id);
+        Task<ViewPage<ViewArchive>> FindPaginatedSharedArchiveByApplicationUserId(FilterPageArchive @viewModel);
 
         Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id);
 

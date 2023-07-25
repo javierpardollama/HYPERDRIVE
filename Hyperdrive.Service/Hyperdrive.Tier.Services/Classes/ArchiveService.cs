@@ -10,6 +10,7 @@ using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
@@ -87,33 +88,55 @@ namespace Hyperdrive.Tier.Services.Classes
             return Mapper.Map<IList<ViewArchive>>(@archives);
         }
 
-        public async Task<IList<ViewArchive>> FindAllArchiveByApplicationUserId(int @id)
+        public async Task<ViewPage<ViewArchive>> FindPaginatedArchiveByApplicationUserId(FilterPageArchive @viewModel)
         {
-            ICollection<Archive> @archives = await Context.Archives
-               .TagWith("FindAllArchiveByApplicationUserId")
-               .AsQueryable()
-               .AsNoTracking()
-               .Include(x => x.By)
-               .Where(x => x.By.Id == @id)
-               .ToListAsync();
+            ViewPage<ViewArchive> @page = new()
+            {
+                Length = await Context.Archives.TagWith("CountAllArchiveByApplicationUserId")
+                    .Include(x => x.By)
+                    .Where(x => x.By.Id == @viewModel.ApplicationUserId)
+                    .CountAsync(),
+                Index = @viewModel.Index,
+                Size = @viewModel.Size,
+                Items = Mapper.Map<IList<ViewArchive>>(await Context.Archives
+                   .TagWith("FindPaginatedArchiveByApplicationUserId")
+                   .AsQueryable()
+                   .AsNoTracking()
+                   .Include(x => x.By)
+                   .Where(x => x.By.Id == @viewModel.ApplicationUserId)
+                   .Skip(@viewModel.Index * @viewModel.Size)
+                   .Take(@viewModel.Size)
+                   .ToListAsync())
+            };
 
-            return Mapper.Map<IList<ViewArchive>>(@archives);
+            return @page;
         }
 
-        public async Task<IList<ViewArchive>> FindAllSharedArchiveByApplicationUserId(int @id)
+        public async Task<ViewPage<ViewArchive>> FindPaginatedSharedArchiveByApplicationUserId(FilterPageArchive @viewModel)
         {
-            ICollection<Archive> @archives = await Context.ApplicationUserArchives
-               .TagWith("FindAllSharedArchiveByApplicationUserId")
-               .AsQueryable()
-               .AsNoTracking()
-               .Include(x => x.ApplicationUser)
-               .Include(x => x.Archive)
-               .ThenInclude(x => x.By)
-               .Where(x => x.ApplicationUser.Id == @id)
-               .Select(x => x.Archive)
-               .ToListAsync();
+            ViewPage<ViewArchive> @page = new()
+            {
+                Length = await Context.ApplicationUserArchives.TagWith("CountAllSharedArchiveByApplicationUserId")
+                   .Include(x => x.ApplicationUser)
+                   .Include(x => x.Archive)
+                   .Where(x => x.ApplicationUser.Id == @viewModel.ApplicationUserId)
+                   .CountAsync(),
+                Index = @viewModel.Index,
+                Size = @viewModel.Size,
+                Items = Mapper.Map<IList<ViewArchive>>(await Context.ApplicationUserArchives
+                    .TagWith("FindPaginatedSharedArchiveByApplicationUserId")
+                    .AsQueryable()
+                    .AsNoTracking()
+                    .Include(x => x.ApplicationUser)
+                    .Include(x => x.Archive)
+                    .Where(x => x.ApplicationUser.Id == @viewModel.ApplicationUserId)
+                    .Skip(@viewModel.Index * @viewModel.Size)
+                    .Take(@viewModel.Size)
+                    .Select(x => x.Archive)
+                    .ToListAsync())
+            };
 
-            return Mapper.Map<IList<ViewArchive>>(@archives);
+            return @page;
         }
 
         public async Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id)
@@ -128,7 +151,7 @@ namespace Hyperdrive.Tier.Services.Classes
                .ToListAsync();
 
             return Mapper.Map<IList<ViewArchiveVersion>>(@versions);
-        }      
+        }
 
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {

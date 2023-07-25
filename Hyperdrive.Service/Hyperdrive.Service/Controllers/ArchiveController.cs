@@ -1,12 +1,13 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Services.Interfaces;
+﻿using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Web.Controllers
 {
@@ -31,22 +32,22 @@ namespace Hyperdrive.Tier.Web.Controllers
         public ArchiveController(IArchiveService @service) => Service = @service;
 
         /// <summary>
-        /// Finds All Archive By ApplicationUser Id
+        /// Finds Paginated Archive By ApplicationUser Id
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPageArchive"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
-        [HttpGet]
-        [Route("findallarchivebyapplicationuserid/{id}")]
-        public async Task<IActionResult> FindAllArchiveByApplicationUserId(int @id) => new JsonResult(value: await Service.FindAllArchiveByApplicationUserId(@id));
+        [HttpPost]
+        [Route("findpaginatedarchivebyapplicationuserid")]
+        public async Task<IActionResult> FindPaginatedArchiveByApplicationUserId([FromBody] FilterPageArchive @viewModel) => new JsonResult(value: await Service.FindPaginatedArchiveByApplicationUserId(@viewModel));
 
         /// <summary>
-        /// Finds All Shared Archive By ApplicationUser Id
+        /// Finds Paginated Shared Archive By ApplicationUser Id
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPageArchive"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
-        [HttpGet]
-        [Route("findallsharedarchivebyapplicationuserid/{id}")]
-        public async Task<IActionResult> FindAllSharedArchiveByApplicationUserId(int @id) => new JsonResult(value: await Service.FindAllSharedArchiveByApplicationUserId(@id));
+        [HttpPost]
+        [Route("findpaginatedsharedarchivebyapplicationuserid")]
+        public async Task<IActionResult> FindPaginatedSharedArchiveByApplicationUserId([FromBody] FilterPageArchive @viewModel) => new JsonResult(value: await Service.FindPaginatedSharedArchiveByApplicationUserId(@viewModel));
 
         /// <summary>
         /// Finds All Archive Version By Archive Id
