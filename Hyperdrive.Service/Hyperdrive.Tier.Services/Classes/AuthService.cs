@@ -189,7 +189,6 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await UserManager.Users
                 .TagWith("FindApplicationUserByEmail")
-                .AsQueryable()
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
@@ -224,6 +223,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await UserManager.Users
               .AsNoTracking()
+              .AsSplitQuery()
               .TagWith("CheckEmail")
               .FirstOrDefaultAsync(x => x.Email == @viewModel.Email.Trim());
 

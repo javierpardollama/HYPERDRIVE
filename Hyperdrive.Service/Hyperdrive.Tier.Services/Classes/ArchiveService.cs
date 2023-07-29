@@ -80,8 +80,8 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ICollection<Archive> @archives = await Context.Archives
                 .TagWith("FindAllArchive")
-                .AsQueryable()
                 .AsNoTracking()
+                .AsSplitQuery()
                 .Include(x => x.By)
                 .ToListAsync();
 
@@ -93,6 +93,8 @@ namespace Hyperdrive.Tier.Services.Classes
             ViewPage<ViewArchive> @page = new()
             {
                 Length = await Context.Archives.TagWith("CountAllArchiveByApplicationUserId")
+                    .AsSplitQuery()
+                    .AsNoTracking()
                     .Include(x => x.By)
                     .Where(x => x.By.Id == @viewModel.ApplicationUserId)
                     .CountAsync(),
@@ -100,7 +102,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewArchive>>(await Context.Archives
                    .TagWith("FindPaginatedArchiveByApplicationUserId")
-                   .AsQueryable()
+                   .AsSplitQuery()
                    .AsNoTracking()
                    .Include(x => x.By)
                    .Where(x => x.By.Id == @viewModel.ApplicationUserId)
@@ -117,15 +119,17 @@ namespace Hyperdrive.Tier.Services.Classes
             ViewPage<ViewArchive> @page = new()
             {
                 Length = await Context.ApplicationUserArchives.TagWith("CountAllSharedArchiveByApplicationUserId")
-                   .Include(x => x.ApplicationUser)
-                   .Include(x => x.Archive)
-                   .Where(x => x.ApplicationUser.Id == @viewModel.ApplicationUserId)
-                   .CountAsync(),
+                    .AsSplitQuery()
+                    .AsNoTracking()
+                    .Include(x => x.ApplicationUser)
+                    .Include(x => x.Archive)
+                    .Where(x => x.ApplicationUser.Id == @viewModel.ApplicationUserId)
+                    .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewArchive>>(await Context.ApplicationUserArchives
                     .TagWith("FindPaginatedSharedArchiveByApplicationUserId")
-                    .AsQueryable()
+                    .AsSplitQuery()
                     .AsNoTracking()
                     .Include(x => x.ApplicationUser)
                     .Include(x => x.Archive)
@@ -143,7 +147,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ICollection<ArchiveVersion> @versions = await Context.ArchiveVersions
                .TagWith("FindAllArchiveVersionByArchiveId")
-               .AsQueryable()
+               .AsSplitQuery()
                .AsNoTracking()
                .Include(x => x.Archive)
                .ThenInclude(x => x.By)
@@ -157,7 +161,6 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await UserManager.Users
                 .TagWith("FindApplicationUserById")
-                .AsQueryable()
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
@@ -313,6 +316,7 @@ namespace Hyperdrive.Tier.Services.Classes
             Archive @archive = await Context.Archives
                  .TagWith("CheckName")
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
 
             if (@archive != null)
@@ -341,6 +345,7 @@ namespace Hyperdrive.Tier.Services.Classes
             Archive @archive = await Context.Archives
                  .TagWith("CheckName")
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@archive != null)

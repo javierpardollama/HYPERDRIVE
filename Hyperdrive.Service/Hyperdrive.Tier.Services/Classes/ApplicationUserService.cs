@@ -43,8 +43,8 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ICollection<ApplicationUser> @applicationUsers = await Context.Users
                .TagWith("FindAllApplicationUser")
-               .AsQueryable()
                .AsNoTracking()
+               .AsSplitQuery()
                .Include(x => x.ApplicationUserTokens)
                .Include(x => x.ApplicationUserRoles)
                .ThenInclude(x => x.ApplicationRole)
@@ -62,7 +62,6 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await Context.Users
                .TagWith("FindApplicationUserById")
-               .AsQueryable()
                .Include(x => x.ApplicationUserTokens)
                .Include(x => x.ApplicationUserRoles)
                .ThenInclude(x => x.ApplicationRole)

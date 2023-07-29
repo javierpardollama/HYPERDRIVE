@@ -99,7 +99,6 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await UserManager.Users
                 .TagWith("FindApplicationUserByEmail")
-                .AsQueryable()
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)

@@ -109,6 +109,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationRole @applicationRole = await Context.Roles
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
@@ -141,6 +142,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ICollection<ApplicationRole> @applicationRoles = await Context.Roles
                 .TagWith("FindAllApplicationRole")
                 .AsNoTracking()
+                .AsSplitQuery()
                 .ToListAsync();
 
             return Mapper.Map<ICollection<ViewApplicationRole>>(@applicationRoles);
