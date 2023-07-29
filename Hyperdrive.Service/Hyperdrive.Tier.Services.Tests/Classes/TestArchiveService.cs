@@ -289,9 +289,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            UpdateArchive @updateArchive = new()
+            AddArchive @addArchive = new()
             {
-                Id = Context.Archives.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
                 Name = Context.Archives.FirstOrDefault().Name,
@@ -300,7 +299,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@updateArchive));
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@addArchive));
 
             Assert.Pass();
         }
