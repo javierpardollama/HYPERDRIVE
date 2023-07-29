@@ -80,7 +80,7 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
 
     this.page.Length = view.Length;
 
-    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+    this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewArchive, ViewArchive> => m.set(t.Id, t), new Map()).values());
 
     this.dataSource.data = this.ELEMENT_DATA;
   }
