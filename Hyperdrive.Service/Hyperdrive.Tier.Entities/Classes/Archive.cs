@@ -1,5 +1,7 @@
 ﻿using Hyperdrive.Tier.Entities.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +12,7 @@ namespace Hyperdrive.Tier.Entities.Classes
     /// <summary>
     /// Represents a <see cref="Archive"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
-    [Index(nameof(Name))]
+    [Index(nameof(Name), nameof(Deleted))]
     public class Archive : IKey, IBase
     {
         /// <summary>

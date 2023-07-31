@@ -69,10 +69,10 @@ namespace Hyperdrive.Tier.Contexts.Extensions
             {
                 applicationUser.ToTable("ApplicationUser");
 
-                applicationUser.HasIndex(p => new { p.NormalizedEmail })
+                applicationUser.HasIndex(p => new { p.NormalizedEmail, p.Deleted })
                 .IsUnique(false);
 
-                applicationUser.HasIndex(p => new { p.NormalizedUserName })
+                applicationUser.HasIndex(p => new { p.NormalizedUserName, p.Deleted })
                .IsUnique(false);
             });
 
@@ -80,7 +80,7 @@ namespace Hyperdrive.Tier.Contexts.Extensions
             {
                 applicationRole.ToTable("ApplicationRole");
 
-                applicationRole.HasIndex(p => new { p.NormalizedName })
+                applicationRole.HasIndex(p => new { p.NormalizedName, p.Deleted })
                .IsUnique(false);
             });
         }

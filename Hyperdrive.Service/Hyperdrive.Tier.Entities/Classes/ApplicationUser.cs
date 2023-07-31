@@ -35,11 +35,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="FirstName"/>
         /// </summary>
+        [ProtectedPersonalData]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="LastName"/>
         /// </summary>
+        [ProtectedPersonalData]
         public string LastName { get; set; }
 
         /// <summary>
