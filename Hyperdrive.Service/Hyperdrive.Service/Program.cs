@@ -25,15 +25,7 @@ var @builder = WebApplication.CreateBuilder(args);
 @builder.Services.AddDbContext<ApplicationContext>(options =>
              options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection")));
 
-@builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-{
-    options.Lockout = new LockoutOptions()
-    {
-        AllowedForNewUsers = true,
-        DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5),
-        MaxFailedAccessAttempts = 5
-    };
-})
+@builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
 
