@@ -18,6 +18,11 @@ namespace Hyperdrive.Tier.Settings.Classes
         public string JwtIssuer { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="JwtAuthority"/>
+        /// </summary>
+        public string JwtAuthority { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="JwtAudiences"/>
         /// </summary>
         public IList<string> JwtAudiences { get; set; }
