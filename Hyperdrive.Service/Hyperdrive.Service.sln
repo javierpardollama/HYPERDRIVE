@@ -3,27 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Service", "Hyperdrive.Service\Hyperdrive.Service.csproj", "{78371CB3-C31C-4133-8E4A-AA0A2A177123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Service", "Hyperdrive.Service\Hyperdrive.Service.csproj", "{78371CB3-C31C-4133-8E4A-AA0A2A177123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Constants", "Hyperdrive.Tier.Constants\Hyperdrive.Tier.Constants.csproj", "{C4330935-55E1-4A0F-B5D4-DE15D4C29FF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Constants", "Hyperdrive.Tier.Constants\Hyperdrive.Tier.Constants.csproj", "{C4330935-55E1-4A0F-B5D4-DE15D4C29FF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Contexts", "Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj", "{96FA78F6-2F29-484B-AEC7-DF8C6D571CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Contexts", "Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj", "{96FA78F6-2F29-484B-AEC7-DF8C6D571CDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Entities", "Hyperdrive.Tier.Entities\Hyperdrive.Tier.Entities.csproj", "{8A10AF64-499A-4923-A2CE-D7DA0BFA1DA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Entities", "Hyperdrive.Tier.Entities\Hyperdrive.Tier.Entities.csproj", "{8A10AF64-499A-4923-A2CE-D7DA0BFA1DA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.ExceptionHandling", "Hyperdrive.Tier.ExceptionHandling\Hyperdrive.Tier.ExceptionHandling.csproj", "{DB7BCFE5-7E0E-452B-826B-CA5A46802050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Middlewares", "Hyperdrive.Tier.Middlewares\Hyperdrive.Tier.Middlewares.csproj", "{DB7BCFE5-7E0E-452B-826B-CA5A46802050}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Logging", "Hyperdrive.Tier.Logging\Hyperdrive.Tier.Logging.csproj", "{2DC282FB-9020-4C84-BCA3-E5F11CDC3DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Logging", "Hyperdrive.Tier.Logging\Hyperdrive.Tier.Logging.csproj", "{2DC282FB-9020-4C84-BCA3-E5F11CDC3DB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Mappings", "Hyperdrive.Tier.Mappings\Hyperdrive.Tier.Mappings.csproj", "{DB936EE9-FA3C-415B-89AA-0BAFF1838077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Mappings", "Hyperdrive.Tier.Mappings\Hyperdrive.Tier.Mappings.csproj", "{DB936EE9-FA3C-415B-89AA-0BAFF1838077}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Services", "Hyperdrive.Tier.Services\Hyperdrive.Tier.Services.csproj", "{BFE87F4B-CE67-41F9-9E00-6B921D845BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Services", "Hyperdrive.Tier.Services\Hyperdrive.Tier.Services.csproj", "{BFE87F4B-CE67-41F9-9E00-6B921D845BAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Services.Tests", "Hyperdrive.Tier.Services.Tests\Hyperdrive.Tier.Services.Tests.csproj", "{5199E803-D5DB-4639-80AB-D84C69A1ABCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Services.Tests", "Hyperdrive.Tier.Services.Tests\Hyperdrive.Tier.Services.Tests.csproj", "{5199E803-D5DB-4639-80AB-D84C69A1ABCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Settings", "Hyperdrive.Tier.Settings\Hyperdrive.Tier.Settings.csproj", "{CD2B85CA-2AF1-429B-AAAB-C94EE8AA428D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Settings", "Hyperdrive.Tier.Settings\Hyperdrive.Tier.Settings.csproj", "{CD2B85CA-2AF1-429B-AAAB-C94EE8AA428D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.ViewModels", "Hyperdrive.Tier.ViewModels\Hyperdrive.Tier.ViewModels.csproj", "{8852D084-66F1-41BE-8B6D-4EEEFAF6C2D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.ViewModels", "Hyperdrive.Tier.ViewModels\Hyperdrive.Tier.ViewModels.csproj", "{8852D084-66F1-41BE-8B6D-4EEEFAF6C2D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

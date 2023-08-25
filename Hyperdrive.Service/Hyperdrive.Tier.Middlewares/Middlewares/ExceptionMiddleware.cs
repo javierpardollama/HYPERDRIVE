@@ -7,7 +7,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Hyperdrive.Tier.ExceptionHandling.Middlewares
+namespace Hyperdrive.Tier.Middlewares.Middlewares
 {
     /// <summary>
     /// Represents a <see cref="ExceptionMiddleware"/> class

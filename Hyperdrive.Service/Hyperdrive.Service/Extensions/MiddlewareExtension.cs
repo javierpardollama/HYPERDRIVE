@@ -1,21 +1,22 @@
-﻿using Hyperdrive.Tier.ExceptionHandling.Middlewares;
+﻿using Hyperdrive.Tier.Middlewares.Middlewares;
 
 using Microsoft.AspNetCore.Builder;
 
 namespace Hyperdrive.Tier.Service.Extensions
 {
     /// <summary>
-    /// Represents a <see cref="ExceptionsExtension"/> class.
+    /// Represents a <see cref="MiddlewareExtension"/> class.
     /// </summary>
-    public static class ExceptionsExtension
+    public static class MiddlewareExtension
     {
         /// <summary>
         /// Extends Customized Exception MiddleWare
         /// </summary>
         /// <param name="this">Injected <see cref="WebApplication"/></param>
-        public static void UseCustomizedExceptionMiddlewares(this WebApplication @this)
+        public static void UseCustomizedMiddlewares(this WebApplication @this)
         {
             @this.UseMiddleware<ExceptionMiddleware>();
+            @this.UseMiddleware<HeaderMiddleware>();
         }
     }
 }

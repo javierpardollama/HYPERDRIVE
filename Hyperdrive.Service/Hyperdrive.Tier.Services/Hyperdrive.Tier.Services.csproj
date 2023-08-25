@@ -12,7 +12,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj" />
-	  <ProjectReference Include="..\Hyperdrive.Tier.ExceptionHandling\Hyperdrive.Tier.ExceptionHandling.csproj" />
+	  <ProjectReference Include="..\Hyperdrive.Tier.Middlewares\Hyperdrive.Tier.Middlewares.csproj" />
 	  <ProjectReference Include="..\Hyperdrive.Tier.Logging\Hyperdrive.Tier.Logging.csproj" />
 	  <ProjectReference Include="..\Hyperdrive.Tier.Settings\Hyperdrive.Tier.Settings.csproj" />
 	</ItemGroup>
