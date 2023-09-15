@@ -111,6 +111,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             JwtAudiences = new List<string>() { "https://localhost:4200" },
             JwtExpireMinutes = 60,
             JwtIssuer = "https://localhost:15208",
+            JwtAuthority = "https://localhost:15208",
             JwtKey = "SOME_RANDOM_KEY_DO_NOT_SHARE"
         });
 
