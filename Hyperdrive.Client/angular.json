@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Hyperdrive.Client:build:production"
+              "buildTarget": "Hyperdrive.Client:build:production"
             },
             "development": {
-              "browserTarget": "Hyperdrive.Client:build:development"
+              "buildTarget": "Hyperdrive.Client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Hyperdrive.Client:build"
+            "buildTarget": "Hyperdrive.Client:build"
           }
         },
         "test": {
