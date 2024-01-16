@@ -61,7 +61,7 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
                 Message = @exception.Message
             };
 
-            return @context.Response.WriteAsync(JsonSerializer.Serialize(@viewException, new JsonSerializerOptions() { WriteIndented = true }));
+            return @context.Response.WriteAsJsonAsync<ViewException>(@viewException, new JsonSerializerOptions() { WriteIndented = true });
         }
     }
 }
