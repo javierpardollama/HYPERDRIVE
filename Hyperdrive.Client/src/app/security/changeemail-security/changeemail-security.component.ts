@@ -20,7 +20,6 @@ import { ViewApplicationUser } from './../../../viewmodels/views/viewapplication
 
 import { TextAppVariants } from './../../../variants/text.app.variants';
 
-import { ExpressionAppVariants } from './../../../variants/expression.app.variants';
 import { TimeAppVariants } from '../../../variants/time.app.variants';
 
 @Component({

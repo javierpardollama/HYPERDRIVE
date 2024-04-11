@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
-import { TextAppVariants } from '../variants/text.app.variants';
 
 @Injectable({
   providedIn: 'root'

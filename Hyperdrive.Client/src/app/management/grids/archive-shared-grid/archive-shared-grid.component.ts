@@ -20,7 +20,6 @@ import {
 import {
   ArchiveAddModalComponent
 } from './../../modals/additions/archive-add-modal/archive-add-modal.component';
-import { TextAppVariants } from '../../../../variants/text.app.variants';
 import { FilterPageArchive } from '../../../../viewmodels/filters/filterpagearchive';
 import { ViewScroll } from './../../../../viewmodels/views/viewscroll';
 

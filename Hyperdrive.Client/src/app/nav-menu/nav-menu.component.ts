@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 
 import { ViewApplicationUser } from './../../viewmodels/views/viewapplicationuser';
-import { TextAppVariants } from '../../variants/text.app.variants';
 
 @Component({
   selector: 'app-nav-menu',
@@ -41,8 +40,7 @@ export class NavMenuComponent implements OnInit {
   display() {
     this.GetLocalUser();
 
-    if (this.User) {
-      console.log('Entra')
+    if (this.User) {     
       this.isVisible = true;
     }
 
