@@ -5,7 +5,6 @@ import {
 } from '@angular/router';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
-import { TextAppVariants } from '../variants/text.app.variants';
 
 @Injectable({
     providedIn: 'root'
