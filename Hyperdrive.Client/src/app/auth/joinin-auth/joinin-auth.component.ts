@@ -24,7 +24,7 @@ import { TextAppVariants } from './../../../variants/text.app.variants';
 })
 export class JoinInAuthComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
   // Constructor
   constructor(

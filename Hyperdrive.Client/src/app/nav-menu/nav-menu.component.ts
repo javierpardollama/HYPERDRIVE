@@ -17,7 +17,7 @@ export class NavMenuComponent implements OnInit {
 
   public isVisible = false;
 
-  public User: ViewApplicationUser;
+  public User?: ViewApplicationUser;
 
   // Constructor
   constructor() {
@@ -42,6 +42,7 @@ export class NavMenuComponent implements OnInit {
     this.GetLocalUser();
 
     if (this.User) {
+      console.log('Entra')
       this.isVisible = true;
     }
 
@@ -50,6 +51,6 @@ export class NavMenuComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
+    this.User = JSON.parse(localStorage.getItem('User')!);
   }
 }

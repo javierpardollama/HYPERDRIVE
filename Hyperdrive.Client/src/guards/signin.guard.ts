@@ -13,7 +13,7 @@ import { TextAppVariants } from '../variants/text.app.variants';
 
 export class SignInGuard {
 
-    private User!: ViewApplicationUser;
+    private User?: ViewApplicationUser;
 
     private Activated = false;
 
@@ -34,6 +34,6 @@ export class SignInGuard {
 
     // Get User from Storage
     public GetLocalUser() {
-        this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
+        this.User = JSON.parse(localStorage.getItem('User')!);
     }
 }

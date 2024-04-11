@@ -47,7 +47,7 @@ export class ChangePasswordSecurityComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
+    this.User = JSON.parse(localStorage.getItem('User')!);
   }
 
   // Form

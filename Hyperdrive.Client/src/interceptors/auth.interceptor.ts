@@ -18,7 +18,7 @@ import { TextAppVariants } from '../variants/text.app.variants';
 
 export class AuthInterceptor implements HttpInterceptor {
 
-  private User!: ViewApplicationUser;
+  private User?: ViewApplicationUser;
 
   constructor() { }
 
@@ -41,6 +41,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User') || TextAppVariants.AppEmptyCoreObject);
+    this.User = JSON.parse(localStorage.getItem('User')!);
   }
 }
