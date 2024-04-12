@@ -117,12 +117,11 @@ import { AppRoutingModule } from './app-routing.module';
     MatTableModule,
     MatSortModule,
     MatFormFieldModule,
-    MatTabsModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
