@@ -59,3 +59,13 @@ mat-card-content
 overflow: hidden; 
 background-color: #F5F5F5;
 }
+
+@media screen and (max-width: 960px) 
+{
+.auth-card
+{   
+left: unset;  
+width: unset;
+margin:8px;
+}
+}
