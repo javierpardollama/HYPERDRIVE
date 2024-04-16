@@ -63,7 +63,7 @@ export class ResetPasswordSecurityComponent implements OnInit {
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-      localStorage.setItem('User', JSON.stringify(user));
+      sessionStorage.setItem('User', JSON.stringify(user));
     }
   }
 

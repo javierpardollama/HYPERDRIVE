@@ -55,7 +55,7 @@ export class SignInAuthComponent implements OnInit {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
-      localStorage.setItem('User', JSON.stringify(user));
+      sessionStorage.setItem('User', JSON.stringify(user));
 
       this.router.navigate(['/']);
     }

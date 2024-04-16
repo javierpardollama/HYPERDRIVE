@@ -48,7 +48,7 @@ export class ChangeEmailSecurityComponent implements OnInit {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User')!);
+    this.User = JSON.parse(sessionStorage.getItem('User')!);
   }
 
   // Form
@@ -73,7 +73,7 @@ export class ChangeEmailSecurityComponent implements OnInit {
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-      localStorage.setItem('User', JSON.stringify(user));
+      sessionStorage.setItem('User', JSON.stringify(user));
     }
 
     this.dialogRef.close();

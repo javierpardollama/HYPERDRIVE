@@ -40,6 +40,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User')!);
+    this.User = JSON.parse(sessionStorage.getItem('User')!);
   }
 }

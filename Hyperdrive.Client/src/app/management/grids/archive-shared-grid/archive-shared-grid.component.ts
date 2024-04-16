@@ -68,7 +68,7 @@ export class ArchiveSharedGridComponent implements OnInit, AfterViewInit, OnDest
 
   // Get User from Storage
   public GetLocalUser() {
-    this.User = JSON.parse(localStorage.getItem('User')!);
+    this.User = JSON.parse(sessionStorage.getItem('User')!);
   }
 
   // Get Data from Service
