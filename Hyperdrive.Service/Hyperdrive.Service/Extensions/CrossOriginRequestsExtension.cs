@@ -2,8 +2,6 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-using System.Linq;
-
 namespace Hyperdrive.Tier.Service.Extensions
 {
     /// <summary>
@@ -22,7 +20,7 @@ namespace Hyperdrive.Tier.Service.Extensions
             {
                 options.AddDefaultPolicy(policy =>
                 {
-                    policy.WithOrigins(@JwtSettings.JwtAudiences.ToArray())
+                    policy.WithOrigins([.. @JwtSettings.JwtAudiences])
                                                                   .AllowCredentials()
                                                                   .AllowAnyMethod()
                                                                   .AllowAnyHeader()

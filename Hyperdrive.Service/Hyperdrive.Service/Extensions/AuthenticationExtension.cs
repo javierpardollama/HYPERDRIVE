@@ -1,10 +1,10 @@
-﻿using Hyperdrive.Tier.Settings.Classes;
+﻿using System.Text;
+
+using Hyperdrive.Tier.Settings.Classes;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-
-using System.Text;
 
 namespace Hyperdrive.Tier.Service.Extensions
 {
