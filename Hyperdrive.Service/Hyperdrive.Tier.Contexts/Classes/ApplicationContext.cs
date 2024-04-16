@@ -1,4 +1,7 @@
-﻿using Hyperdrive.Tier.Contexts.Extensions;
+﻿using System;
+using System.Threading.Tasks;
+
+using Hyperdrive.Tier.Contexts.Extensions;
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 
@@ -6,24 +9,14 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-using System;
-using System.Threading.Tasks;
-
 namespace Hyperdrive.Tier.Contexts.Classes
 {
     /// <summary>
     /// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="DbContext"/>. Implements <see cref="IApplicationContext"/>. Inherits <see cref="IdentityDbContext"/>
-    /// </summary>
-    public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>, IApplicationContext
+    /// </summary>    
+    /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
+    public class ApplicationContext(DbContextOptions<ApplicationContext> options) : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>(options), IApplicationContext
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationContext"/>
-        /// </summary>
-        /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-        {
-        }
-
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ApplicationRole}"/>
         /// </summary>

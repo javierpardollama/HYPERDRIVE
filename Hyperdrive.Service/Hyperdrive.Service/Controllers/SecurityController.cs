@@ -10,23 +10,13 @@ namespace Hyperdrive.Tier.Web.Controllers
 {
     /// <summary>
     /// Represents a <see cref="SecurityController"/> class. Inherits <see cref="ControllerBase"/>
-    /// </summary>
+    /// </summary>    
+    /// <param name="service">Injected <see cref="ISecurityService"/></param>
     [Route("api/security")]
     [Produces("application/json")]
     [ApiController]
-    public class SecurityController : ControllerBase
+    public class SecurityController(ISecurityService @service) : ControllerBase
     {
-        /// <summary>
-        /// Instance of <see cref="ISecurityService"/>
-        /// </summary>
-        private readonly ISecurityService Service;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityController"/>
-        /// </summary>
-        /// <param name="service">Injected <see cref="ISecurityService"/></param>
-        public SecurityController(ISecurityService @service) => Service = @service;
-
         /// <summary>
         /// Resets Password
         /// </summary>
@@ -34,7 +24,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("resetpassword")]
-        public async Task<IActionResult> ResetPassword([FromBody]SecurityPasswordReset @viewModel) => new JsonResult(value: await Service.ResetPassword(@viewModel));
+        public async Task<IActionResult> ResetPassword([FromBody]SecurityPasswordReset @viewModel) => new JsonResult(value: await @service.ResetPassword(@viewModel));
 
         /// <summary>
         /// Changes Password
@@ -44,7 +34,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         [HttpPut]
         [Route("changepassword")]
         [Authorize]
-        public async Task<IActionResult> ChangePassword([FromBody]SecurityPasswordChange @viewModel) => new JsonResult(value: await Service.ChangePassword(@viewModel));
+        public async Task<IActionResult> ChangePassword([FromBody]SecurityPasswordChange @viewModel) => new JsonResult(value: await @service.ChangePassword(@viewModel));
 
         /// <summary>
         /// Changes Email
@@ -54,6 +44,6 @@ namespace Hyperdrive.Tier.Web.Controllers
         [HttpPut]
         [Route("changeemail")]
         [Authorize]
-        public async Task<IActionResult> ChangeEmail([FromBody]SecurityEmailChange @viewModel) => new JsonResult(value: await Service.ChangeEmail(@viewModel));
+        public async Task<IActionResult> ChangeEmail([FromBody]SecurityEmailChange @viewModel) => new JsonResult(value: await @service.ChangeEmail(@viewModel));
     }
 }

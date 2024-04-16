@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using AutoMapper;
@@ -24,43 +22,19 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <summary>
     /// Represents a <see cref="AuthService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IAuthService"/>
     /// </summary>
-    public class AuthService : BaseService, IAuthService
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{AuthService}"/></param>
+    /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
+    /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
+    /// <param name="signInManager">Injected <see cref=" SignInManager{ApplicationUser}"/></param>
+    /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
+    public class AuthService(IMapper @mapper,
+                       ILogger<AuthService> @logger,
+                       IOptions<JwtSettings> @jwtSettings,
+                       UserManager<ApplicationUser> @userManager,
+                       SignInManager<ApplicationUser> @signInManager,
+                       ITokenService @tokenService) : BaseService(@mapper, @logger, @jwtSettings), IAuthService
     {
-        /// <summary>
-        /// Instance of <see cref="SignInManager{ApplicationUser}"/>
-        /// </summary>
-        private readonly SignInManager<ApplicationUser> SignInManager;
-
-        /// <summary>
-        /// Instance of <see cref="UserManager{ApplicationUser}"/>
-        /// </summary>
-        private readonly UserManager<ApplicationUser> UserManager;
-
-        /// <summary>
-        /// Instance of <see cref="ITokenService"/>
-        /// </summary>
-        private readonly ITokenService TokenService;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="AuthService"/>
-        /// </summary>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger{AuthService}"/></param>
-        /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
-        /// <param name="signInManager">Injected <see cref=" SignInManager{ApplicationUser}"/></param>
-        /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
-        public AuthService(IMapper @mapper,
-                           ILogger<AuthService> @logger,
-                           IOptions<JwtSettings> @jwtSettings,
-                           UserManager<ApplicationUser> @userManager,
-                           SignInManager<ApplicationUser> @signInManager,
-                           ITokenService @tokenService) : base(@mapper, @logger, @jwtSettings)
-        {
-            UserManager = @userManager;
-            SignInManager = @signInManager;
-            TokenService = @tokenService;
-        }
 
         /// <summary>
         /// Signs In
@@ -69,7 +43,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthSignIn @viewModel)
         {
-            SignInResult @signInResult = await SignInManager.PasswordSignInAsync(@viewModel.Email,
+            SignInResult @signInResult = await signInManager.PasswordSignInAsync(@viewModel.Email,
                                                                                 @viewModel.Password,
                                                                                 false,
                                                                                 true);
@@ -84,7 +58,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = TokenService.WriteJwtToken(TokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
                 // Log
@@ -111,7 +85,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthJoinIn @viewModel)
         {
-            SignInResult @signInResult = await SignInManager.PasswordSignInAsync(@viewModel.Email,
+            SignInResult @signInResult = await signInManager.PasswordSignInAsync(@viewModel.Email,
                                                                                 @viewModel.Password,
                                                                                 false,
                                                                                 true);
@@ -126,7 +100,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = TokenService.WriteJwtToken(TokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
                 // Log
@@ -167,7 +141,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 Deleted = false
             };
 
-            IdentityResult @identityResult = await UserManager.CreateAsync(@applicationUser,
+            IdentityResult @identityResult = await userManager.CreateAsync(@applicationUser,
                                                                           @viewModel.Password);
 
             if (@identityResult.Succeeded)
@@ -187,7 +161,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
-            ApplicationUser @applicationUser = await UserManager.Users
+            ApplicationUser @applicationUser = await userManager.Users
                 .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
@@ -221,7 +195,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> CheckEmail(AuthJoinIn @viewModel)
         {
-            ApplicationUser @applicationUser = await UserManager.Users
+            ApplicationUser @applicationUser = await userManager.Users
               .AsNoTracking()
               .AsSplitQuery()
               .TagWith("CheckEmail")

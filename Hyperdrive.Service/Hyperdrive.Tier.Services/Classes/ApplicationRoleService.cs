@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
@@ -11,29 +15,18 @@ using Hyperdrive.Tier.ViewModels.Classes.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace Hyperdrive.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="ApplicationRoleService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IApplicationRoleService"/>
-    /// </summary>
-    public class ApplicationRoleService : BaseService, IApplicationRoleService
+    /// </summary>  
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{ApplicationRoleService}"/></param>
+    public class ApplicationRoleService(IMapper @mapper,
+                                  IApplicationContext @context,
+                                  ILogger<ApplicationRoleService> @logger) : BaseService(@context, @mapper, @logger), IApplicationRoleService
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationRoleService"/>
-        /// </summary>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-        /// <param name="logger">Injected <see cref="ILogger{ApplicationRoleService}"/></param>
-        public ApplicationRoleService(IMapper @mapper,
-                                      IApplicationContext @context,
-                                      ILogger<ApplicationRoleService> @logger) : base(@context, @mapper, @logger)
-        {
-
-        }
 
         /// <summary>
         /// Adds Application Role

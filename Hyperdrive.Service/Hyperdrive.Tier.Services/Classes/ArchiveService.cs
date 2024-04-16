@@ -20,18 +20,17 @@ using Microsoft.Extensions.Logging;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
-    public class ArchiveService : BaseService, IArchiveService
+    /// <summary>
+    /// Represents a <see cref="ArchiveService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IArchiveService"/>
+    /// </summary>    
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{ArchiveService}"/></param>
+    public class ArchiveService(UserManager<ApplicationUser> userManager,
+                          IApplicationContext context,
+                          IMapper mapper,
+                          ILogger<ArchiveService> logger) : BaseService(context, mapper, logger), IArchiveService
     {
-        private readonly UserManager<ApplicationUser> UserManager;
-
-        public ArchiveService(UserManager<ApplicationUser> userManager,
-                              IApplicationContext context,
-                              IMapper mapper,
-                              ILogger<ArchiveService> logger) : base(context, mapper, logger)
-        {
-            UserManager = userManager;
-        }
-
         public async Task<Archive> FindArchiveById(int @id)
         {
             Archive @archive = await Context.Archives
@@ -159,7 +158,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
-            ApplicationUser @applicationUser = await UserManager.Users
+            ApplicationUser @applicationUser = await userManager.Users
                 .TagWith("FindApplicationUserById")
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)

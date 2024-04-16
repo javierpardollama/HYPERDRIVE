@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
@@ -10,30 +15,18 @@ using Hyperdrive.Tier.ViewModels.Classes.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Hyperdrive.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="ApplicationUserService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IApplicationUserService"/>
-    /// </summary>
-    public class ApplicationUserService : BaseService, IApplicationUserService
+    /// </summary>    
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{ApplicationUserService}"/></param>
+    public class ApplicationUserService(IMapper @mapper,
+                                  IApplicationContext @context,
+                                  ILogger<ApplicationUserService> @logger) : BaseService(@context, @mapper, @logger), IApplicationUserService
     {
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationUserService"/>
-        /// </summary>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-        /// <param name="logger">Injected <see cref="ILogger{ApplicationUserService}"/></param>
-        public ApplicationUserService(IMapper @mapper,
-                                      IApplicationContext @context,
-                                      ILogger<ApplicationUserService> @logger) : base(@context, @mapper, @logger)
-        {
-        }
 
         /// <summary>
         /// Finds All Application User

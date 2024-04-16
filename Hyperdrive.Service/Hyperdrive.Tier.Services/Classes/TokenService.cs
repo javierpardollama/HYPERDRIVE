@@ -1,12 +1,4 @@
-﻿using Hyperdrive.Tier.Entities.Classes;
-using Hyperdrive.Tier.Services.Interfaces;
-using Hyperdrive.Tier.Settings.Classes;
-
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,23 +6,25 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
+using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Services.Interfaces;
+using Hyperdrive.Tier.Settings.Classes;
+
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+
 namespace Hyperdrive.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="TokenService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ITokenService"/>
-    /// </summary>
-    public class TokenService : BaseService, ITokenService
+    /// </summary>   
+    /// <param name="logger">Injected <see cref="ILogger{TokenService}"/></param>
+    /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
+    public class TokenService(
+        ILogger<TokenService> @logger,
+        IOptions<JwtSettings> @jwtSettings) : BaseService(@logger, @jwtSettings), ITokenService
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="TokenService"/>
-        /// </summary>
-        /// <param name="logger">Injected <see cref="ILogger{TokenService}"/></param>
-        /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        public TokenService(
-            ILogger<TokenService> @logger,
-            IOptions<JwtSettings> @jwtSettings) : base(@logger, @jwtSettings)
-        {
-        }
 
         /// <summary>
         /// Generates Jwt Token
@@ -90,43 +84,43 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             return new List<Claim>
             {
-                new Claim(
+                new(
                     JwtRegisteredClaimNames.Jti,
                     Guid.NewGuid().ToString()),
-                new Claim(
+                new(
                     ClaimTypes.Sid,
                     @applicationUser.Id.ToString()),
-                new Claim(
+                new(
                     ClaimTypes.Email,
                     @applicationUser.Email),
-                new Claim(
+                new(
                     ClaimTypes.Name,
                     @applicationUser.FirstName),
-                new Claim(
+                new(
                     ClaimTypes.Surname,
                     @applicationUser.LastName),
-                new Claim(
+                new(
                     ClaimTypes.MobilePhone,
                     @applicationUser.PhoneNumber),
-                new Claim(
+                new(
                     JwtRegisteredClaimNames.Iss,
                     JwtSettings.Value.JwtIssuer),
-                new Claim(
+                new(
                     JwtRegisteredClaimNames.AuthTime,
                     DateTime.Now.ToString()),
-                new Claim(
+                new(
                     JwtRegisteredClaimNames.Iat,
                     DateTime.Now.ToString()),
-                new Claim(
+                new(
                     JwtRegisteredClaimNames.Exp,
                     GenerateTokenExpirationDate().ToString()),
-                new Claim(
+                new(
                     ClaimTypes.System,
                     Environment.MachineName),
-                new Claim(
+                new(
                     ClaimTypes.Version,
                     Environment.OSVersion.VersionString),
-                new Claim(
+                new(
                     ClaimTypes.Locality,
                     CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
             }.Union(JwtSettings.Value.JwtAudiences

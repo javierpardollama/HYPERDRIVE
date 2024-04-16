@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 using AutoMapper;
@@ -20,36 +19,18 @@ namespace Hyperdrive.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="SecurityService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ISecurityService"/>
-    /// </summary>
-    public class SecurityService : BaseService, ISecurityService
+    /// </summary>   
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{SecurityService}"/></param>
+    /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
+    /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
+    /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
+    public class SecurityService(IMapper @mapper,
+                       ILogger<SecurityService> @logger,
+                       IOptions<JwtSettings> @jwtSettings,
+                       UserManager<ApplicationUser> @userManager,
+                       ITokenService @tokenService) : BaseService(@mapper, @logger, @jwtSettings), ISecurityService
     {
-        /// <summary>
-        /// Instance of <see cref="UserManager{ApplicationUser}"/>
-        /// </summary>
-        private readonly UserManager<ApplicationUser> UserManager;
-
-        /// <summary>
-        /// Instance of <see cref="ITokenService"/>
-        /// </summary>
-        private readonly ITokenService TokenService;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityService"/>
-        /// </summary>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger{SecurityService}"/></param>
-        /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
-        /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
-        public SecurityService(IMapper @mapper,
-                           ILogger<SecurityService> @logger,
-                           IOptions<JwtSettings> @jwtSettings,
-                           UserManager<ApplicationUser> @userManager,
-                           ITokenService @tokenService) : base(@mapper, @logger, @jwtSettings)
-        {
-            UserManager = @userManager;
-            TokenService = @tokenService;
-        }
 
         /// <summary>
         /// Changes Password
@@ -60,7 +41,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
 
-            IdentityResult @identityResult = await UserManager.ChangePasswordAsync(@applicationUser, @viewModel.CurrentPassword, @viewModel.NewPassword);
+            IdentityResult @identityResult = await userManager.ChangePasswordAsync(@applicationUser, @viewModel.CurrentPassword, @viewModel.NewPassword);
 
             if (@identityResult.Succeeded)
             {
@@ -70,7 +51,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = TokenService.WriteJwtToken(TokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
                 // Log
@@ -97,7 +78,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
-            ApplicationUser @applicationUser = await UserManager.Users
+            ApplicationUser @applicationUser = await userManager.Users
                 .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
@@ -133,7 +114,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
 
-            IdentityResult @identityResult = await UserManager.ResetPasswordAsync(@applicationUser, await UserManager.GeneratePasswordResetTokenAsync(@applicationUser), @viewModel.NewPassword.Trim());
+            IdentityResult @identityResult = await userManager.ResetPasswordAsync(@applicationUser, await userManager.GeneratePasswordResetTokenAsync(@applicationUser), @viewModel.NewPassword.Trim());
 
             if (@identityResult.Succeeded)
             {
@@ -143,7 +124,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = TokenService.WriteJwtToken(TokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
                 // Log
@@ -172,7 +153,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
 
-            IdentityResult @identityResult = await UserManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail.Trim(), await UserManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail.Trim()));
+            IdentityResult @identityResult = await userManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail.Trim(), await userManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail.Trim()));
 
             if (@identityResult.Succeeded)
             {
@@ -182,7 +163,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = TokenService.WriteJwtToken(TokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
                 // Log

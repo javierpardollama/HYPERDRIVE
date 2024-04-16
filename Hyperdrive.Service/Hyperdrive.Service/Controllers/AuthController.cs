@@ -9,23 +9,13 @@ namespace Hyperdrive.Tier.Web.Controllers
 {
     /// <summary>
     /// Represents a <see cref="AuthController"/> class. Inherits <see cref="ControllerBase"/>
-    /// </summary>
+    /// </summary>   
+    /// <param name="service">Injected <see cref="IAuthService"/></param>
     [Route("api/auth")]
     [Produces("application/json")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController(IAuthService @service) : ControllerBase
     {
-        /// <summary>
-        /// Instance of <see cref="IArchiveService"/>
-        /// </summary>
-        private readonly IAuthService Service;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="AuthController"/>
-        /// </summary>
-        /// <param name="service">Injected <see cref="IAuthService"/></param>
-        public AuthController(IAuthService @service) => Service = @service;
-
         /// <summary>
         /// Signs In
         /// </summary>
@@ -33,7 +23,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("signin")]
-        public async Task<IActionResult> SignIn([FromBody]AuthSignIn @viewModel) => new JsonResult(value: await Service.SignIn(@viewModel));
+        public async Task<IActionResult> SignIn([FromBody]AuthSignIn @viewModel) => new JsonResult(value: await @service.SignIn(@viewModel));
 
         /// <summary>
         /// Joins In
@@ -42,6 +32,6 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("joinin")]
-        public async Task<IActionResult> JoinIn([FromBody]AuthJoinIn @viewModel) => new JsonResult(value: await Service.JoinIn(@viewModel));
+        public async Task<IActionResult> JoinIn([FromBody]AuthJoinIn @viewModel) => new JsonResult(value: await @service.JoinIn(@viewModel));
     }
 }
