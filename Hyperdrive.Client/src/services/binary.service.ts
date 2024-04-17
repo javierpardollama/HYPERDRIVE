@@ -6,6 +6,8 @@ import { BinaryAddArchive } from './../viewmodels/binary/binaryaddarchive';
 
 import { BinaryUpdateArchive } from './../viewmodels/binary/binaryupdatearchive';
 
+import { ViewArchiveVersion } from './../viewmodels/views/viewarchiveversion';
+
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
 
 import { BaseService } from './base.service';
+
 
 @Injectable({
     providedIn: 'root',
@@ -30,7 +33,7 @@ export class BinaryService extends BaseService {
         const resultModel: AddArchive =
         {
             ApplicationUserId: viewModel.ApplicationUserId,
-            Data: new Int8Array(await viewModel.Data.arrayBuffer()),
+            Data: await viewModel.Data.arrayBuffer(),
             Size: viewModel.Data.size,
             Name: viewModel.Data.name,
             Type: viewModel.Data.type,
@@ -46,7 +49,7 @@ export class BinaryService extends BaseService {
         {
             Id: viewModel.Id,
             ApplicationUserId: viewModel.ApplicationUserId,
-            Data: new Int8Array(await viewModel.Data.arrayBuffer()),
+            Data: await viewModel.Data.arrayBuffer(),
             Name: viewModel.Data.name,
             Size: viewModel.Data.size,
             Type: viewModel.Data.type,
@@ -55,5 +58,18 @@ export class BinaryService extends BaseService {
         };
 
         return resultModel;
+    }
+
+    public async DecodeViewArchive(viewModel: ViewArchiveVersion): Promise<void> {
+        const blob = new Blob([viewModel.Data!], { type: viewModel.Type });
+
+        const url = window.URL.createObjectURL(blob);
+
+        const anchor = Object.assign(document.createElement("a"), { style: "display:none", href: url, download: viewModel.Archive.Name });
+       
+        document.body.appendChild(anchor);
+        anchor.click();
+
+        window.URL.revokeObjectURL(url);
     }
 }

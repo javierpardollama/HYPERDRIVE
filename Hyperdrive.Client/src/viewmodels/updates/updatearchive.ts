@@ -1,7 +1,7 @@
 import { UpdateBase } from './updatebase';
 
 export interface UpdateArchive extends UpdateBase {
-    Data: ArrayBuffer | string | null;
+    Data?: ArrayBuffer;
     Name: string;
     Folder: boolean;
     Locked: boolean;

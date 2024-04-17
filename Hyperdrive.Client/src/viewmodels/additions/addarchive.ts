@@ -1,6 +1,6 @@
 export interface AddArchive {
     ApplicationUserId: number;
-    Data: ArrayBuffer | string | null;
+    Data?: ArrayBuffer;
     Name: string;
     Folder: boolean;
     Locked: boolean;
