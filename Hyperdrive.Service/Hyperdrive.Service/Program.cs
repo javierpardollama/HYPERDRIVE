@@ -81,11 +81,11 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseHttpsRedirection();
 
+// UseCors must be called before UseResponseCaching, UseAuthentication, UseAuthorization
+@app.UseCors();
+
 @app.UseAuthentication();
 @app.UseAuthorization();
-
-// UseCors must be called before UseResponseCaching
-@app.UseCors();
 
 @app.UseResponseCaching();
 

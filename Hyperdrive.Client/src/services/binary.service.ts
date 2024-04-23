@@ -16,6 +16,8 @@ import { Injectable } from '@angular/core';
 
 import { BaseService } from './base.service';
 
+import { Router } from '@angular/router';
+
 
 @Injectable({
     providedIn: 'root',
@@ -25,8 +27,9 @@ export class BinaryService extends BaseService {
 
     public constructor(
         protected override httpClient: HttpClient,
-        protected override matSnackBar: MatSnackBar) {
-        super(httpClient, matSnackBar);
+        protected override matSnackBar: MatSnackBar,
+        protected override router: Router) {
+        super(httpClient, matSnackBar, router);
     }
 
     public async EncodeAddArchive(viewModel: BinaryAddArchive): Promise<AddArchive> {

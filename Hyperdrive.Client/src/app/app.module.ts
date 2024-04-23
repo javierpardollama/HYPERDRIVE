@@ -36,16 +36,15 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // App
 import { AppComponent } from './app.component';
-
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-
 import { HomeComponent } from './home/home.component';
+import { UnknownComponent } from './unknown/unknown.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 // App-Auth
 import {
   JoinInAuthComponent
 } from './auth/joinin-auth/joinin-auth.component';
-
 import { SignInAuthComponent } from './auth/signin-auth/signin-auth.component';
 
 // App-Security
@@ -87,6 +86,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    UnknownComponent,
+    UnauthorizedComponent,
     // App-Auth
     JoinInAuthComponent,
     SignInAuthComponent,
@@ -115,6 +116,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatAutocompleteModule,
     MatCardModule,
     MatTableModule,
+    MatTabsModule,
     MatSortModule,
     MatFormFieldModule,
     BrowserModule,

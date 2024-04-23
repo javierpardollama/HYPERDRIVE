@@ -18,6 +18,8 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from './../environments/environment';
 
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,9 +28,10 @@ export class AuthService extends BaseService {
 
   public constructor(
     protected override httpClient: HttpClient,
-    protected override matSnackBar: MatSnackBar) {
-    super(httpClient, matSnackBar);
-  }
+    protected override matSnackBar: MatSnackBar,
+    protected override router: Router) {
+    super(httpClient, matSnackBar, router);
+}
 
   public SignIn(viewModel: AuthSignIn) : Promise<ViewApplicationUser> {
 

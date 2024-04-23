@@ -20,6 +20,8 @@ import { BaseService } from './base.service';
 
 import { environment } from './../environments/environment';
 
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,9 +30,10 @@ export class SecurityService extends BaseService {
 
   public constructor(
     protected override httpClient: HttpClient,
-    protected override matSnackBar: MatSnackBar) {
-    super(httpClient, matSnackBar);
-  }
+    protected override matSnackBar: MatSnackBar,
+    protected override router: Router) {
+    super(httpClient, matSnackBar, router);
+}
 
   public ResetPassword(viewModel: SecurityPasswordReset): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changepassword`, viewModel)

@@ -9,6 +9,8 @@ import { ArchiveSharedGridComponent } from './management/grids/archive-shared-gr
 import { ChangeEmailSecurityComponent } from './security/changeemail-security/changeemail-security.component';
 import { ChangePasswordSecurityComponent } from './security/changepassword-security/changepassword-security.component';
 import { ResetPasswordSecurityComponent } from './security/resetpassword-security/resetpassword-security.component';
+import { UnknownComponent } from './unknown/unknown.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -59,6 +61,16 @@ import { ResetPasswordSecurityComponent } from './security/resetpassword-securit
       pathMatch: 'full',
       canActivate: [SignInGuard]
     },
+    {
+      path: 'unknown',
+      component: UnknownComponent,
+      pathMatch: 'full'
+    },
+    {
+      path: 'unauthorized',
+      component: UnauthorizedComponent,
+      pathMatch: 'full'
+    }
   ])
   ],
   exports: [RouterModule]
