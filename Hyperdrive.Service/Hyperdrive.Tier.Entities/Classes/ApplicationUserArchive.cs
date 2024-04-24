@@ -1,8 +1,8 @@
-﻿using Hyperdrive.Tier.Entities.Interfaces;
-
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using Hyperdrive.Tier.Entities.Interfaces;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {

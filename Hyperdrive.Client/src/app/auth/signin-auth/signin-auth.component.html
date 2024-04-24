@@ -9,6 +9,7 @@
         <div class="modal-content-line">
           <div class="modal-option-image modal-mail-image" aria-label="Email"></div>
           <mat-form-field class="form-element">
+            <mat-label>Email</mat-label>
             <input type="email" matInput placeholder="Email" formControlName="Email" spellcheck="false">
             <mat-error *ngIf="!formGroup.controls['Email'].valid && formGroup.controls['Email'].touched">
               Required field.
@@ -18,6 +19,7 @@
         <div class="modal-content-line">
           <div class="modal-option-image modal-password-image" aria-label="Password"></div>
           <mat-form-field class="form-element">
+            <mat-label>Password</mat-label>
             <input type="password" matInput placeholder="Password" formControlName="Password" spellcheck="false">
             <mat-error *ngIf="!formGroup.controls['Password'].valid && formGroup.controls['Password'].touched">
               Required field.

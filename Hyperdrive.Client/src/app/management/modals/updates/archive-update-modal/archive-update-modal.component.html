@@ -4,6 +4,7 @@
     <div class="modal-content-line">
       <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
       <mat-form-field class="form-element">
+        <mat-label>Id</mat-label>
         <input matInput placeholder="Id" formControlName="Id" readonly>
         <mat-error *ngIf="!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched">
           Required field.
@@ -14,6 +15,7 @@
     <div class="modal-content-line">
       <div class="modal-option-image modal-name-image" aria-label="Name"></div>
       <mat-form-field class="form-element">
+        <mat-label>Name</mat-label>
         <input matInput placeholder="Name" formControlName="Name" readonly>
         <mat-error *ngIf="!formGroup.controls['Name'].valid && formGroup.controls['Name'].touched">
           Required field.
@@ -24,6 +26,7 @@
     <div class="modal-content-line">
       <div class="modal-option-image modal-file-image" aria-label="Data"></div>
       <mat-form-field class="form-element">
+        <mat-label>Data</mat-label>
         <input matInput placeholder="Data" formControlName="Data">
         <mat-error *ngIf="!formGroup.controls['Data'].valid && formGroup.controls['Data'].touched">
           Required field.

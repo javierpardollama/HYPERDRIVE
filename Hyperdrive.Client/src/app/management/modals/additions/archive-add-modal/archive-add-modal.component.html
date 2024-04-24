@@ -4,6 +4,7 @@
     <div class="modal-content-line">
       <div class="modal-option-image modal-file-image" aria-label="Data"></div>
       <mat-form-field class="form-element">
+        <mat-label>Data</mat-label>
         <input matInput placeholder="Data" formControlName="Data">
         <mat-error *ngIf="!formGroup.controls['Data'].valid && formGroup.controls['Data'].touched">
           Required field.

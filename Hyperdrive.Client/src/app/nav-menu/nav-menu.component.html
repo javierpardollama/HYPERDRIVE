@@ -1,7 +1,7 @@
 <header>
   <nav *ngIf="display()" class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3'>
     <div class="container">
-      <a class="navbar-brand " [routerLink]='["/"]'>
+      <a class="navbar-brand " [routerLink]='["/"]' (click)="toggle()">
         <div class="nav-menu-option-image nav-menu-app-image"></div>
         <span class="nav-option-link">Hyperdrive</span>
       </a>

@@ -1,10 +1,10 @@
-﻿using Hyperdrive.Tier.Entities.Interfaces;
-
-using Microsoft.AspNetCore.Identity;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
+using Hyperdrive.Tier.Entities.Interfaces;
+
+using Microsoft.AspNetCore.Identity;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {
@@ -48,11 +48,11 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserRoles"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; } = new HashSet<ApplicationUserRole>();
+        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; } = [];
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationRoleClaims"/>
         /// </summary>
-        public virtual ICollection<ApplicationRoleClaim> ApplicationRoleClaims { get; set; } = new HashSet<ApplicationRoleClaim>();
+        public virtual ICollection<ApplicationRoleClaim> ApplicationRoleClaims { get; set; } = [];
     }
 }

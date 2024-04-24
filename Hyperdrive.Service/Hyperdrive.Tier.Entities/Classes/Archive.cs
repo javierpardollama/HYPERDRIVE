@@ -1,11 +1,11 @@
-﻿using Hyperdrive.Tier.Entities.Interfaces;
-
-using Microsoft.EntityFrameworkCore;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using Hyperdrive.Tier.Entities.Interfaces;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {
@@ -82,11 +82,11 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserArchives"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; } = new HashSet<ApplicationUserArchive>();
+        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; } = [];
 
         /// <summary>
         /// Gets or Sets <see cref="ArchiveVersions"/>
         /// </summary>
-        public virtual ICollection<ArchiveVersion> ArchiveVersions { get; set; } = new HashSet<ArchiveVersion>();
+        public virtual ICollection<ArchiveVersion> ArchiveVersions { get; set; } = [];
     }
 }

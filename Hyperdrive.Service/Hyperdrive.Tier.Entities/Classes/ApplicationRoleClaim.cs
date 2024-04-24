@@ -1,10 +1,10 @@
 ﻿
+using System;
+using System.ComponentModel.DataAnnotations;
+
 using Hyperdrive.Tier.Entities.Interfaces;
 
 using Microsoft.AspNetCore.Identity;
-
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {

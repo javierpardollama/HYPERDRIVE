@@ -3,6 +3,7 @@
     <div class="modal-content-line">
       <div class="modal-option-image modal-mail-image" aria-label="NewEmail"></div>
       <mat-form-field class="form-element">
+        <mat-label>Email</mat-label>
         <input type="email" matInput placeholder="NewEmail" formControlName="NewEmail" spellcheck="false">
         <mat-error *ngIf="!formGroup.controls['NewEmail'].valid && formGroup.controls['NewEmail'].touched">
           Required field.
