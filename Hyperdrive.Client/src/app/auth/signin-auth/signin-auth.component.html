@@ -31,7 +31,7 @@
         <button mat-raised-button color="primary" type="submit" class="button" id="sign-button" (click)="onSubmit(formGroup.value)"
           [disabled]="!formGroup.valid">Sign In
         </button>
-        <button mat-raised-button color="accent" type="button" class="button" id="join-button" (click)="onJoinIn()">Join In
+        <button mat-raised-button color="accent" type="button" class="button" id="join-button" routerLink='/auth/joinin'>Join In
         </button>
         <a routerLink='/auth/resetpassword' id="forget-link">Forgot Pasword?</a>
       </mat-card-actions>

@@ -5,8 +5,6 @@ import {
 
 import { Location } from '@angular/common';
 
-import { Router } from '@angular/router';
-
 import {
   FormBuilder,
   FormGroup,
@@ -34,8 +32,7 @@ export class ResetPasswordAuthComponent implements OnInit {
 
   // Constructor
   constructor(
-    private location: Location,
-    private router: Router,
+    private location: Location,   
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private matSnackBar: MatSnackBar) { }
@@ -69,11 +66,7 @@ export class ResetPasswordAuthComponent implements OnInit {
       sessionStorage.setItem('User', JSON.stringify(user));
     }
   }
-
-  onNavigate() {
-    this.router.navigate(['/auth/joinin']);
-  }
-
+ 
   onBack() {
     this.location.back();;
   }
