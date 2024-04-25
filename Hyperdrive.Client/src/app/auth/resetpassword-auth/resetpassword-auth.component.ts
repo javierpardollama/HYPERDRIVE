@@ -3,6 +3,8 @@ import {
   OnInit
 } from '@angular/core';
 
+import { Location } from '@angular/common';
+
 import { Router } from '@angular/router';
 
 import {
@@ -11,27 +13,28 @@ import {
   Validators
 } from '@angular/forms';
 
-import { SecurityService } from './../../../services/security.service';
+import { SecurityService } from '../../../services/security.service';
 
-import { SecurityPasswordReset } from './../../../viewmodels/security/securitypasswordreset';
+import { SecurityPasswordReset } from '../../../viewmodels/security/securitypasswordreset';
 
-import { TextAppVariants } from './../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../variants/text.app.variants';
 
-import { ExpressionAppVariants } from './../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../variants/expression.app.variants';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimeAppVariants } from '../../../variants/time.app.variants';
 
 @Component({
-  selector: 'app-resetpassword-security',
-  templateUrl: './resetpassword-security.component.html',
-  styleUrls: ['./resetpassword-security.component.scss']
+  selector: 'app-resetpassword-auth',
+  templateUrl: './resetpassword-auth.component.html',
+  styleUrls: ['./resetpassword-auth.component.scss']
 })
-export class ResetPasswordSecurityComponent implements OnInit {
+export class ResetPasswordAuthComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
   // Constructor
   constructor(
+    private location: Location,
     private router: Router,
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
@@ -69,5 +72,9 @@ export class ResetPasswordSecurityComponent implements OnInit {
 
   onNavigate() {
     this.router.navigate(['/auth/joinin']);
+  }
+
+  onBack() {
+    this.location.back();;
   }
 }

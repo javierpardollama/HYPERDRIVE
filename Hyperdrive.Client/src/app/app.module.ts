@@ -53,8 +53,8 @@ import {
 } from './security/changepassword-security/changepassword-security.component';
 
 import {
-  ResetPasswordSecurityComponent
-} from './security/resetpassword-security/resetpassword-security.component';
+  ResetPasswordAuthComponent
+} from './auth/resetpassword-auth/resetpassword-auth.component';
 
 import {
   ChangeEmailSecurityComponent
@@ -91,9 +91,9 @@ import { AppRoutingModule } from './app-routing.module';
     // App-Auth
     JoinInAuthComponent,
     SignInAuthComponent,
+    ResetPasswordAuthComponent,
     // App-Security
-    ChangePasswordSecurityComponent,
-    ResetPasswordSecurityComponent,
+    ChangePasswordSecurityComponent,   
     ChangeEmailSecurityComponent,
     // App-Grid
     ArchiveGridComponent,

@@ -8,7 +8,7 @@ import { ArchiveGridComponent } from './management/grids/archive-grid/archive-gr
 import { ArchiveSharedGridComponent } from './management/grids/archive-shared-grid/archive-shared-grid.component';
 import { ChangeEmailSecurityComponent } from './security/changeemail-security/changeemail-security.component';
 import { ChangePasswordSecurityComponent } from './security/changepassword-security/changepassword-security.component';
-import { ResetPasswordSecurityComponent } from './security/resetpassword-security/resetpassword-security.component';
+import { ResetPasswordAuthComponent } from './auth/resetpassword-auth/resetpassword-auth.component';
 import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
@@ -31,6 +31,11 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
       component: SignInAuthComponent,
       pathMatch: 'full'
     },
+    {
+      path: 'auth/resetpassword',
+      component: ResetPasswordAuthComponent,
+      pathMatch: 'full'
+    },
     // App-Security
     {
       path: 'security/changeemail',
@@ -43,12 +48,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
       component: ChangePasswordSecurityComponent,
       pathMatch: 'full',
       canActivate: [SignInGuard]
-    },
-    {
-      path: 'security/resetpassword',
-      component: ResetPasswordSecurityComponent,
-      pathMatch: 'full'
-    },
+    },  
     {
       path: 'management/archives',
       component: ArchiveGridComponent,

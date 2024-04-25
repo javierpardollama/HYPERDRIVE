@@ -28,11 +28,12 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit(formGroup.value)"
           [disabled]="!formGroup.valid">Join In
         </button>
-        <button mat-raised-button color="accent" type="button" class="button" (click)="onNavigate()">Sign In
-        </button>
+        <button mat-raised-button color="accent" type="button" (click)="onSignIn()">Sign In
+        </button>       
+        <a routerLink='/auth/resetpassword' class="link">Forgot Pasword?</a>
       </mat-card-actions>
     </form>
   </mat-card>

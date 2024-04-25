@@ -60,7 +60,7 @@ export class JoinInAuthComponent implements OnInit {
     }
   }
 
-  onNavigate() {
+  onSignIn() {
     this.router.navigate(['/auth/signin']);
   }
 }
