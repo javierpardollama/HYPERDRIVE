@@ -1,4 +1,4 @@
-<div class="container" novalidate>
+<div class="container" id="join-in-modal" novalidate>
   <mat-card class="auth-card">
     <mat-card-header>
       <div mat-card-avatar class="auth-header-image"></div>
@@ -28,12 +28,12 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit" (click)="onSubmit(formGroup.value)"
+        <button mat-raised-button color="primary" type="submit" class="button" id="join-button" (click)="onSubmit(formGroup.value)"
           [disabled]="!formGroup.valid">Join In
         </button>
-        <button mat-raised-button color="accent" type="button" (click)="onSignIn()">Sign In
+        <button mat-raised-button color="accent" type="button" class="button" id="sign-button" (click)="onSignIn()">Sign In
         </button>       
-        <a routerLink='/auth/resetpassword' class="link">Forgot Pasword?</a>
+        <a routerLink='/auth/resetpassword' id="forget-link">Forgot Pasword?</a>
       </mat-card-actions>
     </form>
   </mat-card>
