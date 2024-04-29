@@ -53,12 +53,6 @@ transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
 }
 
 /* ANGULAR MATERIAL OVERRIDE */
-.container {
-    width: 100%;
-    padding:0% !important;
-    margin:0% !important;  
-}
-
 .mat-form-field-appearance-legacy .mat-form-field-label{
     color: #3f51b5 !important;
 }
