@@ -35,6 +35,8 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             Archive @archive = await Context.Archives
                  .TagWith("FindArchiveById")
+                 .Include(x => x.ArchiveVersions)
+                 .Include(x => x.ApplicationUserArchives)
                  .FirstOrDefaultAsync(x => x.Id == id);
 
             if (@archive == null)
@@ -227,13 +229,13 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 ApplicationUser @applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive @arenalPoblacion = new()
+                ApplicationUserArchive @applicationUserArchive = new()
                 {
                     Archive = @entity,
                     ApplicationUser = @applicationUser,
                 };
 
-                @entity.ApplicationUserArchives.Add(@arenalPoblacion);
+                @entity.ApplicationUserArchives.Add(@applicationUserArchive);
             });
         }
 
@@ -287,13 +289,13 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 ApplicationUser @applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive @arenalPoblacion = new()
+                ApplicationUserArchive @applicationUserArchive = new()
                 {
                     Archive = @entity,
                     ApplicationUser = @applicationUser,
                 };
 
-                @entity.ApplicationUserArchives.Add(@arenalPoblacion);
+                @entity.ApplicationUserArchives.Add(@applicationUserArchive);
             });
         }
 

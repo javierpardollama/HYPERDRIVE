@@ -88,7 +88,6 @@ export class ArchiveUpdateModalComponent implements OnInit {
       { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
     this.dialogRef.close();
-
   }
 
   // Get User from Storage
