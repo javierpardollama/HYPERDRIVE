@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using AutoMapper;
@@ -131,12 +132,12 @@ namespace Hyperdrive.Tier.Services.Classes
 
             ApplicationUser @applicationUser = new()
             {
-                UserName = @viewModel.Email.Trim(),
+                UserName = @viewModel.Email.Trim().Split('@').First(),
                 Email = @viewModel.Email.Trim(),
                 ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
                 SecurityStamp = DateTime.Now.ToBinary().ToString(),
                 NormalizedEmail = @viewModel.Email.Trim().ToUpper(),
-                NormalizedUserName = @viewModel.Email.Trim().ToUpper(),
+                NormalizedUserName = @viewModel.Email.Trim().Split('@').First().ToUpper(),
                 LastModified = DateTime.Now,
                 Deleted = false
             };
