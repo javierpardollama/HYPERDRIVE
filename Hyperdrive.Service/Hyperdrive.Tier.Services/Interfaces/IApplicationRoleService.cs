@@ -1,10 +1,11 @@
-﻿using Hyperdrive.Tier.Entities.Classes;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
-
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Interfaces
 {
@@ -18,6 +19,13 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationRole}}"/></returns>
         Task<ICollection<ViewApplicationRole>> FindAllApplicationRole();
+
+        /// <summary>
+        /// Finds Paginated Application Role
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="FilterPageApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewApplicationRole}}"/></returns>
+        public Task<ViewPage<ViewApplicationRole>> FindPaginatedApplicationRole(FilterPageApplicationRole @viewModel);
 
         /// <summary>
         /// Finds Application Role By Id

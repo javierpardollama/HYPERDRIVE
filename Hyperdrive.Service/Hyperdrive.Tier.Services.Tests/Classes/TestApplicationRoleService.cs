@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
+using Hyperdrive.Tier.ViewModels.Interfaces.Filters;
 
 using Microsoft.Extensions.Logging;
 
@@ -106,6 +108,19 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         public async Task FindAllApplicationRole()
         {
             await Service.FindAllApplicationRole();
+
+            Assert.Pass();
+        }
+
+
+        /// <summary>
+        /// Finds Paginated Application Role
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task FindPaginatedApplicationRole()
+        {
+            await Service.FindPaginatedApplicationRole(new FilterPageApplicationRole { Index = 1, Size = 5, ApplicationUserId = Context.Roles.FirstOrDefault().Id });
 
             Assert.Pass();
         }

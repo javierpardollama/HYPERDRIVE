@@ -1,0 +1,74 @@
+﻿using System.Net;
+using System.Threading.Tasks;
+
+using Hyperdrive.Tier.Services.Interfaces;
+using Hyperdrive.Tier.ViewModels.Classes.Additions;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
+using Hyperdrive.Tier.ViewModels.Classes.Updates;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Hyperdrive.Service.Controllers
+{
+    /// <summary>
+    /// Represents a <see cref="ApplicationRoleController"/> class. Inherits <see cref="ControllerBase"/> 
+    /// </summary>
+    /// <param name="service">Injected <see cref="IApplicationRoleService"/></param>
+    [Route("api/applicationrole")]
+    [Produces("application/json")]
+    [ApiController]
+    [Authorize]
+    public class ApplicationRoleController(IApplicationRoleService @service) : ControllerBase
+    {
+        /// <summary>
+        /// Updates Application Role
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        [HttpPut]
+        [Route("updateapplicationrole")]
+        public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => new JsonResult(value: await @service.UpdateApplicationRole(@viewModel));
+
+        /// <summary>
+        /// Finds All Application Role
+        /// </summary>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        [HttpGet]
+        [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
+        [Route("findallapplicationrole")]
+        public async Task<IActionResult> FindAllApplicationRole() => new JsonResult(value: await @service.FindAllApplicationRole());
+
+        /// <summary>
+        /// Finds Paginated Application Role
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="FilterPageApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        [HttpPost]
+        [Route("findpaginatedapplicationrole")]
+        public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => new JsonResult(value: await @service.FindPaginatedApplicationRole(@viewModel));
+
+        /// <summary>
+        /// Adds Application Role
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        [HttpPost]
+        [Route("addapplicationrole")]
+        public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => new JsonResult(value: await @service.AddApplicationRole(@viewModel));
+
+        /// <summary>
+        /// Removes Application Role ById
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        [HttpDelete]
+        [Route("removeapplicationrolebyid/{id}")]
+        public async Task<IActionResult> RemoveApplicationRoleById(int @id)
+        {
+            await @service.RemoveApplicationRoleById(@id);
+
+            return new JsonResult((int)HttpStatusCode.OK);
+        }
+    }
+}
