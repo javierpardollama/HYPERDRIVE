@@ -1,9 +1,10 @@
-﻿using Hyperdrive.Tier.Entities.Classes;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
-
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Interfaces
 {
@@ -17,6 +18,13 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationUser}}"/></returns>
         Task<ICollection<ViewApplicationUser>> FindAllApplicationUser();
+
+        /// <summary>
+        /// Finds Paginated Application User
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="FilterPageApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewApplicationUser}}"/></returns>
+        public Task<ViewPage<ViewApplicationUser>> FindPaginatedApplicationUser(FilterPageApplicationUser @viewModel);
 
         /// <summary>
         /// Finds Application User By Id

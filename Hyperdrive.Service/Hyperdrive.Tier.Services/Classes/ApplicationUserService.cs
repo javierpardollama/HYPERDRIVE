@@ -9,6 +9,7 @@ using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
+using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
@@ -44,6 +45,34 @@ namespace Hyperdrive.Tier.Services.Classes
                .ToListAsync();
 
             return Mapper.Map<ICollection<ViewApplicationUser>>(@applicationUsers);
+        }
+
+        /// <summary>
+        /// Finds Paginated Application User
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="FilterPageApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewApplicationUser}}"/></returns>
+        public async Task<ViewPage<ViewApplicationUser>> FindPaginatedApplicationUser(FilterPageApplicationUser @viewModel)
+        {
+            ViewPage<ViewApplicationUser> @page = new()
+            {
+                Length = await Context.Users
+                    .TagWith("CountAllApplicationUser")
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .CountAsync(),
+                Index = @viewModel.Index,
+                Size = @viewModel.Size,
+                Items = Mapper.Map<IList<ViewApplicationUser>>(await Context.Users
+               .TagWith("FindPaginatedApplicationUser")
+               .AsNoTracking()
+               .AsSplitQuery()
+               .Skip(@viewModel.Index * @viewModel.Size)
+               .Take(@viewModel.Size)
+               .ToListAsync())
+            };
+
+            return @page;
         }
 
         /// <summary>
