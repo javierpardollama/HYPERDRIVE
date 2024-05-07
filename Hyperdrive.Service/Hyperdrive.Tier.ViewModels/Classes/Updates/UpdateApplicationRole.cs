@@ -1,6 +1,4 @@
-﻿using Hyperdrive.Tier.ViewModels.Interfaces.Updates;
-
-namespace Hyperdrive.Tier.ViewModels.Classes.Updates
+﻿namespace Hyperdrive.Tier.ViewModels.Classes.Updates
 {
     /// <summary>
     /// Represents a <see cref="UpdateApplicationRole"/> class. Inherits <see cref="UpdateBase"/>

@@ -35,6 +35,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // App
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -60,25 +61,8 @@ import {
   ChangeEmailSecurityComponent
 } from './security/changeemail-security/changeemail-security.component';
 
+
 // App-Grid
-import {
-  ArchiveGridComponent
-} from './management/grids/archive-grid/archive-grid.component';
-
-import {
-  ArchiveSharedGridComponent
-} from './management/grids/archive-shared-grid/archive-shared-grid.component';
-
-// App-Modal-Adition
-import {
-  ArchiveAddModalComponent
-} from './management/modals/additions/archive-add-modal/archive-add-modal.component';
-
-// App-Modal-Update
-import {
-  ArchiveUpdateModalComponent
-} from './management/modals/updates/archive-update-modal/archive-update-modal.component';
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -93,15 +77,8 @@ import { AppRoutingModule } from './app-routing.module';
     SignInAuthComponent,
     ResetPasswordAuthComponent,
     // App-Security
-    ChangePasswordSecurityComponent,   
-    ChangeEmailSecurityComponent,
-    // App-Grid
-    ArchiveGridComponent,
-    ArchiveSharedGridComponent,
-    // App-Modal-Adition
-    ArchiveAddModalComponent,
-    // App-Modal-Update
-    ArchiveUpdateModalComponent],
+    ChangePasswordSecurityComponent,
+    ChangeEmailSecurityComponent],
   imports: [
     // Angular Material
     BrowserAnimationsModule,
