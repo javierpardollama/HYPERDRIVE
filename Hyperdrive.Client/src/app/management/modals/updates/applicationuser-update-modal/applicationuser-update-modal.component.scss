@@ -31,6 +31,11 @@
     background-size: cover;
 }
 
+.modal-surname-image {
+    background-image: url('/assets/img/iconos/Surname_500px.png');
+    background-size: cover;
+}
+
 .modal-role-image {
     background-image: url('/assets/img/iconos/Role_500px.png');
     background-size: cover;
@@ -38,5 +43,10 @@
 
 .modal-identity-image {
     background-image: url('/assets/img/iconos/Identity_500px.png');
+    background-size: cover;
+}
+
+.modal-phone-image {
+    background-image: url('/assets/img/iconos/Phone_500px.png');
     background-size: cover;
 }
