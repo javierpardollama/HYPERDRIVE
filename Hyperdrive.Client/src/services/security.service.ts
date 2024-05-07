@@ -36,7 +36,7 @@ export class SecurityService extends BaseService {
 }
 
   public ResetPassword(viewModel: SecurityPasswordReset): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changepassword`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/resetpassword`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ResetPassword', undefined))));
   }
 
