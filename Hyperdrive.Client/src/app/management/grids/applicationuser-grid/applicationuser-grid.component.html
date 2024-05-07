@@ -1,0 +1,48 @@
+<div *ngIf="dataSource.data.length == 0" class="spinner-container">
+  <div class="spinner"></div>
+</div>
+
+<div class="grid-page">
+  <h4 class="breadcrumb">Management / ApplicationUser</h4>
+
+  <mat-form-field class="grid-filter">
+    <input matInput (keyup)="ApplyMyFilter($event.target)" placeholder="Filter">
+  </mat-form-field>
+
+  <div class="grid-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let row"> {{row.Id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.Name}} </td>
+      </ng-container>
+
+      <!-- ApplicationRoles Column -->
+      <ng-container matColumnDef="ApplicationRoles">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ApplicationRoles </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-chip-listbox>
+            <mat-chip *ngFor="let applicationrole of row.ApplicationRoles">{{applicationrole.Name}}</mat-chip>
+          </mat-chip-listbox>
+        </td>
+      </ng-container>
+
+      <!-- LastModified Column -->
+      <ng-container matColumnDef="LastModified">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> LastModified </th>
+        <td mat-cell *matCellDef="let row"> {{row.LastModified | date: 'MMM d, y'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="GetRecord(row)">
+      </tr>
+    </table>
+  </div>
+</div>

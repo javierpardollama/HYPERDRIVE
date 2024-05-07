@@ -4,13 +4,13 @@ import { SignInGuard } from '../guards/signin.guard';
 import { JoinInAuthComponent } from './auth/joinin-auth/joinin-auth.component';
 import { SignInAuthComponent } from './auth/signin-auth/signin-auth.component';
 import { HomeComponent } from './home/home.component';
-import { ArchiveGridComponent } from './management/grids/archive-grid/archive-grid.component';
-import { ArchiveSharedGridComponent } from './management/grids/archive-shared-grid/archive-shared-grid.component';
 import { ChangeEmailSecurityComponent } from './security/changeemail-security/changeemail-security.component';
 import { ChangePasswordSecurityComponent } from './security/changepassword-security/changepassword-security.component';
 import { ResetPasswordAuthComponent } from './auth/resetpassword-auth/resetpassword-auth.component';
 import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ApplicationRoleGridComponent } from './management/grids/applicationrole-grid/applicationrole-grid.component';
+import { ApplicationUserGridComponent } from './management/grids/applicationuser-grid/applicationuser-grid.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -48,16 +48,17 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
       component: ChangePasswordSecurityComponent,
       pathMatch: 'full',
       canActivate: [SignInGuard]
-    },  
+    },
+    // App-Management
     {
-      path: 'management/archives',
-      component: ArchiveGridComponent,
+      path: 'management/applicationrole',
+      component: ApplicationRoleGridComponent,
       pathMatch: 'full',
       canActivate: [SignInGuard]
     },
     {
-      path: 'management/sharedarchives',
-      component: ArchiveSharedGridComponent,
+      path: 'management/applicationuser',
+      component: ApplicationUserGridComponent,
       pathMatch: 'full',
       canActivate: [SignInGuard]
     },

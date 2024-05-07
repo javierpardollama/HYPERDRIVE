@@ -1,0 +1,74 @@
+<div id="arenal-update-modal" class="container" novalidate>
+  <form [formGroup]="formGroup" class="form">
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
+      <mat-form-field class="form-element">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Id" formControlName="Id" readonly>
+        <mat-error *ngIf="!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-name-image" aria-label="Name"></div>
+      <mat-form-field class="form-element">
+        <mat-label>FirstName</mat-label>
+        <input matInput placeholder="FirstName" formControlName="FirstName">
+        <mat-error *ngIf="!formGroup.controls['FirstName'].valid && formGroup.controls['FirstName'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-name-image" aria-label="LastName"></div>
+      <mat-form-field class="form-element">
+        <mat-label>LastName</mat-label>
+        <input matInput placeholder="LastName" formControlName="LastName">
+        <mat-error *ngIf="!formGroup.controls['LastName'].valid && formGroup.controls['LastName'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-name-image" aria-label="PhoneNumber"></div>
+      <mat-form-field class="form-element">
+        <mat-label>PhoneNumber</mat-label>
+        <input type="tel" placeholder="PhoneNumber" formControlName="PhoneNumber">
+        <mat-error *ngIf="!formGroup.controls['PhoneNumber'].valid && formGroup.controls['PhoneNumber'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-role-image" aria-label="ApplicationRolesId"></div>
+      <mat-form-field class="search-half-width">
+        <mat-label>ApplicationRolesId</mat-label>
+        <mat-select formControlName="ApplicationRolesId" multiple>        
+            <mat-option *ngFor="let applicationrole of applicationroles" [value]="applicationrole.Id">
+              <img class="select-option-img" aria-hidden ngSrc="{{applicationrole.ImageUri}}" height="25" width="25">
+              <span>{{applicationrole.Name}}</span>
+            </mat-option>         
+          <mat-error *ngIf="!formGroup.controls['ApplicationRolesId'].valid && formGroup.controls['ApplicationRolesId'].touched">
+            Required field.
+          </mat-error>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button form-button"
+        (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
+      </button>
+      <button mat-raised-button color="accent" type="submit" class="button form-button"
+        (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
+      </button>
+    </div>
+
+  </form>
+</div>

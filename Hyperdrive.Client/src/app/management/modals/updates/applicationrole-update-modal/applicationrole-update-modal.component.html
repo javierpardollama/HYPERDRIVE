@@ -1,0 +1,47 @@
+<div id="bandera-update-modal" class="container" novalidate>
+  <form [formGroup]="formGroup" class="form">
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
+      <mat-form-field class="form-element">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Id" formControlName="Id" readonly>
+        <mat-error *ngIf="!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-name-image" aria-label="Name"></div>
+      <mat-form-field class="form-element">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="Name">
+        <mat-error *ngIf="!formGroup.controls['Name'].valid && formGroup.controls['Name'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-portrait-image" aria-label="ImageUri"></div>
+      <mat-form-field class="form-element">
+        <mat-label>ImageUri</mat-label>
+        <input matInput placeholder="ImageUri" formControlName="ImageUri">
+        <mat-error *ngIf="!formGroup.controls['ImageUri'].valid && formGroup.controls['ImageUri'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button form-button"
+        (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
+      </button>
+      <button mat-raised-button color="accent" type="submit" class="button form-button"
+        (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
+      </button>
+    </div>
+
+  </form>
+</div>

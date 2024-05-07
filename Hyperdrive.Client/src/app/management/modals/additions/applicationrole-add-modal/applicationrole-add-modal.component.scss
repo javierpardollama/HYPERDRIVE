@@ -1,0 +1,28 @@
+.container {
+    padding: 24px;
+}
+
+.modal-content-line {
+    clear: both;
+    padding: 8px;
+}
+
+.modal-option-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    float: left;
+    margin-right: 8px;
+}
+
+.modal-name-image {
+    background-image: url('/assets/img/iconos/Name_500px.png');
+    background-size: cover;
+}
+
+.modal-portrait-image {
+    background-image: url('/assets/img/iconos/Portrait_500px.png');
+    background-size: cover;
+}

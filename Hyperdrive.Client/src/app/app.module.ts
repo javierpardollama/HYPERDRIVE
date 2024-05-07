@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgOptimizedImage } from '@angular/common';
+
 import { NgModule } from '@angular/core';
 
 import {
@@ -61,8 +63,17 @@ import {
   ChangeEmailSecurityComponent
 } from './security/changeemail-security/changeemail-security.component';
 
-
 // App-Grid
+import { ApplicationRoleGridComponent } from './management/grids/applicationrole-grid/applicationrole-grid.component';
+import { ApplicationUserGridComponent } from './management/grids/applicationuser-grid/applicationuser-grid.component';
+
+// App-Modal-Adition
+import { ApplicationRoleAddModalComponent } from './management/modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
+
+// App-Modal-Update
+import { ApplicationRoleUpdateModalComponent } from './management/modals/updates/applicationrole-update-modal/applicationrole-update-modal.component';
+import { ApplicationUserUpdateModalComponent } from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -78,7 +89,16 @@ import {
     ResetPasswordAuthComponent,
     // App-Security
     ChangePasswordSecurityComponent,
-    ChangeEmailSecurityComponent],
+    ChangeEmailSecurityComponent,
+    // App-Grid
+    ApplicationRoleGridComponent,
+    ApplicationUserGridComponent,
+    // App-Modal-Adition
+    ApplicationRoleAddModalComponent,
+    // App-Modal-Update
+    ApplicationRoleUpdateModalComponent,
+    ApplicationUserUpdateModalComponent
+  ],
   imports: [
     // Angular Material
     BrowserAnimationsModule,
@@ -101,6 +121,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    NgOptimizedImage
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

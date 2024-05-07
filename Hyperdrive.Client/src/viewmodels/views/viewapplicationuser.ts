@@ -9,6 +9,7 @@ export interface ViewApplicationUser extends ViewKey, ViewBase {
   Email: string;
   FirstName: string;
   LastName: string;
+  PhoneNumber: string;
   Initial: string;
   ApplicationUserRoles: ViewApplicationUserRole[];
   ApplicationRoles: ViewApplicationRole[];
