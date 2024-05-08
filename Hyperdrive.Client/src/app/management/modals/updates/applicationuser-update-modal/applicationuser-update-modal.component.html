@@ -33,18 +33,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-
-    <div class="modal-content-line">
-      <div class="modal-option-image modal-phone-image" aria-label="PhoneNumber"></div>
-      <mat-form-field class="form-element">
-        <mat-label>PhoneNumber</mat-label>
-        <input type="tel" placeholder="PhoneNumber" formControlName="PhoneNumber">
-        <mat-error *ngIf="!formGroup.controls['PhoneNumber'].valid && formGroup.controls['PhoneNumber'].touched">
-          Required field.
-        </mat-error>
-      </mat-form-field>
-    </div>
-
+    
     <div class="modal-content-line">
       <div class="modal-option-image modal-role-image" aria-label="ApplicationRolesId"></div>
       <mat-form-field class="search-half-width">

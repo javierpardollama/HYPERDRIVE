@@ -185,5 +185,27 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             Assert.Pass();
         }
+
+        /// <summary>
+        /// Changes Phone Number
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task ChangePhoneNumber()
+        {
+            SecurityPhoneNumberChange viewModel = new()
+            {
+                NewPhoneNumber = "654321987",
+                ApplicationUser = new ViewApplicationUser
+                {
+                    Id = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Id,
+                    Email = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Email
+                }
+            };
+
+            await Service.ChangePhoneNumber(viewModel);
+
+            Assert.Pass();
+        }
     }
 }

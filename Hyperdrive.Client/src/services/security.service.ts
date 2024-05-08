@@ -6,6 +6,8 @@ import { SecurityPasswordReset } from './../viewmodels/security/securitypassword
 
 import { SecurityEmailChange } from './../viewmodels/security/securityemailchange';
 
+import { SecurityPhoneNumberChange } from './../viewmodels/security/securityphonenumberchange';
+
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,6 +23,7 @@ import { BaseService } from './base.service';
 import { environment } from './../environments/environment';
 
 import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
@@ -48,5 +51,10 @@ export class SecurityService extends BaseService {
   public ChangeEmail(viewModel: SecurityEmailChange): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changeemail`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeEmail', undefined))));
+  }
+
+  public ChangePhoneNumber(viewModel: SecurityPhoneNumberChange): Promise<ViewApplicationUser> {
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changephonenumber`, viewModel)
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePhoneNumber', undefined))));
   }
 }

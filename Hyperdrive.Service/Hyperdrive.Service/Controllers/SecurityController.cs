@@ -47,5 +47,15 @@ namespace Hyperdrive.Tier.Web.Controllers
         [Route("changeemail")]
         [Authorize]
         public async Task<IActionResult> ChangeEmail([FromBody]SecurityEmailChange @viewModel) => new JsonResult(value: await @service.ChangeEmail(@viewModel));
+
+        /// <summary>
+        /// Changes Phone Number
+        /// </summary>
+        /// <param name="viewModel">njected <see cref="SecurityPhoneNumberChange"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        [HttpPut]
+        [Route("changephonenumber")]
+        [Authorize]
+        public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => new JsonResult(value: await @service.ChangePhoneNumber(@viewModel));
     }
 }

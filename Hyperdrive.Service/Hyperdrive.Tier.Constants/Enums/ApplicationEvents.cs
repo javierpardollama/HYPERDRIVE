@@ -48,6 +48,11 @@
         /// <summary>
         /// Email Restored <see cref="ApplicationEvents"/>
         /// </summary>
-        EmailRestored = 9
+        EmailRestored = 9,
+
+        /// <summary>
+        /// Phone Number Restored <see cref="ApplicationEvents"/>
+        /// </summary>
+        PhoneNumberRestored = 10
     }
 }

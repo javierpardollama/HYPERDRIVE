@@ -1,0 +1,19 @@
+<div class="container" novalidate>
+  <form [formGroup]="formGroup" class="form">
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-phone-image" aria-label="NewPhoneNumber"></div>
+      <mat-form-field class="form-element">
+        <mat-label>Email</mat-label>
+        <input type="tel" matInput placeholder="NewPhoneNumber" formControlName="NewPhoneNumber" spellcheck="false">
+        <mat-error *ngIf="!formGroup.controls['NewPhoneNumber'].valid && formGroup.controls['NewPhoneNumber'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
+        [disabled]="!formGroup.valid">Change Phone Number
+      </button>
+    </div>
+  </form>
+</div>

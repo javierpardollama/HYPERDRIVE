@@ -149,6 +149,19 @@ namespace Hyperdrive.Tier.Logging.Classes
         }
 
         /// <summary>
+        /// Emits Phone Number Restored
+        /// </summary>
+        /// <param name="this">Injected <see cref="ILogger"/></param>
+        /// <param name="logData">Injected <see cref="string"/></param>
+        public static void WritePhoneNumberRestoredLog(this ILogger @this,
+                                                       string @logData)
+        {
+            @this.Emit(ApplicationEvents.PhoneNumberRestored, @logData);
+
+            WriteInformationDiagnostics(@logData);
+        }
+
+        /// <summary>
         /// Writes Information Diagnostics
         /// </summary>
         /// <param name="logData">Injected <see cref="string"/></param>

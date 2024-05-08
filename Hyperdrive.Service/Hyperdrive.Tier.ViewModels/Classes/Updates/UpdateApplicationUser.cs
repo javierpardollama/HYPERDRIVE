@@ -22,12 +22,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         /// <summary>
         /// Gets or Sets <see cref="LastName"/>
         /// </summary>
-        public string LastName { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="PhoneNumber"/>
-        /// </summary>
-        public string PhoneNumber { get; set; }
+        public string LastName { get; set; }        
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationRolesId"/>

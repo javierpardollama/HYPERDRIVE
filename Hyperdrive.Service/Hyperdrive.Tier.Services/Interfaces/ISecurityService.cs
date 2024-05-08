@@ -38,5 +38,12 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         Task<ViewApplicationUser> ChangeEmail(SecurityEmailChange @viewModel);
+
+        /// <summary>
+        /// Changes Phone Number
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
+        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        Task<ViewApplicationUser> ChangePhoneNumber(SecurityPhoneNumberChange @viewModel);
     }
 }

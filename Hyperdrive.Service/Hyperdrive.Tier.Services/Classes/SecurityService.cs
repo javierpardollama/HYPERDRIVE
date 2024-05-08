@@ -41,7 +41,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
 
-            IdentityResult @identityResult = await userManager.ChangePasswordAsync(@applicationUser, @viewModel.CurrentPassword, @viewModel.NewPassword);
+            IdentityResult @identityResult = await @userManager.ChangePasswordAsync(@applicationUser, @viewModel.CurrentPassword, @viewModel.NewPassword);
 
             if (@identityResult.Succeeded)
             {
@@ -78,7 +78,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
-            ApplicationUser @applicationUser = await userManager.Users
+            ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
@@ -114,7 +114,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
 
-            IdentityResult @identityResult = await userManager.ResetPasswordAsync(@applicationUser, await userManager.GeneratePasswordResetTokenAsync(@applicationUser), @viewModel.NewPassword.Trim());
+            IdentityResult @identityResult = await @userManager.ResetPasswordAsync(@applicationUser, await @userManager.GeneratePasswordResetTokenAsync(@applicationUser), @viewModel.NewPassword.Trim());
 
             if (@identityResult.Succeeded)
             {
@@ -153,7 +153,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
 
-            IdentityResult @identityResult = await userManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail.Trim(), await userManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail.Trim()));
+            IdentityResult @identityResult = await @userManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail.Trim(), await @userManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail.Trim()));
 
             if (@identityResult.Succeeded)
             {
@@ -174,6 +174,45 @@ namespace Hyperdrive.Tier.Services.Classes
                     + DateTime.Now.ToShortTimeString();
 
                 Logger.WriteEmailRestoredLog(@logData);
+
+                return Mapper.Map<ViewApplicationUser>(@applicationUser);
+            }
+            else
+            {
+                throw new Exception("Security Error");
+            }
+        }
+
+        /// <summary>
+        /// Changes Phone Number
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
+        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        public async Task<ViewApplicationUser> ChangePhoneNumber(SecurityPhoneNumberChange @viewModel)
+        {
+            ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
+
+            IdentityResult @identityResult = await @userManager.ChangePhoneNumberAsync(@applicationUser, @viewModel.NewPhoneNumber.Trim(), await @userManager.GenerateChangePhoneNumberTokenAsync(@applicationUser, @viewModel.NewPhoneNumber.Trim()));
+
+            if (@identityResult.Succeeded)
+            {
+                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    UserId = @applicationUser.Id,
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                });
+
+                // Log
+                string @logData = nameof(@applicationUser)
+                    + " with Email "
+                    + @applicationUser.Email
+                    + " restored its Phone Number at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WritePhoneNumberRestoredLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }

@@ -48,31 +48,38 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import {
   JoinInAuthComponent
 } from './auth/joinin-auth/joinin-auth.component';
-import { SignInAuthComponent } from './auth/signin-auth/signin-auth.component';
+import { SignInAuthComponent }
+  from './auth/signin-auth/signin-auth.component';
 
 // App-Security
 import {
   ChangePasswordSecurityComponent
 } from './security/changepassword-security/changepassword-security.component';
-
 import {
   ResetPasswordAuthComponent
 } from './auth/resetpassword-auth/resetpassword-auth.component';
+import { ChangePhoneNumberSecurityComponent }
+  from './security/changephonenumber-security/changephonenumber-security.component'
 
 import {
   ChangeEmailSecurityComponent
 } from './security/changeemail-security/changeemail-security.component';
 
 // App-Grid
-import { ApplicationRoleGridComponent } from './management/grids/applicationrole-grid/applicationrole-grid.component';
-import { ApplicationUserGridComponent } from './management/grids/applicationuser-grid/applicationuser-grid.component';
+import { ApplicationRoleGridComponent }
+  from './management/grids/applicationrole-grid/applicationrole-grid.component';
+import { ApplicationUserGridComponent }
+  from './management/grids/applicationuser-grid/applicationuser-grid.component';
 
 // App-Modal-Adition
-import { ApplicationRoleAddModalComponent } from './management/modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
+import { ApplicationRoleAddModalComponent }
+  from './management/modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
 
 // App-Modal-Update
-import { ApplicationRoleUpdateModalComponent } from './management/modals/updates/applicationrole-update-modal/applicationrole-update-modal.component';
-import { ApplicationUserUpdateModalComponent } from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
+import { ApplicationRoleUpdateModalComponent }
+  from './management/modals/updates/applicationrole-update-modal/applicationrole-update-modal.component';
+import { ApplicationUserUpdateModalComponent }
+  from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
 
 @NgModule({
@@ -90,6 +97,7 @@ import { ApplicationUserUpdateModalComponent } from './management/modals/updates
     // App-Security
     ChangePasswordSecurityComponent,
     ChangeEmailSecurityComponent,
+    ChangePhoneNumberSecurityComponent,
     // App-Grid
     ApplicationRoleGridComponent,
     ApplicationUserGridComponent,
