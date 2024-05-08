@@ -8,6 +8,7 @@ using Hyperdrive.Tier.ViewModels.Classes.Updates;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Hyperdrive.Tier.Web.Controllers
 {
@@ -19,6 +20,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     [Produces("application/json")]
     [Authorize]
     [ApiController]
+    [EnableRateLimiting("fixed")]
     public class ArchiveController(IArchiveService @service) : ControllerBase
     {
         /// <summary>

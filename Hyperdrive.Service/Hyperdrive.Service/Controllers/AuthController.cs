@@ -4,6 +4,7 @@ using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Hyperdrive.Tier.Web.Controllers
 {
@@ -14,6 +15,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     [Route("api/auth")]
     [Produces("application/json")]
     [ApiController]
+    [EnableRateLimiting("fixed")]
     public class AuthController(IAuthService @service) : ControllerBase
     {
         /// <summary>

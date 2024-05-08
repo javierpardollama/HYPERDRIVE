@@ -5,6 +5,7 @@ using Hyperdrive.Tier.ViewModels.Classes.Security;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Hyperdrive.Tier.Web.Controllers
 {
@@ -15,6 +16,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     [Route("api/security")]
     [Produces("application/json")]
     [ApiController]
+    [EnableRateLimiting("fixed")]
     public class SecurityController(ISecurityService @service) : ControllerBase
     {
         /// <summary>

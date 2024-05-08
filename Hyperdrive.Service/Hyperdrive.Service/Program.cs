@@ -1,4 +1,6 @@
+using System;
 using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
 
 using Hyperdrive.Service.Extensions;
 using Hyperdrive.Tier.Contexts.Classes;
@@ -9,6 +11,7 @@ using Hyperdrive.Tier.Settings.Classes;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,6 +68,15 @@ var @settings = new JwtSettings();
 
 @builder.Services.AddHealthChecks();
 
+@builder.Services.AddRateLimiter(_ => _
+    .AddFixedWindowLimiter(policyName: "fixed", options =>
+    {
+        options.PermitLimit = 4;
+        options.Window = TimeSpan.FromSeconds(12);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+    }));
+
 
 var @app = @builder.Build();
 
@@ -88,6 +100,8 @@ if (@app.Environment.IsDevelopment())
 @app.UseAuthorization();
 
 @app.UseResponseCaching();
+
+@app.UseRateLimiter();
 
 @app.MapControllers();
 

@@ -8,6 +8,7 @@ using Hyperdrive.Tier.ViewModels.Classes.Updates;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Hyperdrive.Service.Controllers
 {
@@ -19,6 +20,7 @@ namespace Hyperdrive.Service.Controllers
     [Produces("application/json")]
     [ApiController]
     [Authorize]
+    [EnableRateLimiting("fixed")]
     public class ApplicationRoleController(IApplicationRoleService @service) : ControllerBase
     {
         /// <summary>
