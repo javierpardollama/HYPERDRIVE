@@ -9,6 +9,7 @@ import { ChangePasswordSecurityComponent }
 
 import { ChangePhoneNumberSecurityComponent }
   from './changephonenumber-security/changephonenumber-security.component';
+  
 import { ViewApplicationUser }
   from './../../viewmodels/views/viewapplicationuser';
 
@@ -36,8 +37,8 @@ export class SecurityComponent implements OnInit {
       width: '450px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe(() => {
+      this.GetLocalUser();
     });
   }
 
@@ -46,8 +47,8 @@ export class SecurityComponent implements OnInit {
       width: '450px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe(() => {
+      this.GetLocalUser();
     });
   }
 
@@ -56,8 +57,8 @@ export class SecurityComponent implements OnInit {
       width: '450px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe(() => {
+      this.GetLocalUser();
     });
   }
 
