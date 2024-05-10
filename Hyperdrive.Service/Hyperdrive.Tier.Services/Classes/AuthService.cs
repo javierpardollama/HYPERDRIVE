@@ -44,7 +44,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthSignIn @viewModel)
         {
-            SignInResult @signInResult = await signInManager.PasswordSignInAsync(@viewModel.Email,
+            SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@viewModel.Email,
                                                                                 @viewModel.Password,
                                                                                 false,
                                                                                 true);
@@ -86,7 +86,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthJoinIn @viewModel)
         {
-            SignInResult @signInResult = await signInManager.PasswordSignInAsync(@viewModel.Email,
+            SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@viewModel.Email,
                                                                                 @viewModel.Password,
                                                                                 false,
                                                                                 true);
@@ -142,7 +142,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 Deleted = false
             };
 
-            IdentityResult @identityResult = await userManager.CreateAsync(@applicationUser,
+            IdentityResult @identityResult = await @userManager.CreateAsync(@applicationUser,
                                                                           @viewModel.Password);
 
             if (@identityResult.Succeeded)
@@ -164,7 +164,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
 
-            await signInManager.SignOutAsync();
+            await @signInManager.SignOutAsync();
 
             // Log
             string @logData = nameof(@applicationUser)
@@ -183,7 +183,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
-            ApplicationUser @applicationUser = await userManager.Users
+            ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserTokens)
                 .Include(x => x.ApplicationUserRoles)
@@ -217,7 +217,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> CheckEmail(AuthJoinIn @viewModel)
         {
-            ApplicationUser @applicationUser = await userManager.Users
+            ApplicationUser @applicationUser = await @userManager.Users
               .AsNoTracking()
               .AsSplitQuery()
               .TagWith("CheckEmail")
