@@ -26,6 +26,7 @@ namespace Hyperdrive.Tier.Mappings.Classes
     { ApplicationEvents.UserNotAuthenticated, LogLevel.Error },
     { ApplicationEvents.PasswordRestored, LogLevel.Information },
     { ApplicationEvents.EmailRestored, LogLevel.Information },
+    { ApplicationEvents.PhoneNumberRestored, LogLevel.Information },
     };
     }
 }
