@@ -31,15 +31,20 @@ export class AuthService extends BaseService {
     protected override matSnackBar: MatSnackBar,
     protected override router: Router) {
     super(httpClient, matSnackBar, router);
-}
+  }
 
-  public SignIn(viewModel: AuthSignIn) : Promise<ViewApplicationUser> {
+  public SignIn(viewModel: AuthSignIn): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/auth/signin`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('SignIn', undefined))));
   }
 
-  public JoinIn(viewModel: AuthJoinIn) : Promise<ViewApplicationUser> {
+  public JoinIn(viewModel: AuthJoinIn): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/auth/joinin`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined))));
+  }
+
+  public SignOut(viewModel: ViewApplicationUser): Promise<any> {
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/auth/signout`, viewModel)
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('SignOut', undefined))));
   }
 }
