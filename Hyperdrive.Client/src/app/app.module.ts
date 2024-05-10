@@ -52,6 +52,8 @@ import { SignInAuthComponent }
   from './auth/signin-auth/signin-auth.component';
 
 // App-Security
+import { SecurityComponent }
+  from './security/security.component'
 import {
   ChangePasswordSecurityComponent
 } from './security/changepassword-security/changepassword-security.component';
@@ -95,6 +97,7 @@ import { ApplicationUserUpdateModalComponent }
     SignInAuthComponent,
     ResetPasswordAuthComponent,
     // App-Security
+    SecurityComponent,
     ChangePasswordSecurityComponent,
     ChangeEmailSecurityComponent,
     ChangePhoneNumberSecurityComponent,

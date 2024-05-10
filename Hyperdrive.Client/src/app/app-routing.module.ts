@@ -11,6 +11,7 @@ import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ApplicationRoleGridComponent } from './management/grids/applicationrole-grid/applicationrole-grid.component';
 import { ApplicationUserGridComponent } from './management/grids/applicationuser-grid/applicationuser-grid.component';
+import { SecurityComponent } from './security/security.component'
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -37,6 +38,12 @@ import { ApplicationUserGridComponent } from './management/grids/applicationuser
       pathMatch: 'full'
     },
     // App-Security
+    {
+      path: 'security',
+      component: SecurityComponent,
+      pathMatch: 'full',
+      canActivate: [SignInGuard]
+    },
     {
       path: 'security/changeemail',
       component: ChangeEmailSecurityComponent,
