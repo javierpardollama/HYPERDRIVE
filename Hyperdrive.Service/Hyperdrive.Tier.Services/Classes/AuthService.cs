@@ -158,8 +158,8 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Signs Out
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="ViewApplicationUser"/></param>
-        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task SignOut(AuthSignOut @viewModel) 
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);

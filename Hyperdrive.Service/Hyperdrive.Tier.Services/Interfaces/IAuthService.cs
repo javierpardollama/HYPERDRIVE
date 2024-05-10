@@ -36,7 +36,7 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// Signs Out
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
-        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        /// <returns>Instance of <see cref="Task"/></returns>
         Task SignOut(AuthSignOut @viewModel);
 
         /// <summary>
