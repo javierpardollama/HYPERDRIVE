@@ -2,6 +2,8 @@ import { AuthJoinIn } from './../viewmodels/auth/authjoinin';
 
 import { AuthSignIn } from './../viewmodels/auth/authsignin';
 
+import { AuthSignOut } from './../viewmodels/auth/authsignout';
+
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
 
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +21,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from './../environments/environment';
 
 import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
@@ -43,8 +46,8 @@ export class AuthService extends BaseService {
       .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined))));
   }
 
-  public SignOut(viewModel: ViewApplicationUser): Promise<any> {
-    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/auth/signout`, viewModel)
-      .pipe(catchError(this.HandleError<ViewApplicationUser>('SignOut', undefined))));
+  public SignOut(viewModel: AuthSignOut): Promise<any> {
+    return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/auth/signout`, viewModel)
+      .pipe(catchError(this.HandleError<any>('SignOut', undefined))));
   }
 }

@@ -109,6 +109,18 @@ namespace Hyperdrive.Tier.Logging.Classes
             WriteInformationDiagnostics(@logData);
         }
 
+        /// Emits Unauthenticated
+        /// </summary>
+        /// <param name="this">Injected <see cref="ILogger"/></param>
+        /// <param name="logData">Injected <see cref="string"/></param>
+        public static void WriteUserUnauthenticatedLog(this ILogger @this,
+                                                     string @logData)
+        {
+            @this.Emit(ApplicationEvents.UserUnauthenticated, @logData);
+
+            WriteInformationDiagnostics(@logData);
+        }
+
         /// <summary>
         /// Emits Not Authenticated
         /// </summary>

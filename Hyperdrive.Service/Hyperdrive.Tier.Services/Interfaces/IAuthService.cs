@@ -33,6 +33,13 @@ namespace Hyperdrive.Tier.Services.Interfaces
         Task<ViewApplicationUser> JoinIn(AuthJoinIn @viewModel);
 
         /// <summary>
+        /// Signs Out
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
+        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        Task SignOut(AuthSignOut @viewModel);
+
+        /// <summary>
         /// Finds Application User By Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>

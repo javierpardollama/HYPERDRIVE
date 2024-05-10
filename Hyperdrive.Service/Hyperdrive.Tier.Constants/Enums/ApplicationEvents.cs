@@ -36,23 +36,28 @@
         UserAuthenticated = 6,
 
         /// <summary>
+        /// Unauthenticated <see cref="ApplicationEvents"/>
+        /// </summary>
+        UserUnauthenticated = 7,
+
+        /// <summary>
         /// Not Authenticated <see cref="ApplicationEvents"/>
         /// </summary>
-        UserNotAuthenticated = 7,
+        UserNotAuthenticated = 8,
 
         /// <summary>
         /// Password Restored <see cref="ApplicationEvents"/>
         /// </summary>
-        PasswordRestored = 8,
+        PasswordRestored = 9,
 
         /// <summary>
         /// Email Restored <see cref="ApplicationEvents"/>
         /// </summary>
-        EmailRestored = 9,
+        EmailRestored = 10,
 
         /// <summary>
         /// Phone Number Restored <see cref="ApplicationEvents"/>
         /// </summary>
-        PhoneNumberRestored = 10
+        PhoneNumberRestored = 11
     }
 }
