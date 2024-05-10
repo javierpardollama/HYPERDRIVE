@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import {
-  ChangeEmailSecurityComponent
-} from './../security/changeemail-security/changeemail-security.component';
+import { ChangeEmailSecurityComponent }
+  from './changeemail-security/changeemail-security.component';
 
-import {
-  ChangePasswordSecurityComponent
-} from './../security/changepassword-security/changepassword-security.component';
+import { ChangePasswordSecurityComponent }
+  from './changepassword-security/changepassword-security.component';
+
+import { ChangePhoneNumberSecurityComponent }
+  from './changephonenumber-security/changephonenumber-security.component';
+import { ViewApplicationUser }
+  from './../../viewmodels/views/viewapplicationuser';
 
 @Component({
   selector: 'app-security',
@@ -15,6 +18,8 @@ import {
   styleUrls: ['./security.component.scss']
 })
 export class SecurityComponent implements OnInit {
+
+  public User?: ViewApplicationUser;
 
   // Constructor
   constructor(
@@ -26,25 +31,38 @@ export class SecurityComponent implements OnInit {
   ngOnInit() {
   }
 
-  ChangeEmail()
-  {
+  ChangeEmail() {
     const dialogRef = this.matDialog.open(ChangeEmailSecurityComponent, {
       width: '450px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     
+
     });
   }
 
-  ChangePassword()
-  {
+  ChangePassword() {
     const dialogRef = this.matDialog.open(ChangePasswordSecurityComponent, {
       width: '450px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     
+
     });
+  }
+
+  ChangePhoneNumber() {
+    const dialogRef = this.matDialog.open(ChangePhoneNumberSecurityComponent, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+  // Get User from Storage
+  public GetLocalUser() {
+    this.User = JSON.parse(sessionStorage.getItem('User')!);
   }
 }
