@@ -90,7 +90,7 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
 
     private TurnThePage = async (event: Event): Promise<void> => {
 
-        let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
+        let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size, this.ELEMENT_DATA.length, this.page.Length);
 
         if (scroll.IsReached()) {
             this.page.Index++;
