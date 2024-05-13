@@ -68,7 +68,7 @@ export class BinaryService extends BaseService {
 
         const url = window.URL.createObjectURL(blob);
 
-        const anchor = Object.assign(document.createElement("a"), { style: "display:none", href: url, download: viewModel.Archive.Name });
+        const anchor = Object.assign(document.createElement("a"), { style: "display:none", href: url, download: viewModel.Name });
        
         document.body.appendChild(anchor);
         anchor.click();
