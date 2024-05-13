@@ -1,6 +1,4 @@
-using System;
 using System.Text.Json.Serialization;
-using System.Threading.RateLimiting;
 
 using Hyperdrive.Service.Extensions;
 using Hyperdrive.Tier.Contexts.Classes;
@@ -11,7 +9,6 @@ using Hyperdrive.Tier.Settings.Classes;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,29 +50,26 @@ var @builder = WebApplication.CreateBuilder(args);
 @builder.Services.AddResponseCaching();
 
 // Register the Jwt Settings to the configuration container.
-var @settings = new JwtSettings();
-@builder.Configuration.GetSection("Jwt").Bind(@settings);
+var @JwtSettings = new JwtSettings();
+@builder.Configuration.GetSection("Jwt").Bind(@JwtSettings);
 @builder.Services.Configure<JwtSettings>(@builder.Configuration.GetSection("Jwt"));
 
-
 // Add customized Authentication to the services container.
-@builder.Services.AddCustomizedAuthentication(@settings);
+@builder.Services.AddCustomizedAuthentication(@JwtSettings);
 
-@builder.Services.AddCustomizedCrossOriginRequests(@settings);
+@builder.Services.AddCustomizedCrossOriginRequests(@JwtSettings);
 
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));
 
 @builder.Services.AddHealthChecks();
 
-@builder.Services.AddRateLimiter(_ => _
-    .AddFixedWindowLimiter(policyName: "fixed", options =>
-    {
-        options.PermitLimit = 4;
-        options.Window = TimeSpan.FromSeconds(12);
-        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        options.QueueLimit = 2;
-    }));
+// Register the Rate Limit Settings to the configuration container.
+var @RateSettings = new RateLimitSettings();
+@builder.Configuration.GetSection("RateLimit").Bind(@RateSettings);
+@builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
+
+@builder.Services.AddCustomizedRateLimiter(@RateSettings);
 
 
 var @app = @builder.Build();
