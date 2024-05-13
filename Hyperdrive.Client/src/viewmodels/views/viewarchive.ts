@@ -5,11 +5,11 @@ import { ViewArchiveVersion } from './viewarchiveversion';
 import { ViewApplicationUser } from './viewapplicationuser';
 
 export interface ViewArchive extends ViewKey, ViewBase {
-    By: ViewApplicationUser;
-    Name: string;
+    By: ViewApplicationUser;   
     Folder: boolean;
     Locked: boolean;
     System: boolean;
     ArchiveVersions: ViewArchiveVersion[];
     ApplicationUserArchives: ViewApplicationUserArchive[];
+    LastArchiveVersion: ViewArchiveVersion;
 }

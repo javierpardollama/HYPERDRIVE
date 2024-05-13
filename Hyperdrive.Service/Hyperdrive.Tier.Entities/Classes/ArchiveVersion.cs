@@ -27,6 +27,12 @@ namespace Hyperdrive.Tier.Entities.Classes
         public int Id { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="Name"/>
+        /// </summary>
+        [Required]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]

@@ -5,14 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Hyperdrive.Tier.Entities.Interfaces;
 
-using Microsoft.EntityFrameworkCore;
-
 namespace Hyperdrive.Tier.Entities.Classes
 {
     /// <summary>
     /// Represents a <see cref="Archive"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
-    [Index(nameof(Name), nameof(Deleted))]
     public class Archive : IKey, IBase
     {
         /// <summary>
@@ -46,13 +43,7 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// Gets or Sets <see cref="ApplicationUser"/>
         /// </summary>
         [Required]
-        public virtual ApplicationUser By { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="Name"/>
-        /// </summary>
-        [Required]
-        public string Name { get; set; }
+        public virtual ApplicationUser By { get; set; }       
 
         /// <summary>
         /// Gets or Sets <see cref="Folder"/>

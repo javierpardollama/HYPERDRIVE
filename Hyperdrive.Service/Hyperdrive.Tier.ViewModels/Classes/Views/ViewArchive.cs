@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 using Hyperdrive.Tier.ViewModels.Interfaces.Views;
@@ -20,10 +21,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         public DateTime LastModified { get; set; }
 
         [XmlElement("by")]
-        public virtual ViewApplicationUser By { get; set; }
-
-        [XmlElement("name")]
-        public string Name { get; set; }
+        public virtual ViewApplicationUser By { get; set; }     
 
         [XmlElement("folder")]
         public bool Folder { get; set; }
@@ -40,6 +38,12 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
 
         [XmlArray("archive-versions")]
         public virtual ICollection<ViewArchiveVersion> ArchiveVersions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="LastArchiveVersion"/>
+        /// </summary>
+        [XmlElement("last-archive-version")]
+        public virtual ViewArchiveVersion LastArchiveVersion => ArchiveVersions?.AsQueryable().OrderBy(x => x.LastModified.Date).LastOrDefault();
 
     }
 }

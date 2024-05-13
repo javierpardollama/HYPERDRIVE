@@ -83,6 +83,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .TagWith("FindAllArchive")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .Include(x => x.ArchiveVersions)
                 .Include(x => x.By)
                 .ToListAsync();
 
@@ -105,6 +106,7 @@ namespace Hyperdrive.Tier.Services.Classes
                    .TagWith("FindPaginatedArchiveByApplicationUserId")
                    .AsSplitQuery()
                    .AsNoTracking()
+                   .Include(x => x.ArchiveVersions)
                    .Include(x => x.By)
                    .Where(x => x.By.Id == @viewModel.ApplicationUserId)
                    .Skip(@viewModel.Index * @viewModel.Size)
@@ -193,13 +195,12 @@ namespace Hyperdrive.Tier.Services.Classes
 
             Archive @archive = new()
             {
-                Name = @viewModel.Name.Trim(),
                 Folder = @viewModel.Folder,
                 Locked = @viewModel.Locked,
                 System = false,
                 By = await FindApplicationUserById(@viewModel.ApplicationUserId),
-                ApplicationUserArchives = new List<ApplicationUserArchive>(),
-                ArchiveVersions = new List<ArchiveVersion>()
+                ApplicationUserArchives = [],
+                ArchiveVersions = []
             };
 
             await Context.Archives.AddAsync(@archive);
@@ -244,6 +245,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ArchiveVersion @archiveVersion = new()
             {
                 Archive = @entity,
+                Name = @viewModel.Name.Trim(),
                 Data = @viewModel.Data,
                 Size = @viewModel.Size,
                 Type = @viewModel.Type
@@ -256,8 +258,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             await CheckName(@viewModel);
 
-            Archive @archive = await FindArchiveById(@viewModel.Id);
-            @archive.Name = @viewModel.Name.Trim();
+            Archive @archive = await FindArchiveById(@viewModel.Id);           
             @archive.Folder = @viewModel.Folder;
             @archive.Locked = @viewModel.Locked;
             @archive.System = false;
@@ -304,6 +305,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ArchiveVersion @archiveVersion = new()
             {
                 Archive = @entity,
+                Name = @viewModel.Name.Trim(),
                 Data = @viewModel.Data,
                 Size = @viewModel.Size,
                 Type = @viewModel.Type
@@ -318,14 +320,14 @@ namespace Hyperdrive.Tier.Services.Classes
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.ArchiveVersions.LastOrDefault().Name == @viewModel.Name.Trim());
 
             if (@archive != null)
             {
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.Name
+                    + @archive.ArchiveVersions.LastOrDefault().Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
@@ -347,14 +349,14 @@ namespace Hyperdrive.Tier.Services.Classes
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.ArchiveVersions.LastOrDefault().Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@archive != null)
             {
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.Name
+                    + @archive.ArchiveVersions.LastOrDefault().Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
