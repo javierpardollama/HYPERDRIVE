@@ -1,3 +1,7 @@
+.container {
+    padding: 24px;
+}
+
 .modal-content-line
 {
 clear: both;
@@ -15,6 +19,6 @@ margin-right:8px;
 }
 
 .modal-phone-image{
-background-image: url('/iconos/Phone_500px.png');
+background-image: url('/assets/img/iconos/Phone_500px.png');
 background-size: cover;
 }
