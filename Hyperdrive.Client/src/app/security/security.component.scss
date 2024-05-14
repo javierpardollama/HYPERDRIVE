@@ -1,3 +1,8 @@
+.container {
+    padding: 24px;
+}
+
+
 .profile-update-image {
     background-image: url('/assets/img/iconos/Update_500px.png');
     background-size: cover;
@@ -44,4 +49,9 @@
     object-fit: cover;
     float: left;
     margin-right: 8px;
+}
+
+button
+{
+    font-weight: bolder;
 }

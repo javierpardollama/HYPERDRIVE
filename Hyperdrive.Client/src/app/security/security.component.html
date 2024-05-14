@@ -1,70 +1,73 @@
-<h3 class="profile-content-line">
-    Bienvenido
-</h3>
+<div class="container">
 
-<h4 class="profile-content-line">
-    Gestiona tu información y la seguridad para mejorar tu experiencia.
-</h4>
+    <div class="profile-content-line">
+        <strong>Bienvenido</strong>
+    </div>
 
-<h5 class="profile-content-line">
-    La información de tu perfil
-</h5>
+    <div class="profile-content-line">
+        Gestiona tu información y la seguridad para mejorar tu experiencia.
+    </div>
 
-<div class="profile-content-line profile-content-line-update">
-    <div class="profile-update-image profile-image" aria-label="LastModified"></div>
-    <span>{{User?.LastModified | date: 'MMM d, y h:mm a'}}</span>
+    <div class="profile-content-line">
+        Esta es la información de tu perfil:
+    </div>
+
+    <div class="profile-content-line profile-content-line-update">
+        <div class="profile-update-image profile-image" aria-label="LastModified"></div>
+        <span>{{User?.LastModified | date: 'MMM d, y h:mm a'}}</span>
+    </div>
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Información básica</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <p><em>Es posible que otros usuarios puedan ver parte de la información</em></p>
+            <p>Nombre: {{User?.FirstName}}</p>
+            <p>Apellido: {{User?.LastName}}</p>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Información de contacto</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="profile-content-line">
+                <div class="profile-content-cell profile-content-cell-start">
+                    <p>Correo electrónico: {{User?.Email}}</p>
+                </div>
+                <div class="profile-content-cell profile-content-cell-end"><button id="security-email-change-button"
+                        mat-raised-button color="primary" (click)="ChangeEmail()">></button></div>
+            </div>
+            <div class="profile-content-line">
+                <div class="profile-content-cell profile-content-cell-start">
+                    <p>Teléfono: {{User?.PhoneNumber}}</p>
+                </div>
+                <div class="profile-content-cell profile-content-cell-end"><button id="security-phonenumber-change-button" mat-raised-button color="primary"
+                        (click)="ChangePhoneNumber()">></button></div>
+            </div>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Contraseña</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="profile-content-line">
+                <p><em>Si eliges una contraseña segura, ayudas a proteger tu cuenta</em></p>
+            </div>
+            <div class="profile-content-line">
+                <div class="profile-content-cell profile-content-cell-start">
+                    <p>Contraseña: ********</p>
+                </div>
+                <div class="profile-content-cell profile-content-cell-end">
+                    <button id="security-password-change-button" mat-raised-button color="primary" (click)="ChangePassword()">></button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+
+    </mat-accordion>
 </div>
-
-<mat-accordion>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Información básica</mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <p>Es posible que otros usuarios puedan ver parte de la información</p>
-        <p>Nombre: {{User?.FirstName}}</p>
-        <p>Apellido: {{User?.LastName}}</p>
-
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Información de contacto</mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="profile-content-line">
-            <div class="profile-content-cell profile-content-cell-start">
-                <p>Correo electrónico: {{User?.Email}}</p>
-            </div>
-            <div class="profile-content-cell profile-content-cell-end"><button mat-raised-button color="primary"
-                    (click)="ChangeEmail()">></button></div>
-        </div>
-        <div class="profile-content-line">
-            <div class="profile-content-cell profile-content-cell-start">
-                <p>Teléfono: {{User?.PhoneNumber}}</p>
-            </div>
-            <div class="profile-content-cell profile-content-cell-end"><button mat-raised-button color="primary"
-                    (click)="ChangePhoneNumber()">></button></div>
-        </div>
-    </mat-expansion-panel>
-
-
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>Contraseña</mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="profile-content-line">
-            <p>Si eliges una contraseña segura, ayudas a proteger tu cuenta</p>
-        </div>
-        <div class="profile-content-line">
-            <div class="profile-content-cell profile-content-cell-start">
-                <p>Contraseña: ********</p>
-            </div>
-            <div class="profile-content-cell profile-content-cell-end">
-                <button mat-raised-button color="primary" (click)="ChangePassword()">></button>
-            </div>
-        </div>
-    </mat-expansion-panel>
-
-</mat-accordion>
