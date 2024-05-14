@@ -9,7 +9,7 @@ import { ChangePasswordSecurityComponent }
 
 import { ChangePhoneNumberSecurityComponent }
   from './changephonenumber-security/changephonenumber-security.component';
-  
+
 import { ViewApplicationUser }
   from './../../viewmodels/views/viewapplicationuser';
 
@@ -30,6 +30,7 @@ export class SecurityComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
+    this.GetLocalUser()
   }
 
   ChangeEmail() {
