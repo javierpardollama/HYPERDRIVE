@@ -41,8 +41,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up
         /// </summary>
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             SetUpContextOptions();
 
@@ -62,8 +62,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// <summary>
         /// Tears Down
         /// </summary>
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             Context.Users.RemoveRange(Context.Users.ToList());
             Context.Roles.RemoveRange(Context.Roles.ToList());
