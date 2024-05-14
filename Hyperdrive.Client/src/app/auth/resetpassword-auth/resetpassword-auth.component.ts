@@ -3,6 +3,8 @@ import {
   OnInit
 } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { Location } from '@angular/common';
 
 import {
@@ -32,7 +34,8 @@ export class ResetPasswordAuthComponent implements OnInit {
 
   // Constructor
   constructor(
-    private location: Location,   
+    private router: Router,
+    private location: Location,
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private matSnackBar: MatSnackBar) { }
@@ -64,9 +67,11 @@ export class ResetPasswordAuthComponent implements OnInit {
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       sessionStorage.setItem('User', JSON.stringify(user));
+
+      this.router.navigate(['/']);
     }
   }
- 
+
   onBack() {
     this.location.back();;
   }
