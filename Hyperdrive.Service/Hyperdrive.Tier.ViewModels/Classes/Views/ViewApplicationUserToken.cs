@@ -40,12 +40,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         /// Gets or Sets <see cref="Value"/>
         /// </summary>
         [XmlElement("value")]
-        public string Value { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUser"/>
-        /// </summary>
-        [XmlElement("application-user")]
-        public virtual ViewApplicationUser ApplicationUser { get; set; }
+        public string Value { get; set; }       
     }
 }
