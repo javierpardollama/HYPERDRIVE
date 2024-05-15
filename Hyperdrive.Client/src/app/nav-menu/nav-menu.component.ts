@@ -25,7 +25,7 @@ export class NavMenuComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-
+    this.GetLocalUser();
   }
 
   // Nav Actions
@@ -38,9 +38,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   display() {
-    this.GetLocalUser();
-
-    if (this.User) {     
+    if (this.User) {
       this.isVisible = true;
     }
 
