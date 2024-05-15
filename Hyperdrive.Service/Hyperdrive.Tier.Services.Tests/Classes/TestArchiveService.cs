@@ -8,7 +8,6 @@ using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
-using Hyperdrive.Tier.ViewModels.Classes.Views;
 
 using Microsoft.Extensions.Logging;
 

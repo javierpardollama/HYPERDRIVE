@@ -27,10 +27,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         public bool Folder { get; set; }
 
         [XmlElement("locked")]
-        public bool Locked { get; set; }
-
-        [XmlElement("system")]
-        public bool System { get; set; }
+        public bool Locked { get; set; }       
 
         [XmlArray("application-user-archives")]
         public virtual ICollection<ViewApplicationUserArchive> ApplicationUserArchives { get; set; }

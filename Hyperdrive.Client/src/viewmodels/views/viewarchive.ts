@@ -7,8 +7,7 @@ import { ViewApplicationUser } from './viewapplicationuser';
 export interface ViewArchive extends ViewKey, ViewBase {
     By: ViewApplicationUser;   
     Folder: boolean;
-    Locked: boolean;
-    System: boolean;
+    Locked: boolean;   
     ArchiveVersions: ViewArchiveVersion[];
     ApplicationUserArchives: ViewApplicationUserArchive[];
     LastArchiveVersion: ViewArchiveVersion;

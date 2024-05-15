@@ -53,7 +53,7 @@ export class ChangePasswordSecurityComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      ApplicationUser: [this.User,
+      ApplicationUserId: [this.User.Id,
       Validators.required],
       CurrentPassword: [TextAppVariants.AppEmptyCoreText,
       [Validators.required]],

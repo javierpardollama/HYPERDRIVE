@@ -196,8 +196,7 @@ namespace Hyperdrive.Tier.Services.Classes
             Archive @archive = new()
             {
                 Folder = @viewModel.Folder,
-                Locked = @viewModel.Locked,
-                System = false,
+                Locked = @viewModel.Locked,               
                 By = await FindApplicationUserById(@viewModel.ApplicationUserId),
                 ApplicationUserArchives = [],
                 ArchiveVersions = []
@@ -260,8 +259,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
             Archive @archive = await FindArchiveById(@viewModel.Id);           
             @archive.Folder = @viewModel.Folder;
-            @archive.Locked = @viewModel.Locked;
-            @archive.System = false;
+            @archive.Locked = @viewModel.Locked;          
             @archive.By = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             Context.Archives.Update(@archive);

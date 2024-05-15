@@ -39,7 +39,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> ChangePassword(SecurityPasswordChange @viewModel)
         {
-            ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
+            ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             IdentityResult @identityResult = await @userManager.ChangePasswordAsync(@applicationUser, @viewModel.CurrentPassword, @viewModel.NewPassword);
 
@@ -106,6 +106,40 @@ namespace Hyperdrive.Tier.Services.Classes
         }
 
         /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        public async Task<ApplicationUser> FindApplicationUserById(int @id)
+        {
+            ApplicationUser @applicationUser = await @userManager.Users
+                .TagWith("FindApplicationUserByEmail")
+                .Include(x => x.ApplicationUserTokens)
+                .Include(x => x.ApplicationUserRoles)
+                .ThenInclude(x => x.ApplicationRole)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (@applicationUser == null)
+            {
+                // Log
+                string @logData = nameof(@applicationUser)
+                    + " with Id "
+                    + @id
+                    + " was not found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new Exception(nameof(@applicationUser)
+                    + " with Id "
+                    + @id
+                    + " does not exist");
+            }
+
+            return @applicationUser;
+        }
+
+        /// <summary>
         /// Resets Password
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
@@ -151,7 +185,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> ChangeEmail(SecurityEmailChange @viewModel)
         {
-            ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
+            ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             IdentityResult @identityResult = await @userManager.ChangeEmailAsync(@applicationUser, @viewModel.NewEmail.Trim(), await @userManager.GenerateChangeEmailTokenAsync(@applicationUser, @viewModel.NewEmail.Trim()));
 
@@ -190,7 +224,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> ChangePhoneNumber(SecurityPhoneNumberChange @viewModel)
         {
-            ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.ApplicationUser.Email);
+            ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             IdentityResult @identityResult = await @userManager.ChangePhoneNumberAsync(@applicationUser, @viewModel.NewPhoneNumber.Trim(), await @userManager.GenerateChangePhoneNumberTokenAsync(@applicationUser, @viewModel.NewPhoneNumber.Trim()));
 

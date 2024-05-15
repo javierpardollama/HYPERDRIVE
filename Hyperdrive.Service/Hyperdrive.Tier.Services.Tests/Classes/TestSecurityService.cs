@@ -125,6 +125,18 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task FindApplicationUserById()
+        {
+            await Service.FindApplicationUserById(Context.Users.FirstOrDefault().Id);
+
+            Assert.Pass();
+        }
+
+        /// <summary>
         /// Resets Password
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
@@ -152,11 +164,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             {
                 CurrentPassword = "P@55w0rd",
                 NewPassword = "P@55w0rd",
-                ApplicationUser = new ViewApplicationUser
-                {
-                    Id = Context.Users.FirstOrDefault(x => x.Email == "seconduser@email.com").Id,
-                    Email = Context.Users.FirstOrDefault(x => x.Email == "seconduser@email.com").Email
-                }
+                ApplicationUserId = Context.Users.FirstOrDefault(x => x.Email == "seconduser@email.com").Id              
             };
 
             Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.ChangePassword(viewModel));
@@ -174,11 +182,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             SecurityEmailChange viewModel = new()
             {
                 NewEmail = "newthirduser@email.com",
-                ApplicationUser = new ViewApplicationUser
-                {
-                    Id = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Id,
-                    Email = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Email
-                }
+                ApplicationUserId = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Id
             };
 
             await Service.ChangeEmail(viewModel);
@@ -196,11 +200,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             SecurityPhoneNumberChange viewModel = new()
             {
                 NewPhoneNumber = "654321987",
-                ApplicationUser = new ViewApplicationUser
-                {
-                    Id = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Id,
-                    Email = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Email
-                }
+                ApplicationUserId = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Id               
             };
 
             await Service.ChangePhoneNumber(viewModel);

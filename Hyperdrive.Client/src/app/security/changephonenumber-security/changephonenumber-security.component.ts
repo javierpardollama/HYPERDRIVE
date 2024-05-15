@@ -54,7 +54,7 @@ export class ChangePhoneNumberSecurityComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      ApplicationUser: [this.User,
+      ApplicationUserId: [this.User.Id,
       Validators.required],
       NewPhoneNumber: [TextAppVariants.AppEmptyCoreText,
       [

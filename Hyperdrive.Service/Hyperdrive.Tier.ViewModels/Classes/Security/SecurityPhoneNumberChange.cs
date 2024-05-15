@@ -1,6 +1,4 @@
-﻿using Hyperdrive.Tier.ViewModels.Classes.Views;
-
-namespace Hyperdrive.Tier.ViewModels.Classes.Security
+﻿namespace Hyperdrive.Tier.ViewModels.Classes.Security
 {
     /// <summary>
     /// Represents a <see cref="SecurityPhoneNumberChange"/> class.
@@ -15,9 +13,9 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Security
         }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUser"/>
+        /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
-        public virtual ViewApplicationUser ApplicationUser { get; set; }
+        public int ApplicationUserId { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="NewPhoneNumber"/>

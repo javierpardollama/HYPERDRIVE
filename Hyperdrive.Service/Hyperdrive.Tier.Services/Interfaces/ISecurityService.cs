@@ -19,6 +19,13 @@ namespace Hyperdrive.Tier.Services.Interfaces
         Task<ApplicationUser> FindApplicationUserByEmail(string @email);
 
         /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        Task<ApplicationUser> FindApplicationUserById(int @id);
+
+        /// <summary>
         /// Resets Password
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>

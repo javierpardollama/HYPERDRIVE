@@ -49,13 +49,7 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// Gets or Sets <see cref="Folder"/>
         /// </summary>
         [Required]
-        public bool Folder { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="System"/>
-        /// </summary>
-        [Required]
-        public bool System { get; set; }
+        public bool Folder { get; set; }        
 
         /// <summary>
         /// Gets or Sets <see cref="Locked"/>
