@@ -1,0 +1,33 @@
+<div id="changename-security-modal" class="container" novalidate>
+    <form [formGroup]="formGroup" class="form"> 
+  
+      <div class="modal-content-line">
+        <div class="modal-option-image modal-name-image" aria-label="Name"></div>
+        <mat-form-field class="form-element">
+          <mat-label>NewFirstName</mat-label>
+          <input matInput placeholder="NewFirstName" formControlName="NewFirstName">
+          <mat-error *ngIf="!formGroup.controls['NewFirstName'].valid && formGroup.controls['NewFirstName'].touched">
+            Required field.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="modal-content-line">
+        <div class="modal-option-image modal-surname-image" aria-label="NewLastName"></div>
+        <mat-form-field class="form-element">
+          <mat-label>NewLastName</mat-label>
+          <input matInput placeholder="NewLastName" formControlName="NewLastName">
+          <mat-error *ngIf="!formGroup.controls['NewLastName'].valid && formGroup.controls['NewLastName'].touched">
+            Required field.
+          </mat-error>
+        </mat-form-field>
+      </div>    
+  
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button form-button"
+          (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
+        </button>      
+      </div>
+  
+    </form>
+  </div>

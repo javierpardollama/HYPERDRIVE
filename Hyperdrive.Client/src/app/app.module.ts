@@ -62,11 +62,13 @@ import {
   ResetPasswordAuthComponent
 } from './auth/resetpassword-auth/resetpassword-auth.component';
 import { ChangePhoneNumberSecurityComponent }
-  from './security/changephonenumber-security/changephonenumber-security.component'
-
+  from './security/changephonenumber-security/changephonenumber-security.component';
 import {
   ChangeEmailSecurityComponent
 } from './security/changeemail-security/changeemail-security.component';
+import {
+  ChangeNameSecurityComponent
+} from './security/changename-security/changename-security.component';
 
 // App-Grid
 import { ApplicationRoleGridComponent }
@@ -102,6 +104,7 @@ import { ApplicationUserUpdateModalComponent }
     ChangePasswordSecurityComponent,
     ChangeEmailSecurityComponent,
     ChangePhoneNumberSecurityComponent,
+    ChangeNameSecurityComponent,
     // App-Grid
     ApplicationRoleGridComponent,
     ApplicationUserGridComponent,

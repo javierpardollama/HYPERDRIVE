@@ -60,9 +60,6 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
-      FirstName: new FormControl<string>(this.data.FirstName, [Validators.required]),
-      LastName: new FormControl<string>(this.data.LastName, [Validators.required]),
-      PhoneNumber: new FormControl<string>(this.data.PhoneNumber, [Validators.required]),
       ApplicationRolesId: new FormControl<number[]>(this.data.ApplicationRoles.map(({ Id }) => Id), [Validators.required])
     });
   }

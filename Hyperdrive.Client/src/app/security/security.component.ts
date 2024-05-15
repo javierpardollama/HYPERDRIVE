@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+import { ChangeNameSecurityComponent }
+  from './changename-security/changename-security.component';
+
 import { ChangeEmailSecurityComponent }
   from './changeemail-security/changeemail-security.component';
 
@@ -12,6 +15,7 @@ import { ChangePhoneNumberSecurityComponent }
 
 import { ViewApplicationUser }
   from './../../viewmodels/views/viewapplicationuser';
+
 
 @Component({
   selector: 'app-security',
@@ -31,6 +35,16 @@ export class SecurityComponent implements OnInit {
   // Life Cicle
   ngOnInit() {
     this.GetLocalUser()
+  }
+
+  ChangeName() {
+    const dialogRef = this.matDialog.open(ChangeNameSecurityComponent, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.GetLocalUser();
+    });
   }
 
   ChangeEmail() {

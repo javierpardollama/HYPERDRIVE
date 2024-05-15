@@ -8,6 +8,8 @@ import { SecurityEmailChange } from './../viewmodels/security/securityemailchang
 
 import { SecurityPhoneNumberChange } from './../viewmodels/security/securityphonenumberchange';
 
+import { SecurityNameChange } from './../viewmodels/security/securitynamechange';
+
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -36,7 +38,7 @@ export class SecurityService extends BaseService {
     protected override matSnackBar: MatSnackBar,
     protected override router: Router) {
     super(httpClient, matSnackBar, router);
-}
+  }
 
   public ResetPassword(viewModel: SecurityPasswordReset): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/resetpassword`, viewModel)
@@ -56,5 +58,10 @@ export class SecurityService extends BaseService {
   public ChangePhoneNumber(viewModel: SecurityPhoneNumberChange): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changephonenumber`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePhoneNumber', undefined))));
+  }
+
+  public ChangeName(viewModel: SecurityNameChange): Promise<ViewApplicationUser> {
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changename`, viewModel)
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeName', undefined))));
   }
 }

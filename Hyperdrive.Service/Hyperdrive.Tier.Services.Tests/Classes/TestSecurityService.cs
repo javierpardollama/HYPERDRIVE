@@ -207,5 +207,24 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             Assert.Pass();
         }
+
+        /// <summary>
+        /// Changes Name
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task ChangeName()
+        {
+            SecurityNameChange viewModel = new()
+            {
+                NewFirstName = "New Third User FirstName",
+                NewLastName= "New Third User LastName",
+                ApplicationUserId = Context.Users.FirstOrDefault(x => x.Email == "thirdtuser@email.com").Id
+            };
+
+            await Service.ChangeName(viewModel);
+
+            Assert.Pass();
+        }
     }
 }

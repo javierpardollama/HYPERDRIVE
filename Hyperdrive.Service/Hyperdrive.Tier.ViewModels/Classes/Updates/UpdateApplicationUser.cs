@@ -13,17 +13,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         public UpdateApplicationUser()
         {
         }
-
-        /// <summary>
-        /// Gets or Sets <see cref="FirstName"/>
-        /// </summary>
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="LastName"/>
-        /// </summary>
-        public string LastName { get; set; }        
-
+          
         /// <summary>
         /// Gets or Sets <see cref="ApplicationRolesId"/>
         /// </summary>

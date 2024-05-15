@@ -1,4 +1,4 @@
-<div id="arenal-update-modal" class="container" novalidate>
+<div id="applicationuser-update-modal" class="container" novalidate>
   <form [formGroup]="formGroup" class="form">
 
     <div class="modal-content-line">
@@ -10,29 +10,7 @@
           Required field.
         </mat-error>
       </mat-form-field>
-    </div>
-
-    <div class="modal-content-line">
-      <div class="modal-option-image modal-name-image" aria-label="Name"></div>
-      <mat-form-field class="form-element">
-        <mat-label>FirstName</mat-label>
-        <input matInput placeholder="FirstName" formControlName="FirstName">
-        <mat-error *ngIf="!formGroup.controls['FirstName'].valid && formGroup.controls['FirstName'].touched">
-          Required field.
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="modal-content-line">
-      <div class="modal-option-image modal-surname-image" aria-label="LastName"></div>
-      <mat-form-field class="form-element">
-        <mat-label>LastName</mat-label>
-        <input matInput placeholder="LastName" formControlName="LastName">
-        <mat-error *ngIf="!formGroup.controls['LastName'].valid && formGroup.controls['LastName'].touched">
-          Required field.
-        </mat-error>
-      </mat-form-field>
-    </div>
+    </div>  
     
     <div class="modal-content-line">
       <div class="modal-option-image modal-role-image" aria-label="ApplicationRolesId"></div>

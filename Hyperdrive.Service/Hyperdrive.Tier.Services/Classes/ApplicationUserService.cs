@@ -141,13 +141,9 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.Id);
 
-            @applicationUser.ApplicationUserRoles = [];
-            @applicationUser.FirstName = @viewModel.FirstName?.Trim();
-            @applicationUser.LastName = @viewModel.LastName?.Trim();         
+            UpdateApplicationUserRole(@viewModel, @applicationUser);
 
             Context.Users.Update(@applicationUser);
-
-            UpdateApplicationUserRole(@viewModel, @applicationUser);
 
             await Context.SaveChangesAsync();
 

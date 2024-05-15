@@ -23,10 +23,19 @@
             <mat-expansion-panel-header>
                 <mat-panel-title>Información básica</mat-panel-title>
             </mat-expansion-panel-header>
+            <div class="profile-content-line">
+                <p><em>Es posible que otros usuarios puedan ver parte de la información</em></p>
+            </div>
 
-            <p><em>Es posible que otros usuarios puedan ver parte de la información</em></p>
-            <p>Nombre: {{User?.FirstName}}</p>
-            <p>Apellido: {{User?.LastName}}</p>
+            <div class="profile-content-line">
+                <div class="profile-content-cell profile-content-cell-start">
+                    <p>{{User?.FirstName}} {{User?.LastName}}</p>
+                </div>
+                <div class="profile-content-cell profile-content-cell-end">
+                    <button type="button" id="security-name-change-button" mat-raised-button color="primary"
+                        (click)="ChangeName()">></button>
+                </div>
+            </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel>

@@ -255,5 +255,43 @@ namespace Hyperdrive.Tier.Services.Classes
                 throw new Exception("Security Error");
             }
         }
+
+        /// <summary>
+        /// Changes Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
+        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        public async Task<ViewApplicationUser> ChangeName(SecurityNameChange @viewModel)
+        {
+            ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
+
+            @applicationUser.FirstName = viewModel.NewFirstName;
+            @applicationUser.LastName = viewModel.NewLastName;
+
+            Context.Users.Update(@applicationUser);
+
+            await Context.SaveChangesAsync();
+
+            @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
+            {
+                Name = Guid.NewGuid().ToString(),
+                LoginProvider = JwtSettings.Value.JwtIssuer,
+                ApplicationUser = @applicationUser,
+                UserId = @applicationUser.Id,
+                Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+            });
+
+            // Log
+            string @logData = nameof(@applicationUser)
+                + " with Id "
+                + @applicationUser.Id
+                + " was modified at "
+                + DateTime.Now.ToShortTimeString();
+
+            Logger.WriteUpdateItemLog(@logData);
+
+            return Mapper.Map<ViewApplicationUser>(@applicationUser);
+
+        }
     }
 }
