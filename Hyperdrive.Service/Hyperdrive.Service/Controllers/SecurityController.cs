@@ -31,7 +31,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <summary>
         /// Changes Password
         /// </summary>
-        /// <param name="viewModel">njected <see cref="SecurityPasswordReset"/></param>
+        /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("changepassword")]
@@ -41,7 +41,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <summary>
         /// Changes Email
         /// </summary>
-        /// <param name="viewModel">njected <see cref="SecurityEmailChange"/></param>
+        /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("changeemail")]
@@ -51,11 +51,20 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <summary>
         /// Changes Phone Number
         /// </summary>
-        /// <param name="viewModel">njected <see cref="SecurityPhoneNumberChange"/></param>
+        /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("changephonenumber")]
         [Authorize]
         public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => new JsonResult(value: await @service.ChangePhoneNumber(@viewModel));
-    }
+
+        /// <summary>
+        /// Changes Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        [HttpPut]
+        [Route("changename")]
+        [Authorize]
+        public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => new JsonResult(value: await @service.ChangeName(@viewModel));  }
 }
