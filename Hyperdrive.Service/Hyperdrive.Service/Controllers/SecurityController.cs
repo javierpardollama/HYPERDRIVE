@@ -26,7 +26,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("resetpassword")]
-        public async Task<IActionResult> ResetPassword([FromBody]SecurityPasswordReset @viewModel) => new JsonResult(value: await @service.ResetPassword(@viewModel));
+        public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => new JsonResult(value: await @service.ResetPassword(@viewModel));
 
         /// <summary>
         /// Changes Password
@@ -36,7 +36,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         [HttpPut]
         [Route("changepassword")]
         [Authorize]
-        public async Task<IActionResult> ChangePassword([FromBody]SecurityPasswordChange @viewModel) => new JsonResult(value: await @service.ChangePassword(@viewModel));
+        public async Task<IActionResult> ChangePassword([FromBody] SecurityPasswordChange @viewModel) => new JsonResult(value: await @service.ChangePassword(@viewModel));
 
         /// <summary>
         /// Changes Email
@@ -46,7 +46,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         [HttpPut]
         [Route("changeemail")]
         [Authorize]
-        public async Task<IActionResult> ChangeEmail([FromBody]SecurityEmailChange @viewModel) => new JsonResult(value: await @service.ChangeEmail(@viewModel));
+        public async Task<IActionResult> ChangeEmail([FromBody] SecurityEmailChange @viewModel) => new JsonResult(value: await @service.ChangeEmail(@viewModel));
 
         /// <summary>
         /// Changes Phone Number
@@ -66,5 +66,6 @@ namespace Hyperdrive.Tier.Web.Controllers
         [HttpPut]
         [Route("changename")]
         [Authorize]
-        public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => new JsonResult(value: await @service.ChangeName(@viewModel));  }
+        public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => new JsonResult(value: await @service.ChangeName(@viewModel));
+    }
 }
