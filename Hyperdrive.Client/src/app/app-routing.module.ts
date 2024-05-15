@@ -4,8 +4,6 @@ import { SignInGuard } from '../guards/signin.guard';
 import { JoinInAuthComponent } from './auth/joinin-auth/joinin-auth.component';
 import { SignInAuthComponent } from './auth/signin-auth/signin-auth.component';
 import { HomeComponent } from './home/home.component';
-import { ChangeEmailSecurityComponent } from './security/changeemail-security/changeemail-security.component';
-import { ChangePasswordSecurityComponent } from './security/changepassword-security/changepassword-security.component';
 import { ResetPasswordAuthComponent } from './auth/resetpassword-auth/resetpassword-auth.component';
 import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
@@ -43,19 +41,7 @@ import { SecurityComponent } from './security/security.component'
       component: SecurityComponent,
       pathMatch: 'full',
       canActivate: [SignInGuard]
-    },
-    {
-      path: 'security/changeemail',
-      component: ChangeEmailSecurityComponent,
-      pathMatch: 'full',
-      canActivate: [SignInGuard]
-    },
-    {
-      path: 'security/changepassword',
-      component: ChangePasswordSecurityComponent,
-      pathMatch: 'full',
-      canActivate: [SignInGuard]
-    },
+    },   
     // App-Management
     {
       path: 'management/applicationrole',
