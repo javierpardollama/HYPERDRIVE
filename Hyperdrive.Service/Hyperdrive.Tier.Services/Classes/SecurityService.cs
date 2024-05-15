@@ -79,8 +79,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
             ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserByEmail")
-                .Include(x => x.ApplicationUserTokens)
+                .TagWith("FindApplicationUserByEmail")                
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());
@@ -113,8 +112,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
             ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserByEmail")
-                .Include(x => x.ApplicationUserTokens)
+                .TagWith("FindApplicationUserByEmail")               
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == id);
@@ -268,30 +266,34 @@ namespace Hyperdrive.Tier.Services.Classes
             @applicationUser.FirstName = viewModel.NewFirstName;
             @applicationUser.LastName = viewModel.NewLastName;
 
-            Context.Users.Update(@applicationUser);
+            IdentityResult @identityResult = await @userManager.UpdateAsync(@applicationUser);
 
-            await Context.SaveChangesAsync();
-
-            @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
+            if (@identityResult.Succeeded)
             {
-                Name = Guid.NewGuid().ToString(),
-                LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @applicationUser,
-                UserId = @applicationUser.Id,
-                Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
-            });
+                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    UserId = @applicationUser.Id,
+                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                });
 
-            // Log
-            string @logData = nameof(@applicationUser)
-                + " with Id "
-                + @applicationUser.Id
-                + " was modified at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string @logData = nameof(@applicationUser)
+                    + " with Id "
+                    + @applicationUser.Id
+                    + " was modified at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+                Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewApplicationUser>(@applicationUser);
-
+                return Mapper.Map<ViewApplicationUser>(@applicationUser);
+            }
+            else
+            {
+                throw new Exception("Security Error");
+            }
         }
     }
 }

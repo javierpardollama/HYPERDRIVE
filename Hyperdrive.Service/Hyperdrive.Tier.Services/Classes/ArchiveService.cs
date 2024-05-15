@@ -163,8 +163,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
             ApplicationUser @applicationUser = await userManager.Users
-                .TagWith("FindApplicationUserById")
-                .Include(x => x.ApplicationUserTokens)
+                .TagWith("FindApplicationUserById")                
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == @id);

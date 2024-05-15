@@ -38,8 +38,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ICollection<ApplicationUser> @applicationUsers = await Context.Users
                .TagWith("FindAllApplicationUser")
                .AsNoTracking()
-               .AsSplitQuery()
-               .Include(x => x.ApplicationUserTokens)
+               .AsSplitQuery()              
                .Include(x => x.ApplicationUserRoles)
                .ThenInclude(x => x.ApplicationRole)
                .ToListAsync();
@@ -83,8 +82,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
             ApplicationUser @applicationUser = await Context.Users
-               .TagWith("FindApplicationUserById")
-               .Include(x => x.ApplicationUserTokens)
+               .TagWith("FindApplicationUserById")              
                .Include(x => x.ApplicationUserRoles)
                .ThenInclude(x => x.ApplicationRole)
                .FirstOrDefaultAsync(x => x.Id == @id);
