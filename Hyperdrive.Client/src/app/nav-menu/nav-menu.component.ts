@@ -12,8 +12,6 @@ import { ViewApplicationUser } from './../../viewmodels/views/viewapplicationuse
 })
 export class NavMenuComponent implements OnInit {
 
-  public isExpanded = false;
-
   public isVisible = false;
 
   public User?: ViewApplicationUser;
@@ -29,14 +27,6 @@ export class NavMenuComponent implements OnInit {
   }
 
   // Nav Actions
-  collapse() {
-    this.isExpanded = false;
-  }
-
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
-
   display() {
     if (this.User) {
       this.isVisible = true;
