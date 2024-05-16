@@ -9,20 +9,20 @@ import { Router } from '@angular/router';
   templateUrl: './toolbox-modal.component.html',
   styleUrl: './toolbox-modal.component.scss'
 })
-export class ToolboxModalComponent {
+export class ToolBoxModalComponent {
 
   public NavigationLinks: ViewLink[];
 
   // Constructor
   constructor(
     private router: Router,
-    public dialogRef: MatDialogRef<ToolboxModalComponent>,
+    public dialogRef: MatDialogRef<ToolBoxModalComponent>,
     private navigationService: NavigationService) {
     this.NavigationLinks = this.navigationService.GetToolBoxNavigationLinks();
   }
 
-  public navigate(route: string) {
+  public navigate(viewLink: ViewLink) {
     this.dialogRef.close();
-    this.router.navigate([route]);
+    this.router.navigate([viewLink.Link]);
   }
 }

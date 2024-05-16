@@ -49,7 +49,7 @@ import { NavMenuComponent }
   from './nav-menu/nav-menu.component';
 import { ProfileModalComponent }
   from './nav-menu/modals/profile-modal/profile-modal.component';
-import { ToolboxModalComponent }
+import { ToolBoxModalComponent }
   from './nav-menu/modals/toolbox-modal/toolbox-modal.component';
 
 // App-Auth
@@ -104,7 +104,7 @@ import { ApplicationUserUpdateModalComponent }
     //Nav
     NavMenuComponent,
     ProfileModalComponent,
-    ToolboxModalComponent,
+    ToolBoxModalComponent,
     // App-Auth
     JoinInAuthComponent,
     SignInAuthComponent,

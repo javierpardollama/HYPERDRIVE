@@ -9,7 +9,7 @@ import { MatDialog }
 import { ViewApplicationUser }
   from './../../viewmodels/views/viewapplicationuser';
 import { ProfileModalComponent } from './modals/profile-modal/profile-modal.component';
-import { ToolboxModalComponent } from './modals/toolbox-modal/toolbox-modal.component';
+import { ToolBoxModalComponent } from './modals/toolbox-modal/toolbox-modal.component';
 
 @Component({
   selector: 'app-nav-menu',
@@ -21,8 +21,7 @@ export class NavMenuComponent implements OnInit {
   public isVisible = false;
 
   public User?: ViewApplicationUser;
-
-  // Constructor
+ 
   // Constructor
   constructor(
     public matDialog: MatDialog) {
@@ -54,7 +53,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   public Toolbox() {
-    const dialogRef = this.matDialog.open(ToolboxModalComponent, {
+    const dialogRef = this.matDialog.open(ToolBoxModalComponent, {
       width: '450px'
     });
 
