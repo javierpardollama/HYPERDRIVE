@@ -1,5 +1,5 @@
 <header>
-  <nav *ngIf="display()" class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3'>
+  <nav *ngIf="Display()" class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3'>
     <div class="container">
       <ul class="navbar-nav flex-grow">
         <li class="nav-item nav-menu-cell-start">
@@ -15,8 +15,8 @@
           </a>
         </li>
         <li class="nav-item nav-menu-cell-end ">
-          <a class="nav-link text-dark">
-            <div class="nav-menu-option-image nav-menu-initial-image">{{User?.Initial}}</div>
+          <a class="nav-link text-dark" (click)="Profile()">
+            <div class="nav-menu-option-image nav-menu-initial-image"><span>{{User?.Initial}}</span></div>
             <span class="nav-option-link">{{User?.Email}}</span>
           </a>
         </li>

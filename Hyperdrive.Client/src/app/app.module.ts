@@ -40,10 +40,13 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
 // App
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+
+// App-Nav
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { ProfileModalComponent } from './nav-menu/modals/profile-modal/profile-modal.component';
 
 // App-Auth
 import {
@@ -87,14 +90,17 @@ import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
 
+
 @NgModule({
   declarations: [
     // App
-    AppComponent,
-    NavMenuComponent,
+    AppComponent,  
     HomeComponent,
     UnknownComponent,
     UnauthorizedComponent,
+    //Nav
+    NavMenuComponent,
+    ProfileModalComponent,
     // App-Auth
     JoinInAuthComponent,
     SignInAuthComponent,

@@ -11,6 +11,10 @@ ul {
     display: inline-block;
 }
 
+.nav-link:hover {
+    cursor: pointer;
+}
+
 .nav-option-link {
     padding-left: 8px;
 }
@@ -22,6 +26,13 @@ ul {
     flex-shrink: 0;
     object-fit: cover;
     float: left;
+    position: relative;
+}
+
+.nav-menu-initial-image span
+{
+    position: absolute;
+    top: 15%;
 }
 
 .nav-menu-app-image {

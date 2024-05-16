@@ -3,7 +3,12 @@ import {
   OnInit
 } from '@angular/core';
 
-import { ViewApplicationUser } from './../../viewmodels/views/viewapplicationuser';
+import { MatDialog }
+  from '@angular/material/dialog';
+
+import { ViewApplicationUser }
+  from './../../viewmodels/views/viewapplicationuser';
+import { ProfileModalComponent } from './modals/profile-modal/profile-modal.component';
 
 @Component({
   selector: 'app-nav-menu',
@@ -17,7 +22,9 @@ export class NavMenuComponent implements OnInit {
   public User?: ViewApplicationUser;
 
   // Constructor
-  constructor() {
+  // Constructor
+  constructor(
+    public matDialog: MatDialog) {
 
   }
 
@@ -27,13 +34,24 @@ export class NavMenuComponent implements OnInit {
   }
 
   // Nav Actions
-  display() {
+  Display() {
     if (this.User) {
       this.isVisible = true;
     }
 
     return this.isVisible;
   }
+
+  public Profile() {
+    const dialogRef = this.matDialog.open(ProfileModalComponent, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.GetLocalUser();
+    });
+  }
+
 
   // Get User from Storage
   public GetLocalUser() {
