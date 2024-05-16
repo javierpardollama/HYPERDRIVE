@@ -12,22 +12,22 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { SecurityService } from '../../../services/security.service';
+import { SecurityService } from '../../../../services/security.service';
 
-import { SecurityNameChange } from '../../../viewmodels/security/securitynamechange';
+import { SecurityEmailChange } from '../../../../viewmodels/security/securityemailchange';
 
-import { ViewApplicationUser } from '../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import { TextAppVariants } from '../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from '../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 @Component({
-  selector: 'app-changename-security',
-  templateUrl: './changename-security.component.html',
-  styleUrl: './changename-security.component.scss'
+  selector: 'app-changeemail-modal',
+  templateUrl: './changeemail-modal.component.html',
+  styleUrls: ['./changeemail-modal.component.scss']
 })
-export class ChangeNameSecurityComponent {
+export class ChangeEmailModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
@@ -35,7 +35,7 @@ export class ChangeNameSecurityComponent {
 
   // Constructor
   constructor(
-    public dialogRef: MatDialogRef<ChangeNameSecurityComponent>,
+    public dialogRef: MatDialogRef<ChangeEmailModalComponent>,
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private matSnackBar: MatSnackBar) { }
@@ -56,11 +56,7 @@ export class ChangeNameSecurityComponent {
     this.formGroup = this.formBuilder.group({
       ApplicationUserId: [this.User.Id,
       Validators.required],
-      NewFirstName: [TextAppVariants.AppEmptyCoreText,
-      [
-        Validators.required,
-      ]],
-      NewLastName: [TextAppVariants.AppEmptyCoreText,
+      NewEmail: [TextAppVariants.AppEmptyCoreText,
       [
         Validators.required,
       ]],
@@ -68,8 +64,8 @@ export class ChangeNameSecurityComponent {
   }
 
   // Form Actions
-  async onSubmit(viewModel: SecurityNameChange) {
-    let user = await this.securityService.ChangeName(viewModel);
+  async onSubmit(viewModel: SecurityEmailChange) {
+    let user = await this.securityService.ChangeEmail(viewModel);
 
     if (user) {
       this.matSnackBar.open(
@@ -82,5 +78,4 @@ export class ChangeNameSecurityComponent {
 
     this.dialogRef.close();
   }
-
 }

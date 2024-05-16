@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ChangeNameSecurityComponent }
-  from './changename-security/changename-security.component';
+import { ChangeNameModalComponent }
+  from './modals/changename-modal/changename-modal.component';
 
-import { ChangeEmailSecurityComponent }
-  from './changeemail-security/changeemail-security.component';
+import { ChangeEmailModalComponent }
+  from './modals/changeemail-modal/changeemail-modal.component';
 
-import { ChangePasswordSecurityComponent }
-  from './changepassword-security/changepassword-security.component';
+import { ChangePasswordModalComponent }
+  from './modals/changepassword-modal/changepassword-modal.component';
 
-import { ChangePhoneNumberSecurityComponent }
-  from './changephonenumber-security/changephonenumber-security.component';
+import { ChangePhoneNumberModalComponent }
+  from './modals/changephonenumber-modal/changephonenumber-modal.component';
 
 import { ViewApplicationUser }
   from './../../viewmodels/views/viewapplicationuser';
@@ -38,7 +38,7 @@ export class SecurityComponent implements OnInit {
   }
 
   ChangeName() {
-    const dialogRef = this.matDialog.open(ChangeNameSecurityComponent, {
+    const dialogRef = this.matDialog.open(ChangeNameModalComponent, {
       width: '450px'
     });
 
@@ -48,7 +48,7 @@ export class SecurityComponent implements OnInit {
   }
 
   ChangeEmail() {
-    const dialogRef = this.matDialog.open(ChangeEmailSecurityComponent, {
+    const dialogRef = this.matDialog.open(ChangeEmailModalComponent, {
       width: '450px'
     });
 
@@ -58,7 +58,7 @@ export class SecurityComponent implements OnInit {
   }
 
   ChangePassword() {
-    const dialogRef = this.matDialog.open(ChangePasswordSecurityComponent, {
+    const dialogRef = this.matDialog.open(ChangePasswordModalComponent, {
       width: '450px'
     });
 
@@ -68,7 +68,7 @@ export class SecurityComponent implements OnInit {
   }
 
   ChangePhoneNumber() {
-    const dialogRef = this.matDialog.open(ChangePhoneNumberSecurityComponent, {
+    const dialogRef = this.matDialog.open(ChangePhoneNumberModalComponent, {
       width: '450px'
     });
 

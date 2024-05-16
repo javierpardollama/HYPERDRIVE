@@ -12,21 +12,21 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { SecurityService } from './../../../services/security.service';
+import { SecurityService } from '../../../../services/security.service';
 
-import { SecurityPasswordChange } from './../../../viewmodels/security/securitypasswordchange';
+import { SecurityPasswordChange } from '../../../../viewmodels/security/securitypasswordchange';
 
-import { ViewApplicationUser } from './../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import { TextAppVariants } from './../../../variants/text.app.variants';
-import { TimeAppVariants } from '../../../variants/time.app.variants';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
+import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 @Component({
-  selector: 'app-changepassword-security',
-  templateUrl: './changepassword-security.component.html',
-  styleUrls: ['./changepassword-security.component.scss']
+  selector: 'app-changepassword-modal',
+  templateUrl: './changepassword-modal.component.html',
+  styleUrls: ['./changepassword-modal.component.scss']
 })
-export class ChangePasswordSecurityComponent implements OnInit {
+export class ChangePasswordModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
@@ -34,7 +34,7 @@ export class ChangePasswordSecurityComponent implements OnInit {
 
   // Constructor
   constructor(
-    public dialogRef: MatDialogRef<ChangePasswordSecurityComponent>,
+    public dialogRef: MatDialogRef<ChangePasswordModalComponent>,
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private matSnackBar: MatSnackBar) { }

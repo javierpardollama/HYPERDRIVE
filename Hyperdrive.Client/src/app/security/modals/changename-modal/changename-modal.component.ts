@@ -12,22 +12,22 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { SecurityService } from '../../../services/security.service';
+import { SecurityService } from '../../../../services/security.service';
 
-import { SecurityPhoneNumberChange } from '../../../viewmodels/security/securityphonenumberchange';
+import { SecurityNameChange } from '../../../../viewmodels/security/securitynamechange';
 
-import { ViewApplicationUser } from '../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import { TextAppVariants } from '../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from '../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 @Component({
-  selector: 'app-changephonenumber-security',
-  templateUrl: './changephonenumber-security.component.html',
-  styleUrls: ['./changephonenumber-security.component.scss']
+  selector: 'app-changename-modal',
+  templateUrl: './changename-modal.component.html',
+  styleUrl: './changename-modal.component.scss'
 })
-export class ChangePhoneNumberSecurityComponent implements OnInit {
+export class ChangeNameModalComponent {
 
   public formGroup!: FormGroup;
 
@@ -35,7 +35,7 @@ export class ChangePhoneNumberSecurityComponent implements OnInit {
 
   // Constructor
   constructor(
-    public dialogRef: MatDialogRef<ChangePhoneNumberSecurityComponent>,
+    public dialogRef: MatDialogRef<ChangeNameModalComponent>,
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private matSnackBar: MatSnackBar) { }
@@ -56,7 +56,11 @@ export class ChangePhoneNumberSecurityComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       ApplicationUserId: [this.User.Id,
       Validators.required],
-      NewPhoneNumber: [TextAppVariants.AppEmptyCoreText,
+      NewFirstName: [TextAppVariants.AppEmptyCoreText,
+      [
+        Validators.required,
+      ]],
+      NewLastName: [TextAppVariants.AppEmptyCoreText,
       [
         Validators.required,
       ]],
@@ -64,8 +68,8 @@ export class ChangePhoneNumberSecurityComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: SecurityPhoneNumberChange) {
-    let user = await this.securityService.ChangePhoneNumber(viewModel);
+  async onSubmit(viewModel: SecurityNameChange) {
+    let user = await this.securityService.ChangeName(viewModel);
 
     if (user) {
       this.matSnackBar.open(
@@ -78,4 +82,5 @@ export class ChangePhoneNumberSecurityComponent implements OnInit {
 
     this.dialogRef.close();
   }
+
 }

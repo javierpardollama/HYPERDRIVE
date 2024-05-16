@@ -29,14 +29,10 @@ ul {
     background-size: cover;
 }
 
-.nav-menu-role-image {
-    background-image: url('/assets/img/iconos/Role_500px.png');
+.nav-menu-toolbox-image {
+    background-image: url('/assets/img/iconos/Toolbox_500px.png');
     background-size: cover;
-}
-
-.nav-menu-user-image {
-    background-image: url('/assets/img/iconos/User_500px.png');
-    background-size: cover;
+    display: none;
 }
 
 .nav-menu-initial-image {
@@ -52,4 +48,19 @@ ul {
 
 .nav-menu-cell-end {
     float: inline-end;
+}
+
+@media screen and (max-width: 960px) {
+    .nav-item {
+        margin: 8px;
+        ;
+    }
+
+    .nav-option-link {
+        display: none;
+    }
+
+    .nav-menu-toolbox-image {
+        display: block;
+    }
 }

@@ -12,22 +12,22 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { SecurityService } from './../../../services/security.service';
+import { SecurityService } from '../../../../services/security.service';
 
-import { SecurityEmailChange } from './../../../viewmodels/security/securityemailchange';
+import { SecurityPhoneNumberChange } from '../../../../viewmodels/security/securityphonenumberchange';
 
-import { ViewApplicationUser } from './../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import { TextAppVariants } from './../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from '../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 @Component({
-  selector: 'app-changeemail-security',
-  templateUrl: './changeemail-security.component.html',
-  styleUrls: ['./changeemail-security.component.scss']
+  selector: 'app-changephonenumber-modal',
+  templateUrl: './changephonenumber-modal.component.html',
+  styleUrls: ['./changephonenumber-modal.component.scss']
 })
-export class ChangeEmailSecurityComponent implements OnInit {
+export class ChangePhoneNumberModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
@@ -35,7 +35,7 @@ export class ChangeEmailSecurityComponent implements OnInit {
 
   // Constructor
   constructor(
-    public dialogRef: MatDialogRef<ChangeEmailSecurityComponent>,
+    public dialogRef: MatDialogRef<ChangePhoneNumberModalComponent>,
     private securityService: SecurityService,
     private formBuilder: FormBuilder,
     private matSnackBar: MatSnackBar) { }
@@ -56,7 +56,7 @@ export class ChangeEmailSecurityComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       ApplicationUserId: [this.User.Id,
       Validators.required],
-      NewEmail: [TextAppVariants.AppEmptyCoreText,
+      NewPhoneNumber: [TextAppVariants.AppEmptyCoreText,
       [
         Validators.required,
       ]],
@@ -64,8 +64,8 @@ export class ChangeEmailSecurityComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: SecurityEmailChange) {
-    let user = await this.securityService.ChangeEmail(viewModel);
+  async onSubmit(viewModel: SecurityPhoneNumberChange) {
+    let user = await this.securityService.ChangePhoneNumber(viewModel);
 
     if (user) {
       this.matSnackBar.open(
