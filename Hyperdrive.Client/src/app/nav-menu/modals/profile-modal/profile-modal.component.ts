@@ -41,18 +41,18 @@ export class ProfileModalComponent implements OnInit {
   }
 
   public async SignOut() {
-    let usr: AuthSignOut =
+    const viewModel: AuthSignOut =
     {
       Email: this.User!.Email
     };
 
     this.dialogRef.close();
 
-    sessionStorage.removeItem('User');
+    sessionStorage.removeItem('User');   
+
+    await this.authService.SignOut(viewModel);
 
     this.router.navigate(['']);
-
-    await this.authService.SignOut(usr);
   }
 
   // Get User from Storage
