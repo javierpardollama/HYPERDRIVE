@@ -1,0 +1,10 @@
+<div class="container">
+  <ul>
+    <li *ngFor="let Link of NavigationLinks" class="option-link">
+      <button mat-button  type="button" [id]=Link.Id (click)="navigate(Link.Link)">
+        <div class={{Link.Class}}></div>
+        <span>{{Link.Label}}</span>
+      </button>
+    </li>
+  </ul>
+</div>

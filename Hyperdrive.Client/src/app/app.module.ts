@@ -45,8 +45,12 @@ import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 // App-Nav
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { ProfileModalComponent } from './nav-menu/modals/profile-modal/profile-modal.component';
+import { NavMenuComponent }
+  from './nav-menu/nav-menu.component';
+import { ProfileModalComponent }
+  from './nav-menu/modals/profile-modal/profile-modal.component';
+import { ToolboxModalComponent }
+  from './nav-menu/modals/toolbox-modal/toolbox-modal.component';
 
 // App-Auth
 import {
@@ -90,17 +94,17 @@ import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
 
-
 @NgModule({
   declarations: [
     // App
-    AppComponent,  
+    AppComponent,
     HomeComponent,
     UnknownComponent,
     UnauthorizedComponent,
     //Nav
     NavMenuComponent,
     ProfileModalComponent,
+    ToolboxModalComponent,
     // App-Auth
     JoinInAuthComponent,
     SignInAuthComponent,

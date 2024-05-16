@@ -7,35 +7,30 @@ import { Injectable } from '@angular/core';
 })
 
 export class NavigationService {
+   
 
-    public GetManagementNavigationLinks(): ViewLink[] {
+    public GetToolBoxNavigationLinks(): ViewLink[] {
         return [
             {
-                Label: 'Archives',
-                Link: './management/archives',
+                Id:'nav-aplication-users',
+                Label: 'Users',
+                Link: './management/applicationuser',
                 Index: 0,
-                Class:'management-menu-option-image management-menu-archives-image'
-            }, {
-                Label: 'Shared Archives',
-                Link: './management/sharedarchives',
+                Class:'option-image application-user-management-image'
+            },
+            {
+                Id:'nav-aplication-roles',
+                Label: 'Roles',
+                Link: './management/applicationrole',
                 Index: 1,
-                Class:'management-menu-option-image management-menu-shared-archives-image'
-            }
-        ];
-    }
-
-    public GetHomeNavigationLinks(): ViewLink[] {
-        return [
+                Class:'option-image application-role-management-image'
+            },
             {
-                Label: 'Managenent',
-                Link: './management',
-                Index: 0,
-                Class:'home-menu-option-image home-menu-management-image'
-            }, {
+                Id:'nav-security',
                 Label: 'Security',
                 Link: './security',
-                Index: 1,
-                Class:'home-menu-option-image home-menu-security-image'
+                Index: 2,
+                Class:'option-image security-image'
             }
         ];
     }

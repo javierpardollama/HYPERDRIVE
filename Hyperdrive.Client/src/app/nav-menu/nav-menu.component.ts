@@ -9,6 +9,7 @@ import { MatDialog }
 import { ViewApplicationUser }
   from './../../viewmodels/views/viewapplicationuser';
 import { ProfileModalComponent } from './modals/profile-modal/profile-modal.component';
+import { ToolboxModalComponent } from './modals/toolbox-modal/toolbox-modal.component';
 
 @Component({
   selector: 'app-nav-menu',
@@ -44,6 +45,16 @@ export class NavMenuComponent implements OnInit {
 
   public Profile() {
     const dialogRef = this.matDialog.open(ProfileModalComponent, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.GetLocalUser();
+    });
+  }
+
+  public Toolbox() {
+    const dialogRef = this.matDialog.open(ToolboxModalComponent, {
       width: '450px'
     });
 
