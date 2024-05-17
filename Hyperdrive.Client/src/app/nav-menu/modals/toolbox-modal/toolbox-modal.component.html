@@ -1,9 +1,9 @@
 <div id="toolbox-modal" class="container">
   <ul>
     <li *ngFor="let Link of NavigationLinks" class="option-link">
-      <button mat-button  type="button" [id]=Link.Id (click)="navigate(Link)">
+      <button mat-button type="button" [id]=Link.Id (click)="navigate(Link)">
         <div class={{Link.Class}}></div>
-        <span>{{Link.Label}}</span>
+        <span class="option-link-label">{{Link.Label}}</span>
       </button>
     </li>
   </ul>

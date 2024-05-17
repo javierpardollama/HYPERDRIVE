@@ -45,3 +45,9 @@ ul {
     background-image: url('/assets/img/iconos/Hyperdrive_500px.png');
     background-size: cover;
 }
+
+@media screen and (max-width: 960px) {
+    .option-link-label {
+        display: none;
+    }
+}
