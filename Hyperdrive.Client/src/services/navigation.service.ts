@@ -31,6 +31,12 @@ export class NavigationService {
                 Link: './security',
                 Index: 2,
                 Class:'option-image security-image'
+            }, {
+                Id:'nav-cloud',
+                Label: 'Cloud',
+                Link: './cloud',
+                Index: 2,
+                Class:'option-image cloud-image'
             }
         ];
     }
