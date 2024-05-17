@@ -32,11 +32,11 @@ export class NavigationService {
                 Index: 2,
                 Class:'option-image security-image'
             }, {
-                Id:'nav-cloud',
-                Label: 'Cloud',
-                Link: './cloud',
-                Index: 2,
-                Class:'option-image cloud-image'
+                Id:'nav-app',
+                Label: 'Hyperdrive',
+                Link: './',
+                Index: 3,
+                Class:'option-image app-image'
             }
         ];
     }
