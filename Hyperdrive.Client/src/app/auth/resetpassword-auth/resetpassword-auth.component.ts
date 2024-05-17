@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -48,11 +49,11 @@ export class ResetPasswordAuthComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Email: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required,
-      Validators.pattern(ExpressionAppVariants.AppMailExpression)]],
-      NewPassword: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required]]
+      Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [Validators.required,
+        Validators.pattern(ExpressionAppVariants.AppMailExpression)]),
+      NewPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [Validators.required])
     });
   }
 

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -41,12 +42,12 @@ export class SignInAuthComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Email: [TextAppVariants.AppEmptyCoreText,
-      [
-        Validators.required,
-      ]],
-      Password: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required]]
+      Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [
+          Validators.required,
+        ]),
+      Password: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [Validators.required])
     });
   }
 

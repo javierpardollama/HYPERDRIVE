@@ -5,6 +5,7 @@ import {
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -54,12 +55,12 @@ export class ChangeEmailModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      ApplicationUserId: [this.User.Id,
-      Validators.required],
-      NewEmail: [TextAppVariants.AppEmptyCoreText,
-      [
-        Validators.required,
-      ]],
+      ApplicationUserId: new FormControl<number>(this.User.Id,
+        [Validators.required]),
+      NewEmail: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [
+          Validators.required,
+        ]),
     });
   }
 
