@@ -1,49 +1,46 @@
 .grid-container {
-max-height: 450px;
-overflow: auto;
+    max-height: 450px;
+    overflow: auto;
 }
 
 table {
-width: 100%;
-overflow: auto;
-max-height: 450px;
+    width: 100%;
+    overflow: auto;
+    max-height: 450px;
 }
 
-.grid-page{
-margin:8px;
+.grid-page {
+    margin: 8px;
 }
 
-.grid-filter{
-width: 400px;
+.grid-filter {
+    width: 400px;
 }
 
-.add-button{
-float: right;
+.add-button {
+    float: right;
 }
 
-.breadcrumb{
-color: #912db9 !important;
-width: fit-content !important;
+.breadcrumb {
+    color: #912db9 !important;
+    width: fit-content !important;
 }
 
-@media screen and (max-width: 960px) 
-{
-.mat-mdc-header-row
-{
-display: none;
-}
+@media screen and (max-width: 960px) {
+    .mat-mdc-header-row {
+        display: none;
+    }
 
-.mat-mdc-cell
-{        
-width: 100%;
-float: left;
-border-style: none; 
-padding: 8px;
-}          
+    .mat-mdc-cell {
+        width: 100%;
+        float: left;
+        border-style: none;
+        padding: 8px;
+    }
 
-.mat-mdc-table .mat-mdc-row {
-border-bottom-width: 1px;
-border-bottom-style: solid;
-border-bottom-color: rgba(0,0,0,.12);        
-}
+    .mat-mdc-table .mat-mdc-row {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: rgba(0, 0, 0, .12);
+    }
 }
