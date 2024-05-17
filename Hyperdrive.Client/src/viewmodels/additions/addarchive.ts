@@ -5,6 +5,6 @@ export interface AddArchive extends AddBase {
     Name: string;
     Folder: boolean;
     Locked: boolean;
-    Size: number;
-    Type: string;
+    Size?: number;
+    Type?: string;
 }

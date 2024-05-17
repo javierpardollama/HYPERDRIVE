@@ -39,7 +39,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         /// <summary>
         /// Gets or Sets <see cref="Size"/>
         /// </summary>
-        public float Size { get; set; }
+        public float? Size { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Type"/>
