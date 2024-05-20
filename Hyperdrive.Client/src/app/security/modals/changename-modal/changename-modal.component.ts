@@ -57,10 +57,10 @@ export class ChangeNameModalComponent {
     this.formGroup = this.formBuilder.group({
       ApplicationUserId: new FormControl<number>(this.User.Id,
         [Validators.required]),
-      NewFirstName: [TextAppVariants.AppEmptyCoreText,
-      [
-        Validators.required,
-      ]],
+      NewFirstName: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [
+          Validators.required,
+        ]),
       NewLastName: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
           Validators.required,
