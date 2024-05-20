@@ -12,19 +12,19 @@ import {
   Validators
 } from '@angular/forms';
 
-import { AuthService } from './../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
-import { AuthSignIn } from './../../../viewmodels/auth/authsignin';
+import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
-import { TextAppVariants } from './../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../variants/text.app.variants';
 
 
 @Component({
-  selector: 'app-signin-auth',
-  templateUrl: './signin-auth.component.html',
-  styleUrls: ['./signin-auth.component.scss']
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss']
 })
-export class SignInAuthComponent implements OnInit {
+export class SignInComponent implements OnInit {
 
   public formGroup!: FormGroup;
 

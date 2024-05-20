@@ -54,10 +54,10 @@ import { ToolBoxModalComponent }
 
 // App-Auth
 import {
-  JoinInAuthComponent
-} from './auth/joinin-auth/joinin-auth.component';
-import { SignInAuthComponent }
-  from './auth/signin-auth/signin-auth.component';
+  JoinInComponent
+} from './auth/joinin/joinin.component';
+import { SignInComponent }
+  from './auth/signin/signin.component';
 
 // App-Security
 import { SecurityComponent }
@@ -66,8 +66,8 @@ import {
   ChangePasswordModalComponent
 } from './security/modals/changepassword-modal/changepassword-modal.component';
 import {
-  ResetPasswordAuthComponent
-} from './auth/resetpassword-auth/resetpassword-auth.component';
+  ResetPasswordComponent
+} from './auth/resetpassword/resetpassword.component';
 import { ChangePhoneNumberModalComponent }
   from './security/modals/changephonenumber-modal/changephonenumber-modal.component';
 import {
@@ -106,9 +106,9 @@ import { ApplicationUserUpdateModalComponent }
     ProfileModalComponent,
     ToolBoxModalComponent,
     // App-Auth
-    JoinInAuthComponent,
-    SignInAuthComponent,
-    ResetPasswordAuthComponent,
+    JoinInComponent,
+    SignInComponent,
+    ResetPasswordComponent,
     // App-Security
     SecurityComponent,
     ChangePasswordModalComponent,

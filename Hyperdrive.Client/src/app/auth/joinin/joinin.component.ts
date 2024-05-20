@@ -12,18 +12,18 @@ import {
   Validators
 } from '@angular/forms';
 
-import { AuthService } from './../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
-import { AuthSignIn } from './../../../viewmodels/auth/authsignin';
+import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
-import { TextAppVariants } from './../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../variants/text.app.variants';
 
 @Component({
   selector: 'app-joinin-auth',
-  templateUrl: './joinin-auth.component.html',
-  styleUrls: ['./joinin-auth.component.scss']
+  templateUrl: './joinin.component.html',
+  styleUrls: ['./joinin.component.scss']
 })
-export class JoinInAuthComponent implements OnInit {
+export class JoinInComponent implements OnInit {
 
   public formGroup!: FormGroup;
 

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SignInGuard } from '../guards/signin.guard';
-import { JoinInAuthComponent } from './auth/joinin-auth/joinin-auth.component';
-import { SignInAuthComponent } from './auth/signin-auth/signin-auth.component';
+import { JoinInComponent } from './auth/joinin/joinin.component';
+import { SignInComponent } from './auth/signin/signin.component';
 import { HomeComponent } from './home/home.component';
-import { ResetPasswordAuthComponent } from './auth/resetpassword-auth/resetpassword-auth.component';
+import { ResetPasswordComponent } from './auth/resetpassword/resetpassword.component';
 import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ApplicationRoleGridComponent } from './management/grids/applicationrole-grid/applicationrole-grid.component';
@@ -22,17 +22,17 @@ import { SecurityComponent } from './security/security.component'
     // App-Auth
     {
       path: 'auth/joinin',
-      component: JoinInAuthComponent,
+      component: JoinInComponent,
       pathMatch: 'full'
     },
     {
       path: 'auth/signin',
-      component: SignInAuthComponent,
+      component: SignInComponent,
       pathMatch: 'full'
     },
     {
       path: 'auth/resetpassword',
-      component: ResetPasswordAuthComponent,
+      component: ResetPasswordComponent,
       pathMatch: 'full'
     },
     // App-Security
@@ -41,7 +41,7 @@ import { SecurityComponent } from './security/security.component'
       component: SecurityComponent,
       pathMatch: 'full',
       canActivate: [SignInGuard]
-    },   
+    },
     // App-Management
     {
       path: 'management/applicationrole',

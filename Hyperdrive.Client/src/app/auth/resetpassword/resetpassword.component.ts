@@ -25,11 +25,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimeAppVariants } from '../../../variants/time.app.variants';
 
 @Component({
-  selector: 'app-resetpassword-auth',
-  templateUrl: './resetpassword-auth.component.html',
-  styleUrls: ['./resetpassword-auth.component.scss']
+  selector: 'app-resetpassword',
+  templateUrl: './resetpassword.component.html',
+  styleUrls: ['./resetpassword.component.scss']
 })
-export class ResetPasswordAuthComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
