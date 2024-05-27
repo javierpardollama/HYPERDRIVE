@@ -1,9 +1,6 @@
 import { ViewException } from './../viewmodels/views/viewexception';
 
-import {
-  HttpClient,
-  HttpErrorResponse
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 

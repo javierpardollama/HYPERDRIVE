@@ -9,10 +9,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 
-import {
-  HttpClientModule,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 // Angular Material
@@ -94,66 +91,60 @@ import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
 
-@NgModule({
-  declarations: [
-    // App
-    AppComponent,
-    HomeComponent,
-    UnknownComponent,
-    UnauthorizedComponent,
-    //Nav
-    NavMenuComponent,
-    ProfileModalComponent,
-    ToolBoxModalComponent,
-    // App-Auth
-    JoinInComponent,
-    SignInComponent,
-    ResetPasswordComponent,
-    // App-Security
-    SecurityComponent,
-    ChangePasswordModalComponent,
-    ChangeEmailModalComponent,
-    ChangePhoneNumberModalComponent,
-    ChangeNameModalComponent,
-    // App-Grid
-    ApplicationRoleGridComponent,
-    ApplicationUserGridComponent,
-    // App-Modal-Adition
-    ApplicationRoleAddModalComponent,
-    // App-Modal-Update
-    ApplicationRoleUpdateModalComponent,
-    ApplicationUserUpdateModalComponent
-  ],
-  imports: [
-    // Angular Material
-    BrowserAnimationsModule,
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatTabsModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatExpansionModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    NgOptimizedImage
-  ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-  }],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        // App
+        AppComponent,
+        HomeComponent,
+        UnknownComponent,
+        UnauthorizedComponent,
+        //Nav
+        NavMenuComponent,
+        ProfileModalComponent,
+        ToolBoxModalComponent,
+        // App-Auth
+        JoinInComponent,
+        SignInComponent,
+        ResetPasswordComponent,
+        // App-Security
+        SecurityComponent,
+        ChangePasswordModalComponent,
+        ChangeEmailModalComponent,
+        ChangePhoneNumberModalComponent,
+        ChangeNameModalComponent,
+        // App-Grid
+        ApplicationRoleGridComponent,
+        ApplicationUserGridComponent,
+        // App-Modal-Adition
+        ApplicationRoleAddModalComponent,
+        // App-Modal-Update
+        ApplicationRoleUpdateModalComponent,
+        ApplicationUserUpdateModalComponent
+    ],
+    bootstrap: [AppComponent], imports: [
+        // Angular Material
+        BrowserAnimationsModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatTabsModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatExpansionModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        NgOptimizedImage], providers: [{
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
