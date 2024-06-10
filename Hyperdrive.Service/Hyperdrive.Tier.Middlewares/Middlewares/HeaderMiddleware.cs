@@ -21,10 +21,9 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
             @context.Response.Headers.Remove("X-Powered-By");
             @context.Response.Headers.Remove("Server");
             @context.Response.Headers.XContentTypeOptions = new StringValues("nosniff");
-            @context.Response.Headers.XFrameOptions = new StringValues("SAMEORIGIN");
-            @context.Response.Headers.XXSSProtection = new StringValues("1; mode=block");
-            @context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src: https:; frame-ancestors 'self' X-Frame-Options: SAMEORIGIN");
-            @context.Response.Headers.StrictTransportSecurity = new StringValues("max-age=16070400; includeSubDomains; preload");
+            @context.Response.Headers.XFrameOptions = new StringValues("deny");
+            @context.Response.Headers.XXSSProtection = new StringValues("0");
+            @context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src 'self'");
 
             await request(@context);
         }
