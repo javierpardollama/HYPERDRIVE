@@ -1,9 +1,9 @@
 import { ViewBase } from './viewbase';
 import { ViewKey } from './viewkey';
-import { ViewArchive } from './viewarchive';
+import { ViewDriveItem } from './viewdriveitem';
 
-export interface ViewArchiveVersion extends ViewKey, ViewBase {
-    Archive: ViewArchive;
+export interface ViewDriveItemVersion extends ViewKey, ViewBase {
+    DriveItem: ViewDriveItem;
     Name: string;
     Data?: ArrayBuffer;
     Size: number;

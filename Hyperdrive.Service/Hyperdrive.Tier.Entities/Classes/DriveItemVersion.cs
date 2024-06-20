@@ -9,15 +9,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Hyperdrive.Tier.Entities.Classes
 {
     /// <summary>
-    /// Represents a <see cref="ArchiveVersion"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
+    /// Represents a <see cref="DriveItemVersion"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
     [Index(nameof(Name), nameof(Deleted))]
-    public class ArchiveVersion : IKey, IBase
+    public class DriveItemVersion : IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ArchiveVersion"/>
+        /// Initializes a new Instance of <see cref="DriveItemVersion"/>
         /// </summary>
-        public ArchiveVersion()
+        public DriveItemVersion()
         {
         }
 
@@ -70,9 +70,9 @@ namespace Hyperdrive.Tier.Entities.Classes
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="Archive"/>
+        /// Gets or Sets <see cref="DriveItem"/>
         /// </summary>
         [Required]
-        public virtual Archive Archive { get; set; }
+        public virtual DriveItem DriveItem { get; set; }
     }
 }

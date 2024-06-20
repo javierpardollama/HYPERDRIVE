@@ -1,9 +1,9 @@
 import { ViewBase } from './viewbase';
 import { ViewKey } from './viewkey';
-import { ViewArchive } from './viewarchive';
+import { ViewDriveItem } from './viewdriveitem';
 import { ViewApplicationUser } from './viewapplicationuser';
 
-export interface ViewApplicationUserArchive extends ViewKey, ViewBase {
-    Archive: ViewArchive;
+export interface ViewApplicationUserDriveItem extends ViewKey, ViewBase {
+    DriveItem: ViewDriveItem;
     ApplicationUser: ViewApplicationUser;
 }

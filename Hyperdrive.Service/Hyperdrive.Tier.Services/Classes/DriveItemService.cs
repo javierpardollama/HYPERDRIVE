@@ -21,22 +21,22 @@ using Microsoft.Extensions.Logging;
 namespace Hyperdrive.Tier.Services.Classes
 {
     /// <summary>
-    /// Represents a <see cref="ArchiveService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IArchiveService"/>
+    /// Represents a <see cref="DriveItemService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IDriveItemService"/>
     /// </summary>    
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-    /// <param name="logger">Injected <see cref="ILogger{ArchiveService}"/></param>
-    public class ArchiveService(UserManager<ApplicationUser> userManager,
+    /// <param name="logger">Injected <see cref="ILogger{DriveItemService}"/></param>
+    public class DriveItemService(UserManager<ApplicationUser> userManager,
                           IApplicationContext context,
                           IMapper mapper,
-                          ILogger<ArchiveService> logger) : BaseService(context, mapper, logger), IArchiveService
+                          ILogger<DriveItemService> logger) : BaseService(context, mapper, logger), IDriveItemService
     {
-        public async Task<Archive> FindArchiveById(int @id)
+        public async Task<DriveItem> FindDriveItemById(int @id)
         {
-            Archive @archive = await Context.Archives
-                 .TagWith("FindArchiveById")
-                 .Include(x => x.ArchiveVersions)
-                 .Include(x => x.ApplicationUserArchives)
+            DriveItem @archive = await Context.DriveItems
+                 .TagWith("FindDriveItemById")
+                 .Include(x => x.DriveItemVersions)
+                 .Include(x => x.ApplicationUserDriveItems)
                  .FirstOrDefaultAsync(x => x.Id == id);
 
             if (@archive == null)
@@ -59,11 +59,11 @@ namespace Hyperdrive.Tier.Services.Classes
             return @archive;
         }
 
-        public async Task RemoveArchiveById(int @id)
+        public async Task RemoveDriveItemById(int @id)
         {
-            Archive @archive = await FindArchiveById(@id);
+            DriveItem @archive = await FindDriveItemById(@id);
 
-            Context.Archives.Remove(@archive);
+            Context.DriveItems.Remove(@archive);
 
             await Context.SaveChangesAsync();
 
@@ -77,24 +77,24 @@ namespace Hyperdrive.Tier.Services.Classes
             Logger.WriteDeleteItemLog(@logData);
         }
 
-        public async Task<IList<ViewArchive>> FindAllArchive()
+        public async Task<IList<ViewDriveItem>> FindAllDriveItem()
         {
-            ICollection<Archive> @archives = await Context.Archives
-                .TagWith("FindAllArchive")
+            ICollection<DriveItem> @archives = await Context.DriveItems
+                .TagWith("FindAllDriveItem")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.ArchiveVersions)
+                .Include(x => x.DriveItemVersions)
                 .Include(x => x.By)
                 .ToListAsync();
 
-            return Mapper.Map<IList<ViewArchive>>(@archives);
+            return Mapper.Map<IList<ViewDriveItem>>(@archives);
         }
 
-        public async Task<ViewPage<ViewArchive>> FindPaginatedArchiveByApplicationUserId(FilterPageArchive @viewModel)
+        public async Task<ViewPage<ViewDriveItem>> FindPaginatedDriveItemByApplicationUserId(FilterPageDriveItem @viewModel)
         {
-            ViewPage<ViewArchive> @page = new()
+            ViewPage<ViewDriveItem> @page = new()
             {
-                Length = await Context.Archives.TagWith("CountAllArchiveByApplicationUserId")
+                Length = await Context.DriveItems.TagWith("CountAllDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
                     .Include(x => x.By)
@@ -102,11 +102,11 @@ namespace Hyperdrive.Tier.Services.Classes
                     .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
-                Items = Mapper.Map<IList<ViewArchive>>(await Context.Archives
-                   .TagWith("FindPaginatedArchiveByApplicationUserId")
+                Items = Mapper.Map<IList<ViewDriveItem>>(await Context.DriveItems
+                   .TagWith("FindPaginatedDriveItemByApplicationUserId")
                    .AsSplitQuery()
                    .AsNoTracking()
-                   .Include(x => x.ArchiveVersions)
+                   .Include(x => x.DriveItemVersions)
                    .Include(x => x.By)
                    .Where(x => x.By.Id == @viewModel.ApplicationUserId)
                    .Skip(@viewModel.Index * @viewModel.Size)
@@ -117,47 +117,47 @@ namespace Hyperdrive.Tier.Services.Classes
             return @page;
         }
 
-        public async Task<ViewPage<ViewArchive>> FindPaginatedSharedArchiveByApplicationUserId(FilterPageArchive @viewModel)
+        public async Task<ViewPage<ViewDriveItem>> FindPaginatedSharedDriveItemByApplicationUserId(FilterPageDriveItem @viewModel)
         {
-            ViewPage<ViewArchive> @page = new()
+            ViewPage<ViewDriveItem> @page = new()
             {
-                Length = await Context.ApplicationUserArchives.TagWith("CountAllSharedArchiveByApplicationUserId")
+                Length = await Context.ApplicationUserDriveItems.TagWith("CountAllSharedDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
                     .Include(x => x.ApplicationUser)
-                    .Include(x => x.Archive)
+                    .Include(x => x.DriveItem)
                     .Where(x => x.ApplicationUser.Id == @viewModel.ApplicationUserId)
                     .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
-                Items = Mapper.Map<IList<ViewArchive>>(await Context.ApplicationUserArchives
-                    .TagWith("FindPaginatedSharedArchiveByApplicationUserId")
+                Items = Mapper.Map<IList<ViewDriveItem>>(await Context.ApplicationUserDriveItems
+                    .TagWith("FindPaginatedSharedDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
                     .Include(x => x.ApplicationUser)
-                    .Include(x => x.Archive)
+                    .Include(x => x.DriveItem)
                     .Where(x => x.ApplicationUser.Id == @viewModel.ApplicationUserId)
                     .Skip(@viewModel.Index * @viewModel.Size)
                     .Take(@viewModel.Size)
-                    .Select(x => x.Archive)
+                    .Select(x => x.DriveItem)
                     .ToListAsync())
             };
 
             return @page;
         }
 
-        public async Task<IList<ViewArchiveVersion>> FindAllArchiveVersionByArchiveId(int @id)
+        public async Task<IList<ViewDriveItemVersion>> FindAllDriveItemVersionByDriveItemId(int @id)
         {
-            ICollection<ArchiveVersion> @versions = await Context.ArchiveVersions
-               .TagWith("FindAllArchiveVersionByArchiveId")
+            ICollection<DriveItemVersion> @versions = await Context.DriveItemVersions
+               .TagWith("FindAllDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
-               .Include(x => x.Archive)
+               .Include(x => x.DriveItem)
                .ThenInclude(x => x.By)
-               .Where(x => x.Archive.Id == @id)
+               .Where(x => x.DriveItem.Id == @id)
                .ToListAsync();
 
-            return Mapper.Map<IList<ViewArchiveVersion>>(@versions);
+            return Mapper.Map<IList<ViewDriveItemVersion>>(@versions);
         }
 
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
@@ -188,24 +188,24 @@ namespace Hyperdrive.Tier.Services.Classes
             return @applicationUser;
         }
 
-        public async Task<ViewArchive> AddArchive(AddArchive @viewModel)
+        public async Task<ViewDriveItem> AddDriveItem(AddDriveItem @viewModel)
         {
             await CheckName(@viewModel);
 
-            Archive @archive = new()
+            DriveItem @archive = new()
             {
                 Folder = @viewModel.Folder,
                 Locked = @viewModel.Locked,               
                 By = await FindApplicationUserById(@viewModel.ApplicationUserId),
-                ApplicationUserArchives = [],
-                ArchiveVersions = []
+                ApplicationUserDriveItems = [],
+                DriveItemVersions = []
             };
 
-            await Context.Archives.AddAsync(@archive);
+            await Context.DriveItems.AddAsync(@archive);
 
-            AddApplicationUserArchive(@viewModel, @archive);
+            AddApplicationUserDriveItem(@viewModel, @archive);
 
-            AddArchiveVersion(@viewModel, @archive);
+            AddDriveItemVersion(@viewModel, @archive);
 
             await Context.SaveChangesAsync();
 
@@ -218,54 +218,54 @@ namespace Hyperdrive.Tier.Services.Classes
 
             Logger.WriteInsertItemLog(@logData);
 
-            return Mapper.Map<ViewArchive>(@archive);
+            return Mapper.Map<ViewDriveItem>(@archive);
         }
 
-        public void AddApplicationUserArchive(AddArchive @viewModel,
-                                             Archive @entity)
+        public void AddApplicationUserDriveItem(AddDriveItem @viewModel,
+                                             DriveItem @entity)
         {
             @viewModel.ApplicationUsersId.AsQueryable().ToList().ForEach(async x =>
             {
                 ApplicationUser @applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive @applicationUserArchive = new()
+                ApplicationUserDriveItem @applicationUserDriveItem = new()
                 {
-                    Archive = @entity,
+                    DriveItem = @entity,
                     ApplicationUser = @applicationUser,
                 };
 
-                @entity.ApplicationUserArchives.Add(@applicationUserArchive);
+                @entity.ApplicationUserDriveItems.Add(@applicationUserDriveItem);
             });
         }
 
-        public void AddArchiveVersion(AddArchive @viewModel, Archive @entity)
+        public void AddDriveItemVersion(AddDriveItem @viewModel, DriveItem @entity)
         {
-            ArchiveVersion @archiveVersion = new()
+            DriveItemVersion @archiveVersion = new()
             {
-                Archive = @entity,
+                DriveItem = @entity,
                 Name = @viewModel.Name.Trim(),
                 Data = @viewModel.Data,
                 Size = @viewModel.Size,
                 Type = @viewModel.Type
             };
 
-            @entity.ArchiveVersions.Add(@archiveVersion);
+            @entity.DriveItemVersions.Add(@archiveVersion);
         }
 
-        public async Task<ViewArchive> UpdateArchive(UpdateArchive @viewModel)
+        public async Task<ViewDriveItem> UpdateDriveItem(UpdateDriveItem @viewModel)
         {
             await CheckName(@viewModel);
 
-            Archive @archive = await FindArchiveById(@viewModel.Id);           
+            DriveItem @archive = await FindDriveItemById(@viewModel.Id);           
             @archive.Folder = @viewModel.Folder;
             @archive.Locked = @viewModel.Locked;          
             @archive.By = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
-            Context.Archives.Update(@archive);
+            Context.DriveItems.Update(@archive);
 
-            UpdateApplicationUserArchive(@viewModel, @archive);
+            UpdateApplicationUserDriveItem(@viewModel, @archive);
 
-            UpdateArchiveVersion(@viewModel, @archive);
+            UpdateDriveItemVersion(@viewModel, @archive);
 
             await Context.SaveChangesAsync();
 
@@ -278,53 +278,53 @@ namespace Hyperdrive.Tier.Services.Classes
 
             Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewArchive>(@archive);
+            return Mapper.Map<ViewDriveItem>(@archive);
         }
 
-        public void UpdateApplicationUserArchive(UpdateArchive @viewModel, Archive @entity)
+        public void UpdateApplicationUserDriveItem(UpdateDriveItem @viewModel, DriveItem @entity)
         {
             @viewModel.ApplicationUsersId.AsQueryable().ToList().ForEach(async x =>
             {
                 ApplicationUser @applicationUser = await FindApplicationUserById(x);
 
-                ApplicationUserArchive @applicationUserArchive = new()
+                ApplicationUserDriveItem @applicationUserDriveItem = new()
                 {
-                    Archive = @entity,
+                    DriveItem = @entity,
                     ApplicationUser = @applicationUser,
                 };
 
-                @entity.ApplicationUserArchives.Add(@applicationUserArchive);
+                @entity.ApplicationUserDriveItems.Add(@applicationUserDriveItem);
             });
         }
 
-        public void UpdateArchiveVersion(UpdateArchive @viewModel, Archive @entity)
+        public void UpdateDriveItemVersion(UpdateDriveItem @viewModel, DriveItem @entity)
         {
-            ArchiveVersion @archiveVersion = new()
+            DriveItemVersion @archiveVersion = new()
             {
-                Archive = @entity,
+                DriveItem = @entity,
                 Name = @viewModel.Name.Trim(),
                 Data = @viewModel.Data,
                 Size = @viewModel.Size,
                 Type = @viewModel.Type
             };
 
-            @entity.ArchiveVersions.Add(@archiveVersion);
+            @entity.DriveItemVersions.Add(@archiveVersion);
         }
 
-        public async Task<Archive> CheckName(AddArchive @viewModel)
+        public async Task<DriveItem> CheckName(AddDriveItem @viewModel)
         {
-            Archive @archive = await Context.Archives
+            DriveItem @archive = await Context.DriveItems
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.ArchiveVersions.LastOrDefault().Name == @viewModel.Name.Trim());
+                 .FirstOrDefaultAsync(x => x.DriveItemVersions.LastOrDefault().Name == @viewModel.Name.Trim());
 
             if (@archive != null)
             {
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.ArchiveVersions.LastOrDefault().Name
+                    + @archive.DriveItemVersions.LastOrDefault().Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
@@ -340,20 +340,20 @@ namespace Hyperdrive.Tier.Services.Classes
         }
 
 
-        public async Task<Archive> CheckName(UpdateArchive @viewModel)
+        public async Task<DriveItem> CheckName(UpdateDriveItem @viewModel)
         {
-            Archive @archive = await Context.Archives
+            DriveItem @archive = await Context.DriveItems
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.ArchiveVersions.LastOrDefault().Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.DriveItemVersions.LastOrDefault().Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@archive != null)
             {
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.ArchiveVersions.LastOrDefault().Name
+                    + @archive.DriveItemVersions.LastOrDefault().Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 

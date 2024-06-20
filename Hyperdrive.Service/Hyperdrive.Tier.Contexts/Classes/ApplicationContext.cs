@@ -53,19 +53,19 @@ namespace Hyperdrive.Tier.Contexts.Classes
         public override DbSet<ApplicationUserToken> UserTokens { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="DbSet{Archive}"/>
+        /// Gets or Sets <see cref="DbSet{DriveItem}"/>
         /// </summary>
-        public virtual DbSet<Archive> Archives { get; set; }
+        public virtual DbSet<DriveItem> DriveItems { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="DbSet{ApplicationUserArchive}"/>
+        /// Gets or Sets <see cref="DbSet{ApplicationUserDriveItem}"/>
         /// </summary>
-        public virtual DbSet<ApplicationUserArchive> ApplicationUserArchives { get; set; }
+        public virtual DbSet<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="DbSet{ArchiveVersion}"/>
+        /// Gets or Sets <see cref="DbSet{DriveItemVersion}"/>
         /// </summary>
-        public virtual DbSet<ArchiveVersion> ArchiveVersions { get; set; }
+        public virtual DbSet<DriveItemVersion> DriveItemVersions { get; set; }
 
         /// <summary>
         /// Saves Changes Syncronously

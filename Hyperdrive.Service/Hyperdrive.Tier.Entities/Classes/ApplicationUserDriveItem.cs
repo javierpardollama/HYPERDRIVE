@@ -6,9 +6,9 @@ using Hyperdrive.Tier.Entities.Interfaces;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {
-    public class ApplicationUserArchive : IKey, IBase
+    public class ApplicationUserDriveItem : IKey, IBase
     {
-        public ApplicationUserArchive()
+        public ApplicationUserDriveItem()
         {
         }
 
@@ -32,7 +32,7 @@ namespace Hyperdrive.Tier.Entities.Classes
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public virtual Archive Archive { get; set; }
+        public virtual DriveItem DriveItem { get; set; }
 
     }
 }

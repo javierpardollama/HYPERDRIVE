@@ -72,13 +72,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         public virtual ICollection<ApplicationUserToken> ApplicationUserTokens { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="Archives"/>
+        /// Gets or Sets <see cref="DriveItems"/>
         /// </summary>
-        public virtual ICollection<Archive> Archives { get; set; } = [];
+        public virtual ICollection<DriveItem> DriveItems { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserArchives"/>
+        /// Gets or Sets <see cref="ApplicationUserDriveItems"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; } = [];
+        public virtual ICollection<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; } = [];
     }
 }

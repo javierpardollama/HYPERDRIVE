@@ -48,7 +48,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         public virtual ViewApplicationUserToken ApplicationUserToken => ApplicationUserTokens?.AsQueryable().LastOrDefault();
 
         [XmlArray("application-user-archives")]
-        public virtual ICollection<ViewApplicationUserArchive> ApplicationUserArchives { get; set; }
+        public virtual ICollection<ViewApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
 
     }
 }

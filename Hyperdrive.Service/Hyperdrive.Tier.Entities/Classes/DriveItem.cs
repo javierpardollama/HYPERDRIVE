@@ -8,14 +8,14 @@ using Hyperdrive.Tier.Entities.Interfaces;
 namespace Hyperdrive.Tier.Entities.Classes
 {
     /// <summary>
-    /// Represents a <see cref="Archive"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
+    /// Represents a <see cref="DriveItem"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
-    public class Archive : IKey, IBase
+    public class DriveItem : IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="Archive"/>
+        /// Initializes a new Instance of <see cref="DriveItem"/>
         /// </summary>
-        public Archive()
+        public DriveItem()
         {
         }
 
@@ -65,13 +65,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserArchives"/>
+        /// Gets or Sets <see cref="ApplicationUserDriveItems"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserArchive> ApplicationUserArchives { get; set; } = [];
+        public virtual ICollection<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ArchiveVersions"/>
+        /// Gets or Sets <see cref="DriveItemVersions"/>
         /// </summary>
-        public virtual ICollection<ArchiveVersion> ArchiveVersions { get; set; } = [];
+        public virtual ICollection<DriveItemVersion> DriveItemVersions { get; set; } = [];
     }
 }

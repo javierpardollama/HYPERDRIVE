@@ -8,9 +8,9 @@ using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {
     [XmlRoot("archive")]
-    public class ViewArchive : IViewKey, IViewBase
+    public class ViewDriveItem : IViewKey, IViewBase
     {
-        public ViewArchive()
+        public ViewDriveItem()
         {
         }
 
@@ -30,17 +30,17 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         public bool Locked { get; set; }       
 
         [XmlArray("application-user-archives")]
-        public virtual ICollection<ViewApplicationUserArchive> ApplicationUserArchives { get; set; }
+        public virtual ICollection<ViewApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
 
 
         [XmlArray("archive-versions")]
-        public virtual ICollection<ViewArchiveVersion> ArchiveVersions { get; set; }
+        public virtual ICollection<ViewDriveItemVersion> DriveItemVersions { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="LastArchiveVersion"/>
+        /// Gets or Sets <see cref="LastDriveItemVersion"/>
         /// </summary>
         [XmlElement("last-archive-version")]
-        public virtual ViewArchiveVersion LastArchiveVersion => ArchiveVersions?.AsQueryable().OrderBy(x => x.LastModified.Date).LastOrDefault();
+        public virtual ViewDriveItemVersion LastDriveItemVersion => DriveItemVersions?.AsQueryable().OrderBy(x => x.LastModified.Date).LastOrDefault();
 
     }
 }

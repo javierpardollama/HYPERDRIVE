@@ -48,19 +48,19 @@ namespace Hyperdrive.Tier.Contexts.Interfaces
         DbSet<ApplicationUserToken> UserTokens { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="DbSet{Archive}"/>
+        /// Gets or Sets <see cref="DbSet{DriveItem}"/>
         /// </summary>
-        DbSet<Archive> Archives { get; set; }
+        DbSet<DriveItem> DriveItems { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="DbSet{ApplicationUserArchive}"/>
+        /// Gets or Sets <see cref="DbSet{ApplicationUserDriveItem}"/>
         /// </summary>
-        DbSet<ApplicationUserArchive> ApplicationUserArchives { get; set; }
+        DbSet<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="DbSet{ArchiveVersion}"/>
+        /// Gets or Sets <see cref="DbSet{DriveItemVersion}"/>
         /// </summary>
-        DbSet<ArchiveVersion> ArchiveVersions { get; set; }
+        DbSet<DriveItemVersion> DriveItemVersions { get; set; }
 
         /// <summary>
         /// Saves Changes Syncronously

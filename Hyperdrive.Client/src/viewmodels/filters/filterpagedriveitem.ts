@@ -1,5 +1,5 @@
 import { FilterPageBase } from "./filterpagebase";
 
-export interface FilterPageArchive extends FilterPageBase {
+export interface FilterPageDriveItem extends FilterPageBase {
     ApplicationUserId?: number;
 }

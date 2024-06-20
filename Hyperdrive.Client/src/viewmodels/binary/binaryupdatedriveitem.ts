@@ -1,4 +1,4 @@
-export interface BinaryUpdateArchive {
+export interface BinaryUpdateDriveItem {
     Id: number;
     ApplicationUserId: number;
     Data: File;

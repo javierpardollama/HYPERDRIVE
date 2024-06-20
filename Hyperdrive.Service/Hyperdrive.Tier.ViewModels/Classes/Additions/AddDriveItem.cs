@@ -1,20 +1,26 @@
 ﻿using System.Collections.Generic;
 
 using Hyperdrive.Tier.ViewModels.Classes.Views;
+using Hyperdrive.Tier.ViewModels.Interfaces.Additions;
 
-namespace Hyperdrive.Tier.ViewModels.Classes.Updates
+namespace Hyperdrive.Tier.ViewModels.Classes.Additions
 {
     /// <summary>
-    /// Represents a <see cref="UpdateArchive"/> class. Inherits <see cref="UpdateBase"/>
+    /// Represents a <see cref="AddDriveItem"/> class.
     /// </summary>
-    public class UpdateArchive : UpdateBase
+    public class AddDriveItem : IAddBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="UpdateArchive"/>
+        /// Represents a <see cref="AddDriveItem"/> class.
         /// </summary>
-        public UpdateArchive()
+        public AddDriveItem()
         {
         }
+
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationUserId"/>
+        /// </summary>
+        public int ApplicationUserId { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Name"/>

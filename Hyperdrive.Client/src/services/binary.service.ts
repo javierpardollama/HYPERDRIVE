@@ -1,12 +1,12 @@
-import { AddArchive } from './../viewmodels/additions/addarchive';
+import { AddDriveItem } from './../viewmodels/additions/adddriveitem';
 
-import { UpdateArchive } from './../viewmodels/updates/updatearchive';
+import { UpdateDriveItem } from './../viewmodels/updates/updatedriveitem';
 
-import { BinaryAddArchive } from './../viewmodels/binary/binaryaddarchive';
+import { BinaryAddDriveItem } from './../viewmodels/binary/binaryadddriveitem';
 
-import { BinaryUpdateArchive } from './../viewmodels/binary/binaryupdatearchive';
+import { BinaryUpdateDriveItem } from './../viewmodels/binary/binaryupdatedriveitem';
 
-import { ViewArchiveVersion } from './../viewmodels/views/viewarchiveversion';
+import { ViewDriveItemVersion } from './../viewmodels/views/viewdriveitemversion';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -32,8 +32,8 @@ export class BinaryService extends BaseService {
         super(httpClient, matSnackBar, router);
     }
 
-    public async EncodeAddArchive(viewModel: BinaryAddArchive): Promise<AddArchive> {
-        const resultModel: AddArchive =
+    public async EncodeAddDriveItem(viewModel: BinaryAddDriveItem): Promise<AddDriveItem> {
+        const resultModel: AddDriveItem =
         {
             ApplicationUserId: viewModel.ApplicationUserId,
             Data: await viewModel.Data.arrayBuffer(),
@@ -47,8 +47,8 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public async EncodeUpdateArchive(viewModel: BinaryUpdateArchive): Promise<UpdateArchive> {
-        const resultModel: UpdateArchive =
+    public async EncodeUpdateDriveItem(viewModel: BinaryUpdateDriveItem): Promise<UpdateDriveItem> {
+        const resultModel: UpdateDriveItem =
         {
             Id: viewModel.Id,
             ApplicationUserId: viewModel.ApplicationUserId,
@@ -63,7 +63,7 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public async DecodeViewArchive(viewModel: ViewArchiveVersion): Promise<void> {
+    public async DecodeViewDriveItem(viewModel: ViewDriveItemVersion): Promise<void> {
         const blob = new Blob([viewModel.Data!], { type: viewModel.Type });
 
         const url = window.URL.createObjectURL(blob);

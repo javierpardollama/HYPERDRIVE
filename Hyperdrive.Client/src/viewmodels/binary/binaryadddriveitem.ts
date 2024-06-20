@@ -1,4 +1,4 @@
-export interface BinaryAddArchive {
+export interface BinaryAddDriveItem {
     ApplicationUserId: number;
     Data: File;
     Folder: boolean;

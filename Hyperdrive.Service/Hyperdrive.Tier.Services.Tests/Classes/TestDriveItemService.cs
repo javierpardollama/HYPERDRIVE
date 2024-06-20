@@ -17,25 +17,25 @@ using NUnit.Framework;
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
     /// <summary>
-    /// Represents a <see cref="TestAuthService"/> class. Inherits <see cref="TestBaseService"/>
+    /// Represents a <see cref="TestDriveItemService"/> class. Inherits <see cref="TestBaseService"/>
     /// </summary>
     [TestFixture]
-    public class TestArchiveService : TestBaseService
+    public class TestDriveItemService : TestBaseService
     {
         /// <summary>
-        /// Instance of <see cref="ILogger{ArchiveService}"/>
+        /// Instance of <see cref="ILogger{DriveItemService}"/>
         /// </summary>
-        private ILogger<ArchiveService> Logger;
+        private ILogger<DriveItemService> Logger;
 
         /// <summary>
-        /// Instance of <see cref="ArchiveService"/>
+        /// Instance of <see cref="DriveItemService"/>
         /// </summary>>
-        private ArchiveService Service;
+        private DriveItemService Service;
 
         /// <summary>
-        /// Initializes a new Instance of <see cref="TestArchiveService"/>
+        /// Initializes a new Instance of <see cref="TestDriveItemService"/>
         /// </summary>
-        public TestArchiveService()
+        public TestDriveItemService()
         {
 
         }
@@ -58,7 +58,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpContext();
 
-            Service = new ArchiveService(UserManager, Context, Mapper, Logger);
+            Service = new DriveItemService(UserManager, Context, Mapper, Logger);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             Context.Users.RemoveRange(Context.Users.ToList());
 
-            Context.Archives.RemoveRange(Context.Archives.ToList());
+            Context.DriveItems.RemoveRange(Context.DriveItems.ToList());
 
             Context.SaveChanges();
         }
@@ -87,7 +87,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = @loggerFactory.CreateLogger<ArchiveService>();
+            Logger = @loggerFactory.CreateLogger<DriveItemService>();
         }
 
         /// <summary>
@@ -99,57 +99,57 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
             Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString(), ApplicationUserRoles = new List<ApplicationUserRole>() });
 
-            Context.Archives.Add(new Archive { LastModified = DateTime.Now, Deleted = false, ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>() { new() { Name = "firstarchive.txt" } } });
-            Context.Archives.Add(new Archive { LastModified = DateTime.Now, Deleted = false, ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>() { new() { Name = "secondarchive.txt" } } });
-            Context.Archives.Add(new Archive { LastModified = DateTime.Now, Deleted = false, ApplicationUserArchives = new List<ApplicationUserArchive>(), ArchiveVersions = new List<ArchiveVersion>() { new() { Name = "thirdarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.Now, Deleted = false, ApplicationUserDriveItems = new List<ApplicationUserDriveItem>(), DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "firstarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.Now, Deleted = false, ApplicationUserDriveItems = new List<ApplicationUserDriveItem>(), DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "secondarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.Now, Deleted = false, ApplicationUserDriveItems = new List<ApplicationUserDriveItem>(), DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "thirdarchive.txt" } } });
 
             Context.SaveChanges();
         }
 
         /// <summary>
-        /// Finds Archive By Id
+        /// Finds DriveItem By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
        [Test]
-        public async Task FindArchiveById()
+        public async Task FindDriveItemById()
         {
-            await Service.FindArchiveById(Context.Archives.FirstOrDefault().Id);
+            await Service.FindDriveItemById(Context.DriveItems.FirstOrDefault().Id);
 
             Assert.Pass();
         }
 
         /// <summary>
-        /// Removes Archive By Id
+        /// Removes DriveItem By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
-        public async Task RemoveArchiveById()
+        public async Task RemoveDriveItemById()
         {
-            await Service.RemoveArchiveById(Context.Archives.FirstOrDefault().Id);
+            await Service.RemoveDriveItemById(Context.DriveItems.FirstOrDefault().Id);
 
             Assert.Pass();
         }
 
         [Test]
-        public async Task FindAllArchive()
+        public async Task FindAllDriveItem()
         {
-            await Service.FindAllArchive();
+            await Service.FindAllDriveItem();
 
             Assert.Pass();
         }
 
         [Test]
-        public async Task FindPaginatedArchiveByApplicationUserId()
+        public async Task FindPaginatedDriveItemByApplicationUserId()
         {
-            await Service.FindPaginatedArchiveByApplicationUserId(new FilterPageArchive { Index = 1, Size = 5, ApplicationUserId = Context.Users.FirstOrDefault().Id });
+            await Service.FindPaginatedDriveItemByApplicationUserId(new FilterPageDriveItem { Index = 1, Size = 5, ApplicationUserId = Context.Users.FirstOrDefault().Id });
 
             Assert.Pass();
         }
 
         [Test]
-        public async Task FindPaginatedSharedArchiveByApplicationUserId()
+        public async Task FindPaginatedSharedDriveItemByApplicationUserId()
         {
-            await Service.FindPaginatedSharedArchiveByApplicationUserId(new FilterPageArchive { Index = 1, Size = 5, ApplicationUserId = Context.Users.FirstOrDefault().Id });
+            await Service.FindPaginatedSharedDriveItemByApplicationUserId(new FilterPageDriveItem { Index = 1, Size = 5, ApplicationUserId = Context.Users.FirstOrDefault().Id });
 
             Assert.Pass();
         }
@@ -167,17 +167,17 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         [Test]
-        public async Task FindAllArchiveVersionByArchiveId()
+        public async Task FindAllDriveItemVersionByDriveItemId()
         {
-            await Service.FindAllArchiveVersionByArchiveId(Context.Archives.FirstOrDefault().Id);
+            await Service.FindAllDriveItemVersionByDriveItemId(Context.DriveItems.FirstOrDefault().Id);
 
             Assert.Pass();
         }      
 
         [Test]
-        public async Task AddArchive()
+        public async Task AddDriveItem()
         {
-            AddArchive @addArchive = new()
+            AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
@@ -187,15 +187,15 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ApplicationUserId = Context.Users.FirstOrDefault().Id,                   
             };
 
-            await Service.AddArchive(@addArchive);
+            await Service.AddDriveItem(@addDriveItem);
 
             Assert.Pass();
         }
 
         [Test]
-        public void AddApplicationUserArchive() 
+        public void AddApplicationUserDriveItem() 
         {
-            AddArchive @addArchive = new()
+            AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
@@ -205,15 +205,15 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ApplicationUserId = Context.Users.FirstOrDefault().Id,
             };
 
-            Service.AddApplicationUserArchive(@addArchive, Context.Archives.FirstOrDefault());
+            Service.AddApplicationUserDriveItem(@addDriveItem, Context.DriveItems.FirstOrDefault());
 
             Assert.Pass();
         }
 
         [Test]
-        public void AddArchiveVersion() 
+        public void AddDriveItemVersion() 
         {
-            AddArchive @addArchive = new()
+            AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
@@ -223,64 +223,64 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ApplicationUserId = Context.Users.FirstOrDefault().Id,
             };
 
-            Service.AddArchiveVersion(@addArchive, Context.Archives.FirstOrDefault());
+            Service.AddDriveItemVersion(@addDriveItem, Context.DriveItems.FirstOrDefault());
 
             Assert.Pass();
         }
 
         [Test]
-        public async Task UpdateArchive()
+        public async Task UpdateDriveItem()
         {
-            UpdateArchive @updateArchive = new()
+            UpdateDriveItem @updateDriveItem = new()
             {
-                Id = Context.Archives.FirstOrDefault().Id,
+                Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x=>x.Id).ToList(),
                 Data = new byte[10],
-                Name = Context.Archives.FirstOrDefault().ArchiveVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id                   
             };
 
-            await Service.UpdateArchive(@updateArchive);
+            await Service.UpdateDriveItem(@updateDriveItem);
 
             Assert.Pass();
         }
 
         [Test]
-        public void UpdateApplicationUserArchive()
+        public void UpdateApplicationUserDriveItem()
         {
-            UpdateArchive @updateArchive = new()
+            UpdateDriveItem @updateDriveItem = new()
             {
-                Id = Context.Archives.FirstOrDefault().Id,
+                Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
-                Name = Context.Archives.FirstOrDefault().ArchiveVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
-            Service.UpdateApplicationUserArchive(@updateArchive, Context.Archives.FirstOrDefault());
+            Service.UpdateApplicationUserDriveItem(@updateDriveItem, Context.DriveItems.FirstOrDefault());
 
             Assert.Pass();
         }
 
         [Test]
-        public void UpdateArchiveVersion()
+        public void UpdateDriveItemVersion()
         {
-            UpdateArchive @updateArchive = new()
+            UpdateDriveItem @updateDriveItem = new()
             {
-                Id = Context.Archives.FirstOrDefault().Id,
+                Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
-                Name = Context.Archives.FirstOrDefault().ArchiveVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
-            Service.UpdateArchiveVersion(@updateArchive, Context.Archives.FirstOrDefault());
+            Service.UpdateDriveItemVersion(@updateDriveItem, Context.DriveItems.FirstOrDefault());
 
             Assert.Pass();
         }
@@ -288,17 +288,17 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddArchive @addArchive = new()
+            AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10],
-                Name = Context.Archives.FirstOrDefault().ArchiveVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@addArchive));
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@addDriveItem));
 
             Assert.Pass();
         }

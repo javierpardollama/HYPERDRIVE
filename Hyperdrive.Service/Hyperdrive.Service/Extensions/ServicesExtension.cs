@@ -19,7 +19,7 @@ namespace Hyperdrive.Tier.Service.Extensions
             @this.AddTransient<ITokenService, TokenService>();
             @this.AddTransient<IAuthService, AuthService>();
             @this.AddTransient<ISecurityService, SecurityService>();
-            @this.AddTransient<IArchiveService, ArchiveService>();
+            @this.AddTransient<IDriveItemService, DriveItemService>();
             @this.AddTransient<IApplicationRoleService, ApplicationRoleService>();
             @this.AddTransient<IApplicationUserService, ApplicationUserService>();
 

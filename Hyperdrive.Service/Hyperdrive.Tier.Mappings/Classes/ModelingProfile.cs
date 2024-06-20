@@ -23,11 +23,11 @@ namespace Hyperdrive.Tier.Mappings.Classes
 
             CreateMap<ApplicationUserToken, ViewApplicationUserToken>();
 
-            CreateMap<Archive, ViewArchive>();
+            CreateMap<DriveItem, ViewDriveItem>();
 
-            CreateMap<ApplicationUserArchive, ViewApplicationUserArchive>();
+            CreateMap<ApplicationUserDriveItem, ViewApplicationUserDriveItem>();
 
-            CreateMap<ArchiveVersion, ViewArchiveVersion>();
+            CreateMap<DriveItemVersion, ViewDriveItemVersion>();
         }
     }
 }

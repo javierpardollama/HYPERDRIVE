@@ -13,79 +13,79 @@ using Microsoft.AspNetCore.RateLimiting;
 namespace Hyperdrive.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="ArchiveController"/> class. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="DriveItemController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
-    /// <param name="service">Injected <see cref="IArchiveService"/></param>
+    /// <param name="service">Injected <see cref="IDriveItemService"/></param>
     [Route("api/archive")]
     [Produces("application/json")]
     [Authorize]
     [ApiController]
     [EnableRateLimiting("fixed")]
-    public class ArchiveController(IArchiveService @service) : ControllerBase
+    public class DriveItemController(IDriveItemService @service) : ControllerBase
     {
         /// <summary>
-        /// Finds Paginated Archive By ApplicationUser Id
+        /// Finds Paginated DriveItem By ApplicationUser Id
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="FilterPageArchive"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("findpaginatedarchivebyapplicationuserid")]
-        public async Task<IActionResult> FindPaginatedArchiveByApplicationUserId([FromBody] FilterPageArchive @viewModel) => new JsonResult(value: await @service.FindPaginatedArchiveByApplicationUserId(@viewModel));
+        public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => new JsonResult(value: await @service.FindPaginatedDriveItemByApplicationUserId(@viewModel));
 
         /// <summary>
-        /// Finds Paginated Shared Archive By ApplicationUser Id
+        /// Finds Paginated Shared DriveItem By ApplicationUser Id
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="FilterPageArchive"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("findpaginatedsharedarchivebyapplicationuserid")]
-        public async Task<IActionResult> FindPaginatedSharedArchiveByApplicationUserId([FromBody] FilterPageArchive @viewModel) => new JsonResult(value: await @service.FindPaginatedSharedArchiveByApplicationUserId(@viewModel));
+        public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => new JsonResult(value: await @service.FindPaginatedSharedDriveItemByApplicationUserId(@viewModel));
 
         /// <summary>
-        /// Finds All Archive Version By Archive Id
+        /// Finds All DriveItem Version By DriveItem Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpGet]
         [Route("findallarchiveversionbyarchiveid/{id}")]
-        public async Task<IActionResult> FindAllArchiveVersionByArchiveId(int @id) => new JsonResult(value: await @service.FindAllArchiveVersionByArchiveId(@id));
+        public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => new JsonResult(value: await @service.FindAllDriveItemVersionByDriveItemId(@id));
 
         /// <summary>
-        /// Finds All Archive
+        /// Finds All DriveItem
         /// </summary>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpGet]
         [Route("findallarchive")]
-        public async Task<IActionResult> FindAllArchive() => new JsonResult(value: await @service.FindAllArchive());
+        public async Task<IActionResult> FindAllDriveItem() => new JsonResult(value: await @service.FindAllDriveItem());
 
         /// <summary>
-        /// Adds Archive
+        /// Adds DriveItem
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="AddArchive"/></param>
+        /// <param name="viewModel">Injected <see cref="AddDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("addarchive")]
-        public async Task<IActionResult> AddArchive([FromBody]AddArchive @viewModel) => new JsonResult(value: await @service.AddArchive(@viewModel));
+        public async Task<IActionResult> AddDriveItem([FromBody]AddDriveItem @viewModel) => new JsonResult(value: await @service.AddDriveItem(@viewModel));
 
         /// <summary>
-        /// Updates Archive
+        /// Updates DriveItem
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="UpdateArchive"/></param>
+        /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("updatearchive")]
-        public async Task<IActionResult> UpdateArchive([FromBody]UpdateArchive @viewModel) => new JsonResult(value: await @service.UpdateArchive(@viewModel));
+        public async Task<IActionResult> UpdateDriveItem([FromBody]UpdateDriveItem @viewModel) => new JsonResult(value: await @service.UpdateDriveItem(@viewModel));
 
         /// <summary>
-        /// Removes Archive By Id
+        /// Removes DriveItem By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpDelete]
         [Route("removearchivebyid/{id}")]
-        public async Task<IActionResult> RemoveArchiveById(int @id)
+        public async Task<IActionResult> RemoveDriveItemById(int @id)
         {
-            await @service.RemoveArchiveById(@id);
+            await @service.RemoveDriveItemById(@id);
 
             return new JsonResult((int)HttpStatusCode.OK);
         }

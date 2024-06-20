@@ -3,14 +3,14 @@
 namespace Hyperdrive.Tier.ViewModels.Classes.Filters
 {
     /// <summary>
-    /// Represents a <see cref="FilterPageArchive"/> class. Implements <see cref="IFilterPage"/>
+    /// Represents a <see cref="FilterPageDriveItem"/> class. Implements <see cref="IFilterPage"/>
     /// </summary>
-    public class FilterPageArchive : IFilterPage
+    public class FilterPageDriveItem : IFilterPage
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="FilterPageArchive"/>
+        /// Initializes a new Instance of <see cref="FilterPageDriveItem"/>
         /// </summary>
-        public FilterPageArchive() 
+        public FilterPageDriveItem() 
         {
         }
 

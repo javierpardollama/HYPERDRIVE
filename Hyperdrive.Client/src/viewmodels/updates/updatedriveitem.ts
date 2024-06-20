@@ -1,6 +1,6 @@
-import { AddBase } from "./addbase";
+import { UpdateBase } from './updatebase';
 
-export interface AddArchive extends AddBase {
+export interface UpdateDriveItem extends UpdateBase {
     Data?: ArrayBuffer;
     Name: string;
     Folder: boolean;

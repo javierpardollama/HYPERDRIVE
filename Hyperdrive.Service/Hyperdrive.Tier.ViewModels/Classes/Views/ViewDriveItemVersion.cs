@@ -6,9 +6,9 @@ using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {
     [XmlRoot("archive-version")]
-    public class ViewArchiveVersion : IViewKey, IViewBase
+    public class ViewDriveItemVersion : IViewKey, IViewBase
     {
-        public ViewArchiveVersion()
+        public ViewDriveItemVersion()
         {
         }
 
@@ -31,6 +31,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         public DateTime LastModified { get; set; }
 
         [XmlElement("archive")]
-        public virtual ViewArchive Archive { get; set; }
+        public virtual ViewDriveItem DriveItem { get; set; }
     }
 }
