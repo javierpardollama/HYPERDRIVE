@@ -23,6 +23,8 @@ import { TextAppVariants } from '../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
+import { ExpressionAppVariants } from '../../../../variants/expression.app.variants';
+
 @Component({
   selector: 'app-changeemail-modal',
   templateUrl: './changeemail-modal.component.html',
@@ -60,6 +62,7 @@ export class ChangeEmailModalComponent implements OnInit {
       NewEmail: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
           Validators.required,
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppMailExpression))
         ]),
     });
   }

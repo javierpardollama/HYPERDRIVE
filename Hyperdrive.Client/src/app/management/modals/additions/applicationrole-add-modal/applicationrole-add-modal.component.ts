@@ -21,6 +21,8 @@ import { TextAppVariants } from './../../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
+import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+
 @Component({
   selector: 'app-applicationrole-add-modal',
   templateUrl: './applicationrole-add-modal.component.html',
@@ -47,7 +49,10 @@ export class ApplicationRoleAddModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-        [Validators.required]),
+        [
+          Validators.required,
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
+        ]),
       ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [Validators.required]),
     });

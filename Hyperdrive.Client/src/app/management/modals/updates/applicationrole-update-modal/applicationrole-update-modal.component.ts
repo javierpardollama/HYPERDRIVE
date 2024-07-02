@@ -24,6 +24,8 @@ import { TextAppVariants } from './../../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
+import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+
 @Component({
   selector: 'app-applicationrole-update-modal',
   templateUrl: './applicationrole-update-modal.component.html',
@@ -51,7 +53,10 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
-      Name: new FormControl<string>(this.data.Name, [Validators.required]),
+      Name: new FormControl<string>(this.data.Name, [
+        Validators.required, 
+        Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
+      ]),
       ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
     });
   }
