@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hyperdrive.Tier.Services\Hyperdrive.Tier.Services.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Tier.Middlewares\Hyperdrive.Tier.Middlewares.csproj" />
   </ItemGroup>
 
 </Project>
