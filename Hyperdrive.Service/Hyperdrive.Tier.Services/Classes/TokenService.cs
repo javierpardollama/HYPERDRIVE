@@ -94,6 +94,9 @@ namespace Hyperdrive.Tier.Services.Classes
                     ClaimTypes.Email,
                     @applicationUser.Email),
                 new(
+                    JwtRegisteredClaimNames.EmailVerified,
+                    @applicationUser.EmailConfirmed.ToString()),
+                new(
                     ClaimTypes.Name,
                     @applicationUser.FirstName),
                 new(
@@ -102,6 +105,9 @@ namespace Hyperdrive.Tier.Services.Classes
                 new(
                     ClaimTypes.MobilePhone,
                     @applicationUser.PhoneNumber),
+                  new(
+                    JwtRegisteredClaimNames.PhoneNumberVerified,
+                    @applicationUser.PhoneNumberConfirmed.ToString()),
                 new(
                     JwtRegisteredClaimNames.Iss,
                     JwtSettings.Value.JwtIssuer),
@@ -110,7 +116,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     DateTime.Now.ToString()),
                 new(
                     JwtRegisteredClaimNames.Iat,
-                    DateTime.Now.ToString()),
+                    DateTime.Now.ToString()),              
                 new(
                     JwtRegisteredClaimNames.Exp,
                     GenerateTokenExpirationDate().ToString()),
