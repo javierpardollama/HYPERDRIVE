@@ -105,7 +105,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 new(
                     ClaimTypes.MobilePhone,
                     @applicationUser.PhoneNumber),
-                  new(
+                new(
                     JwtRegisteredClaimNames.PhoneNumberVerified,
                     @applicationUser.PhoneNumberConfirmed.ToString()),
                 new(
@@ -116,7 +116,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     DateTime.Now.ToString()),
                 new(
                     JwtRegisteredClaimNames.Iat,
-                    DateTime.Now.ToString()),              
+                    DateTime.Now.ToString()),
                 new(
                     JwtRegisteredClaimNames.Exp,
                     GenerateTokenExpirationDate().ToString()),
