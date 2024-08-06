@@ -16,7 +16,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     /// Represents a <see cref="DriveItemController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
     /// <param name="service">Injected <see cref="IDriveItemService"/></param>
-    [Route("api/archive")]
+    [Route("api/driveitem")]
     [Produces("application/json")]
     [Authorize]
     [ApiController]
