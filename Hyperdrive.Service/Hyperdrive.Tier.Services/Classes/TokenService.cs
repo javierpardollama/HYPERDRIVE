@@ -121,6 +121,9 @@ namespace Hyperdrive.Tier.Services.Classes
                     JwtRegisteredClaimNames.Exp,
                     GenerateTokenExpirationDate().ToString()),
                 new(
+                    JwtRegisteredClaimNames.Alg,
+                    SecurityAlgorithms.EcdsaSha512Signature),
+                new(
                     ClaimTypes.System,
                     Environment.MachineName),
                 new(
