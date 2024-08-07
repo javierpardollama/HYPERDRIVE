@@ -88,7 +88,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     JwtRegisteredClaimNames.Jti,
                     Guid.NewGuid().ToString()),
                 new(
-                    ClaimTypes.Sid,
+                    JwtRegisteredClaimNames.Sub,
                     @applicationUser.Id.ToString()),
                 new(
                     ClaimTypes.Email,
@@ -110,10 +110,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.PhoneNumberConfirmed.ToString()),
                 new(
                     JwtRegisteredClaimNames.Iss,
-                    JwtSettings.Value.JwtIssuer),
-                new(
-                    JwtRegisteredClaimNames.AuthTime,
-                    DateTime.Now.ToString()),
+                    JwtSettings.Value.JwtIssuer),              
                 new(
                     JwtRegisteredClaimNames.Iat,
                     DateTime.Now.ToString()),
@@ -122,16 +119,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     GenerateTokenExpirationDate().ToString()),
                 new(
                     JwtRegisteredClaimNames.Alg,
-                    SecurityAlgorithms.EcdsaSha512Signature),
-                new(
-                    ClaimTypes.System,
-                    Environment.MachineName),
-                new(
-                    ClaimTypes.Version,
-                    Environment.OSVersion.VersionString),
-                new(
-                    ClaimTypes.Locality,
-                    CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
+                    SecurityAlgorithms.EcdsaSha512Signature),                          
             }.Union(JwtSettings.Value.JwtAudiences
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
              .Union(@applicationUser.ApplicationUserRoles
