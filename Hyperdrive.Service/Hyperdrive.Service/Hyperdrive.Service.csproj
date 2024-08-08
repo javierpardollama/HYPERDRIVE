@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hyperdrive.Tier.Middlewares\Hyperdrive.Tier.Middlewares.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Tier.Telemetry\Hyperdrive.Tier.Telemetry.csproj" />
   </ItemGroup>
 
 </Project>
