@@ -18,6 +18,8 @@ using Serilog;
 
 var @builder = WebApplication.CreateBuilder(args);
 
+@builder.AddServiceDefaults();
+
 // Add services to the container.
 
 @builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -62,8 +64,6 @@ var @JwtSettings = new JwtSettings();
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));
 
-@builder.Services.AddHealthChecks();
-
 // Register the Rate Limit Settings to the configuration container.
 var @RateSettings = new RateLimitSettings();
 @builder.Configuration.GetSection("RateLimit").Bind(@RateSettings);
@@ -73,6 +73,8 @@ var @RateSettings = new RateLimitSettings();
 
 
 var @app = @builder.Build();
+
+@app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (@app.Environment.IsDevelopment())
@@ -98,7 +100,5 @@ if (@app.Environment.IsDevelopment())
 @app.UseRateLimiter();
 
 @app.MapControllers();
-
-@app.MapHealthChecks("/healthz");
 
 @app.Run();
