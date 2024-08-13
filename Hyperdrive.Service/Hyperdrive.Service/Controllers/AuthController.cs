@@ -17,7 +17,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     [Route("api/auth")]
     [Produces("application/json")]
     [ApiController]
-    [EnableRateLimiting("fixed")]
+    [EnableRateLimiting("Concurrency")]
     public class AuthController(IAuthService @service) : ControllerBase
     {
         /// <summary>

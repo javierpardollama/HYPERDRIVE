@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Contexts.Interfaces
@@ -71,7 +72,8 @@ namespace Hyperdrive.Tier.Contexts.Interfaces
         /// <summary>
         /// Saves Changes Asyncronously
         /// </summary>
+        /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
         /// <returns>Instance of <see cref="Task{int}"/></returns>
-        Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

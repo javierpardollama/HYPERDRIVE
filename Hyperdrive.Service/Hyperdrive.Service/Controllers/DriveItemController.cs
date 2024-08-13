@@ -20,7 +20,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     [Produces("application/json")]
     [Authorize]
     [ApiController]
-    [EnableRateLimiting("fixed")]
+    [EnableRateLimiting("Concurrency")]
     public class DriveItemController(IDriveItemService @service) : ControllerBase
     {
         /// <summary>

@@ -20,7 +20,7 @@ namespace Hyperdrive.Service.Controllers
     [Produces("application/json")]
     [ApiController]
     [Authorize]
-    [EnableRateLimiting("fixed")]
+    [EnableRateLimiting("Concurrency")]
     public class ApplicationUserController(IApplicationUserService @service) : ControllerBase
     {
         /// <summary>

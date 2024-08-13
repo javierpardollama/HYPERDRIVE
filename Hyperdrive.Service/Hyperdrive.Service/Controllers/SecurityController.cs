@@ -16,7 +16,7 @@ namespace Hyperdrive.Tier.Web.Controllers
     [Route("api/security")]
     [Produces("application/json")]
     [ApiController]
-    [EnableRateLimiting("fixed")]
+    [EnableRateLimiting("Concurrency")]
     public class SecurityController(ISecurityService @service) : ControllerBase
     {
         /// <summary>
