@@ -107,16 +107,10 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.PhoneNumber),
                 new(
                     JwtRegisteredClaimNames.PhoneNumberVerified,
-                    @applicationUser.PhoneNumberConfirmed.ToString()),
-                new(
-                    JwtRegisteredClaimNames.Iss,
-                    JwtSettings.Value.JwtIssuer),              
+                    @applicationUser.PhoneNumberConfirmed.ToString()),                       
                 new(
                     JwtRegisteredClaimNames.Iat,
-                    DateTime.Now.ToString()),
-                new(
-                    JwtRegisteredClaimNames.Exp,
-                    GenerateTokenExpirationDate().ToString()),
+                    DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()),               
                 new(
                     JwtRegisteredClaimNames.Alg,
                     SecurityAlgorithms.EcdsaSha512Signature),                          
