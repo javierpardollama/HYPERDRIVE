@@ -110,7 +110,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.PhoneNumberConfirmed.ToString()),                       
                 new(
                     JwtRegisteredClaimNames.Iat,
-                    DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()),               
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString()),               
                 new(
                     JwtRegisteredClaimNames.Alg,
                     SecurityAlgorithms.EcdsaSha512Signature),                          
