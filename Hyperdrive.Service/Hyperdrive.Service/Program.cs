@@ -71,6 +71,10 @@ var @RateSettings = new RateLimitSettings();
 
 @builder.Services.AddCustomizedRateLimiter(@RateSettings);
 
+// Wherever your services are being registered.
+// Before the call to Build().
+@builder.Services.AddRequestTimeouts();
+@builder.Services.AddOutputCache();
 
 var @app = @builder.Build();
 
@@ -100,5 +104,9 @@ if (@app.Environment.IsDevelopment())
 @app.UseRateLimiter();
 
 @app.MapControllers();
+
+// Wherever your app has been built, before the call to Run().
+@app.UseRequestTimeouts();
+@app.UseOutputCache();
 
 @app.Run();
