@@ -18,15 +18,15 @@ namespace Microsoft.Extensions.Hosting
     // To learn more about using this project, see https://aka.ms/dotnet/aspire/service-defaults
     public static class Extensions
     {
-        public static IHostApplicationBuilder AddServiceDefaults(this IHostApplicationBuilder builder)
+        public static IHostApplicationBuilder AddCustomizedAspireServices(this IHostApplicationBuilder @builder)
         {
-            builder.ConfigureOpenTelemetry();
+            @builder.ConfigureOpenTelemetry();
 
-            builder.AddDefaultHealthChecks();
+            @builder.AddDefaultHealthChecks();
 
-            builder.Services.AddServiceDiscovery();
+            @builder.Services.AddServiceDiscovery();
 
-            builder.Services.ConfigureHttpClientDefaults(http =>
+            @builder.Services.ConfigureHttpClientDefaults(http =>
             {
                 // Turn on resilience by default
                 http.AddStandardResilienceHandler();
@@ -36,23 +36,23 @@ namespace Microsoft.Extensions.Hosting
             });
 
             // Uncomment the following to restrict the allowed schemes for service discovery.
-            builder.Services.Configure<ServiceDiscoveryOptions>(options =>
+            @builder.Services.Configure<ServiceDiscoveryOptions>(options =>
             {
                 options.AllowedSchemes = ["https"];
             });
 
-            return builder;
+            return @builder;
         }
 
-        public static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
+        private static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder @builder)
         {
-            builder.Logging.AddOpenTelemetry(logging =>
+            @builder.Logging.AddOpenTelemetry(logging =>
             {
                 logging.IncludeFormattedMessage = true;
                 logging.IncludeScopes = true;
             });
 
-            builder.Services.AddOpenTelemetry()
+            @builder.Services.AddOpenTelemetry()
                 .WithMetrics(metrics =>
                 {
                     metrics.AddAspNetCoreInstrumentation()
@@ -67,18 +67,18 @@ namespace Microsoft.Extensions.Hosting
                         .AddHttpClientInstrumentation();
                 });
 
-            builder.AddOpenTelemetryExporters();
+            @builder.AddOpenTelemetryExporters();
 
             return builder;
         }
 
-        private static IHostApplicationBuilder AddOpenTelemetryExporters(this IHostApplicationBuilder builder)
+        private static IHostApplicationBuilder AddOpenTelemetryExporters(this IHostApplicationBuilder @builder)
         {
-            var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+            var useOtlpExporter = !string.IsNullOrWhiteSpace(@builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
 
             if (useOtlpExporter)
             {
-                builder.Services.AddOpenTelemetry().UseOtlpExporter();
+                @builder.Services.AddOpenTelemetry().UseOtlpExporter();
             }
 
             // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
@@ -88,36 +88,36 @@ namespace Microsoft.Extensions.Hosting
             //       .UseAzureMonitor();
             //}
 
-            return builder;
+            return @builder;
         }
 
-        public static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder builder)
+        private static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder @builder)
         {
             // Adding health checks endpoints to applications in non-development environments has security implications.
             // See https://aka.ms/dotnet/aspire/healthchecks for details before enabling these endpoints in non-development environments.
-            builder.Services.AddRequestTimeouts(configure: static timeouts => timeouts.AddPolicy("HealthChecks", TimeSpan.FromSeconds(5)));
+            @builder.Services.AddRequestTimeouts(configure: static timeouts => timeouts.AddPolicy("HealthChecks", TimeSpan.FromSeconds(5)));
 
-            builder.Services.AddOutputCache(configureOptions: static caching => caching.AddPolicy("HealthChecks", build: static policy => policy.Expire(TimeSpan.FromSeconds(10))));
+            @builder.Services.AddOutputCache(configureOptions: static caching => caching.AddPolicy("HealthChecks", build: static policy => policy.Expire(TimeSpan.FromSeconds(10))));
 
-            builder.Services.AddHealthChecks()
+            @builder.Services.AddHealthChecks()
                 // Add a default liveness check to ensure app is responsive
                 .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
-            return builder;
+            return @builder;
         }
 
-        public static WebApplication MapDefaultEndpoints(this WebApplication app)
+        public static WebApplication MapDefaultHealthEndpoints(this WebApplication @app)
         {
             // All health checks must pass for app to be considered ready to accept traffic after starting
-            app.MapHealthChecks("/health");
+            @app.MapHealthChecks("/health");
 
             // Only health checks tagged with the "live" tag must pass for app to be considered alive
-            app.MapHealthChecks("/alive", new HealthCheckOptions
+            @app.MapHealthChecks("/alive", new HealthCheckOptions
             {
                 Predicate = r => r.Tags.Contains("live")
             });
 
-            return app;
+            return @app;
         }
     }
 }

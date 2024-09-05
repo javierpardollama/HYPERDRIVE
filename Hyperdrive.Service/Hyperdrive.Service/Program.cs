@@ -18,8 +18,6 @@ using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-@builder.AddServiceDefaults();
-
 // Add services to the container.
 
 @builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -71,14 +69,9 @@ var @RateSettings = new RateLimitSettings();
 
 @builder.Services.AddCustomizedRateLimiter(@RateSettings);
 
-// Wherever your services are being registered.
-// Before the call to Build().
-@builder.Services.AddRequestTimeouts();
-@builder.Services.AddOutputCache();
+@builder.AddCustomizedAspireServices();
 
 var @app = @builder.Build();
-
-@app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (@app.Environment.IsDevelopment())
@@ -93,7 +86,8 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseHttpsRedirection();
 
-// UseCors must be called before UseResponseCaching, UseAuthentication, UseAuthorization
+// UseCors() must be called before UseResponseCaching(), UseAuthentication(), UseAuthorization().
+// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
 @app.UseAuthentication();
@@ -105,7 +99,8 @@ if (@app.Environment.IsDevelopment())
 
 @app.MapControllers();
 
-// Wherever your app has been built, before the call to Run().
+@app.MapDefaultHealthEndpoints();
+
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
 
