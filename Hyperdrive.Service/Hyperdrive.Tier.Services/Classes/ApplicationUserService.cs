@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 
-using AutoMapper;
-
-using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
@@ -13,8 +7,14 @@ using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -22,11 +22,11 @@ namespace Hyperdrive.Tier.Services.Classes
     /// Represents a <see cref="ApplicationUserService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IApplicationUserService"/>
     /// </summary>    
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="logger">Injected <see cref="ILogger{ApplicationUserService}"/></param>
+    /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
     public class ApplicationUserService(IMapper @mapper,
-                                  IApplicationContext @context,
-                                  ILogger<ApplicationUserService> @logger) : BaseService(@context, @mapper, @logger), IApplicationUserService
+                                  ILogger<ApplicationUserService> @logger,
+                                  UserManager<ApplicationUser> @userManager) : BaseService(@mapper, @logger), IApplicationUserService
     {
 
         /// <summary>
@@ -35,10 +35,10 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationUser}}"/></returns>
         public async Task<ICollection<ViewApplicationUser>> FindAllApplicationUser()
         {
-            ICollection<ApplicationUser> @applicationUsers = await Context.Users
+            ICollection<ApplicationUser> @applicationUsers = await @userManager.Users
                .TagWith("FindAllApplicationUser")
                .AsNoTracking()
-               .AsSplitQuery()              
+               .AsSplitQuery()
                .Include(x => x.ApplicationUserRoles)
                .ThenInclude(x => x.ApplicationRole)
                .ToListAsync();
@@ -55,14 +55,14 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ViewPage<ViewApplicationUser> @page = new()
             {
-                Length = await Context.Users
+                Length = await @userManager.Users
                     .TagWith("CountAllApplicationUser")
                     .AsNoTracking()
                     .AsSplitQuery()
                     .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
-                Items = Mapper.Map<IList<ViewApplicationUser>>(await Context.Users
+                Items = Mapper.Map<IList<ViewApplicationUser>>(await @userManager.Users
                .TagWith("FindPaginatedApplicationUser")
                .AsNoTracking()
                .AsSplitQuery()
@@ -81,8 +81,8 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
-            ApplicationUser @applicationUser = await Context.Users
-               .TagWith("FindApplicationUserById")              
+            ApplicationUser @applicationUser = await @userManager.Users
+               .TagWith("FindApplicationUserById")
                .Include(x => x.ApplicationUserRoles)
                .ThenInclude(x => x.ApplicationRole)
                .FirstOrDefaultAsync(x => x.Id == @id);
@@ -116,18 +116,23 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(@id);
 
-            Context.Users.Remove(@applicationUser);
+            IdentityResult @identityResult = await @userManager.DeleteAsync(@applicationUser);
 
-            await Context.SaveChangesAsync();
+            if (identityResult.Succeeded)
+            {
+                // Log
+                string @logData = nameof(@applicationUser)
+                    + " with Id "
+                    + @applicationUser.Id
+                    + " was removed at "
+                    + DateTime.Now.ToShortTimeString();
 
-            // Log
-            string @logData = nameof(@applicationUser)
-                + " with Id "
-                + @applicationUser.Id
-                + " was removed at "
-                + DateTime.Now.ToShortTimeString();
-
-            Logger.WriteDeleteItemLog(@logData);
+                Logger.WriteDeleteItemLog(@logData);
+            }
+            else
+            {
+                throw new Exception("Management Error");
+            }
         }
 
         /// <summary>
@@ -141,27 +146,34 @@ namespace Hyperdrive.Tier.Services.Classes
 
             UpdateApplicationUserRole(@viewModel, @applicationUser);
 
-            Context.Users.Update(@applicationUser);
+            IdentityResult @identityResult = await @userManager.UpdateAsync(@applicationUser);
 
-            await Context.SaveChangesAsync();
+            if (@identityResult.Succeeded)
+            {
 
-            // Log
-            string @logData = nameof(@applicationUser)
-                + " with Id"
-                + @applicationUser.Id
-                + " was modified at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string @logData = nameof(@applicationUser)
+                    + " with Id"
+                    + @applicationUser.Id
+                    + " was modified at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+                Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewApplicationUser>(@applicationUser); ;
+                return Mapper.Map<ViewApplicationUser>(@applicationUser);
+
+            }
+            else 
+            {
+                throw new Exception("Management Error");
+            }
         }
 
         /// <summary>
         /// Updates Application User Role
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateApplicationUser"/></param>
-        /// <param name="entity">Injected <see cref="ApplicationUser"/></param>
+        /// <param name="applicationUser">Injected <see cref="ApplicationUser"/></param>
         public void UpdateApplicationUserRole(UpdateApplicationUser @viewModel, ApplicationUser @applicationUser)
         {
             @viewModel.ApplicationRolesId.AsQueryable().ToList().ForEach(async x =>

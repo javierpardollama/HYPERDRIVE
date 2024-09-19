@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
+using Sandwitch.Tier.Contexts.Interceptors;
+
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
     /// <summary>
@@ -46,6 +48,11 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         protected UserManager<ApplicationUser> UserManager;
 
         /// <summary>
+        /// Instance of <see cref="RoleManager{ApplicationRole}"/>
+        /// </summary>
+        protected RoleManager<ApplicationRole> RoleManager;
+
+        /// <summary>
         /// Instance of <see cref="UserManager{ApplicationUser}"/>
         /// </summary>
         protected SignInManager<ApplicationUser> SignInManager;
@@ -65,7 +72,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         public void SetUpServices()
         {
-            Services = new ServiceCollection();
+            Services = new ServiceCollection();          
 
             Services
                 .AddDbContext<ApplicationContext>(o => o.UseSqlite("Data Source=hyperdrive.db"))
@@ -85,8 +92,11 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             ServiceProvider = Services.BuildServiceProvider();
 
+            Services.AddIdentityCore<ApplicationUser>();
+
             Context = new ApplicationContext(ContextOptions);
             UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
         }
 
@@ -119,7 +129,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Sets Up Context Options
         /// </summary>
         public void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
-           .UseInMemoryDatabase(databaseName: "Data Source=hyperdrive.db")
+           .UseInMemoryDatabase("Data Source=hyperdrive.db")
            .Options;
     }
 }

@@ -20,8 +20,11 @@ namespace Hyperdrive.Tier.Service.Extensions
         /// <param name="JwtSettings">Injected <see cref="JwtSettings"/></param>
         public static void AddCustomizedAuthentication(this IServiceCollection @this, JwtSettings @JwtSettings)
         {
-            @this.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer(options =>
+            @this.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
                {
                    options.ClaimsIssuer = @JwtSettings.JwtIssuer;
                    options.Authority = @JwtSettings.JwtAuthority;

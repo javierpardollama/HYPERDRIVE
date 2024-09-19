@@ -66,7 +66,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public SigningCredentials GenerateSigningCredentials(SymmetricSecurityKey @symmetricSecurityKey)
         {
             return new SigningCredentials(@symmetricSecurityKey,
-                                          SecurityAlgorithms.EcdsaSha512Signature);
+                                          SecurityAlgorithms.HmacSha256Signature);
         }
 
         /// <summary>
@@ -98,13 +98,13 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.EmailConfirmed.ToString()),
                 new(
                     ClaimTypes.Name,
-                    @applicationUser.FirstName),
+                    @applicationUser.FirstName ?? string.Empty),
                 new(
                     ClaimTypes.Surname,
-                    @applicationUser.LastName),
+                    @applicationUser.LastName ?? string.Empty),
                 new(
                     ClaimTypes.MobilePhone,
-                    @applicationUser.PhoneNumber),
+                    @applicationUser.PhoneNumber ?? string.Empty),
                 new(
                     JwtRegisteredClaimNames.PhoneNumberVerified,
                     @applicationUser.PhoneNumberConfirmed.ToString()),                       
@@ -113,7 +113,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     DateTimeOffset.Now.ToUnixTimeSeconds().ToString()),               
                 new(
                     JwtRegisteredClaimNames.Alg,
-                    SecurityAlgorithms.EcdsaSha512Signature),                          
+                    SecurityAlgorithms.HmacSha256Signature),                          
             }.Union(JwtSettings.Value.JwtAudiences
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
              .Union(@applicationUser.ApplicationUserRoles

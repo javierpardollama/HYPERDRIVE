@@ -44,15 +44,15 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthSignIn @viewModel)
         {
-            SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@viewModel.Email,
+            ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
+
+            SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@applicationUser,
                                                                                 @viewModel.Password,
-                                                                                false,
+                                                                                true,
                                                                                 true);
 
             if (@signInResult.Succeeded)
             {
-                ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
-
                 @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
                 {
                     Name = Guid.NewGuid().ToString(),
@@ -86,15 +86,15 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         public async Task<ViewApplicationUser> SignIn(AuthJoinIn @viewModel)
         {
-            SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@viewModel.Email,
+            ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
+
+            SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@applicationUser,
                                                                                 @viewModel.Password,
                                                                                 false,
                                                                                 true);
 
             if (@signInResult.Succeeded)
             {
-                ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
-
                 @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
                 {
                     Name = Guid.NewGuid().ToString(),
@@ -137,9 +137,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
                 SecurityStamp = DateTime.Now.ToBinary().ToString(),
                 NormalizedEmail = @viewModel.Email.Trim().ToUpper(),
-                NormalizedUserName = @viewModel.Email.Trim().Split('@').First().ToUpper(),
-                LastModified = DateTime.Now,
-                Deleted = false
+                NormalizedUserName = @viewModel.Email.Trim().Split('@').First().ToUpper()
             };
 
             IdentityResult @identityResult = await @userManager.CreateAsync(@applicationUser,

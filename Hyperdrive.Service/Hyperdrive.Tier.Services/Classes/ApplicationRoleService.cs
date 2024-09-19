@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 
-using AutoMapper;
-
-using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
@@ -14,8 +8,14 @@ using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -23,11 +23,11 @@ namespace Hyperdrive.Tier.Services.Classes
     /// Represents a <see cref="ApplicationRoleService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IApplicationRoleService"/>
     /// </summary>  
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="logger">Injected <see cref="ILogger{ApplicationRoleService}"/></param>
+    /// <param name="roleManager">Injected <see cref=" RoleManager{ApplicationRole}"/></param>
     public class ApplicationRoleService(IMapper @mapper,
-                                  IApplicationContext @context,
-                                  ILogger<ApplicationRoleService> @logger) : BaseService(@context, @mapper, @logger), IApplicationRoleService
+                                  ILogger<ApplicationRoleService> @logger,
+                                  RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper, @logger), IApplicationRoleService
     {
 
         /// <summary>
@@ -47,20 +47,26 @@ namespace Hyperdrive.Tier.Services.Classes
                 ImageUri = @viewModel.ImageUri.Trim(),
             };
 
-            await Context.Roles.AddAsync(@applicationRole);
+            IdentityResult @identityResult = await @roleManager.CreateAsync(@applicationRole);
 
-            await Context.SaveChangesAsync();
+            if (@identityResult.Succeeded)
+            {
+                // Log
+                string @logData = nameof(@applicationRole)
+                    + " with Id "
+                    + @applicationRole.Id
+                    + " was added at "
+                    + DateTime.Now.ToShortTimeString();
 
-            // Log
-            string @logData = nameof(@applicationRole)
-                + " with Id "
-                + @applicationRole.Id
-                + " was added at "
-                + DateTime.Now.ToShortTimeString();
+                Logger.WriteInsertItemLog(@logData);
 
-            Logger.WriteInsertItemLog(@logData);
+                return Mapper.Map<ViewApplicationRole>(@applicationRole);
+            }
+            else 
+            {
+                throw new Exception("Management Error");
+            }
 
-            return Mapper.Map<ViewApplicationRole>(@applicationRole);
         }
 
         /// <summary>
@@ -70,7 +76,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> CheckName(AddApplicationRole @viewModel)
         {
-            ApplicationRole @applicationRole = await Context.Roles
+            ApplicationRole @applicationRole = await @roleManager.Roles
                 .AsNoTracking()
                 .TagWith("CheckName")
                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
@@ -102,7 +108,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> CheckName(UpdateApplicationRole @viewModel)
         {
-            ApplicationRole @applicationRole = await Context.Roles
+            ApplicationRole @applicationRole = await @roleManager.Roles
                  .AsNoTracking()
                  .AsSplitQuery()
                  .TagWith("CheckName")
@@ -134,7 +140,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationRole}}"/></returns>
         public async Task<ICollection<ViewApplicationRole>> FindAllApplicationRole()
         {
-            ICollection<ApplicationRole> @applicationRoles = await Context.Roles
+            ICollection<ApplicationRole> @applicationRoles = await @roleManager.Roles
                 .TagWith("FindAllApplicationRole")
                 .AsNoTracking()
                 .AsSplitQuery()
@@ -152,14 +158,14 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ViewPage<ViewApplicationRole> @page = new()
             {
-                Length = await Context.Roles
+                Length = await @roleManager.Roles
                     .TagWith("CountAllApplicationRole")
                     .AsNoTracking()
                     .AsSplitQuery()
                     .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
-                Items = Mapper.Map<IList<ViewApplicationRole>>(await Context.Roles
+                Items = Mapper.Map<IList<ViewApplicationRole>>(await @roleManager.Roles
                .TagWith("FindPaginatedApplicationRole")
                .AsNoTracking()
                .AsSplitQuery()
@@ -178,7 +184,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> FindApplicationRoleById(int @id)
         {
-            ApplicationRole @applicationRole = await Context.Roles.
+            ApplicationRole @applicationRole = await @roleManager.Roles.
                 TagWith("FindApplicationRoleById")
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
@@ -211,18 +217,23 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationRole @applicationRole = await FindApplicationRoleById(@id);
 
-            Context.Roles.Remove(@applicationRole);
+            IdentityResult @identityResult = await @roleManager.DeleteAsync(@applicationRole);
 
-            await Context.SaveChangesAsync();
+            if (@identityResult.Succeeded)
+            {
+                // Log
+                string @logData = nameof(@applicationRole)
+                    + " with Id "
+                    + @applicationRole.Id
+                    + " was removed at "
+                    + DateTime.Now.ToShortTimeString();
 
-            // Log
-            string @logData = nameof(@applicationRole)
-                + " with Id "
-                + @applicationRole.Id
-                + " was removed at "
-                + DateTime.Now.ToShortTimeString();
-
-            Logger.WriteDeleteItemLog(@logData);
+                Logger.WriteDeleteItemLog(@logData);
+            }
+            else 
+            {
+                throw new Exception("Management Error");
+            }           
         }
 
         /// <summary>
@@ -240,20 +251,27 @@ namespace Hyperdrive.Tier.Services.Classes
             @applicationRole.NormalizedName = @viewModel.Name?.Trim().ToUpper();
             @applicationRole.ImageUri = @viewModel.ImageUri.Trim();
 
-            Context.Roles.Update(@applicationRole);
+            IdentityResult @identityResult = await @roleManager.UpdateAsync(@applicationRole);
 
-            await Context.SaveChangesAsync();
+            if (@identityResult.Succeeded)
+            {
 
-            // Log
-            string @logData = nameof(@applicationRole)
-                + " with Id "
-                + @applicationRole.Id
-                + " was modified at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string @logData = nameof(@applicationRole)
+                    + " with Id "
+                    + @applicationRole.Id
+                    + " was modified at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+                Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewApplicationRole>(@applicationRole);
+                return Mapper.Map<ViewApplicationRole>(@applicationRole);
+
+            }
+            else 
+            {
+                throw new Exception("Management Error");
+            }
         }
     }
 }

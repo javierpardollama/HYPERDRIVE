@@ -29,7 +29,7 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
 
     public ELEMENT_DATA: ViewApplicationUser[] = [];
 
-    public displayedColumns: string[] = ['Id', 'Name', 'ApplicationRoles', 'LastModified'];
+    public displayedColumns: string[] = ['Id', 'FirstName', 'ApplicationRoles', 'LastModified'];
 
     public dataSource: MatTableDataSource<ViewApplicationUser> = new MatTableDataSource<ViewApplicationUser>();
 
