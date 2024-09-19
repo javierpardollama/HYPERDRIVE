@@ -24,9 +24,11 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
     /// <param name="logger">Injected <see cref="ILogger{ApplicationUserService}"/></param>
     /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
+    /// <param name="roleManager">Injected <see cref=" RoleManager{ApplicationRole}"/></param>
     public class ApplicationUserService(IMapper @mapper,
                                   ILogger<ApplicationUserService> @logger,
-                                  UserManager<ApplicationUser> @userManager) : BaseService(@mapper, @logger), IApplicationUserService
+                                  UserManager<ApplicationUser> @userManager,
+                                  RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper, @logger), IApplicationUserService
     {
 
         /// <summary>
@@ -197,7 +199,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         public async Task<ApplicationRole> FindApplicationRoleById(int @id)
         {
-            ApplicationRole @applicationRole = await Context.Roles
+            ApplicationRole @applicationRole = await @roleManager.Roles
                 .TagWith("FindApplicationRoleById")
                 .FirstOrDefaultAsync(x => x.Id == @id);
 

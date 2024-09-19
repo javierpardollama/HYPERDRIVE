@@ -56,7 +56,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpContext();
 
-            Service = new ApplicationUserService(Mapper, Logger, UserManager);
+            Service = new ApplicationUserService(Mapper, Logger, UserManager, RoleManager);
         }
 
         /// <summary>

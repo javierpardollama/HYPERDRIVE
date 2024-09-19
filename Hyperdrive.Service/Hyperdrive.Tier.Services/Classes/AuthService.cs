@@ -48,7 +48,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
             SignInResult @signInResult = await @signInManager.PasswordSignInAsync(@applicationUser,
                                                                                 @viewModel.Password,
-                                                                                true,
+                                                                                false,
                                                                                 true);
 
             if (@signInResult.Succeeded)

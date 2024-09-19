@@ -75,25 +75,15 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Services = new ServiceCollection();          
 
             Services
-                .AddDbContext<ApplicationContext>(o => o.UseSqlite("Data Source=hyperdrive.db"))
-                .AddIdentity<ApplicationUser, ApplicationRole>(options =>
-                {
-                    options.Lockout = new LockoutOptions()
-                    {
-                        AllowedForNewUsers = true,
-                        DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5),
-                        MaxFailedAccessAttempts = 5
-                    };
-                })
+                .AddHttpContextAccessor()
+                .AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("hyperdrive.db"))
+                .AddIdentity<ApplicationUser, ApplicationRole>()                            
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
             Services.AddLogging();
 
             ServiceProvider = Services.BuildServiceProvider();
-
-            Services.AddIdentityCore<ApplicationUser>();
-
             Context = new ApplicationContext(ContextOptions);
             UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
@@ -122,14 +112,14 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             JwtExpireMinutes = 60,
             JwtIssuer = "https://localhost:15208",
             JwtAuthority = "https://localhost:15208",
-            JwtKey = "SOME_RANDOM_KEY_DO_NOT_SHARE"
+            JwtKey = "These are not the droids who you are looking for"
         });
 
         /// <summary>
         /// Sets Up Context Options
         /// </summary>
         public void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
-           .UseInMemoryDatabase("Data Source=hyperdrive.db")
+           .UseInMemoryDatabase("hyperdrive.db")
            .Options;
     }
 }
