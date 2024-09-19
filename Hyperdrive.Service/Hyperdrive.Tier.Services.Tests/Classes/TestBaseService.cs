@@ -72,16 +72,15 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         public void SetUpServices()
         {
-            Services = new ServiceCollection();          
+            Services = new ServiceCollection();
 
             Services
-                .AddHttpContextAccessor()
+                .AddLogging()               
                 .AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("hyperdrive.db"))
-                .AddIdentity<ApplicationUser, ApplicationRole>()                            
+                .AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
-            Services.AddLogging();
 
             ServiceProvider = Services.BuildServiceProvider();
             Context = new ApplicationContext(ContextOptions);
