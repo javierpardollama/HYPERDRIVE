@@ -53,7 +53,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         protected RoleManager<ApplicationRole> RoleManager;
 
         /// <summary>
-        /// Instance of <see cref="UserManager{ApplicationUser}"/>
+        /// Instance of <see cref="SignInManager{ApplicationUser}"/>
         /// </summary>
         protected SignInManager<ApplicationUser> SignInManager;
 
