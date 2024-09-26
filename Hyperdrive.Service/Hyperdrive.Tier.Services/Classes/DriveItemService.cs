@@ -324,7 +324,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.DriveItemVersions.LastOrDefault().Name
+                    + @archive.DriveItemVersions.LastOrDefault()?.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
@@ -353,7 +353,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.DriveItemVersions.LastOrDefault().Name
+                    + @archive.DriveItemVersions.LastOrDefault()?.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
