@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />	
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />	
 	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />	 
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
 	    <PrivateAssets>all</PrivateAssets>
