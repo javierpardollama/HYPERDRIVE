@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Security.Claims;
 
 using AutoMapper;
 
@@ -8,6 +10,7 @@ using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Mappings.Classes;
 using Hyperdrive.Tier.Settings.Classes;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -75,7 +78,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Services = new ServiceCollection();
 
             Services
-                .AddLogging()               
+                .AddLogging()
                 .AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("hyperdrive.db"))
                 .AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationContext>()
@@ -87,6 +90,14 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
+        }
+
+        /// <summary>
+        /// Sets Up Http Context
+        /// </summary>
+        public void SetUpHttpContext()
+        {
+            Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor() { HttpContext = new DefaultHttpContext() { RequestServices = Services.BuildServiceProvider() } });
         }
 
         /// <summary>

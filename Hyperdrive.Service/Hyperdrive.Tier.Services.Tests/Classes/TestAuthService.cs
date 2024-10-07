@@ -61,6 +61,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpServices();
 
+            SetUpHttpContext();
+
             SetUpMapper();
 
             SetUpLogger();
