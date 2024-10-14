@@ -79,7 +79,11 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             Services
                 .AddLogging()
-                .AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("hyperdrive.db"))
+                .AddDbContext<ApplicationContext>(o =>
+                {
+                    o.UseInMemoryDatabase("hyperdrive.db");
+                    o.AddInterceptors(new SoftDeleteInterceptor());
+                })
                 .AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
