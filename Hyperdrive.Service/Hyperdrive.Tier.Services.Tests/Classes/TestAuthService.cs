@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
 
 using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
@@ -170,6 +169,22 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             };
 
             Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckEmail(viewModel));
+
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Signs Out
+        /// </summary>
+        [Test]
+        public async Task SignOut() 
+        {
+            AuthSignOut viewModel = new()
+            {
+                Email = "firstuser@email.com"
+            };
+
+            await Service.SignOut(viewModel);
 
             Assert.Pass();
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Security.Claims;
-
-using AutoMapper;
+﻿using AutoMapper;
 
 using Hyperdrive.Tier.Contexts.Classes;
 using Hyperdrive.Tier.Entities.Classes;
@@ -17,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Contexts.Interceptors;
+
+using System.Collections.Generic;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {

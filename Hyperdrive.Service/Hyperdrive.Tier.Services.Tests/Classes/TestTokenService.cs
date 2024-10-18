@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-
-using Hyperdrive.Tier.Contexts.Classes;
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Classes;
 
 using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
+
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {

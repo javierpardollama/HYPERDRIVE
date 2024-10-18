@@ -1,17 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
-using Hyperdrive.Tier.ViewModels.Interfaces.Filters;
 
 using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
