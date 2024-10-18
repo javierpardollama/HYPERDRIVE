@@ -46,17 +46,13 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpJwtOptions();
-
             SetUpServices();
 
             SetUpMapper();
 
             SetUpLogger();
 
-            SetUpContext();
+            SetUpData();
 
             Service = new DriveItemService(UserManager, Context, Mapper, Logger);
         }
@@ -91,9 +87,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Sets Up Context
+        /// Sets Up Data
         /// </summary>
-        private void SetUpContext()
+        private void SetUpData()
         {
             Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
             Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });

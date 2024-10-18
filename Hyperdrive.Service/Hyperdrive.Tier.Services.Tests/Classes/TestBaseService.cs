@@ -31,14 +31,24 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         protected IMapper Mapper;
 
         /// <summary>
-        /// Instance of <see cref="IOptions{JwtSettings}"/>
+        /// Gets or Sets <see cref="IOptions{JwtSettings}"/>
         /// </summary>
-        protected IOptions<JwtSettings> JwtOptions;
+        protected IOptions<JwtSettings> JwtOptions { get; set; } = Options.Create(new JwtSettings()
+        {
+            JwtAudiences = new List<string>() { "https://localhost:4200" },
+            JwtExpireMinutes = 60,
+            JwtIssuer = "https://localhost:15208",
+            JwtAuthority = "https://localhost:15208",
+            JwtKey = "These are not the droids who you are looking for"
+        });
 
         /// <summary>
-        /// Instance of <see cref="DbContextOptions{ApplicationContext}"/>
+        /// Gets or Sets <see cref="DbContextOptionsBuilder{ApplicationContext}"/>
         /// </summary>
-        protected DbContextOptions<ApplicationContext> ContextOptions;
+        protected DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; set; } = new DbContextOptionsBuilder<ApplicationContext>()
+           .UseInMemoryDatabase("hyperdrive.db")
+           .AddInterceptors(new SoftDeleteInterceptor());
+
 
         /// <summary>
         /// Instance of <see cref="ApplicationContext"/>
@@ -61,9 +71,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         protected SignInManager<ApplicationUser> SignInManager;
 
         /// <summary>
-        /// Instance of <see cref="ServiceCollection"/>
+        /// Gets or Sets <see cref="ServiceCollection"/>
         /// </summary>
-        protected ServiceCollection Services;
+        protected ServiceCollection Services { get; set; } = new();
 
         /// <summary>
         /// Instance of <see cref="ServiceProvider"/>
@@ -75,8 +85,6 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         public void SetUpServices()
         {
-            Services = new ServiceCollection();
-
             Services
                 .AddLogging()
                 .AddDbContext<ApplicationContext>(o =>
@@ -90,7 +98,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
 
             ServiceProvider = Services.BuildServiceProvider();
-            Context = new ApplicationContext(ContextOptions);
+            Context = new ApplicationContext(ContextOptionsBuilder.Options);
             UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
@@ -101,7 +109,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         public void SetUpHttpContext()
         {
-            Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor() { HttpContext = new DefaultHttpContext() { RequestServices = Services.BuildServiceProvider() } });
+            Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor() { HttpContext = new DefaultHttpContext() { RequestServices = ServiceProvider } });
         }
 
         /// <summary>
@@ -115,25 +123,6 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             });
 
             Mapper = @config.CreateMapper();
-        }
-
-        /// <summary>
-        /// Sets Up Jwt Options
-        /// </summary>
-        public void SetUpJwtOptions() => JwtOptions = Options.Create(new JwtSettings()
-        {
-            JwtAudiences = new List<string>() { "https://localhost:4200" },
-            JwtExpireMinutes = 60,
-            JwtIssuer = "https://localhost:15208",
-            JwtAuthority = "https://localhost:15208",
-            JwtKey = "These are not the droids who you are looking for"
-        });
-
-        /// <summary>
-        /// Sets Up Context Options
-        /// </summary>
-        public void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
-           .UseInMemoryDatabase("hyperdrive.db")
-           .Options;
+        }       
     }
 }
