@@ -42,6 +42,12 @@ footer {
     margin-right: auto;
 }
 
+@media screen and (max-width: 960px) {
+    .mat-mdc-dialog-container {
+        height: unset !important;
+    }
+}
+
 /* SPINNER ANIMATION */
 @-webkit-keyframes sk-rotateplane {
     0% {
