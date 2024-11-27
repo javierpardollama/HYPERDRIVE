@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Hyperdrive.Tier.Entities.Interfaces;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -22,26 +24,26 @@ namespace Sandwitch.Tier.Contexts.Interceptors
         /// <returns>Instance of <see cref="ValueTask{InterceptionResult{int}}"/></returns>
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
         {
-            foreach (EntityEntry @entity in eventData.Context.ChangeTracker.Entries())
+            foreach (EntityEntry @entity in eventData.Context.ChangeTracker.Entries<IBase>())
             {
                 switch (@entity.State)
                 {
                     case EntityState.Added:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Added;
-                        @entity.CurrentValues["Deleted"] = false;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Modified:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Modified;
-                        @entity.CurrentValues["Deleted"] = false;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Deleted:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Modified;
-                        @entity.CurrentValues["Deleted"] = true;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = true;
                         break;
                 }
             }
@@ -57,26 +59,26 @@ namespace Sandwitch.Tier.Contexts.Interceptors
         /// <returns>Instance of <see cref="InterceptionResult{int}"/></returns>
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
-            foreach (EntityEntry @entity in eventData.Context.ChangeTracker.Entries())
+            foreach (EntityEntry @entity in eventData.Context.ChangeTracker.Entries<IBase>())
             {
                 switch (@entity.State)
                 {
                     case EntityState.Added:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Added;
-                        @entity.CurrentValues["Deleted"] = false;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Modified:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Modified;
-                        @entity.CurrentValues["Deleted"] = false;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Deleted:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Modified;
-                        @entity.CurrentValues["Deleted"] = true;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = true;
                         break;
                 }
             }
