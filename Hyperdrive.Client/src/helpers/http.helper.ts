@@ -36,8 +36,17 @@ export class HttpHelper {
         };
 
         Object.entries(object).forEach(property => {
+
             const [key, value] = property;
-            options.params = options.params.append(`${key}`, value)
+
+            if (Array.isArray(value)) {
+                value.forEach(item => {
+                    options.params = options.params.append(`${key}`, item)
+                });
+
+            } else {
+                options.params = options.params.append(`${key}`, value)
+            }
         });
 
         return options;
