@@ -22,7 +22,7 @@ Location: Bilbao, Bizkaia, España.
 /* SITE */
 
                             
-Last update: 2022/12/22 
+Last update: 2025/01/02 
                             
 Standards: HTML5, CSS3,..
                             
