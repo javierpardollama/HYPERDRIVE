@@ -1,7 +1,7 @@
 import { UpdateBase } from './updatebase';
 
 export interface UpdateDriveItem extends UpdateBase {
-    Data?: ArrayBuffer;
+    Data?: string;
     Name: string;
     Folder: boolean;
     Locked: boolean;

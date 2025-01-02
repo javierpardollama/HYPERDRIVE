@@ -50,7 +50,7 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="Data"/>
         /// </summary>
-        public byte[] Data { get; set; }
+        public string Data { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Size"/>

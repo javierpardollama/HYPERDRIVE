@@ -5,7 +5,7 @@ import { ViewDriveItem } from './viewdriveitem';
 export interface ViewDriveItemVersion extends ViewKey, ViewBase {
     DriveItem: ViewDriveItem;
     Name: string;
-    Data?: ArrayBuffer;
+    Data?: string;
     Size: number;
     Type: string;
 }

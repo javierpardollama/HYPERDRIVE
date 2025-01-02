@@ -176,7 +176,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = "foutharchive.txt",
                 Size = 1024,
                 Type = "Text",
@@ -194,7 +194,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = "fiftharchive.txt",
                 Size = 1024,
                 Type = "Text",
@@ -212,7 +212,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = "sixtharchive.txt",
                 Size = 1024,
                 Type = "Text",
@@ -231,7 +231,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             {
                 Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x=>x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
@@ -250,7 +250,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             {
                 Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
@@ -269,7 +269,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             {
                 Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
@@ -287,7 +287,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             AddDriveItem @addDriveItem = new()
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
-                Data = new byte[10],
+                Data = new byte[10].ToString(),
                 Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",

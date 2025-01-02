@@ -34,7 +34,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         /// <summary>
         /// Gets or Sets <see cref="Data"/>
         /// </summary>
-        public byte[] Data { get; set; }
+        public string Data { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Size"/>
