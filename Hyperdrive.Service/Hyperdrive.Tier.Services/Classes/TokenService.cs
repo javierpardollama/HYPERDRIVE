@@ -104,10 +104,10 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.EmailConfirmed.ToString()),
                 new(
                     ClaimTypes.Name,
-                    $"{@applicationUser.FirstName}{applicationUser.LastName}"),
+                    $"{@applicationUser.FirstName} {applicationUser.LastName}"),
                 new(
                     JwtRegisteredClaimNames.Name,
-                    $"{@applicationUser.FirstName}{applicationUser.LastName}"),
+                    $"{@applicationUser.FirstName} {applicationUser.LastName}"),
                 new(
                     ClaimTypes.GivenName,
                     $"{@applicationUser.FirstName}"),
