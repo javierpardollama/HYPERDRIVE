@@ -94,26 +94,50 @@ namespace Hyperdrive.Tier.Services.Classes
                     ClaimTypes.Email,
                     @applicationUser.Email),
                 new(
+                    JwtRegisteredClaimNames.Email,
+                    @applicationUser.Email),
+                new(
+                    JwtRegisteredClaimNames.UniqueName,
+                    @applicationUser.Email),
+                new(
                     JwtRegisteredClaimNames.EmailVerified,
                     @applicationUser.EmailConfirmed.ToString()),
                 new(
                     ClaimTypes.Name,
-                    @applicationUser.FirstName ?? string.Empty),
+                    $"{@applicationUser.FirstName}{applicationUser.LastName}"),
+                new(
+                    JwtRegisteredClaimNames.Name,
+                    $"{@applicationUser.FirstName}{applicationUser.LastName}"),
+                new(
+                    ClaimTypes.GivenName,
+                    $"{@applicationUser.FirstName}"),
+                new(
+                    JwtRegisteredClaimNames.GivenName,
+                    $"{@applicationUser.FirstName}"),
                 new(
                     ClaimTypes.Surname,
-                    @applicationUser.LastName ?? string.Empty),
+                    $"{applicationUser.LastName}"),
+                new(
+                    JwtRegisteredClaimNames.FamilyName,
+                    $"{applicationUser.LastName}"),
                 new(
                     ClaimTypes.MobilePhone,
-                    @applicationUser.PhoneNumber ?? string.Empty),
+                    $"{applicationUser.PhoneNumber}"),
+                new(
+                    JwtRegisteredClaimNames.PhoneNumber,
+                    $"{applicationUser.PhoneNumber}"),
                 new(
                     JwtRegisteredClaimNames.PhoneNumberVerified,
-                    @applicationUser.PhoneNumberConfirmed.ToString()),                       
+                    @applicationUser.PhoneNumberConfirmed.ToString()),
+                new(
+                    JwtRegisteredClaimNames.UpdatedAt,
+                    new DateTimeOffset(@applicationUser.LastModified).ToUnixTimeSeconds().ToString()),
                 new(
                     JwtRegisteredClaimNames.Iat,
-                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString()),               
+                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString()),
                 new(
                     JwtRegisteredClaimNames.Alg,
-                    SecurityAlgorithms.HmacSha256Signature),                          
+                    SecurityAlgorithms.HmacSha256Signature),
             }.Union(JwtSettings.Value.JwtAudiences
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
              .Union(@applicationUser.ApplicationUserRoles
