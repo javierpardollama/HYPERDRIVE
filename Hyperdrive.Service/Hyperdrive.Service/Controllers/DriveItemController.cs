@@ -1,16 +1,13 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Services.Interfaces;
+﻿using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.Tasks;
 
-namespace Hyperdrive.Tier.Web.Controllers
+namespace Hyperdrive.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="DriveItemController"/> class. Inherits <see cref="ControllerBase"/>
@@ -30,7 +27,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("findpaginatedarchivebyapplicationuserid")]
-        public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => new JsonResult(value: await @service.FindPaginatedDriveItemByApplicationUserId(@viewModel));
+        public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await @service.FindPaginatedDriveItemByApplicationUserId(@viewModel));
 
         /// <summary>
         /// Finds Paginated Shared DriveItem By ApplicationUser Id
@@ -39,7 +36,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("findpaginatedsharedarchivebyapplicationuserid")]
-        public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => new JsonResult(value: await @service.FindPaginatedSharedDriveItemByApplicationUserId(@viewModel));
+        public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await @service.FindPaginatedSharedDriveItemByApplicationUserId(@viewModel));
 
         /// <summary>
         /// Finds All DriveItem Version By DriveItem Id
@@ -48,7 +45,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpGet]
         [Route("findallarchiveversionbyarchiveid/{id}")]
-        public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => new JsonResult(value: await @service.FindAllDriveItemVersionByDriveItemId(@id));
+        public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await @service.FindAllDriveItemVersionByDriveItemId(@id));
 
         /// <summary>
         /// Finds All DriveItem
@@ -56,7 +53,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpGet]
         [Route("findallarchive")]
-        public async Task<IActionResult> FindAllDriveItem() => new JsonResult(value: await @service.FindAllDriveItem());
+        public async Task<IActionResult> FindAllDriveItem() => Ok(value: await @service.FindAllDriveItem());
 
         /// <summary>
         /// Adds DriveItem
@@ -65,7 +62,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("addarchive")]
-        public async Task<IActionResult> AddDriveItem([FromBody]AddDriveItem @viewModel) => new JsonResult(value: await @service.AddDriveItem(@viewModel));
+        public async Task<IActionResult> AddDriveItem([FromBody]AddDriveItem @viewModel) => Ok(value: await @service.AddDriveItem(@viewModel));
 
         /// <summary>
         /// Updates DriveItem
@@ -74,7 +71,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPut]
         [Route("updatearchive")]
-        public async Task<IActionResult> UpdateDriveItem([FromBody]UpdateDriveItem @viewModel) => new JsonResult(value: await @service.UpdateDriveItem(@viewModel));
+        public async Task<IActionResult> UpdateDriveItem([FromBody]UpdateDriveItem @viewModel) => Ok(value: await @service.UpdateDriveItem(@viewModel));
 
         /// <summary>
         /// Removes DriveItem By Id
@@ -87,7 +84,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         {
             await @service.RemoveDriveItemById(@id);
 
-            return new JsonResult((int)HttpStatusCode.OK);
+            return Ok();
         }
     }
 }

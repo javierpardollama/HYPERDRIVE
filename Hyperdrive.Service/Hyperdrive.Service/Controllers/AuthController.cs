@@ -1,14 +1,10 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Services.Interfaces;
+﻿using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
-using Hyperdrive.Tier.ViewModels.Classes.Views;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.Tasks;
 
-namespace Hyperdrive.Tier.Web.Controllers
+namespace Hyperdrive.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="AuthController"/> class. Inherits <see cref="ControllerBase"/>
@@ -27,7 +23,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("signin")]
-        public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => new JsonResult(value: await @service.SignIn(@viewModel));
+        public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await @service.SignIn(@viewModel));
 
         /// <summary>
         /// Joins In
@@ -36,7 +32,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
         [HttpPost]
         [Route("joinin")]
-        public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => new JsonResult(value: await @service.JoinIn(@viewModel));
+        public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await @service.JoinIn(@viewModel));
 
         /// <summary>
         /// Signs Out
@@ -49,7 +45,7 @@ namespace Hyperdrive.Tier.Web.Controllers
         {
             await @service.SignOut(@viewModel);
 
-            return new JsonResult((int)HttpStatusCode.OK);
+            return Ok();
         }
     }
 }

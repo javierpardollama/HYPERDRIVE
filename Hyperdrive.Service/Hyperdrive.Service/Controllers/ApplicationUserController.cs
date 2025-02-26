@@ -1,13 +1,10 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-
-using Hyperdrive.Tier.Services.Interfaces;
+﻿using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Service.Controllers
 {
@@ -30,7 +27,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPut]
         [Route("updateapplicationuser")]
-        public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => new JsonResult(value: await @service.UpdateApplicationUser(@viewModel));
+        public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await @service.UpdateApplicationUser(@viewModel));
 
         /// <summary>
         /// Finds All Application User
@@ -39,7 +36,7 @@ namespace Hyperdrive.Service.Controllers
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationuser")]
-        public async Task<IActionResult> FindAllApplicationUser() => new JsonResult(value: await @service.FindAllApplicationUser());
+        public async Task<IActionResult> FindAllApplicationUser() => Ok(value: await @service.FindAllApplicationUser());
 
         /// <summary>
         /// Finds Paginated Application User
@@ -48,7 +45,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedapplicationuser")]
-        public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => new JsonResult(value: await @service.FindPaginatedApplicationUser(@viewModel));
+        public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await @service.FindPaginatedApplicationUser(@viewModel));
 
 
         /// <summary>
@@ -62,7 +59,7 @@ namespace Hyperdrive.Service.Controllers
         {
             await @service.RemoveApplicationUserById(@id);
 
-            return new JsonResult((int)HttpStatusCode.OK);
+            return Ok();
         }
     }
 }
