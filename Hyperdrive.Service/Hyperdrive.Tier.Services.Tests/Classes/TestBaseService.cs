@@ -13,8 +13,6 @@ using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Contexts.Interceptors;
 
-using System.Collections.Generic;
-
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
     /// <summary>
@@ -32,7 +30,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         protected IOptions<JwtSettings> JwtOptions { get; set; } = Options.Create(new JwtSettings()
         {
-            JwtAudiences = new List<string>() { "https://localhost:4200" },
+            JwtAudiences = ["https://localhost:4200"],
             JwtExpireMinutes = 60,
             JwtIssuer = "https://localhost:15208",
             JwtAuthority = "https://localhost:15208",
