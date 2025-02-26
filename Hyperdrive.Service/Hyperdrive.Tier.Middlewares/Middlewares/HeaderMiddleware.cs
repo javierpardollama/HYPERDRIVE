@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Middlewares.Middlewares
 {
@@ -9,7 +8,7 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
     /// Represents a <see cref="HeaderMiddleware"/> class
     /// </summary>   
     /// <param name="request">Injected <see cref="RequestDelegate"/></param>
-    public class HeaderMiddleware(RequestDelegate request)
+    public class HeaderMiddleware(RequestDelegate @request)
     {
         /// <summary>
         /// Handles Requests Asynchronously
@@ -25,7 +24,7 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
             @context.Response.Headers.XXSSProtection = new StringValues("0");
             @context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src 'self'");
 
-            await request(@context);
+            await @request(@context);
         }
     }
 }

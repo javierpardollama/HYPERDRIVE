@@ -1,21 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Hyperdrive.Tier.Services.Classes
@@ -30,11 +26,11 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="signInManager">Injected <see cref=" SignInManager{ApplicationUser}"/></param>
     /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
     public class AuthService(IMapper @mapper,
-                       ILogger<AuthService> @logger,
-                       IOptions<JwtSettings> @jwtSettings,
-                       UserManager<ApplicationUser> @userManager,
-                       SignInManager<ApplicationUser> @signInManager,
-                       ITokenService @tokenService) : BaseService(@mapper, @logger, @jwtSettings), IAuthService
+                             ILogger<AuthService> @logger,
+                             IOptions<JwtSettings> @jwtSettings,
+                             UserManager<ApplicationUser> @userManager,
+                             SignInManager<ApplicationUser> @signInManager,
+                             ITokenService @tokenService) : BaseService(@mapper, @logger, @jwtSettings), IAuthService
     {
 
         /// <summary>

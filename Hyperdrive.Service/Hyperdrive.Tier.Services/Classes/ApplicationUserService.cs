@@ -26,9 +26,9 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
     /// <param name="roleManager">Injected <see cref=" RoleManager{ApplicationRole}"/></param>
     public class ApplicationUserService(IMapper @mapper,
-                                  ILogger<ApplicationUserService> @logger,
-                                  UserManager<ApplicationUser> @userManager,
-                                  RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper, @logger), IApplicationUserService
+                                        ILogger<ApplicationUserService> @logger,
+                                        UserManager<ApplicationUser> @userManager,
+                                        RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper, @logger), IApplicationUserService
     {
 
         /// <summary>

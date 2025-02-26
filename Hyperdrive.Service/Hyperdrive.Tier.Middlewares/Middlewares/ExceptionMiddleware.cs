@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Hyperdrive.Tier.ViewModels.Classes.Views;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-
-using Hyperdrive.Tier.ViewModels.Classes.Views;
-
-using Microsoft.AspNetCore.Http;
 
 namespace Hyperdrive.Tier.Middlewares.Middlewares
 {
@@ -24,7 +22,7 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
         {
             try
             {
-                await request(@context);
+                await @request(@context);
             }
             catch (Exception @ex)
             {
@@ -38,9 +36,8 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
         /// <param name="context">Injected <see cref="HttpContext"/></param>
         /// <param name="exception">Injected <see cref="Exception"/></param>
         /// <returns>Instance of <see cref="ViewException"/></returns>
-        private static Task HandleExceptionAsync(
-            HttpContext @context,
-            Exception @exception)
+        private static Task HandleExceptionAsync(HttpContext @context,
+                                                 Exception @exception)
         {
             @context.Response.ContentType = "application/json";
             @context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

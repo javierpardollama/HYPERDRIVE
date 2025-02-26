@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Logging.Classes;
@@ -13,10 +7,13 @@ using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
 using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -27,9 +24,9 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="logger">Injected <see cref="ILogger{DriveItemService}"/></param>
     public class DriveItemService(UserManager<ApplicationUser> userManager,
-                          IApplicationContext context,
-                          IMapper mapper,
-                          ILogger<DriveItemService> logger) : BaseService(context, mapper, logger), IDriveItemService
+                                  IApplicationContext context,
+                                  IMapper mapper,
+                                  ILogger<DriveItemService> logger) : BaseService(context, mapper, logger), IDriveItemService
     {
         public async Task<DriveItem> FindDriveItemById(int @id)
         {
