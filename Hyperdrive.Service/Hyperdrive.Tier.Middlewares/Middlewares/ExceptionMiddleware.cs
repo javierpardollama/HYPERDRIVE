@@ -1,4 +1,5 @@
-﻿using Hyperdrive.Tier.ViewModels.Classes.Views;
+﻿using Hyperdrive.Tier.Exceptions.Exceptions;
+using Hyperdrive.Tier.ViewModels.Classes.Views;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
@@ -24,25 +25,30 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
             {
                 await @request(@context);
             }
-            catch (Exception @ex)
+            catch (ServiceException @exception)
             {
-                await HandleExceptionAsync(@context, @ex);
+                await HandleExceptionAsync(@context, @exception);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
         /// <summary>
-        /// Handles Expception Asynchronously
+        /// Handles Exception Asynchronously
         /// </summary>
         /// <param name="context">Injected <see cref="HttpContext"/></param>
-        /// <param name="exception">Injected <see cref="Exception"/></param>
-        /// <returns>Instance of <see cref="ViewException"/></returns>
-        private static Task HandleExceptionAsync(HttpContext @context,
-                                                 Exception @exception)
+        /// <param name="exception">Injected <see cref="ServiceException"/></param>
+        /// <returns>Instance of <see cref="ViewServiceException"/></returns>
+        private static Task HandleExceptionAsync(
+            HttpContext @context,
+            ServiceException @exception)
         {
             @context.Response.ContentType = "application/json";
-            @context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            @context.Response.StatusCode = (int)HttpStatusCode.Conflict;
 
-            ViewException @viewException = new()
+            ViewServiceException @viewException = new()
             {
                 StatusCode = @context.Response.StatusCode,
                 Message = @exception.Message

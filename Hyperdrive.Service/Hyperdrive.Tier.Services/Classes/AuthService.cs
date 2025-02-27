@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
@@ -71,7 +72,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Authentication Error");
+                throw new UnauthorizedAccessException("Authentication Error");
             }
         }
 
@@ -113,7 +114,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Authentication Error");
+                throw new UnauthorizedAccessException("Authentication Error");
             }
         }
 
@@ -145,7 +146,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Authentication Error");
+                throw new UnauthorizedAccessException("Authentication Error");
             }
         }
 
@@ -194,7 +195,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationUser)
+                throw new ServiceException(nameof(@applicationUser)
                     + " with Email "
                     + @email
                     + " does not exist");
@@ -227,7 +228,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationUser)
+                throw new ServiceException(nameof(@applicationUser)
                     + " with Email "
                     + @viewModel.Email
                     + " already exists");

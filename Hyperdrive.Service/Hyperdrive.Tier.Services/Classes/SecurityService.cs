@@ -1,19 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Security;
 using Hyperdrive.Tier.ViewModels.Classes.Views;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -67,7 +65,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Security Error");
+                throw new UnauthorizedAccessException("Security Error");
             }
         }
 
@@ -95,7 +93,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationUser)
+                throw new UnauthorizedAccessException(nameof(@applicationUser)
                     + " with Email "
                     + @email
                     + " does not exist");
@@ -128,7 +126,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationUser)
+                throw new ServiceException(nameof(@applicationUser)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -172,7 +170,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Security Error");
+                throw new UnauthorizedAccessException("Security Error");
             }
         }
 
@@ -211,7 +209,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Security Error");
+                throw new UnauthorizedAccessException("Security Error");
             }
         }
 
@@ -250,7 +248,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Security Error");
+                throw new UnauthorizedAccessException("Security Error");
             }
         }
 
@@ -292,7 +290,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Security Error");
+                throw new UnauthorizedAccessException("Security Error");
             }
         }
     }

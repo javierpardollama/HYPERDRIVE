@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
@@ -100,7 +101,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationUser)
+                throw new ServiceException(nameof(@applicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " does not exist");
@@ -133,7 +134,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else
             {
-                throw new Exception("Management Error");
+                throw new ServiceException("Management Error");
             }
         }
 
@@ -167,7 +168,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else 
             {
-                throw new Exception("Management Error");
+                throw new ServiceException("Management Error");
             }
         }
 
@@ -214,7 +215,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationRole)
+                throw new ServiceException(nameof(@applicationRole)
                     + " with Id "
                     + @id
                     + " does not exist");

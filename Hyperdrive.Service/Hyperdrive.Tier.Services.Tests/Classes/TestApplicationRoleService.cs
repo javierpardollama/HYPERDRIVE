@@ -1,4 +1,5 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
@@ -193,7 +194,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ImageUri = "URL/Role_2_500px.png",
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@ViewModel));
+            ServiceException exception = Assert.ThrowsAsync<ServiceException>(async () => await Service.CheckName(@ViewModel));
 
             Assert.Pass();
         }

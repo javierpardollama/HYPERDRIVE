@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
@@ -64,7 +65,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else 
             {
-                throw new Exception("Management Error");
+                throw new ServiceException("Management Error");
             }
 
         }
@@ -92,7 +93,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationRole)
+                throw new ServiceException(nameof(@applicationRole)
                     + " with Name "
                     + viewModel.Name
                     + " already exists");
@@ -125,7 +126,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationRole)
+                throw new ServiceException(nameof(@applicationRole)
                     + " with Name "
                     + viewModel.Name
                     + " already exists");
@@ -199,7 +200,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationRole)
+                throw new ServiceException(nameof(@applicationRole)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -232,7 +233,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else 
             {
-                throw new Exception("Management Error");
+                throw new ServiceException("Management Error");
             }           
         }
 
@@ -270,7 +271,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }
             else 
             {
-                throw new Exception("Management Error");
+                throw new ServiceException("Management Error");
             }
         }
     }

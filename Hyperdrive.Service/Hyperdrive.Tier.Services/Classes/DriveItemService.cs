@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
@@ -47,7 +48,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@archive)
+                throw new ServiceException(nameof(@archive)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -176,7 +177,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@applicationUser)
+                throw new ServiceException(nameof(@applicationUser)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -327,7 +328,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@archive)
+                throw new ServiceException(nameof(@archive)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -356,7 +357,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@archive)
+                throw new ServiceException(nameof(@archive)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");

@@ -1,4 +1,5 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
 
@@ -121,7 +122,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Password = "P@55w0rd"
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.SignIn(viewModel));
+            UnauthorizedAccessException exception = Assert.ThrowsAsync<UnauthorizedAccessException>(async () => await Service.SignIn(viewModel));
 
             Assert.Pass();
         }
@@ -168,7 +169,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Password = "P@55w0rd"
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckEmail(viewModel));
+            ServiceException exception = Assert.ThrowsAsync<ServiceException>(async () => await Service.CheckEmail(viewModel));
 
             Assert.Pass();
         }

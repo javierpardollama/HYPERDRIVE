@@ -30,7 +30,7 @@ export class BaseService {
       return (response: HttpErrorResponse): Observable<T> => {
 
           switch (response.status) {
-              case CodeAppVariants.INTERNAL_SERVER_ERROR:
+              case CodeAppVariants.CONFLICT:
                   const exception: ViewException = {
                       Message: response.error.Message,
                       StatusCode: response.error.StatusCode

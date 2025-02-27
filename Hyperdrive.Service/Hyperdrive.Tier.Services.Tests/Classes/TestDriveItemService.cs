@@ -1,4 +1,5 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Additions;
 using Hyperdrive.Tier.ViewModels.Classes.Filters;
@@ -294,7 +295,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.CheckName(@addDriveItem));
+            ServiceException exception = Assert.ThrowsAsync<ServiceException>(async () => await Service.CheckName(@addDriveItem));
 
             Assert.Pass();
         }

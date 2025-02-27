@@ -164,7 +164,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 ApplicationUserId = Context.Users.FirstOrDefault(x => x.Email == "thirduser@email.com").Id
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await Service.ChangePassword(viewModel));
+            UnauthorizedAccessException exception = Assert.ThrowsAsync<UnauthorizedAccessException>(async () => await Service.ChangePassword(viewModel));
 
             Assert.Pass();
         }

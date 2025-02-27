@@ -1,8 +1,8 @@
 ﻿namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {
-    public class ViewException
+    public class ViewServiceException
     {
-        public ViewException()
+        public ViewServiceException()
         {
         }
 
