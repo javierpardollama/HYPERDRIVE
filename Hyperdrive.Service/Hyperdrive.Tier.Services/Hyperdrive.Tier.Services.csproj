@@ -13,6 +13,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Hyperdrive.Tier.Contexts\Hyperdrive.Tier.Contexts.csproj" />
 	  <ProjectReference Include="..\Hyperdrive.Tier.Exceptions\Hyperdrive.Tier.Exceptions.csproj" />
+	  <ProjectReference Include="..\Hyperdrive.Tier.Helpers\Hyperdrive.Tier.Helpers.csproj" />
 	  <ProjectReference Include="..\Hyperdrive.Tier.Logging\Hyperdrive.Tier.Logging.csproj" />
 	  <ProjectReference Include="..\Hyperdrive.Tier.Settings\Hyperdrive.Tier.Settings.csproj" />
 	</ItemGroup>

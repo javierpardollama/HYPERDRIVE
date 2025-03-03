@@ -4,6 +4,7 @@ import { ViewApplicationUserRole } from './viewapplicationuserrole';
 import { ViewApplicationRole } from './viewapplicationrole';
 import { ViewApplicationUserToken } from './viewapplicationusertoken';
 import { ViewApplicationUserDriveItem } from './viewapplicationuserdriveitem';
+import { ViewApplicationUserRefreshToken } from './viewapplicationuserrefreshtoken';
 
 export interface ViewApplicationUser extends ViewKey, ViewBase {
   Email: string;
@@ -15,5 +16,7 @@ export interface ViewApplicationUser extends ViewKey, ViewBase {
   ApplicationRoles: ViewApplicationRole[];
   ApplicationUserTokens: ViewApplicationUserToken[];
   ApplicationUserToken: ViewApplicationUserToken;
+  ApplicationUserRefreshTokens: ViewApplicationUserRefreshToken[];
+  ApplicationUserRefreshToken: ViewApplicationUserRefreshToken;
   ApplicationUserDriveItems: ViewApplicationUserDriveItem[];
 }

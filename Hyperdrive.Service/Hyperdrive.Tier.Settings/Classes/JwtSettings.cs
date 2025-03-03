@@ -31,5 +31,10 @@ namespace Hyperdrive.Tier.Settings.Classes
         /// Gets or Sets <see cref="JwtExpireMinutes"/>
         /// </summary>
         public double JwtExpireMinutes { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="JwtExpireDays"/>
+        /// </summary>
+        public double JwtExpireDays { get; set; }
     }
 }

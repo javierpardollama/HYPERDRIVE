@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Hyperdrive.Tier.ViewModels.Interfaces.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-
-using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {
@@ -46,6 +45,12 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
 
         [XmlElement("application-user-token")]
         public virtual ViewApplicationUserToken ApplicationUserToken => ApplicationUserTokens?.AsQueryable().LastOrDefault();
+
+        [XmlArray("application-user-refresh-tokens")]
+        public virtual ICollection<ViewApplicationUserRefreshToken> ApplicationUserRefreshTokens { get; set; }
+
+        [XmlElement("application-user-refresh-token")]
+        public virtual ViewApplicationUserRefreshToken ApplicationUserRefreshToken => ApplicationUserRefreshTokens?.AsQueryable().LastOrDefault();
 
         [XmlArray("application-user-archives")]
         public virtual ICollection<ViewApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }

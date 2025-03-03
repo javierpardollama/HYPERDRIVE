@@ -6,29 +6,32 @@ using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
+
     /// <summary>
-    /// Represents a <see cref="TestTokenService"/> class. Inherits <see cref="TestBaseService"/>
+    /// Represents a <see cref="TestRefreshTokenService"/> class. Inherits <see cref="TestBaseService"/>
     /// </summary>
     [TestFixture]
-    public class TestTokenService : TestBaseService
+    public class TestRefreshTokenService : TestBaseService
     {
-        private TokenService Service;
-
 
         /// <summary>
-        /// Instance of <see cref="ILogger{TokenService}"/>
-        /// </summary>
-        private ILogger<TokenService> Logger;
+        /// Instance of <see cref="RefreshTokenService"/>
+        /// </summary>>
+        private RefreshTokenService Service;
 
         /// <summary>
-        /// Initializes a new Instance of <see cref="TestTokenService"/>
+        /// Instance of <see cref="ILogger{RefreshTokenService}"/>
         /// </summary>
-        public TestTokenService()
+        private ILogger<RefreshTokenService> Logger;
+
+        /// <summary>
+        /// Initializes a new Instance of <see cref="TestRefreshTokenService"/>
+        /// </summary>
+        public TestRefreshTokenService()
         {
 
         }
@@ -47,7 +50,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpData();
 
-            Service = new TokenService(Logger, JwtOptions);
+            Service = new RefreshTokenService(Logger, JwtOptions);
         }
 
         /// <summary>
@@ -84,75 +87,30 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = @loggerFactory.CreateLogger<TokenService>();
+            Logger = @loggerFactory.CreateLogger<RefreshTokenService>();
         }
 
         /// <summary>
-        /// Generates Jwt Token
+        /// Writes Jwt Refresh Token
         /// </summary>
         [Test]
-        public void GenerateJwtToken()
+        public void WriteJwtRefreshToken()
         {
-            Service.GenerateJwtToken(Context.Users.FirstOrDefault());
+            Service.WriteJwtRefreshToken();
 
             Assert.Pass();
         }
 
         /// <summary>
-        /// Writes Jwt Token
+        /// Generates Jwt Refresh Token Expiration Date 
         /// </summary>
         [Test]
-        public void WriteJwtToken()
+        public void GenerateRefreshTokenExpirationDate()
         {
-            JwtSecurityToken JwtSecurityToken = new();
-
-            Service.WriteJwtToken(JwtSecurityToken);
-
-            Assert.Pass();
-        }       
-
-        /// <summary>
-        /// Generates Symmetric Security Key
-        /// </summary>
-        [Test]
-        public void GenerateSymmetricSecurityKey()
-        {
-            Service.GenerateSymmetricSecurityKey();
+            Service.GenerateRefreshTokenExpirationDate();
 
             Assert.Pass();
         }
 
-        /// <summary>
-        /// Generates Signing Credentials
-        /// </summary>
-        [Test]
-        public void GenerateSigningCredentials()
-        {
-            Service.GenerateSigningCredentials(Service.GenerateSymmetricSecurityKey());
-
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Generates Token Expiration Date
-        /// </summary>
-        [Test]
-        public void GenerateTokenExpirationDate()
-        {
-            Service.GenerateTokenExpirationDate();
-
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Generates Jwt Claims
-        /// </summary>
-        [Test]
-        public void GenerateJwtClaims()
-        {
-            Service.GenerateJwtClaims(Context.Users.FirstOrDefault());
-
-            Assert.Pass();
-        }
     }
 }

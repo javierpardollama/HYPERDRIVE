@@ -29,11 +29,20 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private ILogger<TokenService> TokenLogger;
 
+        /// <summary>
+        /// Instance of <see cref="ILogger{RefreshTokenService}"/>
+        /// </summary>
+        private ILogger<RefreshTokenService> RefreshTokenLogger;
 
         /// <summary>
         /// Instance of <see cref="TokenService"/>
         /// </summary>>
         private TokenService TokenService;
+
+        /// <summary>
+        /// Instance of <see cref="RefreshTokenService"/>
+        /// </summary>>
+        private RefreshTokenService RefreshTokenService;
 
         /// <summary>
         /// Instance of <see cref="AuthService"/>
@@ -67,7 +76,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             TokenService = new TokenService(TokenLogger, JwtOptions);
 
-            Service = new AuthService(Mapper, AuthLogger, JwtOptions, UserManager, SignInManager, TokenService);
+            RefreshTokenService = new RefreshTokenService(RefreshTokenLogger, JwtOptions);
+
+            Service = new AuthService(Mapper, AuthLogger, JwtOptions, UserManager, SignInManager, TokenService, RefreshTokenService);
         }
 
         /// <summary>
@@ -96,6 +107,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             AuthLogger = @loggerFactory.CreateLogger<AuthService>();
             TokenLogger = @loggerFactory.CreateLogger<TokenService>();
+            RefreshTokenLogger = loggerFactory.CreateLogger<RefreshTokenService>();
         }
 
         /// <summary>

@@ -49,6 +49,11 @@ namespace Hyperdrive.Tier.Contexts.Classes
         public override DbSet<ApplicationUserToken> UserTokens { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
+        /// </summary>
+        public virtual DbSet<ApplicationUserRefreshToken> UserRefreshTokens { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="DbSet{DriveItem}"/>
         /// </summary>
         public virtual DbSet<DriveItem> DriveItems { get; set; }

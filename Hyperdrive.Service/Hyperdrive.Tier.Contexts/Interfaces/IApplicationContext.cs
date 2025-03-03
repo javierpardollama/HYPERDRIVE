@@ -49,6 +49,11 @@ namespace Hyperdrive.Tier.Contexts.Interfaces
         DbSet<ApplicationUserToken> UserTokens { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
+        /// </summary>
+        DbSet<ApplicationUserRefreshToken> UserRefreshTokens { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="DbSet{DriveItem}"/>
         /// </summary>
         DbSet<DriveItem> DriveItems { get; set; }

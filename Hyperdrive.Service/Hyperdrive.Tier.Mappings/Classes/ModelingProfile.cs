@@ -23,6 +23,8 @@ namespace Hyperdrive.Tier.Mappings.Classes
 
             CreateMap<ApplicationUserToken, ViewApplicationUserToken>();
 
+            CreateMap<ApplicationUserRefreshToken, ViewApplicationUserRefreshToken>();
+
             CreateMap<DriveItem, ViewDriveItem>();
 
             CreateMap<ApplicationUserDriveItem, ViewApplicationUserDriveItem>();

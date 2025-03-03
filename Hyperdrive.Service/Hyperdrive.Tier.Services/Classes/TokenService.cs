@@ -1,4 +1,5 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Helpers.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
 using Microsoft.Extensions.Logging;
@@ -27,11 +28,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="applicationUser">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="JwtSecurityToken"/></returns>
-        public JwtSecurityToken GenerateJwtToken(ApplicationUser @applicationUser) => new(issuer: JwtSettings.Value.JwtIssuer,
-                                                                                          audience: null,
-                                                                                          claims: GenerateJwtClaims(@applicationUser),
-                                                                                          expires: GenerateTokenExpirationDate(),
-                                                                                          signingCredentials: GenerateSigningCredentials(GenerateSymmetricSecurityKey()));
+        public JwtSecurityToken GenerateJwtToken(ApplicationUser @applicationUser) => new(issuer: JwtSettings.Value.JwtIssuer);
 
         /// <summary>
         /// Writes Jwt Token
@@ -39,6 +36,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <param name="jwtSecurityToken">>Injected <see cref="JwtSecurityToken"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
         public string WriteJwtToken(JwtSecurityToken @jwtSecurityToken) => new JwtSecurityTokenHandler().WriteToken(@jwtSecurityToken);
+
 
         /// <summary>
         /// Generates Symmetric Security Key

@@ -23,11 +23,13 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
     /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
     /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
+    /// <param name="tokenRefreshService">Injected <see cref="IRefreshTokenService"/></param>
     public class SecurityService(IMapper @mapper,
                        ILogger<SecurityService> @logger,
                        IOptions<JwtSettings> @jwtSettings,
                        UserManager<ApplicationUser> @userManager,
-                       ITokenService @tokenService) : BaseService(@mapper, @logger, @jwtSettings), ISecurityService
+                       ITokenService @tokenService,
+                       IRefreshTokenService @tokenRefreshService) : BaseService(@mapper, @logger, @jwtSettings), ISecurityService
     {
 
         /// <summary>
@@ -50,6 +52,16 @@ namespace Hyperdrive.Tier.Services.Classes
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
                     Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                });
+
+                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
+                {
+
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    Value = tokenRefreshService.WriteJwtRefreshToken(),
+                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
                 });
 
                 // Log
@@ -157,6 +169,16 @@ namespace Hyperdrive.Tier.Services.Classes
                     Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
+                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
+                {
+
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    Value = tokenRefreshService.WriteJwtRefreshToken(),
+                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
+                });
+
                 // Log
                 string @logData = nameof(@applicationUser)
                     + " with Email "
@@ -196,6 +218,16 @@ namespace Hyperdrive.Tier.Services.Classes
                     Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
                 });
 
+                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
+                {
+
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    Value = tokenRefreshService.WriteJwtRefreshToken(),
+                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
+                });
+
                 // Log
                 string @logData = nameof(@applicationUser)
                     + " with Email "
@@ -233,6 +265,16 @@ namespace Hyperdrive.Tier.Services.Classes
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
                     Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                });
+
+                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
+                {
+
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    Value = tokenRefreshService.WriteJwtRefreshToken(),
+                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
                 });
 
                 // Log
@@ -275,6 +317,16 @@ namespace Hyperdrive.Tier.Services.Classes
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
                     Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                });
+
+                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
+                {
+
+                    Name = Guid.NewGuid().ToString(),
+                    LoginProvider = JwtSettings.Value.JwtIssuer,
+                    ApplicationUser = @applicationUser,
+                    Value = tokenRefreshService.WriteJwtRefreshToken(),
+                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
                 });
 
                 // Log

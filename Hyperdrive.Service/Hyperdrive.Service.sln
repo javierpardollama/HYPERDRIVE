@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Resilience"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Exceptions", "Hyperdrive.Tier.Exceptions\Hyperdrive.Tier.Exceptions.csproj", "{90209220-8E24-4792-9D70-86B45CDB41CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Helpers", "Hyperdrive.Tier.Helpers\Hyperdrive.Tier.Helpers.csproj", "{EAE6FC50-C65D-4474-A781-E29E1F7A6FD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{90209220-8E24-4792-9D70-86B45CDB41CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90209220-8E24-4792-9D70-86B45CDB41CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90209220-8E24-4792-9D70-86B45CDB41CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE6FC50-C65D-4474-A781-E29E1F7A6FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE6FC50-C65D-4474-A781-E29E1F7A6FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE6FC50-C65D-4474-A781-E29E1F7A6FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE6FC50-C65D-4474-A781-E29E1F7A6FD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

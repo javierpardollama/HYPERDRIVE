@@ -32,6 +32,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             JwtAudiences = ["https://localhost:4200"],
             JwtExpireMinutes = 60,
+            JwtExpireDays = 2,
             JwtIssuer = "https://localhost:15208",
             JwtAuthority = "https://localhost:15208",
             JwtKey = "These are not the droids who you are looking for"
