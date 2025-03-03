@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Settings", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.ViewModels", "Hyperdrive.Tier.ViewModels\Hyperdrive.Tier.ViewModels.csproj", "{8852D084-66F1-41BE-8B6D-4EEEFAF6C2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Telemetry", "Hyperdrive.Tier.Telemetry\Hyperdrive.Tier.Telemetry.csproj", "{94C628DB-2B6B-418D-9AC0-5C75A640E7B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Resilience", "Hyperdrive.Tier.Resilience\Hyperdrive.Tier.Resilience.csproj", "{94C628DB-2B6B-418D-9AC0-5C75A640E7B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Tier.Exceptions", "Hyperdrive.Tier.Exceptions\Hyperdrive.Tier.Exceptions.csproj", "{90209220-8E24-4792-9D70-86B45CDB41CF}"
 EndProject
