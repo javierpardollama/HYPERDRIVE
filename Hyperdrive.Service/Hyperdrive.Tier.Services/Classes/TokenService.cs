@@ -44,7 +44,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// Generates Symmetric Security Key
         /// </summary>
         /// <returns>Instance of <see cref="SymmetricSecurityKey"/></returns>
-        public SymmetricSecurityKey GenerateSymmetricSecurityKey() => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.Value.JwtKey));
+        public SymmetricSecurityKey GenerateSymmetricSecurityKey() => new(Encoding.UTF8.GetBytes(JwtSettings.Value.JwtKey));
 
         /// <summary>
         /// Generates Signing Credentials
