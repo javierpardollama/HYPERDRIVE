@@ -17,6 +17,7 @@ namespace Hyperdrive.Tier.Service.Extensions
         public static void AddCustomizedServices(this IServiceCollection @this)
         {
             @this.AddTransient<ITokenService, TokenService>();
+            @this.AddTransient<IRefreshTokenService, RefreshTokenService>();
             @this.AddTransient<IAuthService, AuthService>();
             @this.AddTransient<ISecurityService, SecurityService>();
             @this.AddTransient<IDriveItemService, DriveItemService>();
