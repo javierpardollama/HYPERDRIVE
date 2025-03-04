@@ -88,13 +88,13 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpData()
         {
-            Context.Users.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
 
-            Context.Roles.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
-            Context.Roles.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
-            Context.Roles.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.UtcNow, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.UtcNow, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.UtcNow, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
 
             Context.SaveChanges();
         }

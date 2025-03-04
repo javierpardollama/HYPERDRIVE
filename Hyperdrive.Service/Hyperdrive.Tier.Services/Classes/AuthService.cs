@@ -79,7 +79,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " logged in at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteUserAuthenticatedLog(@logData);
 
@@ -131,7 +131,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " logged in at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteUserAuthenticatedLog(@logData);
 
@@ -156,8 +156,8 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 UserName = @viewModel.Email.Trim().Split('@').First(),
                 Email = @viewModel.Email.Trim(),
-                ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
-                SecurityStamp = DateTime.Now.ToBinary().ToString(),
+                ConcurrencyStamp = DateTime.UtcNow.ToBinary().ToString(),
+                SecurityStamp = DateTime.UtcNow.ToBinary().ToString(),
                 NormalizedEmail = @viewModel.Email.Trim().ToUpper(),
                 NormalizedUserName = @viewModel.Email.Trim().Split('@').First().ToUpper()
             };
@@ -191,7 +191,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " with Email "
                 + @applicationUser.Email
                 + " logged out at "
-                + DateTime.Now.ToShortTimeString();
+                + DateTime.UtcNow.ToShortTimeString();
 
             Logger.WriteUserUnauthenticatedLog(@logData);
         }
@@ -216,7 +216,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @email
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -249,7 +249,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @viewModel.Email
                       + " was already found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemFoundLog(@logData);
 

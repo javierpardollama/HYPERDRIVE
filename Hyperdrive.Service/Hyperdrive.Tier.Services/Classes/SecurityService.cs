@@ -71,7 +71,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Password at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WritePasswordRestoredLog(@logData);
 
@@ -103,7 +103,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @email
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -136,7 +136,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @id
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -186,7 +186,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Password at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WritePasswordRestoredLog(@logData);
 
@@ -235,7 +235,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Email at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteEmailRestoredLog(@logData);
 
@@ -284,7 +284,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " restored its Phone Number at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WritePhoneNumberRestoredLog(@logData);
 
@@ -336,7 +336,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @applicationUser.Id
                     + " was modified at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteUpdateItemLog(@logData);
 
@@ -385,7 +385,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " with Id "
                 + @applicationUser.Id
                 + " restored its Tokens at "
-                + DateTime.Now.ToShortTimeString();
+                + DateTime.UtcNow.ToShortTimeString();
 
             Logger.WriteTokensRefreshedLog(@logData);
 

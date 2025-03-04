@@ -92,13 +92,13 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpData()
         {
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.UtcNow, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.UtcNow, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.UtcNow, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
 
-            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.Now, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "firstarchive.txt" } } });
-            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.Now, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "secondarchive.txt" } } });
-            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.Now, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "thirdarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "firstarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "secondarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "thirdarchive.txt" } } });
 
             Context.SaveChanges();
         }

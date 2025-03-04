@@ -97,7 +97,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Email "
                     + @applicationUser.Email
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -128,7 +128,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @applicationUser.Id
                     + " was removed at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteDeleteItemLog(@logData);
             }
@@ -159,7 +159,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id"
                     + @applicationUser.Id
                     + " was modified at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteUpdateItemLog(@logData);
 
@@ -211,7 +211,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @id
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 

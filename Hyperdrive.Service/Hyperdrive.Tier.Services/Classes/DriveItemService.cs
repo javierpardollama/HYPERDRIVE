@@ -44,7 +44,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + id
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -70,7 +70,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " with Id "
                 + archive.Id
                 + " was removed at "
-                + DateTime.Now.ToShortTimeString();
+                + DateTime.UtcNow.ToShortTimeString();
 
             Logger.WriteDeleteItemLog(@logData);
         }
@@ -173,7 +173,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + id
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -212,7 +212,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " with Id "
                 + @archive.Id
                 + " was added at "
-                + DateTime.Now.ToShortTimeString();
+                + DateTime.UtcNow.ToShortTimeString();
 
             Logger.WriteInsertItemLog(@logData);
 
@@ -272,7 +272,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " with Id "
                 + @archive.Id
                 + " was modified at "
-                + DateTime.Now.ToShortTimeString();
+                + DateTime.UtcNow.ToShortTimeString();
 
             Logger.WriteUpdateItemLog(@logData);
 
@@ -324,7 +324,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Name "
                     + @archive.DriveItemVersions.LastOrDefault()?.Name
                     + " was already found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemFoundLog(@logData);
 
@@ -353,7 +353,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Name "
                     + @archive.DriveItemVersions.LastOrDefault()?.Name
                     + " was already found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemFoundLog(@logData);
 

@@ -27,7 +27,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// Generates Jwt Refresh Token Expiration Date 
         /// </summary>
         /// <returns>Instance of <see cref="DateTime"/></returns>
-        public DateTime GenerateRefreshTokenExpirationDate() => DateTime.Now.AddDays(JwtSettings.Value.JwtExpireDays);     
+        public DateTime GenerateRefreshTokenExpirationDate() => DateTime.UtcNow.AddDays(JwtSettings.Value.JwtExpireDays);     
 
         /// <summary>
         /// Writes Jwt Refresh Token
@@ -48,7 +48,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@refreshToken.Revoked) throw new UnauthorizedAccessException("Access revoked");         
 
-            if (@refreshToken.ExpiresAt < DateTime.Now) throw new UnauthorizedAccessException("Access expired");          
+            if (@refreshToken.ExpiresAt < DateTime.UtcNow) throw new UnauthorizedAccessException("Access expired");          
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
 
             @refreshToken.Revoked = true;
-            @refreshToken.RevokedAt = DateTime.Now;
+            @refreshToken.RevokedAt = DateTime.UtcNow;
 
             Context.UserRefreshTokens.Update(@refreshToken);
 
@@ -74,7 +74,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " with Id "
                 + @refreshToken.Id
                 + " was revoked at "
-                + DateTime.Now.ToShortTimeString();
+                + DateTime.UtcNow.ToShortTimeString();
 
             Logger.WriteRefreshTokenRevokedLog(@logData);
         }
@@ -99,7 +99,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with User Id "
                     + @userid
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);              
             }

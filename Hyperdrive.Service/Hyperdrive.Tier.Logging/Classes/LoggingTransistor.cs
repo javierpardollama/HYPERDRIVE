@@ -29,7 +29,7 @@ namespace Hyperdrive.Tier.Logging.Classes
                 GetApplicationEventLevel(appEventData),
                 GetApplicationEventCode(appEventData),
                 logData,
-                DateTime.Now.ToShortDateString());
+                DateTime.UtcNow.ToShortDateString());
 
         /// <summary>
         /// Emits Not Found

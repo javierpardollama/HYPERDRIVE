@@ -72,12 +72,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
             {
-                LastModified = DateTime.Now,
+                LastModified = DateTime.UtcNow,
                 Deleted = false,
                 Revoked = false,
                 Name = Guid.NewGuid().ToString(),
                 Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
-                ExpiresAt = DateTime.Now.AddDays(2),
+                ExpiresAt = DateTime.UtcNow.AddDays(2),
                 ApplicationUser = new ApplicationUser
                 {
                     FirstName = "First",
@@ -85,7 +85,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                     UserName = "firstuser@email.com",
                     Email = "firstuser@email.com",
                     PhoneNumber = int.MaxValue.ToString(),
-                    LastModified = DateTime.Now,
+                    LastModified = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 }
@@ -93,12 +93,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
             {
-                LastModified = DateTime.Now,
+                LastModified = DateTime.UtcNow,
                 Deleted = false,
                 Revoked = false,
                 Name = Guid.NewGuid().ToString(),
                 Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
-                ExpiresAt = DateTime.Now.AddDays(2),
+                ExpiresAt = DateTime.UtcNow.AddDays(2),
                 ApplicationUser = new ApplicationUser
                 {
                     FirstName = "Second",
@@ -106,7 +106,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                     UserName = "seconduser@email.com",
                     Email = "seconduser@email.com",
                     PhoneNumber = int.MaxValue.ToString(),
-                    LastModified = DateTime.Now,
+                    LastModified = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 }

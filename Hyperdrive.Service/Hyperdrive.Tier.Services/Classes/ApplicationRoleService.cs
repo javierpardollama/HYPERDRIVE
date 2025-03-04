@@ -44,7 +44,7 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 Name = @viewModel.Name?.Trim(),
                 NormalizedName = @viewModel.Name?.Trim().ToUpper(),
-                ConcurrencyStamp = DateTime.Now.ToBinary().ToString(),
+                ConcurrencyStamp = DateTime.UtcNow.ToBinary().ToString(),
                 ImageUri = @viewModel.ImageUri.Trim(),
             };
 
@@ -57,7 +57,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @applicationRole.Id
                     + " was added at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteInsertItemLog(@logData);
 
@@ -89,7 +89,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Name "
                     + @applicationRole.Name
                     + " was already found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemFoundLog(@logData);
 
@@ -122,7 +122,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Name "
                     + applicationRole.Name
                     + " was already found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemFoundLog(@logData);
 
@@ -196,7 +196,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @id
                     + " was not found at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
@@ -227,7 +227,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @applicationRole.Id
                     + " was removed at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteDeleteItemLog(@logData);
             }
@@ -262,7 +262,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " with Id "
                     + @applicationRole.Id
                     + " was modified at "
-                    + DateTime.Now.ToShortTimeString();
+                    + DateTime.UtcNow.ToShortTimeString();
 
                 Logger.WriteUpdateItemLog(@logData);
 

@@ -89,9 +89,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpData()
         {
-            Context.Roles.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
-            Context.Roles.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
-            Context.Roles.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.Now, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 1", LastModified = DateTime.UtcNow, Deleted = false, ImageUri = "URL/Role_1_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 2", LastModified = DateTime.UtcNow, Deleted = false, ImageUri = "URL/Role_2_500px.png" });
+            Context.Roles.Add(new ApplicationRole { Name = "Role 3", LastModified = DateTime.UtcNow, Deleted = false, ImageUri = "URL/Role_3_500px.png" });
 
             Context.SaveChanges();
         }

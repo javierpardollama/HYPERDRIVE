@@ -63,9 +63,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpData()
         {
-            Context.Users.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
 
             Context.SaveChanges();
         }

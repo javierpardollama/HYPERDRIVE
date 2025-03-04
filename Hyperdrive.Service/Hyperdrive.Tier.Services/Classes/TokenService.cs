@@ -32,9 +32,9 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             Issuer = @jwtSettings.Value.JwtIssuer,   
             Claims = ClaimHelper.ToDictionary(GenerateJwtClaims(applicationUser)),
-            IssuedAt = DateTime.Now,
-            NotBefore = DateTime.Now,
-            Expires = DateTime.Now.AddMinutes(@jwtSettings.Value.JwtExpireMinutes),
+            IssuedAt = DateTime.UtcNow,
+            NotBefore = DateTime.UtcNow,
+            Expires = DateTime.UtcNow.AddMinutes(@jwtSettings.Value.JwtExpireMinutes),
             SigningCredentials = GenerateSigningCredentials(GenerateSymmetricSecurityKey())
         };
 
@@ -63,7 +63,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// Generates Token Expiration Date 
         /// </summary>
         /// <returns>Instance of <see cref="DateTime"/></returns>
-        public DateTime GenerateTokenExpirationDate() => DateTime.Now.AddMinutes(JwtSettings.Value.JwtExpireMinutes);
+        public DateTime GenerateTokenExpirationDate() => DateTime.UtcNow.AddMinutes(JwtSettings.Value.JwtExpireMinutes);
 
         /// <summary>
         /// Generates Jwt Claims
