@@ -37,7 +37,7 @@ namespace Hyperdrive.Tier.Services.Classes
                  .Include(x => x.ApplicationUserDriveItems)
                  .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (@archive == null)
+            if (@archive is null)
             {
                 // Log
                 string @logData = nameof(@archive)
@@ -166,7 +166,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (@applicationUser == null)
+            if (@applicationUser is null)
             {
                 // Log
                 string logData = nameof(@applicationUser)
@@ -317,7 +317,7 @@ namespace Hyperdrive.Tier.Services.Classes
                  .AsSplitQuery()
                  .FirstOrDefaultAsync(x => x.DriveItemVersions.LastOrDefault().Name == @viewModel.Name.Trim());
 
-            if (@archive != null)
+            if (@archive is not null)
             {
                 // Log
                 string @logData = nameof(@archive)
@@ -346,7 +346,7 @@ namespace Hyperdrive.Tier.Services.Classes
                  .AsSplitQuery()
                  .FirstOrDefaultAsync(x => x.DriveItemVersions.LastOrDefault().Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
-            if (@archive != null)
+            if (@archive is not null)
             {
                 // Log
                 string @logData = nameof(@archive)

@@ -90,7 +90,7 @@ namespace Hyperdrive.Tier.Services.Classes
                .ThenInclude(x => x.ApplicationRole)
                .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (@applicationUser == null)
+            if (@applicationUser is null)
             {
                 // Log
                 string @logData = nameof(@applicationUser)
@@ -204,7 +204,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .TagWith("FindApplicationRoleById")
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (@applicationRole == null)
+            if (@applicationRole is null)
             {
                 // Log
                 string @logData = nameof(@applicationRole)

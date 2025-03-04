@@ -82,7 +82,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .TagWith("CheckName")
                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
-            if (@applicationRole != null)
+            if (@applicationRole is not null)
             {
                 // Log
                 string @logData = nameof(@applicationRole)
@@ -115,7 +115,7 @@ namespace Hyperdrive.Tier.Services.Classes
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
-            if (@applicationRole != null)
+            if (@applicationRole is not null)
             {
                 // Log
                 string @logData = nameof(@applicationRole)
@@ -189,7 +189,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 TagWith("FindApplicationRoleById")
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (@applicationRole == null)
+            if (@applicationRole is null)
             {
                 // Log
                 string @logData = nameof(@applicationRole)

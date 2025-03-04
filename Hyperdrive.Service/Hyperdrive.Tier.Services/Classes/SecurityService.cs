@@ -94,7 +94,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());
 
-            if (@applicationUser == null)
+            if (@applicationUser is null)
             {
                 // Log
                 string @logData = nameof(@applicationUser)
@@ -127,7 +127,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (@applicationUser == null)
+            if (@applicationUser is null)
             {
                 // Log
                 string @logData = nameof(@applicationUser)

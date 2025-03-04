@@ -206,7 +206,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());
 
-            if (@applicationUser == null)
+            if (@applicationUser is null)
             {
                 // Log
                 string @logData = nameof(@applicationUser)
@@ -239,7 +239,7 @@ namespace Hyperdrive.Tier.Services.Classes
               .TagWith("CheckEmail")
               .FirstOrDefaultAsync(x => x.Email == @viewModel.Email.Trim());
 
-            if (@applicationUser != null)
+            if (@applicationUser is not null)
             {
                 // Log
                 string @logData = nameof(@applicationUser)

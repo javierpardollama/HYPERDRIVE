@@ -63,7 +63,7 @@ namespace Hyperdrive.Tier.Services.Classes
             ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
 
             @refreshToken.Revoked = true;
-            @refreshToken.RevokedAt = DateTime.UtcNow;
+            @refreshToken.RevokedAt = DateTime.Now;
 
             Context.UserRefreshTokens.Update(@refreshToken);
 
@@ -92,7 +92,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 .Include(x => x.ApplicationUser)               
                 .FirstOrDefaultAsync(x => x.ApplicationUser.Id == @userid && x.Value == @token);
 
-            if (@refreshToken == null)
+            if (@refreshToken is null)
             {
                 // Log
                 string @logData = nameof(@refreshToken)
