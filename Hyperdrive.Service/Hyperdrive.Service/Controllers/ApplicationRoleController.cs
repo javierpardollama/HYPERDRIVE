@@ -24,7 +24,7 @@ namespace Hyperdrive.Service.Controllers
         /// Updates Application Role
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateApplicationRole"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateapplicationrole")]
         public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => Ok(value: await @service.UpdateApplicationRole(@viewModel));
@@ -32,7 +32,7 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Finds All Application Role
         /// </summary>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationrole")]
@@ -42,7 +42,7 @@ namespace Hyperdrive.Service.Controllers
         /// Finds Paginated Application Role
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPageApplicationRole"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedapplicationrole")]
         public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => Ok(value: await @service.FindPaginatedApplicationRole(@viewModel));
@@ -51,7 +51,7 @@ namespace Hyperdrive.Service.Controllers
         /// Adds Application Role
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddApplicationRole"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addapplicationrole")]
         public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => Ok(value: await @service.AddApplicationRole(@viewModel));
@@ -60,7 +60,7 @@ namespace Hyperdrive.Service.Controllers
         /// Removes Application Role ById
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]
         [Route("removeapplicationrolebyid/{id}")]
         public async Task<IActionResult> RemoveApplicationRoleById(int @id)

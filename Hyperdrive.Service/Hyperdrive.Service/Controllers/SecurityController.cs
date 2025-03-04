@@ -21,7 +21,7 @@ namespace Hyperdrive.Service.Controllers
         /// Resets Password
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("resetpassword")]
         public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await @service.ResetPassword(@viewModel));
@@ -30,7 +30,7 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Password
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("changepassword")]
         [Authorize]
@@ -40,7 +40,7 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Email
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("changeemail")]
         [Authorize]
@@ -50,7 +50,7 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Phone Number
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("changephonenumber")]
         [Authorize]
@@ -60,7 +60,7 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("changename")]
         [Authorize]
@@ -70,7 +70,7 @@ namespace Hyperdrive.Service.Controllers
         /// Refreshes Tokens
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("refreshtokens")]      
         public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value: await @service.RefreshTokens(@viewModel));

@@ -24,7 +24,7 @@ namespace Hyperdrive.Service.Controllers
         /// Updates Application User
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateApplicationUser"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateapplicationuser")]
         public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await @service.UpdateApplicationUser(@viewModel));
@@ -32,7 +32,7 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Finds All Application User
         /// </summary>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationuser")]
@@ -42,7 +42,7 @@ namespace Hyperdrive.Service.Controllers
         /// Finds Paginated Application User
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPageApplicationUser"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedapplicationuser")]
         public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await @service.FindPaginatedApplicationUser(@viewModel));
@@ -52,7 +52,7 @@ namespace Hyperdrive.Service.Controllers
         /// Removes Application User ById
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]
         [Route("removeapplicationuserbyid/{id}")]
         public async Task<IActionResult> RemoveApplicationUserById(int @id)

@@ -20,7 +20,7 @@ namespace Hyperdrive.Service.Controllers
         /// Signs In
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AuthSignIn"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("signin")]
         public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await @service.SignIn(@viewModel));
@@ -29,7 +29,7 @@ namespace Hyperdrive.Service.Controllers
         /// Joins In
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("joinin")]
         public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await @service.JoinIn(@viewModel));
@@ -38,7 +38,7 @@ namespace Hyperdrive.Service.Controllers
         /// Signs Out
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("signout")]
         public async Task<IActionResult> SignOut([FromBody] AuthSignOut @viewModel)
