@@ -53,13 +53,16 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Initializes a new Instance of <see cref="BaseService"/>
         /// </summary>
+        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        public BaseService(IMapper @mapper,
+        public BaseService(IApplicationContext @context,
+                           IMapper @mapper,
                            ILogger @logger,
                            IOptions<JwtSettings> @jwtSettings)
         {
+            Context = @context;
             Mapper = @mapper;
             Logger = @logger;
             JwtSettings = @jwtSettings;
@@ -71,8 +74,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
         public BaseService(IMapper @mapper,
-                           ILogger @logger
-                          )
+                           ILogger @logger)
         {
             Mapper = @mapper;
             Logger = @logger;
@@ -83,10 +85,8 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        public BaseService(
-            ILogger @logger,
-            IOptions<JwtSettings> @jwtSettings
-           )
+        public BaseService(ILogger @logger,
+                           IOptions<JwtSettings> @jwtSettings)
         {
             Logger = @logger;
             JwtSettings = @jwtSettings;
@@ -98,11 +98,9 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        public BaseService(
-            IApplicationContext @context,
-            ILogger @logger,
-            IOptions<JwtSettings> @jwtSettings
-           )
+        public BaseService(IApplicationContext @context,
+                           ILogger @logger,
+                           IOptions<JwtSettings> @jwtSettings)
         {
             Context = @context;
             Logger = @logger;

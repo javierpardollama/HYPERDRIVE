@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
@@ -20,6 +21,7 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <summary>
     /// Represents a <see cref="AuthService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IAuthService"/>
     /// </summary>
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
     /// <param name="logger">Injected <see cref="ILogger{AuthService}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
@@ -27,13 +29,13 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="signInManager">Injected <see cref=" SignInManager{ApplicationUser}"/></param>
     /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
     /// <param name="tokenRefreshService">Injected <see cref="IRefreshTokenService"/></param>
-    public class AuthService(IMapper @mapper,
+    public class AuthService(IApplicationContext @context, IMapper @mapper,
                              ILogger<AuthService> @logger,
                              IOptions<JwtSettings> @jwtSettings,
                              UserManager<ApplicationUser> @userManager,
                              SignInManager<ApplicationUser> @signInManager,
                              ITokenService @tokenService,
-                             IRefreshTokenService @tokenRefreshService) : BaseService(@mapper, @logger, @jwtSettings), IAuthService
+                             IRefreshTokenService @tokenRefreshService) : BaseService(@context, @mapper, @logger, @jwtSettings), IAuthService
     {
 
         /// <summary>

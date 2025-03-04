@@ -175,8 +175,8 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         {
             SecurityRefreshTokenReset viewModel = new()
             {
-                ApplicationUserId = Context.Users.FirstOrDefault().Id,
-                ApplicationUserRefreshToken = Context.UserRefreshTokens.FirstOrDefault().Value
+                ApplicationUserId = Context.Users.LastOrDefault().Id,
+                ApplicationUserRefreshToken = Context.UserRefreshTokens.LastOrDefault().Value
             };
 
             await Service.Revoke(viewModel);

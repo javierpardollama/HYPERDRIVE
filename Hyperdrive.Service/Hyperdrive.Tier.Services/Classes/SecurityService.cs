@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hyperdrive.Tier.Contexts.Interfaces;
 using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Logging.Classes;
@@ -18,18 +19,19 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <summary>
     /// Represents a <see cref="SecurityService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ISecurityService"/>
     /// </summary>   
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
     /// <param name="logger">Injected <see cref="ILogger{SecurityService}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
     /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
     /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
     /// <param name="tokenRefreshService">Injected <see cref="IRefreshTokenService"/></param>
-    public class SecurityService(IMapper @mapper,
+    public class SecurityService(IApplicationContext @context, IMapper @mapper,
                        ILogger<SecurityService> @logger,
                        IOptions<JwtSettings> @jwtSettings,
                        UserManager<ApplicationUser> @userManager,
                        ITokenService @tokenService,
-                       IRefreshTokenService @tokenRefreshService) : BaseService(@mapper, @logger, @jwtSettings), ISecurityService
+                       IRefreshTokenService @tokenRefreshService) : BaseService(@context, @mapper, @logger, @jwtSettings), ISecurityService
     {
 
         /// <summary>

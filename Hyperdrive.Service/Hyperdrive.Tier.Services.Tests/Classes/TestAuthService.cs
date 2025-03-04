@@ -1,4 +1,5 @@
-﻿using Hyperdrive.Tier.Entities.Classes;
+﻿using AutoMapper.Internal.Mappers;
+using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
@@ -78,7 +79,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             RefreshTokenService = new RefreshTokenService(Context, RefreshTokenLogger, JwtOptions);
 
-            Service = new AuthService(Mapper, AuthLogger, JwtOptions, UserManager, SignInManager, TokenService, RefreshTokenService);
+            Service = new AuthService(Context, Mapper, AuthLogger, JwtOptions, UserManager, SignInManager, TokenService, RefreshTokenService);
         }
 
         /// <summary>
