@@ -53,7 +53,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
                 });
 
                 @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
@@ -168,7 +168,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
                 });
 
                 @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
@@ -217,7 +217,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
                 });
 
                 @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
@@ -266,7 +266,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
                 });
 
                 @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
@@ -318,7 +318,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     LoginProvider = JwtSettings.Value.JwtIssuer,
                     ApplicationUser = @applicationUser,
                     UserId = @applicationUser.Id,
-                    Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
                 });
 
                 @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
@@ -367,7 +367,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 LoginProvider = JwtSettings.Value.JwtIssuer,
                 ApplicationUser = @applicationUser,
                 UserId = @applicationUser.Id,
-                Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+                Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
             });
 
             @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken

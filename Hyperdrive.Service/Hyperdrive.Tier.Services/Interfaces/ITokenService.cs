@@ -1,10 +1,8 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
-
 using Microsoft.IdentityModel.Tokens;
 
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Hyperdrive.Tier.Services.Interfaces
@@ -15,18 +13,18 @@ namespace Hyperdrive.Tier.Services.Interfaces
     public interface ITokenService : IBaseService
     {
         /// <summary>
-        /// Generates Jwt Token
+        /// Generates Token Descriptor
         /// </summary>
         /// <param name="applicationUser">Injected <see cref="ApplicationUser"/></param>
-        /// <returns>Instance of <see cref="JwtSecurityToken"/></returns>
-        JwtSecurityToken GenerateJwtToken(ApplicationUser @applicationUser);
+        /// <returns>Instance of <see cref="SecurityTokenDescriptor"/></returns>
+        SecurityTokenDescriptor GenerateTokenDescriptor(ApplicationUser @applicationUser);
 
         /// <summary>
-        /// Writes Jwt Token
+        /// Creates Token
         /// </summary>
         /// <param name="jwtSecurityToken">>Injected <see cref="JwtSecurityToken"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
-        string WriteJwtToken(JwtSecurityToken @jwtSecurityToken);      
+        string CreateToken(SecurityTokenDescriptor @jwtSecurityToken);      
 
         /// <summary>
         /// Generates Symmetric Security Key

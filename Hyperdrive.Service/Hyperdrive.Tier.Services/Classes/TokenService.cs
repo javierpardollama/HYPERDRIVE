@@ -1,12 +1,13 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Helpers.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -23,19 +24,26 @@ namespace Hyperdrive.Tier.Services.Classes
     {
 
         /// <summary>
-        /// Generates Jwt Token
+        /// Generates Token Descriptor
         /// </summary>
         /// <param name="applicationUser">Injected <see cref="ApplicationUser"/></param>
-        /// <returns>Instance of <see cref="JwtSecurityToken"/></returns>
-        public JwtSecurityToken GenerateJwtToken(ApplicationUser @applicationUser) => new(issuer: JwtSettings.Value.JwtIssuer);
+        /// <returns>Instance of <see cref="SecurityTokenDescriptor"/></returns>
+        public SecurityTokenDescriptor GenerateTokenDescriptor(ApplicationUser @applicationUser) => new()
+        {
+            Issuer = @jwtSettings.Value.JwtIssuer,   
+            Claims = ClaimHelper.ToDictionary(GenerateJwtClaims(applicationUser)),
+            IssuedAt = DateTime.Now,
+            NotBefore = DateTime.Now,
+            Expires = DateTime.Now.AddMinutes(@jwtSettings.Value.JwtExpireMinutes),
+            SigningCredentials = GenerateSigningCredentials(GenerateSymmetricSecurityKey())
+        };
 
         /// <summary>
-        /// Writes Jwt Token
+        /// Creates Token
         /// </summary>
         /// <param name="jwtSecurityToken">>Injected <see cref="JwtSecurityToken"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
-        public string WriteJwtToken(JwtSecurityToken @jwtSecurityToken) => new JwtSecurityTokenHandler().WriteToken(@jwtSecurityToken);
-
+        public string CreateToken(SecurityTokenDescriptor @jwtSecurityToken) => new JsonWebTokenHandler().CreateToken(@jwtSecurityToken);
 
         /// <summary>
         /// Generates Symmetric Security Key
@@ -111,10 +119,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.PhoneNumberConfirmed.ToString()),
                 new(
                     JwtRegisteredClaimNames.UpdatedAt,
-                    new DateTimeOffset(@applicationUser.LastModified).ToUnixTimeSeconds().ToString()),
-                new(
-                    JwtRegisteredClaimNames.Iat,
-                    DateTimeOffset.Now.ToUnixTimeSeconds().ToString()),
+                    new DateTimeOffset(@applicationUser.LastModified).ToUnixTimeSeconds().ToString()),              
                 new(
                     JwtRegisteredClaimNames.Alg,
                     SecurityAlgorithms.HmacSha256Signature),

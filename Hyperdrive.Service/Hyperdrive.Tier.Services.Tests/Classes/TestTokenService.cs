@@ -2,11 +2,10 @@
 using Hyperdrive.Tier.Services.Classes;
 
 using Microsoft.Extensions.Logging;
-
+using Microsoft.IdentityModel.Tokens;
 using NUnit.Framework;
 
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
@@ -91,9 +90,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Generates Jwt Token
         /// </summary>
         [Test]
-        public void GenerateJwtToken()
+        public void GenerateTokenDescriptor()
         {
-            Service.GenerateJwtToken(Context.Users.FirstOrDefault());
+            Service.GenerateTokenDescriptor(Context.Users.FirstOrDefault());
 
             Assert.Pass();
         }
@@ -102,11 +101,11 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Writes Jwt Token
         /// </summary>
         [Test]
-        public void WriteJwtToken()
+        public void CreateToken()
         {
-            JwtSecurityToken JwtSecurityToken = new();
+            SecurityTokenDescriptor @tokenDescriptor = new();
 
-            Service.WriteJwtToken(JwtSecurityToken);
+            Service.CreateToken(@tokenDescriptor);
 
             Assert.Pass();
         }       
