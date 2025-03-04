@@ -1,12 +1,14 @@
 ﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Helpers.Classes;
 using Hyperdrive.Tier.Services.Classes;
-
+using Hyperdrive.Tier.ViewModels.Classes.Security;
 using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Tests.Classes
 {
@@ -50,7 +52,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpData();
 
-            Service = new RefreshTokenService(Logger, JwtOptions);
+            Service = new RefreshTokenService(Context, Logger, JwtOptions);
         }
 
         /// <summary>
@@ -67,9 +69,47 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpData()
         {
-            Context.Users.Add(new ApplicationUser { FirstName = "First", LastName = "User", UserName = "firstuser@email.com", Email = "firstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { FirstName = "Second", LastName = "User", UserName = "seconduser@email.com", Email = "seconduser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.Now, Deleted = false, SecurityStamp = new Guid().ToString() });
+            Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
+            {
+                LastModified = DateTime.Now,
+                Deleted = false,
+                Revoked = false,
+                Name = Guid.NewGuid().ToString(),
+                Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                ExpiresAt = DateTime.Now.AddDays(2),
+                ApplicationUser = new ApplicationUser
+                {
+                    FirstName = "First",
+                    LastName = "User",
+                    UserName = "firstuser@email.com",
+                    Email = "firstuser@email.com",
+                    PhoneNumber = int.MaxValue.ToString(),
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                }
+            });
+
+            Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
+            {
+                LastModified = DateTime.Now,
+                Deleted = false,
+                Revoked = false,
+                Name = Guid.NewGuid().ToString(),
+                Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                ExpiresAt = DateTime.Now.AddDays(2),
+                ApplicationUser = new ApplicationUser
+                {
+                    FirstName = "Second",
+                    LastName = "User",
+                    UserName = "seconduser@email.com",
+                    Email = "seconduser@email.com",
+                    PhoneNumber = int.MaxValue.ToString(),
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                }
+            });           
 
             Context.SaveChanges();
         }
@@ -112,5 +152,47 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Checks whether Jwt Refresh Token is Revoked
+        /// </summary>
+        [Test]
+        public void IsRevoked()
+        {
+            SecurityRefreshTokenReset viewModel = new()
+            {
+                ApplicationUserId = Context.Users.FirstOrDefault().Id,
+                ApplicationUserRefreshToken = StringHelper.HashString(StringHelper.GetRandomizedString())
+            };
+
+            UnauthorizedAccessException exception = Assert.ThrowsAsync<UnauthorizedAccessException>(async () => await Service.IsRevoked(viewModel));
+        }
+
+        /// <summary>
+        /// Revokes Jwt Refresh Token
+        /// </summary>      
+        [Test]
+        public async Task Revoke()
+        {
+            SecurityRefreshTokenReset viewModel = new()
+            {
+                ApplicationUserId = Context.Users.FirstOrDefault().Id,
+                ApplicationUserRefreshToken = Context.UserRefreshTokens.FirstOrDefault().Value
+            };
+
+            await Service.Revoke(viewModel);
+
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Finds Application User Refresh Token By User Id
+        /// </summary>
+        [Test]
+        public async Task FindApplicationUserRefreshTokenByApplicationUserId() 
+        {
+            await Service.FindApplicationUserRefreshTokenByApplicationUserId(Context.Users.FirstOrDefault().Id, Context.UserRefreshTokens.FirstOrDefault().Value);
+
+            Assert.Pass();
+        }
     }
 }

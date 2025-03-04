@@ -174,6 +174,19 @@ namespace Hyperdrive.Tier.Logging.Classes
         }
 
         /// <summary>
+        /// Emits Refresh Token Revoked
+        /// </summary>
+        /// <param name="this">Injected <see cref="ILogger"/></param>
+        /// <param name="logData">Injected <see cref="string"/></param>
+        public static void WriteRefreshTokenRevokedLog(this ILogger @this,
+                                                       string @logData)
+        {
+            @this.Emit(ApplicationEvents.RefreshTokenRevoked, @logData);
+
+            WriteInformationDiagnostics(@logData);
+        }
+
+        /// <summary>
         /// Writes Information Diagnostics
         /// </summary>
         /// <param name="logData">Injected <see cref="string"/></param>

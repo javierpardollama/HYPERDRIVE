@@ -58,6 +58,11 @@
         /// <summary>
         /// Phone Number Restored <see cref="ApplicationEvents"/>
         /// </summary>
-        PhoneNumberRestored = 11
+        PhoneNumberRestored = 11,
+
+        /// <summary>
+        /// Phone Number Restored <see cref="ApplicationEvents"/>
+        /// </summary>
+        RefreshTokenRevoked = 12
     }
 }

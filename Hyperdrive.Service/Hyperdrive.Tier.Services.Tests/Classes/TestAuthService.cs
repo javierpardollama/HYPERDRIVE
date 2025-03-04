@@ -76,7 +76,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             TokenService = new TokenService(TokenLogger, JwtOptions);
 
-            RefreshTokenService = new RefreshTokenService(RefreshTokenLogger, JwtOptions);
+            RefreshTokenService = new RefreshTokenService(Context, RefreshTokenLogger, JwtOptions);
 
             Service = new AuthService(Mapper, AuthLogger, JwtOptions, UserManager, SignInManager, TokenService, RefreshTokenService);
         }
