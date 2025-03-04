@@ -87,7 +87,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Generates Jwt Token
+        /// Generates Token Descriptor
         /// </summary>
         [Test]
         public void GenerateTokenDescriptor()
@@ -98,7 +98,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Writes Jwt Token
+        /// Creates Token
         /// </summary>
         [Test]
         public void CreateToken()
