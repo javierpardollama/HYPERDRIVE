@@ -29,7 +29,8 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="signInManager">Injected <see cref=" SignInManager{ApplicationUser}"/></param>
     /// <param name="tokenService">Injected <see cref="ITokenService"/></param>
     /// <param name="tokenRefreshService">Injected <see cref="IRefreshTokenService"/></param>
-    public class AuthService(IApplicationContext @context, IMapper @mapper,
+    public class AuthService(IApplicationContext @context,
+                             IMapper @mapper,
                              ILogger<AuthService> @logger,
                              IOptions<JwtSettings> @jwtSettings,
                              UserManager<ApplicationUser> @userManager,
