@@ -65,5 +65,14 @@ namespace Hyperdrive.Service.Controllers
         [Route("changename")]
         [Authorize]
         public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => Ok(value: await @service.ChangeName(@viewModel));
+
+        /// <summary>
+        /// Refreshes Tokens
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>   
+        [HttpPut]
+        [Route("refreshtokens")]      
+        public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value: await @service.RefreshTokens(@viewModel));
     }
 }

@@ -61,6 +61,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
+            Context.UserRefreshTokens.RemoveRange(Context.UserRefreshTokens.ToList());
             Context.Users.RemoveRange(Context.Users.ToList());
         }
 
@@ -109,7 +110,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 }
-            });           
+            });
 
             Context.SaveChanges();
         }
@@ -188,7 +189,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Finds Application User Refresh Token By User Id
         /// </summary>
         [Test]
-        public async Task FindApplicationUserRefreshTokenByApplicationUserId() 
+        public async Task FindApplicationUserRefreshTokenByApplicationUserId()
         {
             await Service.FindApplicationUserRefreshTokenByApplicationUserId(Context.Users.FirstOrDefault().Id, Context.UserRefreshTokens.FirstOrDefault().Value);
 

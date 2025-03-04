@@ -33,7 +33,6 @@ export class BaseService {
               case CodeAppVariants.CONFLICT:
                   const exception: ViewException = {
                       Message: response.error.Message,
-                      StatusCode: response.error.StatusCode
                   };
 
                   this.matSnackBar.open(

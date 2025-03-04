@@ -50,7 +50,6 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
 
             ViewServiceException @viewException = new()
             {
-                StatusCode = @context.Response.StatusCode,
                 Message = @exception.Message
             };
 

@@ -25,6 +25,7 @@ import { BaseService } from './base.service';
 import { environment } from './../environments/environment';
 
 import { Router } from '@angular/router';
+import { SecurityRefreshTokenReset } from 'src/viewmodels/security/securityrefreshtokenreset';
 
 
 @Injectable({
@@ -63,5 +64,10 @@ export class SecurityService extends BaseService {
   public ChangeName(viewModel: SecurityNameChange): Promise<ViewApplicationUser> {
     return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/changename`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeName', undefined))));
+  }
+
+  public RefreshTokens(viewModel: SecurityRefreshTokenReset): Promise<ViewApplicationUser> {
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/security/refreshtokens`, viewModel)
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('RefreshTokens', undefined))));
   }
 }

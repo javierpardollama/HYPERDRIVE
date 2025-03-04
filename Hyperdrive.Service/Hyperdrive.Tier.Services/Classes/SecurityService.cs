@@ -347,5 +347,49 @@ namespace Hyperdrive.Tier.Services.Classes
                 throw new UnauthorizedAccessException("Security Error");
             }
         }
+
+        /// <summary>
+        /// Refreshes Tokens
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
+        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        public async Task<ViewApplicationUser> RefreshTokens(SecurityRefreshTokenReset viewModel)
+        {
+            await tokenRefreshService.IsRevoked(viewModel);
+
+            await tokenRefreshService.Revoke(viewModel);
+
+            ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
+
+            @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
+            {
+                Name = Guid.NewGuid().ToString(),
+                LoginProvider = JwtSettings.Value.JwtIssuer,
+                ApplicationUser = @applicationUser,
+                UserId = @applicationUser.Id,
+                Value = tokenService.WriteJwtToken(tokenService.GenerateJwtToken(@applicationUser))
+            });
+
+            @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
+            {
+
+                Name = Guid.NewGuid().ToString(),
+                LoginProvider = JwtSettings.Value.JwtIssuer,
+                ApplicationUser = @applicationUser,
+                Value = tokenRefreshService.WriteJwtRefreshToken(),
+                ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
+            });
+
+            // Log
+            string @logData = nameof(@applicationUser)
+                + " with Id "
+                + @applicationUser.Id
+                + " restored its Tokens at "
+                + DateTime.Now.ToShortTimeString();
+
+            Logger.WriteTokensRefreshedLog(@logData);
+
+            return Mapper.Map<ViewApplicationUser>(@applicationUser);
+        }
     }
 }

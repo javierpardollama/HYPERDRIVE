@@ -61,8 +61,14 @@
         PhoneNumberRestored = 11,
 
         /// <summary>
-        /// Phone Number Restored <see cref="ApplicationEvents"/>
+        /// Refresh Token Revoked <see cref="ApplicationEvents"/>
         /// </summary>
-        RefreshTokenRevoked = 12
+        RefreshTokenRevoked = 12,
+
+
+        /// <summary>
+        /// Tokens Refreshed <see cref="ApplicationEvents"/>
+        /// </summary>
+        TokensRefreshed = 13
     }
 }

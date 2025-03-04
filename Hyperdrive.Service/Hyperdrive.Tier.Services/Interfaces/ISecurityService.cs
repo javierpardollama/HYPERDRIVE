@@ -59,5 +59,13 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         Task<ViewApplicationUser> ChangeName(SecurityNameChange @viewModel);
+
+
+        /// <summary>
+        /// Refreshes Tokens
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
+        /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
+        Task<ViewApplicationUser> RefreshTokens(SecurityRefreshTokenReset @viewModel);
     }
 }

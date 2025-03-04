@@ -1,5 +1,5 @@
-﻿using AutoMapper.Internal.Mappers;
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
+using Hyperdrive.Tier.Helpers.Classes;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Security;
 
@@ -114,12 +114,120 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpData()
         {
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "firstuser@email.com", Email = "firstuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirduser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "fourthuser@email.com", Email = "fourthuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "fifthuser@email.com", Email = "fifthuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
-            Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "sixthuser@email.com", Email = "sixthuser@email.com", LastModified = DateTime.Now, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
+            Context.Users.Add(new ApplicationUser
+            {
+                PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb",
+                UserName = "firstuser@email.com",
+                Email = "firstuser@email.com",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ConcurrencyStamp = new Guid().ToString(),
+                SecurityStamp = new Guid().ToString(),
+                ApplicationUserRefreshTokens = [new ApplicationUserRefreshToken
+                {
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    Revoked = false,
+                    Name = Guid.NewGuid().ToString(),
+                    Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                    ExpiresAt = DateTime.Now.AddDays(2)
+                }]
+            });
+            Context.Users.Add(new ApplicationUser
+            {
+                PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb",
+                UserName = "seconduser@email.com",
+                Email = "seconduser@email.com",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ConcurrencyStamp = new Guid().ToString(),
+                SecurityStamp = new Guid().ToString(),
+                ApplicationUserRefreshTokens = [new ApplicationUserRefreshToken
+                {
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    Revoked = false,
+                    Name = Guid.NewGuid().ToString(),
+                    Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                    ExpiresAt = DateTime.Now.AddDays(2)
+                }]
+            });
+            Context.Users.Add(new ApplicationUser
+            {
+                PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb",
+                UserName = "thirstuser@email.com",
+                Email = "thirduser@email.com",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ConcurrencyStamp = new Guid().ToString(),
+                SecurityStamp = new Guid().ToString(),
+                ApplicationUserRefreshTokens = [new ApplicationUserRefreshToken
+                {
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    Revoked = false,
+                    Name = Guid.NewGuid().ToString(),
+                    Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                    ExpiresAt = DateTime.Now.AddDays(2)
+                }]
+            });
+            Context.Users.Add(new ApplicationUser
+            {
+                PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb",
+                UserName = "fourthuser@email.com",
+                Email = "fourthuser@email.com",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ConcurrencyStamp = new Guid().ToString(),
+                SecurityStamp = new Guid().ToString(),
+                ApplicationUserRefreshTokens = [new ApplicationUserRefreshToken
+                {
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    Revoked = false,
+                    Name = Guid.NewGuid().ToString(),
+                    Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                    ExpiresAt = DateTime.Now.AddDays(2)
+                }]
+            });
+            Context.Users.Add(new ApplicationUser
+            {
+                PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb",
+                UserName = "fifthuser@email.com",
+                Email = "fifthuser@email.com",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ConcurrencyStamp = new Guid().ToString(),
+                SecurityStamp = new Guid().ToString(),
+                ApplicationUserRefreshTokens = [new ApplicationUserRefreshToken
+                {
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    Revoked = false,
+                    Name = Guid.NewGuid().ToString(),
+                    Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                    ExpiresAt = DateTime.Now.AddDays(2)
+                }]
+            });
+            Context.Users.Add(new ApplicationUser
+            {
+                PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb",
+                UserName = "sixthuser@email.com",
+                Email = "sixthuser@email.com",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ConcurrencyStamp = new Guid().ToString(),
+                SecurityStamp = new Guid().ToString(),
+                ApplicationUserRefreshTokens = [new ApplicationUserRefreshToken
+                {
+                    LastModified = DateTime.Now,
+                    Deleted = false,
+                    Revoked = false,
+                    Name = Guid.NewGuid().ToString(),
+                    Value = StringHelper.HashString(StringHelper.GetRandomizedString()),
+                    ExpiresAt = DateTime.Now.AddDays(2)
+                }]
+            });
 
             Context.SaveChanges();
         }
@@ -235,6 +343,23 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             };
 
             await Service.ChangeName(viewModel);
+
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Refreshes Tokens
+        /// </summary>
+        [Test]
+        public async Task RefreshTokens()
+        {
+            SecurityRefreshTokenReset viewModel = new()
+            {
+                ApplicationUserId = Context.Users.LastOrDefault().Id,
+                ApplicationUserRefreshToken = Context.UserRefreshTokens.LastOrDefault().Value
+            };
+
+            await Service.RefreshTokens(viewModel);
 
             Assert.Pass();
         }
