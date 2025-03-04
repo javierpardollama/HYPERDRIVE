@@ -65,7 +65,6 @@
         /// </summary>
         RefreshTokenRevoked = 12,
 
-
         /// <summary>
         /// Tokens Refreshed <see cref="ApplicationEvents"/>
         /// </summary>

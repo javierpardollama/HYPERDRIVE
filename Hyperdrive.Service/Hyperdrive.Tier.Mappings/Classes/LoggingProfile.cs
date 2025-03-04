@@ -29,6 +29,7 @@ namespace Hyperdrive.Tier.Mappings.Classes
             { ApplicationEvents.EmailRestored, LogLevel.Information },
             { ApplicationEvents.PhoneNumberRestored, LogLevel.Information },
             { ApplicationEvents.RefreshTokenRevoked, LogLevel.Information },
+            { ApplicationEvents.TokensRefreshed, LogLevel.Information }
         };
     }
 }
