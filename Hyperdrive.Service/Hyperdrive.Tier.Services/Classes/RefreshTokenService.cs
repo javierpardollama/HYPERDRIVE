@@ -44,11 +44,11 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
 
-            if (@refreshToken is null) throw new UnauthorizedAccessException("Access error");
+            if (@refreshToken is null) throw new UnauthorizedAccessException("Invalid Token");
 
-            if (@refreshToken.Revoked) throw new UnauthorizedAccessException("Access revoked");         
+            if (@refreshToken.Revoked) throw new UnauthorizedAccessException("Revoked Token");         
 
-            if (@refreshToken.ExpiresAt < DateTime.UtcNow) throw new UnauthorizedAccessException("Access expired");          
+            if (@refreshToken.ExpiresAt < DateTime.UtcNow) throw new UnauthorizedAccessException("Expired Token");          
         }
 
         /// <summary>
