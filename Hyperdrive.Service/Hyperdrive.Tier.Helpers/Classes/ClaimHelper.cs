@@ -15,6 +15,8 @@ namespace Hyperdrive.Tier.Helpers.Classes
         /// </summary>
         /// <param name="claims">Injected <see cref="IEnumerable{Claim}"/></param>
         /// <returns></returns>
-        public static Dictionary<string, object> ToDictionary(IEnumerable<Claim> claims) => claims.GroupBy(i => i.Type).ToDictionary(i => i.Key, i => (object)(i.Count() == 1 ? i.First().Value : i.Select(i => i.Value).ToArray()));
+        public static Dictionary<string, object> ToDictionary(IEnumerable<Claim> claims) => claims.GroupBy(i => i.Type)
+                                                                                                  .ToDictionary(i => i.Key, i => (object)(i.Count() == 1 ? i.First().Value : i.Select(i => i.Value)
+                                                                                                  .ToArray()));
     }
 }

@@ -372,7 +372,6 @@ namespace Hyperdrive.Tier.Services.Classes
 
             @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
             {
-
                 Name = Guid.NewGuid().ToString(),
                 LoginProvider = JwtSettings.Value.JwtIssuer,
                 ApplicationUser = @applicationUser,
