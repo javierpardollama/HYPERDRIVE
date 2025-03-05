@@ -58,8 +58,6 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task"/></returns>
         public async Task Revoke(SecurityRefreshTokenReset @viewModel) 
         {
-            await IsRevoked(@viewModel);
-
             ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
 
             @refreshToken.Revoked = true;
