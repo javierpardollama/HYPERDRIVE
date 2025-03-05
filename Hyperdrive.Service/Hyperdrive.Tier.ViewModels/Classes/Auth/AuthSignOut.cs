@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hyperdrive.Tier.ViewModels.Classes.Auth
+﻿namespace Hyperdrive.Tier.ViewModels.Classes.Auth
 {
     /// <summary>
     /// Represents a <see cref="AuthSignOut"/> class.

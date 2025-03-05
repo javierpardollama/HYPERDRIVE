@@ -4,7 +4,7 @@
     {
         public ViewServiceException()
         {
-        }       
+        }
 
         public string Message { get; set; }
     }

@@ -62,7 +62,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [HttpPost]
         [Route("addarchive")]
-        public async Task<IActionResult> AddDriveItem([FromBody]AddDriveItem @viewModel) => Ok(value: await @service.AddDriveItem(@viewModel));
+        public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value: await @service.AddDriveItem(@viewModel));
 
         /// <summary>
         /// Updates DriveItem
@@ -71,7 +71,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("updatearchive")]
-        public async Task<IActionResult> UpdateDriveItem([FromBody]UpdateDriveItem @viewModel) => Ok(value: await @service.UpdateDriveItem(@viewModel));
+        public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value: await @service.UpdateDriveItem(@viewModel));
 
         /// <summary>
         /// Removes DriveItem By Id

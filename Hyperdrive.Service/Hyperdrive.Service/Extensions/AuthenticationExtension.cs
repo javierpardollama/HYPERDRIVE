@@ -1,10 +1,8 @@
-﻿using System.Text;
-
-using Hyperdrive.Tier.Settings.Classes;
-
+﻿using Hyperdrive.Tier.Settings.Classes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Hyperdrive.Tier.Service.Extensions
 {
@@ -40,7 +38,7 @@ namespace Hyperdrive.Tier.Service.Extensions
                        ValidateIssuerSigningKey = true,
                        ValidIssuer = @JwtSettings.JwtIssuer,
                        ValidAudiences = @JwtSettings.JwtAudiences,
-                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@JwtSettings.JwtKey))                       
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@JwtSettings.JwtKey))
                    };
                });
         }

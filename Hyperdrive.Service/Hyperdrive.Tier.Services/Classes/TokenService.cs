@@ -30,7 +30,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="SecurityTokenDescriptor"/></returns>
         public SecurityTokenDescriptor GenerateTokenDescriptor(ApplicationUser @applicationUser) => new()
         {
-            Issuer = @jwtSettings.Value.JwtIssuer,   
+            Issuer = @jwtSettings.Value.JwtIssuer,
             Claims = ClaimHelper.ToDictionary(GenerateJwtClaims(applicationUser)),
             IssuedAt = DateTime.UtcNow,
             NotBefore = DateTime.UtcNow,
@@ -119,7 +119,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.PhoneNumberConfirmed.ToString()),
                 new(
                     JwtRegisteredClaimNames.UpdatedAt,
-                    new DateTimeOffset(@applicationUser.LastModified).ToUnixTimeSeconds().ToString()),              
+                    new DateTimeOffset(@applicationUser.LastModified).ToUnixTimeSeconds().ToString()),
                 new(
                     JwtRegisteredClaimNames.Alg,
                     SecurityAlgorithms.HmacSha256Signature),

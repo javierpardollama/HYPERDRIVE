@@ -91,7 +91,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
             ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserByEmail")                
+                .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());
@@ -124,7 +124,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
             ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserByEmail")               
+                .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == id);

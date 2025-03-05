@@ -13,12 +13,12 @@
         /// <summary>
         /// Gets or Sets <see cref="PermitLimit"/>
         /// </summary>
-        public int PermitLimit { get; set; }       
+        public int PermitLimit { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="QueueProcessingOrder"/>
         /// </summary>
-        public int QueueProcessingOrder { get;set;}
+        public int QueueProcessingOrder { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="QueueLimit"/>

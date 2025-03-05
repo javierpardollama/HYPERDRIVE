@@ -107,7 +107,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Finds DriveItem By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
-       [Test]
+        [Test]
         public async Task FindDriveItemById()
         {
             await Service.FindDriveItemById(Context.DriveItems.FirstOrDefault().Id);
@@ -169,7 +169,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             await Service.FindAllDriveItemVersionByDriveItemId(Context.DriveItems.FirstOrDefault().Id);
 
             Assert.Pass();
-        }      
+        }
 
         [Test]
         public async Task AddDriveItem()
@@ -181,7 +181,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Name = "foutharchive.txt",
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.Users.FirstOrDefault().Id,                   
+                ApplicationUserId = Context.Users.FirstOrDefault().Id,
             };
 
             await Service.AddDriveItem(@addDriveItem);
@@ -190,7 +190,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         [Test]
-        public void AddApplicationUserDriveItem() 
+        public void AddApplicationUserDriveItem()
         {
             AddDriveItem @addDriveItem = new()
             {
@@ -208,7 +208,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         }
 
         [Test]
-        public void AddDriveItemVersion() 
+        public void AddDriveItemVersion()
         {
             AddDriveItem @addDriveItem = new()
             {
@@ -231,12 +231,12 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             UpdateDriveItem @updateDriveItem = new()
             {
                 Id = Context.DriveItems.FirstOrDefault().Id,
-                ApplicationUsersId = Context.Users.ToList().Select(x=>x.Id).ToList(),
+                ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10].ToString(),
                 Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
-                ApplicationUserId = Context.Users.FirstOrDefault().Id                   
+                ApplicationUserId = Context.Users.FirstOrDefault().Id
             };
 
             await Service.UpdateDriveItem(@updateDriveItem);

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Hyperdrive.Tier.ViewModels.Interfaces.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-
-using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {
@@ -21,13 +20,13 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         public DateTime LastModified { get; set; }
 
         [XmlElement("by")]
-        public virtual ViewApplicationUser By { get; set; }     
+        public virtual ViewApplicationUser By { get; set; }
 
         [XmlElement("folder")]
         public bool Folder { get; set; }
 
         [XmlElement("locked")]
-        public bool Locked { get; set; }       
+        public bool Locked { get; set; }
 
         [XmlArray("application-user-archives")]
         public virtual ICollection<ViewApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }

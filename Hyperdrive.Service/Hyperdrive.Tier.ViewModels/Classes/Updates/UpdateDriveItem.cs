@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 
-using Hyperdrive.Tier.ViewModels.Classes.Views;
-
 namespace Hyperdrive.Tier.ViewModels.Classes.Updates
 {
     /// <summary>

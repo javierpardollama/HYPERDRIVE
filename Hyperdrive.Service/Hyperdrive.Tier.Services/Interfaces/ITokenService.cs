@@ -24,7 +24,7 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// </summary>
         /// <param name="jwtSecurityToken">>Injected <see cref="JwtSecurityToken"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
-        string CreateToken(SecurityTokenDescriptor @jwtSecurityToken);      
+        string CreateToken(SecurityTokenDescriptor @jwtSecurityToken);
 
         /// <summary>
         /// Generates Symmetric Security Key

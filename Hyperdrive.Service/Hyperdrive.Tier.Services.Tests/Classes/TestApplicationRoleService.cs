@@ -36,7 +36,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// </summary>
         public TestApplicationRoleService()
         {
-           
+
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpData();
 
-            Service = new ApplicationRoleService(Mapper, Logger, RoleManager);          
+            Service = new ApplicationRoleService(Mapper, Logger, RoleManager);
         }
 
         /// <summary>

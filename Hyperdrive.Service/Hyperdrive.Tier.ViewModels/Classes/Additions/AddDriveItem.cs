@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-
-using Hyperdrive.Tier.ViewModels.Classes.Views;
-using Hyperdrive.Tier.ViewModels.Interfaces.Additions;
+﻿using Hyperdrive.Tier.ViewModels.Interfaces.Additions;
+using System.Collections.Generic;
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Additions
 {

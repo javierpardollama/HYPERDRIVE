@@ -119,6 +119,6 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             });
 
             Mapper = @config.CreateMapper();
-        }       
+        }
     }
 }

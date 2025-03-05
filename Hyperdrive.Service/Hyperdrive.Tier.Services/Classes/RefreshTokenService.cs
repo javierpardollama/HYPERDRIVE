@@ -27,7 +27,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// Generates Jwt Refresh Token Expiration Date 
         /// </summary>
         /// <returns>Instance of <see cref="DateTime"/></returns>
-        public DateTime GenerateRefreshTokenExpirationDate() => DateTime.UtcNow.AddDays(JwtSettings.Value.JwtExpireDays);     
+        public DateTime GenerateRefreshTokenExpirationDate() => DateTime.UtcNow.AddDays(JwtSettings.Value.JwtExpireDays);
 
         /// <summary>
         /// Writes Jwt Refresh Token
@@ -40,15 +40,15 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task IsRevoked(SecurityRefreshTokenReset @viewModel) 
+        public async Task IsRevoked(SecurityRefreshTokenReset @viewModel)
         {
             ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
 
             if (@refreshToken is null) throw new UnauthorizedAccessException("Invalid Token");
 
-            if (@refreshToken.Revoked) throw new UnauthorizedAccessException("Revoked Token");         
+            if (@refreshToken.Revoked) throw new UnauthorizedAccessException("Revoked Token");
 
-            if (@refreshToken.ExpiresAt < DateTime.UtcNow) throw new UnauthorizedAccessException("Expired Token");          
+            if (@refreshToken.ExpiresAt < DateTime.UtcNow) throw new UnauthorizedAccessException("Expired Token");
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>      
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task Revoke(SecurityRefreshTokenReset @viewModel) 
+        public async Task Revoke(SecurityRefreshTokenReset @viewModel)
         {
             ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
 
@@ -87,7 +87,7 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUserRefreshToken @refreshToken = await @context.UserRefreshTokens
                 .TagWith("FindApplicationUserRefreshTokenByApplicationUserId")
-                .Include(x => x.ApplicationUser)               
+                .Include(x => x.ApplicationUser)
                 .FirstOrDefaultAsync(x => x.ApplicationUser.Id == @userid && x.Value == @token);
 
             if (@refreshToken is null)
@@ -99,7 +99,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);              
+                Logger.WriteGetItemNotFoundLog(@logData);
             }
 
             return @refreshToken;

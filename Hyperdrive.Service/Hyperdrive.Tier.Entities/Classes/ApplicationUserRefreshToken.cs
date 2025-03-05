@@ -9,7 +9,7 @@ namespace Hyperdrive.Tier.Entities.Classes
     /// <summary>
     /// Represents a <see cref="ApplicationUserRefreshToken"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
-    public class ApplicationUserRefreshToken : IKey,IBase
+    public class ApplicationUserRefreshToken : IKey, IBase
     {
         /// <summary>
         /// Initializes a new Instance of <see cref="ApplicationUserRefreshToken"/>

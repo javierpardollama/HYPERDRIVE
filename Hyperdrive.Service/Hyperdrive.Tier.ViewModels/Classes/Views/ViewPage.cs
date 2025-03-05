@@ -6,7 +6,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     /// Represents a <see cref="ViewPage{T}"/> class.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ViewPage<T> 
+    public class ViewPage<T>
     {
         /// <summary>
         /// Gets or Sets <see cref="Length"/>

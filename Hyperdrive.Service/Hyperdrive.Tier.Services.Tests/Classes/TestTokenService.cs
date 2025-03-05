@@ -108,7 +108,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Service.CreateToken(@tokenDescriptor);
 
             Assert.Pass();
-        }       
+        }
 
         /// <summary>
         /// Generates Symmetric Security Key

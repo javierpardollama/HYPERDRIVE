@@ -161,7 +161,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserById(int @id)
         {
             ApplicationUser @applicationUser = await userManager.Users
-                .TagWith("FindApplicationUserById")                
+                .TagWith("FindApplicationUserById")
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == @id);
@@ -193,7 +193,7 @@ namespace Hyperdrive.Tier.Services.Classes
             DriveItem @archive = new()
             {
                 Folder = @viewModel.Folder,
-                Locked = @viewModel.Locked,               
+                Locked = @viewModel.Locked,
                 By = await FindApplicationUserById(@viewModel.ApplicationUserId),
                 ApplicationUserDriveItems = [],
                 DriveItemVersions = []
@@ -254,9 +254,9 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             await CheckName(@viewModel);
 
-            DriveItem @archive = await FindDriveItemById(@viewModel.Id);           
+            DriveItem @archive = await FindDriveItemById(@viewModel.Id);
             @archive.Folder = @viewModel.Folder;
-            @archive.Locked = @viewModel.Locked;          
+            @archive.Locked = @viewModel.Locked;
             @archive.By = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             Context.DriveItems.Update(@archive);

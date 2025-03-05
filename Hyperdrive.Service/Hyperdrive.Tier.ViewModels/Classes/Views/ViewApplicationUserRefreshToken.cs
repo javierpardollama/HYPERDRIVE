@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Hyperdrive.Tier.ViewModels.Interfaces.Views;
+using System;
 using System.Xml.Serialization;
-
-using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {
@@ -28,7 +27,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         /// Gets or Sets <see cref="ExpiresAt"/>
         /// </summary>
         [XmlElement("expired-at")]
-        public DateTime ExpiresAt { get; set; }        
+        public DateTime ExpiresAt { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Name"/>
@@ -46,6 +45,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
         /// Gets or Sets <see cref="Value"/>
         /// </summary>
         [XmlElement("value")]
-        public string Value { get; set; }       
+        public string Value { get; set; }
     }
 }

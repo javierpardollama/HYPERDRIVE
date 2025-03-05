@@ -66,7 +66,7 @@ namespace Hyperdrive.Tier.Contexts.Classes
         /// <summary>
         /// Gets or Sets <see cref="DbSet{DriveItemVersion}"/>
         /// </summary>
-        public virtual DbSet<DriveItemVersion> DriveItemVersions { get; set; }       
+        public virtual DbSet<DriveItemVersion> DriveItemVersions { get; set; }
 
         /// <summary>
         /// Overrides Model Creation

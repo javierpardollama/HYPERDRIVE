@@ -10,7 +10,7 @@
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
-        public int ApplicationUserId { get; set; }     
+        public int ApplicationUserId { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>

@@ -166,7 +166,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
 
             }
-            else 
+            else
             {
                 throw new ServiceException("Management Error");
             }

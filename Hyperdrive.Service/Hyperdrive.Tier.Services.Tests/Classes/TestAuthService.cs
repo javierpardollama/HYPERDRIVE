@@ -1,5 +1,4 @@
-﻿using AutoMapper.Internal.Mappers;
-using Hyperdrive.Tier.Entities.Classes;
+﻿using Hyperdrive.Tier.Entities.Classes;
 using Hyperdrive.Tier.Exceptions.Exceptions;
 using Hyperdrive.Tier.Services.Classes;
 using Hyperdrive.Tier.ViewModels.Classes.Auth;
@@ -191,7 +190,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Signs Out
         /// </summary>
         [Test]
-        public async Task SignOut() 
+        public async Task SignOut()
         {
             AuthSignOut viewModel = new()
             {

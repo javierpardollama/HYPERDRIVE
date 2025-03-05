@@ -63,7 +63,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 return Mapper.Map<ViewApplicationRole>(@applicationRole);
             }
-            else 
+            else
             {
                 throw new ServiceException("Management Error");
             }
@@ -231,10 +231,10 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 Logger.WriteDeleteItemLog(@logData);
             }
-            else 
+            else
             {
                 throw new ServiceException("Management Error");
-            }           
+            }
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 return Mapper.Map<ViewApplicationRole>(@applicationRole);
 
             }
-            else 
+            else
             {
                 throw new ServiceException("Management Error");
             }

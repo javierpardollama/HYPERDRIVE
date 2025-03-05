@@ -10,7 +10,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Filters
         /// <summary>
         /// Initializes a new Instance of <see cref="FilterPageDriveItem"/>
         /// </summary>
-        public FilterPageDriveItem() 
+        public FilterPageDriveItem()
         {
         }
 

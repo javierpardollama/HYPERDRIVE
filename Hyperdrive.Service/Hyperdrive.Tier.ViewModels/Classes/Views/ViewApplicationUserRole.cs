@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Hyperdrive.Tier.ViewModels.Interfaces.Views;
+using System;
 using System.Xml.Serialization;
-
-using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
 {

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Hyperdrive.Tier.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-using Hyperdrive.Tier.Entities.Interfaces;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {
@@ -43,13 +42,13 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// Gets or Sets <see cref="ApplicationUser"/>
         /// </summary>
         [Required]
-        public virtual ApplicationUser By { get; set; }       
+        public virtual ApplicationUser By { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Folder"/>
         /// </summary>
         [Required]
-        public bool Folder { get; set; }        
+        public bool Folder { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Locked"/>

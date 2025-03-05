@@ -66,10 +66,10 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
                 {
-                    
+
                     Name = Guid.NewGuid().ToString(),
                     LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,                 
+                    ApplicationUser = @applicationUser,
                     Value = tokenRefreshService.WriteJwtRefreshToken(),
                     ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
                 });
@@ -180,7 +180,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task SignOut(AuthSignOut @viewModel) 
+        public async Task SignOut(AuthSignOut @viewModel)
         {
             ApplicationUser @applicationUser = await FindApplicationUserByEmail(@viewModel.Email);
 
@@ -204,7 +204,7 @@ namespace Hyperdrive.Tier.Services.Classes
         public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
         {
             ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserByEmail")               
+                .TagWith("FindApplicationUserByEmail")
                 .Include(x => x.ApplicationUserRoles)
                 .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());

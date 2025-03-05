@@ -72,7 +72,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
-        [Route("refreshtokens")]      
+        [Route("refreshtokens")]
         public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value: await @service.RefreshTokens(@viewModel));
     }
 }
