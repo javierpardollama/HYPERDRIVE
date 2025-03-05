@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -13,13 +14,7 @@ namespace Hyperdrive.Tier.Helpers.Classes
         /// Gets Randomized Strings
         /// </summary>
         /// <returns>Instance of <see cref="string"/></returns>
-        public static string GetRandomizedString()
-        {
-            var randomNumber = new byte[64];
-            using var rng = RandomNumberGenerator.Create();
-            rng.GetBytes(randomNumber);
-            return Convert.ToBase64String(randomNumber);
-        }
+        public static string GetRandomizedString() => Path.GetRandomFileName().Replace(".", "")[..8];
 
         /// <summary>
         /// Hashes String
