@@ -1,4 +1,4 @@
-import { ViewException } from './../viewmodels/views/viewexception';
+import { ViewServiceException } from '../viewmodels/views/viewserviceexception';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
@@ -31,7 +31,7 @@ export class BaseService {
 
           switch (response.status) {
               case CodeAppVariants.CONFLICT:
-                  const exception: ViewException = {
+                  const exception: ViewServiceException = {
                       Message: response.error.Message,
                   };
 
