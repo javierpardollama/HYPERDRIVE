@@ -23,6 +23,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Updates Application User
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="UpdateApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
@@ -32,6 +35,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Finds All Application User
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -41,6 +47,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Finds Paginated Application User
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="FilterPageApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -51,6 +60,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Removes Application User ById
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]

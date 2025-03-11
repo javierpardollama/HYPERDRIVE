@@ -19,6 +19,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Signs In
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AuthSignIn"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
@@ -28,6 +31,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Joins In
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
@@ -37,6 +43,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Signs Out
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]

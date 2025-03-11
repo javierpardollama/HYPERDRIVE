@@ -20,6 +20,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Resets Password
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -29,6 +32,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Changes Password
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -39,6 +45,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Changes Email
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -49,6 +58,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Changes Phone Number
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -59,6 +71,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Changes Name
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -69,6 +84,9 @@ namespace Hyperdrive.Service.Controllers
         /// <summary>
         /// Refreshes Tokens
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
