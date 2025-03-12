@@ -21,7 +21,7 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
     public class RefreshTokenService(IApplicationContext @context,
                                      ILogger<RefreshTokenService> @logger,
-                                     IOptions<JwtSettings> @jwtSettings) : BaseService(@context, @logger, @jwtSettings), IRefreshTokenService
+                                     IOptions<JwtSettings> @jwtSettings) : BaseService(@context, @jwtSettings), IRefreshTokenService
     {
         /// <summary>
         /// Generates Jwt Refresh Token Expiration Date 
@@ -74,7 +74,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " was revoked at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            Logger.WriteRefreshTokenRevokedLog(@logData);
+            @logger.WriteRefreshTokenRevokedLog(@logData);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
             }
 
             return @refreshToken;

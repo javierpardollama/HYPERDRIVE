@@ -25,11 +25,6 @@ namespace Hyperdrive.Tier.Services.Classes
         protected readonly IMapper Mapper;
 
         /// <summary>
-        /// Instance of <see cref="ILogger"/>
-        /// </summary>
-        protected readonly ILogger Logger;
-
-        /// <summary>
         /// Instance of <see cref="IOptions{JwtSettings}"/>
         /// </summary>
         protected readonly IOptions<JwtSettings> JwtSettings;
@@ -40,14 +35,11 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public BaseService(IApplicationContext @context,
-                           IMapper @mapper,
-                           ILogger @logger)
+                           IMapper @mapper)
         {
             Context = @context;
             Mapper = @mapper;
-            Logger = @logger;
         }
 
         /// <summary>
@@ -55,16 +47,13 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
         public BaseService(IApplicationContext @context,
                            IMapper @mapper,
-                           ILogger @logger,
                            IOptions<JwtSettings> @jwtSettings)
         {
             Context = @context;
             Mapper = @mapper;
-            Logger = @logger;
             JwtSettings = @jwtSettings;
         }
 
@@ -72,12 +61,9 @@ namespace Hyperdrive.Tier.Services.Classes
         /// Initializes a new Instance of <see cref="BaseService"/>
         /// </summary>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public BaseService(IMapper @mapper,
-                           ILogger @logger)
+        public BaseService(IMapper @mapper)
         {
             Mapper = @mapper;
-            Logger = @logger;
         }
 
         /// <summary>
@@ -85,10 +71,8 @@ namespace Hyperdrive.Tier.Services.Classes
         /// </summary>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        public BaseService(ILogger @logger,
-                           IOptions<JwtSettings> @jwtSettings)
+        public BaseService(IOptions<JwtSettings> @jwtSettings)
         {
-            Logger = @logger;
             JwtSettings = @jwtSettings;
         }
 
@@ -96,14 +80,11 @@ namespace Hyperdrive.Tier.Services.Classes
         /// Initializes a new Instance of <see cref="BaseService"/>
         /// </summary>
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
         public BaseService(IApplicationContext @context,
-                           ILogger @logger,
                            IOptions<JwtSettings> @jwtSettings)
         {
             Context = @context;
-            Logger = @logger;
             JwtSettings = @jwtSettings;
         }
     }

@@ -28,7 +28,7 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="roleManager">Injected <see cref=" RoleManager{ApplicationRole}"/></param>
     public class ApplicationRoleService(IMapper @mapper,
                                         ILogger<ApplicationRoleService> @logger,
-                                        RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper, @logger), IApplicationRoleService
+                                        RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper), IApplicationRoleService
     {
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was added at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteInsertItemLog(@logData);
+                @logger.WriteInsertItemLog(@logData);
 
                 return Mapper.Map<ViewApplicationRole>(@applicationRole);
             }
@@ -91,7 +91,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationRole)
                     + " with Name "
@@ -124,7 +124,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationRole)
                     + " with Name "
@@ -198,7 +198,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationRole)
                     + " with Id "
@@ -229,7 +229,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was removed at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(@logData);
+                @logger.WriteDeleteItemLog(@logData);
             }
             else
             {
@@ -264,7 +264,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was modified at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteUpdateItemLog(@logData);
+                @logger.WriteUpdateItemLog(@logData);
 
                 return Mapper.Map<ViewApplicationRole>(@applicationRole);
 

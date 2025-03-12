@@ -42,11 +42,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpMapper();
 
-            SetUpLogger();
-
             SetUpData();
 
-            Service = new TokenService(Logger, JwtOptions);
+            Service = new TokenService(JwtOptions);
         }
 
         /// <summary>
@@ -68,22 +66,6 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Context.Users.Add(new ApplicationUser { FirstName = "Thirst", LastName = "User", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", PhoneNumber = int.MaxValue.ToString(), LastModified = DateTime.UtcNow, Deleted = false, SecurityStamp = new Guid().ToString() });
 
             Context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Sets Up Logger
-        /// </summary>
-        private void SetUpLogger()
-        {
-            ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder
-                    .AddFilter("Microsoft", LogLevel.Warning)
-                    .AddFilter("System", LogLevel.Warning)
-                    .AddConsole();
-            });
-
-            Logger = @loggerFactory.CreateLogger<TokenService>();
         }
 
         /// <summary>

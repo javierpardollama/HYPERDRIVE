@@ -29,7 +29,7 @@ namespace Hyperdrive.Tier.Services.Classes
     public class ApplicationUserService(IMapper @mapper,
                                         ILogger<ApplicationUserService> @logger,
                                         UserManager<ApplicationUser> @userManager,
-                                        RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper, @logger), IApplicationUserService
+                                        RoleManager<ApplicationRole> @roleManager) : BaseService(@mapper), IApplicationUserService
     {
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationUser)
                     + " with Email "
@@ -130,7 +130,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was removed at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(@logData);
+                @logger.WriteDeleteItemLog(@logData);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was modified at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteUpdateItemLog(@logData);
+                @logger.WriteUpdateItemLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
 
@@ -213,7 +213,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationRole)
                     + " with Id "

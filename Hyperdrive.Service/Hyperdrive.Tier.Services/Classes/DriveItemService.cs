@@ -27,7 +27,7 @@ namespace Hyperdrive.Tier.Services.Classes
     public class DriveItemService(UserManager<ApplicationUser> userManager,
                                   IApplicationContext context,
                                   IMapper mapper,
-                                  ILogger<DriveItemService> logger) : BaseService(context, mapper, logger), IDriveItemService
+                                  ILogger<DriveItemService> logger) : BaseService(context, mapper), IDriveItemService
     {
         public async Task<DriveItem> FindDriveItemById(int @id)
         {
@@ -46,7 +46,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@archive)
                     + " with Id "
@@ -72,7 +72,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " was removed at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            Logger.WriteDeleteItemLog(@logData);
+            @logger.WriteDeleteItemLog(@logData);
         }
 
         public async Task<IList<ViewDriveItem>> FindAllDriveItem()
@@ -175,7 +175,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationUser)
                     + " with Id "
@@ -214,7 +214,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " was added at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(@logData);
+            @logger.WriteInsertItemLog(@logData);
 
             return Mapper.Map<ViewDriveItem>(@archive);
         }
@@ -274,7 +274,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+            @logger.WriteUpdateItemLog(@logData);
 
             return Mapper.Map<ViewDriveItem>(@archive);
         }
@@ -326,7 +326,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@archive)
                     + " with Name "
@@ -355,7 +355,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@archive)
                     + " with Name "

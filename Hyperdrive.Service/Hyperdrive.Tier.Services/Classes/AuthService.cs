@@ -36,7 +36,7 @@ namespace Hyperdrive.Tier.Services.Classes
                              UserManager<ApplicationUser> @userManager,
                              SignInManager<ApplicationUser> @signInManager,
                              ITokenService @tokenService,
-                             IRefreshTokenService @tokenRefreshService) : BaseService(@context, @mapper, @logger, @jwtSettings), IAuthService
+                             IRefreshTokenService @tokenRefreshService) : BaseService(@context, @mapper, @jwtSettings), IAuthService
     {
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " logged in at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteUserAuthenticatedLog(@logData);
+                @logger.WriteUserAuthenticatedLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -133,7 +133,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " logged in at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteUserAuthenticatedLog(@logData);
+                @logger.WriteUserAuthenticatedLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -193,7 +193,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " logged out at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            Logger.WriteUserUnauthenticatedLog(@logData);
+            @logger.WriteUserUnauthenticatedLog(@logData);
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationUser)
                     + " with Email "
@@ -251,7 +251,7 @@ namespace Hyperdrive.Tier.Services.Classes
                       + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationUser)
                     + " with Email "

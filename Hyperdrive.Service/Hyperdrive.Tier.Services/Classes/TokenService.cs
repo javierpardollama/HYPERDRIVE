@@ -2,7 +2,6 @@
 using Hyperdrive.Tier.Helpers.Classes;
 using Hyperdrive.Tier.Services.Interfaces;
 using Hyperdrive.Tier.Settings.Classes;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -17,10 +16,8 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <summary>
     /// Represents a <see cref="TokenService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ITokenService"/>
     /// </summary>   
-    /// <param name="logger">Injected <see cref="ILogger{TokenService}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-    public class TokenService(ILogger<TokenService> @logger,
-                              IOptions<JwtSettings> @jwtSettings) : BaseService(@logger, @jwtSettings), ITokenService
+    public class TokenService(IOptions<JwtSettings> @jwtSettings) : BaseService(@jwtSettings), ITokenService
     {
 
         /// <summary>

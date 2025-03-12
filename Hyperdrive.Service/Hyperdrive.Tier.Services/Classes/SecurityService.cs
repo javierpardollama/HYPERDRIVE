@@ -31,7 +31,7 @@ namespace Hyperdrive.Tier.Services.Classes
                        IOptions<JwtSettings> @jwtSettings,
                        UserManager<ApplicationUser> @userManager,
                        ITokenService @tokenService,
-                       IRefreshTokenService @tokenRefreshService) : BaseService(@context, @mapper, @logger, @jwtSettings), ISecurityService
+                       IRefreshTokenService @tokenRefreshService) : BaseService(@context, @mapper, @jwtSettings), ISecurityService
     {
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " restored its Password at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WritePasswordRestoredLog(@logData);
+                @logger.WritePasswordRestoredLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -105,7 +105,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new UnauthorizedAccessException(nameof(@applicationUser)
                     + " with Email "
@@ -138,7 +138,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@applicationUser)
                     + " with Id "
@@ -188,7 +188,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " restored its Password at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WritePasswordRestoredLog(@logData);
+                @logger.WritePasswordRestoredLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -237,7 +237,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " restored its Email at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteEmailRestoredLog(@logData);
+                @logger.WriteEmailRestoredLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -286,7 +286,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " restored its Phone Number at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WritePhoneNumberRestoredLog(@logData);
+                @logger.WritePhoneNumberRestoredLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -338,7 +338,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was modified at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                Logger.WriteUpdateItemLog(@logData);
+                @logger.WriteUpdateItemLog(@logData);
 
                 return Mapper.Map<ViewApplicationUser>(@applicationUser);
             }
@@ -386,7 +386,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " restored its Tokens at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            Logger.WriteTokensRefreshedLog(@logData);
+            @logger.WriteTokensRefreshedLog(@logData);
 
             return Mapper.Map<ViewApplicationUser>(@applicationUser);
         }
