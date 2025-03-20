@@ -72,6 +72,10 @@ var @RateSettings = new RateLimitSettings();
 
 @builder.AddCustomizedAspireServices();
 
+// Return the Problem Details format for non-successful responses
+@builder.Services.AddProblemDetails();
+@builder.Services.AddCustomizedHandlers();
+
 var @app = @builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -104,5 +108,9 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
+
+// Return the body of the response when the status code is not successful
+// (the default behavior is to return an empty body with a Status Code)
+@app.UseStatusCodePages();
 
 @app.Run();
