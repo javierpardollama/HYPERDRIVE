@@ -32,9 +32,9 @@ export class BaseService {
             switch (response.status) {
                 case CodeAppVariants.BAD_REQUEST:
                     const exception: ExceptionProblemDetails = {
-                        Detail: response.error.Detail,
-                        Title: response.error.Title,
-                        Type: response.error.Type
+                        Detail: response.error.detail,
+                        Title: response.error.title,
+                        Type: response.error.type
                     };
 
                     this.matSnackBar.open(

@@ -111,6 +111,7 @@ if (@app.Environment.IsDevelopment())
 
 // Return the body of the response when the status code is not successful
 // (the default behavior is to return an empty body with a Status Code)
+@app.UseExceptionHandler();
 @app.UseStatusCodePages();
 
 @app.Run();
