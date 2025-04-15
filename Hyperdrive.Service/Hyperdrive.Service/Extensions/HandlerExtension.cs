@@ -1,4 +1,5 @@
-﻿using Hyperdrive.Tier.Exceptions.Handlers;
+﻿using Hyperdrive.Tier.Handlers.Classes;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyperdrive.Service.Extensions

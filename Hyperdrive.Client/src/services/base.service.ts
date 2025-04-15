@@ -30,7 +30,7 @@ export class BaseService {
         return (response: HttpErrorResponse): Observable<T> => {
 
             switch (response.status) {
-                case CodeAppVariants.BAD_REQUEST:
+                case CodeAppVariants.CONFLICT:
                     const exception: ExceptionProblemDetails = {
                         Detail: response.error.detail,
                         Title: response.error.title,

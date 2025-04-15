@@ -11,7 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Hyperdrive.Tier.Services\Hyperdrive.Tier.Services.csproj" />
+	  <ProjectReference Include="..\Hyperdrive.Tier.Handlers\Hyperdrive.Tier.Handlers.csproj" />
 	</ItemGroup>
 
 </Project>

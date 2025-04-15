@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Hyperdrive.Tier.Mappings.Classes;
+
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Hyperdrive.Tier.Exceptions.Handlers
+namespace Hyperdrive.Tier.Handlers.Classes
 {
     /// <summary>
     /// Represents a <see cref="ProblemDetailsExceptionHandler"/> class. Implements <see cref="IExceptionHandler"/>
@@ -21,14 +24,14 @@ namespace Hyperdrive.Tier.Exceptions.Handlers
         /// <returns>Instance of <see cref="ValueTask{bool}"/></returns>
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
         {
-            httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            httpContext.Response.StatusCode = ExceptionProfile.Map(exception);
 
             return await @problemDetailsService.TryWriteAsync(new ProblemDetailsContext
             {
                 HttpContext = httpContext,
                 ProblemDetails =
                 {
-                    Title = "An error occurred",
+                    Title = "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
                     Detail = exception.Message,
                     Type = exception.GetType().Name,
                 },

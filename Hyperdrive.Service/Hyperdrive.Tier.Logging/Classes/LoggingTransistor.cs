@@ -1,7 +1,9 @@
-﻿using Hyperdrive.Tier.Constants.Enums;
+﻿using System;
+
+using Hyperdrive.Tier.Constants.Enums;
 using Hyperdrive.Tier.Mappings.Classes;
+
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace Hyperdrive.Tier.Logging.Classes
 {
@@ -11,11 +13,6 @@ namespace Hyperdrive.Tier.Logging.Classes
     public static class LoggingTransistor
     {
         /// <summary>
-        /// Instance of <see cref="LogLevel"/>
-        /// </summary>
-        private const LogLevel DefaultLogLevel = LogLevel.None;
-
-        /// <summary>
         /// Emits
         /// </summary>
         /// <param name="this">Injected <see cref="ILogger"/></param>
@@ -24,7 +21,7 @@ namespace Hyperdrive.Tier.Logging.Classes
         private static void Emit(this ILogger @this,
                                  Enum appEventData,
                                  string logData) => @this.Log(
-                GetApplicationEventLevel(appEventData),
+                LoggingProfile.Map(@appEventData),
                 GetApplicationEventCode(appEventData),
                 logData,
                 DateTime.UtcNow.ToShortDateString());
@@ -215,22 +212,5 @@ namespace Hyperdrive.Tier.Logging.Classes
         /// <param name="appEventData">Injected <see cref="Enum"/></param>
         /// <returns>Instance of <see cref="int"/></returns>
         private static int GetApplicationEventCode(Enum appEventData) => (int)Convert.ChangeType(appEventData, appEventData.GetTypeCode());
-
-        /// <summary>
-        /// Gets Application Event Level
-        /// </summary>
-        /// <param name="appEventData">Injected <see cref="Enum"/></param>
-        /// <returns>Instance of <see cref="LogLevel"/></returns>
-        private static LogLevel GetApplicationEventLevel(Enum @appEventData)
-        {
-            if (LoggingProfile.LogLevelMapings.TryGetValue(@appEventData, out LogLevel value))
-            {
-                return value;
-            }
-            else
-            {
-                return DefaultLogLevel;
-            }
-        }
     }
 }
