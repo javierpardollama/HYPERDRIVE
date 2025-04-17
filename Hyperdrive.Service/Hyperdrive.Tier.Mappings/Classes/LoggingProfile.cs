@@ -1,9 +1,8 @@
-﻿using Hyperdrive.Tier.Constants.Enums;
+﻿using System;
+
+using Hyperdrive.Tier.Constants.Enums;
 
 using Microsoft.Extensions.Logging;
-
-using System;
-using System.Collections.Generic;
 
 namespace Hyperdrive.Tier.Mappings.Classes
 {
@@ -37,28 +36,5 @@ namespace Hyperdrive.Tier.Mappings.Classes
                 _ => LogLevel.None,
             };
         }
-
-
-
-
-        /// <summary>
-        /// Instance of <see cref="Dictionary{Enum, LogLevel}"/>
-        /// </summary>
-        public static readonly Dictionary<Enum, LogLevel> LogLevelMapings = new()
-        {
-            { ApplicationEvents.InsertItem, LogLevel.Information },
-            { ApplicationEvents.UpdateItem, LogLevel.Information },
-            { ApplicationEvents.DeleteItem, LogLevel.Information },
-            { ApplicationEvents.GetItemNotFound, LogLevel.Error },
-            { ApplicationEvents.GetItemFound, LogLevel.Error },
-            { ApplicationEvents.UserAuthenticated, LogLevel.Information },
-            { ApplicationEvents.UserUnauthenticated, LogLevel.Information },
-            { ApplicationEvents.UserNotAuthenticated, LogLevel.Error },
-            { ApplicationEvents.PasswordRestored, LogLevel.Information },
-            { ApplicationEvents.EmailRestored, LogLevel.Information },
-            { ApplicationEvents.PhoneNumberRestored, LogLevel.Information },
-            { ApplicationEvents.RefreshTokenRevoked, LogLevel.Information },
-            { ApplicationEvents.TokensRefreshed, LogLevel.Information }
-        };
     }
 }
