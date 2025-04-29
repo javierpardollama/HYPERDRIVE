@@ -5,22 +5,21 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { ZoneContextManager } from '@opentelemetry/context-zone';
 import { environment } from './environments/environment';
 
-const provider = new WebTracerProvider();
-
-// Batch traces before sending them to Aspire
-provider.addSpanProcessor(
-    new BatchSpanProcessor(
-        new OTLPTraceExporter({
-            url: `${environment.Otel.Exporter}`,
-            headers: {
-                'x-otlp-api-key': environment.Otel.Key              
-            },
-        }),
-    ),
-);
+// Batch traces before sending them
+const provider = new WebTracerProvider({
+    spanProcessors: [
+        new BatchSpanProcessor(
+            new OTLPTraceExporter({
+                url: `${environment.Otel.Exporter}`,
+                headers: {
+                    'x-otlp-api-key': environment.Otel.Key
+                },
+            })
+        )]
+});
 
 provider.register({
-    contextManager: new ZoneContextManager(),
+    contextManager: new ZoneContextManager()
 });
 
 registerInstrumentations({
