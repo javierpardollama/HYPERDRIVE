@@ -20,8 +20,13 @@ namespace Hyperdrive.Service.Controllers
         /// Signs In
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AuthSignIn"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
@@ -32,8 +37,13 @@ namespace Hyperdrive.Service.Controllers
         /// Joins In
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
@@ -44,8 +54,13 @@ namespace Hyperdrive.Service.Controllers
         /// Signs Out
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]

@@ -22,6 +22,7 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// Gets or Sets <see cref="ImageUri"/>
         /// </summary>
         [Required]
+        [Url]
         public string ImageUri { get; set; }
 
         /// <summary>

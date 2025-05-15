@@ -1,4 +1,6 @@
-﻿namespace Hyperdrive.Tier.ViewModels.Classes.Auth
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Hyperdrive.Tier.ViewModels.Classes.Auth
 {
     /// <summary>
     /// Represents a <see cref="AuthSignOut"/> class.
@@ -15,6 +17,8 @@
         /// <summary>
         /// Gets or Sets <see cref="Email"/>
         /// </summary>
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
     }
 }

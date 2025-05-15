@@ -24,8 +24,13 @@ namespace Hyperdrive.Service.Controllers
         /// Finds Paginated DriveItem By ApplicationUser Id
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
@@ -36,8 +41,13 @@ namespace Hyperdrive.Service.Controllers
         /// Finds Paginated Shared DriveItem By ApplicationUser Id
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
@@ -48,8 +58,13 @@ namespace Hyperdrive.Service.Controllers
         /// Finds All DriveItem Version By DriveItem Id
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpGet]
@@ -60,8 +75,13 @@ namespace Hyperdrive.Service.Controllers
         /// Finds All DriveItem
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpGet]
         [Route("findallarchive")]
@@ -71,8 +91,13 @@ namespace Hyperdrive.Service.Controllers
         /// Adds DriveItem
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AddDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [HttpPost]
@@ -83,8 +108,13 @@ namespace Hyperdrive.Service.Controllers
         /// Updates DriveItem
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -95,8 +125,13 @@ namespace Hyperdrive.Service.Controllers
         /// Removes DriveItem By Id
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpDelete]

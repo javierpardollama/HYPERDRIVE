@@ -1,5 +1,7 @@
 ﻿using Hyperdrive.Tier.ViewModels.Interfaces.Updates;
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Hyperdrive.Tier.ViewModels.Classes.Updates
 {
     /// <summary>
@@ -17,11 +19,13 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
         /// <summary>
         /// Gets or Sets <see cref="Id"/>
         /// </summary>
+        [Required]
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
+        [Required]
         public int ApplicationUserId { get; set; }
     }
 }

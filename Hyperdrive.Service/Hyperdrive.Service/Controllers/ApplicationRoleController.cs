@@ -24,8 +24,13 @@ namespace Hyperdrive.Service.Controllers
         /// Updates Application Role
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
@@ -36,8 +41,13 @@ namespace Hyperdrive.Service.Controllers
         /// Finds All Application Role
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -48,8 +58,13 @@ namespace Hyperdrive.Service.Controllers
         /// Finds Paginated Application Role
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -60,8 +75,13 @@ namespace Hyperdrive.Service.Controllers
         /// Adds Application Role
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AddApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -72,8 +92,13 @@ namespace Hyperdrive.Service.Controllers
         /// Removes Application Role ById
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]

@@ -21,8 +21,13 @@ namespace Hyperdrive.Service.Controllers
         /// Resets Password
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -33,8 +38,13 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Password
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -46,8 +56,13 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Email
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -59,8 +74,13 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Phone Number
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -72,8 +92,13 @@ namespace Hyperdrive.Service.Controllers
         /// Changes Name
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
@@ -85,8 +110,13 @@ namespace Hyperdrive.Service.Controllers
         /// Refreshes Tokens
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
