@@ -104,6 +104,7 @@ namespace Hyperdrive.Tier.Logging.Classes
             WriteInformationDiagnostics(@logData);
         }
 
+        /// <summary>
         /// Emits Unauthenticated
         /// </summary>
         /// <param name="this">Injected <see cref="ILogger"/></param>

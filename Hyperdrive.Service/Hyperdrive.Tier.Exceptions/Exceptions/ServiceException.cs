@@ -22,7 +22,7 @@ namespace Hyperdrive.Tier.Exceptions.Exceptions
         /// Initializes a new Instance of <see cref="ServiceException"/>
         /// </summary>
         /// <param name="message">Instance of <see cref="string"/></param>
-        /// <param name="innerException">Instance of <see cref="ServiceException"/>></param>
-        public ServiceException(string message, ServiceException innerException) : base(message, innerException) { }
+        /// <param name="innerException">Instance of <see cref="Exception"/>></param>
+        public ServiceException(string message, Exception innerException) : base(message, innerException) { }
     }
 }
