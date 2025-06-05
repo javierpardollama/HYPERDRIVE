@@ -38,7 +38,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Creates Token
         /// </summary>
-        /// <param name="jwtSecurityToken">>Injected <see cref="JwtSecurityToken"/></param>
+        /// <param name="jwtSecurityToken">>Injected <see cref="SecurityTokenDescriptor"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
         public string CreateToken(SecurityTokenDescriptor @jwtSecurityToken) => new JsonWebTokenHandler().CreateToken(@jwtSecurityToken);
 
@@ -77,13 +77,13 @@ namespace Hyperdrive.Tier.Services.Classes
                     @applicationUser.Id.ToString()),
                 new(
                     ClaimTypes.Email,
-                    @applicationUser.Email),
+                    $"{@applicationUser.Email}"),
                 new(
                     JwtRegisteredClaimNames.Email,
-                    @applicationUser.Email),
+                    $"{@applicationUser.Email}"),
                 new(
                     JwtRegisteredClaimNames.UniqueName,
-                    @applicationUser.Email),
+                    $"{@applicationUser.Email}"),
                 new(
                     JwtRegisteredClaimNames.EmailVerified,
                     @applicationUser.EmailConfirmed.ToString()),
@@ -123,7 +123,7 @@ namespace Hyperdrive.Tier.Services.Classes
             }.Union(JwtSettings.Value.JwtAudiences
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
              .Union(@applicationUser.ApplicationUserRoles
-                .Select(@applicationUserRole => new Claim(ClaimTypes.Role, @applicationUserRole?.ApplicationRole?.Name)))];
+                .Select(@applicationUserRole => new Claim(ClaimTypes.Role, $"{@applicationUserRole?.ApplicationRole?.Name }")))];
     }
 }
 
