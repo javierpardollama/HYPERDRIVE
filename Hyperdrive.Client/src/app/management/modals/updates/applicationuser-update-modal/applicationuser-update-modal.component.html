@@ -1,11 +1,11 @@
-<div id="applicationuser-update-modal" class="container" novalidate>
-  <form [formGroup]="formGroup" class="form">
+<div id="applicationuser-update-modal" class="container">
+  <form [formGroup]="formGroup" class="form" novalidate>
 
     <div class="modal-content-line">
       <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
       <mat-form-field class="form-element">
         <mat-label>Id</mat-label>
-        <input matInput placeholder="Id" formControlName="Id" readonly>
+        <input type="number" matInput placeholder="Id" formControlName="Id" readonly>
         <mat-error *ngIf="!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched">
           Required field.
         </mat-error>

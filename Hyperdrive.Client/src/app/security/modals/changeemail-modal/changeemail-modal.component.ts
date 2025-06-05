@@ -62,7 +62,7 @@ export class ChangeEmailModalComponent implements OnInit {
       NewEmail: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
           Validators.required,
-          Validators.pattern(new RegExp(ExpressionAppVariants.AppMailExpression))
+          Validators.email
         ]),
     });
   }
