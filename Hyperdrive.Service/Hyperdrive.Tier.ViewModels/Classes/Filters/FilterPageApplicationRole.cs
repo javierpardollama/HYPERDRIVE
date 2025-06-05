@@ -10,13 +10,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Filters
     public class FilterPageApplicationRole : IFilterPage
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="FilterPageApplicationRole"/>
-        /// </summary>
-        public FilterPageApplicationRole()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Index"/>
         /// </summary>
         [Required]

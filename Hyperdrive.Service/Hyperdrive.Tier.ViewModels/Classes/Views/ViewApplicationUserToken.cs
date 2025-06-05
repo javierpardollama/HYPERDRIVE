@@ -10,12 +10,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     [XmlRoot("application-user-token")]
     public class ViewApplicationUserToken : IViewBase
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ViewApplicationUserToken"/>
-        /// </summary>
-        public ViewApplicationUserToken()
-        {
-        }
 
         /// <summary>
         /// Gets or Sets <see cref="LastModified"/>

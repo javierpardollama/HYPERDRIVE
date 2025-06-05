@@ -11,13 +11,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public partial class ApplicationUserClaim : IdentityUserClaim<int>, IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationUserClaim"/>
-        /// </summary>
-        public ApplicationUserClaim()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]

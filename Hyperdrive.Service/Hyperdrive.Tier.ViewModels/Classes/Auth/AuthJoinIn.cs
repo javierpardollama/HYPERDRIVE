@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Auth
     public class AuthJoinIn
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="AuthJoinIn"/>
-        /// </summary>
-        public AuthJoinIn()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Email"/>
         /// </summary>
         [Required]

@@ -9,13 +9,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
     public class UpdateDriveItem : UpdateBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="UpdateDriveItem"/>
-        /// </summary>
-        public UpdateDriveItem()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Name"/>
         /// </summary>
         [Required]

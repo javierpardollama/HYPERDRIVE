@@ -7,10 +7,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     [XmlRoot("archive-version")]
     public class ViewDriveItemVersion : IViewKey, IViewBase
     {
-        public ViewDriveItemVersion()
-        {
-        }
-
+  
         [XmlElement("id")]
         public int Id { get; set; }
 
@@ -28,8 +25,5 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
 
         [XmlElement("last-modified")]
         public DateTime LastModified { get; set; }
-
-        [XmlElement("archive")]
-        public virtual ViewDriveItem DriveItem { get; set; }
     }
 }

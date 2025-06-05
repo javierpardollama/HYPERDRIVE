@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Security
     public class SecurityEmailChange
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityEmailChange"/>
-        /// </summary>
-        public SecurityEmailChange()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
         [Required]

@@ -12,13 +12,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public partial class ApplicationUserLogin : IdentityUserLogin<int>, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationUserLogin"/>
-        /// </summary>
-        public ApplicationUserLogin()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]

@@ -2,15 +2,11 @@
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Security
 {
+    /// <summary>
+    /// Represents a <see cref="SecurityNameChange"/> class.
+    /// </summary>
     public class SecurityNameChange
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityEmailChange"/>
-        /// </summary>
-        public SecurityNameChange()
-        {
-        }
-
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>

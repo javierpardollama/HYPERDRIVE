@@ -12,13 +12,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public class ApplicationUserRefreshToken : IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationUserRefreshToken"/>
-        /// </summary>
-        public ApplicationUserRefreshToken()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Id"/>
         /// </summary>
         [Required]

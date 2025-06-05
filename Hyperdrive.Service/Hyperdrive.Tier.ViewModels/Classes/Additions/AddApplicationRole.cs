@@ -10,13 +10,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Additions
     public class AddApplicationRole : IAddBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="AddApplicationRole"/>
-        /// </summary>
-        public AddApplicationRole()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
         [Required]

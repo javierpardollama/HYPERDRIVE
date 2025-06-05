@@ -11,13 +11,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     public class ViewApplicationUserRefreshToken : IViewBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ViewApplicationUserRefreshToken"/>
-        /// </summary>
-        public ViewApplicationUserRefreshToken()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [XmlElement("last-modified")]

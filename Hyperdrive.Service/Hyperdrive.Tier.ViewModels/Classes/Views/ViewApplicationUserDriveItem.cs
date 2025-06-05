@@ -7,10 +7,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     [XmlRoot("application-user-archive")]
     public class ViewApplicationUserDriveItem : IViewBase, IViewKey
     {
-        public ViewApplicationUserDriveItem()
-        {
-        }
-
+ 
         [XmlElement("id")]
         public int Id { get; set; }
 

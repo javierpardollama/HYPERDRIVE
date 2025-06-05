@@ -15,13 +15,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public class DriveItemVersion : IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="DriveItemVersion"/>
-        /// </summary>
-        public DriveItemVersion()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Id"/>
         /// </summary>
         [Required]

@@ -10,13 +10,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
     public class UpdateBase : IUpdateBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="UpdateBase"/>
-        /// </summary>
-        public UpdateBase()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Id"/>
         /// </summary>
         [Required]

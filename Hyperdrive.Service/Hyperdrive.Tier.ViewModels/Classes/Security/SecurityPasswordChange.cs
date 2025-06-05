@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Security
     public class SecurityPasswordChange
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityPasswordChange"/>
-        /// </summary>
-        public SecurityPasswordChange()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
         [Required]

@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Auth
     public class AuthSignOut
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="AuthSignIn"/>
-        /// </summary>
-        public AuthSignOut()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Email"/>
         /// </summary>
         [Required]

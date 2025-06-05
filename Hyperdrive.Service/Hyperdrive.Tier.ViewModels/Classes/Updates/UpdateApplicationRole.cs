@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Updates
     public class UpdateApplicationRole : UpdateBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="UpdateApplicationRole"/>
-        /// </summary>
-        public UpdateApplicationRole()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Name"/>
         /// </summary>
         [Required]

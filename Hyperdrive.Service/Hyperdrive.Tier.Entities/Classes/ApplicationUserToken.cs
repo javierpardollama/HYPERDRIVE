@@ -11,13 +11,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public partial class ApplicationUserToken : IdentityUserToken<int>, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationUserToken"/>
-        /// </summary>
-        public ApplicationUserToken()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]

@@ -3,7 +3,6 @@ import { ViewBase } from './viewbase';
 import { ViewApplicationUserRole } from './viewapplicationuserrole';
 import { ViewApplicationRole } from './viewapplicationrole';
 import { ViewApplicationUserToken } from './viewapplicationusertoken';
-import { ViewApplicationUserDriveItem } from './viewapplicationuserdriveitem';
 import { ViewApplicationUserRefreshToken } from './viewapplicationuserrefreshtoken';
 
 export interface ViewApplicationUser extends ViewKey, ViewBase {
@@ -18,5 +17,4 @@ export interface ViewApplicationUser extends ViewKey, ViewBase {
   ApplicationUserToken: ViewApplicationUserToken;
   ApplicationUserRefreshTokens: ViewApplicationUserRefreshToken[];
   ApplicationUserRefreshToken: ViewApplicationUserRefreshToken;
-  ApplicationUserDriveItems: ViewApplicationUserDriveItem[];
 }

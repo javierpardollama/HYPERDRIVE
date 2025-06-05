@@ -10,13 +10,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Additions
     public class AddDriveItem : IAddBase
     {
         /// <summary>
-        /// Represents a <see cref="AddDriveItem"/> class.
-        /// </summary>
-        public AddDriveItem()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
         [Required]

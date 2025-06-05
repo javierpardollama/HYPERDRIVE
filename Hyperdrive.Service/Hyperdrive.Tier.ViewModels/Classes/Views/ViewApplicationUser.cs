@@ -9,10 +9,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     [XmlRoot("application-user")]
     public class ViewApplicationUser : IViewKey, IViewBase
     {
-        public ViewApplicationUser()
-        {
-        }
-
+     
         [XmlElement("id")]
         public int Id { get; set; }
 
@@ -51,9 +48,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
 
         [XmlElement("application-user-refresh-token")]
         public virtual ViewApplicationUserRefreshToken ApplicationUserRefreshToken => ApplicationUserRefreshTokens?.AsQueryable().LastOrDefault();
-
-        [XmlArray("application-user-archives")]
-        public virtual ICollection<ViewApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
-
+        
     }
 }

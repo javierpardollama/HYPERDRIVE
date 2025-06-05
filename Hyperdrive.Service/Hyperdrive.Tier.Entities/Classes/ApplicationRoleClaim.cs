@@ -12,13 +12,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public partial class ApplicationRoleClaim : IdentityRoleClaim<int>, IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationRoleClaim"/>
-        /// </summary>
-        public ApplicationRoleClaim()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]

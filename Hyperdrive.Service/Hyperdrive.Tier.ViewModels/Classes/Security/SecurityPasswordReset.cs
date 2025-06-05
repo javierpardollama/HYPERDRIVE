@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Security
     public class SecurityPasswordReset
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityPasswordReset"/>
-        /// </summary>
-        public SecurityPasswordReset()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Email"/>
         /// </summary>
         [Required]

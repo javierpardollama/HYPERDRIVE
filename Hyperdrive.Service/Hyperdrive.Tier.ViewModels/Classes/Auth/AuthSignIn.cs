@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Auth
     public class AuthSignIn
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="AuthSignIn"/>
-        /// </summary>
-        public AuthSignIn()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="Email"/>
         /// </summary>
         [Required]

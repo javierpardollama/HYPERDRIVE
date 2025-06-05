@@ -8,13 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Security
     public class SecurityPhoneNumberChange
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityPhoneNumberChange"/>
-        /// </summary>
-        public SecurityPhoneNumberChange()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
         [Required]

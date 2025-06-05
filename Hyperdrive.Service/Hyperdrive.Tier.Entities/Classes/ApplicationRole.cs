@@ -12,13 +12,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public partial class ApplicationRole : IdentityRole<int>, IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="Arenal"/>
-        /// </summary>
-        public ApplicationRole()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="ImageUri"/>
         /// </summary>
         [Required]

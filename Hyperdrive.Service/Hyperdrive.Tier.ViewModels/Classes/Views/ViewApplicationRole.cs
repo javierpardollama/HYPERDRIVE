@@ -9,10 +9,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     [XmlRoot("application-role")]
     public class ViewApplicationRole : IViewKey, IViewBase
     {
-        public ViewApplicationRole()
-        {
-        }
-
+    
         [XmlElement("id")]
         public int Id { get; set; }
 

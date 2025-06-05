@@ -1,7 +1,6 @@
 ﻿using Hyperdrive.Tier.ViewModels.Interfaces.Views;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Views
@@ -9,10 +8,6 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
     [XmlRoot("archive")]
     public class ViewDriveItem : IViewKey, IViewBase
     {
-        public ViewDriveItem()
-        {
-        }
-
         [XmlElement("id")]
         public int Id { get; set; }
 
@@ -30,16 +25,5 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
 
         [XmlArray("application-user-archives")]
         public virtual ICollection<ViewApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
-
-
-        [XmlArray("archive-versions")]
-        public virtual ICollection<ViewDriveItemVersion> DriveItemVersions { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="LastDriveItemVersion"/>
-        /// </summary>
-        [XmlElement("last-archive-version")]
-        public virtual ViewDriveItemVersion LastDriveItemVersion => DriveItemVersions?.AsQueryable().OrderBy(x => x.LastModified.Date).LastOrDefault();
-
     }
 }

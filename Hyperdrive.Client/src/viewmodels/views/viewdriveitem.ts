@@ -7,8 +7,6 @@ import { ViewApplicationUser } from './viewapplicationuser';
 export interface ViewDriveItem extends ViewKey, ViewBase {
     By: ViewApplicationUser;   
     Folder: boolean;
-    Locked: boolean;   
-    DriveItemVersions: ViewDriveItemVersion[];
+    Locked: boolean;
     ApplicationUserDriveItems: ViewApplicationUserDriveItem[];
-    LastDriveItemVersion: ViewDriveItemVersion;
 }

@@ -2,13 +2,11 @@
 
 namespace Hyperdrive.Tier.ViewModels.Classes.Security
 {
+    /// <summary>
+    /// Represents a <see cref="SecurityRefreshTokenReset"/> class.
+    /// </summary>
     public class SecurityRefreshTokenReset
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="SecurityRefreshTokenReset"/>
-        /// </summary>
-        public SecurityRefreshTokenReset() { }
-
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>

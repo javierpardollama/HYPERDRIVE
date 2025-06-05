@@ -12,13 +12,6 @@ namespace Hyperdrive.Tier.Entities.Classes
     public partial class ApplicationUser : IdentityUser<int>, IKey, IBase
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationUser"/>
-        /// </summary>
-        public ApplicationUser()
-        {
-        }
-
-        /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]
