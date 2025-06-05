@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Sandwitch.Tier.Contexts.Interceptors
+namespace Hyperdrive.Tier.Contexts.Interceptors
 {
     /// <summary>
     /// Represents a <see cref="SoftDeleteInterceptor"/> class. Inherits <see cref="SaveChangesInterceptor"/>
