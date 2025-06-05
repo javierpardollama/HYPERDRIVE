@@ -38,9 +38,9 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Creates Token
         /// </summary>
-        /// <param name="jwtSecurityToken">>Injected <see cref="SecurityTokenDescriptor"/></param>
+        /// <param name="securityTokenDescriptor">>Injected <see cref="SecurityTokenDescriptor"/></param>
         /// <returns>Instance of <see cref="string"/></returns>
-        public string CreateToken(SecurityTokenDescriptor @jwtSecurityToken) => new JsonWebTokenHandler().CreateToken(@jwtSecurityToken);
+        public string CreateToken(SecurityTokenDescriptor @securityTokenDescriptor) => new JsonWebTokenHandler().CreateToken(@securityTokenDescriptor);
 
         /// <summary>
         /// Generates Symmetric Security Key
