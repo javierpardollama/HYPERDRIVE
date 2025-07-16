@@ -9,9 +9,9 @@
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 		
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.7" />
 	</ItemGroup>
 
 </Project>
