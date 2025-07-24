@@ -49,7 +49,9 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
             
-                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);  
+                
+                @applicationUser = await ReloadApplicationUserById(@viewModel.ApplicationUserId);
 
                 // Log
                 string @logData = nameof(ApplicationUser)
@@ -77,8 +79,6 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserByEmail")
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());
 
             if (@applicationUser is null)
@@ -110,8 +110,6 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserByEmail")
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (@applicationUser is null)
@@ -147,9 +145,11 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@identityResult.Succeeded)
             {
-                await tokenRefreshService.AddApplicationUserRefreshToken(applicationUser.Id);
+                await tokenRefreshService.AddApplicationUserRefreshToken(@applicationUser.Id);
             
-                await tokenService.AddApplicationUserToken(applicationUser.Id);   
+                await tokenService.AddApplicationUserToken(@applicationUser.Id);  
+                
+                @applicationUser = await ReloadApplicationUserById(@applicationUser.Id);
                 
                 // Log
                 string @logData = nameof(ApplicationUser)
@@ -183,7 +183,9 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
             
-                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);  
+                
+                @applicationUser = await ReloadApplicationUserById(@viewModel.ApplicationUserId);
 
                 // Log
                 string @logData = nameof(ApplicationUser)
@@ -217,7 +219,10 @@ namespace Hyperdrive.Tier.Services.Classes
             {
                 await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
             
-                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);  
+                
+                @applicationUser = await ReloadApplicationUserById(@viewModel.ApplicationUserId);
+                
                 // Log
                 string @logData = nameof(ApplicationUser)
                     + " with Id "
@@ -256,6 +261,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
             
                 @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
+                
                 // Log
                 string @logData = nameof(ApplicationUser)
                     + " with Id "
@@ -286,9 +292,9 @@ namespace Hyperdrive.Tier.Services.Classes
 
             await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
             
-            await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
-            
-            ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
+            await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);  
+                
+            ApplicationUser @applicationUser = await ReloadApplicationUserById(@viewModel.ApplicationUserId);
 
             // Log
             string @logData = nameof(ApplicationUser)
@@ -300,6 +306,43 @@ namespace Hyperdrive.Tier.Services.Classes
             @logger.WriteTokensRefreshedLog(@logData);
 
             return Mapper.Map<ViewApplicationUser>(@applicationUser);
+        }
+        
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        public async Task<ApplicationUser> ReloadApplicationUserById(int @userid)
+        {
+            ApplicationUser @applicationUser = await @userManager.Users
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Include(x => x.ApplicationUserRefreshTokens)
+                .Include(x=> x.ApplicationUserTokens)
+                .Include(x=>x.ApplicationUserRoles)
+                .ThenInclude(x=> x.ApplicationRole)
+                .TagWith("ReloadApplicationUserById")
+                .FirstOrDefaultAsync(x => x.Id == @userid);
+
+            if (@applicationUser is null)
+            {
+                // Log
+                string @logData = nameof(@applicationUser)
+                                  + " with Id "
+                                  + @userid
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new ServiceException(nameof(ApplicationUser)
+                                           + " with Id "
+                                           + @userid
+                                           + " does not exist");
+            }
+
+            return @applicationUser;
         }
     }
 }

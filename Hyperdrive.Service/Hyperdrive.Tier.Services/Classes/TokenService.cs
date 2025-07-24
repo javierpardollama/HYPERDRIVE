@@ -23,7 +23,10 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <summary>
     /// Represents a <see cref="TokenService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ITokenService"/>
     /// </summary>   
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{RefreshTokenService}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
+    /// <param name="userManager">Injected <see cref="UserManager{ApplicationUser}"/></param>
     public class TokenService(IApplicationContext @context,
         ILogger<TokenService> @logger,
         IOptions<JwtSettings> @jwtSettings,
@@ -135,6 +138,11 @@ namespace Hyperdrive.Tier.Services.Classes
              .Union(@applicationUser.ApplicationUserRoles
                 .Select(@applicationUserRole => new Claim(ClaimTypes.Role, $"{@applicationUserRole?.ApplicationRole?.Name }")))];
         
+        /// <summary>
+        /// Adds Application User Token
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
         public async Task<ApplicationUserToken> AddApplicationUserToken(int userid)
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(userid);
@@ -173,6 +181,8 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserById")
+                .Include(x=>x.ApplicationUserRoles)
+                .ThenInclude(x=> x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
             if (@applicationUser is null)
@@ -194,7 +204,6 @@ namespace Hyperdrive.Tier.Services.Classes
 
             return @applicationUser;
         }
-
     }
 }
 

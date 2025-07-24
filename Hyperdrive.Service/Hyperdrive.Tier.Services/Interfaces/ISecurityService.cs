@@ -67,5 +67,12 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task{ViewApplicationUser}"/></returns>
         Task<ViewApplicationUser> RefreshTokens(SecurityRefreshTokenReset @viewModel);
+
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        Task<ApplicationUser> ReloadApplicationUserById(int @userid);
     }
 }

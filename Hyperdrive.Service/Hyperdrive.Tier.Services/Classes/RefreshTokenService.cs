@@ -21,6 +21,7 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="logger">Injected <see cref="ILogger{RefreshTokenService}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
+    /// <param name="userManager">Injected <see cref="UserManager{ApplicationUser}"/></param>
     public class RefreshTokenService(IApplicationContext @context,
                                      ILogger<RefreshTokenService> @logger,
                                      IOptions<JwtSettings> @jwtSettings,
@@ -108,6 +109,11 @@ namespace Hyperdrive.Tier.Services.Classes
             return @refreshToken;
         }
 
+        /// <summary>
+        /// Adds Application User Refresh Token
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
         public async Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(int userid)
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(userid);
@@ -168,6 +174,5 @@ namespace Hyperdrive.Tier.Services.Classes
 
             return @applicationUser;
         }
-
     }
 }

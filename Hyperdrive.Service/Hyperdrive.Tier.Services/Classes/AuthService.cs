@@ -55,27 +55,14 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@signInResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
-
+                await tokenRefreshService.AddApplicationUserRefreshToken(@applicationUser.Id);
+            
+                await tokenService.AddApplicationUserToken(@applicationUser.Id);  
+                
+                @applicationUser = await ReloadApplicationUserById(@applicationUser.Id);
+                
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " logged in at "
@@ -107,27 +94,14 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@signInResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
-
+                await tokenRefreshService.AddApplicationUserRefreshToken(@applicationUser.Id);
+            
+                await tokenService.AddApplicationUserToken(@applicationUser.Id);  
+                
+                @applicationUser = await ReloadApplicationUserById(@applicationUser.Id);
+                
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " logged in at "
@@ -187,7 +161,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await @signInManager.SignOutAsync();
 
             // Log
-            string @logData = nameof(@applicationUser)
+            string @logData = nameof(ApplicationUser)
                 + " with Email "
                 + @applicationUser.Email
                 + " logged out at "
@@ -205,14 +179,12 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserByEmail")
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
                 .FirstOrDefaultAsync(x => x.Email == @email.Trim());
 
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Email "
                     + @email
                     + " was not found at "
@@ -220,7 +192,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationUser)
+                throw new ServiceException(nameof(ApplicationUser)
                     + " with Email "
                     + @email
                     + " does not exist");
@@ -238,14 +210,13 @@ namespace Hyperdrive.Tier.Services.Classes
         {
             ApplicationUser @applicationUser = await @userManager.Users
               .AsNoTracking()
-              .AsSplitQuery()
               .TagWith("CheckEmail")
               .FirstOrDefaultAsync(x => x.Email == @viewModel.Email.Trim());
 
             if (@applicationUser is not null)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Email "
                     + @viewModel.Email
                       + " was already found at "
@@ -253,10 +224,47 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationUser)
+                throw new ServiceException(nameof(ApplicationUser)
                     + " with Email "
                     + @viewModel.Email
                     + " already exists");
+            }
+
+            return @applicationUser;
+        }
+        
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        public async Task<ApplicationUser> ReloadApplicationUserById(int @userid)
+        {
+            ApplicationUser @applicationUser = await @userManager.Users
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Include(x => x.ApplicationUserRefreshTokens)
+                .Include(x=> x.ApplicationUserTokens)
+                .Include(x=> x.ApplicationUserRoles)
+                .ThenInclude(x=> x.ApplicationRole)
+                .TagWith("ReloadApplicationUserById")
+                .FirstOrDefaultAsync(x => x.Id == @userid);
+
+            if (@applicationUser is null)
+            {
+                // Log
+                string @logData = nameof(ApplicationUser)
+                                  + " with Id "
+                                  + @userid
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new ServiceException(nameof(ApplicationUser)
+                                           + " with Id "
+                                           + @userid
+                                           + " does not exist");
             }
 
             return @applicationUser;

@@ -52,5 +52,12 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         Task<ApplicationUser> CheckEmail(AuthJoinIn @viewModel);
+
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        Task<ApplicationUser> ReloadApplicationUserById(int @userid);
     }
 }
