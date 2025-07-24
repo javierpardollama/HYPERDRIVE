@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Tier.Services.Interfaces
 {
@@ -51,5 +52,19 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// <param name="applicationUser">>Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="List{Claim}"/></returns>
         List<Claim> GenerateJwtClaims(ApplicationUser @applicationUser);
+
+        /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        Task<ApplicationUser> FindApplicationUserById(int @userid);
+
+        /// <summary>
+        /// Adds Application User Token
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
+        Task<ApplicationUserToken> AddApplicationUserToken(int userid);
     }
 }

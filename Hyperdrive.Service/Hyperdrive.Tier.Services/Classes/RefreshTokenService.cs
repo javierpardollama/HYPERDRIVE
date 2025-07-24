@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
+using Hyperdrive.Tier.Exceptions.Exceptions;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -21,7 +23,8 @@ namespace Hyperdrive.Tier.Services.Classes
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
     public class RefreshTokenService(IApplicationContext @context,
                                      ILogger<RefreshTokenService> @logger,
-                                     IOptions<JwtSettings> @jwtSettings) : BaseService(@context, @jwtSettings), IRefreshTokenService
+                                     IOptions<JwtSettings> @jwtSettings,
+                                     UserManager<ApplicationUser> @userManager) : BaseService(@context, @jwtSettings), IRefreshTokenService
     {
         /// <summary>
         /// Generates Jwt Refresh Token Expiration Date 
@@ -68,7 +71,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(@refreshToken)
+            string @logData = nameof(ApplicationUserRefreshToken)
                 + " with Id "
                 + @refreshToken.Id
                 + " was revoked at "
@@ -85,7 +88,7 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
         public async Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByApplicationUserId(int @userid, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await @context.UserRefreshTokens
+            ApplicationUserRefreshToken @refreshToken = await Context.UserRefreshTokens
                 .TagWith("FindApplicationUserRefreshTokenByApplicationUserId")
                 .Include(x => x.ApplicationUser)
                 .FirstOrDefaultAsync(x => x.ApplicationUser.Id == @userid && x.Value == @token);
@@ -93,7 +96,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@refreshToken is null)
             {
                 // Log
-                string @logData = nameof(@refreshToken)
+                string @logData = nameof(ApplicationUserRefreshToken)
                     + " with User Id "
                     + @userid
                     + " was not found at "
@@ -104,5 +107,67 @@ namespace Hyperdrive.Tier.Services.Classes
 
             return @refreshToken;
         }
+
+        public async Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(int userid)
+        {
+            ApplicationUser @applicationUser = await FindApplicationUserById(userid);
+            
+            ApplicationUserRefreshToken @refreshToken = new ApplicationUserRefreshToken
+            {
+                Name = Guid.NewGuid().ToString(),
+                LoginProvider = JwtSettings.Value.JwtIssuer,
+                ApplicationUser = @applicationUser,
+                Value = WriteJwtRefreshToken(),
+                ExpiresAt = GenerateRefreshTokenExpirationDate()
+            };
+            
+            await Context.UserRefreshTokens.AddAsync(@refreshToken);
+            
+            await Context.SaveChangesAsync();
+            
+            // Log
+            string @logData = nameof(ApplicationUserRefreshToken)
+                              + " with Id "
+                              + @refreshToken.Id
+                              + " was added at "
+                              + DateTime.UtcNow.ToShortTimeString();
+
+            @logger.WriteInsertItemLog(@logData);
+
+            return @refreshToken;
+        }
+
+      
+        /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        public async Task<ApplicationUser> FindApplicationUserById(int @id)
+        {
+            ApplicationUser @applicationUser = await @userManager.Users
+                .TagWith("FindApplicationUserById")
+                .FirstOrDefaultAsync(x => x.Id == @id);
+
+            if (@applicationUser is null)
+            {
+                // Log
+                string @logData = nameof(@applicationUser)
+                                  + " with Id "
+                                  + @id
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new ServiceException(nameof(ApplicationUser)
+                                           + " with Id "
+                                           + @id
+                                           + " does not exist");
+            }
+
+            return @applicationUser;
+        }
+
     }
 }

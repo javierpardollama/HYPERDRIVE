@@ -44,7 +44,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpData();
 
-            Service = new TokenService(JwtOptions);
+            Service = new TokenService(Context, Logger, JwtOptions, UserManager);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Context.Users.RemoveRange(Context.Users.ToList());
+            
         }
 
         /// <summary>

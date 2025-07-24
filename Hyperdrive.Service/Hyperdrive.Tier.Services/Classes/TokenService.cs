@@ -10,6 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using Hyperdrive.Tier.Contexts.Interfaces;
+using Hyperdrive.Tier.Exceptions.Exceptions;
+using Hyperdrive.Tier.Logging.Classes;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Hyperdrive.Tier.Services.Classes
 {
@@ -17,7 +24,10 @@ namespace Hyperdrive.Tier.Services.Classes
     /// Represents a <see cref="TokenService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ITokenService"/>
     /// </summary>   
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-    public class TokenService(IOptions<JwtSettings> @jwtSettings) : BaseService(@jwtSettings), ITokenService
+    public class TokenService(IApplicationContext @context,
+        ILogger<TokenService> @logger,
+        IOptions<JwtSettings> @jwtSettings,
+        UserManager<ApplicationUser> @userManager) : BaseService(@context, @jwtSettings), ITokenService
     {
 
         /// <summary>
@@ -124,6 +134,67 @@ namespace Hyperdrive.Tier.Services.Classes
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
              .Union(@applicationUser.ApplicationUserRoles
                 .Select(@applicationUserRole => new Claim(ClaimTypes.Role, $"{@applicationUserRole?.ApplicationRole?.Name }")))];
+        
+        public async Task<ApplicationUserToken> AddApplicationUserToken(int userid)
+        {
+            ApplicationUser @applicationUser = await FindApplicationUserById(userid);
+
+            ApplicationUserToken @userToken = new ApplicationUserToken
+            {
+                Name = Guid.NewGuid().ToString(),
+                LoginProvider = JwtSettings.Value.JwtIssuer,
+                ApplicationUser = @applicationUser,
+                UserId = @applicationUser.Id,
+                Value = CreateToken(GenerateTokenDescriptor(@applicationUser))
+            };
+            
+            await Context.UserTokens.AddAsync(@userToken);
+            
+            await Context.SaveChangesAsync();
+            
+            // Log
+            string @logData = nameof(ApplicationUserToken)
+                              + " with Id "
+                              + @userToken.Id
+                              + " was added at "
+                              + DateTime.UtcNow.ToShortTimeString();
+
+            @logger.WriteInsertItemLog(@logData);
+
+            return @userToken;
+        }
+        
+        /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        public async Task<ApplicationUser> FindApplicationUserById(int @id)
+        {
+            ApplicationUser @applicationUser = await @userManager.Users
+                .TagWith("FindApplicationUserById")
+                .FirstOrDefaultAsync(x => x.Id == @id);
+
+            if (@applicationUser is null)
+            {
+                // Log
+                string @logData = nameof(@applicationUser)
+                                  + " with Id "
+                                  + @id
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new ServiceException(nameof(ApplicationUser)
+                                           + " with Id "
+                                           + @id
+                                           + " does not exist");
+            }
+
+            return @applicationUser;
+        }
+
     }
 }
 

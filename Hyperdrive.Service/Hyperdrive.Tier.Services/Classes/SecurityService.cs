@@ -47,29 +47,14 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@identityResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
+                await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
+            
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
 
                 // Log
-                string @logData = nameof(@applicationUser)
-                    + " with Email "
-                    + @applicationUser.Email
+                string @logData = nameof(ApplicationUser)
+                    + " with Id "
+                    + @applicationUser.Id
                     + " restored its Password at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -99,7 +84,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Email "
                     + @email
                     + " was not found at "
@@ -132,7 +117,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -162,29 +147,14 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@identityResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
-
+                await tokenRefreshService.AddApplicationUserRefreshToken(applicationUser.Id);
+            
+                await tokenService.AddApplicationUserToken(applicationUser.Id);   
+                
                 // Log
-                string @logData = nameof(@applicationUser)
-                    + " with Email "
-                    + @applicationUser.Email
+                string @logData = nameof(ApplicationUser)
+                    + " with Id "
+                    + @applicationUser.Id
                     + " restored its Password at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -211,28 +181,13 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@identityResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
+                await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
+            
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
 
                 // Log
-                string @logData = nameof(@applicationUser)
-                    + " with Email "
+                string @logData = nameof(ApplicationUser)
+                    + " with Id "
                     + @applicationUser.Email
                     + " restored its Email at "
                     + DateTime.UtcNow.ToShortTimeString();
@@ -260,29 +215,13 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@identityResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
-
+                await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
+            
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
                 // Log
-                string @logData = nameof(@applicationUser)
-                    + " with Email "
-                    + @applicationUser.Email
+                string @logData = nameof(ApplicationUser)
+                    + " with Id "
+                    + @applicationUser.Id
                     + " restored its Phone Number at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -312,27 +251,13 @@ namespace Hyperdrive.Tier.Services.Classes
 
             if (@identityResult.Succeeded)
             {
-                @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-                {
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    UserId = @applicationUser.Id,
-                    Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-                });
-
-                @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-                {
-
-                    Name = Guid.NewGuid().ToString(),
-                    LoginProvider = JwtSettings.Value.JwtIssuer,
-                    ApplicationUser = @applicationUser,
-                    Value = tokenRefreshService.WriteJwtRefreshToken(),
-                    ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-                });
-
+                await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
+            
+                await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
+            
+                @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Id "
                     + @applicationUser.Id
                     + " was modified at "
@@ -359,28 +284,14 @@ namespace Hyperdrive.Tier.Services.Classes
 
             await tokenRefreshService.Revoke(viewModel);
 
+            await tokenRefreshService.AddApplicationUserRefreshToken(viewModel.ApplicationUserId);
+            
+            await tokenService.AddApplicationUserToken(viewModel.ApplicationUserId);   
+            
             ApplicationUser @applicationUser = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
-            @applicationUser.ApplicationUserTokens.Add(new ApplicationUserToken
-            {
-                Name = Guid.NewGuid().ToString(),
-                LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @applicationUser,
-                UserId = @applicationUser.Id,
-                Value = tokenService.CreateToken(tokenService.GenerateTokenDescriptor(@applicationUser))
-            });
-
-            @applicationUser.ApplicationUserRefreshTokens.Add(new ApplicationUserRefreshToken
-            {
-                Name = Guid.NewGuid().ToString(),
-                LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @applicationUser,
-                Value = tokenRefreshService.WriteJwtRefreshToken(),
-                ExpiresAt = tokenRefreshService.GenerateRefreshTokenExpirationDate()
-            });
-
             // Log
-            string @logData = nameof(@applicationUser)
+            string @logData = nameof(ApplicationUser)
                 + " with Id "
                 + @applicationUser.Id
                 + " restored its Tokens at "

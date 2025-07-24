@@ -64,11 +64,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Context.Users.RemoveRange(Context.Users.ToList());
-
-            Context.DriveItems.RemoveRange(Context.DriveItems.ToList());
-
-            Context.SaveChanges();
+          
         }
 
         /// <summary>

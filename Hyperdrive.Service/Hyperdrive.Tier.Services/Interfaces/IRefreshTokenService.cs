@@ -43,5 +43,19 @@ namespace Hyperdrive.Tier.Services.Interfaces
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
         Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByApplicationUserId(int @userid, string @token);
+        
+        /// <summary>
+        /// Adds Application User Refresh Token
+        /// </summary>
+        /// <param name="userid">Injected <see cref="string"/></param>
+        /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
+        Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(int @userid);
+
+        /// <summary>
+        /// Finds Application User By Id
+        /// </summary>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        Task<ApplicationUser> FindApplicationUserById(int @userid);
     }
 }

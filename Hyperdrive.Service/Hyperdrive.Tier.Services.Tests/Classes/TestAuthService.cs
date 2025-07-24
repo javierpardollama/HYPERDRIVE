@@ -28,6 +28,11 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         /// Instance of <see cref="ILogger{RefreshTokenService}"/>
         /// </summary>
         private ILogger<RefreshTokenService> RefreshTokenLogger;
+        
+        /// <summary>
+        /// Instance of <see cref="ILogger{TokenService}"/>
+        /// </summary>
+        private ILogger<TokenService> TokenLogger;
 
         /// <summary>
         /// Instance of <see cref="TokenService"/>
@@ -69,9 +74,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             SetUpData();
 
-            TokenService = new TokenService(JwtOptions);
+            TokenService = new TokenService(Context, TokenLogger, JwtOptions, UserManager);
 
-            RefreshTokenService = new RefreshTokenService(Context, RefreshTokenLogger, JwtOptions);
+            RefreshTokenService = new RefreshTokenService(Context, RefreshTokenLogger, JwtOptions, UserManager);
 
             Service = new AuthService(Context, Mapper, AuthLogger, JwtOptions, UserManager, SignInManager, TokenService, RefreshTokenService);
         }
@@ -82,9 +87,6 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Context.Users.RemoveRange(Context.Users.ToList());
-
-            Context.SaveChanges();
         }
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
 
             AuthLogger = @loggerFactory.CreateLogger<AuthService>();
             RefreshTokenLogger = loggerFactory.CreateLogger<RefreshTokenService>();
+            TokenLogger =  loggerFactory.CreateLogger<TokenService>();
         }
           
 
