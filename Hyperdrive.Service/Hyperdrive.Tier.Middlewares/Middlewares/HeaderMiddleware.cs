@@ -24,7 +24,7 @@ namespace Hyperdrive.Tier.Middlewares.Middlewares
             @context.Response.Headers.XXSSProtection = new StringValues("0");
             @context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src 'self'");
             
-            @context.Response.Headers.Append("X-Clacks-Overhead", "GNU Terry Pratchett");
+            @context.Response.Headers.Append("X-Clacks-Overhead", new StringValues("GNU Terry Pratchett"));
             
             await @request(@context);
         }
