@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Tier.Entities.Classes
 {
     /// <summary>
     /// Represents a <see cref="DriveItem"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
+    [Index(nameof(Name), nameof(Deleted))]
     public class DriveItem : IKey, IBase
     {
         /// <summary>
@@ -48,6 +50,12 @@ namespace Hyperdrive.Tier.Entities.Classes
         /// </summary>
         [Required]
         public bool Locked { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="Name"/>
+        /// </summary>
+        [Required]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Version"/>

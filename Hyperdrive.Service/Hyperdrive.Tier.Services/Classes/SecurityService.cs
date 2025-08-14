@@ -123,7 +123,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationUser)
+                throw new ServiceException(nameof(ApplicationUser)
                     + " with Id "
                     + @id
                     + " does not exist");

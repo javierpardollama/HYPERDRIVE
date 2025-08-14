@@ -10,10 +10,7 @@ namespace Hyperdrive.Tier.ViewModels.Classes.Views
   
         [XmlElement("id")]
         public int Id { get; set; }
-
-        [XmlElement("name")]
-        public string Name { get; set; }
-
+       
         [XmlElement("data")]
         public string Data { get; set; }
 

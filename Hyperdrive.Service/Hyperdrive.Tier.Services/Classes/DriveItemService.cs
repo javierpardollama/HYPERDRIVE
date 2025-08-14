@@ -48,7 +48,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new ServiceException(nameof(@archive)
+                throw new ServiceException(nameof(DriveItem)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -66,7 +66,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(@archive)
+            string @logData = nameof(DriveItem)
                 + " with Id "
                 + archive.Id
                 + " was removed at "
@@ -169,7 +169,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser is null)
             {
                 // Log
-                string logData = nameof(@applicationUser)
+                string logData = nameof(ApplicationUser)
                     + " with Id "
                     + id
                     + " was not found at "
@@ -177,7 +177,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationUser)
+                throw new ServiceException(nameof(ApplicationUser)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -208,7 +208,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(@archive)
+            string @logData = nameof(DriveItem)
                 + " with Id "
                 + @archive.Id
                 + " was added at "
@@ -241,7 +241,6 @@ namespace Hyperdrive.Tier.Services.Classes
             DriveItemVersion @archiveVersion = new()
             {
                 DriveItem = @entity,
-                Name = @viewModel.Name.Trim(),
                 Data = @viewModel.Data,
                 Size = @viewModel.Size,
                 Type = @viewModel.Type
@@ -257,6 +256,7 @@ namespace Hyperdrive.Tier.Services.Classes
             DriveItem @archive = await FindDriveItemById(@viewModel.Id);
             @archive.Folder = @viewModel.Folder;
             @archive.Locked = @viewModel.Locked;
+            @archive.Name = @viewModel.Name;
             @archive.By = await FindApplicationUserById(@viewModel.ApplicationUserId);
 
             Context.DriveItems.Update(@archive);
@@ -268,7 +268,7 @@ namespace Hyperdrive.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(@archive)
+            string @logData = nameof(DriveItem)
                 + " with Id "
                 + @archive.Id
                 + " was modified at "
@@ -300,7 +300,6 @@ namespace Hyperdrive.Tier.Services.Classes
             DriveItemVersion @archiveVersion = new()
             {
                 DriveItem = @entity,
-                Name = @viewModel.Name.Trim(),
                 Data = @viewModel.Data,
                 Size = @viewModel.Size,
                 Type = @viewModel.Type
@@ -315,20 +314,20 @@ namespace Hyperdrive.Tier.Services.Classes
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.DriveItemVersions.LastOrDefault().Name == @viewModel.Name.Trim());
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@archive is not null)
             {
                 // Log
                 string @logData = nameof(@archive)
                     + " with Name "
-                    + @archive.DriveItemVersions.LastOrDefault()?.Name
+                    + @archive?.Name
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.WriteGetItemFoundLog(@logData);
 
-                throw new ServiceException(nameof(@archive)
+                throw new ServiceException(nameof(DriveItem)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -344,14 +343,14 @@ namespace Hyperdrive.Tier.Services.Classes
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.DriveItemVersions.LastOrDefault().Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@archive is not null)
             {
                 // Log
-                string @logData = nameof(@archive)
+                string @logData = nameof(DriveItem)
                     + " with Name "
-                    + @archive.DriveItemVersions.LastOrDefault()?.Name
+                    + @archive?.Name
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 

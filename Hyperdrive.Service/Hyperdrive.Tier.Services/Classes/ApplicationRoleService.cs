@@ -53,7 +53,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@identityResult.Succeeded)
             {
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Id "
                     + @applicationRole.Id
                     + " was added at "
@@ -93,7 +93,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationRole)
+                throw new ServiceException(nameof(ApplicationRole)
                     + " with Name "
                     + viewModel.Name
                     + " already exists");
@@ -118,7 +118,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole is not null)
             {
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Name "
                     + applicationRole.Name
                     + " was already found at "
@@ -126,7 +126,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationRole)
+                throw new ServiceException(nameof(ApplicationRole)
                     + " with Name "
                     + viewModel.Name
                     + " already exists");
@@ -192,7 +192,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole is null)
             {
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -200,7 +200,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationRole)
+                throw new ServiceException(nameof(ApplicationRole)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -223,7 +223,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@identityResult.Succeeded)
             {
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Id "
                     + @applicationRole.Id
                     + " was removed at "
@@ -258,7 +258,7 @@ namespace Hyperdrive.Tier.Services.Classes
             {
 
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Id "
                     + @applicationRole.Id
                     + " was modified at "

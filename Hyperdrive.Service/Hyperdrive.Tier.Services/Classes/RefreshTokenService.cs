@@ -158,7 +158,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                                   + " with Id "
                                   + @id
                                   + " was not found at "

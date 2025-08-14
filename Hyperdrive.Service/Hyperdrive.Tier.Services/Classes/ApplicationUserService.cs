@@ -93,7 +93,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " was not found at "
@@ -101,7 +101,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new ServiceException(nameof(@applicationUser)
+                throw new ServiceException(nameof(ApplicationUser)
                     + " with Email "
                     + @applicationUser.Email
                     + " does not exist");
@@ -124,7 +124,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (identityResult.Succeeded)
             {
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Id "
                     + @applicationUser.Id
                     + " was removed at "
@@ -155,7 +155,7 @@ namespace Hyperdrive.Tier.Services.Classes
             {
 
                 // Log
-                string @logData = nameof(@applicationUser)
+                string @logData = nameof(ApplicationUser)
                     + " with Id"
                     + @applicationUser.Id
                     + " was modified at "
@@ -207,7 +207,7 @@ namespace Hyperdrive.Tier.Services.Classes
             if (@applicationRole is null)
             {
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Id "
                     + @id
                     + " was not found at "

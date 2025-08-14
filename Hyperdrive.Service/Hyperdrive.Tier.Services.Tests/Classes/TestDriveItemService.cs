@@ -92,9 +92,9 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "seconduser@email.com", Email = "seconduser@email.com", LastModified = DateTime.UtcNow, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
             Context.Users.Add(new ApplicationUser { PasswordHash = "dcb97c304778b75e4309bdd51d61c906dc184cd37df1256fdafd3e54cf6218bb", UserName = "thirstuser@email.com", Email = "thirstuser@email.com", LastModified = DateTime.UtcNow, Deleted = false, ConcurrencyStamp = new Guid().ToString(), SecurityStamp = new Guid().ToString() });
 
-            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "firstarchive.txt" } } });
-            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "secondarchive.txt" } } });
-            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>() { new() { Name = "thirdarchive.txt" } } });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>(), Name = "firstarchive.txt"  });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>(), Name = "secondarchive.txt" });
+            Context.DriveItems.Add(new DriveItem { LastModified = DateTime.UtcNow, Deleted = false, DriveItemVersions = new List<DriveItemVersion>(), Name = "thirdarchive.txt" });
 
             Context.SaveChanges();
         }
@@ -229,7 +229,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10].ToString(),
-                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
@@ -248,7 +248,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10].ToString(),
-                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
@@ -267,7 +267,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
                 Id = Context.DriveItems.FirstOrDefault().Id,
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10].ToString(),
-                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
@@ -285,7 +285,7 @@ namespace Hyperdrive.Tier.Services.Tests.Classes
             {
                 ApplicationUsersId = Context.Users.ToList().Select(x => x.Id).ToList(),
                 Data = new byte[10].ToString(),
-                Name = Context.DriveItems.FirstOrDefault().DriveItemVersions.FirstOrDefault().Name,
+                Name = Context.DriveItems.FirstOrDefault().Name,
                 Size = 1024,
                 Type = "Text",
                 ApplicationUserId = Context.Users.FirstOrDefault().Id
