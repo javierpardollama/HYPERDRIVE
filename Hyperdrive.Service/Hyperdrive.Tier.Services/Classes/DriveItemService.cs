@@ -356,7 +356,7 @@ namespace Hyperdrive.Tier.Services.Classes
 
                 @logger.WriteGetItemFoundLog(@logData);
 
-                throw new ServiceException(nameof(@archive)
+                throw new ServiceException(nameof(DriveItem)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
