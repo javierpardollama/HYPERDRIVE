@@ -18,8 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hyperdrive.Tier.Middlewares\Hyperdrive.Tier.Middlewares.csproj" />
-    <ProjectReference Include="..\Hyperdrive.Tier.Resilience\Hyperdrive.Tier.Resilience.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Application\Hyperdrive.Application.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Infrastructure\Hyperdrive.Infrastructure.csproj" />
+    <ProjectReference Include="..\Hyperdrive.Host\Hyperdrive.Host.csproj" />
   </ItemGroup>
 
 </Project>

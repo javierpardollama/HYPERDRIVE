@@ -1,14 +1,9 @@
 using System.Text.Json.Serialization;
-using Hyperdrive.Service.Extensions;
-using Hyperdrive.Tier.Contexts.Classes;
-using Hyperdrive.Tier.Contexts.Interceptors;
-using Hyperdrive.Tier.Entities.Classes;
-using Hyperdrive.Tier.Mappings.Classes;
-using Hyperdrive.Tier.Service.Extensions;
-using Hyperdrive.Tier.Settings.Classes;
+using Hyperdrive.Application.Installers;
+using Hyperdrive.Domain.Settings;
+using Hyperdrive.Infrastructure.Installers;
+using Hyperdrive.Tier.Resilience.Installers;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,15 +12,7 @@ var @builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-@builder.Services.AddDbContext<ApplicationContext>(options =>
-{
-    options.AddInterceptors(new SoftDeleteInterceptor());
-    options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-
-@builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
-            .AddEntityFrameworkStores<ApplicationContext>()
-            .AddDefaultTokenProviders();
+builder.Services.InstallEntityFramework(builder.Configuration);
 
 @builder.Services.AddControllers()
                 .AddJsonOptions(options =>
@@ -36,17 +23,11 @@ var @builder = WebApplication.CreateBuilder(args);
                 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-@builder.Services.AddEndpointsApiExplorer();
-@builder.Services.AddCustomizedSwagger();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.InstallOpenApi();
 
-// Register the Mapping Profiles
-@builder.Services.AddAutoMapper(typeof(ModelingProfile).Assembly);
-
-// Register the service and implementation for the database context
-@builder.Services.AddCustomizedContexts();
-
-// Register the Mvc services to the services container
-@builder.Services.AddCustomizedServices();
+builder.Services.InstallManagers();
+builder.Services.InstallMediatR();
 
 @builder.Services.AddResponseCaching();
 
@@ -55,23 +36,21 @@ var @JwtSettings = new JwtSettings();
 @builder.Configuration.GetSection("Jwt").Bind(@JwtSettings);
 @builder.Services.Configure<JwtSettings>(@builder.Configuration.GetSection("Jwt"));
 
-// Add customized Authentication to the services container.
-@builder.Services.AddCustomizedAuthentication(@JwtSettings);
-
-@builder.Services.AddCustomizedCrossOriginRequests(@JwtSettings);
+@builder.Services.InstallAuthentication(@JwtSettings);
+builder.Services.InstallCors(JwtSettings);
 
 // Register the Rate Limit Settings to the configuration container.
 var @RateSettings = new RateLimitSettings();
 @builder.Configuration.GetSection("RateLimit").Bind(@RateSettings);
 @builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
 
-@builder.Services.AddCustomizedRateLimiter(@RateSettings);
+builder.Services.InstallProblemDetails();
+builder.Services.InstallRateLimiter(RateSettings);
 
-@builder.AddCustomizedAspireServices();
+@builder.InstallAspireServices();
 
 // Return the Problem Details format for non-successful responses
 @builder.Services.AddProblemDetails();
-@builder.Services.AddCustomizedHandlers();
 
 var @app = @builder.Build();
 
@@ -80,11 +59,11 @@ if (@app.Environment.IsDevelopment())
 {
     @app.UseSwagger();
     @app.UseSwaggerUI();
-
-    @app.UseMigrations();
 }
 
-@app.UseCustomizedMiddlewares();
+app.InstallMigrations();
+
+app.InstallMiddlewares();
 
 @app.UseHttpsRedirection();
 
