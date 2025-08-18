@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Hyperdrive.Domain.Dtos;
-using Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Domain.Managers
 {
