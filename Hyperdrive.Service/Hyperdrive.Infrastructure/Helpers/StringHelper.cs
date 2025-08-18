@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Hyperdrive.Tier.Helpers.Classes
+namespace Hyperdrive.Infrastructure.Helpers
 {
     /// <summary>
     /// Represents a <see cref="StringHelper"/> class.
