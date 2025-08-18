@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hyperdrive.Tier.ViewModels.Interfaces.Views
+namespace Hyperdrive.Application.ViewModels.Interfaces.Views
 {
     /// <summary>
     /// Represents a <see cref="IViewBase"/> interface

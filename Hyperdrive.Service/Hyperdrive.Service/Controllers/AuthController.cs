@@ -1,8 +1,8 @@
 ﻿using Hyperdrive.Tier.Services.Interfaces;
-using Hyperdrive.Tier.ViewModels.Classes.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.ViewModels.Auth;
 
 namespace Hyperdrive.Service.Controllers
 {

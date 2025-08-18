@@ -1,4 +1,4 @@
-﻿namespace Hyperdrive.Tier.ViewModels.Interfaces.Filters
+﻿namespace Hyperdrive.Application.ViewModels.Interfaces.Filters
 {
     /// <summary>
     /// Represents a <see cref="IFilterPage"/> interface

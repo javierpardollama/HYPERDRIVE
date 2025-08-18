@@ -1,4 +1,4 @@
-﻿namespace Hyperdrive.Tier.ViewModels.Interfaces.Additions
+﻿namespace Hyperdrive.Application.ViewModels.Interfaces.Additions
 {
     /// <summary>
     /// Represents a <see cref="IAddBase"/> interface

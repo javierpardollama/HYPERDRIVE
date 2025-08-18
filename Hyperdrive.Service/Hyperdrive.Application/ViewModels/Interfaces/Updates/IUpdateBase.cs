@@ -1,4 +1,4 @@
-﻿namespace Hyperdrive.Tier.ViewModels.Interfaces.Updates
+﻿namespace Hyperdrive.Application.ViewModels.Interfaces.Updates
 {
     /// <summary>
     /// Represents a <see cref="IUpdateBase"/> interface

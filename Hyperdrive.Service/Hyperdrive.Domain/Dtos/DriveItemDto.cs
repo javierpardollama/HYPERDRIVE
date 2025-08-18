@@ -21,5 +21,5 @@ public class DriveItemDto : IKeyDto, IBaseDto
    
     public string Name { get; set; }
     
-    public virtual ICollection<CatalogDto> SharedWith { get; set; }
+    public virtual ICollection<CatalogDto> SharedWith { get; set; } = [];
 }

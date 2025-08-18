@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using Hyperdrive.Application.ViewModels.Interfaces.Views;
+
+namespace Hyperdrive.Application.ViewModels.Views
+{
+    public class ViewApplicationUser : IViewKey, IViewBase
+    {
+       
+        /// <summary>
+        /// Gets or Sets <see cref="Id"/>
+        /// </summary>
+        public int Id { get; set; }
+   
+        /// <summary>
+        /// Gets or Sets <see cref="LastModified"/>
+        /// </summary>
+        public DateTime LastModified { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Email"/>
+        /// </summary>
+        public string Email { get; set; }
+   
+        /// <summary>
+        /// Gets or Sets <see cref="FirstName"/>
+        /// </summary>
+        public string FirstName { get; set; }
+    
+        /// <summary>
+        /// Gets or Sets <see cref="LastName"/>
+        /// </summary>
+        public string LastName { get; set; }
+   
+        /// <summary>
+        /// Gets or Sets <see cref="PhoneNumber"/>
+        /// </summary>
+        public string PhoneNumber { get; set; }
+    
+        /// <summary>
+        /// Gets or Sets <see cref="Initial"/>
+        /// </summary>
+        public string Initial { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationRoles"/>
+        /// </summary>
+        public virtual ICollection<ViewCatalog> ApplicationRoles { get; set; } = [];
+   
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationUserToken"/>
+        /// </summary>
+        public virtual ViewApplicationUserToken ApplicationUserToken { get; set; }
+   
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
+        /// </summary>
+        public virtual ViewApplicationUserRefreshToken ApplicationUserRefreshToken { get; set; }
+        
+    }
+}

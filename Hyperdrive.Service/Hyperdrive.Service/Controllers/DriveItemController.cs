@@ -1,11 +1,11 @@
 ﻿using Hyperdrive.Tier.Services.Interfaces;
-using Hyperdrive.Tier.ViewModels.Classes.Additions;
-using Hyperdrive.Tier.ViewModels.Classes.Filters;
-using Hyperdrive.Tier.ViewModels.Classes.Updates;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.ViewModels.Additions;
+using Hyperdrive.Application.ViewModels.Filters;
+using Hyperdrive.Application.ViewModels.Updates;
 
 namespace Hyperdrive.Service.Controllers
 {
