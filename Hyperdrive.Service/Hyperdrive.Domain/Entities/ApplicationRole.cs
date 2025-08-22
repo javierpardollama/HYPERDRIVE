@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Hyperdrive.Domain.Entities
 {
     /// <summary>
-    /// Represents a <see cref="ApplicationRole"/> class. Implements <see cref="IdentityRole{int}"/>, <see cref="IKey"/>, <see cref="IBase"/>
+    /// Represents a <see cref="Builders.ApplicationRole"/> class. Implements <see cref="IdentityRole{int}"/>, <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
     public partial class ApplicationRole : IdentityRole<int>, IKey, IBase
     {

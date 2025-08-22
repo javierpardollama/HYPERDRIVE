@@ -1,12 +1,11 @@
 using System;
-using Hyperdrive.Domain.Dtos.Interfaces;
 
 namespace Hyperdrive.Domain.Dtos;
 
 /// <summary>
-/// Represents a <see cref="DriveItemVersionDto"/> class. Implements <see cref="IKeyDto"/>, <see cref="IBaseDto"/>
+/// Represents a <see cref="DriveItemVersionDto"/> class.
 /// </summary>
-public class DriveItemVersionDto : IKeyDto, IBaseDto
+public class DriveItemVersionDto
 {
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
@@ -21,7 +20,7 @@ public class DriveItemVersionDto : IKeyDto, IBaseDto
     /// <summary>
     /// Gets or Sets <see cref="Size"/>
     /// </summary>
-    public float Size { get; set; }
+    public float? Size { get; set; }
    
     /// <summary>
     /// Gets or Sets <see cref="Type"/>

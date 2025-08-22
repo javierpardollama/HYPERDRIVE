@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using Hyperdrive.Domain.Dtos.Interfaces;
 
 namespace Hyperdrive.Domain.Dtos;
 
 /// <summary>
-/// Represents a <see cref="ApplicationRoleDto"/> class. Implements <see cref="IKeyDto"/>, <see cref="IBaseDto"/>
+/// Represents a <see cref="ApplicationRoleDto"/> class.
 /// </summary>
-public class ApplicationRoleDto : IKeyDto, IBaseDto
+public class ApplicationRoleDto
 {
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
@@ -28,9 +26,4 @@ public class ApplicationRoleDto : IKeyDto, IBaseDto
     /// Gets or Sets <see cref="ImageUri"/>
     /// </summary>
     public string ImageUri { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="ApplicationUsers"/>
-    /// </summary>
-    public virtual ICollection<CatalogDto> ApplicationUsers { get; set; } = [];
 }
