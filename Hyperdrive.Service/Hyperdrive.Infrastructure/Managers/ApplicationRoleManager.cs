@@ -122,14 +122,14 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Finds All Application Role
         /// </summary>
-        /// <returns>Instance of <see cref="Task{ICollection{ApplicationRoleDto}}"/></returns>
-        public async Task<ICollection<ApplicationRoleDto>> FindAllApplicationRole()
+        /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
+        public async Task<ICollection<CatalogDto>> FindAllApplicationRole()
         {
-            ICollection<ApplicationRoleDto> @applicationRoles = await @roleManager.Roles
+            ICollection<CatalogDto> @applicationRoles = await @roleManager.Roles
                 .TagWith("FindAllApplicationRole")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Select(role => role.ToDto())
+                .Select(role => role.ToCatalog())
                 .ToListAsync();
 
             return @applicationRoles;

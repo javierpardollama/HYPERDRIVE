@@ -13,8 +13,8 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Finds All Application Role
         /// </summary>
-        /// <returns>Instance of <see cref="Task{ICollection{ApplicationRoleDto}}"/></returns>
-        Task<ICollection<ApplicationRoleDto>> FindAllApplicationRole();
+        /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
+        Task<ICollection<CatalogDto>> FindAllApplicationRole();
 
         /// <summary>
         /// Finds Paginated Application Role

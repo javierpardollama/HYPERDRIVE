@@ -13,8 +13,8 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Finds All Application User
         /// </summary>
-        /// <returns>Instance of <see cref="Task{ICollection{ApplicationUserDto}}"/></returns>
-        Task<ICollection<ApplicationUserDto>> FindAllApplicationUser();
+        /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
+        Task<ICollection<CatalogDto>> FindAllApplicationUser();
 
         /// <summary>
         /// Finds Paginated Application User
@@ -72,6 +72,5 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         Task<ApplicationUser> ReloadApplicationUserById(int @userid);
-      
     }
 }
