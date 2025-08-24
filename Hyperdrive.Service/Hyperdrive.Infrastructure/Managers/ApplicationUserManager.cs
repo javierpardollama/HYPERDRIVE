@@ -60,6 +60,8 @@ namespace Hyperdrive.Infrastructure.Managers
                     .TagWith("FindPaginatedApplicationUser")
                     .AsNoTracking()
                     .AsSplitQuery()
+                    .Include(x=> x.ApplicationUserRoles)
+                    .ThenInclude(x=> x.ApplicationRole)
                     .Skip(@index * @size)
                     .Take(@size)
                     .Select(x => x.ToDto())
@@ -212,7 +214,7 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 // Log
                 string @logData = nameof(ApplicationUser)
-                                  + " with Name "
+                                  + " with Email "
                                   + applicationUser.Email
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();

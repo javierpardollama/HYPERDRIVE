@@ -1,4 +1,5 @@
 using Hyperdrive.Domain.Managers;
+using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyperdrive.Infrastructure.Installers;
@@ -14,6 +15,10 @@ public static class ManagerInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallManagers(this IServiceCollection @this)
     {
-        // Add other services here
+        @this.AddTransient<IApplicationRoleManager, ApplicationRoleManager>();
+        @this.AddTransient<IApplicationUserManager, ApplicationUserManager>();
+        @this.AddTransient<IAuthManager, AuthManager>();
+        @this.AddTransient<ITokenManager, TokenManager>();
+        // Add other managers here
     }
 }
