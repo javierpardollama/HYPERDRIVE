@@ -1,36 +1,30 @@
-﻿using Hyperdrive.Tier.Entities.Classes;
-using Hyperdrive.Tier.Helpers.Classes;
-using Hyperdrive.Tier.Services.Interfaces;
-using Hyperdrive.Tier.Settings.Classes;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.JsonWebTokens;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Hyperdrive.Tier.Contexts.Interfaces;
-using Hyperdrive.Tier.Exceptions.Exceptions;
-using Hyperdrive.Tier.Logging.Classes;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Hyperdrive.Domain.Entities;
+using Hyperdrive.Domain.Managers;
+using Hyperdrive.Domain.Settings;
+using Hyperdrive.Infrastructure.Contexts.Interfaces;
+using Hyperdrive.Infrastructure.Helpers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Hyperdrive.Tier.Services.Classes
+namespace Hyperdrive.Infrastructure.Managers
 {
     /// <summary>
-    /// Represents a <see cref="TokenService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="ITokenService"/>
+    /// Represents a <see cref="TokenManager"/> class. Inherits <see cref="BaseManager"/>. Implements <see cref="ITokenManager"/>
     /// </summary>   
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="logger">Injected <see cref="ILogger{RefreshTokenService}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-    /// <param name="userManager">Injected <see cref="UserManager{ApplicationUser}"/></param>
-    public class TokenService(IApplicationContext @context,
-        ILogger<TokenService> @logger,
-        IOptions<JwtSettings> @jwtSettings,
-        UserManager<ApplicationUser> @userManager) : BaseService(@context, @jwtSettings), ITokenService
+    public class TokenManager(IApplicationContext @context,
+        ILogger<TokenManager> @logger,
+        IOptions<JwtSettings> @jwtSettings) : BaseManager(@context, @jwtSettings), ITokenManager
     {
 
         /// <summary>
@@ -141,19 +135,17 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Adds Application User Token
         /// </summary>
-        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <param name="user">>Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
-        public async Task<ApplicationUserToken> AddApplicationUserToken(int userid)
+        public async Task<ApplicationUserToken> AddApplicationUserToken(ApplicationUser @user)
         {
-            ApplicationUser @applicationUser = await FindApplicationUserById(userid);
-
             ApplicationUserToken @userToken = new ApplicationUserToken
             {
                 Name = Guid.NewGuid().ToString(),
                 LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @applicationUser,
-                UserId = @applicationUser.Id,
-                Value = CreateToken(GenerateTokenDescriptor(@applicationUser))
+                ApplicationUser = @user,
+                UserId = @user.Id,
+                Value = CreateToken(GenerateTokenDescriptor(@user))
             };
             
             await Context.UserTokens.AddAsync(@userToken);
@@ -167,42 +159,9 @@ namespace Hyperdrive.Tier.Services.Classes
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
-            @logger.WriteInsertItemLog(@logData);
+            @logger.LogInformation(@logData);
 
             return @userToken;
-        }
-        
-        /// <summary>
-        /// Finds Application User By Id
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task<ApplicationUser> FindApplicationUserById(int @id)
-        {
-            ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserById")
-                .Include(x=>x.ApplicationUserRoles)
-                .ThenInclude(x=> x.ApplicationRole)
-                .FirstOrDefaultAsync(x => x.Id == @id);
-
-            if (@applicationUser is null)
-            {
-                // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Id "
-                                  + @id
-                                  + " was not found at "
-                                  + DateTime.UtcNow.ToShortTimeString();
-
-                @logger.WriteGetItemNotFoundLog(@logData);
-
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Id "
-                                           + @id
-                                           + " does not exist");
-            }
-
-            return @applicationUser;
         }
     }
 }

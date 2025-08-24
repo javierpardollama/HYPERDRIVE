@@ -1,31 +1,26 @@
-﻿using Hyperdrive.Tier.Contexts.Interfaces;
-using Hyperdrive.Tier.Entities.Classes;
-using Hyperdrive.Tier.Helpers.Classes;
-using Hyperdrive.Tier.Logging.Classes;
-using Hyperdrive.Tier.Services.Interfaces;
-using Hyperdrive.Tier.Settings.Classes;
-using Hyperdrive.Tier.ViewModels.Classes.Security;
+﻿using System;
+using System.Threading.Tasks;
+using Hyperdrive.Domain.Entities;
+using Hyperdrive.Domain.Managers;
+using Hyperdrive.Domain.Settings;
+using Hyperdrive.Infrastructure.Contexts.Interfaces;
+using Hyperdrive.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Threading.Tasks;
-using Hyperdrive.Tier.Exceptions.Exceptions;
-using Microsoft.AspNetCore.Identity;
 
-namespace Hyperdrive.Tier.Services.Classes
+namespace Hyperdrive.Infrastructure.Managers
 {
     /// <summary>
-    /// Represents a <see cref="RefreshTokenService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IRefreshTokenService"/>
+    /// Represents a <see cref="RefreshTokenManager"/> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IRefreshTokenManager"/>
     /// </summary>   
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-    /// <param name="logger">Injected <see cref="ILogger{RefreshTokenService}"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{RefreshTokenManager}"/></param>
     /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-    /// <param name="userManager">Injected <see cref="UserManager{ApplicationUser}"/></param>
-    public class RefreshTokenService(IApplicationContext @context,
-                                     ILogger<RefreshTokenService> @logger,
-                                     IOptions<JwtSettings> @jwtSettings,
-                                     UserManager<ApplicationUser> @userManager) : BaseService(@context, @jwtSettings), IRefreshTokenService
+    
+    public class RefreshTokenManager(IApplicationContext @context,
+                                     ILogger<RefreshTokenManager> @logger,
+                                     IOptions<JwtSettings> @jwtSettings) : BaseManager(@context, @jwtSettings), IRefreshTokenManager
     {
         /// <summary>
         /// Generates Jwt Refresh Token Expiration Date 
@@ -42,11 +37,12 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Checks whether Jwt Refresh Token is Revoked
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task IsRevoked(SecurityRefreshTokenReset @viewModel)
+        public async Task IsRevoked(int @id, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
+            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@id, @token);
 
             if (@refreshToken is null) throw new UnauthorizedAccessException("Invalid Token");
 
@@ -58,11 +54,12 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Revokes Jwt Refresh Token
         /// </summary>      
-        /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task Revoke(SecurityRefreshTokenReset @viewModel)
+        public async Task Revoke(int @id, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@viewModel.ApplicationUserId, @viewModel.ApplicationUserRefreshToken);
+            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@id, @token);
 
             @refreshToken.Revoked = true;
             @refreshToken.RevokedAt = DateTime.UtcNow;
@@ -78,7 +75,7 @@ namespace Hyperdrive.Tier.Services.Classes
                 + " was revoked at "
                 + DateTime.UtcNow.ToShortTimeString();
 
-            @logger.WriteRefreshTokenRevokedLog(@logData);
+            @logger.LogInformation(@logData);
         }
 
         /// <summary>
@@ -103,7 +100,7 @@ namespace Hyperdrive.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.WriteGetItemNotFoundLog(@logData);
+                @logger.LogError(@logData);
             }
 
             return @refreshToken;
@@ -112,17 +109,15 @@ namespace Hyperdrive.Tier.Services.Classes
         /// <summary>
         /// Adds Application User Refresh Token
         /// </summary>
-        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
-        public async Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(int userid)
+        public async Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(ApplicationUser @user)
         {
-            ApplicationUser @applicationUser = await FindApplicationUserById(userid);
-            
             ApplicationUserRefreshToken @refreshToken = new ApplicationUserRefreshToken
             {
                 Name = Guid.NewGuid().ToString(),
                 LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @applicationUser,
+                ApplicationUser = @user,
                 Value = WriteJwtRefreshToken(),
                 ExpiresAt = GenerateRefreshTokenExpirationDate()
             };
@@ -138,41 +133,9 @@ namespace Hyperdrive.Tier.Services.Classes
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
-            @logger.WriteInsertItemLog(@logData);
+            @logger.LogInformation(@logData);
 
             return @refreshToken;
-        }
-
-      
-        /// <summary>
-        /// Finds Application User By Id
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        public async Task<ApplicationUser> FindApplicationUserById(int @id)
-        {
-            ApplicationUser @applicationUser = await @userManager.Users
-                .TagWith("FindApplicationUserById")
-                .FirstOrDefaultAsync(x => x.Id == @id);
-
-            if (@applicationUser is null)
-            {
-                // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Id "
-                                  + @id
-                                  + " was not found at "
-                                  + DateTime.UtcNow.ToShortTimeString();
-
-                @logger.WriteGetItemNotFoundLog(@logData);
-
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Id "
-                                           + @id
-                                           + " does not exist");
-            }
-
-            return @applicationUser;
         }
     }
 }

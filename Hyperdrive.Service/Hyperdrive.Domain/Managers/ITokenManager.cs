@@ -55,8 +55,8 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Adds Application User Token
         /// </summary>
-        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <param name="user">>Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
-        Task<ApplicationUserToken> AddApplicationUserToken(int userid);
+        Task<ApplicationUserToken> AddApplicationUserToken(ApplicationUser @user);
     }
 }
