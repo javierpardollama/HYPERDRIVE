@@ -44,13 +44,11 @@ var @rateSettings = new RateLimitSettings();
 @builder.Configuration.GetSection("RateLimit").Bind(@rateSettings);
 @builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
 
+// Return the Problem Details format for non-successful responses
 builder.Services.InstallProblemDetails();
 builder.Services.InstallRateLimiter(@rateSettings);
 
 @builder.InstallAspireServices();
-
-// Return the Problem Details format for non-successful responses
-@builder.Services.AddProblemDetails();
 
 var @app = @builder.Build();
 
