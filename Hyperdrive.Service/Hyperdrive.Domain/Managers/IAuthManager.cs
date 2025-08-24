@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Hyperdrive.Domain.Dtos;
+using Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Domain.Managers
 {
@@ -11,24 +12,18 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Signs In
         /// </summary>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="password">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> SignIn(string email, string password);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> SignIn(ApplicationUser @user, string email, string password);
 
         /// <summary>
         /// Joins In
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="password">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> JoinIn(string email, string password);
-
-        /// <summary>
-        /// Signs Out
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        Task SignOut(int @id);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> JoinIn(string email, string password);
     }
 }
