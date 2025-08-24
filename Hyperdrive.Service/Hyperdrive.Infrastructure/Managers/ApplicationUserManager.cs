@@ -26,7 +26,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Finds All Application User
         /// </summary>
-        /// <returns>Instance of <see cref="Task{ICollection{ViewApplicationUser}}"/></returns>
+        /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
         public async Task<ICollection<CatalogDto>> FindAllApplicationUser()
         {
             ICollection<CatalogDto> @applicationUsers = await @userManager.Users
@@ -86,16 +86,16 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 // Log
                 string @logData = nameof(ApplicationUser)
-                                  + " with Email "
-                                  + @applicationUser.Email
+                                  + " with Id "
+                                  + @id
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
                 throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Email "
-                                           + @applicationUser.Email
+                                           + " with Id "
+                                           + @id
                                            + " does not exist");
             }
 
@@ -120,7 +120,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 // Log
                 string @logData = nameof(ApplicationUser)
                                   + " with Email "
-                                  + @applicationUser.Email
+                                  + @email
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
@@ -128,7 +128,7 @@ namespace Hyperdrive.Infrastructure.Managers
 
                 throw new ServiceException(nameof(ApplicationUser)
                                            + " with Email "
-                                           + @applicationUser.Email
+                                           + @email
                                            + " does not exist");
             }
 
@@ -177,11 +177,10 @@ namespace Hyperdrive.Infrastructure.Managers
 
             if (@identityResult.Succeeded)
             {
-
                 // Log
                 string @logData = nameof(ApplicationUser)
                     + " with Id"
-                    + @applicationUser.Id
+                    + @id
                     + " was modified at "
                     + DateTime.UtcNow.ToShortTimeString();
 
