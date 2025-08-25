@@ -48,14 +48,14 @@ namespace Hyperdrive.Application.ViewModels.Views
         public virtual ICollection<ViewCatalog> ApplicationRoles { get; set; } = [];
    
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserToken"/>
+        /// Gets or Sets <see cref="Token"/>
         /// </summary>
-        public virtual ViewApplicationUserToken ApplicationUserToken { get; set; }
+        public virtual ViewToken Token { get; set; }
    
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
+        /// Gets or Sets <see cref="RefreshToken"/>
         /// </summary>
-        public virtual ViewApplicationUserRefreshToken ApplicationUserRefreshToken { get; set; }
+        public virtual ViewToken RefreshToken { get; set; }
         
     }
 }

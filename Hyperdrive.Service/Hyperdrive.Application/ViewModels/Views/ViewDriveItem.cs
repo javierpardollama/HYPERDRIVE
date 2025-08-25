@@ -6,7 +6,6 @@ namespace Hyperdrive.Application.ViewModels.Views
 {
     public class ViewDriveItem : IViewKey, IViewBase
     {
-       
         public int Id { get; set; }
       
         public DateTime LastModified { get; set; }
