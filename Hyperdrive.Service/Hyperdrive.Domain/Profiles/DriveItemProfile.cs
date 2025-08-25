@@ -16,7 +16,7 @@ public static class DriveItemProfile
             Parent = @entity.Parent.ToCatalog(),
             Folder = @entity.Folder,
             Locked = @entity.Locked,
-            LastModified = @entity.DriveItemVersions
+            LastModified = @entity.Activity
               .OrderByDescending(x=>x.LastModified)
               .LastOrDefault()?.LastModified,
             SharedWith = @entity.SharedWith

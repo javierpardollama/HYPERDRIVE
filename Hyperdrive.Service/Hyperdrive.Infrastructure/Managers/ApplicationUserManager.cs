@@ -148,21 +148,16 @@ namespace Hyperdrive.Infrastructure.Managers
 
             IdentityResult @identityResult = await @userManager.DeleteAsync(@applicationUser);
 
-            if (identityResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Id "
-                                  + @applicationUser.Id
-                                  + " was removed at "
-                                  + DateTime.UtcNow.ToShortTimeString();
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+          
+            // Log
+            string @logData = nameof(ApplicationUser)
+                              + " with Id "
+                              + @applicationUser.Id
+                              + " was removed at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
-            }
-            else
-            {
-                throw new ServiceException("Management Error");
-            }
+            @logger.LogInformation(@logData);
         }
 
         /// <summary>
@@ -177,23 +172,18 @@ namespace Hyperdrive.Infrastructure.Managers
            
             IdentityResult @identityResult = await @userManager.AddToRolesAsync(applicationUser, roles);
 
-            if (@identityResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationUser)
-                    + " with Id"
-                    + @id
-                    + " was modified at "
-                    + DateTime.UtcNow.ToShortTimeString();
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+            
+            // Log
+            string @logData = nameof(ApplicationUser)
+                + " with Id"
+                + @id
+                + " was modified at "
+                + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
-                
-                return applicationUser.ToDto();
-            }
-            else
-            {
-                throw new ServiceException("Management Error");
-            }
+            @logger.LogInformation(@logData);
+            
+            return applicationUser.ToDto();
         }
 
         /// <summary>

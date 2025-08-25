@@ -14,8 +14,4 @@
     <PackageReference Include="NUnit3TestAdapter" Version="5.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Hyperdrive.Tier.Services\Hyperdrive.Tier.Services.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -76,8 +76,8 @@ namespace Hyperdrive.Domain.Entities
         public virtual ICollection<ApplicationUserDriveItem> SharedWith { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="DriveItemVersions"/>
+        /// Gets or Sets <see cref="Activity"/>
         /// </summary>
-        public virtual ICollection<DriveItemVersion> DriveItemVersions { get; set; } = [];
+        public virtual ICollection<DriveItemVersion> Activity { get; set; } = [];
     }
 }

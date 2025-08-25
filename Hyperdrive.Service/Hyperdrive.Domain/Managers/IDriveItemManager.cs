@@ -25,12 +25,6 @@ namespace Hyperdrive.Domain.Managers
         Task RemoveDriveItemById(int @id);
 
         /// <summary>
-        /// Finds All Drive Item
-        /// </summary>
-        /// <returns>Instance of <see cref="Task{IList{DriveItemDto}}"/></returns>
-        Task<IList<DriveItemDto>> FindAllDriveItem();
-
-        /// <summary>
         /// Finds Paginated Drive Item By Application User Id
         /// </summary>
         /// <param name="index">Injected <see cref="int"/></param>
@@ -59,58 +53,45 @@ namespace Hyperdrive.Domain.Managers
         /// Adds Drive Item
         /// </summary>
         /// <param name="entity">Injected <see cref="DriveItem"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItemDto}"/></returns>
-        Task<DriveItemDto> AddDriveItem(DriveItem @entity);
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
+        Task<DriveItem> AddDriveItem(DriveItem @entity);
 
         /// <summary>
         /// Adds Application User Drive Item
         /// </summary>
-        /// <param name="users">Injected <see cref="int"/></param>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
-        void AddApplicationUserDriveItem(List<int> @users, DriveItem @entity);
+        /// <param name="userDriveItems">Injected <see cref="List{ApplicationUserDriveItem}"/></param>
+        Task AddApplicationUserDriveItem(List<ApplicationUserDriveItem> @userDriveItems);
 
         /// <summary>
         /// Adds Drive Item Version
         /// </summary>
-        /// <param name="version">Injected <see cref="DriveItemVersion"/></param>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
-        void AddDriveItemVersion(DriveItemVersion @version, DriveItem @entity);
+        /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+        Task AddDriveItemVersion(DriveItemVersion @entity);
 
         /// <summary>
         /// Updates Drive Item
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItemDto}"/></returns>
-        Task<DriveItemDto> UpdateDriveItem(DriveItem @entity);
-
-        /// <summary>
-        /// Updates Application User Drive Item
-        /// </summary>
-        /// <param name="users">Injected <see cref="int"/></param>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
-        void UpdateApplicationUserDriveItem(List<int> @users, DriveItem @entity);
-
-        /// <summary>
-        /// Updates Drive Item Version
-        /// </summary>
-        /// <param name="version">Injected <see cref="DriveItemVersion"/></param>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
-        void UpdateDriveItemVersion(DriveItemVersion @version, DriveItem @entity);
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
+        Task<DriveItem> ChangeName(string @name, int @id, int @parent);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="parent">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CheckName(string @name);
-
+        Task<DriveItem> CheckName(string @name, int @parent);
         
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CheckName(string @name, int @id);
+        Task<DriveItem> CheckName(string @name, int @id, int @parent);
     }
 }

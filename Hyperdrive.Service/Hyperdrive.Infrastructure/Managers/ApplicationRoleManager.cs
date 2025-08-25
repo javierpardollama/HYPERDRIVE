@@ -33,24 +33,18 @@ namespace Hyperdrive.Infrastructure.Managers
 
             IdentityResult @identityResult = await @roleManager.CreateAsync(@entity);
 
-            if (@identityResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationRole)
-                    + " with Id "
-                    + @entity.Id
-                    + " was added at "
-                    + DateTime.UtcNow.ToShortTimeString();
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+            
+            // Log
+            string @logData = nameof(ApplicationRole)
+                + " with Id "
+                + @entity.Id
+                + " was added at "
+                + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
+            @logger.LogInformation(@logData);
 
-                return @entity.ToDto();
-            }
-            else
-            {
-                throw new ServiceException("Management Error");
-            }
-
+            return @entity.ToDto();
         }
 
         /// <summary>
@@ -207,21 +201,16 @@ namespace Hyperdrive.Infrastructure.Managers
 
             IdentityResult @identityResult = await @roleManager.DeleteAsync(@applicationRole);
 
-            if (@identityResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationRole)
-                    + " with Id "
-                    + @applicationRole.Id
-                    + " was removed at "
-                    + DateTime.UtcNow.ToShortTimeString();
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+           
+            // Log
+            string @logData = nameof(ApplicationRole)
+                + " with Id "
+                + @applicationRole.Id
+                + " was removed at "
+                + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
-            }
-            else
-            {
-                throw new ServiceException("Management Error");
-            }
+            @logger.LogInformation(@logData);
         }
 
         /// <summary>
@@ -241,24 +230,18 @@ namespace Hyperdrive.Infrastructure.Managers
 
             IdentityResult @identityResult = await @roleManager.UpdateAsync(@entity);
 
-            if (@identityResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationRole)
-                    + " with Id "
-                    + @entity.Id
-                    + " was modified at "
-                    + DateTime.UtcNow.ToShortTimeString();
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+            
+            // Log
+            string @logData = nameof(ApplicationRole)
+                + " with Id "
+                + @entity.Id
+                + " was modified at "
+                + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
+            @logger.LogInformation(@logData);
 
-                return @entity.ToDto();
-
-            }
-            else
-            {
-                throw new ServiceException("Management Error");
-            }
+            return @entity.ToDto();
         }
     }
 }

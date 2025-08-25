@@ -13,8 +13,8 @@ namespace Hyperdrive.Infrastructure.Managers
     /// Represents a <see cref="AuthManager"/> class. Implements <see cref="IAuthManager"/>
     /// </summary>
     /// <param name="logger">Injected <see cref="ILogger{AuthManager}"/></param>
-    /// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
-    /// <param name="signInManager">Injected <see cref=" SignInManager{ApplicationUser}"/></param>
+    /// <param name="userManager">Injected <see cref="UserManager{ApplicationUser}"/></param>
+    /// <param name="signInManager">Injected <see cref="SignInManager{ApplicationUser}"/></param>
     public class AuthManager(
         ILogger<AuthManager> @logger,
         UserManager<ApplicationUser> @userManager,
@@ -35,23 +35,18 @@ namespace Hyperdrive.Infrastructure.Managers
                 false,
                 true);
 
-            if (@signInResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Email "
-                                  + @email
-                                  + " logged in at "
-                                  + DateTime.UtcNow.ToShortTimeString();
+            if (!@signInResult.Succeeded) throw new UnauthorizedAccessException("Authentication Error");
+           
+            // Log
+            string @logData = nameof(ApplicationUser)
+                              + " with Email "
+                              + @email
+                              + " logged in at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
+            @logger.LogInformation(@logData);
 
-                return @signInResult.Succeeded;
-            }
-            else
-            {
-                throw new UnauthorizedAccessException("Authentication Error");
-            }
+            return @signInResult.Succeeded;
         }
 
         /// <summary>
@@ -74,23 +69,18 @@ namespace Hyperdrive.Infrastructure.Managers
 
             IdentityResult @identityResult = await @userManager.CreateAsync(@applicationUser, @password);
 
-            if (@identityResult.Succeeded)
-            {
-                // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Email "
-                                  + @email
-                                  + " joined in at "
-                                  + DateTime.UtcNow.ToShortTimeString();
+            if (!@identityResult.Succeeded) throw new UnauthorizedAccessException("Authentication Error");
+          
+            // Log
+            string @logData = nameof(ApplicationUser)
+                              + " with Email "
+                              + @email
+                              + " joined in at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
-                @logger.LogInformation(@logData);
+            @logger.LogInformation(@logData);
 
-                return @identityResult.Succeeded;
-            }
-            else
-            {
-                throw new UnauthorizedAccessException("Authentication Error");
-            }
+            return @identityResult.Succeeded;
         }
     }
 

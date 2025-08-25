@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Hyperdrive.Domain.Dtos;
+using Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Domain.Managers
 {
@@ -11,51 +12,43 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Resets Password
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <param name="newPassword">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> ResetPassword(int @id, string @newPassword);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> ResetPassword(ApplicationUser @user, string @newPassword);
 
         /// <summary>
         /// Changes Password
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <param name="currentPassword">Injected <see cref="string"/></param>
         /// <param name="newPassword">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> ChangePassword(int @id, string @currentPassword, string @newPassword);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> ChangePassword(ApplicationUser @user, string @currentPassword, string @newPassword);
 
         /// <summary>
         /// Changes Email
         /// </summary>
-        /// <param name="id">Injected <see cref="string"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <param name="email">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> ChangeEmail(int id, string @email);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> ChangeEmail(ApplicationUser @user, string @email);
 
         /// <summary>
         /// Changes Phone Number
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <param name="phoneNumber">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> ChangePhoneNumber(int @id, string @phoneNumber);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> ChangePhoneNumber(ApplicationUser @user, string @phoneNumber);
 
         /// <summary>
         /// Changes Name
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <param name="firstName">Injected <see cref="string"/></param>
         /// <param name="lastName">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> ChangeName(int @id, string @firstName, string @lastName);
-
-        /// <summary>
-        /// Refreshes Tokens
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="token">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> RefreshTokens(int @id, string @token);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> ChangeName(ApplicationUser @user, string @firstName, string @lastName);
     }
 }
