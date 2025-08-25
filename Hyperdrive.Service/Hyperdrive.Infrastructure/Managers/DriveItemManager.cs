@@ -21,6 +21,11 @@ namespace Hyperdrive.Infrastructure.Managers
     public class DriveItemManager(IApplicationContext context,
                                   ILogger<DriveItemManager> logger) : BaseManager(context), IDriveItemManager
     {
+        /// <summary>
+        /// Finds Drive Item By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> FindDriveItemById(int @id)
         {
             DriveItem @archive = await Context.DriveItems
@@ -49,6 +54,11 @@ namespace Hyperdrive.Infrastructure.Managers
             return @archive;
         }
 
+        /// <summary>
+        /// Removes Drive Item By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task RemoveDriveItemById(int @id)
         {
             DriveItem @archive = await FindDriveItemById(@id);
@@ -67,6 +77,13 @@ namespace Hyperdrive.Infrastructure.Managers
             @logger.LogInformation(@logData);
         }
 
+        /// <summary>
+        /// Finds Paginated Drive Item By Application User Id
+        /// </summary>
+        /// <param name="index">Injected <see cref="int"/></param>
+        /// <param name="size">Injected <see cref="int"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
         public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @id)
         {
             PageDto<DriveItemDto> @page = new()
@@ -95,7 +112,14 @@ namespace Hyperdrive.Infrastructure.Managers
             return @page;
         }
 
-        public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemByApplicationUserId(int @index, int @size, int @id)
+        /// <summary>
+        /// Finds Paginated Shared Drive Item By Application User Id
+        /// </summary>
+        /// <param name="index">Injected <see cref="int"/></param>
+        /// <param name="size">Injected <see cref="int"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
+        public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @id)
         {
             PageDto<DriveItemDto> @page = new()
             {
@@ -124,6 +148,11 @@ namespace Hyperdrive.Infrastructure.Managers
             return @page;
         }
 
+        /// <summary>
+        /// Finds All Drive Item Version By Drive Item Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{IList{DriveItemVersionDto}}"/></returns>
         public async Task<IList<DriveItemVersionDto>> FindAllDriveItemVersionByDriveItemId(int @id)
         {
             IList<DriveItemVersionDto> @versions = await Context.DriveItemVersions
@@ -139,6 +168,11 @@ namespace Hyperdrive.Infrastructure.Managers
             return @versions;
         }
 
+        /// <summary>
+        /// Adds Drive Item
+        /// </summary>
+        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> AddDriveItem(DriveItem @entity)
         {
             await CheckName(@entity.Name, entity.Parent.Id);
@@ -159,6 +193,10 @@ namespace Hyperdrive.Infrastructure.Managers
             return @entity;
         }
 
+        /// <summary>
+        /// Adds Application User Drive Item
+        /// </summary>
+        /// <param name="userDriveItems">Injected <see cref="List{ApplicationUserDriveItem}"/></param>
         public async Task AddApplicationUserDriveItem(List<ApplicationUserDriveItem> @userDriveItems)
         {
             await Context.ApplicationUserDriveItems.AddRangeAsync(@userDriveItems);
@@ -168,13 +206,17 @@ namespace Hyperdrive.Infrastructure.Managers
             // Log
             string @logData = nameof(ApplicationUserDriveItem)
                               + "s with Ids "
-                              + string.Concat(@userDriveItems.Select(x=> x.Id))
+                              + string.Join(",", @userDriveItems.Select(x=> x.Id))
                               + " were added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
         }
 
+        /// <summary>
+        /// Adds Drive Item Version
+        /// </summary>
+        /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
         public async Task AddDriveItemVersion(DriveItemVersion @entity)
         {
             await Context.DriveItemVersions.AddAsync(@entity);
@@ -193,6 +235,13 @@ namespace Hyperdrive.Infrastructure.Managers
             @logger.LogInformation(@logData);
         }
 
+        /// <summary>
+        /// Changes Name
+        /// </summary>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> ChangeName(string @name, int @id, int @parent)
         {
             await CheckName(@name, @id, @parent);
@@ -217,6 +266,12 @@ namespace Hyperdrive.Infrastructure.Managers
             return @entity;
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> CheckName(string @name, int @parent)
         {
             DriveItem @archive = await Context.DriveItems
@@ -245,6 +300,13 @@ namespace Hyperdrive.Infrastructure.Managers
             return @archive;
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> CheckName(string @name, int @id, int @parent)
         {
             DriveItem @archive = await Context.DriveItems

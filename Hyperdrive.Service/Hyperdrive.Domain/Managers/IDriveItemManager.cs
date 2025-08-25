@@ -40,7 +40,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="size">Injected <see cref="int"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemByApplicationUserId(int @index, int @size, int @id);
+        Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @id);
 
         /// <summary>
         /// Finds All Drive Item Version By Drive Item Id
@@ -69,7 +69,7 @@ namespace Hyperdrive.Domain.Managers
         Task AddDriveItemVersion(DriveItemVersion @entity);
 
         /// <summary>
-        /// Updates Drive Item
+        /// Changes Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
