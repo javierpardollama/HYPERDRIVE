@@ -60,8 +60,8 @@ namespace Hyperdrive.Infrastructure.Managers
                     .TagWith("FindPaginatedApplicationUser")
                     .AsNoTracking()
                     .AsSplitQuery()
-                    .Include(x=> x.ApplicationUserRoles)
-                    .ThenInclude(x=> x.ApplicationRole)
+                    .Include(x => x.ApplicationUserRoles)
+                    .ThenInclude(x => x.ApplicationRole)
                     .Skip(@index * @size)
                     .Take(@size)
                     .Select(x => x.ToDto())
@@ -103,14 +103,15 @@ namespace Hyperdrive.Infrastructure.Managers
 
             return @applicationUser;
         }
-        
+
         /// <summary>
         /// Finds Application User By Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        public async Task<ApplicationUser> FindApplicationUserByEmail(string @email){ 
-            
+        public async Task<ApplicationUser> FindApplicationUserByEmail(string @email)
+        {
+
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserById")
                 .Include(x => x.ApplicationUserRoles)
@@ -149,7 +150,7 @@ namespace Hyperdrive.Infrastructure.Managers
             IdentityResult @identityResult = await @userManager.DeleteAsync(@applicationUser);
 
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
-          
+
             // Log
             string @logData = nameof(ApplicationUser)
                               + " with Id "
@@ -169,20 +170,20 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<ApplicationUserDto> UpdateApplicationUserRoles(List<string> @roles, int @id)
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(@id);
-           
+
             IdentityResult @identityResult = await @userManager.AddToRolesAsync(applicationUser, roles);
 
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
-            
+
             // Log
             string @logData = nameof(ApplicationUser)
-                + " with Id"
-                + @id
-                + " was modified at "
-                + DateTime.UtcNow.ToShortTimeString();
+                              + " with Id"
+                              + @id
+                              + " was modified at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
-            
+
             return applicationUser.ToDto();
         }
 
@@ -220,6 +221,41 @@ namespace Hyperdrive.Infrastructure.Managers
             return @applicationUser;
         }
 
-       
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        public async Task<ApplicationUserDto> ReloadApplicationUserById(int @id)
+        {
+            ApplicationUserDto @applicationUser = await @userManager.Users
+                .TagWith("FindApplicationUserById")
+                .Include(x => x.ApplicationUserRoles)
+                .ThenInclude(x => x.ApplicationRole)
+                .Include(x => x.ApplicationUserRefreshTokens)
+                .Include(x => x.ApplicationUserTokens)
+                .Where(x => x.Id == @id)
+                .Select(x => x.ToDto())
+                .FirstOrDefaultAsync();
+
+            if (@applicationUser is null)
+            {
+                // Log
+                string @logData = nameof(ApplicationUser)
+                                  + " with Id "
+                                  + @id
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.LogWarning(@logData);
+
+                throw new ServiceException(nameof(ApplicationUser)
+                                           + " with Id "
+                                           + @id
+                                           + " does not exist");
+            }
+
+            return @applicationUser;
+        }
     }
 }

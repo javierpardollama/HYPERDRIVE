@@ -60,5 +60,12 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
         Task<ApplicationUser> CheckEmail(string @email, int @id);
+        
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
+        Task<ApplicationUserDto> ReloadApplicationUserById(int @id);
     }
 }
