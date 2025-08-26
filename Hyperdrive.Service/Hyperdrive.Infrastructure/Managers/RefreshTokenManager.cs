@@ -37,12 +37,12 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Checks whether Jwt Refresh Token is Revoked
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task IsRevoked(int @id, string @token)
+        public async Task IsRevoked(int @userid, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@id, @token);
+            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@userid, @token);
 
             if (@refreshToken is null) throw new UnauthorizedAccessException("Invalid Token");
 
@@ -54,12 +54,12 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Revokes Jwt Refresh Token
         /// </summary>      
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task Revoke(int @id, string @token)
+        public async Task Revoke(int @userid, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@id, @token);
+            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@userid, @token);
 
             @refreshToken.Revoked = true;
             @refreshToken.RevokedAt = DateTime.UtcNow;

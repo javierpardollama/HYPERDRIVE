@@ -24,18 +24,18 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Checks whether Jwt Refresh Token is Revoked
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task IsRevoked(int @id, string @token);
+        Task IsRevoked(int @userid, string @token);
 
         /// <summary>
         /// Revokes Jwt Refresh Token
         /// </summary>      
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task Revoke(int @id, string @token);
+        Task Revoke(int @userid, string @token);
 
         /// <summary>
         /// Finds Application User Refresh Token By User Id
