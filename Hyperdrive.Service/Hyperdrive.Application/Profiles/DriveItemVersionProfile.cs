@@ -9,7 +9,7 @@ namespace Hyperdrive.Application.Profiles;
 public static class DriveItemVersionProfile
 {
     /// <summary>
-    /// Transforms to Dto
+    /// Transforms to ViewModel
     /// </summary>
     /// <param name="dto">Injected <see cref="DriveItemVersionDto"/></param>
     /// <returns>Instance of <see cref="ViewDriveItemVersion"/></returns>
