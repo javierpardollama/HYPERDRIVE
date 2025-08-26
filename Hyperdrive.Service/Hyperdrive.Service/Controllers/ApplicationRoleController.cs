@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 using Hyperdrive.Application.ViewModels.Additions;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
+using MediatR;
 
 namespace Hyperdrive.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="ApplicationRoleController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
-    /// <param name="service">Injected <see cref="IApplicationRoleService"/></param>
+    /// <param name="mediator">Injected <see cref="IMediator"/></param>
     [Route("api/applicationrole")]
     [Produces("application/json")]
     [ApiController]
     [Authorize]
     [EnableRateLimiting("Concurrency")]
-    public class ApplicationRoleController(IApplicationRoleService @service) : ControllerBase
+    public class ApplicationRoleController(IMediator @mediator) : ControllerBase
     {
         /// <summary>
         /// Updates Application Role

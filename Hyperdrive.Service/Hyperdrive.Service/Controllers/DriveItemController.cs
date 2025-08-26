@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 using Hyperdrive.Application.ViewModels.Additions;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
+using MediatR;
 
 namespace Hyperdrive.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="DriveItemController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
-    /// <param name="service">Injected <see cref="IDriveItemService"/></param>
+    /// <param name="mediator">Injected <see cref="IMediator"/></param>
     [Route("api/driveitem")]
     [Produces("application/json")]
     [Authorize]
     [ApiController]
     [EnableRateLimiting("Concurrency")]
-    public class DriveItemController(IDriveItemService @service) : ControllerBase
+    public class DriveItemController(IMediator @mediator) : ControllerBase
     {
         /// <summary>
         /// Finds Paginated DriveItem By ApplicationUser Id

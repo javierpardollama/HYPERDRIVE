@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
 using Hyperdrive.Application.ViewModels.Auth;
+using MediatR;
 
 namespace Hyperdrive.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="AuthController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
-    /// <param name="service">Injected <see cref="IAuthService"/></param>
+    //// <param name="mediator">Injected <see cref="IMediator"/></param>
     [Route("api/auth")]
     [Produces("application/json")]
     [ApiController]
     [EnableRateLimiting("Concurrency")]
-    public class AuthController(IAuthService @service) : ControllerBase
+    public class AuthController(IMediator @mediator) : ControllerBase
     {
         /// <summary>
         /// Signs In

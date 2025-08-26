@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
+using MediatR;
 
 namespace Hyperdrive.Service.Controllers
 {
@@ -12,13 +13,13 @@ namespace Hyperdrive.Service.Controllers
     /// <summary>
     /// Represents a <see cref="ApplicationUserController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
-    /// <param name="service">Injected <see cref="IApplicationUserService"/></param>
+    /// <param name="mediator">Injected <see cref="IMediator"/></param>
     [Route("api/applicationuser")]
     [Produces("application/json")]
     [ApiController]
     [Authorize]
     [EnableRateLimiting("Concurrency")]
-    public class ApplicationUserController(IApplicationUserService @service) : ControllerBase
+    public class ApplicationUserController(IMediator @mediator) : ControllerBase
     {
         /// <summary>
         /// Updates Application User
