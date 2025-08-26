@@ -13,7 +13,7 @@ public class ViewCatalog : IViewKey, IViewBase
     /// <summary>
     /// Gets or Sets <see cref="LastModified"/>
     /// </summary>
-    public DateTime LastModified { get; set; }
+    public DateTime? LastModified { get; set; }
     
     /// <summary>
     /// Gets or Sets <see cref="Name"/>

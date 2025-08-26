@@ -10,6 +10,6 @@ namespace Hyperdrive.Application.ViewModels.Interfaces.Views
         /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
-        DateTime LastModified { get; set; }
+        DateTime? LastModified { get; set; }
     }
 }

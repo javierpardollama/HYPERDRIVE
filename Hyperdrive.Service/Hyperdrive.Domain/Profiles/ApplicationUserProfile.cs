@@ -4,8 +4,16 @@ using Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Domain.Profiles;
 
+/// <summary>
+/// Represents a <see cref="ApplicationUserProfile"/> class.
+/// </summary>
 public static class ApplicationUserProfile
 {
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="ApplicationUser"/></param>
+    /// <returns>Instance of <see cref="ApplicationUserDto"/></returns>
     public static ApplicationUserDto ToDto(this ApplicationUser @entity)
     {
         return new ApplicationUserDto
@@ -30,6 +38,11 @@ public static class ApplicationUserProfile
         };
     }
     
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="ApplicationUser"/></param>
+    /// <returns>Instance of <see cref="CatalogDto"/></returns>
     public static CatalogDto ToCatalog(this ApplicationUser @entity)
     {
         return new CatalogDto

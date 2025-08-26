@@ -11,11 +11,11 @@ namespace Hyperdrive.Application.ViewModels.Views
         public string Data { get; set; }
 
         
-        public float Size { get; set; }
+        public float? Size { get; set; }
 
        
         public string Type { get; set; }
         
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
     }
 }

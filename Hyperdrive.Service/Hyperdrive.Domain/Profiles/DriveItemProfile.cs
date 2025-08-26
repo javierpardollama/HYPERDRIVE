@@ -4,8 +4,16 @@ using Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Domain.Profiles;
 
+/// <summary>
+/// Represents a <see cref="DriveItemProfile"/> class.
+/// </summary>
 public static class DriveItemProfile
 {
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="DriveItem"/></param>
+    /// <returns>Instance of <see cref="DriveItemDto"/></returns>
     public static DriveItemDto ToDto(this DriveItem @entity)
     {
         return new DriveItemDto
@@ -25,6 +33,11 @@ public static class DriveItemProfile
         };
     }
 
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="DriveItem"/></param>
+    /// <returns>Instance of <see cref="CatalogDto"/></returns>
     public static CatalogDto ToCatalog(this DriveItem @entity)
     {
         return new CatalogDto

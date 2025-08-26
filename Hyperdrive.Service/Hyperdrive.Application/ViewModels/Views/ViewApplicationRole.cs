@@ -8,7 +8,7 @@ namespace Hyperdrive.Application.ViewModels.Views
     {
         public int Id { get; set; }
       
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
       
         public string Name { get; set; }
      

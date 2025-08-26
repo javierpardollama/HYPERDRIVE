@@ -8,7 +8,7 @@ namespace Hyperdrive.Application.ViewModels.Views
     {
         public int Id { get; set; }
       
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
       
         public ViewCatalog By { get; set; }
        
@@ -17,6 +17,8 @@ namespace Hyperdrive.Application.ViewModels.Views
         public bool Locked { get; set; }
         
         public string Name { get; set; }
+        
+        public ViewCatalog Parent { get; set; }
        
         public virtual ICollection<ViewCatalog> SharedWith { get; set; } = [];
     }
