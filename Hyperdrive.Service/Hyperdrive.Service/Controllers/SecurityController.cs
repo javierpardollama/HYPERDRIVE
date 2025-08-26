@@ -1,8 +1,8 @@
-﻿using Hyperdrive.Tier.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Commands.Security;
 using Hyperdrive.Application.ViewModels.Security;
 using MediatR;
 
@@ -33,7 +33,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("resetpassword")]
-        public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await @service.ResetPassword(@viewModel));
+        public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await mediator.Send(new PasswordResetCommand { ViewModel = @viewModel }));
 
         /// <summary>
         /// Changes Password
@@ -51,7 +51,7 @@ namespace Hyperdrive.Service.Controllers
         [HttpPut]
         [Route("changepassword")]
         [Authorize]
-        public async Task<IActionResult> ChangePassword([FromBody] SecurityPasswordChange @viewModel) => Ok(value: await @service.ChangePassword(@viewModel));
+        public async Task<IActionResult> ChangePassword([FromBody] SecurityPasswordChange @viewModel) => Ok(value:   await mediator.Send(new PasswordChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
         /// Changes Email
@@ -69,7 +69,7 @@ namespace Hyperdrive.Service.Controllers
         [HttpPut]
         [Route("changeemail")]
         [Authorize]
-        public async Task<IActionResult> ChangeEmail([FromBody] SecurityEmailChange @viewModel) => Ok(value: await @service.ChangeEmail(@viewModel));
+        public async Task<IActionResult> ChangeEmail([FromBody] SecurityEmailChange @viewModel) => Ok(value: await mediator.Send(new EmailChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
         /// Changes Phone Number
@@ -87,7 +87,7 @@ namespace Hyperdrive.Service.Controllers
         [HttpPut]
         [Route("changephonenumber")]
         [Authorize]
-        public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => Ok(value: await @service.ChangePhoneNumber(@viewModel));
+        public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => Ok(value:   await mediator.Send(new PhoneNumberChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
         /// Changes Name
@@ -105,7 +105,7 @@ namespace Hyperdrive.Service.Controllers
         [HttpPut]
         [Route("changename")]
         [Authorize]
-        public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => Ok(value: await @service.ChangeName(@viewModel));
+        public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => Ok(value:   await mediator.Send(new NameChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
         /// Refreshes Tokens
@@ -122,6 +122,6 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("refreshtokens")]
-        public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value: await @service.RefreshTokens(@viewModel));
+        public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value:   await mediator.Send(new RefreshTokenResetCommand { ViewModel = @viewModel }));
     }
 }

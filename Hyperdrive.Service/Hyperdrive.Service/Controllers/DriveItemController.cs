@@ -1,8 +1,9 @@
-﻿using Hyperdrive.Tier.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Commands.DriveItem;
+using Hyperdrive.Application.Queries.DriveItem;
 using Hyperdrive.Application.ViewModels.Additions;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
@@ -36,7 +37,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("findpaginatedarchivebyapplicationuserid")]
-        public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await @service.FindPaginatedDriveItemByApplicationUserId(@viewModel));
+        public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
         /// Finds Paginated Shared DriveItem By ApplicationUser Id
@@ -53,7 +54,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("findpaginatedsharedarchivebyapplicationuserid")]
-        public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await @service.FindPaginatedSharedDriveItemByApplicationUserId(@viewModel));
+        public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedSharedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
         /// Finds All DriveItem Version By DriveItem Id
@@ -70,24 +71,8 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpGet]
         [Route("findallarchiveversionbyarchiveid/{id}")]
-        public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await @service.FindAllDriveItemVersionByDriveItemId(@id));
-
-        /// <summary>
-        /// Finds All DriveItem
-        /// </summary>
-        /// <response code="200">Ok</response>
-        /// <response code="400">BadRequest</response>
-        /// <response code="401">Unauthorized</response>
-        /// <response code="408">RequestTimeout</response>
-        /// <response code="404">NotFound</response>
-        /// <response code="409">Conflict</response>
-        /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>     
-        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [HttpGet]
-        [Route("findallarchive")]
-        public async Task<IActionResult> FindAllDriveItem() => Ok(value: await @service.FindAllDriveItem());
-
+        public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await mediator.Send(new FindAllDriveItemVersionByDriveItemIdQuery {Id = @id}));
+      
         /// <summary>
         /// Adds DriveItem
         /// </summary>
@@ -103,7 +88,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [HttpPost]
         [Route("addarchive")]
-        public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value: await @service.AddDriveItem(@viewModel));
+        public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value:await mediator.Send(new AddDriveItemCommand {ViewModel = @viewModel}));
 
         /// <summary>
         /// Updates DriveItem
@@ -120,7 +105,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
         [Route("updatearchive")]
-        public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value: await @service.UpdateDriveItem(@viewModel));
+        public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
 
         /// <summary>
         /// Removes DriveItem By Id
@@ -139,7 +124,7 @@ namespace Hyperdrive.Service.Controllers
         [Route("removearchivebyid/{id}")]
         public async Task<IActionResult> RemoveDriveItemById(int @id)
         {
-            await @service.RemoveDriveItemById(@id);
+            await mediator.Send(new RemoveDriveItemByIdCommand { Id = @id });
 
             return Ok();
         }

@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Service", "Hyperdrive.Service\Hyperdrive.Service.csproj", "{78371CB3-C31C-4133-8E4A-AA0A2A177123}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperdrive.Tier.Services.Tests", "Hyperdrive.Tier.Services.Tests\Hyperdrive.Tier.Services.Tests.csproj", "{5199E803-D5DB-4639-80AB-D84C69A1ABCC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Host", "Hyperdrive.Host\Hyperdrive.Host.csproj", "{94C628DB-2B6B-418D-9AC0-5C75A640E7B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyperdrive.Domain", "Hyperdrive.Domain\Hyperdrive.Domain.csproj", "{7CBC2914-3F85-4CE4-AFB6-B102DE23A635}"
@@ -25,10 +23,6 @@ Global
 		{78371CB3-C31C-4133-8E4A-AA0A2A177123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78371CB3-C31C-4133-8E4A-AA0A2A177123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78371CB3-C31C-4133-8E4A-AA0A2A177123}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5199E803-D5DB-4639-80AB-D84C69A1ABCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5199E803-D5DB-4639-80AB-D84C69A1ABCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5199E803-D5DB-4639-80AB-D84C69A1ABCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5199E803-D5DB-4639-80AB-D84C69A1ABCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94C628DB-2B6B-418D-9AC0-5C75A640E7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94C628DB-2B6B-418D-9AC0-5C75A640E7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C628DB-2B6B-418D-9AC0-5C75A640E7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU

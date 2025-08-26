@@ -1,7 +1,7 @@
-﻿using Hyperdrive.Tier.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Commands.Auth;
 using Hyperdrive.Application.ViewModels.Auth;
 using MediatR;
 
@@ -32,7 +32,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("signin")]
-        public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await @service.SignIn(@viewModel));
+        public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await mediator.Send(new SignInCommand {ViewModel = @viewModel}));
 
         /// <summary>
         /// Joins In
@@ -49,7 +49,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("joinin")]
-        public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await @service.JoinIn(@viewModel));
+        public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await mediator.Send(new JoinInCommand {ViewModel = @viewModel}));
 
         /// <summary>
         /// Signs Out
@@ -68,7 +68,7 @@ namespace Hyperdrive.Service.Controllers
         [Route("signout")]
         public async Task<IActionResult> SignOut([FromBody] AuthSignOut @viewModel)
         {
-            await @service.SignOut(@viewModel);
+            await mediator.Send(new SignOutCommand { ViewModel = @viewModel });
 
             return Ok();
         }

@@ -1,8 +1,9 @@
-﻿using Hyperdrive.Tier.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Commands.ApplicationUser;
+using Hyperdrive.Application.Queries.ApplicationUser;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
 using MediatR;
@@ -36,7 +37,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateapplicationuser")]
-        public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await @service.UpdateApplicationUser(@viewModel));
+        public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationUserCommand {ViewModel = @viewModel}));
 
         /// <summary>
         /// Finds All Application User
@@ -48,7 +49,8 @@ namespace Hyperdrive.Service.Controllers
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationuser")]
-        public async Task<IActionResult> FindAllApplicationUser() => Ok(value: await @service.FindAllApplicationUser());
+        public async Task<IActionResult> FindAllApplicationUser() => Ok(value: await mediator.Send(new FindAllApplicationUserQuery()));
+           
 
         /// <summary>
         /// Finds Paginated Application User
@@ -65,8 +67,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedapplicationuser")]
-        public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await @service.FindPaginatedApplicationUser(@viewModel));
-
+        public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationUserQuery { ViewModel = @viewModel}));
 
         /// <summary>
         /// Removes Application User ById
@@ -85,7 +86,7 @@ namespace Hyperdrive.Service.Controllers
         [Route("removeapplicationuserbyid/{id}")]
         public async Task<IActionResult> RemoveApplicationUserById(int @id)
         {
-            await @service.RemoveApplicationUserById(@id);
+            await mediator.Send(new RemoveApplicationUserByIdCommand { Id = @id });
 
             return Ok();
         }

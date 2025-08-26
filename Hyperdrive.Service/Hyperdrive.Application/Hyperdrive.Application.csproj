@@ -17,8 +17,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Hyperdrive.Domain\Hyperdrive.Domain.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Commands\" />
-    </ItemGroup>
 </Project>

@@ -9,6 +9,12 @@ namespace Hyperdrive.Application.ViewModels.Updates
     public class UpdateDriveItem : UpdateBase
     {
         /// <summary>
+        /// Gets or Sets <see cref="ParentId"/>
+        /// </summary>
+        [Required]
+        public int ParentId { get; set; }
+        
+        /// <summary>
         /// Gets or Sets <see cref="Name"/>
         /// </summary>
         [Required]

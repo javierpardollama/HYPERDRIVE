@@ -1,8 +1,9 @@
-﻿using Hyperdrive.Tier.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Commands.ApplicationRole;
+using Hyperdrive.Application.Queries.ApplicationRole;
 using Hyperdrive.Application.ViewModels.Additions;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
@@ -36,7 +37,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateapplicationrole")]
-        public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => Ok(value: await @service.UpdateApplicationRole(@viewModel));
+        public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationRoleCommand {ViewModel = @viewModel}));
 
         /// <summary>
         /// Finds All Application Role
@@ -53,7 +54,7 @@ namespace Hyperdrive.Service.Controllers
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationrole")]
-        public async Task<IActionResult> FindAllApplicationRole() => Ok(value: await @service.FindAllApplicationRole());
+        public async Task<IActionResult> FindAllApplicationRole() => Ok(value: await mediator.Send(new FindAllApplicationRoleQuery()));
 
         /// <summary>
         /// Finds Paginated Application Role
@@ -70,7 +71,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedapplicationrole")]
-        public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => Ok(value: await @service.FindPaginatedApplicationRole(@viewModel));
+        public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationRoleQuery { ViewModel = viewModel }));
 
         /// <summary>
         /// Adds Application Role
@@ -87,7 +88,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addapplicationrole")]
-        public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => Ok(value: await @service.AddApplicationRole(@viewModel));
+        public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => Ok(value: await mediator.Send(new AddApplicationRoleCommand { ViewModel = viewModel }));
 
         /// <summary>
         /// Removes Application Role ById
@@ -106,7 +107,7 @@ namespace Hyperdrive.Service.Controllers
         [Route("removeapplicationrolebyid/{id}")]
         public async Task<IActionResult> RemoveApplicationRoleById(int @id)
         {
-            await @service.RemoveApplicationRoleById(@id);
+            await mediator.Send(new RemoveApplicationRoleByIdCommand { Id = @id });
 
             return Ok();
         }

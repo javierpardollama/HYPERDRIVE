@@ -6,5 +6,5 @@ namespace Hyperdrive.Application.Queries.ApplicationUser;
 
 public class FindPaginatedApplicationUserQuery : IRequest<ViewPage<ViewApplicationUser>>
 {
-    public FilterPageApplicationRole ViewModel { get; set; }
+    public FilterPageApplicationUser ViewModel { get; set; }
 }
