@@ -34,11 +34,11 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="SecurityTokenDescriptor"/></returns>
         public SecurityTokenDescriptor GenerateTokenDescriptor(ApplicationUser @applicationUser) => new()
         {
-            Issuer = @jwtSettings.Value.JwtIssuer,
+            Issuer = JwtSettings.Value.JwtIssuer,
             Claims = ClaimHelper.ToDictionary(GenerateJwtClaims(applicationUser)),
             IssuedAt = DateTime.UtcNow,
             NotBefore = DateTime.UtcNow,
-            Expires = DateTime.UtcNow.AddMinutes(@jwtSettings.Value.JwtExpireMinutes),
+            Expires = DateTime.UtcNow.AddMinutes(JwtSettings.Value.JwtExpireMinutes),
             SigningCredentials = GenerateSigningCredentials(GenerateSymmetricSecurityKey())
         };
 
