@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Hyperdrive.Application.Commands.ApplicationRole;
 
-public class AddApplicationRoleCommand : IRequest<ViewApplicationUser>
+public class AddApplicationRoleCommand : IRequest<ViewApplicationRole>
 {
     public AddApplicationRole ViewModel { get; set; }
 }
