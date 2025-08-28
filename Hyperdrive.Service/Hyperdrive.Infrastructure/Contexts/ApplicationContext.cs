@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 namespace Hyperdrive.Infrastructure.Contexts
 {
     /// <summary>
-    /// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="DbContext"/>. Implements <see cref="IdentityDbContext"/>. Inherits <see cref="options"/>
+    /// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="IdentityDbContext"/>. Implements <see cref="IApplicationContext"/>.
     /// </summary>    
-    /// <param name="options">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
     public class ApplicationContext(DbContextOptions<ApplicationContext> options) : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>(options), IApplicationContext
     {
         /// <summary>
