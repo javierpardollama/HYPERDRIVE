@@ -19,6 +19,9 @@ public static class ManagerInstaller
         @this.AddTransient<IApplicationUserManager, ApplicationUserManager>();
         @this.AddTransient<IAuthManager, AuthManager>();
         @this.AddTransient<ITokenManager, TokenManager>();
+        @this.AddTransient<IDriveItemManager, DriveItemManager>();
+        @this.AddTransient<IRefreshTokenManager, RefreshTokenManager>();
+        @this.AddTransient<ITokenManager, TokenManager>();
         // Add other managers here
     }
 }
