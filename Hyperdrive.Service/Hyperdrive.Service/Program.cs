@@ -12,7 +12,7 @@ var @builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.InstallEntityFramework(builder.Configuration);
+@builder.Services.InstallEntityFramework(builder.Configuration);
 
 @builder.Services.AddControllers()
                 .AddJsonOptions(options =>
@@ -23,11 +23,11 @@ builder.Services.InstallEntityFramework(builder.Configuration);
                 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.InstallOpenApi();
+@builder.Services.AddEndpointsApiExplorer();
+@builder.Services.InstallOpenApi();
 
-builder.Services.InstallManagers();
-builder.Services.InstallMediatR();
+@builder.Services.InstallManagers();
+@builder.Services.InstallMediatR();
 
 @builder.Services.AddResponseCaching();
 
