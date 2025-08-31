@@ -5,7 +5,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <IsAspireSharedProject>true</IsAspireSharedProject>
-    <RootNamespace>Hyperdrive.Tier.Resilience</RootNamespace>
+    <RootNamespace>Hyperdrive.Host</RootNamespace>
   </PropertyGroup>
 
     <ItemGroup>
