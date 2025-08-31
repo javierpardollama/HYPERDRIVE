@@ -33,14 +33,14 @@ public class JoinInHandler : IRequestHandler<JoinInCommand, ViewApplicationUser>
         
         await _authManager.JoinIn(request.ViewModel.Email, request.ViewModel.Password);
         
-        var user = await _userManager.FindApplicationUserByEmail(request.ViewModel.Email);
+        var @user = await _userManager.FindApplicationUserByEmail(request.ViewModel.Email);
 
-        await _tokenManager.AddApplicationUserToken(user);
+        await _tokenManager.AddApplicationUserToken(@user);
 
-        await _refreshTokenManager.AddApplicationUserRefreshToken(user);
+        await _refreshTokenManager.AddApplicationUserRefreshToken(@user);
         
-        var dto  = await _userManager.ReloadApplicationUserById(user.Id);
+        var @dto  = await _userManager.ReloadApplicationUserById(@user.Id);
 
-        return dto.ToViewModel();
+        return @dto.ToViewModel();
     }
 }

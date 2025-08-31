@@ -33,12 +33,12 @@ public class SignInHandler : IRequestHandler<SignInCommand, ViewApplicationUser>
         
         await _authManager.SignIn(@user, request.ViewModel.Email, request.ViewModel.Password);
 
-        await _tokenManager.AddApplicationUserToken(user);
+        await _tokenManager.AddApplicationUserToken(@user);
 
-        await _refreshTokenManager.AddApplicationUserRefreshToken(user);
+        await _refreshTokenManager.AddApplicationUserRefreshToken(@user);
         
-        var dto  = await _userManager.ReloadApplicationUserById(user.Id);
+        var @dto  = await _userManager.ReloadApplicationUserById(@user.Id);
 
-        return dto.ToViewModel();
+        return @dto.ToViewModel();
     }
 }

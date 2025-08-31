@@ -19,5 +19,11 @@ namespace Hyperdrive.Application.ViewModels.Security
         [Required]
         [EmailAddress]
         public string NewEmail { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
+        /// </summary>
+        [Required]
+        public string ApplicationUserRefreshToken  { get; set; }
     }
 }
