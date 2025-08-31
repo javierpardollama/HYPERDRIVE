@@ -37,7 +37,7 @@ var @jwtSettings = new JwtSettings();
 @builder.Services.Configure<JwtSettings>(@builder.Configuration.GetSection("Jwt"));
 
 @builder.Services.InstallAuthentication(@jwtSettings);
-builder.Services.InstallCors(@jwtSettings);
+@builder.Services.InstallCors(@jwtSettings);
 
 // Register the Rate Limit Settings to the configuration container.
 var @rateSettings = new RateLimitSettings();
@@ -45,8 +45,8 @@ var @rateSettings = new RateLimitSettings();
 @builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
 
 // Return the Problem Details format for non-successful responses
-builder.Services.InstallProblemDetails();
-builder.Services.InstallRateLimiter(@rateSettings);
+@builder.Services.InstallProblemDetails();
+@builder.Services.InstallRateLimiter(@rateSettings);
 
 @builder.InstallAspireServices();
 
@@ -59,9 +59,9 @@ if (@app.Environment.IsDevelopment())
     @app.UseSwaggerUI();
 }
 
-app.InstallMigrations();
+@app.InstallMigrations();
 
-app.InstallMiddlewares();
+@app.InstallMiddlewares();
 
 @app.UseHttpsRedirection();
 
