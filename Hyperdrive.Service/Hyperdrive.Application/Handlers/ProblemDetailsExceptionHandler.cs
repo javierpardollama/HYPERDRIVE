@@ -23,7 +23,7 @@ public class ProblemDetailsExceptionHandler(IProblemDetailsService problemDetail
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
         CancellationToken cancellationToken)
     {
-        httpContext.Response.StatusCode = ExceptionProfile.Map(exception);
+        httpContext.Response.StatusCode = exception.ToCode();
 
         return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
         {
