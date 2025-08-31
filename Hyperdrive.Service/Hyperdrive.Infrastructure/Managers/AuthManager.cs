@@ -48,6 +48,25 @@ namespace Hyperdrive.Infrastructure.Managers
 
             return @signInResult.Succeeded;
         }
+        
+        /// <summary>
+        /// Signs Out
+        /// </summary>
+        /// <param name="email">Injected <see cref="string"/></param>
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public async Task SignOut(string @email)
+        {
+            await @signInManager.SignOutAsync();
+           
+            // Log
+            string @logData = nameof(ApplicationUser)
+                              + " with Email "
+                              + @email
+                              + " logged out at "
+                              + DateTime.UtcNow.ToShortTimeString();
+
+            @logger.LogInformation(@logData);
+        }
 
         /// <summary>
         /// Joins In

@@ -17,6 +17,13 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="password">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
         Task<bool> SignIn(ApplicationUser @user, string email, string password);
+        
+        /// <summary>
+        /// Signs In
+        /// </summary>
+        /// <param name="email">Injected <see cref="string"/></param>
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task SignOut(string email);
 
         /// <summary>
         /// Joins In

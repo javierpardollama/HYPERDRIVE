@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.Auth;
 using Hyperdrive.Application.ViewModels.Auth;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hyperdrive.Service.Controllers
 {
@@ -66,6 +67,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
         [Route("signout")]
+        [Authorize]
         public async Task<IActionResult> SignOut([FromBody] AuthSignOut @viewModel)
         {
             await mediator.Send(new SignOutCommand { ViewModel = @viewModel });

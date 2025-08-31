@@ -8,10 +8,15 @@ namespace Hyperdrive.Application.ViewModels.Auth
     public class AuthSignOut
     {
         /// <summary>
-        /// Gets or Sets <see cref="Email"/>
+        /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public int ApplicationUserId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationUserId"/>
+        /// </summary>
+        [Required]
+        public string ApplicationUserRefreshToken { get; set; }
     }
 }

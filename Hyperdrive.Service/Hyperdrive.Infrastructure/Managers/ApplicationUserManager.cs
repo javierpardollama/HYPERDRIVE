@@ -220,6 +220,41 @@ namespace Hyperdrive.Infrastructure.Managers
 
             return @applicationUser;
         }
+        
+        /// <summary>
+        /// Checks Email
+        /// </summary>
+        /// <param name="email">Injected <see cref="string"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        public async Task<ApplicationUser> CheckEmail(string @email)
+        {
+            ApplicationUser @applicationUser = await @userManager.Users
+                .AsNoTracking()
+                .AsSplitQuery()
+                .TagWith("CheckEmail")
+                .FirstOrDefaultAsync(x => x.Email == @email.Trim());
+
+            if (@applicationUser is not null)
+            {
+                // Log
+                string @logData = nameof(ApplicationUser)
+                                  + " with Email "
+                                  + applicationUser.Email
+                                  + " was already found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.LogWarning(@logData);
+
+                throw new ServiceException(nameof(ApplicationUser)
+                                           + " with Email "
+                                           + @email
+                                           + " already exists");
+            }
+
+            return @applicationUser;
+        }
+        
 
         /// <summary>
         /// Reloads Application User By Id
