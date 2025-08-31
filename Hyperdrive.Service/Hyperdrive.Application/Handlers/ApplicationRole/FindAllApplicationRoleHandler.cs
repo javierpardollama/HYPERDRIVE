@@ -1,16 +1,27 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Hyperdrive.Application.Queries.ApplicationRole;
 using Hyperdrive.Application.ViewModels.Views;
+using Hyperdrive.Domain.Managers;
 using MediatR;
 
 namespace Hyperdrive.Application.Handlers.ApplicationRole;
 
 public class FindAllApplicationRoleHandler : IRequestHandler<FindAllApplicationRoleQuery, IList<ViewCatalog>>
 {
-    public Task<IList<ViewCatalog>> Handle(FindAllApplicationRoleQuery request, CancellationToken cancellationToken)
+    private readonly IApplicationRoleManager _manager;
+
+    public FindAllApplicationRoleHandler(IApplicationRoleManager manager)
     {
-        throw new System.NotImplementedException();
+        _manager = manager;
+    }
+
+    public async Task<IList<ViewCatalog>> Handle(FindAllApplicationRoleQuery request, CancellationToken cancellationToken)
+    {
+        var @roles = await _manager.FindAllApplicationRole();
+
+        return @roles.Select(x => new ViewCatalog()).ToList();
     }
 }

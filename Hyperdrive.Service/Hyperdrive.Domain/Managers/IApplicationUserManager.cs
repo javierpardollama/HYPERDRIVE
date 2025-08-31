@@ -48,10 +48,10 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Updates Application User
         /// </summary>
-        /// <param name="roles">Injected <see cref="List{string}"/></param>
+        /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> UpdateApplicationUserRoles(List<string> @roles, int @id);
+        Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, int @id);
         
         /// <summary>
         /// Checks Email

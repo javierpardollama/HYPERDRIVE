@@ -164,10 +164,10 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Updates Application User Roles
         /// </summary>
-        /// <param name="roles">Injected <see cref="List{string}"/></param>
+        /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        public async Task<ApplicationUserDto> UpdateApplicationUserRoles(List<string> @roles, int @id)
+        public async Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, int @id)
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(@id);
 

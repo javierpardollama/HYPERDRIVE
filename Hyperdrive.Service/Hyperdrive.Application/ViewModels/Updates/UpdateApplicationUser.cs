@@ -8,8 +8,8 @@ namespace Hyperdrive.Application.ViewModels.Updates
     public class UpdateApplicationUser : UpdateBase
     {
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationRolesId"/>
+        /// Gets or Sets <see cref="ApplicationRoleNames"/>
         /// </summary>
-        public virtual ICollection<int> ApplicationRolesId { get; set; }
+        public virtual ICollection<string> ApplicationRoleNames { get; set; }
     }
 }
