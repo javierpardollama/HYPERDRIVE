@@ -54,6 +54,21 @@ namespace Hyperdrive.Domain.Managers
         Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, int @id);
         
         /// <summary>
+        /// Adds Application Roles to Application User
+        /// </summary>
+        /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> AddApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user);
+        
+        /// <summary>
+        /// Removes Application Roles from Application User
+        /// </summary>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> RemoveApplicationUserRoles(ApplicationUser @user);
+        
+        /// <summary>
         /// Checks Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>

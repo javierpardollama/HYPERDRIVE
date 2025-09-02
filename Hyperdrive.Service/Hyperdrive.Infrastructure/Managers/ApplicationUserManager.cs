@@ -171,9 +171,9 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             ApplicationUser @applicationUser = await FindApplicationUserById(@id);
 
-            IdentityResult @identityResult = await @userManager.AddToRolesAsync(applicationUser, roles);
-
-            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+            await RemoveApplicationUserRoles(@applicationUser); 
+            
+            await AddApplicationUserRoles(roles, @applicationUser); 
 
             // Log
             string @logData = nameof(ApplicationUser)
@@ -185,6 +185,48 @@ namespace Hyperdrive.Infrastructure.Managers
             @logger.LogInformation(@logData);
 
             return applicationUser.ToDto();
+        }
+
+        public async Task<bool> AddApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user)
+        {
+            IdentityResult @identityResult = await @userManager.AddToRolesAsync(@user, @roles);
+
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+            
+            // Log
+            string @logData = nameof(ApplicationUser)
+                              + " with Id"
+                              + @user.Id
+                              + " added its "
+                              + nameof(ApplicationRole)
+                              + " at "
+                              + DateTime.UtcNow.ToShortTimeString();
+
+            @logger.LogInformation(@logData);
+            
+            return @identityResult.Succeeded;
+        }
+
+        public async Task<bool> RemoveApplicationUserRoles(ApplicationUser user)
+        {
+            var @roles = await userManager.GetRolesAsync(user);
+            
+            IdentityResult @identityResult = await @userManager.RemoveFromRolesAsync(user, roles);
+
+            if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
+
+            // Log
+            string @logData = nameof(ApplicationUser)
+                              + " with Id"
+                              + @user.Id
+                              + " removed its "
+                              + nameof(ApplicationRole)
+                              + " at "
+                              + DateTime.UtcNow.ToShortTimeString();
+
+            @logger.LogInformation(@logData);
+            
+            return @identityResult.Succeeded;
         }
 
         /// <summary>
