@@ -334,5 +334,38 @@ namespace Hyperdrive.Infrastructure.Managers
 
             return @archive;
         }
+
+        /// <summary>
+        /// Creates Root Drive Item
+        /// </summary>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
+        public async Task<DriveItem> CreateRoot(ApplicationUser @user)
+        {
+            var @entity = new DriveItem()
+            {
+                Folder = true,
+                System = true,
+                Parent = null,
+                Name = "root",
+                NormalizedName = "ROOT",
+                By = @user,
+            };
+            
+            await Context.DriveItems.AddAsync(@entity);
+
+            await Context.SaveChangesAsync();
+
+            // Log
+            string @logData = nameof(DriveItem)
+                              + " with Id "
+                              + @entity.Id
+                              + " was created at "
+                              + DateTime.UtcNow.ToShortTimeString();
+
+            @logger.LogInformation(@logData);
+
+            return @entity;
+        }
     }
 }

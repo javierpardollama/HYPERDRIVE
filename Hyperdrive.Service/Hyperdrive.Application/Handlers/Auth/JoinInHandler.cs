@@ -12,17 +12,22 @@ public class JoinInHandler : IRequestHandler<JoinInCommand, ViewApplicationUser>
 {
     private readonly IApplicationUserManager _userManager;
     private readonly IAuthManager _authManager;
+    private readonly IDriveItemManager _driveItemManager;
     private readonly ITokenManager _tokenManager;
     private readonly IRefreshTokenManager _refreshTokenManager;
+    
     
     public JoinInHandler(
         IApplicationUserManager userManager, 
         IAuthManager authManager, 
+        IDriveItemManager driveItemManager,
         ITokenManager tokenManager, 
-        IRefreshTokenManager refreshTokenManager)
+        IRefreshTokenManager refreshTokenManager
+        )
     {
         _userManager = userManager;
         _authManager = authManager;
+        _driveItemManager = driveItemManager;
         _tokenManager = tokenManager;
         _refreshTokenManager = refreshTokenManager;
     }
@@ -34,6 +39,8 @@ public class JoinInHandler : IRequestHandler<JoinInCommand, ViewApplicationUser>
         await _authManager.JoinIn(request.ViewModel.Email, request.ViewModel.Password);
         
         var @user = await _userManager.FindApplicationUserByEmail(request.ViewModel.Email);
+
+        await _driveItemManager.CreateRoot(user);
 
         await _tokenManager.AddApplicationUserToken(@user);
 

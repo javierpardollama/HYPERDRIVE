@@ -93,5 +93,12 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="parent">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         Task<DriveItem> CheckName(string @name, int @id, int @parent);
+        
+        /// <summary>
+        /// Creates Root Drive Item
+        /// </summary>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
+        Task<DriveItem> CreateRoot(ApplicationUser @user);
     }
 }
