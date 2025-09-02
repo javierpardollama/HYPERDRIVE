@@ -1,9 +1,7 @@
 import { ViewKey } from './viewkey';
 import { ViewBase } from './viewbase';
-import { ViewApplicationUserRole } from './viewapplicationuserrole';
-import { ViewApplicationRole } from './viewapplicationrole';
-import { ViewApplicationUserToken } from './viewapplicationusertoken';
-import { ViewApplicationUserRefreshToken } from './viewapplicationuserrefreshtoken';
+import {ViewCatalog} from './viewcatalog';
+import {ViewToken} from './viewtoken';
 
 export interface ViewApplicationUser extends ViewKey, ViewBase {
   Email: string;
@@ -11,10 +9,7 @@ export interface ViewApplicationUser extends ViewKey, ViewBase {
   LastName: string;
   PhoneNumber: string;
   Initial: string;
-  ApplicationUserRoles: ViewApplicationUserRole[];
-  ApplicationRoles: ViewApplicationRole[];
-  ApplicationUserTokens: ViewApplicationUserToken[];
-  ApplicationUserToken: ViewApplicationUserToken;
-  ApplicationUserRefreshTokens: ViewApplicationUserRefreshToken[];
-  ApplicationUserRefreshToken: ViewApplicationUserRefreshToken;
+  ApplicationRoles: ViewCatalog[];
+  Token: ViewToken;
+  RefreshToken: ViewToken;
 }

@@ -16,7 +16,7 @@ public class DriveItemDto
     
     public bool Folder { get; set; }
     
-    public bool Locked { get; set; }
+    public bool System { get; set; }
    
     public string Name { get; set; }
     

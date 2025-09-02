@@ -23,7 +23,7 @@ public static class DriveItemProfile
             By = @entity.By.ToCatalog(),
             Parent = @entity.Parent.ToCatalog(),
             Folder = @entity.Folder,
-            Locked = @entity.Locked,
+            System = @entity.System,
             LastModified = @entity.Activity
               .OrderByDescending(x=>x.LastModified)
               .LastOrDefault()?.LastModified,

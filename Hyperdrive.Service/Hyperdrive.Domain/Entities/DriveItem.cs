@@ -52,10 +52,10 @@ namespace Hyperdrive.Domain.Entities
         public bool Folder { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="Locked"/>
+        /// Gets or Sets <see cref="System"/>
         /// </summary>
         [Required]
-        public bool Locked { get; set; }
+        public bool System { get; set; }
         
         /// <summary>
         /// Gets or Sets <see cref="Name"/>

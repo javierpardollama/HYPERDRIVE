@@ -1,12 +1,12 @@
 import { ViewBase } from './viewbase';
 import { ViewKey } from './viewkey';
-import { ViewApplicationUserDriveItem } from './viewapplicationuserdriveitem';
-import { ViewApplicationUser } from './viewapplicationuser';
+import {ViewCatalog} from './viewcatalog';
 
 export interface ViewDriveItem extends ViewKey, ViewBase {
-    By: ViewApplicationUser;   
+    By: ViewCatalog;
     Folder: boolean;
-    Locked: boolean;
+    System: boolean;
     Name: string;
-    ApplicationUserDriveItems: ViewApplicationUserDriveItem[];
+    Parent: ViewCatalog;
+    SharedWith: ViewCatalog[];
 }
