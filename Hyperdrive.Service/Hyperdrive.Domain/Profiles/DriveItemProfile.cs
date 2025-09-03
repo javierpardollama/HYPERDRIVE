@@ -57,8 +57,8 @@ public static class DriveItemProfile
         return new DriveItemBinaryDto
         {
             Name = @entity.Name,
-            Data = @entity.Activity.OrderByDescending(x=> x.LastModified).LastOrDefault()?.Data,
-            Type = @entity.Activity.OrderByDescending(x=> x.LastModified).LastOrDefault()?.Type
+            Data = @entity.Activity.OrderByDescending(x=> x.LastModified).FirstOrDefault()?.Data,
+            Type = @entity.Activity.OrderByDescending(x=> x.LastModified).FirstOrDefault()?.Type
         };
     }
 }
