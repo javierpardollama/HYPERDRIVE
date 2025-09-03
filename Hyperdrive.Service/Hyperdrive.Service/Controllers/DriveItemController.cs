@@ -36,7 +36,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
-        [Route("findpaginatedarchivebyapplicationuserid")]
+        [Route("findpaginateddriveitembyapplicationuserid")]
         public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPost]
-        [Route("findpaginatedsharedarchivebyapplicationuserid")]
+        [Route("findpaginatedshareddriveitembyapplicationuserid")]
         public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedSharedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpGet]
-        [Route("findallarchiveversionbyarchiveid/{id}")]
+        [Route("findalldriveitemversionbydriveitemid/{id}")]
         public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await mediator.Send(new FindAllDriveItemVersionByDriveItemIdQuery {Id = @id}));
       
         /// <summary>
@@ -121,7 +121,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
-        [Route("updatearchive")]
+        [Route("updatedriveitem")]
         public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpDelete]
-        [Route("removearchivebyid/{id}")]
+        [Route("removedriveitembyid/{id}")]
         public async Task<IActionResult> RemoveDriveItemById(int @id)
         {
             await mediator.Send(new RemoveDriveItemByIdCommand { Id = @id });

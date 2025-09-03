@@ -25,5 +25,11 @@ namespace Hyperdrive.Application.ViewModels.Filters
         /// </summary>
         [Required]
         public int ApplicationUserId { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="ParentId"/>
+        /// </summary>
+        [Required]
+        public int? ParentId { get; set; }
     }
 }

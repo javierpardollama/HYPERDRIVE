@@ -22,7 +22,8 @@ public class FindPaginatedDriveItemByApplicationUserIdHandler : IRequestHandler<
         var @page = await _manager.FindPaginatedDriveItemByApplicationUserId(
             request.ViewModel.Index, 
             request.ViewModel.Size,
-            request.ViewModel.ApplicationUserId
+            request.ViewModel.ApplicationUserId,
+            request.ViewModel.ParentId
             ); 
         
         return @page.ToPageViewModel();

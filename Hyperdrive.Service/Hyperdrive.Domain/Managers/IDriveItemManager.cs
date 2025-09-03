@@ -29,18 +29,19 @@ namespace Hyperdrive.Domain.Managers
         /// </summary>
         /// <param name="index">Injected <see cref="int"/></param>
         /// <param name="size">Injected <see cref="int"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @id);
+        Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parent);
 
         /// <summary>
         /// Finds Paginated Shared Drive Item By Application User Id
         /// </summary>
         /// <param name="index">Injected <see cref="int"/></param>
         /// <param name="size">Injected <see cref="int"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @id);
+        Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @userid);
 
         /// <summary>
         /// Finds All Drive Item Version By Drive Item Id

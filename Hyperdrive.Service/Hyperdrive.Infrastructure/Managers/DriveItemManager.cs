@@ -82,9 +82,10 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="index">Injected <see cref="int"/></param>
         /// <param name="size">Injected <see cref="int"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @id)
+        public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parent)
         {
             PageDto<DriveItemDto> @page = new()
             {
@@ -92,7 +93,8 @@ namespace Hyperdrive.Infrastructure.Managers
                     .AsSplitQuery()
                     .AsNoTracking()
                     .Include(x => x.By)
-                    .Where(x => x.By.Id == @id)
+                    .Include(x => x.Parent)
+                    .Where(x => x.By.Id == userid && x.Parent.Id == @parent)
                     .CountAsync(),
                 Index = @index,
                 Size = @size,
@@ -102,7 +104,8 @@ namespace Hyperdrive.Infrastructure.Managers
                    .AsNoTracking()
                    .Include(x => x.Activity)
                    .Include(x => x.By)
-                   .Where(x => x.By.Id == @id)
+                   .Include(x => x.Parent)
+                   .Where(x => x.By.Id == @userid && x.Parent.Id == @parent)
                    .Skip(@index * @size)
                    .Take(@size)
                    .Select(x=> x.ToDto())
@@ -117,9 +120,9 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="index">Injected <see cref="int"/></param>
         /// <param name="size">Injected <see cref="int"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @id)
+        public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @userid)
         {
             PageDto<DriveItemDto> @page = new()
             {
@@ -128,7 +131,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     .AsNoTracking()
                     .Include(x => x.ApplicationUser)
                     .Include(x => x.DriveItem)
-                    .Where(x => x.ApplicationUser.Id == @id)
+                    .Where(x => x.ApplicationUser.Id == @userid)
                     .CountAsync(),
                 Index = @index,
                 Size = @size,
@@ -138,7 +141,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     .AsNoTracking()
                     .Include(x => x.ApplicationUser)
                     .Include(x => x.DriveItem)
-                    .Where(x => x.ApplicationUser.Id == @id)
+                    .Where(x => x.ApplicationUser.Id == @userid)
                     .Skip(@index * @size)
                     .Take(@size)
                     .Select(x => x.DriveItem.ToDto())
