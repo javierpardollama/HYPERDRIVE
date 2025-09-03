@@ -376,13 +376,13 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-        public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int id)
+        public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @id)
         {
             DriveItemBinaryDto @archive = await Context.DriveItems
-                .TagWith("CheckName")
+                .TagWith("FindDriveItemBinaryById")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == @id)
                 .Select(x=> x.ToBinary())
                 .FirstOrDefaultAsync();
 
