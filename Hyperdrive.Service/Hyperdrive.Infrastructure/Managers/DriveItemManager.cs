@@ -382,6 +382,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("FindDriveItemBinaryById")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .Include(x => x.Activity)
                 .Where(x => x.Id == @id)
                 .Select(x=> x.ToBinary())
                 .FirstOrDefaultAsync();
