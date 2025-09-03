@@ -1,8 +1,12 @@
-import { AddDriveItem } from './../viewmodels/additions/adddriveitem';
+import { AddDriveItem } from '../viewmodels/additions/adddriveitem';
 
-import { UpdateDriveItem } from './../viewmodels/updates/updatedriveitem';
+import { UpdateDriveItem } from '../viewmodels/updates/updatedriveitem';
 
-import { ViewDriveItem } from './../viewmodels/views/viewdriveitem';
+import { ViewDriveItem } from '../viewmodels/views/viewdriveitem';
+
+import { ViewDriveItemVersion } from '../viewmodels/views/viewdriveitemversion';
+
+import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
 import { ViewPage } from '../viewmodels/views/viewpage';
 
@@ -19,8 +23,6 @@ import { firstValueFrom } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
-
-import { ViewDriveItemVersion } from './../viewmodels/views/viewdriveitemversion';
 
 import { environment } from '../environments/environment';
 
@@ -62,6 +64,11 @@ export class DriveItemService extends BaseService {
     public FindAllDriveItemVersionByDriveItemId(id: number): Promise<ViewDriveItemVersion[]> {
         return firstValueFrom(this.httpClient.get<ViewDriveItemVersion[]>(`${environment.Api.Service}api/driveitem/findalldriveitemversionbydriveitemid/${id}`)
             .pipe(catchError(this.HandleError<ViewDriveItemVersion[]>('FindAllDriveItemVersionByDriveItemId', []))));
+    }
+
+    public FindDriveItemBinaryByIdQuery(id: number): Promise<ViewDriveItemBinary> {
+        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/driveitem/finddriveitembinarybyid/${id}`)
+            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindAllDriveItemVersionByDriveItemId', undefined))));
     }
 
     public AddDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {

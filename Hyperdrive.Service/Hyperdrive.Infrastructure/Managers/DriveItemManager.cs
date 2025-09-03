@@ -367,5 +367,40 @@ namespace Hyperdrive.Infrastructure.Managers
 
             return @entity;
         }
+
+        /// <summary>
+        /// Finds Drive Item Binary By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
+        public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int id)
+        {
+            DriveItemBinaryDto @archive = await Context.DriveItems
+                .TagWith("CheckName")
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Where(x => x.Id == id)
+                .Select(x=> x.ToBinary())
+                .FirstOrDefaultAsync();
+
+            if (@archive is null)
+            {
+                // Log
+                string @logData = nameof(DriveItem)
+                                  + " with Id "
+                                  + id
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.LogWarning(@logData);
+
+                throw new ServiceException(nameof(DriveItem)
+                                           + " with Id "
+                                           + id
+                                           + " does not exist");
+            }
+
+            return @archive;
+        }
     }
 }

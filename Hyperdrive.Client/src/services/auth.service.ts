@@ -1,10 +1,10 @@
-import { AuthJoinIn } from './../viewmodels/auth/authjoinin';
+import { AuthJoinIn } from '../viewmodels/auth/authjoinin';
 
-import { AuthSignIn } from './../viewmodels/auth/authsignin';
+import { AuthSignIn } from '../viewmodels/auth/authsignin';
 
-import { AuthSignOut } from './../viewmodels/auth/authsignout';
+import { AuthSignOut } from '../viewmodels/auth/authsignout';
 
-import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -18,7 +18,7 @@ import { BaseService } from './base.service';
 
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from './../environments/environment';
+import { environment } from '../environments/environment';
 
 import { Router } from '@angular/router';
 

@@ -19,7 +19,6 @@ public static class DriveItemVersionProfile
         {
             Id = @entity.Id,
             LastModified = @entity.LastModified,
-            Data = @entity.Data,
             Size = @entity.Size,
             Type = @entity.Type,
         };

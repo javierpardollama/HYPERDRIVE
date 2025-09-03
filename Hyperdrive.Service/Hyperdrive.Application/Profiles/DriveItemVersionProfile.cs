@@ -13,13 +13,12 @@ public static class DriveItemVersionProfile
     /// </summary>
     /// <param name="dto">Injected <see cref="DriveItemVersionDto"/></param>
     /// <returns>Instance of <see cref="ViewDriveItemVersion"/></returns>
-    public static ViewDriveItemVersion ToDto(this DriveItemVersionDto @dto)
+    public static ViewDriveItemVersion ToViewModel(this DriveItemVersionDto @dto)
     {
         return new ViewDriveItemVersion
         {
             Id = @dto.Id,
             LastModified = @dto.LastModified,
-            Data = @dto.Data,
             Size = @dto.Size,
             Type = @dto.Type,
         };

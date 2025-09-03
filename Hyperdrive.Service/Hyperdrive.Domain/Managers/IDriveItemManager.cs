@@ -100,5 +100,12 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         Task<DriveItem> CreateRoot(ApplicationUser @user);
+        
+        /// <summary>
+        /// Finds Drive Item Binary By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
+        Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @id);
     }
 }

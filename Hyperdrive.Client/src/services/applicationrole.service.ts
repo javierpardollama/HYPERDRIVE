@@ -4,7 +4,7 @@ import { UpdateApplicationRole } from '../viewmodels/updates/updateapplicationro
 
 import { ViewPage } from '../viewmodels/views/viewpage';
 
-import { ViewApplicationRole } from './../viewmodels/views/viewapplicationrole';
+import { ViewApplicationRole } from '../viewmodels/views/viewapplicationrole';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -16,7 +16,7 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { FilterPageApplicationRole } from './../viewmodels/filters/filterpageapplicationrole';
+import { FilterPageApplicationRole } from '../viewmodels/filters/filterpageapplicationrole';
 
 import { firstValueFrom } from 'rxjs';
 

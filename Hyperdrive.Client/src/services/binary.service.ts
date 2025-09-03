@@ -1,12 +1,12 @@
-import { AddDriveItem } from './../viewmodels/additions/adddriveitem';
+import { AddDriveItem } from '../viewmodels/additions/adddriveitem';
 
-import { UpdateDriveItem } from './../viewmodels/updates/updatedriveitem';
+import { UpdateDriveItem } from '../viewmodels/updates/updatedriveitem';
 
-import { BinaryAddDriveItem } from './../viewmodels/binary/binaryadddriveitem';
+import { BinaryAddDriveItem } from '../viewmodels/binary/binaryadddriveitem';
 
-import { BinaryUpdateDriveItem } from './../viewmodels/binary/binaryupdatedriveitem';
+import { BinaryUpdateDriveItem } from '../viewmodels/binary/binaryupdatedriveitem';
 
-import { ViewDriveItemVersion } from './../viewmodels/views/viewdriveitemversion';
+import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -63,7 +63,7 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public async DecodeViewDriveItem(viewModel: ViewDriveItemVersion): Promise<void> {
+    public async DecodeViewDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
 
         const blob = await this.DecodeContent(viewModel.Data!, viewModel.Type);
 

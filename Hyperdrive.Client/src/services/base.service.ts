@@ -9,11 +9,11 @@ import {
     of
 } from 'rxjs';
 
-import { TimeAppVariants } from './../variants/time.app.variants';
+import { TimeAppVariants } from '../variants/time.app.variants';
 
-import { TextAppVariants } from './../variants/text.app.variants';
+import { TextAppVariants } from '../variants/text.app.variants';
 
-import { CodeAppVariants } from './../variants/codes.app.variants';
+import { CodeAppVariants } from '../variants/codes.app.variants';
 
 import { Router } from '@angular/router';
 

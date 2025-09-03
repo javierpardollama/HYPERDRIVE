@@ -46,4 +46,19 @@ public static class DriveItemProfile
             Items = dto.Items.Select(x=> x.ToViewModel()).ToList()
         };
     }
+    
+    /// <summary>
+    /// Transforms to Binary ViewModel
+    /// </summary>
+    /// <param name="dto">Injected <see cref="DriveItemBinaryDto"/></param>
+    /// <returns>Instance of <see cref="ViewDriveItemBinary"/></returns>
+    public static ViewDriveItemBinary ToViewModel(this DriveItemBinaryDto @dto)
+    {
+        return new ViewDriveItemBinary
+        {
+            Name = @dto.Name,
+            Data = @dto.Data,
+            Type = @dto.Type
+        };
+    }
 }

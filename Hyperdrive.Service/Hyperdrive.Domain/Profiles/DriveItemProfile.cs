@@ -46,4 +46,19 @@ public static class DriveItemProfile
             Name = @entity.Name
         };
     }
+    
+    /// <summary>
+    /// Transforms to Binary Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+    /// <returns>Instance of <see cref="DriveItemBinaryDto"/></returns>
+    public static DriveItemBinaryDto ToBinary(this DriveItem @entity)
+    {
+        return new DriveItemBinaryDto
+        {
+            Name = @entity.Name,
+            Data = @entity.Activity.OrderByDescending(x=> x.LastModified).LastOrDefault()?.Data,
+            Type = @entity.Activity.OrderByDescending(x=> x.LastModified).LastOrDefault()?.Type
+        };
+    }
 }

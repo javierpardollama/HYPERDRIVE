@@ -74,6 +74,23 @@ namespace Hyperdrive.Service.Controllers
         public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await mediator.Send(new FindAllDriveItemVersionByDriveItemIdQuery {Id = @id}));
       
         /// <summary>
+        /// Finds Drive Item Binary By DriveItem Id
+        /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="400">BadRequest</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
+        [HttpGet]
+        [Route("finddriveitembinarybyid/{id}")]
+        public async Task<IActionResult> FindDriveItemBinaryByIdQuery(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
+        
+        /// <summary>
         /// Adds DriveItem
         /// </summary>
         /// <response code="200">Ok</response>
