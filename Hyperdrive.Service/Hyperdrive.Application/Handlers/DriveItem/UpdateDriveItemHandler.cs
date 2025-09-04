@@ -19,8 +19,6 @@ public class UpdateDriveItemHandler : IRequestHandler<UpdateDriveItemCommand, Vi
     
     public async Task<ViewDriveItem> Handle(UpdateDriveItemCommand request, CancellationToken cancellationToken)
     {
-        await _manager.CheckName(request.ViewModel.Name, request.ViewModel.Id, request.ViewModel.ParentId );
-        
         await _manager.ChangeName(request.ViewModel.Name, request.ViewModel.Id, request.ViewModel.ParentId );
         
         var @dto = await _manager.ReloadDriveItemById(request.ViewModel.Id);
