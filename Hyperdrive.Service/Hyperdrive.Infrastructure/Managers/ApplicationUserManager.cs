@@ -108,7 +108,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Finds All Application User By Ids
         /// </summary>
         /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ApplicationUser}}"/></returns>
         public async Task<IList<ApplicationUser>> FindAllApplicationUserByIds(ICollection<int> @ids)
         {
             var @tasks = @ids.Select(@id => FindApplicationUserById(@id));

@@ -32,9 +32,9 @@ namespace Hyperdrive.Domain.Managers
         Task<ApplicationUser> FindApplicationUserById(int @id);
         
         /// <summary>
-        /// Finds Application Users By Ids
+        /// Finds All Application User By Ids
         /// </summary>
-        /// <param name="ids">Injected <see cref="IList{int}"/></param>
+        /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
         Task<IList<ApplicationUser>> FindAllApplicationUserByIds(ICollection<int> @ids);
         
