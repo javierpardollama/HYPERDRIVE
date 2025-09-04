@@ -44,7 +44,7 @@ public static class DriveItemProfile
         return new CatalogDto
         {
             Id = @entity.Id,
-            Name = @entity.Name
+            Name = @entity.FileName
         };
     }
     
