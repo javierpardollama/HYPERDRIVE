@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.DriveItem;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
+using Hyperdrive.Application.Profiles;
 using MediatR;
 
 namespace Hyperdrive.Application.Handlers.DriveItem;
@@ -16,8 +17,14 @@ public class UpdateDriveItemHandler : IRequestHandler<UpdateDriveItemCommand, Vi
         _manager = manager;
     }
     
-    public Task<ViewDriveItem> Handle(UpdateDriveItemCommand request, CancellationToken cancellationToken)
+    public async Task<ViewDriveItem> Handle(UpdateDriveItemCommand request, CancellationToken cancellationToken)
     {
-        throw new System.NotImplementedException();
+        await _manager.CheckName(request.ViewModel.Name, request.ViewModel.Id, request.ViewModel.ParentId );
+        
+        await _manager.ChangeName(request.ViewModel.Name, request.ViewModel.Id, request.ViewModel.ParentId );
+        
+        var @dto = await _manager.ReloadDriveItemById(request.ViewModel.Id);
+
+        return @dto.ToViewModel();
     }
 }

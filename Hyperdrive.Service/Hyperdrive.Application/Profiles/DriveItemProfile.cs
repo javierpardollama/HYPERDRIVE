@@ -23,7 +23,6 @@ public static class DriveItemProfile
             By = @dto.By.ToCatalogViewModel(),
             Parent = @dto.Parent.ToCatalogViewModel(),
             Folder = @dto.Folder,
-            System = @dto.System,
             LastModified = @dto.LastModified,
             SharedWith = @dto.SharedWith
                 .Select(x=> x.ToCatalogViewModel())

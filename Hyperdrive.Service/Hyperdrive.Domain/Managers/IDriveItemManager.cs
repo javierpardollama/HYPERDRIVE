@@ -49,13 +49,16 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{IList{DriveItemVersionDto}}"/></returns>
         Task<IList<DriveItemVersionDto>> FindAllDriveItemVersionByDriveItemId(int @id);
-      
+
         /// <summary>
         /// Adds Drive Item
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="folder">Injected <see cref="bool"/></param>
+        /// <param name="by">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> AddDriveItem(DriveItem @entity);
+        Task<DriveItem> AddDriveItem(string @name, int? parent, bool folder, ApplicationUser @by);
 
         /// <summary>
         /// Adds Application User Drive Item
@@ -66,41 +69,37 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Adds Drive Item Version
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
-        Task AddDriveItemVersion(DriveItemVersion @entity);
+        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <param name="type">Injected <see cref="string"/></param>
+        /// <param name="size">Injected <see cref="float?"/></param>
+        /// <param name="data">Injected <see cref="string"/></param>
+        Task AddDriveItemVersion(DriveItem @entity, string @type, float? @size, string @data);
 
         /// <summary>
         /// Changes Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> ChangeName(string @name, int @id, int @parent);
+        Task<DriveItem> ChangeName(string @name, int @id, int? @parent);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
-        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CheckName(string @name, int @parent);
+        Task<DriveItem> CheckName(string @name, int? @parent);
         
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CheckName(string @name, int @id, int @parent);
-        
-        /// <summary>
-        /// Creates Root Drive Item
-        /// </summary>
-        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CreateRoot(ApplicationUser @user);
+        Task<DriveItem> CheckName(string @name, int @id, int? @parent);
         
         /// <summary>
         /// Finds Drive Item Binary By Id
@@ -108,5 +107,12 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
         Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @id);
+        
+        /// <summary>
+        /// Reloads Drive Item By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItemDto}"/></returns>
+        Task<DriveItemDto> ReloadDriveItemById(int @id);
     }
 }

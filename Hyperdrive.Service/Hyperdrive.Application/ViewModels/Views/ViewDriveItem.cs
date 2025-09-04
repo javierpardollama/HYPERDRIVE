@@ -13,8 +13,6 @@ namespace Hyperdrive.Application.ViewModels.Views
         public ViewCatalog By { get; set; }
        
         public bool Folder { get; set; }
-       
-        public bool System { get; set; }
         
         public string Name { get; set; }
         

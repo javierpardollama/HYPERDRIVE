@@ -30,8 +30,6 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             DriveItem @archive = await Context.DriveItems
                  .TagWith("FindDriveItemById")
-                 .Include(x => x.Activity)
-                 .Include(x => x.SharedWith)
                  .FirstOrDefaultAsync(x => x.Id == id);
 
             if (@archive is null)
@@ -174,13 +172,24 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Adds Drive Item
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="folder">Injected <see cref="bool"/></param>
+        /// <param name="by">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> AddDriveItem(DriveItem @entity)
+        public async Task<DriveItem> AddDriveItem(string @name, int? parent, bool folder, ApplicationUser @by)
         {
-            await CheckName(@entity.Name, entity.Parent.Id);
+            await CheckName(name, parent);
+            
+            var @entity = new DriveItem()
+            {
+                Name = name.Trim(),
+                NormalizedName = name.Trim().ToUpper(),
+                Folder = folder,
+                By = @by
+            };
 
-            await Context.DriveItems.AddAsync(entity);
+            await Context.DriveItems.AddAsync(@entity);
 
             await Context.SaveChangesAsync();
 
@@ -220,18 +229,27 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Adds Drive Item Version
         /// </summary>
         /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
-        public async Task AddDriveItemVersion(DriveItemVersion @entity)
+        /// <param name="type">Injected <see cref="DriveItemVersion"/></param>
+        /// <param name="size">Injected <see cref="DriveItemVersion"/></param>
+        ///  <param name="data">Injected <see cref="DriveItemVersion"/></param>
+        public async Task AddDriveItemVersion(DriveItem @entity, string @type, float? @size, string @data)
         {
-            await Context.DriveItemVersions.AddAsync(@entity);
-
-            await Context.SaveChangesAsync();
+            DriveItemVersion @version = new()
+            {
+                Type = @type,
+                Size = @size,
+                Data = @data,
+                DriveItem = @entity
+            };
             
+            await Context.DriveItemVersions.AddAsync(@version);
+
             await Context.SaveChangesAsync();
 
             // Log
             string @logData = nameof(DriveItemVersion)
                               + " with Id "
-                              + @entity.Id
+                              + @version.Id
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
             
@@ -245,13 +263,14 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> ChangeName(string @name, int @id, int @parent)
+        public async Task<DriveItem> ChangeName(string @name, int @id, int? @parent)
         {
             await CheckName(@name, @id, @parent);
             
             DriveItem @entity = await FindDriveItemById(@id);
 
             @entity.Name = @name?.Trim();
+            @entity.NormalizedName = @name?.Trim().ToUpper();
             
             Context.DriveItems.Update(@entity);
 
@@ -275,7 +294,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> CheckName(string @name, int @parent)
+        public async Task<DriveItem> CheckName(string @name, int? @parent)
         {
             DriveItem @archive = await Context.DriveItems
                  .TagWith("CheckName")
@@ -308,9 +327,9 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> CheckName(string @name, int @id, int @parent)
+        public async Task<DriveItem> CheckName(string @name, int @id, int? @parent)
         {
             DriveItem @archive = await Context.DriveItems
                  .TagWith("CheckName")
@@ -339,39 +358,6 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Creates Root Drive Item
-        /// </summary>
-        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> CreateRoot(ApplicationUser @user)
-        {
-            var @entity = new DriveItem()
-            {
-                Folder = true,
-                System = true,
-                Parent = null,
-                Name = "root",
-                NormalizedName = "ROOT",
-                By = @user,
-            };
-            
-            await Context.DriveItems.AddAsync(@entity);
-
-            await Context.SaveChangesAsync();
-
-            // Log
-            string @logData = nameof(DriveItem)
-                              + " with Id "
-                              + @entity.Id
-                              + " was created at "
-                              + DateTime.UtcNow.ToShortTimeString();
-
-            @logger.LogInformation(@logData);
-
-            return @entity;
-        }
-
-        /// <summary>
         /// Finds Drive Item Binary By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
@@ -391,6 +377,44 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 // Log
                 string @logData = nameof(DriveItem)
+                                  + " with Id "
+                                  + id
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.LogWarning(@logData);
+
+                throw new ServiceException(nameof(DriveItem)
+                                           + " with Id "
+                                           + id
+                                           + " does not exist");
+            }
+
+            return @archive;
+        }
+
+        /// <summary>
+        /// Reloads Drive Item By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItemDto}"/></returns>
+        public async Task<DriveItemDto> ReloadDriveItemById(int @id)
+        {
+            DriveItemDto @archive = await Context.DriveItems
+                .TagWith("ReloadDriveItemById")
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Include(x => x.Activity)
+                .Include(x => x.SharedWith)
+                .ThenInclude(x=> x.ApplicationUser)
+                .Where(x=> x.Id == @id)
+                .Select(x=> x.ToDto())
+                .FirstOrDefaultAsync();
+
+            if (@archive is null)
+            {
+                // Log
+                string @logData = nameof(@archive)
                                   + " with Id "
                                   + id
                                   + " was not found at "

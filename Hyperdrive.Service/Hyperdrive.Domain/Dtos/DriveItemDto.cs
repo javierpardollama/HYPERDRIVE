@@ -15,8 +15,6 @@ public class DriveItemDto
     public CatalogDto By { get; set; }
     
     public bool Folder { get; set; }
-    
-    public bool System { get; set; }
    
     public string Name { get; set; }
     

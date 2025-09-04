@@ -50,12 +50,6 @@ namespace Hyperdrive.Domain.Entities
         /// </summary>
         [Required]
         public bool Folder { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="System"/>
-        /// </summary>
-        [Required]
-        public bool System { get; set; }
         
         /// <summary>
         /// Gets or Sets <see cref="Name"/>
