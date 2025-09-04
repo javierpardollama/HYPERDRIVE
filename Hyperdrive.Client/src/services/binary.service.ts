@@ -41,7 +41,7 @@ export class BinaryService extends BaseService {
             Name: viewModel.Data.name,
             Type: viewModel.Data.type,
             Folder: viewModel.Folder,
-            Locked: viewModel.Locked
+            ApplicationUsersId: viewModel.ApplicationUsersId,
         };
 
         return resultModel;
@@ -57,7 +57,7 @@ export class BinaryService extends BaseService {
             Size: viewModel.Data.size,
             Type: viewModel.Data.type,
             Folder: viewModel.Folder,
-            Locked: viewModel.Locked
+            ApplicationUsersId: viewModel.ApplicationUsersId,
         };
 
         return resultModel;

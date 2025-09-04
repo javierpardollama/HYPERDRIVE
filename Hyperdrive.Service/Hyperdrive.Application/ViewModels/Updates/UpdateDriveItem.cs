@@ -27,12 +27,6 @@ namespace Hyperdrive.Application.ViewModels.Updates
         public bool Folder { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="Locked"/>
-        /// </summary>
-        [Required]
-        public bool Locked { get; set; }
-
-        /// <summary>
         /// Gets or Sets <see cref="Data"/>
         /// </summary>
         public string Data { get; set; }

@@ -3,4 +3,5 @@ export interface BinaryAddDriveItem {
     Data: File;
     Folder: boolean;
     Locked: boolean;
+    ApplicationUsersId: number[];
 }

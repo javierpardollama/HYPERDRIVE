@@ -104,7 +104,7 @@ namespace Hyperdrive.Service.Controllers
         /// <param name="viewModel">Injected <see cref="AddDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [HttpPost]
-        [Route("addarchive")]
+        [Route("adddriveitem")]
         public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value:await mediator.Send(new AddDriveItemCommand {ViewModel = @viewModel}));
 
         /// <summary>

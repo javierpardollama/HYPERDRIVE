@@ -6,4 +6,5 @@ export interface AddDriveItem extends AddBase {
     Folder: boolean;
     Size?: number;
     Type?: string;
+    ApplicationUsersId: number[];
 }

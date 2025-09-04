@@ -3,5 +3,5 @@ export interface BinaryUpdateDriveItem {
     ApplicationUserId: number;
     Data: File;
     Folder: boolean;
-    Locked: boolean;
+    ApplicationUsersId: number[];
 }
