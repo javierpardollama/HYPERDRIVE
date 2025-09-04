@@ -1,10 +1,6 @@
 import { AddDriveItem } from '../viewmodels/additions/adddriveitem';
 
-import { UpdateDriveItem } from '../viewmodels/updates/updatedriveitem';
-
 import { BinaryAddDriveItem } from '../viewmodels/binary/binaryadddriveitem';
-
-import { BinaryUpdateDriveItem } from '../viewmodels/binary/binaryupdatedriveitem';
 
 import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
@@ -47,29 +43,13 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public async EncodeUpdateDriveItem(viewModel: BinaryUpdateDriveItem): Promise<UpdateDriveItem> {
-        const resultModel: UpdateDriveItem =
-        {
-            Id: viewModel.Id,
-            ApplicationUserId: viewModel.ApplicationUserId,
-            Data: await this.EncodeContent(viewModel.Data),
-            Name: viewModel.Data.name,
-            Size: viewModel.Data.size,
-            Type: viewModel.Data.type,
-            Folder: viewModel.Folder,
-            ApplicationUsersId: viewModel.ApplicationUsersId,
-        };
-
-        return resultModel;
-    }
-
     public async DecodeViewDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
 
         const blob = await this.DecodeContent(viewModel.Data!, viewModel.Type);
 
         const url = window.URL.createObjectURL(blob);
 
-        const anchor = Object.assign(document.createElement("a"), { style: "display:none", href: url, download: viewModel.Name });
+        const anchor = Object.assign(document.createElement("a"), { style: "display:none", href: url, download: viewModel.FileName });
 
         document.body.appendChild(anchor);
         anchor.click();

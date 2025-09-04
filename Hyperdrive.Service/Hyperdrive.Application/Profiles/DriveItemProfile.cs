@@ -19,7 +19,9 @@ public static class DriveItemProfile
         return new ViewDriveItem
         {
             Id = @dto.Id,
+            FileName = @dto.Name,
             Name = @dto.Name,
+            Extension = @dto.Extension,
             By = @dto.By.ToCatalogViewModel(),
             Parent = @dto.Parent.ToCatalogViewModel(),
             Folder = @dto.Folder,
@@ -55,7 +57,7 @@ public static class DriveItemProfile
     {
         return new ViewDriveItemBinary
         {
-            Name = @dto.Name,
+            FileName = @dto.FileName,
             Data = @dto.Data,
             Type = @dto.Type
         };

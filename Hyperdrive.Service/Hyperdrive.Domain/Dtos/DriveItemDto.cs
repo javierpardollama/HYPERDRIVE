@@ -16,7 +16,11 @@ public class DriveItemDto
     
     public bool Folder { get; set; }
    
+    public string FileName { get; set; }
+    
     public string Name { get; set; }
+    
+    public string Extension { get; set; }
     
     public CatalogDto Parent { get; set; }
     

@@ -22,10 +22,10 @@ namespace Hyperdrive.Application.ViewModels.Additions
         public int ParentId { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="Name"/>
+        /// Gets or Sets <see cref="FileName"/>
         /// </summary>
         [Required]
-        public string Name { get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Folder"/>

@@ -8,18 +8,18 @@ using MediatR;
 
 namespace Hyperdrive.Application.Handlers.DriveItem;
 
-public class UpdateDriveItemHandler : IRequestHandler<UpdateDriveItemCommand, ViewDriveItem>
+public class UpdateDriveItemNameHandler : IRequestHandler<UpdateDriveItemNameCommand, ViewDriveItem>
 {
     private readonly IDriveItemManager _manager;
 
-    public UpdateDriveItemHandler(IDriveItemManager manager)
+    public UpdateDriveItemNameHandler(IDriveItemManager manager)
     {
         _manager = manager;
     }
     
-    public async Task<ViewDriveItem> Handle(UpdateDriveItemCommand request, CancellationToken cancellationToken)
+    public async Task<ViewDriveItem> Handle(UpdateDriveItemNameCommand request, CancellationToken cancellationToken)
     {
-        await _manager.ChangeName(request.ViewModel.Name, request.ViewModel.Id, request.ViewModel.ParentId );
+        await _manager.ChangeName(request.ViewModel.Name,request.ViewModel.Extension, request.ViewModel.Id, request.ViewModel.ParentId );
         
         var @dto = await _manager.ReloadDriveItemById(request.ViewModel.Id);
 

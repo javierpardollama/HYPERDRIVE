@@ -24,7 +24,7 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
         var @by = await _applicationUserManager.FindApplicationUserById(request.ViewModel.ApplicationUserId);
         
         var @archive = await _driveItemManager.AddDriveItem(
-           request.ViewModel.Name, 
+           request.ViewModel.FileName, 
            request.ViewModel.ParentId, 
            request.ViewModel.Folder, 
            @by);
@@ -36,10 +36,6 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
                 request.ViewModel.Size, 
                 request.ViewModel.Data);
         }
-        
-        var @users = await _applicationUserManager.FindAllApplicationUserByIds(request.ViewModel.ApplicationUsersId);
-        
-        await _driveItemManager.AddSharedWith(users, archive);
         
         var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);
 

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Hyperdrive.Application.Commands.DriveItem;
 
-public class UpdateDriveItemCommand : IRequest<ViewDriveItem>
+public class UpdateDriveItemNameCommand : IRequest<ViewDriveItem>
 {
-    public UpdateDriveItem ViewModel { get; set; }
+    public UpdateDriveItemName ViewModel { get; set; }
 }

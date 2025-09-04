@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Hyperdrive.Domain.Dtos;
@@ -172,19 +173,23 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Adds Drive Item
         /// </summary>
-        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <param name="folder">Injected <see cref="bool"/></param>
         /// <param name="by">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> AddDriveItem(string @name, int? parent, bool folder, ApplicationUser @by)
+        public async Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, ApplicationUser @by)
         {
-            await CheckName(name, parent);
+            await CheckName(filename, parent);
             
             var @entity = new DriveItem()
             {
-                Name = name.Trim(),
-                NormalizedName = name.Trim().ToUpper(),
+                FileName = filename.Trim(),
+                NormalizedFileName = filename.Trim().ToUpper(),
+                Name = Path.GetFileNameWithoutExtension(filename.Trim()),
+                NormalizedName = Path.GetFileNameWithoutExtension(filename.Trim()).ToUpper(),
+                Extension = Path.GetExtension(filename.Trim()),
+                NormalizedExtension = Path.GetExtension(filename.Trim()).ToUpper(),
                 Folder = folder,
                 By = @by
             };
@@ -267,17 +272,20 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Changes Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="extension">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> ChangeName(string @name, int @id, int? @parent)
+        public async Task<DriveItem> ChangeName(string @name, string @extension, int @id, int? @parent)
         {
-            await CheckName(@name, @id, @parent);
+            await CheckName(@name, extension, @id, @parent);
             
             DriveItem @entity = await FindDriveItemById(@id);
 
             @entity.Name = @name?.Trim();
             @entity.NormalizedName = @name?.Trim().ToUpper();
+            @entity.FileName = $"{@name?.Trim()}{extension.Trim()}";
+            @entity.NormalizedFileName =  $"{@name?.Trim().ToUpper()}{extension.Trim().ToUpper()}";
             
             Context.DriveItems.Update(@entity);
 
@@ -333,16 +341,20 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="extension">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> CheckName(string @name, int @id, int? @parent)
+        public async Task<DriveItem> CheckName(string @name, string @extension, int @id, int? @parent)
         {
             DriveItem @archive = await Context.DriveItems
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Parent.Id == @parent && x.Id != @id);
+                 .FirstOrDefaultAsync(x => x.Name == @name.Trim() 
+                                           && x.Extension == @extension 
+                                           && x.Parent.Id == @parent 
+                                           && x.Id != @id);
 
             if (@archive is not null)
             {

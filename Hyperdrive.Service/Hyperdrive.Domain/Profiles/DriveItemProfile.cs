@@ -19,7 +19,9 @@ public static class DriveItemProfile
         return new DriveItemDto
         {
             Id = @entity.Id,
+            FileName = @entity.FileName,
             Name = @entity.Name,
+            Extension = @entity.Extension,
             By = @entity.By.ToCatalog(),
             Parent = @entity.Parent.ToCatalog(),
             Folder = @entity.Folder,
@@ -55,7 +57,7 @@ public static class DriveItemProfile
     {
         return new DriveItemBinaryDto
         {
-            Name = @entity.Name,
+            FileName = @entity.FileName,
             Data = @entity.Activity.OrderByDescending(x=> x.LastModified).FirstOrDefault()?.Data,
             Type = @entity.Activity.OrderByDescending(x=> x.LastModified).FirstOrDefault()?.Type
         };

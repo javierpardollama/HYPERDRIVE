@@ -14,7 +14,11 @@ namespace Hyperdrive.Application.ViewModels.Views
        
         public bool Folder { get; set; }
         
+        public string FileName { get; set; }
+        
         public string Name { get; set; }
+        
+        public string Extension { get; set; }
         
         public ViewCatalog Parent { get; set; }
        

@@ -1,5 +1,5 @@
 export interface ViewDriveItemBinary {
-    Name: string;
+    FileName: string;
     Data: string;
     Type: string;
 }

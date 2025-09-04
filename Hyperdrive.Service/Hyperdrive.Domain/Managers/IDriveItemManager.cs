@@ -53,12 +53,12 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Adds Drive Item
         /// </summary>
-        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <param name="folder">Injected <see cref="bool"/></param>
         /// <param name="by">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> AddDriveItem(string @name, int? parent, bool folder, ApplicationUser @by);
+        Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, ApplicationUser @by);
 
         /// <summary>
         /// Adds Shared With
@@ -80,10 +80,11 @@ namespace Hyperdrive.Domain.Managers
         /// Changes Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="extension">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> ChangeName(string @name, int @id, int? @parent);
+        Task<DriveItem> ChangeName(string @name, string @extension, int @id, int? @parent);
 
         /// <summary>
         /// Checks Name
@@ -97,10 +98,11 @@ namespace Hyperdrive.Domain.Managers
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="extension">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CheckName(string @name, int @id, int? @parent);
+        Task<DriveItem> CheckName(string @name, string @extension, int @id, int? @parent);
         
         /// <summary>
         /// Finds Drive Item Binary By Id

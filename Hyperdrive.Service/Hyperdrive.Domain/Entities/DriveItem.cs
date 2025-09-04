@@ -62,6 +62,28 @@ namespace Hyperdrive.Domain.Entities
         /// </summary>
         [Required]
         public string NormalizedName { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="FileName"/>
+        /// </summary>
+        [Required]
+        public string FileName { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="NormalizedFileName"/>
+        /// </summary>
+        [Required]
+        public string NormalizedFileName { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="Extension"/>
+        /// </summary>
+        public string Extension { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="NormalizedExtension"/>
+        /// </summary>
+        public string NormalizedExtension { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Version"/>

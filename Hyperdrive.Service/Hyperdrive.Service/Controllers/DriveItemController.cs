@@ -108,7 +108,7 @@ namespace Hyperdrive.Service.Controllers
         public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value:await mediator.Send(new AddDriveItemCommand {ViewModel = @viewModel}));
 
         /// <summary>
-        /// Updates DriveItem
+        /// Updates Drive Item Name
         /// </summary>
         /// <response code="200">Ok</response>
         /// <response code="400">BadRequest</response>
@@ -118,14 +118,31 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
         /// <response code="500">InternalServerError</response>     
-        /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
+        /// <param name="viewModel">Injected <see cref="UpdateDriveItemName"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpPut]
-        [Route("updatedriveitem")]
-        public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
+        [Route("updatedriveitemname")]
+        public async Task<IActionResult> UpdateDriveItemName([FromBody] UpdateDriveItemName @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemNameCommand { ViewModel = @viewModel }));
 
         /// <summary>
-        /// Removes DriveItem By Id
+        /// Updates Drive Item Shared With
+        /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="400">BadRequest</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
+        /// <param name="viewModel">Injected <see cref="UpdateDriveItemName"/></param>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
+        [HttpPut]
+        [Route("updatedriveitemsharedwith")]
+        public async Task<IActionResult> UpdateDriveItemSharedWith([FromBody] UpdateDriveItemSharedWith @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemSharedWithCommand { ViewModel = @viewModel }));
+        
+        /// <summary>
+        /// Removes Drive Item By Id
         /// </summary>
         /// <response code="200">Ok</response>
         /// <response code="400">BadRequest</response>
