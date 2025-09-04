@@ -304,7 +304,7 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Checks Name
+        /// Checks File Name
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int"/></param>
