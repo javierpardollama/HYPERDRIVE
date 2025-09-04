@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.DriveItem;
@@ -5,7 +6,6 @@ using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
 using MediatR;
-using Entities = Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Application.Handlers.DriveItem;
 
@@ -32,8 +32,15 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
 
         if (!@archive.Folder)
         {
-            await _driveItemManager.AddDriveItemVersion(@archive, request.ViewModel.Type, request.ViewModel.Size, request.ViewModel.Data);
+            await _driveItemManager.AddActivity(@archive,
+                request.ViewModel.Type, 
+                request.ViewModel.Size, 
+                request.ViewModel.Data);
         }
+        
+        var @users = await _applicationUserManager.FindAllApplicationUserByIds(request.ViewModel.ApplicationUsersId);
+        
+        await _driveItemManager.AddSharedWith(users, archive);
         
         var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);
 

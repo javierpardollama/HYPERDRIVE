@@ -61,19 +61,20 @@ namespace Hyperdrive.Domain.Managers
         Task<DriveItem> AddDriveItem(string @name, int? parent, bool folder, ApplicationUser @by);
 
         /// <summary>
-        /// Adds Application User Drive Item
+        /// Adds Shared With
         /// </summary>
-        /// <param name="userDriveItems">Injected <see cref="List{ApplicationUserDriveItem}"/></param>
-        Task AddApplicationUserDriveItem(List<ApplicationUserDriveItem> @userDriveItems);
+        /// <param name="users">Injected <see cref="List{ApplicationUser}"/></param>
+        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        Task AddSharedWith(IList<ApplicationUser> @users, DriveItem @entity);
 
         /// <summary>
-        /// Adds Drive Item Version
+        /// Adds Activity
         /// </summary>
         /// <param name="entity">Injected <see cref="DriveItem"/></param>
         /// <param name="type">Injected <see cref="string"/></param>
         /// <param name="size">Injected <see cref="float?"/></param>
         /// <param name="data">Injected <see cref="string"/></param>
-        Task AddDriveItemVersion(DriveItem @entity, string @type, float? @size, string @data);
+        Task AddActivity(DriveItem @entity, string @type, float? @size, string @data);
 
         /// <summary>
         /// Changes Name

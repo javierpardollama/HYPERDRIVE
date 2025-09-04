@@ -206,11 +206,18 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Adds Application User Drive Item
+        /// Adds Shared With
         /// </summary>
-        /// <param name="userDriveItems">Injected <see cref="List{ApplicationUserDriveItem}"/></param>
-        public async Task AddApplicationUserDriveItem(List<ApplicationUserDriveItem> @userDriveItems)
+        /// <param name="users">Injected <see cref="IList{ApplicationUser}"/></param>
+        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        public async Task AddSharedWith(IList<ApplicationUser> @users, DriveItem @entity)
         {
+            var @userDriveItems = users.Select(@user => new ApplicationUserDriveItem()
+            {
+                DriveItem = @entity,
+                ApplicationUser = user
+            }).ToList();
+            
             await Context.ApplicationUserDriveItems.AddRangeAsync(@userDriveItems);
 
             await Context.SaveChangesAsync();
@@ -232,7 +239,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="type">Injected <see cref="DriveItemVersion"/></param>
         /// <param name="size">Injected <see cref="DriveItemVersion"/></param>
         ///  <param name="data">Injected <see cref="DriveItemVersion"/></param>
-        public async Task AddDriveItemVersion(DriveItem @entity, string @type, float? @size, string @data)
+        public async Task AddActivity(DriveItem @entity, string @type, float? @size, string @data)
         {
             DriveItemVersion @version = new()
             {
