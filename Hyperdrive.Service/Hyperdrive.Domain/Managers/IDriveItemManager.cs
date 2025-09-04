@@ -87,12 +87,12 @@ namespace Hyperdrive.Domain.Managers
         Task<DriveItem> ChangeName(string @name, string @extension, int @id, int? @parent);
 
         /// <summary>
-        /// Checks Name
+        /// Checks File Name
         /// </summary>
-        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> CheckName(string @name, int? @parent);
+        Task<DriveItem> CheckFileName(string @filename, int? @parent);
         
         /// <summary>
         /// Checks Name
