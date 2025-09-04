@@ -45,12 +45,12 @@ export class DriveItemService extends BaseService {
 
     public UpdateDriveItemName(viewModel: UpdateDriveItemName): Promise<ViewDriveItem> {
         return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/driveitem/updatedriveitemname`, viewModel)
-            .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItem', undefined))));
+            .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItemName', undefined))));
     }
 
     public UpdateDriveItemSharedWith(viewModel: UpdateDriveItemSharedWith): Promise<ViewDriveItem> {
         return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/driveitem/updatedriveitemsharedwith`, viewModel)
-            .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItem', undefined))));
+            .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItemSharedWith', undefined))));
     }
 
     public FindAllDriveItem(): Promise<ViewDriveItem[]> {
@@ -75,7 +75,7 @@ export class DriveItemService extends BaseService {
 
     public FindDriveItemBinaryByIdQuery(id: number): Promise<ViewDriveItemBinary> {
         return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/driveitem/finddriveitembinarybyid/${id}`)
-            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindAllDriveItemVersionByDriveItemId', undefined))));
+            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindDriveItemBinaryByIdQuery', undefined))));
     }
 
     public AddDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {
