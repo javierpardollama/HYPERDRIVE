@@ -73,9 +73,9 @@ export class DriveItemService extends BaseService {
             .pipe(catchError(this.HandleError<ViewDriveItemVersion[]>('FindAllDriveItemVersionByDriveItemId', []))));
     }
 
-    public FindDriveItemBinaryByIdQuery(id: number): Promise<ViewDriveItemBinary> {
+    public FindDriveItemBinaryById(id: number): Promise<ViewDriveItemBinary> {
         return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/driveitem/finddriveitembinarybyid/${id}`)
-            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindDriveItemBinaryByIdQuery', undefined))));
+            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindDriveItemBinaryById', undefined))));
     }
 
     public AddDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {

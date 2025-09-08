@@ -88,7 +88,7 @@ namespace Hyperdrive.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [HttpGet]
         [Route("finddriveitembinarybyid/{id}")]
-        public async Task<IActionResult> FindDriveItemBinaryByIdQuery(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
+        public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
         
         /// <summary>
         /// Adds DriveItem
@@ -118,10 +118,10 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
         /// <response code="500">InternalServerError</response>     
-        /// <param name="viewModel">Injected <see cref="AddDriveItem"/></param>
+        /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [HttpPost]
-        [Route("UpdateDriveItem")]
+        [Route("updatedriveitem")]
         public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value:await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
         
         /// <summary>
