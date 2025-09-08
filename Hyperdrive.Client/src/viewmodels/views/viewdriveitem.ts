@@ -6,6 +6,7 @@ export interface ViewDriveItem extends ViewKey, ViewBase {
     By: ViewCatalog;
     Folder: boolean;
     Name: string;
+    FileName:string;
     Extension: string;
     Parent: ViewCatalog;
     SharedWith: ViewCatalog[];

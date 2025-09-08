@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Hyperdrive.Application.ViewModels.Interfaces.Additions;
 
 namespace Hyperdrive.Application.ViewModels.Additions
@@ -47,10 +46,5 @@ namespace Hyperdrive.Application.ViewModels.Additions
         /// Gets or Sets <see cref="Type"/>
         /// </summary>
         public string Type { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUsersId"/>
-        /// </summary>
-        public virtual ICollection<int> ApplicationUsersId { get; set; }
     }
 }

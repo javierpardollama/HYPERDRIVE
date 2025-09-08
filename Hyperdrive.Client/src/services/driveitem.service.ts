@@ -83,6 +83,11 @@ export class DriveItemService extends BaseService {
             .pipe(catchError(this.HandleError<ViewDriveItem>('AddDriveItem', undefined))));
     }
 
+    public UpdateDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {
+        return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/driveitem/updatedriveitem`, viewModel)
+            .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItem', undefined))));
+    }
+
     public RemoveDriveItemById(id: number): Promise<void> {
         return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/driveitem/removedriveitembyid/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveDriveItemById', undefined))));

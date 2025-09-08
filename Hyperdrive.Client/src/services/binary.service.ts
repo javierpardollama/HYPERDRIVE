@@ -4,6 +4,10 @@ import { BinaryAddDriveItem } from '../viewmodels/binary/binaryadddriveitem';
 
 import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
+import { UpdateDriveItem } from '../viewmodels/updates/updatedriveitem';
+
+import { BinaryUpdateDriveItem } from '../viewmodels/binary/binaryupdatedriveitem';
+
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,11 +38,26 @@ export class BinaryService extends BaseService {
             ApplicationUserId: viewModel.ApplicationUserId,
             Data: await this.EncodeContent(viewModel.Data),
             Size: viewModel.Data.size,
-            Name: viewModel.Data.name,
+            FileName: viewModel.Data.name,
             Type: viewModel.Data.type,
             Folder: viewModel.Folder,
             ApplicationUsersId: viewModel.ApplicationUsersId,
         };
+
+        return resultModel;
+    }
+
+    public async EncodeUpdateDriveItem(viewModel: BinaryUpdateDriveItem): Promise<UpdateDriveItem> {
+        const resultModel: UpdateDriveItem =
+            {
+                Id: viewModel.Id,
+                ApplicationUserId: viewModel.ApplicationUserId,
+                Data: await this.EncodeContent(viewModel.Data),
+                Size: viewModel.Data.size,
+                FileName: viewModel.Data.name,
+                Type: viewModel.Data.type,
+                Folder: viewModel.Folder
+            };
 
         return resultModel;
     }
