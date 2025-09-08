@@ -1,4 +1,4 @@
-import { ExceptionProblemDetails } from '../viewmodels/exceptions/exceptionproblemdetails
+import { ExceptionProblemDetails } from '../viewmodels/exceptions/exceptionproblemdetails';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
