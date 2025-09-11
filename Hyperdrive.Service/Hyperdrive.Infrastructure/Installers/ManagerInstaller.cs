@@ -22,6 +22,7 @@ public static class ManagerInstaller
         @this.AddTransient<IDriveItemManager, DriveItemManager>();
         @this.AddTransient<IRefreshTokenManager, RefreshTokenManager>();
         @this.AddTransient<ITokenManager, TokenManager>();
+        @this.AddTransient<ISecurityManager, SecurityManager>();
         // Add other managers here
     }
 }
