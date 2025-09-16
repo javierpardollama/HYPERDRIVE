@@ -72,6 +72,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     public async ToRecord(row: ViewDriveItem): Promise<void> {
 
+        this.ELEMENT_DATA = [];
+
         this.page.ParentId = row.Id;
 
         await this.FindPaginatedDriveItem();
