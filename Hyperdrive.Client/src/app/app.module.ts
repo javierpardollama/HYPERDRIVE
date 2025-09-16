@@ -93,7 +93,7 @@ import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
 // App-Drive-Context
-import { DriveItemContextMenuComponent } from './drive/modals/drive-item-context-menu/drive-item-context-menu.component';
+import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-menu/drive-item-context-menu.component';
 
 
 @NgModule({

@@ -6,7 +6,7 @@ import { FilterPageDriveItem } from "../../../../viewmodels/filters/filterpagedr
 import { ViewScroll } from "../../../../viewmodels/views/viewscroll";
 import { ViewApplicationUser } from "../../../../viewmodels/views/viewapplicationuser";
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { DriveItemContextMenuComponent } from "../../modals/drive-item-context-menu/drive-item-context-menu.component";
+import { DriveItemContextMenuComponent } from "../../menus/drive-item-context-menu/drive-item-context-menu.component";
 
 @Component({
     selector: 'app-driveitem-grid',
