@@ -8,13 +8,13 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { ViewApplicationUser } from './../../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import { ApplicationUserService } from './../../../../services/applicationuser.service';
+import { ApplicationUserService } from '../../../../services/applicationuser.service';
 
 import {
     ApplicationUserUpdateModalComponent
-} from './../../modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
+} from '../../modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
 import { FilterPageApplicationUser } from 'src/viewmodels/filters/filterpageapplicationuser';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';

@@ -14,7 +14,6 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,7 +28,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatExpansionModule } from '@angular/material/expansion'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
+import { MatListModule } from "@angular/material/list";
 
 // Interceptors
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
@@ -79,6 +80,7 @@ import { ApplicationRoleGridComponent }
   from './management/grids/applicationrole-grid/applicationrole-grid.component';
 import { ApplicationUserGridComponent }
   from './management/grids/applicationuser-grid/applicationuser-grid.component';
+import { DriveitemGridComponent } from './drive/grids/driveitem-grid/driveitem-grid.component'
 
 // App-Modal-Adition
 import { ApplicationRoleAddModalComponent }
@@ -90,61 +92,71 @@ import { ApplicationRoleUpdateModalComponent }
 import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
+// App-Drive-Context
+import { DriveItemContextMenuComponent } from './drive/modals/drive-item-context-menu/drive-item-context-menu.component';
 
-@NgModule({ declarations: [
-        // App
-        AppComponent,
-        HomeComponent,
-        UnknownComponent,
-        UnauthorizedComponent,
-        //Nav
-        NavMenuComponent,
-        ProfileModalComponent,
-        ToolBoxModalComponent,
-        // App-Auth
-        JoinInComponent,
-        SignInComponent,
-        ResetPasswordComponent,
-        // App-Security
-        SecurityComponent,
-        ChangePasswordModalComponent,
-        ChangeEmailModalComponent,
-        ChangePhoneNumberModalComponent,
-        ChangeNameModalComponent,
-        // App-Grid
-        ApplicationRoleGridComponent,
-        ApplicationUserGridComponent,
-        // App-Modal-Adition
-        ApplicationRoleAddModalComponent,
-        // App-Modal-Update
-        ApplicationRoleUpdateModalComponent,
-        ApplicationUserUpdateModalComponent
-    ],
-    bootstrap: [AppComponent], imports: [
-        // Angular Material
-        BrowserAnimationsModule,
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatTabsModule,
-        MatSortModule,
-        MatFormFieldModule,
-        MatExpansionModule,
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        NgOptimizedImage], providers: [{
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        }, provideHttpClient(withInterceptorsFromDi())] })
+
+@NgModule({
+  declarations: [
+    // App
+    AppComponent,
+    HomeComponent,
+    UnknownComponent,
+    UnauthorizedComponent,
+    //Nav
+    NavMenuComponent,
+    ProfileModalComponent,
+    ToolBoxModalComponent,
+    // App-Auth
+    JoinInComponent,
+    SignInComponent,
+    ResetPasswordComponent,
+    // App-Security
+    SecurityComponent,
+    ChangePasswordModalComponent,
+    ChangeEmailModalComponent,
+    ChangePhoneNumberModalComponent,
+    ChangeNameModalComponent,
+    // App-Grid
+    ApplicationRoleGridComponent,
+    ApplicationUserGridComponent,
+    DriveitemGridComponent,
+    // App-Modal-Adition
+    ApplicationRoleAddModalComponent,
+    // App-Modal-Update
+    ApplicationRoleUpdateModalComponent,
+    ApplicationUserUpdateModalComponent,
+    // App-Drive-Context
+    DriveItemContextMenuComponent
+  ],
+  bootstrap: [AppComponent], imports: [
+    // Angular Material
+    BrowserAnimationsModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatBottomSheetModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatTabsModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgOptimizedImage], providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }, provideHttpClient(withInterceptorsFromDi())]
+})
 export class AppModule { }

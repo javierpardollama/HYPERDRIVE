@@ -8,17 +8,17 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { ViewApplicationRole } from './../../../../viewmodels/views/viewapplicationrole';
+import { ViewApplicationRole } from '../../../../viewmodels/views/viewapplicationrole';
 
-import { ApplicationRoleService } from './../../../../services/applicationrole.service';
+import { ApplicationRoleService } from '../../../../services/applicationrole.service';
 
 import {
   ApplicationRoleUpdateModalComponent
-} from './../../modals/updates/applicationrole-update-modal/applicationrole-update-modal.component';
+} from '../../modals/updates/applicationrole-update-modal/applicationrole-update-modal.component';
 
 import {
   ApplicationRoleAddModalComponent
-} from './../../modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
+} from '../../modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
 
 import { FilterPageApplicationRole } from 'src/viewmodels/filters/filterpageapplicationrole';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
