@@ -22,6 +22,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import {ViewCatalog} from "../viewmodels/views/viewcatalog";
 
 @Injectable({
     providedIn: 'root',
@@ -41,9 +42,9 @@ export class ApplicationRoleService extends BaseService {
             .pipe(catchError(this.HandleError<ViewApplicationRole>('UpdateApplicationRole', undefined))));
     }
 
-    public FindAllApplicationRole(): Promise<ViewApplicationRole[]> {
-        return firstValueFrom(this.httpClient.get<ViewApplicationRole[]>(`${environment.Api.Service}api/applicationrole/findallapplicationrole`)
-            .pipe(catchError(this.HandleError<ViewApplicationRole[]>('FindAllApplicationRole', []))));
+    public FindAllApplicationRole(): Promise<ViewCatalog[]> {
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/applicationrole/findallapplicationrole`)
+            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllApplicationRole', []))));
     }
 
     public FindPaginatedApplicationRole(viewModel: FilterPageApplicationRole): Promise<ViewPage<ViewApplicationRole>> {

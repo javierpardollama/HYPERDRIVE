@@ -82,8 +82,8 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
             data: row
         });
 
-        dialogRef.afterClosed().subscribe(() => {
-            this.FindPaginatedApplicationUser();
+        dialogRef.afterClosed().subscribe(async () => {
+            await this.FindPaginatedApplicationUser();
         });
     }  
 

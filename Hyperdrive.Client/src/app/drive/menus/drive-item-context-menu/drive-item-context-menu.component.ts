@@ -6,6 +6,13 @@ import { BinaryService } from "../../../../services/binary.service";
 import { TextAppVariants } from "../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../variants/time.app.variants";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
+import {
+    DriveitemNameUpdateModalComponent
+} from "../../modals/updates/driveitem-name-update-modal/driveitem-name-update-modal.component";
+import {
+    DriveitemShareWithUpdateModalComponent
+} from "../../modals/updates/driveitem-share-with-update-modal/driveitem-share-with-update-modal.component";
 
 @Component({
     selector: 'app-drive-item-context-menu',
@@ -16,6 +23,7 @@ export class DriveItemContextMenuComponent {
 
     // Constructor
     constructor(
+        public matDialog: MatDialog,
         public snackBar: MatSnackBar,
         public driveItemService: DriveItemService,
         public binaryService: BinaryService,
@@ -23,7 +31,14 @@ export class DriveItemContextMenuComponent {
         @Inject(MAT_BOTTOM_SHEET_DATA) public data: ViewDriveItem) { }
 
     public Share() {
-        this.sheetRef.dismiss();
+        const dialogRef = this.matDialog.open(DriveitemShareWithUpdateModalComponent, {
+            data: this.data,
+            width: '450px',
+        });
+
+        dialogRef.afterClosed().subscribe(() => {
+            this.sheetRef.dismiss();
+        });
     }
 
     public async Download() {
@@ -33,7 +48,14 @@ export class DriveItemContextMenuComponent {
     }
 
     public Rename() {
-        this.sheetRef.dismiss();
+        const dialogRef = this.matDialog.open(DriveitemNameUpdateModalComponent, {
+            data: this.data,
+            width: '450px'
+        });
+
+        dialogRef.afterClosed().subscribe(() => {
+            this.sheetRef.dismiss();
+        });
     }
 
     public Activity() {

@@ -85,8 +85,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
             data: row
         });
 
-        sheetRef.afterDismissed().subscribe(() => {
-            this.FindPaginatedDriveItem();
+        sheetRef.afterDismissed().subscribe(async () => {
+            await this.FindPaginatedDriveItem();
         });
     }
 

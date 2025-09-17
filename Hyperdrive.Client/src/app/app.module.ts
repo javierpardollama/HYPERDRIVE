@@ -11,7 +11,6 @@ import {
 
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -91,10 +90,15 @@ import { ApplicationRoleUpdateModalComponent }
   from './management/modals/updates/applicationrole-update-modal/applicationrole-update-modal.component';
 import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
+import {
+    DriveitemNameUpdateModalComponent
+} from "./drive/modals/updates/driveitem-name-update-modal/driveitem-name-update-modal.component";
+import {
+    DriveitemShareWithUpdateModalComponent
+} from "./drive/modals/updates/driveitem-share-with-update-modal/driveitem-share-with-update-modal.component";
 
 // App-Drive-Context
 import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-menu/drive-item-context-menu.component';
-
 
 @NgModule({
   declarations: [
@@ -126,6 +130,8 @@ import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-
     // App-Modal-Update
     ApplicationRoleUpdateModalComponent,
     ApplicationUserUpdateModalComponent,
+    DriveitemNameUpdateModalComponent,
+    DriveitemShareWithUpdateModalComponent,
     // App-Drive-Context
     DriveItemContextMenuComponent
   ],

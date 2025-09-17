@@ -96,8 +96,8 @@ export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDe
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedApplicationRole();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedApplicationRole();
     });
   }
 

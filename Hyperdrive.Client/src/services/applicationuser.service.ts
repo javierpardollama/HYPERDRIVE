@@ -20,6 +20,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import {ViewCatalog} from "../viewmodels/views/viewcatalog";
 
 @Injectable({
     providedIn: 'root',
@@ -39,9 +40,9 @@ export class ApplicationUserService extends BaseService {
             .pipe(catchError(this.HandleError<ViewApplicationUser>('UpdateApplicationUser', undefined))));
     }
 
-    public FindAllApplicationUser(): Promise<ViewApplicationUser[]> {
-        return firstValueFrom(this.httpClient.get<ViewApplicationUser[]>(`${environment.Api.Service}api/applicationuser/findallapplicationuser`)
-            .pipe(catchError(this.HandleError<ViewApplicationUser[]>('FindAllApplicationUser', []))));
+    public FindAllApplicationUser(): Promise<ViewCatalog[]> {
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/applicationuser/findallapplicationuser`)
+            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllApplicationUser', []))));
     }
 
     public FindPaginatedApplicationUser(viewModel: FilterPageApplicationUser): Promise<ViewPage<ViewApplicationUser>> {
