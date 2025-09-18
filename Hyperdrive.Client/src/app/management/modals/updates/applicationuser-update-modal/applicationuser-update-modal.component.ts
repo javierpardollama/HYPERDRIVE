@@ -14,19 +14,18 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewApplicationUser } from './../../../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../../viewmodels/views/viewapplicationuser';
 
-import { ViewApplicationRole } from './../../../../../viewmodels/views/viewapplicationrole';
+import { UpdateApplicationUser } from '../../../../../viewmodels/updates/updateapplicationuser';
 
-import { UpdateApplicationUser } from './../../../../../viewmodels/updates/updateapplicationuser';
+import { ApplicationUserService } from '../../../../../services/applicationuser.service';
 
-import { ApplicationUserService } from './../../../../../services/applicationuser.service';
+import { ApplicationRoleService } from '../../../../../services/applicationrole.service';
 
-import { ApplicationRoleService } from './../../../../../services/applicationrole.service';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
-
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
+import {ViewCatalog} from "../../../../../viewmodels/views/viewcatalog";
 
 @Component({
   selector: 'app-applicationuser-update-modal',
@@ -37,7 +36,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
-  public applicationroles: ViewApplicationRole[] = [];
+  public applicationroles: ViewCatalog[] = [];
 
 
   // Constructor

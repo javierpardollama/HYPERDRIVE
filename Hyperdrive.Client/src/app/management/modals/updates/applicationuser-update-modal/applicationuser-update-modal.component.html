@@ -18,7 +18,6 @@
         <mat-label>ApplicationRolesId</mat-label>
         <mat-select formControlName="ApplicationRolesId" multiple>        
             <mat-option *ngFor="let applicationrole of applicationroles" [value]="applicationrole.Id">
-              <img class="select-option-img" aria-hidden ngSrc="{{applicationrole.ImageUri}}" height="25" width="25">
               <span>{{applicationrole.Name}}</span>
             </mat-option>         
           <mat-error *ngIf="!formGroup.controls['ApplicationRolesId'].valid && formGroup.controls['ApplicationRolesId'].touched">
