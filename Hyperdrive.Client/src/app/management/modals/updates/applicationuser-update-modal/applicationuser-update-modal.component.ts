@@ -50,9 +50,10 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit(): void {
-    this.FindAllApplicationRole();
-    this.CreateForm();
+  async ngOnInit(): Promise<void> {
+      this.CreateForm();
+      await this.FindAllApplicationRole();
+
   }
 
   // Form

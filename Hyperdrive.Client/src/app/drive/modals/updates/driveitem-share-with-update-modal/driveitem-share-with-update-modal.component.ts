@@ -35,9 +35,9 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
 
     // Life Cicle
-    ngOnInit(): void {
-        this.FindAllApplicationUser();
+    async ngOnInit(): Promise<void> {
         this.CreateForm();
+        await this.FindAllApplicationUser();
     }
 
     // Form

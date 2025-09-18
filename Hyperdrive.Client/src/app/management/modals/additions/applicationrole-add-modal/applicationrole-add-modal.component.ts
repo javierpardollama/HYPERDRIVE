@@ -13,15 +13,15 @@ import {
   Validators
 } from '@angular/forms';
 
-import { AddApplicationRole } from './../../../../../viewmodels/additions/addapplicationrole';
+import { AddApplicationRole } from '../../../../../viewmodels/additions/addapplicationrole';
 
-import { ApplicationRoleService } from './../../../../../services/applicationrole.service';
+import { ApplicationRoleService } from '../../../../../services/applicationrole.service';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 
 @Component({
   selector: 'app-applicationrole-add-modal',
