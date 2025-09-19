@@ -250,7 +250,7 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 Type = @type,
                 Size = @size,
-                Data = @data,
+                Data = Convert.FromBase64String(@data),
                 DriveItem = @entity
             };
             

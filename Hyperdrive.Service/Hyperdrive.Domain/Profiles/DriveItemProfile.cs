@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
@@ -58,8 +59,8 @@ public static class DriveItemProfile
         return new DriveItemBinaryDto
         {
             FileName = @entity.FileName,
-            Data = @entity.Activity.OrderByDescending(x=> x.LastModified).FirstOrDefault()?.Data,
-            Type = @entity.Activity.OrderByDescending(x=> x.LastModified).FirstOrDefault()?.Type
+            Data = Convert.ToBase64String(@entity.Activity.OrderByDescending(x=> x.LastModified).First().Data),
+            Type = @entity.Activity.OrderByDescending(x=> x.LastModified).First().Type
         };
     }
 }

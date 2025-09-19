@@ -33,7 +33,7 @@ namespace Hyperdrive.Domain.Entities
         /// <summary>
         /// Gets or Sets <see cref="Data"/>
         /// </summary>
-        public string Data { get; set; }
+        public byte[] Data { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Size"/>
