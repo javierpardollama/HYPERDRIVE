@@ -1,7 +1,12 @@
-﻿using Hyperdrive.Domain.Settings;
+﻿using System;
+using Hyperdrive.Domain.Entities;
+using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Interceptors;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
@@ -11,6 +16,21 @@ namespace Hyperdrive.Test.Infrastructure.Managers;
 /// </summary>
 public abstract class BaseManagerTest
 {
+    /// <summary>
+    /// Instance of <see cref="UserManager{ApplicationUser}"/>
+    /// </summary>
+    protected UserManager<ApplicationUser> UserManager;
+
+    /// <summary>
+    /// Instance of <see cref="RoleManager{ApplicationRole}"/>
+    /// </summary>
+    protected RoleManager<ApplicationRole> RoleManager;
+
+    /// <summary>
+    /// Instance of <see cref="SignInManager{ApplicationUser}"/>
+    /// </summary>
+    protected SignInManager<ApplicationUser> SignInManager;
+    
     /// <summary>
     ///     Gets or Sets <see cref="IOptions{ApiSettings}" />
     /// </summary>
@@ -28,20 +48,57 @@ public abstract class BaseManagerTest
     ///     Gets or Sets <see cref="ApplicationContext" />
     /// </summary>
     protected ApplicationContext Context { get; set; }
-
+    
     /// <summary>
-    ///     Gets or Sets <see cref="DbContextOptionsBuilder{ApplicationContext}" />
+    /// Gets or Sets <see cref="ServiceCollection"/>
     /// </summary>
-    protected DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; set; } =
-        new DbContextOptionsBuilder<ApplicationContext>()
-            .UseInMemoryDatabase("hyperdrive.db")
-            .AddInterceptors(new SoftDeleteInterceptor());
-
+    private ServiceCollection Services { get; } = new();
+    
     /// <summary>
-    ///     Sets Up Context
+    /// Instance of <see cref="ServiceProvider"/>
     /// </summary>
-    protected void SetUpContext()
+    private ServiceProvider ServiceProvider;
+    
+    /// <summary>
+    /// Gets or Sets <see cref="ContextOptionsAction"/>
+    /// </summary>
+    private Action<DbContextOptionsBuilder> ContextOptionsAction = options =>
     {
+        options.UseInMemoryDatabase("hyperdrive.db");
+        options.AddInterceptors(new SoftDeleteInterceptor());
+    };
+    
+    /// <summary>
+    /// Gets or Sets <see cref="ContextOptionsBuilder"/>
+    /// </summary>
+    private DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; }
+    
+    /// <summary>
+    /// Install Services
+    /// </summary>
+    public void InstallServices()
+    {
+        Services
+            .AddLogging()
+            .AddDbContext<ApplicationContext>(ContextOptionsAction)
+            .AddIdentity<ApplicationUser, ApplicationRole>()
+            .AddEntityFrameworkStores<ApplicationContext>()
+            .AddDefaultTokenProviders();
+        
+        ContextOptionsAction(ContextOptionsBuilder);
         Context = new ApplicationContext(ContextOptionsBuilder.Options);
+        
+        ServiceProvider = Services.BuildServiceProvider();
+        UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+        SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
+    }
+
+    /// <summary>
+    ///Installs Http Context
+    /// </summary>
+    public void InstallHttpContext()
+    {
+        Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor() { HttpContext = new DefaultHttpContext() { RequestServices = ServiceProvider } });
     }
 }
