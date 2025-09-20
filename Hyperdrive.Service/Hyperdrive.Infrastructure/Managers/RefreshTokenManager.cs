@@ -42,7 +42,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="Task"/></returns>
         public async Task IsRevoked(int @userid, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@userid, @token);
+            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByCredentials(@userid, @token);
 
             if (@refreshToken is null) throw new UnauthorizedAccessException("Invalid Token");
 
@@ -59,7 +59,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="Task"/></returns>
         public async Task Revoke(int @userid, string @token)
         {
-            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByApplicationUserId(@userid, @token);
+            ApplicationUserRefreshToken @refreshToken = await FindApplicationUserRefreshTokenByCredentials(@userid, @token);
 
             @refreshToken.Revoked = true;
             @refreshToken.RevokedAt = DateTime.UtcNow;
@@ -84,10 +84,10 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="userid">Injected <see cref="string"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
-        public async Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByApplicationUserId(int @userid, string @token)
+        public async Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByCredentials(int @userid, string @token)
         {
             ApplicationUserRefreshToken @refreshToken = await Context.UserRefreshTokens
-                .TagWith("FindApplicationUserRefreshTokenByApplicationUserId")
+                .TagWith("FindApplicationUserRefreshTokenByCredentials")
                 .Include(x => x.ApplicationUser)
                 .FirstOrDefaultAsync(x => x.ApplicationUser.Id == @userid && x.Value == @token);
 

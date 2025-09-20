@@ -43,7 +43,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="userid">Injected <see cref="string"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
-        Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByApplicationUserId(int @userid, string @token);
+        Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByCredentials(int @userid, string @token);
         
         /// <summary>
         /// Adds Application User Refresh Token
