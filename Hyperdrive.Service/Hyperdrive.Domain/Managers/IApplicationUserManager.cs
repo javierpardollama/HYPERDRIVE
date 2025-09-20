@@ -80,15 +80,15 @@ namespace Hyperdrive.Domain.Managers
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        Task<ApplicationUser> CheckEmail(string @email, int @id);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> CheckEmail(string @email, int @id);
         
         /// <summary>
         /// Checks Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        Task<ApplicationUser> CheckEmail(string @email);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> CheckEmail(string @email);
         
         /// <summary>
         /// Reloads Application User By Id

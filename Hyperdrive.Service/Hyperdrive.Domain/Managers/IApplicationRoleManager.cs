@@ -56,15 +56,15 @@ namespace Hyperdrive.Domain.Managers
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
-        Task<ApplicationRole> CheckName(string @name);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> CheckName(string @name);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
-        Task<ApplicationRole> CheckName(string @name, int @id);
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        Task<bool> CheckName(string @name, int @id);
     }
 }

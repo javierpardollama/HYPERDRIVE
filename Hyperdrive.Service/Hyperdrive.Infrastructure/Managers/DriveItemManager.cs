@@ -26,8 +26,9 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Finds Drive Item By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="throw">Injected <see cref="bool"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> FindDriveItemById(int @id)
+        public async Task<DriveItem> FindDriveItemById(int? @id)
         {
             DriveItem @archive = await Context.DriveItems
                  .TagWith("FindDriveItemById")
@@ -191,6 +192,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 Extension = Path.GetExtension(filename.Trim()),
                 NormalizedExtension = Path.GetExtension(filename.Trim()).ToUpper(),
                 Folder = folder,
+                Parent = parent is not null ? await FindDriveItemById(parent) : null,
                 By = @by
             };
 
@@ -308,21 +310,22 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> CheckFileName(string @filename, int? @parent)
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public async Task<bool> CheckFileName(string @filename, int? @parent)
         {
-            DriveItem @archive = await Context.DriveItems
+            var @found = await Context.DriveItems
                  .TagWith("CheckFileName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.FileName == @filename.Trim() && x.Parent.Id == @parent);
+                 .Where(x => x.FileName == @filename.Trim() && x.Parent.Id == @parent)
+                 .AnyAsync();
 
-            if (@archive is not null)
+            if (@found)
             {
                 // Log
-                string @logData = nameof(@archive)
+                string @logData = nameof(DriveItem)
                     + " with FileName "
-                    + @archive.Name
+                    + @filename
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -334,7 +337,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     + " already exists");
             }
 
-            return @archive;
+            return @found;
         }
 
         /// <summary>
@@ -345,23 +348,24 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> CheckName(string @name, string @extension, int @id, int? @parent)
+        public async Task<bool> CheckName(string @name, string @extension, int @id, int? @parent)
         {
-            DriveItem @archive = await Context.DriveItems
+            var @found = await Context.DriveItems
                  .TagWith("CheckName")
                  .AsNoTracking()
                  .AsSplitQuery()
-                 .FirstOrDefaultAsync(x => x.Name == @name.Trim() 
+                 .Where(x => x.Name == @name.Trim() 
                                            && x.Extension == @extension.Trim() 
                                            && x.Parent.Id == @parent 
-                                           && x.Id != @id);
+                                           && x.Id != @id)
+                 .AnyAsync();
 
-            if (@archive is not null)
+            if (@found)
             {
                 // Log
                 string @logData = nameof(DriveItem)
                     + " with Name "
-                    + @archive.Name
+                    + name
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -373,7 +377,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     + " already exists");
             }
 
-            return @archive;
+            return @found;
         }
 
         /// <summary>

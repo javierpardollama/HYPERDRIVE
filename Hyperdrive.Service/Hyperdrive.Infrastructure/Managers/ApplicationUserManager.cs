@@ -246,21 +246,22 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        public async Task<ApplicationUser> CheckEmail(string @email, int @id)
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public async Task<bool> CheckEmail(string @email, int @id)
         {
-            ApplicationUser @applicationUser = await @userManager.Users
+            var @found = await @userManager.Users
                 .AsNoTracking()
                 .AsSplitQuery()
                 .TagWith("CheckEmail")
-                .FirstOrDefaultAsync(x => x.Email == @email.Trim() && x.Id != @id);
+                .Where(x => x.Email == @email.Trim() && x.Id != @id)
+                .AnyAsync();
 
-            if (@applicationUser is not null)
+            if (@found)
             {
                 // Log
                 string @logData = nameof(ApplicationUser)
                                   + " with Email "
-                                  + applicationUser.Email
+                                  + @email
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
@@ -272,29 +273,29 @@ namespace Hyperdrive.Infrastructure.Managers
                                            + " already exists");
             }
 
-            return @applicationUser;
+            return @found;
         }
         
         /// <summary>
         /// Checks Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        public async Task<ApplicationUser> CheckEmail(string @email)
+        public async Task<bool> CheckEmail(string @email)
         {
-            ApplicationUser @applicationUser = await @userManager.Users
+            var @found = await @userManager.Users
                 .AsNoTracking()
                 .AsSplitQuery()
                 .TagWith("CheckEmail")
-                .FirstOrDefaultAsync(x => x.Email == @email.Trim());
+                .Where(x => x.Email == @email.Trim())
+                .AnyAsync();
 
-            if (@applicationUser is not null)
+            if (@found)
             {
                 // Log
                 string @logData = nameof(ApplicationUser)
                                   + " with Email "
-                                  + applicationUser.Email
+                                  + @email
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
@@ -306,7 +307,7 @@ namespace Hyperdrive.Infrastructure.Managers
                                            + " already exists");
             }
 
-            return @applicationUser;
+            return @found;
         }
         
 

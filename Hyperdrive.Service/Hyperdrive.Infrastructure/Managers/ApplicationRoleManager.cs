@@ -51,20 +51,21 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
-        public async Task<ApplicationRole> CheckName(string @name)
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public async Task<bool> CheckName(string @name)
         {
-            ApplicationRole @applicationRole = await @roleManager.Roles
+            var @found = await @roleManager.Roles
                 .AsNoTracking()
                 .TagWith("CheckName")
-                .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+                .Where(x => x.Name == @name.Trim())
+                .AnyAsync();
 
-            if (@applicationRole is not null)
+            if (@found)
             {
                 // Log
-                string @logData = nameof(@applicationRole)
+                string @logData = nameof(ApplicationRole)
                     + " with Name "
-                    + @applicationRole.Name
+                    + @name
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -76,7 +77,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     + " already exists");
             }
 
-            return @applicationRole;
+            return @found;
         }
 
         /// <summary>
@@ -84,21 +85,22 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
-        public async Task<ApplicationRole> CheckName(string @name, int @id)
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public async Task<bool> CheckName(string @name, int @id)
         {
-            ApplicationRole @applicationRole = await @roleManager.Roles
+            var @found = await @roleManager.Roles
                  .AsNoTracking()
                  .AsSplitQuery()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+                 .Where(x => x.Name == @name.Trim() && x.Id != @id)
+                 .AnyAsync();
 
-            if (@applicationRole is not null)
+            if (@found)
             {
                 // Log
                 string @logData = nameof(ApplicationRole)
                     + " with Name "
-                    + applicationRole.Name
+                    + @name
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -110,7 +112,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     + " already exists");
             }
 
-            return @applicationRole;
+            return @found;
         }
 
         /// <summary>
