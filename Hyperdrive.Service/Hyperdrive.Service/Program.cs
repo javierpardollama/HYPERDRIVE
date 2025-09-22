@@ -77,7 +77,7 @@ if (@app.Environment.IsDevelopment())
 
 @app.MapControllers();
 
-@app.MapDefaultHealthEndpoints();
+@app.InstallDefaultHealthEndpoints();
 
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
