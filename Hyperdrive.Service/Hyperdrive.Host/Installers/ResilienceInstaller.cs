@@ -13,11 +13,16 @@ using OpenTelemetry.Trace;
 
 namespace Hyperdrive.Host.Installers;
 
-// Adds common .NET Aspire services: service discovery, resilience, health checks, and OpenTelemetry.
-// This project should be referenced by each service project in your solution.
-// To learn more about using this project, see https://aka.ms/dotnet/aspire/service-defaults
+/// <summary>
+///     Represents a <see cref="ResilienceInstaller" /> class.
+/// </summary>
 public static class ResilienceInstaller
 {
+    /// <summary>
+    /// Installs Aspire Services
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     public static IHostApplicationBuilder InstallAspireServices(this IHostApplicationBuilder builder)
     {
         builder.InstallOpenTelemetry();
@@ -40,6 +45,11 @@ public static class ResilienceInstaller
         return builder;
     }
 
+    /// <summary>
+    /// Installs Open Telemetry
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     private static IHostApplicationBuilder InstallOpenTelemetry(this IHostApplicationBuilder builder)
     {
         builder.Logging.AddOpenTelemetry(logging =>
@@ -66,6 +76,11 @@ public static class ResilienceInstaller
         return builder;
     }
 
+    /// <summary>
+    /// Installs Open Telemetry Exporters
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     private static IHostApplicationBuilder InstallOpenTelemetryExporters(this IHostApplicationBuilder builder)
     {
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
@@ -79,6 +94,11 @@ public static class ResilienceInstaller
         return builder;
     }
 
+    /// <summary>
+    /// Installs Open Telemetry Exporters
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     private static IHostApplicationBuilder InstallDefaultHealthChecks(this IHostApplicationBuilder builder)
     {
         // Adding health checks endpoints to applications in non-development environments has security implications.
@@ -96,6 +116,11 @@ public static class ResilienceInstaller
         return builder;
     }
 
+    /// <summary>
+    /// Installs Default Health Endpoints
+    /// </summary>
+    /// <param name="app">Injected <see cref="WebApplication"/></param>
+    /// <returns>Instance of <see cref="WebApplication"/></returns>
     public static WebApplication InstallDefaultHealthEndpoints(this WebApplication app)
     {
         app.MapGroup("").CacheOutput("HealthChecks").WithRequestTimeout("HealthChecks");
