@@ -236,7 +236,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task RemoveApplicationUserById()
         {
-            await Manager.RemoveApplicationUserById(3);
+            await Manager.RemoveApplicationUserById(2);
 
             Assert.Pass();
         }
@@ -248,21 +248,23 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task AddApplicationUserRoles()
         {
-            var @user = new ApplicationUser
-            {
-                Id = 4,
-                FirstName = "Genesis",
-                LastName = "Gavin",
-                UserName = "genesis.gavin",
-                Email = "genesis.gavin@email.com",
-                LastModified = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            };
+            var @user = await Manager.FindApplicationUserById(3);
 
             var @roles = new List<string>() { "Rogue", "Bard" };
 
             await Manager.AddApplicationUserRoles(roles, user);
+
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Reloads Application User By Id
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task ReloadApplicationUserById()
+        {
+            await Manager.ReloadApplicationUserById(4);
 
             Assert.Pass();
         }

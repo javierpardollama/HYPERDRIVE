@@ -25,11 +25,11 @@ public static class ApplicationUserProfile
                 .ToList(),
             Token = @entity.ApplicationUserTokens
                 .OrderByDescending(x=> x.LastModified)
-                .LastOrDefault()
+                .LastOrDefault()?
                 .ToDto(),
             RefreshToken = @entity.ApplicationUserRefreshTokens
                 .OrderByDescending(x=> x.LastModified)
-                .LastOrDefault()
+                .LastOrDefault()?
                 .ToDto(),
             FirstName = @entity.FirstName,
             LastName = @entity.LastName,
