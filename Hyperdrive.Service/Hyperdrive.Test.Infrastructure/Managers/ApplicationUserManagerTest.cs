@@ -33,7 +33,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         {
             InstallServices();
 
-            SetUpLogger();
+            InstallLogger();
 
             Seed();
 
@@ -41,17 +41,9 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Tears Down
+        /// Installs Logger
         /// </summary>
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-        }
-
-        /// <summary>
-        /// Sets Up Logger
-        /// </summary>
-        private void SetUpLogger()
+        private void InstallLogger()
         {
             ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
             {
@@ -64,110 +56,110 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             Logger = @loggerFactory.CreateLogger<ApplicationUserManager>();
         }
 
-       /// <summary>
-       /// Seeds
-       /// </summary>
-       private void Seed()
-       {
-           if (!Context.Roles.Any())
-           {
-               Context.Roles.Add(new ApplicationRole
-               {
-                   Id = 1,
-                   Name = "Dungeon Master",
-                   NormalizedName = "DUNGEON_MASTER",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   ImageUri = "URL/Dungeon_Master_500px.png"
-               });
-               Context.Roles.Add(new ApplicationRole
-               {
-                   Id = 2,
-                   Name = "Paladin",
-                   NormalizedName = "PALADIN",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   ImageUri = "URL/Paladin_500px.png"
-               });
-               Context.Roles.Add(new ApplicationRole
-               {
-                   Id = 3,
-                   Name = "Sorceress",
-                   NormalizedName = "SORCERESS",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   ImageUri = "URL/Role_2_500px.png"
-               });
-               Context.Roles.Add(new ApplicationRole
-               {
-                   Id = 4,
-                   Name = "Rogue",
-                   NormalizedName = "ROGUE",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   ImageUri = "URL/Rogue_2_500px.png"
-               });
-               Context.Roles.Add(new ApplicationRole
-               {
-                   Id = 5,
-                   Name = "Bard",
-                   NormalizedName = "BARD",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   ImageUri = "URL/Bard_500px.png"
-               });
-           }
+        /// <summary>
+        /// Seeds
+        /// </summary>
+        private void Seed()
+        {
+            if (!Context.Roles.Any())
+            {
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 1,
+                    Name = "Dungeon Master",
+                    NormalizedName = "DUNGEON_MASTER",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Dungeon_Master_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 2,
+                    Name = "Paladin",
+                    NormalizedName = "PALADIN",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Paladin_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 3,
+                    Name = "Sorceress",
+                    NormalizedName = "SORCERESS",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Role_2_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 4,
+                    Name = "Rogue",
+                    NormalizedName = "ROGUE",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Rogue_2_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 5,
+                    Name = "Bard",
+                    NormalizedName = "BARD",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Bard_500px.png"
+                });
+            }
 
-           if (!Context.Users.Any())
-           {
-               Context.Users.Add(new ApplicationUser
-               {
-                   Id = 1,
-                   FirstName = "Stafford",
-                   LastName = "Parker",
-                   UserName = "stafford.parker",
-                   Email = "stafford.parker@email.com",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   SecurityStamp = new Guid().ToString()
-               });
-               Context.Users.Add(new ApplicationUser
-               {
-                   Id = 2,
-                   FirstName = "Dee",
-                   LastName = "Sandy",
-                   UserName = "dee.sandy",
-                   Email = "dee.sandy@email.com",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   SecurityStamp = new Guid().ToString()
-               });
-               Context.Users.Add(new ApplicationUser
-               {
-                   Id = 3,
-                   FirstName = "Orinda Navy",
-                   LastName = "Navy",
-                   UserName = "orinda.navy",
-                   Email = "orinda.navy@email.com",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   SecurityStamp = new Guid().ToString()
-               });
-               Context.Users.Add(new ApplicationUser
-               {
-                   Id = 4,
-                   FirstName = "Genesis",
-                   LastName = "Gavin",
-                   UserName = "genesis.gavin",
-                   Email = "genesis.gavin@email.com",
-                   LastModified = DateTime.UtcNow,
-                   Deleted = false,
-                   SecurityStamp = new Guid().ToString()
-               });
-           }
+            if (!Context.Users.Any())
+            {
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 1,
+                    FirstName = "Stafford",
+                    LastName = "Parker",
+                    UserName = "stafford.parker",
+                    Email = "stafford.parker@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 2,
+                    FirstName = "Dee",
+                    LastName = "Sandy",
+                    UserName = "dee.sandy",
+                    Email = "dee.sandy@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 3,
+                    FirstName = "Orinda Navy",
+                    LastName = "Navy",
+                    UserName = "orinda.navy",
+                    Email = "orinda.navy@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 4,
+                    FirstName = "Genesis",
+                    LastName = "Gavin",
+                    UserName = "genesis.gavin",
+                    Email = "genesis.gavin@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+            }
 
-           Context.SaveChanges();
-       }
+            Context.SaveChanges();
+        }
 
         /// <summary>
         /// Finds All Application User

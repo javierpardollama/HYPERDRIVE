@@ -56,7 +56,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             Logger = @loggerFactory.CreateLogger<ApplicationRoleManager>();
         }
 
-         /// <summary>
+        /// <summary>
         /// Seeds
         /// </summary>
         private void Seed()
@@ -181,7 +181,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task FindPaginatedApplicationRole()
         {
-            await Manager.FindPaginatedApplicationRole( 1, 5);
+            await Manager.FindPaginatedApplicationRole(1, 5);
 
             Assert.Pass();
         }
@@ -220,9 +220,9 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             var @role = new ApplicationRole
             {
                 Id = 5,
-                Name = "Princess", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
+                Name = "Princess",
+                LastModified = DateTime.UtcNow,
+                Deleted = false,
                 ImageUri = "URL/Princess_500px.png"
             };
 
@@ -240,9 +240,9 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         {
             var @role = new ApplicationRole
             {
-                Name = "Witch", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
+                Name = "Witch",
+                LastModified = DateTime.UtcNow,
+                Deleted = false,
                 ImageUri = "URL/Witch_500px.png"
             };
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts;
@@ -48,12 +47,12 @@ public abstract class BaseManagerTest
     /// <summary>
     ///     Gets or Sets <see cref="ApplicationContext" />
     /// </summary>
-    protected ApplicationContext Context { get; set; }
+    protected ApplicationContext Context { get; private set; }
 
     /// <summary>
     /// Gets or Sets <see cref="ServiceCollection"/>
     /// </summary>
-    private ServiceCollection Services { get; } = new();
+    private ServiceCollection Services { get; } = [];
 
     /// <summary>
     /// Instance of <see cref="ServiceProvider"/>
@@ -71,15 +70,6 @@ public abstract class BaseManagerTest
     };
 
     /// <summary>
-    /// Gets or Sets <see cref="ContextOptionsBuilder"/>
-    /// </summary>
-    private DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; } =
-        new DbContextOptionsBuilder<ApplicationContext>()
-            .UseInMemoryDatabase("hyperdrive.db")
-            .AddInterceptors(new SoftDeleteInterceptor())
-            .EnableSensitiveDataLogging();
-
-    /// <summary>
     /// Install Services
     /// </summary>
     public void InstallServices()
@@ -90,7 +80,7 @@ public abstract class BaseManagerTest
             .AddIdentity<ApplicationUser, ApplicationRole>()
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
-        
+
         ServiceProvider = Services.BuildServiceProvider();
         Context = ServiceProvider.GetRequiredService<ApplicationContext>();
         UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -103,6 +93,7 @@ public abstract class BaseManagerTest
     /// </summary>
     public void InstallHttpContext()
     {
-        Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor() { HttpContext = new DefaultHttpContext() { RequestServices = ServiceProvider } });
+        Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor()
+            { HttpContext = new DefaultHttpContext() { RequestServices = ServiceProvider } });
     }
 }
