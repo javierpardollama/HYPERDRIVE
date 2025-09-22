@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts;
@@ -30,7 +31,7 @@ public abstract class BaseManagerTest
     /// Instance of <see cref="SignInManager{ApplicationUser}"/>
     /// </summary>
     protected SignInManager<ApplicationUser> SignInManager;
-    
+
     /// <summary>
     ///     Gets or Sets <see cref="IOptions{ApiSettings}" />
     /// </summary>
@@ -48,17 +49,17 @@ public abstract class BaseManagerTest
     ///     Gets or Sets <see cref="ApplicationContext" />
     /// </summary>
     protected ApplicationContext Context { get; set; }
-    
+
     /// <summary>
     /// Gets or Sets <see cref="ServiceCollection"/>
     /// </summary>
     private ServiceCollection Services { get; } = new();
-    
+
     /// <summary>
     /// Instance of <see cref="ServiceProvider"/>
     /// </summary>
     private ServiceProvider ServiceProvider;
-    
+
     /// <summary>
     /// Gets or Sets <see cref="ContextOptionsAction"/>
     /// </summary>
@@ -66,15 +67,18 @@ public abstract class BaseManagerTest
     {
         options.UseInMemoryDatabase("hyperdrive.db");
         options.AddInterceptors(new SoftDeleteInterceptor());
+        options.EnableSensitiveDataLogging();
     };
-    
+
     /// <summary>
     /// Gets or Sets <see cref="ContextOptionsBuilder"/>
     /// </summary>
-    private DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; } = new DbContextOptionsBuilder<ApplicationContext>()
-        .UseInMemoryDatabase("hyperdrive.db")
-        .AddInterceptors(new SoftDeleteInterceptor());
-    
+    private DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; } =
+        new DbContextOptionsBuilder<ApplicationContext>()
+            .UseInMemoryDatabase("hyperdrive.db")
+            .AddInterceptors(new SoftDeleteInterceptor())
+            .EnableSensitiveDataLogging();
+
     /// <summary>
     /// Install Services
     /// </summary>
@@ -87,9 +91,8 @@ public abstract class BaseManagerTest
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
         
-        Context = new ApplicationContext(ContextOptionsBuilder.Options);
-        
         ServiceProvider = Services.BuildServiceProvider();
+        Context = ServiceProvider.GetRequiredService<ApplicationContext>();
         UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
         SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();

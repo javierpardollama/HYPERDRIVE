@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Exceptions;
@@ -34,18 +35,9 @@ namespace Hyperdrive.Test.Infrastructure.Managers
 
             InstallLogger();
 
-            SetUpData();
+            Seed();
 
             Manager = new ApplicationRoleManager(Logger, RoleManager);
-        }
-
-        /// <summary>
-        /// Tears Down
-        /// </summary>
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-           
         }
 
         /// <summary>
@@ -64,52 +56,108 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             Logger = @loggerFactory.CreateLogger<ApplicationRoleManager>();
         }
 
-        /// <summary>
-        /// Sets Up Data
+         /// <summary>
+        /// Seeds
         /// </summary>
-        private void SetUpData()
+        private void Seed()
         {
-            Context.Roles.Add(new ApplicationRole
+            if (!Context.Roles.Any())
             {
-                Id = 1,
-                Name = "Dungeon Master", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
-                ImageUri = "URL/Dungeon_Master_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 1,
+                    Name = "Dungeon Master",
+                    NormalizedName = "DUNGEON_MASTER",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Dungeon_Master_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 2,
+                    Name = "Paladin",
+                    NormalizedName = "PALADIN",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Paladin_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 3,
+                    Name = "Sorceress",
+                    NormalizedName = "SORCERESS",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Role_2_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 4,
+                    Name = "Rogue",
+                    NormalizedName = "ROGUE",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Rogue_2_500px.png"
+                });
+                Context.Roles.Add(new ApplicationRole
+                {
+                    Id = 5,
+                    Name = "Bard",
+                    NormalizedName = "BARD",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    ImageUri = "URL/Bard_500px.png"
+                });
+            }
+
+            if (!Context.Users.Any())
             {
-                Id = 2,
-                Name = "Paladin", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
-                ImageUri = "URL/Paladin_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 3,
-                Name = "Sorceress", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
-                ImageUri = "URL/Role_2_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 4,
-                Name = "Rogue", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
-                ImageUri = "URL/Rogue_2_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 5,
-                Name = "Bard", 
-                LastModified = DateTime.UtcNow, 
-                Deleted = false, 
-                ImageUri = "URL/Bard_500px.png"
-            });
-            
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 1,
+                    FirstName = "Stafford",
+                    LastName = "Parker",
+                    UserName = "stafford.parker",
+                    Email = "stafford.parker@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 2,
+                    FirstName = "Dee",
+                    LastName = "Sandy",
+                    UserName = "dee.sandy",
+                    Email = "dee.sandy@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 3,
+                    FirstName = "Orinda Navy",
+                    LastName = "Navy",
+                    UserName = "orinda.navy",
+                    Email = "orinda.navy@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+                Context.Users.Add(new ApplicationUser
+                {
+                    Id = 4,
+                    FirstName = "Genesis",
+                    LastName = "Gavin",
+                    UserName = "genesis.gavin",
+                    Email = "genesis.gavin@email.com",
+                    LastModified = DateTime.UtcNow,
+                    Deleted = false,
+                    SecurityStamp = new Guid().ToString()
+                });
+            }
+
             Context.SaveChanges();
         }
 
