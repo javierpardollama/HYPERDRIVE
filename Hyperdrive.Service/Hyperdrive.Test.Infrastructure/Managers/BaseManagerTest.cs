@@ -71,7 +71,9 @@ public abstract class BaseManagerTest
     /// <summary>
     /// Gets or Sets <see cref="ContextOptionsBuilder"/>
     /// </summary>
-    private DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; }
+    private DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; } = new DbContextOptionsBuilder<ApplicationContext>()
+        .UseInMemoryDatabase("hyperdrive.db")
+        .AddInterceptors(new SoftDeleteInterceptor());
     
     /// <summary>
     /// Install Services
@@ -85,7 +87,6 @@ public abstract class BaseManagerTest
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
         
-        ContextOptionsAction(ContextOptionsBuilder);
         Context = new ApplicationContext(ContextOptionsBuilder.Options);
         
         ServiceProvider = Services.BuildServiceProvider();
