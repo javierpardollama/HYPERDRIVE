@@ -88,7 +88,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     NormalizedName = "SORCERESS",
                     LastModified = DateTime.UtcNow,
                     Deleted = false,
-                    ImageUri = "URL/Role_2_500px.png"
+                    ImageUri = "URL/Sorceress_500px.png"
                 });
                 Context.Roles.Add(new ApplicationRole
                 {
