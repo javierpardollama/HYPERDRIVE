@@ -26,7 +26,6 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Finds Drive Item By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="throw">Injected <see cref="bool"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> FindDriveItemById(int? @id)
         {
