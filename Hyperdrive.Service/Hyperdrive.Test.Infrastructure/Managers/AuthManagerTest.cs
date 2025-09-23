@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
+using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
@@ -171,6 +172,27 @@ public class AuthManagerTest : BaseManagerTest
         await Manager.JoinIn("monique.genaro@mail.com", "P@ssw0rd");
 
         Assert.Pass();
+    }
+    
+    /// <summary>
+    /// Signs In
+    /// </summary>
+    [Test]
+    public void SignIn()
+    {
+        var @user = new ApplicationUser
+        {
+            Id = 4,
+            FirstName = "Genesis",
+            LastName = "Gavin",
+            UserName = "genesis.gavin",
+            Email = "genesis.gavin@email.com",
+            LastModified = DateTime.UtcNow,
+            Deleted = false,
+            SecurityStamp = new Guid().ToString()
+        };
+        
+        Assert.ThrowsAsync<UnauthorizedAccessException>(async () => await Manager.SignIn(user, "genesis.gavin@email.com", "P@ssw0rd"));
     }
 
     /// <summary>
