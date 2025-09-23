@@ -63,55 +63,6 @@ public class AuthManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        if (!Context.Roles.Any())
-        {
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 1,
-                Name = "Dungeon Master",
-                NormalizedName = "DUNGEON_MASTER",
-                LastModified = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Dungeon_Master_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 2,
-                Name = "Paladin",
-                NormalizedName = "PALADIN",
-                LastModified = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Paladin_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 3,
-                Name = "Sorceress",
-                NormalizedName = "SORCERESS",
-                LastModified = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Sorceress_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 4,
-                Name = "Rogue",
-                NormalizedName = "ROGUE",
-                LastModified = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Rogue_2_500px.png"
-            });
-            Context.Roles.Add(new ApplicationRole
-            {
-                Id = 5,
-                Name = "Bard",
-                NormalizedName = "BARD",
-                LastModified = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Bard_500px.png"
-            });
-        }
-
         if (!Context.Users.Any())
         {
             Context.Users.Add(new ApplicationUser
