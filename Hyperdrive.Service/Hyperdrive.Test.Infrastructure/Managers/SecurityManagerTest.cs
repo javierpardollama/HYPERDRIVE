@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
