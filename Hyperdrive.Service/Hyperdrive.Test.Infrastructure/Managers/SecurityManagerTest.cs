@@ -130,8 +130,6 @@ public class SecurityManagerTest: BaseManagerTest
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
-            
-            //Alessa Simona
         }
 
         Context.SaveChanges();
