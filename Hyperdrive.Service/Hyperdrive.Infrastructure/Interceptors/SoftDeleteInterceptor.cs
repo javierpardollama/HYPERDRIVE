@@ -53,7 +53,7 @@ namespace Hyperdrive.Infrastructure.Interceptors
         /// Overrides Saving Changes
         /// </summary>
         /// <param name="eventData">Injected <see cref="DbContextEventData"/></param>
-        /// <param name="result">Injected <see cref="intInterceptionResult{}"/></param>
+        /// <param name="result">Injected <see cref="InterceptionResult{int}"/></param>
         /// <returns>Instance of <see cref="InterceptionResult{int}"/></returns>
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
