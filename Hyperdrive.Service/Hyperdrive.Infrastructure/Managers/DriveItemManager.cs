@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
@@ -19,8 +20,9 @@ namespace Hyperdrive.Infrastructure.Managers
     /// </summary>    
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="logger">Injected <see cref="ILogger"/></param>
-    public class DriveItemManager(IApplicationContext context,
-                                  ILogger<DriveItemManager> logger) : BaseManager(context), IDriveItemManager
+    public class DriveItemManager(
+        IApplicationContext context,
+        ILogger<DriveItemManager> logger) : BaseManager(context), IDriveItemManager
     {
         /// <summary>
         /// Finds Drive Item By Id
@@ -30,24 +32,24 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<DriveItem> FindDriveItemById(int? @id)
         {
             DriveItem @archive = await Context.DriveItems
-                 .TagWith("FindDriveItemById")
-                 .FirstOrDefaultAsync(x => x.Id == id);
+                .TagWith("FindDriveItemById")
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (@archive is null)
             {
                 // Log
                 string @logData = nameof(@archive)
-                    + " with Id "
-                    + id
-                    + " was not found at "
-                    + DateTime.UtcNow.ToShortTimeString();
+                                  + " with Id "
+                                  + id
+                                  + " was not found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
                 throw new ServiceException(nameof(DriveItem)
-                    + " with Id "
-                    + id
-                    + " does not exist");
+                                           + " with Id "
+                                           + id
+                                           + " does not exist");
             }
 
             return @archive;
@@ -68,10 +70,10 @@ namespace Hyperdrive.Infrastructure.Managers
 
             // Log
             string @logData = nameof(DriveItem)
-                + " with Id "
-                + archive.Id
-                + " was removed at "
-                + DateTime.UtcNow.ToShortTimeString();
+                              + " with Id "
+                              + archive.Id
+                              + " was removed at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
         }
@@ -84,8 +86,16 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parent)
+        public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size,
+            int @userid, int? parent)
         {
+            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            {
+                true => x => x.By.Id == userid && x.Parent.Id == @parent,
+                _ => x => x.By.Id == userid
+            };
+
+
             PageDto<DriveItemDto> @page = new()
             {
                 Length = await Context.DriveItems.TagWith("CountAllDriveItemByApplicationUserId")
@@ -93,22 +103,22 @@ namespace Hyperdrive.Infrastructure.Managers
                     .AsNoTracking()
                     .Include(x => x.By)
                     .Include(x => x.Parent)
-                    .Where(x => x.By.Id == userid && x.Parent.Id == @parent)
+                    .Where(expression)
                     .CountAsync(),
                 Index = @index,
                 Size = @size,
                 Items = (await Context.DriveItems
-                   .TagWith("FindPaginatedDriveItemByApplicationUserId")
-                   .AsSplitQuery()
-                   .AsNoTracking()
-                   .Include(x => x.Activity)
-                   .Include(x => x.By)
-                   .Include(x => x.Parent)
-                   .Where(x => x.By.Id == @userid && x.Parent.Id == @parent)
-                   .Skip(@index * @size)
-                   .Take(@size)
-                   .Select(x=> x.ToDto())
-                   .ToListAsync())
+                    .TagWith("FindPaginatedDriveItemByApplicationUserId")
+                    .AsSplitQuery()
+                    .AsNoTracking()
+                    .Include(x => x.Activity)
+                    .Include(x => x.By)
+                    .Include(x => x.Parent)
+                    .Where(expression)
+                    .Skip(@index * @size)
+                    .Take(@size)
+                    .Select(x => x.ToDto())
+                    .ToListAsync())
             };
 
             return @page;
@@ -121,7 +131,8 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="size">Injected <see cref="int"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @userid)
+        public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index,
+            int @size, int @userid)
         {
             PageDto<DriveItemDto> @page = new()
             {
@@ -158,14 +169,14 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<IList<DriveItemVersionDto>> FindAllDriveItemVersionByDriveItemId(int @id)
         {
             IList<DriveItemVersionDto> @versions = await Context.DriveItemVersions
-               .TagWith("FindAllDriveItemVersionByDriveItemId")
-               .AsSplitQuery()
-               .AsNoTracking()
-               .Include(x => x.DriveItem)
-               .ThenInclude(x => x.By)
-               .Where(x => x.DriveItem.Id == @id)
-               .Select(x => x.ToDto())
-               .ToListAsync();
+                .TagWith("FindAllDriveItemVersionByDriveItemId")
+                .AsSplitQuery()
+                .AsNoTracking()
+                .Include(x => x.DriveItem)
+                .ThenInclude(x => x.By)
+                .Where(x => x.DriveItem.Id == @id)
+                .Select(x => x.ToDto())
+                .ToListAsync();
 
             return @versions;
         }
@@ -181,7 +192,7 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, ApplicationUser @by)
         {
             await CheckFileName(filename, parent);
-            
+
             var @entity = new DriveItem()
             {
                 FileName = filename.Trim(),
@@ -201,10 +212,10 @@ namespace Hyperdrive.Infrastructure.Managers
 
             // Log
             string @logData = nameof(DriveItem)
-                + " with Id "
-                + @entity.Id
-                + " was added at "
-                + DateTime.UtcNow.ToShortTimeString();
+                              + " with Id "
+                              + @entity.Id
+                              + " was added at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
 
@@ -223,7 +234,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 DriveItem = @entity,
                 ApplicationUser = user
             }).ToList();
-            
+
             await Context.ApplicationUserDriveItems.AddRangeAsync(@userDriveItems);
 
             await Context.SaveChangesAsync();
@@ -231,7 +242,7 @@ namespace Hyperdrive.Infrastructure.Managers
             // Log
             string @logData = nameof(ApplicationUserDriveItem)
                               + "s with Ids "
-                              + string.Join(",", @userDriveItems.Select(x=> x.Id))
+                              + string.Join(",", @userDriveItems.Select(x => x.Id))
                               + " were added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -254,7 +265,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 Data = Convert.FromBase64String(@data),
                 DriveItem = @entity
             };
-            
+
             await Context.DriveItemVersions.AddAsync(@version);
 
             await Context.SaveChangesAsync();
@@ -265,7 +276,7 @@ namespace Hyperdrive.Infrastructure.Managers
                               + @version.Id
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
-            
+
             @logger.LogInformation(@logData);
         }
 
@@ -280,24 +291,24 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<DriveItem> ChangeName(string @name, string @extension, int @id, int? @parent)
         {
             await CheckName(@name, extension, @id, @parent);
-            
+
             DriveItem @entity = await FindDriveItemById(@id);
 
             @entity.Name = @name?.Trim();
             @entity.NormalizedName = @name?.Trim().ToUpper();
             @entity.FileName = $"{@name?.Trim()}{extension.Trim()}";
-            @entity.NormalizedFileName =  $"{@name?.Trim().ToUpper()}{extension.Trim().ToUpper()}";
-            
+            @entity.NormalizedFileName = $"{@name?.Trim().ToUpper()}{extension.Trim().ToUpper()}";
+
             Context.DriveItems.Update(@entity);
 
             await Context.SaveChangesAsync();
 
             // Log
             string @logData = nameof(DriveItem)
-                + " with Id "
-                + @entity.Id
-                + " was modified at "
-                + DateTime.UtcNow.ToShortTimeString();
+                              + " with Id "
+                              + @entity.Id
+                              + " was modified at "
+                              + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
 
@@ -312,28 +323,35 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
         public async Task<bool> CheckFileName(string @filename, int? @parent)
         {
+            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            {
+                true => x => x.FileName == @filename.Trim() && x.Parent.Id == @parent,
+                _ => x => x.FileName == @filename.Trim()
+            };
+
             var @found = await Context.DriveItems
-                 .TagWith("CheckFileName")
-                 .AsNoTracking()
-                 .AsSplitQuery()
-                 .Where(x => x.FileName == @filename.Trim() && x.Parent.Id == @parent)
-                 .AnyAsync();
+                .TagWith("CheckFileName")
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Include(x => x.Parent)
+                .Where(expression)
+                .AnyAsync();
 
             if (@found)
             {
                 // Log
                 string @logData = nameof(DriveItem)
-                    + " with FileName "
-                    + @filename
-                    + " was already found at "
-                    + DateTime.UtcNow.ToShortTimeString();
+                                  + " with FileName "
+                                  + @filename
+                                  + " was already found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
                 throw new ServiceException(nameof(DriveItem)
-                    + " with FileName "
-                    + @filename
-                    + " already exists");
+                                           + " with FileName "
+                                           + @filename
+                                           + " already exists");
             }
 
             return @found;
@@ -349,31 +367,39 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<bool> CheckName(string @name, string @extension, int @id, int? @parent)
         {
+            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            {
+                true => x => x.Name == @name.Trim()
+                             && x.Extension == @extension.Trim()
+                             && x.Parent.Id == @parent
+                             && x.Id != @id,
+                _ => x => x.Name == @name.Trim()
+                          && x.Extension == @extension.Trim()
+                          && x.Id != @id
+            };
+
             var @found = await Context.DriveItems
-                 .TagWith("CheckName")
-                 .AsNoTracking()
-                 .AsSplitQuery()
-                 .Where(x => x.Name == @name.Trim() 
-                                           && x.Extension == @extension.Trim() 
-                                           && x.Parent.Id == @parent 
-                                           && x.Id != @id)
-                 .AnyAsync();
+                .TagWith("CheckName")
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Where(expression)
+                .AnyAsync();
 
             if (@found)
             {
                 // Log
                 string @logData = nameof(DriveItem)
-                    + " with Name "
-                    + name
-                    + " was already found at "
-                    + DateTime.UtcNow.ToShortTimeString();
+                                  + " with Name "
+                                  + name
+                                  + " was already found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
                 throw new ServiceException(nameof(DriveItem)
-                    + " with Name "
-                    + @name
-                    + " already exists");
+                                           + " with Name "
+                                           + @name
+                                           + " already exists");
             }
 
             return @found;
@@ -392,7 +418,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 .AsSplitQuery()
                 .Include(x => x.Activity)
                 .Where(x => x.Id == @id)
-                .Select(x=> x.ToBinary())
+                .Select(x => x.ToBinary())
                 .FirstOrDefaultAsync();
 
             if (@archive is null)
@@ -426,11 +452,12 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("ReloadDriveItemById")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .Include(x => x.By)
                 .Include(x => x.Activity)
                 .Include(x => x.SharedWith)
-                .ThenInclude(x=> x.ApplicationUser)
-                .Where(x=> x.Id == @id)
-                .Select(x=> x.ToDto())
+                .ThenInclude(x => x.ApplicationUser)
+                .Where(x => x.Id == @id)
+                .Select(x => x.ToDto())
                 .FirstOrDefaultAsync();
 
             if (@archive is null)

@@ -24,7 +24,7 @@ public static class DriveItemProfile
             Name = @entity.Name,
             Extension = @entity.Extension,
             By = @entity.By.ToCatalog(),
-            Parent = @entity.Parent.ToCatalog(),
+            Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
             LastModified = @entity.Activity
               .OrderByDescending(x=>x.LastModified)
