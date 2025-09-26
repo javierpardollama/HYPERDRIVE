@@ -22,8 +22,8 @@ public static class DriveItemProfile
             FileName = @dto.Name,
             Name = @dto.Name,
             Extension = @dto.Extension,
-            By = @dto.By.ToCatalogViewModel(),
-            Parent = @dto.Parent.ToCatalogViewModel(),
+            By = @dto.By?.ToCatalogViewModel(),
+            Parent = @dto.Parent?.ToCatalogViewModel(),
             Folder = @dto.Folder,
             LastModified = @dto.LastModified,
             SharedWith = @dto.SharedWith

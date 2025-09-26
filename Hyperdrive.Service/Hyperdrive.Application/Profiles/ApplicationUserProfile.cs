@@ -23,8 +23,8 @@ public static class ApplicationUserProfile
             ApplicationRoles = @dto.ApplicationRoles
                 .Select(x=>x.ToCatalogViewModel())
                 .ToList(),
-            Token = @dto.Token.ToViewModel(),
-            RefreshToken = @dto.RefreshToken.ToViewModel(),
+            Token = @dto.Token?.ToViewModel(),
+            RefreshToken = @dto.RefreshToken?.ToViewModel(),
             FirstName = @dto.FirstName,
             LastName = @dto.LastName,
             Email = @dto.Email,

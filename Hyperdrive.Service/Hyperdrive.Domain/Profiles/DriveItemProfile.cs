@@ -23,7 +23,7 @@ public static class DriveItemProfile
             FileName = @entity.FileName,
             Name = @entity.Name,
             Extension = @entity.Extension,
-            By = @entity.By.ToCatalog(),
+            By = @entity.By?.ToCatalog(),
             Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
             LastModified = @entity.Activity
