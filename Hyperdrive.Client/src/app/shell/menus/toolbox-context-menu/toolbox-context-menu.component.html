@@ -1,0 +1,10 @@
+<div id="toolbox-context-menu">
+    <mat-list>
+        <mat-list-item *ngFor="let Link of NavigationLinks" class="option-link">
+          <button mat-button type="button" [id]=Link.Id class="sheet-button" (click)="navigate(Link)" matTooltip="{{Link.Label}}" [attr.aria-label]="'{{Link.Label}}'">
+            <div class="{{Link.Class}}"></div>
+            <span>{{Link.Label}}</span>
+          </button>
+        </mat-list-item>
+    </mat-list>
+</div>

@@ -30,6 +30,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatListModule } from "@angular/material/list";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatMenuModule } from "@angular/material/menu";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 // Interceptors
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
@@ -43,11 +47,11 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 // App-Nav
 import { NavMenuComponent }
-  from './nav-menu/nav-menu.component';
-import { ProfileModalComponent }
-  from './nav-menu/modals/profile-modal/profile-modal.component';
-import { ToolBoxModalComponent }
-  from './nav-menu/modals/toolbox-modal/toolbox-modal.component';
+  from './shell/menus/nav-menu/nav-menu.component';
+import { ProfileContextMenuComponent }
+  from './shell/menus/profile-context-menu/profile-context-menu.component';
+import { ToolboxContextMenuComponent }
+  from './shell/menus/toolbox-context-menu/toolbox-context-menu.component';
 
 // App-Auth
 import {
@@ -109,8 +113,8 @@ import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-
     UnauthorizedComponent,
     //Nav
     NavMenuComponent,
-    ProfileModalComponent,
-    ToolBoxModalComponent,
+    ProfileContextMenuComponent,
+    ToolboxContextMenuComponent,
     // App-Auth
     JoinInComponent,
     SignInComponent,
@@ -155,6 +159,10 @@ import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-
     MatSortModule,
     MatFormFieldModule,
     MatExpansionModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatTooltipModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

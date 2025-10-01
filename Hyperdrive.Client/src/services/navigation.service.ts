@@ -16,27 +16,27 @@ export class NavigationService {
                 Label: 'Users',
                 Link: './management/applicationuser',
                 Index: 0,
-                Class:'option-image application-user-management-image'
+                Class:'sheet-option-image application-user-management-image'
             },
             {
                 Id:'nav-aplication-roles',
                 Label: 'Roles',
                 Link: './management/applicationrole',
                 Index: 1,
-                Class:'option-image application-role-management-image'
+                Class:'sheet-option-image application-role-management-image'
             },
             {
                 Id:'nav-security',
                 Label: 'Security',
                 Link: './security',
                 Index: 2,
-                Class:'option-image security-image'
+                Class:'sheet-option-image security-image'
             }, {
-                Id:'nav-app',
-                Label: 'Hyperdrive',
+                Id:'nav-drive',
+                Label: 'Drive',
                 Link: './',
                 Index: 3,
-                Class:'option-image app-image'
+                Class:'sheet-option-image cloud-image'
             }
         ];
     }
