@@ -33,7 +33,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatMenuModule } from "@angular/material/menu";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 // Interceptors
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
