@@ -3,23 +3,23 @@
         <ul class="container">
             <div class="left">
                 <li >
-                    <a id="nav-toggle" class="toolbar-title" (click)="sidenav.toggle()">
+                    <button mat-button id="nav-toggle" class="toolbar-title" (click)="sidenav.toggle()">
                         <div class="toolbar-option-image nav-menu-app-image" matTooltip="Hyperdrive"></div>
-                    </a>
+                    </button>
                 </li>
             </div>
             <div class="center">
                 <li>
-                    <a class="toolbar-title" (click)="Toolbox()">
+                    <button mat-button class="toolbar-title" (click)="Toolbox()">
                         <div class="toolbar-option-image nav-menu-toolbox-image" matTooltip="Tools"></div>
-                    </a>
+                    </button>
                 </li>
             </div>
             <div class="right">
                 <li class="toolbar-title" *ngIf="User">
-                    <a (click)="Profile()">
+                    <button  mat-button="Profile()">
                         <div class="toolbar-option-image nav-menu-initial-image"><span matTooltip="{{User.Email}}">{{User.Initial}}</span></div>
-                    </a>
+                    </button>
                 </li>
             </div>
         </ul>
