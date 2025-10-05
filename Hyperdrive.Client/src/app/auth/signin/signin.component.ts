@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit {
     if (user) {
       sessionStorage.setItem('User', JSON.stringify(user));
 
-      this.router.navigate(['/']);
+      await this.router.navigate(['/']);
     }
   }
 }
