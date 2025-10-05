@@ -1,39 +1,49 @@
-<div class="container" id="join-in-modal">
-  <mat-card class="auth-card">
-    <mat-card-header>
-      <div mat-card-avatar class="auth-header-image"></div>
-      <mat-card-title>Join In</mat-card-title>
-    </mat-card-header>
-    <form [formGroup]="formGroup" class="form" novalidate>
-      <mat-card-content>
-        <div class="modal-content-line">
-          <div class="modal-option-image modal-mail-image" aria-label="Email"></div>
-          <mat-form-field class="form-element">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Email" formControlName="Email" spellcheck="false">
-            <mat-error *ngIf="!formGroup.controls['Email'].valid && formGroup.controls['Email'].touched">
-              Required field.
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="modal-content-line">
-          <div class="modal-option-image modal-password-image" aria-label="Password"></div>
-          <mat-form-field class="form-element">
-            <mat-label>Password</mat-label>
-            <input type="password" matInput placeholder="Password" formControlName="Password" spellcheck="false">
-            <mat-error *ngIf="!formGroup.controls['Password'].valid && formGroup.controls['Password'].touched">
-              Required field.
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit" class="button" id="join-button" (click)="onSubmit(formGroup.value)"
-          [disabled]="!formGroup.valid">Join In
-        </button>
-        <button mat-raised-button color="accent" type="button" class="button" id="sign-button" routerLink='/auth/signin'>Sign In
-        </button>      
-      </mat-card-actions>
-    </form>
-  </mat-card>
+<div id="join-in-screen">
+    <div class="container">
+
+        <form [formGroup]="formGroup" class="form" novalidate>
+
+            <div class="content-line">
+                <span class="content-title">LET'S GET STARTED!</span>
+            </div>
+
+            <div class="content-line">
+                <div class="option-image mail-image" aria-label="Email"></div>
+                <mat-form-field class="form-element">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="Email" formControlName="Email" spellcheck="false">
+                    <mat-error *ngIf="!formGroup.controls['Email'].valid && formGroup.controls['Email'].touched">
+                        Required field.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="content-line">
+                <div class="option-image password-image" aria-label="Password"></div>
+                <mat-form-field class="form-element">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="Password" formControlName="Password"
+                           spellcheck="false">
+                    <mat-error *ngIf="!formGroup.controls['Password'].valid && formGroup.controls['Password'].touched">
+                        Required field.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="content-line">
+                <button mat-raised-button color="primary" type="submit" class="center-button" id="join-button"
+                        (click)="onSubmit(formGroup.value)"
+                        [disabled]="!formGroup.valid">JOIN IN
+                </button>
+            </div>
+            <div class="content-line-flex-reverse">
+                <button mat-button color="accent" type="button" id="back-button"
+                        (click)="onBack()">← Back
+                </button>
+            </div>
+
+            <div class="content-line-flex-reverse">
+                <button mat-button routerLink='/hept' type="button" class="left-button" id="btn-need-help">NEED HELP?
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

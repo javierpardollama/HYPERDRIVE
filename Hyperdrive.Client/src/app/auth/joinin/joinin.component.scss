@@ -1,64 +1,73 @@
-.auth-card {
-    top: 40px;
-    width: 400px;
-    margin: auto;
+.container{
+  margin:auto;
+  width: 50vw;
 }
 
-.auth-header-image {
-    background-image: url('/assets/img/iconos/Hyperdrive_500px.png');
-    background-size: cover;
+.content-title{
+  display: flex;
+  justify-content: center;
+  padding:8px;
+  font-size:24px !important;
 }
 
-.modal-content-line {
-    clear: both;
-    padding: 8px;
+.content-line {
+  padding: 8px;
+  flex-direction: row;
+}
+.content-line-flex {
+  padding: 8px;
+  flex-direction: row;
+  display: flex;
 }
 
-.modal-option-image {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    object-fit: cover;
-    float: left;
-    margin-right: 8px;
+.content-line-flex-reverse {
+  padding: 8px;
+  flex-direction: row-reverse;
+  display: flex;
 }
 
-.modal-mail-image {
+.form-element{
+  display: flex;
+}
+
+.center-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.left-button{
+  flex-grow:1;
+}
+
+.right-button{
+  flex-grow: 1;
+}
+
+.option-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  float: left;
+  margin-right: 8px;
+}
+
+.mail-image {
     background-image: url('/assets/img/iconos/Envelope_500px.png');
     background-size: cover;
 }
 
-.modal-password-image {
+.password-image {
     background-image: url('/assets/img/iconos/Password_500px.png');
     background-size: cover;
 }
 
-/* MATERIAL OVERRIDE */
-mat-card-header {
-    padding: 8px;
-    background-color: #3f51b5;
-}
-
-/* MATERIAL OVERRIDE */
-mat-card-title {
-    color: #FFFFFF;
-}
-
-/* MATERIAL OVERRIDE */
-mat-card-content {
-    overflow: hidden;
-    background-color: #F5F5F5;
-}
-
-mat-card-actions button {
-    margin: 8px;
-}
-
 @media screen and (max-width: 960px) {
-    .auth-card {
-        left: unset;
-        width: unset;
-        margin: 8px;
-    }
+  .container{
+    margin:unset;
+    width: unset;
+  }
 }

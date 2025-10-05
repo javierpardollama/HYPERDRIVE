@@ -1,19 +1,20 @@
-.container{
-  margin:auto;
+.container {
+  margin: auto;
   width: 50vw;
 }
 
-.content-title{
+.content-title {
   display: flex;
   justify-content: center;
-  padding:8px;
-  font-size:24px !important;
+  padding: 8px;
+  font-size: 24px !important;
 }
 
 .content-line {
   padding: 8px;
   flex-direction: row;
 }
+
 .content-line-flex {
   padding: 8px;
   flex-direction: row;
@@ -26,22 +27,22 @@
   display: flex;
 }
 
-.form-element{
+.form-element {
   display: flex;
 }
 
-.center-button{
+.center-button {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
 }
 
-.left-button{
-  flex-grow:1;
+.left-button {
+  flex-grow: 1;
 }
 
-.right-button{
+.right-button {
   flex-grow: 1;
 }
 
@@ -66,8 +67,8 @@
 }
 
 @media screen and (max-width: 960px) {
-  .container{
-    margin:unset;
+  .container {
+    margin: unset;
     width: unset;
   }
 }

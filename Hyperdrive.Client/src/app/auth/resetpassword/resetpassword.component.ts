@@ -69,11 +69,11 @@ export class ResetPasswordComponent implements OnInit {
 
       sessionStorage.setItem('User', JSON.stringify(user));
 
-      this.router.navigate(['/']);
+      await this.router.navigate(['/']);
     }
   }
 
   onBack() {
-    this.location.back();;
+    this.location.back();
   }
 }
