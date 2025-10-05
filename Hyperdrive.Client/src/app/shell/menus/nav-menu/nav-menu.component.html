@@ -17,7 +17,7 @@
             </div>
             <div class="right">
                 <li class="toolbar-title" *ngIf="User">
-                    <button type="button" mat-button="Profile()">
+                    <button type="button" mat-button (click)="Profile()">
                         <div class="toolbar-option-image nav-menu-initial-image"><span matTooltip="{{User.Email}}">{{User.Initial}}</span></div>
                     </button>
                 </li>
