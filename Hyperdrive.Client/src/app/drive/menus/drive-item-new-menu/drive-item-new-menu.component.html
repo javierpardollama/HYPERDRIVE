@@ -1,0 +1,5 @@
+<button mat-button [matMenuTriggerFor]="menu">NEW +</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="NewFolder()">New Folder</button>
+    <button mat-menu-item (click)="NewFile()">Upload File</button>
+</mat-menu>

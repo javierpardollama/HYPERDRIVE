@@ -1,0 +1,22 @@
+<div id="driveitem-folder-add-modal" class="container">
+    <form [formGroup]="formGroup" class="form" novalidate>
+
+        <div class="modal-content-line">
+            <div class="modal-option-image modal-folder-image" aria-label="FileName"></div>
+            <mat-form-field class="form-element">
+                <mat-label>FileName</mat-label>
+                <input type="text" matInput placeholder="FileName" formControlName="FileName">
+                <mat-error *ngIf="!formGroup.controls['FileName'].valid && formGroup.controls['FileName'].touched">
+                    Required field.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
+                    [disabled]="!formGroup.valid">Save
+            </button>
+        </div>
+
+    </form>
+</div>

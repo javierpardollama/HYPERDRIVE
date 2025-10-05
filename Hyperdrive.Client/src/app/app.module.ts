@@ -88,6 +88,10 @@ import { DriveitemGridComponent } from './drive/grids/driveitem-grid/driveitem-g
 // App-Modal-Adition
 import { ApplicationRoleAddModalComponent }
   from './management/modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
+import { DriveItemFolderAddModalComponent } from "./drive/modals/additions/driveitem-folder-add-modal/driveitem-folder-add-modal.component";
+import {
+    DriveItemFileAddModalComponent
+} from "./drive/modals/additions/driveitem-file-add-modal/driveitem-file-add-modal.component";
 
 // App-Modal-Update
 import { ApplicationRoleUpdateModalComponent }
@@ -103,6 +107,7 @@ import {
 
 // App-Drive-Context
 import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-menu/drive-item-context-menu.component';
+import { DriveItemNewMenuComponent} from "./drive/menus/drive-item-new-menu/drive-item-new-menu.component";
 
 @NgModule({
   declarations: [
@@ -131,13 +136,16 @@ import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-
     DriveitemGridComponent,
     // App-Modal-Adition
     ApplicationRoleAddModalComponent,
+    DriveItemFileAddModalComponent,
+    DriveItemFolderAddModalComponent,
     // App-Modal-Update
     ApplicationRoleUpdateModalComponent,
     ApplicationUserUpdateModalComponent,
     DriveitemNameUpdateModalComponent,
     DriveitemShareWithUpdateModalComponent,
     // App-Drive-Context
-    DriveItemContextMenuComponent
+    DriveItemContextMenuComponent,
+    DriveItemNewMenuComponent
   ],
   bootstrap: [AppComponent], imports: [
     // Angular Material

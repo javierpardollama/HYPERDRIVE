@@ -14,7 +14,7 @@ import { ChangePhoneNumberModalComponent }
   from './modals/changephonenumber-modal/changephonenumber-modal.component';
 
 import { ViewApplicationUser }
-  from './../../viewmodels/views/viewapplicationuser';
+  from '../../viewmodels/views/viewapplicationuser';
 
 
 @Component({

@@ -40,8 +40,7 @@ export class BinaryService extends BaseService {
             Size: viewModel.Data.size,
             FileName: viewModel.Data.name,
             Type: viewModel.Data.type,
-            Folder: viewModel.Folder,
-            ApplicationUsersId: viewModel.ApplicationUsersId,
+            Folder: viewModel.Folder
         };
 
         return resultModel;
