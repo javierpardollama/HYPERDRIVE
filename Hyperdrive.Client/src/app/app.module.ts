@@ -107,7 +107,6 @@ import {
 
 // App-Drive-Context
 import { DriveItemContextMenuComponent } from './drive/menus/drive-item-context-menu/drive-item-context-menu.component';
-import { DriveItemNewMenuComponent} from "./drive/menus/drive-item-new-menu/drive-item-new-menu.component";
 
 @NgModule({
   declarations: [
@@ -144,8 +143,7 @@ import { DriveItemNewMenuComponent} from "./drive/menus/drive-item-new-menu/driv
     DriveitemNameUpdateModalComponent,
     DriveitemShareWithUpdateModalComponent,
     // App-Drive-Context
-    DriveItemContextMenuComponent,
-    DriveItemNewMenuComponent
+    DriveItemContextMenuComponent
   ],
   bootstrap: [AppComponent], imports: [
     // Angular Material

@@ -11,7 +11,7 @@ export class UnknownComponent {
   // Constructor
   constructor(private router: Router) { }
 
-  public Back(): void {
-    this.router.navigate([""]);
+  public async Back(): Promise<void>  {
+    await this.router.navigate([""]);
   }
 }

@@ -1,11 +1,11 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from "@angular/material/bottom-sheet";
-import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
-import { DriveItemService } from "../../../../services/driveitem.service";
-import { BinaryService } from "../../../../services/binary.service";
-import { TextAppVariants } from "../../../../variants/text.app.variants";
-import { TimeAppVariants } from "../../../../variants/time.app.variants";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import {Component, Inject} from '@angular/core';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
+import {ViewDriveItem} from "../../../../viewmodels/views/viewdriveitem";
+import {DriveItemService} from "../../../../services/driveitem.service";
+import {BinaryService} from "../../../../services/binary.service";
+import {TextAppVariants} from "../../../../variants/text.app.variants";
+import {TimeAppVariants} from "../../../../variants/time.app.variants";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {
     DriveitemNameUpdateModalComponent
@@ -28,9 +28,10 @@ export class DriveItemContextMenuComponent {
         public driveItemService: DriveItemService,
         public binaryService: BinaryService,
         public sheetRef: MatBottomSheetRef<DriveItemContextMenuComponent>,
-        @Inject(MAT_BOTTOM_SHEET_DATA) public data: ViewDriveItem) { }
+        @Inject(MAT_BOTTOM_SHEET_DATA) public data: ViewDriveItem) {
+    }
 
-    public Share() {
+    public Share(): void {
         const dialogRef = this.matDialog.open(DriveitemShareWithUpdateModalComponent, {
             data: this.data,
             width: '450px',
@@ -41,13 +42,13 @@ export class DriveItemContextMenuComponent {
         });
     }
 
-    public async Download() {
+    public async Download(): Promise<void> {
         const binary = await this.driveItemService.FindDriveItemBinaryById(this.data.Id);
         await this.binaryService.DecodeViewDriveItem(binary);
         this.sheetRef.dismiss();
     }
 
-    public Rename() {
+    public Rename(): void {
         const dialogRef = this.matDialog.open(DriveitemNameUpdateModalComponent, {
             data: this.data,
             width: '450px'
@@ -58,17 +59,17 @@ export class DriveItemContextMenuComponent {
         });
     }
 
-    public Activity() {
+    public Activity(): void {
         this.sheetRef.dismiss();
     }
 
     public async Remove(): Promise<void> {
         await this.driveItemService.RemoveDriveItemById(this.data.Id);
-        
+
         this.snackBar.open(
             TextAppVariants.AppOperationSuccessCoreText,
             TextAppVariants.AppOkButtonText,
-            { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+            {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
 
         this.sheetRef.dismiss();
     }

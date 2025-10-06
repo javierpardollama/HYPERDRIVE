@@ -70,7 +70,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
     }
 
     // Get User from Storage
-    public GetLocalUser() {
+    public GetLocalUser(): void {
         this.User = JSON.parse(sessionStorage.getItem('User')!);
     }
 }

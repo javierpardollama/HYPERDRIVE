@@ -10,9 +10,9 @@ import {BinaryService} from "../../../../../services/binary.service";
 import {BinaryAddDriveItem} from "../../../../../viewmodels/binary/binaryadddriveitem";
 
 @Component({
-  selector: 'app-driveitem-file-add-modal',
-  templateUrl: './driveitem-file-add-modal.component.html',
-  styleUrl: './driveitem-file-add-modal.component.scss'
+    selector: 'app-driveitem-file-add-modal',
+    templateUrl: './driveitem-file-add-modal.component.html',
+    styleUrl: './driveitem-file-add-modal.component.scss'
 })
 export class DriveItemFileAddModalComponent implements OnInit {
 
@@ -71,7 +71,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
     }
 
     // Get User from Storage
-    public GetLocalUser() {
+    public GetLocalUser(): void {
         this.User = JSON.parse(sessionStorage.getItem('User')!);
     }
 }

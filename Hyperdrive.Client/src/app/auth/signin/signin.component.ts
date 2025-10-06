@@ -35,12 +35,12 @@ export class SignInComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit():void {
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm():void {
     this.formGroup = this.formBuilder.group({
       Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: AuthSignIn) {
+  async onSubmit(viewModel: AuthSignIn):Promise<void> {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
