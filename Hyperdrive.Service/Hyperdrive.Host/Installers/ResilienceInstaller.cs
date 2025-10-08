@@ -117,11 +117,11 @@ public static class ResilienceInstaller
     }
 
     /// <summary>
-    /// Installs Default Health Endpoints
+    /// Uses Default Health Endpoints
     /// </summary>
     /// <param name="app">Injected <see cref="WebApplication"/></param>
     /// <returns>Instance of <see cref="WebApplication"/></returns>
-    public static WebApplication InstallDefaultHealthEndpoints(this WebApplication app)
+    public static WebApplication UseDefaultHealthEndpoints(this WebApplication app)
     {
         app.MapGroup("").CacheOutput("HealthChecks").WithRequestTimeout("HealthChecks");
 

@@ -37,10 +37,10 @@ public static class EntityFrameworkInstaller
 
 
     /// <summary>
-    ///     Installs Migrations
+    ///     Use Migrations
     /// </summary>
     /// <param name="this">Injected <see cref="WebApplication" /></param>
-    public static void InstallMigrations(this WebApplication @this)
+    public static void UseMigrations(this WebApplication @this)
     {
         using var @scope = @this.Services.CreateScope();
 

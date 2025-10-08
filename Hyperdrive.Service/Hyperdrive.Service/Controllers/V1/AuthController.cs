@@ -1,18 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.RateLimiting;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using Hyperdrive.Application.Commands.Auth;
 using Hyperdrive.Application.ViewModels.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
-namespace Hyperdrive.Service.Controllers
+namespace Hyperdrive.Service.Controllers.V1
 {
     /// <summary>
     /// Represents a <see cref="AuthController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
     //// <param name="mediator">Injected <see cref="IMediator"/></param>
-    [Route("api/auth")]
+    [ApiVersion(1)]
+    [Route("api/v{v:apiVersion}/auth")]
     [Produces("application/json")]
     [ApiController]
     [EnableRateLimiting("Concurrency")]
@@ -31,6 +33,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AuthSignIn"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
+        [MapToApiVersion(1)]
         [HttpPost]
         [Route("signin")]
         public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await mediator.Send(new SignInCommand {ViewModel = @viewModel}));
@@ -48,6 +51,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
+        [MapToApiVersion(1)]
         [HttpPost]
         [Route("joinin")]
         public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await mediator.Send(new JoinInCommand {ViewModel = @viewModel}));
@@ -65,6 +69,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
+        [MapToApiVersion(1)]
         [HttpPost]
         [Route("signout")]
         [Authorize]

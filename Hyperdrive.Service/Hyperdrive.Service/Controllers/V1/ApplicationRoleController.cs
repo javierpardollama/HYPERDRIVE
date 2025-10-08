@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.RateLimiting;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using Hyperdrive.Application.Commands.ApplicationRole;
 using Hyperdrive.Application.Queries.ApplicationRole;
 using Hyperdrive.Application.ViewModels.Additions;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
-namespace Hyperdrive.Service.Controllers
+namespace Hyperdrive.Service.Controllers.V1
 {
     /// <summary>
     /// Represents a <see cref="ApplicationRoleController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
     /// <param name="mediator">Injected <see cref="IMediator"/></param>
-    [Route("api/applicationrole")]
+    [ApiVersion(1)]
+    [Route("api/v{v:apiVersion}/applicationrole")]
     [Produces("application/json")]
     [ApiController]
     [Authorize]
@@ -35,6 +37,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
+        [MapToApiVersion(1)]
         [HttpPut]
         [Route("updateapplicationrole")]
         public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationRoleCommand {ViewModel = @viewModel}));
@@ -51,6 +54,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="503">ServiceUnavailable</response>
         /// <response code="500">InternalServerError</response>     
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
+        [MapToApiVersion(1)]
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationrole")]
@@ -69,6 +73,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
+        [MapToApiVersion(1)]
         [HttpPost]
         [Route("findpaginatedapplicationrole")]
         public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationRoleQuery { ViewModel = viewModel }));
@@ -86,6 +91,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AddApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
+        [MapToApiVersion(1)]
         [HttpPost]
         [Route("addapplicationrole")]
         public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => Ok(value: await mediator.Send(new AddApplicationRoleCommand { ViewModel = viewModel }));
@@ -103,6 +109,7 @@ namespace Hyperdrive.Service.Controllers
         /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
+        [MapToApiVersion(1)]
         [HttpDelete]
         [Route("removeapplicationrolebyid/{id}")]
         public async Task<IActionResult> RemoveApplicationRoleById(int @id)

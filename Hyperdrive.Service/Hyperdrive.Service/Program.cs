@@ -22,8 +22,9 @@ var @builder = WebApplication.CreateBuilder(args);
                     options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 });
 
+builder.Services.InstallApiVersions();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-@builder.Services.AddEndpointsApiExplorer();
 @builder.Services.InstallOpenApi();
 
 @builder.Services.InstallManagers();
@@ -59,9 +60,9 @@ if (@app.Environment.IsDevelopment())
     @app.UseSwaggerUI();
 }
 
-@app.InstallMigrations();
+@app.UseMigrations();
 
-@app.InstallMiddlewares();
+@app.UseMiddlewares();
 
 @app.UseHttpsRedirection();
 
@@ -77,13 +78,12 @@ if (@app.Environment.IsDevelopment())
 
 @app.MapControllers();
 
-@app.InstallDefaultHealthEndpoints();
+@app.UseDefaultHealthEndpoints();
 
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
 
 // Return the body of the response when the status code is not successful (the default behavior is to return an empty body with a Status Code)
-@app.UseExceptionHandler();
-@app.UseStatusCodePages();
+@app.UseProblemDetails();
 
 @app.Run();
