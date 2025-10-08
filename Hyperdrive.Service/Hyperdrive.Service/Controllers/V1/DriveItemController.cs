@@ -16,7 +16,8 @@ namespace Hyperdrive.Service.Controllers.V1
     /// Represents a <see cref="DriveItemController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
     /// <param name="mediator">Injected <see cref="IMediator"/></param>
-    [ApiVersion(1)]
+    [ApiVersion(1.0)]
+    [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v{v:apiVersion}/driveitem")]
     [Produces("application/json")]
     [Authorize]
@@ -37,7 +38,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("findpaginateddriveitembyapplicationuserid")]
         public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
@@ -55,7 +56,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("findpaginatedshareddriveitembyapplicationuserid")]
         public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedSharedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
@@ -73,7 +74,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpGet]
         [Route("findalldriveitemversionbydriveitemid/{id}")]
         public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await mediator.Send(new FindAllDriveItemVersionByDriveItemIdQuery {Id = @id}));
@@ -91,7 +92,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpGet]
         [Route("finddriveitembinarybyid/{id}")]
         public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
@@ -109,7 +110,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="AddDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("adddriveitem")]
         public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value:await mediator.Send(new AddDriveItemCommand {ViewModel = @viewModel}));
@@ -127,7 +128,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("updatedriveitem")]
         public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value:await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
@@ -145,7 +146,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateDriveItemName"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("updatedriveitemname")]
         public async Task<IActionResult> UpdateDriveItemName([FromBody] UpdateDriveItemName @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemNameCommand { ViewModel = @viewModel }));
@@ -163,7 +164,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateDriveItemName"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("updatedriveitemsharedwith")]
         public async Task<IActionResult> UpdateDriveItemSharedWith([FromBody] UpdateDriveItemSharedWith @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemSharedWithCommand { ViewModel = @viewModel }));
@@ -181,7 +182,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpDelete]
         [Route("removedriveitembyid/{id}")]
         public async Task<IActionResult> RemoveDriveItemById(int @id)

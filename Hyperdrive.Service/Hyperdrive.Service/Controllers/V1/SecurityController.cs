@@ -13,7 +13,8 @@ namespace Hyperdrive.Service.Controllers.V1
     /// Represents a <see cref="SecurityController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>    
     /// <param name="mediator">Injected <see cref="IMediator"/></param>
-    [ApiVersion(1)]
+    [ApiVersion(1.0)]
+    [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v{v:apiVersion}/security")]
     [Produces("application/json")]
     [ApiController]
@@ -33,7 +34,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("resetpassword")]
         public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await mediator.Send(new PasswordResetCommand { ViewModel = @viewModel }));
@@ -51,7 +52,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("changepassword")]
         [Authorize]
@@ -70,7 +71,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("changeemail")]
         [Authorize]
@@ -89,7 +90,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("changephonenumber")]
         [Authorize]
@@ -108,7 +109,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("changename")]
         [Authorize]
@@ -127,7 +128,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("refreshtokens")]
         public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value:   await mediator.Send(new RefreshTokenResetCommand { ViewModel = @viewModel }));

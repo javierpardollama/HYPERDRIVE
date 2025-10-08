@@ -16,7 +16,8 @@ namespace Hyperdrive.Service.Controllers.V1
     /// Represents a <see cref="ApplicationUserController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
     /// <param name="mediator">Injected <see cref="IMediator"/></param>
-    [ApiVersion(1)]
+    [ApiVersion(1.0)]
+    [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v{v:apiVersion}/applicationuser")]
     [Produces("application/json")]
     [ApiController]
@@ -37,7 +38,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("updateapplicationuser")]
         public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationUserCommand {ViewModel = @viewModel}));
@@ -49,7 +50,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="409">Conflict</response>
         /// <response code="401">Unauthorized</response>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallapplicationuser")]
@@ -69,7 +70,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPageApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("findpaginatedapplicationuser")]
         public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationUserQuery { ViewModel = @viewModel}));
@@ -87,7 +88,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
-        [MapToApiVersion(1)]
+        [MapToApiVersion(1.0)]
         [HttpDelete]
         [Route("removeapplicationuserbyid/{id}")]
         public async Task<IActionResult> RemoveApplicationUserById(int @id)
