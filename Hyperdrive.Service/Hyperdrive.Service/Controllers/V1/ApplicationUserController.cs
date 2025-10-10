@@ -40,7 +40,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("updateapplicationuser")]
+        [Route("update")]
         public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationUserCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-        [Route("findallapplicationuser")]
+        [Route("all")]
         public async Task<IActionResult> FindAllApplicationUser() => Ok(value: await mediator.Send(new FindAllApplicationUserQuery()));
            
 
@@ -72,7 +72,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("findpaginatedapplicationuser")]
+        [Route("page")]
         public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationUserQuery { ViewModel = @viewModel}));
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpDelete]
-        [Route("removeapplicationuserbyid/{id}")]
+        [Route("remove/{id}")]
         public async Task<IActionResult> RemoveApplicationUserById(int @id)
         {
             await mediator.Send(new RemoveApplicationUserByIdCommand { Id = @id });

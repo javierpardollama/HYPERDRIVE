@@ -40,7 +40,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("updateapplicationrole")]
+        [Route("update")]
         public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationRoleCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-        [Route("findallapplicationrole")]
+        [Route("all")]
         public async Task<IActionResult> FindAllApplicationRole() => Ok(value: await mediator.Send(new FindAllApplicationRoleQuery()));
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("findpaginatedapplicationrole")]
+        [Route("page")]
         public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationRoleQuery { ViewModel = viewModel }));
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("addapplicationrole")]
+        [Route("create")]
         public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => Ok(value: await mediator.Send(new AddApplicationRoleCommand { ViewModel = viewModel }));
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [MapToApiVersion(1.0)]
         [HttpDelete]
-        [Route("removeapplicationrolebyid/{id}")]
+        [Route("remove/{id}")]
         public async Task<IActionResult> RemoveApplicationRoleById(int @id)
         {
             await mediator.Send(new RemoveApplicationRoleByIdCommand { Id = @id });

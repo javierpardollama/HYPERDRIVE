@@ -54,7 +54,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("joinin")]
+        [Route("create")]
         public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await mediator.Send(new JoinInCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("signout")]
+        [Route("out")]
         [Authorize]
         public async Task<IActionResult> SignOut([FromBody] AuthSignOut @viewModel)
         {

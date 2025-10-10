@@ -36,7 +36,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("resetpassword")]
+        [Route("password/reset")]
         public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await mediator.Send(new PasswordResetCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("changepassword")]
+        [Route("password/change")]
         [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody] SecurityPasswordChange @viewModel) => Ok(value:   await mediator.Send(new PasswordChangeCommand { ViewModel = @viewModel }));
 
@@ -73,7 +73,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("changeemail")]
+        [Route("email/change")]
         [Authorize]
         public async Task<IActionResult> ChangeEmail([FromBody] SecurityEmailChange @viewModel) => Ok(value: await mediator.Send(new EmailChangeCommand { ViewModel = @viewModel }));
 
@@ -92,7 +92,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("changephonenumber")]
+        [Route("phonenumber/change")]
         [Authorize]
         public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => Ok(value:   await mediator.Send(new PhoneNumberChangeCommand { ViewModel = @viewModel }));
 
@@ -111,7 +111,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("changename")]
+        [Route("name/change")]
         [Authorize]
         public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => Ok(value:   await mediator.Send(new NameChangeCommand { ViewModel = @viewModel }));
 
@@ -130,7 +130,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("refreshtokens")]
+        [Route("tokens/refresh")]
         public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value:   await mediator.Send(new RefreshTokenResetCommand { ViewModel = @viewModel }));
     }
 }

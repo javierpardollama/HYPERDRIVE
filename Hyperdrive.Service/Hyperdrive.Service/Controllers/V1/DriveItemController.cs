@@ -40,7 +40,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("findpaginateddriveitembyapplicationuserid")]
+        [Route("page")]
         public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("findpaginatedshareddriveitembyapplicationuserid")]
+        [Route("page/shared")]
         public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedSharedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpGet]
-        [Route("findalldriveitemversionbydriveitemid/{id}")]
+        [Route("all/version/{id}")]
         public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await mediator.Send(new FindAllDriveItemVersionByDriveItemIdQuery {Id = @id}));
       
         /// <summary>
@@ -94,7 +94,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpGet]
-        [Route("finddriveitembinarybyid/{id}")]
+        [Route("binary/{id}")]
         public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
         
         /// <summary>
@@ -112,7 +112,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("adddriveitem")]
+        [Route("create")]
         public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value:await mediator.Send(new AddDriveItemCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("updatedriveitem")]
+        [Route("update")]
         public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value:await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
         
         /// <summary>
@@ -148,7 +148,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("updatedriveitemname")]
+        [Route("name/change")]
         public async Task<IActionResult> UpdateDriveItemName([FromBody] UpdateDriveItemName @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemNameCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPut]
-        [Route("updatedriveitemsharedwith")]
+        [Route("share")]
         public async Task<IActionResult> UpdateDriveItemSharedWith([FromBody] UpdateDriveItemSharedWith @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemSharedWithCommand { ViewModel = @viewModel }));
         
         /// <summary>
@@ -184,7 +184,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpDelete]
-        [Route("removedriveitembyid/{id}")]
+        [Route("remove/{id}")]
         public async Task<IActionResult> RemoveDriveItemById(int @id)
         {
             await mediator.Send(new RemoveDriveItemByIdCommand { Id = @id });
