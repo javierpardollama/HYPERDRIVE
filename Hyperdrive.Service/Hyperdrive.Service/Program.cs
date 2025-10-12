@@ -1,11 +1,9 @@
-using System;
 using System.Text.Json.Serialization;
 using Hyperdrive.Application.Installers;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Host.Installers;
 using Hyperdrive.Infrastructure.Installers;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
