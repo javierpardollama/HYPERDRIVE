@@ -36,7 +36,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("signin")]
+        [Route("in")]
         public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await mediator.Send(new SignInCommand {ViewModel = @viewModel}));
 
         /// <summary>
