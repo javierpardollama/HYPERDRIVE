@@ -17,7 +17,7 @@ public static class ApplicationUserRefreshTokenProfile
     {
         return new TokenDto
         {
-           IssuedAt = @entity.LastModified,
+           IssuedAt = @entity.IssuedAt,
            LoginProvider = @entity.LoginProvider,
            Value = @entity.Value
         };

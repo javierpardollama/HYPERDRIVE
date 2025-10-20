@@ -66,8 +66,8 @@ public class RefreshTokenManagerTest: BaseManagerTest
             {
                 Id = 1,
                 Value = "i5E%@VRMZ)%3AuWuA+A+%PAcEE0q.x",
-                Revoked = false,
                 ExpiresAt = DateTime.UtcNow.AddDays(2),
+                IssuedAt = DateTime.UtcNow,
                 LastModified = DateTime.UtcNow,
                 Deleted = false,
                 ApplicationUser = new ApplicationUser
@@ -88,6 +88,7 @@ public class RefreshTokenManagerTest: BaseManagerTest
                 Value = "&91eVg+82z*q5qfwCLp.*f=x)];]27",
                 Revoked = false,
                 ExpiresAt = DateTime.UtcNow.AddDays(2),
+                IssuedAt = DateTime.UtcNow,
                 LastModified = DateTime.UtcNow,
                 Deleted = false,
                 ApplicationUser = new ApplicationUser

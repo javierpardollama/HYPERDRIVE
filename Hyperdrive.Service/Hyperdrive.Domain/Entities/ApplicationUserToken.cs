@@ -24,6 +24,12 @@ namespace Hyperdrive.Domain.Entities
         /// </summary>
         [Required]
         public DateTime LastModified { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="IssuedAt"/>
+        /// </summary>
+        [Required]
+        public DateTime IssuedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Deleted"/>

@@ -119,7 +119,8 @@ namespace Hyperdrive.Infrastructure.Managers
                 LoginProvider = JwtSettings.Value.JwtIssuer,
                 ApplicationUser = @user,
                 Value = WriteJwtRefreshToken(),
-                ExpiresAt = GenerateRefreshTokenExpirationDate()
+                ExpiresAt = GenerateRefreshTokenExpirationDate(),
+                IssuedAt = DateTime.UtcNow,
             };
             
             await Context.UserRefreshTokens.AddAsync(@refreshToken);

@@ -46,6 +46,7 @@ namespace Hyperdrive.Domain.Entities
         /// <summary>
         /// Gets or Sets <see cref="ExpiresAt"/>
         /// </summary>
+        [Required]
         public DateTime ExpiresAt { get; set; }
 
         /// <summary>
@@ -58,6 +59,12 @@ namespace Hyperdrive.Domain.Entities
         /// Gets or Sets <see cref="RevokedAt"/>
         /// </summary>
         public DateTime? RevokedAt { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets <see cref="IssuedAt"/>
+        /// </summary>
+        [Required]
+        public DateTime IssuedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="LoginProvider"/>

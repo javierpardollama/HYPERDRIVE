@@ -8,7 +8,6 @@ using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Managers;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts.Interfaces;
-using Hyperdrive.Infrastructure.Helpers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -34,8 +33,8 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="SecurityTokenDescriptor"/></returns>
         public SecurityTokenDescriptor GenerateTokenDescriptor(ApplicationUser @applicationUser) => new()
         {
+            Subject = new ClaimsIdentity(GenerateJwtClaims(applicationUser)),
             Issuer = JwtSettings.Value.JwtIssuer,
-            Claims = ClaimHelper.ToDictionary(GenerateJwtClaims(applicationUser)),
             IssuedAt = DateTime.UtcNow,
             NotBefore = DateTime.UtcNow,
             Expires = DateTime.UtcNow.AddMinutes(JwtSettings.Value.JwtExpireMinutes),
@@ -145,7 +144,8 @@ namespace Hyperdrive.Infrastructure.Managers
                 LoginProvider = JwtSettings.Value.JwtIssuer,
                 ApplicationUser = @user,
                 UserId = @user.Id,
-                Value = CreateToken(GenerateTokenDescriptor(@user))
+                Value = CreateToken(GenerateTokenDescriptor(@user)),
+                IssuedAt = DateTime.UtcNow,
             };
             
             await Context.UserTokens.AddAsync(@userToken);

@@ -10,6 +10,6 @@ export interface ViewApplicationUser extends ViewKey, ViewBase {
   PhoneNumber: string;
   Initial: string;
   ApplicationRoles: ViewCatalog[];
-  Token: ViewToken;
-  RefreshToken: ViewToken;
+  Token?: ViewToken;
+  RefreshToken?: ViewToken;
 }
