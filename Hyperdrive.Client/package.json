@@ -1,12 +1,23 @@
 {
   "name": "hyperdrive.client",
   "version": "0.0.0",
+  "description": "Solución para gestionar el almacenamiento, visualización y descarga de ficheros.",
+  "author": {
+    "name": "Javier Pardo",
+    "email": ""
+  },
+  "main": "electron.main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "compodoc": "npx compodoc -p tsconfig.doc.json"
+    "web": "ng serve --ssl",
+    "desktop": "electron .",
+    "dev": "ng build --base-href ./  --configuration development",
+    "prod": "ng build --base-href ./ --configuration production",
+    "doc": "npx compodoc -p tsconfig.doc.json",
+    "forge": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "start": "electron-forge start"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +36,7 @@
     "@opentelemetry/exporter-trace-otlp-http": "^0.203.0",
     "@opentelemetry/instrumentation": "^0.203.0",
     "@opentelemetry/sdk-trace-web": "^2.0.1",
+    "electron-squirrel-startup": "^1.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
@@ -33,7 +45,16 @@
     "@angular-devkit/build-angular": "^18.0.1",
     "@angular/cli": "~18.0.1",
     "@angular/compiler-cli": "^18.0.0",
-    "@compodoc/compodoc": "1.1.26",
+    "@compodoc/compodoc": "1.1.31",
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-deb": "^7.10.2",
+    "@electron-forge/maker-rpm": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.10.2",
+    "@electron-forge/plugin-fuses": "^7.10.2",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^38.3.0",
     "typescript": "~5.4.5"
   }
 }

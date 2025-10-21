@@ -10,13 +10,14 @@ Run `npm run start` for a dev server. Navigate to `https://localhost:4200/`. The
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Development build
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run dev` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Production build
 
-Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run prod` to build the project. The build artifacts will be stored in the `dist/` directory.
+
 
 ## Further help
 

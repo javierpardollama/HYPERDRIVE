@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
         setHeaders: {
           'Content-Type': 'application/json; charset=utf-8',
           'Accept': 'application/json',
-          'Authorization': `Bearer ${this.User.Token.Value}`,
+          'Authorization': `Bearer ${this.User?.Token?.Value}`,
         },
       });
     }
