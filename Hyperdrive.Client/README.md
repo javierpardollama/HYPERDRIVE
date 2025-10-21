@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `npm run start` for a dev server. Navigate to `https://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm run web` for a dev server. Navigate to `https://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -17,7 +17,6 @@ Run `npm run dev` to build the project. The build artifacts will be stored in th
 ## Production build
 
 Run `npm run prod` to build the project. The build artifacts will be stored in the `dist/` directory.
-
 
 ## Further help
 
