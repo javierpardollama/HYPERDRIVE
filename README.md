@@ -4,20 +4,20 @@ Este proyecto surge como una solución para gestionar el estado actual de los ar
 
 ## ARQUITECTURA
 
-Este Proyecto está construido siguiendo el patrón de N capas:
+Este Proyecto está construido en capas siguiendo el diseño guiado por dominio:
 
-1. [Data Tier](https://github.com/javierpardollama/HYPERDRIVE/tree/master/Hyperdrive.Portal/Hyperdrive.Tier.Contexts)
+1. [Domain](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Domain)
 
-En Esta capa la información es almacenada y redistribuida al sistema de almacenamiento de datos.
+En esta capa se modelan las reglas de negocio y se definen las entidades, objetos de valor, etc.
 
-2. [Logic Tier](https://github.com/javierpardollama/HYPERDRIVE/tree/master/Hyperdrive.Portal/Hyperdrive.Tier.Services)
+2. [Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Infrastructure)
 
-En esta capa se coordina el envío y/o recepción entre la capa de datos (Data Tier) y la capa de presentación (Presentation Tier). 
-Además, toma decisiones lógicas, realiza cálculos y se encarga de procesar órdenes distintas.
+En esta capa la información es almacenada y redistribuida al sistema de almacenamiento de datos.
 
-3. [Presentation Tier](https://github.com/javierpardollama/HYPERDRIVE/tree/master/Hyperdrive.Portal/Hyperdrive.Tier.Web)
+3. [Application](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Application)
 
-En esta capa se traducen las distintas órdenes y resultados a una forma que el usuario pueda comprender.
+En esta capa se coordina el envío y/o recepción entre la capa de dominio (Domain) y la capa de infrastructura (Infrastrucure).
+
 
 ## BUILD
 
