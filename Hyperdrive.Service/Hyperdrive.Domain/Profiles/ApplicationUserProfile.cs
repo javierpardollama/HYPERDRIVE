@@ -20,9 +20,7 @@ public static class ApplicationUserProfile
         {
             Id = @entity.Id,
             LastModified = @entity.ModifiedAt ?? @entity.CreatedAt,
-            ApplicationRoles = @entity.ApplicationUserRoles
-                .Select(x=>x.ApplicationRole.ToCatalog())
-                .ToList(),
+            ApplicationRoles = [.. @entity.ApplicationUserRoles.Select(x=>x.ApplicationRole.ToCatalog())],
             Token = @entity.ApplicationUserTokens
                 .OrderByDescending(x=> x.ModifiedAt)
                 .LastOrDefault()?
