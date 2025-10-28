@@ -55,17 +55,13 @@ var @rateSettings = new RateLimitSettings();
 var @app = @builder.Build();
 
 // Configure the HTTP request pipeline.
-if (@app.Environment.IsDevelopment())
-{
-    @app.UseOpenApi();
-}
+@app.UseOpenApi();
 
 @app.UseMigrations();
 
 @app.UseMiddlewares();
 
-@app.UseHsts();
-@app.UseHttpsRedirection();
+@app.UseSecureApi();
 
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();

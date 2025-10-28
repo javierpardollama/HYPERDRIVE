@@ -1,6 +1,7 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Hyperdrive.Infrastructure.Installers;
 
@@ -26,5 +27,19 @@ public static class SecureApiInstaller
         {
             serverOptions.AddServerHeader = false; // Turn off Server header
         });
+    }
+
+    /// <summary>
+    ///     Uses Secure Api
+    /// </summary>
+    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    public static void UseSecureApi(this WebApplication @this)
+    {
+        if (@this.Environment.IsProduction())
+        {
+            @this.UseHsts();
+        }
+
+        @this.UseHttpsRedirection();
     }
 }
