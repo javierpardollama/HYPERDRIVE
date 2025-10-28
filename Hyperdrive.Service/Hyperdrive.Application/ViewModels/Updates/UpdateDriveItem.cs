@@ -23,20 +23,23 @@ public class UpdateDriveItem
     /// Gets or Sets <see cref="FileName"/>
     /// </summary>
     [Required]
-    public string FileName { get; set; }   
+    public string FileName { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Data"/>
     /// </summary>
+    [Required]
     public string Data { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Size"/>
     /// </summary>
+    [Required]
     public float? Size { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Type"/>
     /// </summary>
+    [Required]
     public string Type { get; set; }
 }

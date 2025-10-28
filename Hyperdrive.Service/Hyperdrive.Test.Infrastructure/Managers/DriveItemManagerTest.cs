@@ -201,6 +201,13 @@ public class DriveItemManagerTest : BaseManagerTest
     }
 
     [Test]
+    public void FindDriveItemByFileName()
+    {
+        var @user = Context.Users.First(x => x.Id == 1);
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", 1, @user));       
+    }
+
+    [Test]
     public async Task RemoveDriveItemById()
     {
         await Manager.RemoveDriveItemById(1);
