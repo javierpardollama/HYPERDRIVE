@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 
 namespace Hyperdrive.Application.Installers;
@@ -37,6 +38,7 @@ public static class IdentificationInstaller
                 ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
+                ClockSkew = TimeSpan.Zero,
                 ValidIssuer = @settings.JwtIssuer,
                 ValidAudiences = @settings.JwtAudiences,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@settings.JwtKey))
