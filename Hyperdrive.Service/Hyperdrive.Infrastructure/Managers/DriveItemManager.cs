@@ -56,6 +56,49 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
+        /// Finds Drive Item By FileName
+        /// </summary>
+        /// <param name="filename">Injected <see cref="string"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>       
+        /// <param name="by">Injected <see cref="ApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
+        public async Task<DriveItem> FindDriveItemByFileName(string @filename, int? parent, ApplicationUser @by)
+        {
+            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            {
+                true => x => x.FileName == @filename.Trim() && x.Parent.Id == @parent,
+                _ => x => x.FileName == @filename.Trim()
+            };
+
+            var @archive = await Context.DriveItems
+                .TagWith("FindDriveItemByFileName")
+                .AsNoTracking()
+                .AsSplitQuery()
+                .Include(x => x.Parent)
+                .Where(expression)
+                .FirstOrDefaultAsync();
+
+            if (@archive is null)
+            {
+                // Log
+                string @logData = nameof(DriveItem)
+                                  + " with FileName "
+                                  + @filename
+                                  + " was already found at "
+                                  + DateTime.UtcNow.ToShortTimeString();
+
+                @logger.LogWarning(@logData);
+
+                throw new ServiceException(nameof(DriveItem)
+                                           + " with FileName "
+                                           + @filename
+                                           + " already exists");
+            }
+
+            return @archive;
+        }
+
+        /// <summary>
         /// Removes Drive Item By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>

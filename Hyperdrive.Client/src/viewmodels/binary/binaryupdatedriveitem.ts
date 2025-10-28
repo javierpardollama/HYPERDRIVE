@@ -1,7 +1,4 @@
-export interface BinaryUpdateDriveItem {
-    Id: number;
+export interface BinaryUpdateDriveItem {    
     ApplicationUserId: number;
-    Data: File;
-    Folder: boolean;
-    ApplicationUsersId: number[];
+    Data: File;    
 }

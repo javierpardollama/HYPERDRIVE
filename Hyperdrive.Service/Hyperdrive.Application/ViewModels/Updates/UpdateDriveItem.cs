@@ -3,10 +3,16 @@ using System.ComponentModel.DataAnnotations;
 namespace Hyperdrive.Application.ViewModels.Updates;
 
 /// <summary>
-/// Represents a <see cref="UpdateDriveItem"/> class. Inherits <see cref="UpdateBase"/>
+/// Represents a <see cref="UpdateDriveItem"/> class.
 /// </summary>
-public class UpdateDriveItem : UpdateBase
+public class UpdateDriveItem
 {
+    /// <summary>
+    /// Gets or Sets <see cref="ApplicationUserId"/>
+    /// </summary>
+    [Required]
+    public int ApplicationUserId { get; set; }
+
     /// <summary>
     /// Gets or Sets <see cref="ParentId"/>
     /// </summary>
@@ -17,13 +23,7 @@ public class UpdateDriveItem : UpdateBase
     /// Gets or Sets <see cref="FileName"/>
     /// </summary>
     [Required]
-    public string FileName { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="Folder"/>
-    /// </summary>
-    [Required]
-    public bool Folder { get; set; }
+    public string FileName { get; set; }   
 
     /// <summary>
     /// Gets or Sets <see cref="Data"/>

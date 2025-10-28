@@ -1,9 +1,7 @@
-import { UpdateBase } from "./updatebase";
-
-export interface UpdateDriveItem extends UpdateBase {
+export interface UpdateDriveItem {
+    ApplicationUserId: number;
     Data?: string;
-    FileName: string;
-    Folder: boolean;
+    FileName: string;    
     Size?: number;
     Type?: string;
 }

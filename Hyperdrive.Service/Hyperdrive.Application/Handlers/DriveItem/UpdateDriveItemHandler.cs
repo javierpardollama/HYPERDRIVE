@@ -10,26 +10,26 @@ namespace Hyperdrive.Application.Handlers.DriveItem;
 
 public class UpdateDriveItemHandler : IRequestHandler<UpdateDriveItemCommand, ViewDriveItem>
 {
-    private readonly IDriveItemManager _manager;
+    private readonly IDriveItemManager _driveItemManager;
+    private readonly IApplicationUserManager _applicationUserManager;
 
-    public UpdateDriveItemHandler(IDriveItemManager manager)
+    public UpdateDriveItemHandler(IDriveItemManager driveItemManager, IApplicationUserManager applicationUserManager)
     {
-        _manager = manager;
+        _driveItemManager = driveItemManager;
+        _applicationUserManager = applicationUserManager;
     }
-    
+
     public async Task<ViewDriveItem> Handle(UpdateDriveItemCommand request, CancellationToken cancellationToken)
     {
-        var @archive = await _manager.FindDriveItemById(request.ViewModel.Id);
-        
-        if (!@archive.Folder)
-        {
-            await _manager.AddActivity(@archive,
-                request.ViewModel.Type, 
-                request.ViewModel.Size, 
-                request.ViewModel.Data);
-        }
-        
-        var @dto = await _manager.ReloadDriveItemById(@archive.Id);
+        var @by = await _applicationUserManager.FindApplicationUserById(request.ViewModel.ApplicationUserId);
+        var @archive = await _driveItemManager.FindDriveItemByFileName(request.ViewModel.FileName, request.ViewModel.ParentId, by);
+               
+        await _driveItemManager.AddActivity(@archive,
+            request.ViewModel.Type, 
+            request.ViewModel.Size, 
+            request.ViewModel.Data);
+               
+        var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);
 
         return @dto.ToViewModel();
 

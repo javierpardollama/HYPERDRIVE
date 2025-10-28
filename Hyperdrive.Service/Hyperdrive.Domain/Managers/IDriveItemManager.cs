@@ -18,6 +18,15 @@ namespace Hyperdrive.Domain.Managers
         Task<DriveItem> FindDriveItemById(int? @id);
 
         /// <summary>
+        /// Finds Drive Item By FileName
+        /// </summary>
+        /// <param name="filename">Injected <see cref="string"/></param>
+        /// <param name="parent">Injected <see cref="int?"/></param>       
+        /// <param name="by">Injected <see cref="ApplicationUser"/></param>
+        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
+        Task<DriveItem> FindDriveItemByFileName(string @filename, int? parent, ApplicationUser @by);
+
+        /// <summary>
         /// Removes Drive Item By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>

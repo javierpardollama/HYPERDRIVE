@@ -48,14 +48,12 @@ export class BinaryService extends BaseService {
 
     public async EncodeUpdateDriveItem(viewModel: BinaryUpdateDriveItem): Promise<UpdateDriveItem> {
         const resultModel: UpdateDriveItem =
-            {
-                Id: viewModel.Id,
+            {               
                 ApplicationUserId: viewModel.ApplicationUserId,
                 Data: await this.EncodeContent(viewModel.Data),
                 Size: viewModel.Data.size,
                 FileName: viewModel.Data.name,
-                Type: viewModel.Data.type,
-                Folder: viewModel.Folder
+                Type: viewModel.Data.type               
             };
 
         return resultModel;
