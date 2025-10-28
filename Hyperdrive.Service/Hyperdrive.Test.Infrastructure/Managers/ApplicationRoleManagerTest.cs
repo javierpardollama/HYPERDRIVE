@@ -1,11 +1,11 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers
 {
@@ -68,7 +68,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     Id = 1,
                     Name = "Dungeon Master",
                     NormalizedName = "DUNGEON_MASTER",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     ImageUri = "URL/Dungeon_Master_500px.png"
                 });
@@ -77,7 +77,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     Id = 2,
                     Name = "Paladin",
                     NormalizedName = "PALADIN",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     ImageUri = "URL/Paladin_500px.png"
                 });
@@ -86,7 +86,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     Id = 3,
                     Name = "Sorceress",
                     NormalizedName = "SORCERESS",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     ImageUri = "URL/Sorceress_2_500px.png"
                 });
@@ -95,7 +95,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     Id = 4,
                     Name = "Rogue",
                     NormalizedName = "ROGUE",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     ImageUri = "URL/Rogue_2_500px.png"
                 });
@@ -104,7 +104,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     Id = 5,
                     Name = "Bard",
                     NormalizedName = "BARD",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     ImageUri = "URL/Bard_500px.png"
                 });
@@ -119,7 +119,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     LastName = "Parker",
                     UserName = "stafford.parker",
                     Email = "stafford.parker@email.com",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 });
@@ -130,7 +130,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     LastName = "Sandy",
                     UserName = "dee.sandy",
                     Email = "dee.sandy@email.com",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 });
@@ -141,7 +141,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     LastName = "Navy",
                     UserName = "orinda.navy",
                     Email = "orinda.navy@email.com",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 });
@@ -152,7 +152,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
                     LastName = "Gavin",
                     UserName = "genesis.gavin",
                     Email = "genesis.gavin@email.com",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 });
@@ -221,7 +221,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             {
                 Id = 5,
                 Name = "Princess",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Princess_500px.png"
             };
@@ -241,7 +241,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             var @role = new ApplicationRole
             {
                 Name = "Witch",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Witch_500px.png"
             };

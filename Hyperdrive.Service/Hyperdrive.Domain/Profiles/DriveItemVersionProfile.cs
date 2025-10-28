@@ -18,7 +18,7 @@ public static class DriveItemVersionProfile
         return new DriveItemVersionDto
         {
             Id = @entity.Id,
-            LastModified = @entity.LastModified,
+            LastModified = @entity.CreatedAt,
             Size = @entity.Size,
             Type = @entity.Type,
         };

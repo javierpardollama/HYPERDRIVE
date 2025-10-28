@@ -1,9 +1,9 @@
-using System;
-using System.Linq;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
@@ -70,7 +70,7 @@ public class SecurityManagerTest: BaseManagerTest
                 LastName = "Parker",
                 UserName = "stafford.parker",
                 Email = "stafford.parker@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -81,7 +81,7 @@ public class SecurityManagerTest: BaseManagerTest
                 LastName = "Sandy",
                 UserName = "dee.sandy",
                 Email = "dee.sandy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -92,7 +92,7 @@ public class SecurityManagerTest: BaseManagerTest
                 LastName = "Navy",
                 UserName = "orinda.navy",
                 Email = "orinda.navy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -103,7 +103,7 @@ public class SecurityManagerTest: BaseManagerTest
                 LastName = "Gavin",
                 UserName = "genesis.gavin",
                 Email = "genesis.gavin@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -114,7 +114,7 @@ public class SecurityManagerTest: BaseManagerTest
                 LastName = "Torcuil",
                 UserName = "antonietta.torcuil",
                 Email = "antonietta.torcuil@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -126,7 +126,7 @@ public class SecurityManagerTest: BaseManagerTest
                 LastName = "Simona",
                 UserName = "alessa.simona",
                 Email = "alessa.simona@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -148,7 +148,7 @@ public class SecurityManagerTest: BaseManagerTest
             LastName = "Parker",
             UserName = "stafford.parker",
             Email = "stafford.parker@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -169,7 +169,7 @@ public class SecurityManagerTest: BaseManagerTest
             LastName = "Sandy",
             UserName = "dee.sandy",
             Email = "dee.sandy@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -190,7 +190,7 @@ public class SecurityManagerTest: BaseManagerTest
             LastName = "Gavin",
             UserName = "genesis.gavin",
             Email = "genesis.gavin@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -211,7 +211,7 @@ public class SecurityManagerTest: BaseManagerTest
             LastName = "Miranda",
             UserName = "antonietta.miranda",
             Email = "antonietta.miranda@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -232,7 +232,7 @@ public class SecurityManagerTest: BaseManagerTest
             LastName = "Simona",
             UserName = "alessa.simona",
             Email = "alessa.simona@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };

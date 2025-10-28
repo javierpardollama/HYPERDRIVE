@@ -19,16 +19,16 @@ public static class ApplicationUserProfile
         return new ApplicationUserDto
         {
             Id = @entity.Id,
-            LastModified = @entity.LastModified,
+            LastModified = @entity.ModifiedAt ?? @entity.CreatedAt,
             ApplicationRoles = @entity.ApplicationUserRoles
                 .Select(x=>x.ApplicationRole.ToCatalog())
                 .ToList(),
             Token = @entity.ApplicationUserTokens
-                .OrderByDescending(x=> x.LastModified)
+                .OrderByDescending(x=> x.ModifiedAt)
                 .LastOrDefault()?
                 .ToDto(),
             RefreshToken = @entity.ApplicationUserRefreshTokens
-                .OrderByDescending(x=> x.LastModified)
+                .OrderByDescending(x=> x.ModifiedAt)
                 .LastOrDefault()?
                 .ToDto(),
             FirstName = @entity.FirstName,

@@ -27,19 +27,19 @@ namespace Hyperdrive.Infrastructure.Interceptors
                 switch (@entity.State)
                 {
                     case EntityState.Added:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.UtcNow;
+                        @entity.Property(nameof(IBase.CreatedAt)).CurrentValue = DateTime.UtcNow;
                         @entity.State = EntityState.Added;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Modified:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.UtcNow;
+                        @entity.Property(nameof(IBase.ModifiedAt)).CurrentValue = DateTime.UtcNow;
                         @entity.State = EntityState.Modified;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Deleted:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.UtcNow;
+                        @entity.Property(nameof(IBase.DeletedAt)).CurrentValue = DateTime.UtcNow;
                         @entity.State = EntityState.Modified;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = true;
                         break;
@@ -62,19 +62,19 @@ namespace Hyperdrive.Infrastructure.Interceptors
                 switch (@entity.State)
                 {
                     case EntityState.Added:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.UtcNow;
+                        @entity.Property(nameof(IBase.CreatedAt)).CurrentValue = DateTime.UtcNow;
                         @entity.State = EntityState.Added;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Modified:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.UtcNow;
+                        @entity.Property(nameof(IBase.ModifiedAt)).CurrentValue = DateTime.UtcNow;
                         @entity.State = EntityState.Modified;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Deleted:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.UtcNow;
+                        @entity.Property(nameof(IBase.DeletedAt)).CurrentValue = DateTime.UtcNow;
                         @entity.State = EntityState.Modified;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = true;
                         break;

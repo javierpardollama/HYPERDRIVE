@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
@@ -69,7 +69,7 @@ public class DriveItemManagerTest : BaseManagerTest
                 LastName = "Parker",
                 UserName = "stafford.parker",
                 Email = "stafford.parker@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -80,7 +80,7 @@ public class DriveItemManagerTest : BaseManagerTest
                 LastName = "Sandy",
                 UserName = "dee.sandy",
                 Email = "dee.sandy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -91,7 +91,7 @@ public class DriveItemManagerTest : BaseManagerTest
                 LastName = "Navy",
                 UserName = "orinda.navy",
                 Email = "orinda.navy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -111,7 +111,7 @@ public class DriveItemManagerTest : BaseManagerTest
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
             Context.DriveItems.Add(new DriveItem
@@ -124,7 +124,7 @@ public class DriveItemManagerTest : BaseManagerTest
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
             Context.DriveItems.Add(new DriveItem
@@ -137,7 +137,7 @@ public class DriveItemManagerTest : BaseManagerTest
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
             Context.DriveItems.Add(new DriveItem
@@ -161,10 +161,10 @@ public class DriveItemManagerTest : BaseManagerTest
                     Folder = true,
                     By = Context.Users.First(x => x.Id == 1),
                     Parent = null,
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                 },
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
         }
@@ -177,7 +177,7 @@ public class DriveItemManagerTest : BaseManagerTest
             {
                 DriveItem = Context.DriveItems.First(x => x.Id == 5),
                 ApplicationUser = Context.Users.First(x => x.Id == 3),
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
 
@@ -185,7 +185,7 @@ public class DriveItemManagerTest : BaseManagerTest
             {
                 DriveItem = Context.DriveItems.First(x => x.Id == 5),
                 ApplicationUser = Context.Users.First(x => x.Id == 3),
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
         }

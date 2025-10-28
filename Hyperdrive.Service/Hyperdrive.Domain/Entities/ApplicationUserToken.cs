@@ -18,18 +18,22 @@ namespace Hyperdrive.Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets <see cref="LastModified"/>
+        /// Gets or Sets <see cref="CreatedAt"/>
         /// </summary>
         [Required]
-        public DateTime LastModified { get; set; }
-        
+        public DateTime CreatedAt { get; set; }
+
         /// <summary>
-        /// Gets or Sets <see cref="IssuedAt"/>
-        /// </summary>
-        [Required]
-        public DateTime IssuedAt { get; set; }
+        /// Gets or Sets <see cref="ModifiedAt"/>
+        /// </summary>       
+        public DateTime? ModifiedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="DeletedAt"/>
+        /// </summary>       
+        public DateTime? DeletedAt { get; set; }       
 
         /// <summary>
         /// Gets or Sets <see cref="Deleted"/>

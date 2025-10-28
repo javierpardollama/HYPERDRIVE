@@ -27,8 +27,8 @@ public static class DriveItemProfile
             Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
             LastModified = @entity.Activity
-              .OrderByDescending(x=>x.LastModified)
-              .LastOrDefault()?.LastModified,
+              .OrderByDescending(x=>x.CreatedAt)
+              .LastOrDefault()?.CreatedAt,
             SharedWith = @entity.SharedWith
                 .Select(x=> x.ApplicationUser.ToCatalog())
                 .ToList(),
@@ -59,8 +59,8 @@ public static class DriveItemProfile
         return new DriveItemBinaryDto
         {
             FileName = @entity.FileName,
-            Data = Convert.ToBase64String(@entity.Activity.OrderByDescending(x=> x.LastModified).First().Data),
-            Type = @entity.Activity.OrderByDescending(x=> x.LastModified).First().Type
+            Data = Convert.ToBase64String(@entity.Activity.OrderByDescending(x=> x.CreatedAt).First().Data),
+            Type = @entity.Activity.OrderByDescending(x=> x.CreatedAt).First().Type
         };
     }
 }

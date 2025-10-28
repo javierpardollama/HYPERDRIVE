@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
@@ -67,8 +67,8 @@ public class RefreshTokenManagerTest: BaseManagerTest
                 Id = 1,
                 Value = "i5E%@VRMZ)%3AuWuA+A+%PAcEE0q.x",
                 ExpiresAt = DateTime.UtcNow.AddDays(2),
-                IssuedAt = DateTime.UtcNow,
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
+                ModifiedAt = DateTime.UtcNow,
                 Deleted = false,
                 ApplicationUser = new ApplicationUser
                 {
@@ -77,7 +77,7 @@ public class RefreshTokenManagerTest: BaseManagerTest
                     LastName = "Trafford",
                     UserName = "cali.trafford",
                     Email = "cali.trafford@email.com",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 }
@@ -88,8 +88,8 @@ public class RefreshTokenManagerTest: BaseManagerTest
                 Value = "&91eVg+82z*q5qfwCLp.*f=x)];]27",
                 Revoked = false,
                 ExpiresAt = DateTime.UtcNow.AddDays(2),
-                IssuedAt = DateTime.UtcNow,
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
+                ModifiedAt = DateTime.UtcNow,
                 Deleted = false,
                 ApplicationUser = new ApplicationUser
                 {
@@ -98,7 +98,7 @@ public class RefreshTokenManagerTest: BaseManagerTest
                     LastName = "Román",
                     UserName = "barb.román",
                     Email = "barb.román@email.com",
-                    LastModified = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     SecurityStamp = new Guid().ToString()
                 }
@@ -171,7 +171,7 @@ public class RefreshTokenManagerTest: BaseManagerTest
             LastName = "Shelly",
             UserName = "neva.shelly",
             Email = "neva.shelly@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };

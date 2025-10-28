@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
@@ -67,7 +67,7 @@ public class TokenManagertTest : BaseManagerTest
                 Id = 1,
                 Name = "Dungeon Master",
                 NormalizedName = "DUNGEON_MASTER",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Dungeon_Master_500px.png"
             });
@@ -76,7 +76,7 @@ public class TokenManagertTest : BaseManagerTest
                 Id = 2,
                 Name = "Paladin",
                 NormalizedName = "PALADIN",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Paladin_500px.png"
             });
@@ -85,7 +85,7 @@ public class TokenManagertTest : BaseManagerTest
                 Id = 3,
                 Name = "Sorceress",
                 NormalizedName = "SORCERESS",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Sorceress_500px.png"
             });
@@ -94,7 +94,7 @@ public class TokenManagertTest : BaseManagerTest
                 Id = 4,
                 Name = "Rogue",
                 NormalizedName = "ROGUE",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Rogue_2_500px.png"
             });
@@ -103,7 +103,7 @@ public class TokenManagertTest : BaseManagerTest
                 Id = 5,
                 Name = "Bard",
                 NormalizedName = "BARD",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 ImageUri = "URL/Bard_500px.png"
             });
@@ -118,7 +118,7 @@ public class TokenManagertTest : BaseManagerTest
                 LastName = "Parker",
                 UserName = "stafford.parker",
                 Email = "stafford.parker@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -129,7 +129,7 @@ public class TokenManagertTest : BaseManagerTest
                 LastName = "Sandy",
                 UserName = "dee.sandy",
                 Email = "dee.sandy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -140,7 +140,7 @@ public class TokenManagertTest : BaseManagerTest
                 LastName = "Navy",
                 UserName = "orinda.navy",
                 Email = "orinda.navy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -151,7 +151,7 @@ public class TokenManagertTest : BaseManagerTest
                 LastName = "Gavin",
                 UserName = "genesis.gavin",
                 Email = "genesis.gavin@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -173,7 +173,7 @@ public class TokenManagertTest : BaseManagerTest
             LastName = "Janessa",
             UserName = "benita.janessa",
             Email = "benita.janessa@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -196,7 +196,7 @@ public class TokenManagertTest : BaseManagerTest
             LastName = "Tadeo",
             UserName = "sapphire.tadeo",
             Email = "sapphire.tadeo@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -255,7 +255,7 @@ public class TokenManagertTest : BaseManagerTest
             LastName = "Pacey",
             UserName = "korbin.pacey",
             Email = "korbin.pacey@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };
@@ -278,7 +278,7 @@ public class TokenManagertTest : BaseManagerTest
             LastName = "Andre",
             UserName = "Adelyn.Andre",
             Email = "Adelyn.Andre@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };

@@ -9,10 +9,20 @@ namespace Hyperdrive.Domain.Entities.Interfaces
     public interface IBase
     {
         /// <summary>
-        /// Gets or Sets <see cref="LastModified"/>
+        /// Gets or Sets <see cref="CreatedAt"/>
         /// </summary>
         [Required]
-        DateTime LastModified { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="ModifiedAt"/>
+        /// </summary>       
+        DateTime? ModifiedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="DeletedAt"/>
+        /// </summary>       
+        DateTime? DeletedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Deleted"/>

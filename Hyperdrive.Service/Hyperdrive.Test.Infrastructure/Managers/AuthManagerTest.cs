@@ -1,11 +1,10 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Hyperdrive.Domain.Entities;
-using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Infrastructure.Managers;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
@@ -72,7 +71,7 @@ public class AuthManagerTest : BaseManagerTest
                 LastName = "Parker",
                 UserName = "stafford.parker",
                 Email = "stafford.parker@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -83,7 +82,7 @@ public class AuthManagerTest : BaseManagerTest
                 LastName = "Sandy",
                 UserName = "dee.sandy",
                 Email = "dee.sandy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -94,7 +93,7 @@ public class AuthManagerTest : BaseManagerTest
                 LastName = "Navy",
                 UserName = "orinda.navy",
                 Email = "orinda.navy@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -105,7 +104,7 @@ public class AuthManagerTest : BaseManagerTest
                 LastName = "Gavin",
                 UserName = "genesis.gavin",
                 Email = "genesis.gavin@email.com",
-                LastModified = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
@@ -138,7 +137,7 @@ public class AuthManagerTest : BaseManagerTest
             LastName = "Gavin",
             UserName = "genesis.gavin",
             Email = "genesis.gavin@email.com",
-            LastModified = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
             Deleted = false,
             SecurityStamp = new Guid().ToString()
         };

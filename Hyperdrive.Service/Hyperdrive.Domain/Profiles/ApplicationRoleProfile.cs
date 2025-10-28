@@ -20,7 +20,7 @@ public static class ApplicationRoleProfile
            Id = @entity.Id,
            Name = @entity.Name,
            ImageUri =  @entity.ImageUri,
-           LastModified = @entity.LastModified
+           LastModified = @entity.ModifiedAt ?? @entity.CreatedAt
         };
     }
 

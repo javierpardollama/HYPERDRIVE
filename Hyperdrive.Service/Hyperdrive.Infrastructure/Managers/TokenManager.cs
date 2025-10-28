@@ -122,7 +122,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     @applicationUser.PhoneNumberConfirmed.ToString()),
                 new(
                     JwtRegisteredClaimNames.UpdatedAt,
-                    new DateTimeOffset(@applicationUser.LastModified).ToUnixTimeSeconds().ToString()),
+                    new DateTimeOffset(@applicationUser.ModifiedAt ?? @applicationUser.CreatedAt).ToUnixTimeSeconds().ToString()),
                 new(
                     JwtRegisteredClaimNames.Alg,
                     SecurityAlgorithms.HmacSha256Signature),
@@ -144,8 +144,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 LoginProvider = JwtSettings.Value.JwtIssuer,
                 ApplicationUser = @user,
                 UserId = @user.Id,
-                Value = CreateToken(GenerateTokenDescriptor(@user)),
-                IssuedAt = DateTime.UtcNow,
+                Value = CreateToken(GenerateTokenDescriptor(@user))              
             };
             
             await Context.UserTokens.AddAsync(@userToken);

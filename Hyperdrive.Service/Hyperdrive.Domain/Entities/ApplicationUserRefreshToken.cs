@@ -20,10 +20,20 @@ namespace Hyperdrive.Domain.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="LastModified"/>
+        /// Gets or Sets <see cref="CreatedAt"/>
         /// </summary>
         [Required]
-        public DateTime LastModified { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="ModifiedAt"/>
+        /// </summary>       
+        public DateTime? ModifiedAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="DeletedAt"/>
+        /// </summary>       
+        public DateTime? DeletedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Deleted"/>
@@ -58,13 +68,7 @@ namespace Hyperdrive.Domain.Entities
         /// <summary>
         /// Gets or Sets <see cref="RevokedAt"/>
         /// </summary>
-        public DateTime? RevokedAt { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets <see cref="IssuedAt"/>
-        /// </summary>
-        [Required]
-        public DateTime IssuedAt { get; set; }
+        public DateTime? RevokedAt { get; set; }     
 
         /// <summary>
         /// Gets or Sets <see cref="LoginProvider"/>
