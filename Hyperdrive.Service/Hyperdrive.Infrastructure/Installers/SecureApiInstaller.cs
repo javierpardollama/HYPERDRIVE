@@ -35,7 +35,7 @@ public static class SecureApiInstaller
     /// <param name="this">Injected <see cref="WebApplication" /></param>
     public static void UseSecureApi(this WebApplication @this)
     {
-        if (@this.Environment.IsProduction())
+        if (!@this.Environment.IsDevelopment())
         {
             @this.UseHsts();
         }
