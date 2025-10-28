@@ -53,7 +53,7 @@ var @rateSettings = new RateLimitSettings();
 
 var @app = @builder.Build();
 
-// Configure the HTTP request pipeline.
+// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseOpenApi();
 
 @app.UseMigrations();
@@ -62,7 +62,6 @@ var @app = @builder.Build();
 
 @app.UseSecureApi();
 
-// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
 @app.UseIdentification();
