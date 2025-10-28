@@ -1,5 +1,5 @@
-using System;
 using Azure.Monitor.OpenTelemetry.AspNetCore;
+using Hyperdrive.Infrastructure.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +10,9 @@ using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
+using System;
 
-namespace Hyperdrive.Host.Installers;
+namespace Hyperdrive.Infrastructure.Installers;
 
 /// <summary>
 ///     Represents a <see cref="ResilienceInstaller" /> class.
@@ -110,6 +111,7 @@ public static class ResilienceInstaller
             caching.AddPolicy("HealthChecks", static policy => policy.Expire(TimeSpan.FromSeconds(10))));
 
         builder.Services.AddHealthChecks()
+            .AddDbContextCheck<ApplicationContext>()
             // Add a default liveness check to ensure app is responsive
             .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 

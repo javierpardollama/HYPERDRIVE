@@ -11,7 +11,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Hyperdrive.Application\Hyperdrive.Application.csproj" />
     <ProjectReference Include="..\Hyperdrive.Infrastructure\Hyperdrive.Infrastructure.csproj" />
-    <ProjectReference Include="..\Hyperdrive.Host\Hyperdrive.Host.csproj" />
   </ItemGroup>
 
 </Project>
