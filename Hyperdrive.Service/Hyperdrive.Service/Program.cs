@@ -35,7 +35,7 @@ var @jwtSettings = new JwtSettings();
 @builder.Configuration.GetSection("Jwt").Bind(@jwtSettings);
 @builder.Services.Configure<JwtSettings>(@builder.Configuration.GetSection("Jwt"));
 
-@builder.Services.InstallAuthentication(@jwtSettings);
+@builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);
 
 // Register the Rate Limit Settings to the configuration container.
@@ -65,8 +65,7 @@ var @app = @builder.Build();
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
-@app.UseAuthentication();
-@app.UseAuthorization();
+@app.UseIdentification();
 
 @app.UseResponseCaching();
 

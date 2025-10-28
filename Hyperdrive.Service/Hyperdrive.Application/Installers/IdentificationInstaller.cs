@@ -1,22 +1,23 @@
-using System.Text;
 using Hyperdrive.Domain.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Hyperdrive.Application.Installers;
 
 /// <summary>
-///     Represents a <see cref="AuthenticationInstaller" /> class.
+///     Represents a <see cref="IdentificationInstaller" /> class.
 /// </summary>
-public static class AuthenticationInstaller
+public static class IdentificationInstaller
 {
     /// <summary>
-    ///     Installs Authentication
+    ///     Installs Identification
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     /// <param name="settings">Injected <see cref="JwtSettings" /></param>
-    public static void InstallAuthentication(this IServiceCollection @this, JwtSettings @settings)
+    public static void InstallIdentification(this IServiceCollection @this, JwtSettings @settings)
     {
         @this.AddAuthentication(options =>
         {
@@ -41,5 +42,15 @@ public static class AuthenticationInstaller
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@settings.JwtKey))
             };
         });
+    }
+
+    /// <summary>
+    ///     Uses Identification
+    /// </summary>
+    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    public static void UseIdentification(this WebApplication @this)
+    {
+        @this.UseAuthentication();
+        @this.UseAuthorization();
     }
 }
