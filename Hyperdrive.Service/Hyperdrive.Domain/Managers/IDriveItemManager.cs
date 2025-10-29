@@ -106,13 +106,13 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Checks Name
         /// </summary>
-        /// <param name="name">Injected <see cref="string"/></param>
-        /// <param name="extension">Injected <see cref="string"/></param>
+        /// <param name="name">Injected <see cref="string"/></param>       
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
+        /// <param name="extension">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckName(string @name, string @extension, int @id, int? @parent, int userid);
+        Task<bool> CheckName(string @name, int @id, int? @parent, int userid, string @extension = null);
         
         /// <summary>
         /// Finds Drive Item Binary By Id

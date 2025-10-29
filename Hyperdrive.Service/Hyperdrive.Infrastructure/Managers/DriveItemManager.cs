@@ -4,6 +4,7 @@ using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Domain.Managers;
 using Hyperdrive.Domain.Profiles;
 using Hyperdrive.Infrastructure.Contexts.Interfaces;
+using Hyperdrive.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -417,20 +418,14 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<bool> CheckName(string @name, string @extension, int @id, int? @parent, int userid)
+        public async Task<bool> CheckName(string @name, int @id, int? @parent, int userid, string @extension = null)
         {
-            Expression<Func<DriveItemVersion, bool>> expression = parent.HasValue switch
-            {
-                true => x => x.Name == @name.Trim()
-                             && x.Extension == @extension.Trim()
-                             && x.DriveItem.Parent.Id == @parent
-                             && x.DriveItem.Id != @id
-                             && x.DriveItem.By.Id == userid,
-                _ => x => x.Name == @name.Trim()
-                          && x.Extension == @extension.Trim()
-                          && x.DriveItem.Id != @id
-                          && x.DriveItem.By.Id == userid
-            };
+            var expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => @extension == null || x.Extension == extension.Trim());             
+            var expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.Parent.Id == parent);
+            var expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.Id != id);
+            var expr4 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.By.Id == userid);
+
+            var combinedAnd = ExpressionCombiner.CombineWithAnd(expr1, expr2, expr3, expr4);    
 
             var @found = await Context.DriveItemVersions
                 .TagWith("CheckName")
@@ -438,7 +433,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 .AsSplitQuery()
                 .Include(x => x.DriveItem.Parent)
                 .Include(x => x.DriveItem.By)
-                .Where(expression)
+                .Where(combinedAnd)
                 .Select(x=> x.DriveItem)
                 .AnyAsync();
 

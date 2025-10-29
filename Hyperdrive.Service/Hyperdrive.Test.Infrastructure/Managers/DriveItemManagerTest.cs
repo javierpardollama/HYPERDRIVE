@@ -236,7 +236,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public void FindDriveItemByFileName()
     {       
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", 1, 1));       
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", 5, 1));       
     }
 
     [Test]
@@ -318,7 +318,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public void CheckName()
     {
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", null, 4, null, 1));
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", 41, null, 1));
     }
 
     [Test]
