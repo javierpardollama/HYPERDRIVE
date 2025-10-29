@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Dtos;
+﻿using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Domain.Managers;
@@ -12,6 +6,12 @@ using Hyperdrive.Domain.Profiles;
 using Hyperdrive.Infrastructure.Contexts.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Infrastructure.Managers
 {
@@ -60,22 +60,27 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>       
-        /// <param name="by">Injected <see cref="ApplicationUser"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> FindDriveItemByFileName(string @filename, int? parent, ApplicationUser @by)
+        public async Task<DriveItem> FindDriveItemByFileName(string @filename, int? parent, int userid)
         {
-            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            Expression<Func<DriveItemVersion, bool>> expression = parent.HasValue switch
             {
-                true => x => x.FileName == @filename.Trim() && x.Parent.Id == @parent,
-                _ => x => x.FileName == @filename.Trim()
+                true => x => x.FileName == @filename.Trim() 
+                    && x.DriveItem.Parent.Id == @parent 
+                    && x.DriveItem.By.Id == userid,
+                _ => x => x.FileName == @filename.Trim() 
+                    && x.DriveItem.By.Id == userid
             };
 
-            var @archive = await Context.DriveItems
+            var @archive = await Context.DriveItemVersions
                 .TagWith("FindDriveItemByFileName")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.Parent)
+                .Include(x => x.DriveItem.Parent)
+                .Include(x => x.DriveItem.By)
                 .Where(expression)
+                .Select(x=> x.DriveItem)
                 .FirstOrDefaultAsync();
 
             if (@archive is null)
@@ -154,7 +159,6 @@ namespace Hyperdrive.Infrastructure.Managers
                     .TagWith("FindPaginatedDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
-                    .Include(x => x.Activity)
                     .Include(x => x.By)
                     .Include(x => x.Parent)
                     .Where(expression)
@@ -182,8 +186,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 Length = await Context.ApplicationUserDriveItems.TagWith("CountAllSharedDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
-                    .Include(x => x.ApplicationUser)
-                    .Include(x => x.DriveItem)
+                    .Include(x => x.ApplicationUser)                    
                     .Where(x => x.ApplicationUser.Id == @userid)
                     .CountAsync(),
                 Index = @index,
@@ -193,7 +196,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     .AsSplitQuery()
                     .AsNoTracking()
                     .Include(x => x.ApplicationUser)
-                    .Include(x => x.DriveItem)
+                    .Include(x => x.DriveItem.Activity)
                     .Where(x => x.ApplicationUser.Id == @userid)
                     .Skip(@index * @size)
                     .Take(@size)
@@ -234,16 +237,10 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, ApplicationUser @by)
         {
-            await CheckFileName(filename, parent);
+            await CheckFileName(filename, parent, @by.Id);
 
             var @entity = new DriveItem()
-            {
-                FileName = filename.Trim(),
-                NormalizedFileName = filename.Trim().ToUpper(),
-                Name = Path.GetFileNameWithoutExtension(filename.Trim()),
-                NormalizedName = Path.GetFileNameWithoutExtension(filename.Trim()).ToUpper(),
-                Extension = Path.GetExtension(filename.Trim()),
-                NormalizedExtension = Path.GetExtension(filename.Trim()).ToUpper(),
+            {               
                 Folder = folder,
                 Parent = parent is not null ? await FindDriveItemById(parent) : null,
                 By = @by
@@ -296,13 +293,20 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Adds Drive Item Version
         /// </summary>
         /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
-        /// <param name="type">Injected <see cref="DriveItemVersion"/></param>
-        /// <param name="size">Injected <see cref="DriveItemVersion"/></param>
-        ///  <param name="data">Injected <see cref="DriveItemVersion"/></param>
-        public async Task AddActivity(DriveItem @entity, string @type, float? @size, string @data)
+        /// <param name="filename">Injected <see cref="string"/></param>       
+        /// <param name="type">Injected <see cref="string"/></param>
+        /// <param name="size">Injected <see cref="float?"/></param>
+        ///  <param name="data">Injected <see cref="string"/></param>
+        public async Task AddAsFileNameActivity(DriveItem @entity, string @filename, string @type, float? @size, string @data)
         {
             DriveItemVersion @version = new()
             {
+                FileName = filename.Trim(),
+                NormalizedFileName = filename.Trim().ToUpper(),
+                Name = Path.GetFileNameWithoutExtension(filename.Trim()),
+                NormalizedName = Path.GetFileNameWithoutExtension(filename.Trim()).ToUpper(),
+                Extension = Path.GetExtension(filename.Trim()),
+                NormalizedExtension = Path.GetExtension(filename.Trim()).ToUpper(),
                 Type = @type,
                 Size = @size,
                 Data = Convert.FromBase64String(@data),
@@ -324,38 +328,36 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Changes Name
+        /// Adds Activity
         /// </summary>
+        /// <param name="entity">Injected <see cref="DriveItem"/></param>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="extension">Injected <see cref="string"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="parent">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> ChangeName(string @name, string @extension, int @id, int? @parent)
-        {
-            await CheckName(@name, extension, @id, @parent);
+        public async Task AddAsNameActivity(DriveItem @entity, string @name, string @extension) 
+        {        
+            DriveItemVersion @version = new()
+            {
+                Extension = @extension.Trim(),
+                NormalizedExtension = @extension.Trim().ToUpper(),
+                FileName = $"{@name?.Trim()}{extension.Trim()}",
+                NormalizedFileName = $"{@name?.Trim().ToUpper()}{extension.Trim().ToUpper()}",
+                Name = @name.Trim(),
+                NormalizedName = @name.Trim().ToUpper(),    
+                DriveItem = @entity
+            };
 
-            DriveItem @entity = await FindDriveItemById(@id);
-
-            @entity.Name = @name?.Trim();
-            @entity.NormalizedName = @name?.Trim().ToUpper();
-            @entity.FileName = $"{@name?.Trim()}{extension.Trim()}";
-            @entity.NormalizedFileName = $"{@name?.Trim().ToUpper()}{extension.Trim().ToUpper()}";
-
-            Context.DriveItems.Update(@entity);
+            await Context.DriveItemVersions.AddAsync(@version);
 
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(DriveItem)
+            string @logData = nameof(DriveItemVersion)
                               + " with Id "
-                              + @entity.Id
-                              + " was modified at "
+                              + @version.Id
+                              + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
-
-            return @entity;
         }
 
         /// <summary>
@@ -363,21 +365,27 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        public async Task<bool> CheckFileName(string @filename, int? @parent)
+        public async Task<bool> CheckFileName(string @filename, int? @parent, int userid)
         {
-            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            Expression<Func<DriveItemVersion, bool>> expression = parent.HasValue switch
             {
-                true => x => x.FileName == @filename.Trim() && x.Parent.Id == @parent,
-                _ => x => x.FileName == @filename.Trim()
+                true => x => x.FileName == @filename.Trim() 
+                    && x.DriveItem.Parent.Id == @parent
+                    && x.DriveItem.By.Id == userid,
+                _ => x => x.FileName == @filename.Trim() 
+                    && x.DriveItem.By.Id == userid
             };
 
-            var @found = await Context.DriveItems
+            var @found = await Context.DriveItemVersions
                 .TagWith("CheckFileName")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.Parent)
+                .Include(x => x.DriveItem.Parent)
+                .Include(x => x.DriveItem.By)
                 .Where(expression)
+                .Select(x=> x.DriveItem)
                 .AnyAsync();
 
             if (@found)
@@ -407,25 +415,31 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="extension">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<bool> CheckName(string @name, string @extension, int @id, int? @parent)
+        public async Task<bool> CheckName(string @name, string @extension, int @id, int? @parent, int userid)
         {
-            Expression<Func<DriveItem, bool>> expression = parent.HasValue switch
+            Expression<Func<DriveItemVersion, bool>> expression = parent.HasValue switch
             {
                 true => x => x.Name == @name.Trim()
                              && x.Extension == @extension.Trim()
-                             && x.Parent.Id == @parent
-                             && x.Id != @id,
+                             && x.DriveItem.Parent.Id == @parent
+                             && x.DriveItem.Id != @id
+                             && x.DriveItem.By.Id == userid,
                 _ => x => x.Name == @name.Trim()
                           && x.Extension == @extension.Trim()
-                          && x.Id != @id
+                          && x.DriveItem.Id != @id
+                          && x.DriveItem.By.Id == userid
             };
 
-            var @found = await Context.DriveItems
+            var @found = await Context.DriveItemVersions
                 .TagWith("CheckName")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .Include(x => x.DriveItem.Parent)
+                .Include(x => x.DriveItem.By)
                 .Where(expression)
+                .Select(x=> x.DriveItem)
                 .AnyAsync();
 
             if (@found)
@@ -495,8 +509,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("ReloadDriveItemById")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.By)
-                .Include(x => x.Activity)
+                .Include(x => x.By)               
                 .Include(x => x.SharedWith)
                 .ThenInclude(x => x.ApplicationUser)
                 .Where(x => x.Id == @id)

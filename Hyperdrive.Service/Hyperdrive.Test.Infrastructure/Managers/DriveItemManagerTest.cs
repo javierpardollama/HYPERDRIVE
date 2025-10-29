@@ -104,66 +104,100 @@ public class DriveItemManagerTest : BaseManagerTest
             Context.DriveItems.Add(new DriveItem
             {
                 Id = 2,
-                Name = "Documents",
-                NormalizedName = "DOCUMENTS",
-                FileName = "Documents",
-                NormalizedFileName = "DOCUMENTS",
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
+                Activity = [
+                    new() {
+                         Id = 21,
+                        Name = "Documents",
+                        NormalizedName = "DOCUMENTS",
+                        FileName = "Documents",
+                        NormalizedFileName = "DOCUMENTS",
+                        CreatedAt = DateTime.UtcNow,
+                    }
+            ]
             });
             Context.DriveItems.Add(new DriveItem
             {
-                Id = 3,
-                Name = "Music",
-                NormalizedName = "MUSIC",
-                FileName = "Music",
-                NormalizedFileName = "MUSIC",
+                Id = 3,               
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
+                Activity = [
+                    new()
+                    {
+                        Id = 31,
+                        Name = "Music",
+                        NormalizedName = "MUSIC",
+                        FileName = "Music",
+                        NormalizedFileName = "MUSIC",
+                        CreatedAt = DateTime.UtcNow,
+                    }]
             });
             Context.DriveItems.Add(new DriveItem
             {
                 Id = 4,
-                Name = "Pictures",
-                NormalizedName = "PICTURES",
-                FileName = "Pictures",
-                NormalizedFileName = "PICTURES",
+              
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
+                Activity = [
+                    new()
+                    {
+                        Id = 41,
+                        Name = "Pictures",
+                        NormalizedName = "PICTURES",
+                        FileName = "Pictures",
+                        NormalizedFileName = "PICTURES",
+                        CreatedAt = DateTime.UtcNow,
+                    }]
             });
             Context.DriveItems.Add(new DriveItem
             {
-                Id = 5,
-                Name = "Wanabe",
-                NormalizedName = "WANABE",
-                FileName = "Wanabe.mp3",
-                NormalizedFileName = "WANABE.MP3",
-                Extension = "mp3",
-                NormalizedExtension = "MP3",
+                Id = 5,              
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = new DriveItem
                 {
-                    Id = 1,
-                    Name = "Shared",
-                    NormalizedName = "SHARED",
-                    FileName = "Shared",
-                    NormalizedFileName = "SHARED",
+                    Id = 1,                    
                     Folder = true,
                     By = Context.Users.First(x => x.Id == 1),
                     Parent = null,
                     CreatedAt = DateTime.UtcNow,
                     Deleted = false,
+                    Activity = [
+                    new()
+                    {
+                        Id = 11,
+                        Name = "Shared",
+                        NormalizedName = "SHARED",
+                        FileName = "Shared",
+                        NormalizedFileName = "SHARED",
+                        CreatedAt = DateTime.UtcNow,
+                    }],
                 },
+                Activity = [
+                    new()
+                    {
+                        Id = 51,
+                        Name = "Wanabe",
+                        NormalizedName = "WANABE",
+                        FileName = "Wanabe.mp3",
+                        NormalizedFileName = "WANABE.MP3",
+                        Extension = "mp3",
+                        NormalizedExtension = "MP3",
+                        Type = "audio/mpeg",
+                        Size = 120, 
+                        Data = new byte[25],
+                        CreatedAt = DateTime.UtcNow,
+                    }],
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
@@ -202,9 +236,8 @@ public class DriveItemManagerTest : BaseManagerTest
 
     [Test]
     public void FindDriveItemByFileName()
-    {
-        var @user = Context.Users.First(x => x.Id == 1);
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", 1, @user));       
+    {       
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", 1, 1));       
     }
 
     [Test]
@@ -258,19 +291,21 @@ public class DriveItemManagerTest : BaseManagerTest
     }
 
     [Test]
-    public async Task AddActivity()
+    public async Task AddAsFileNameActivity()
     {
         var @item = Context.DriveItems.First(x => x.Id == 5);
 
-        await Manager.AddActivity(item, "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
+        await Manager.AddAsFileNameActivity(item, "Wanabe.mp3", "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
 
         Assert.Pass();
     }
 
     [Test]
-    public async Task ChangeName()
+    public async Task AddAsNameActivity()
     {
-        await Manager.ChangeName("Spice Girls - Wannabe", "mp3", 5, 1);
+        var @item = Context.DriveItems.First(x => x.Id == 5);
+
+        await Manager.AddAsNameActivity(@item, "Spice Girls - Wannabe", "mp3");
 
         Assert.Pass();
     }
@@ -278,7 +313,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public void CheckFileName()
     {
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckFileName("Pictures", null));
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckFileName("Pictures", null, 1));
     }
 
     [Test]

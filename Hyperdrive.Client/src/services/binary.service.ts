@@ -46,19 +46,6 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public async EncodeUpdateDriveItem(viewModel: BinaryUpdateDriveItem): Promise<UpdateDriveItem> {
-        const resultModel: UpdateDriveItem =
-            {               
-                ApplicationUserId: viewModel.ApplicationUserId,
-                Data: await this.EncodeContent(viewModel.Data),
-                Size: viewModel.Data.size,
-                FileName: viewModel.Data.name,
-                Type: viewModel.Data.type               
-            };
-
-        return resultModel;
-    }
-
     public async DecodeViewDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
 
         const blob = await this.DecodeContent(viewModel.Data!, viewModel.Type);

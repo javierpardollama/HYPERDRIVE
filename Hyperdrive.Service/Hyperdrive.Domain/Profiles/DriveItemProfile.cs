@@ -1,7 +1,7 @@
-using System;
-using System.Linq;
 using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
+using System;
+using System.Linq;
 
 namespace Hyperdrive.Domain.Profiles;
 
@@ -20,9 +20,15 @@ public static class DriveItemProfile
         return new DriveItemDto
         {
             Id = @entity.Id,
-            FileName = @entity.FileName,
-            Name = @entity.Name,
-            Extension = @entity.Extension,
+            FileName = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .LastOrDefault()?.FileName,
+            Name = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .LastOrDefault()?.Name,
+            Extension = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .LastOrDefault()?.Extension,
             By = @entity.By?.ToCatalog(),
             Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
@@ -43,7 +49,9 @@ public static class DriveItemProfile
         return new CatalogDto
         {
             Id = @entity.Id,
-            Name = @entity.FileName
+            Name = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .LastOrDefault()?.FileName
         };
     }
     
@@ -56,7 +64,9 @@ public static class DriveItemProfile
     {
         return new DriveItemBinaryDto
         {
-            FileName = @entity.FileName,
+            FileName = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .LastOrDefault()?.FileName,
             Data = Convert.ToBase64String(@entity.Activity.OrderByDescending(x=> x.CreatedAt).First().Data),
             Type = @entity.Activity.OrderByDescending(x=> x.CreatedAt).First().Type
         };

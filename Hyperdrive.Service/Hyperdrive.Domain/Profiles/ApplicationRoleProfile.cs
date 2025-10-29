@@ -25,7 +25,7 @@ public static class ApplicationRoleProfile
     }
 
     /// <summary>
-    /// Transforms to Dto
+    /// Transforms to Catalog Dto
     /// </summary>
     /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
     /// <returns>Instance of <see cref="CatalogDto"/></returns>

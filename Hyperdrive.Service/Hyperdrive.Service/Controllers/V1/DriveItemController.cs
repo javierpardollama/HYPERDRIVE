@@ -94,7 +94,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpGet]
-        [Route("binary/{id}")]
+        [Route("down/{id}")]
         public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
         
         /// <summary>
@@ -112,26 +112,8 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpPost]
-        [Route("create")]
+        [Route("up")]
         public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value:await mediator.Send(new AddDriveItemCommand {ViewModel = @viewModel}));
-
-        /// <summary>
-        /// Updates DriveItem
-        /// </summary>
-        /// <response code="200">Ok</response>
-        /// <response code="400">BadRequest</response>
-        /// <response code="401">Unauthorized</response>
-        /// <response code="408">RequestTimeout</response>
-        /// <response code="404">NotFound</response>
-        /// <response code="409">Conflict</response>
-        /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>     
-        /// <param name="viewModel">Injected <see cref="UpdateDriveItem"/></param>
-        /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
-        [MapToApiVersion(1.0)]
-        [HttpPut]
-        [Route("update")]
-        public async Task<IActionResult> UpdateDriveItem([FromBody] UpdateDriveItem @viewModel) => Ok(value:await mediator.Send(new UpdateDriveItemCommand {ViewModel = @viewModel}));
         
         /// <summary>
         /// Updates Drive Item Name

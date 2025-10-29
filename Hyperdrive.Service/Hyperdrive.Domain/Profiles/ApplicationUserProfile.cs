@@ -37,7 +37,7 @@ public static class ApplicationUserProfile
     }
     
     /// <summary>
-    /// Transforms to Dto
+    /// Transforms to Catalog Dto
     /// </summary>
     /// <param name="entity">Injected <see cref="ApplicationUser"/></param>
     /// <returns>Instance of <see cref="CatalogDto"/></returns>
