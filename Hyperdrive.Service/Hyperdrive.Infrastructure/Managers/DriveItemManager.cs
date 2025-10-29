@@ -339,8 +339,8 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 Extension = @extension.Trim(),
                 NormalizedExtension = @extension.Trim().ToUpper(),
-                FileName = $"{@name?.Trim()}{extension.Trim()}",
-                NormalizedFileName = $"{@name?.Trim().ToUpper()}{extension.Trim().ToUpper()}",
+                FileName = $"{@name?.Trim()}.{extension.Trim()}",
+                NormalizedFileName = $"{@name?.Trim().ToUpper()}.{extension.Trim().ToUpper()}",
                 Name = @name.Trim(),
                 NormalizedName = @name.Trim().ToUpper(),    
                 DriveItem = @entity

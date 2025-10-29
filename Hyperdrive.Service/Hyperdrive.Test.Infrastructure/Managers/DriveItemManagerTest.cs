@@ -141,8 +141,7 @@ public class DriveItemManagerTest : BaseManagerTest
             });
             Context.DriveItems.Add(new DriveItem
             {
-                Id = 4,
-              
+                Id = 4,              
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
                 Parent = null,
@@ -314,6 +313,12 @@ public class DriveItemManagerTest : BaseManagerTest
     public void CheckFileName()
     {
         Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckFileName("Pictures", null, 1));
+    }
+
+    [Test]
+    public void CheckName()
+    {
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", null, 4, null, 1));
     }
 
     [Test]

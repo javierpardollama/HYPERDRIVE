@@ -67,8 +67,8 @@ public static class DriveItemProfile
             FileName = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
               .LastOrDefault()?.FileName,
-            Data = Convert.ToBase64String(@entity.Activity.OrderByDescending(x=> x.CreatedAt).First().Data),
-            Type = @entity.Activity.OrderByDescending(x=> x.CreatedAt).First().Type
+            Data = Convert.ToBase64String(@entity.Activity.Where(x => x.Data is not null).OrderByDescending(x=> x.CreatedAt).First().Data),
+            Type = @entity.Activity.Where(x=> x.Type is not null).OrderByDescending(x=> x.CreatedAt).First().Type
         };
     }
 }
