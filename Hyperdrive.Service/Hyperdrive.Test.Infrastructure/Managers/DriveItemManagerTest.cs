@@ -318,7 +318,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public void CheckName()
     {
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", 41, null, 1));
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", 1, null, 1));
     }
 
     [Test]

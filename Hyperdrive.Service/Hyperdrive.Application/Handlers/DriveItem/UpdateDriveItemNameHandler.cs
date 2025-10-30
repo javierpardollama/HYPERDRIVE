@@ -19,7 +19,11 @@ public class UpdateDriveItemNameHandler : IRequestHandler<UpdateDriveItemNameCom
     
     public async Task<ViewDriveItem> Handle(UpdateDriveItemNameCommand request, CancellationToken cancellationToken)
     {
-        await _manager.CheckName(request.ViewModel.Name, request.ViewModel.Extension, request.ViewModel.Id, request.ViewModel.ParentId, request.ViewModel.ApplicationUserId);
+        await _manager.CheckName(request.ViewModel.Name,
+                                 request.ViewModel.Id,
+                                 request.ViewModel.ParentId,
+                                 request.ViewModel.ApplicationUserId,
+                                 request.ViewModel.Extension);
 
         var @archive = await _manager.FindDriveItemById(request.ViewModel.Id);
         

@@ -23,19 +23,20 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
     {
         var @by = await _applicationUserManager.FindApplicationUserById(request.ViewModel.ApplicationUserId);
 
-        await _driveItemManager.CheckFileName(request.ViewModel.FileName, request.ViewModel.ParentId, request.ViewModel.ApplicationUserId);
+        await _driveItemManager.CheckFileName(request.ViewModel.FileName,
+                                              request.ViewModel.ParentId,
+                                              request.ViewModel.ApplicationUserId);
 
-        var @archive = await _driveItemManager.AddDriveItem(
-           request.ViewModel.FileName, 
-           request.ViewModel.ParentId, 
-           request.ViewModel.Folder, 
-           @by);
+        var @archive = await _driveItemManager.AddDriveItem(request.ViewModel.FileName,
+                                                            request.ViewModel.ParentId,
+                                                            request.ViewModel.Folder,
+                                                            @by);
        
         await _driveItemManager.AddAsFileNameActivity(@archive,
-            request.ViewModel.FileName,
-            request.ViewModel.Type, 
-            request.ViewModel.Size, 
-            request.ViewModel.Data);
+                                                      request.ViewModel.FileName,
+                                                      request.ViewModel.Type,
+                                                      request.ViewModel.Size,
+                                                      request.ViewModel.Data);
        
         
         var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);

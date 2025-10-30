@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Dtos;
+﻿using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Domain.Managers
 {
@@ -24,7 +24,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="parent">Injected <see cref="int?"/></param>       
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> FindDriveItemByFileName(string @filename, int? parent, int userid);
+        Task<DriveItem> FindDriveItemByFileName(string @filename, int? @parent, int @userid);
 
         /// <summary>
         /// Removes Drive Item By Id
@@ -67,7 +67,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="folder">Injected <see cref="bool"/></param>
         /// <param name="by">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, ApplicationUser @by);
+        Task<DriveItem> AddDriveItem(string @filename, int? parent, bool @folder, ApplicationUser @by);
 
         /// <summary>
         /// Adds Shared With
@@ -101,7 +101,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckFileName(string @filename, int? parent, int userid);
+        Task<bool> CheckFileName(string @filename, int? @parent, int @userid);
 
         /// <summary>
         /// Checks Name
@@ -112,7 +112,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="extension">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckName(string @name, int @id, int? @parent, int userid, string @extension = null);
+        Task<bool> CheckName(string @name, int @id, int? @parent, int @userid, string @extension = null);
         
         /// <summary>
         /// Finds Drive Item Binary By Id
