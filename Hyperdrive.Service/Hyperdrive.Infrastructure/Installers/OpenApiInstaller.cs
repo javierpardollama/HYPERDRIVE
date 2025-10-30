@@ -28,12 +28,7 @@ public static class OpenApiInstaller
             {
                 Version = "1.0",
                 Title = "HyperDrive.Service"
-            });
-            options.SwaggerDoc("v2", new OpenApiInfo
-            {
-                Version = "2.0",
-                Title = "HyperDrive.Service"
-            });
+            });           
 
             options.DocInclusionPredicate((name, description) => description.GroupName == name);
             options.ResolveConflictingActions(descriptions => descriptions.First());
@@ -76,8 +71,7 @@ public static class OpenApiInstaller
 
             @this.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");                
             });
         }
     }
