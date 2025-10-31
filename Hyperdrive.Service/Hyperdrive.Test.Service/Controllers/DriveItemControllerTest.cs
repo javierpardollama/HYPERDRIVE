@@ -29,7 +29,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new FilterPageDriveItem { Index = 0, Size = 20, ApplicationUserId = User.Id });
 
-            var response = await Client.PostAsync("page/shared", content);
+            var response = await Client.PostAsync("driveitem/page/shared", content);
             response.EnsureSuccessStatusCode();
             var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItem>>();
 
