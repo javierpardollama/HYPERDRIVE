@@ -3,27 +3,15 @@
 namespace Hyperdrive.Application.ViewModels.Security
 {
     /// <summary>
-    /// Represents a <see cref="SecurityPhoneNumberChange"/> class.
+    /// Represents a <see cref="SecurityPhoneNumberChange"/> class. Inherits <see cref="SecurityBase"/>
     /// </summary>
-    public class SecurityPhoneNumberChange
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserId"/>
-        /// </summary>
-        [Required]
-        public int ApplicationUserId { get; set; }
-
+    public class SecurityPhoneNumberChange : SecurityBase
+    {      
         /// <summary>
         /// Gets or Sets <see cref="NewPhoneNumber"/>
         /// </summary>
         [Required]
         [Phone]
-        public string NewPhoneNumber { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
-        /// </summary>
-        [Required]
-        public string ApplicationUserRefreshToken  { get; set; }
+        public string NewPhoneNumber { get; set; }       
     }
 }

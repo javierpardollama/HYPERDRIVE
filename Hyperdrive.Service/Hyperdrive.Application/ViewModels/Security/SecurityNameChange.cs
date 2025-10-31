@@ -1,18 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Hyperdrive.Application.ViewModels.Updates;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Application.ViewModels.Security
 {
     /// <summary>
-    /// Represents a <see cref="SecurityNameChange"/> class.
+    /// Represents a <see cref="SecurityNameChange"/> class. Inherits <see cref="SecurityBase"/>
     /// </summary>
-    public class SecurityNameChange
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserId"/>
-        /// </summary>
-        [Required]
-        public int ApplicationUserId { get; set; }
-
+    public class SecurityNameChange : SecurityBase
+    {       
         /// <summary>
         /// Gets or Sets <see cref="NewFirstName"/>
         /// </summary>
@@ -24,11 +19,5 @@ namespace Hyperdrive.Application.ViewModels.Security
         /// </summary>
         [Required]
         public string NewLastName { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
-        /// </summary>
-        [Required]
-        public string ApplicationUserRefreshToken  { get; set; }
     }
 }

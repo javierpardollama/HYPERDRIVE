@@ -1,5 +1,6 @@
-export interface SecurityPasswordChange {
+import { SecurityBase } from "./securitybase";
+
+export interface SecurityPasswordChange extends SecurityBase {
   CurrentPassword: string;
-  NewPassword: string;
-  ApplicationUserId: number;
+  NewPassword: string; 
 }

@@ -1,5 +1,6 @@
-export interface SecurityNameChange {
+import { SecurityBase } from "./securitybase";
+
+export interface SecurityNameChange extends SecurityBase {
     NewFirstName: string;
-    NewLastName: string;
-    ApplicationUserId: number;
+    NewLastName: string;   
 }

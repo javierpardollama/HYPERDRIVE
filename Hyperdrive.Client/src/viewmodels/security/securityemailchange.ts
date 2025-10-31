@@ -1,4 +1,5 @@
-export interface SecurityEmailChange {
+import { SecurityBase } from "./securitybase";
+
+export interface SecurityEmailChange extends SecurityBase {
   NewEmail: string;
-  ApplicationUserId: number;
 }

@@ -14,12 +14,20 @@ namespace Hyperdrive.Test.Service.Controllers
     {
         private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/") };
 
-        protected ViewApplicationUser User { get; set; }      
+        protected ViewApplicationUser User { get; set; }    
+        
+        protected string OldPassWord = "P@ssw0rd.0!d";
+
+        protected string NewPassWord = "P@ssw0rd.n3w";
+
+        protected string OldEmail = "quorra@encom.com";
+
+        protected string NewEmail = "lora.baines@encom.com";
 
         [OneTimeSetUp]
         public async Task OneTimeSetUp()
         {
-            var content = JsonContent.Create(new AuthJoinIn { Email = "quorra@encom.com", Password = "P@ssw0rd" });
+            var content = JsonContent.Create(new AuthJoinIn { Email = OldEmail, Password = OldPassWord });
 
             var response = await Client.PostAsync("auth/in", content);
 

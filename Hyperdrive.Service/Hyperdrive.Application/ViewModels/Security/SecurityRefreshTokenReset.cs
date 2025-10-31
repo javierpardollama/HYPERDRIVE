@@ -3,16 +3,10 @@
 namespace Hyperdrive.Application.ViewModels.Security
 {
     /// <summary>
-    /// Represents a <see cref="SecurityRefreshTokenReset"/> class.
+    /// Represents a <see cref="SecurityRefreshTokenReset"/> class. Inherits <see cref="SecurityBase"/>
     /// </summary>
-    public class SecurityRefreshTokenReset
+    public class SecurityRefreshTokenReset : SecurityBase
     {
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserId"/>
-        /// </summary>
-        [Required]
-        public int ApplicationUserId { get; set; }
-
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUserId"/>
         /// </summary>
