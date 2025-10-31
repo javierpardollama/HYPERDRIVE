@@ -1,8 +1,8 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.ApplicationRole;
 using Hyperdrive.Domain.Managers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Application.Handlers.ApplicationRole;
 
@@ -17,6 +17,8 @@ public class RemoveApplicationRoleByIdHandler : IRequestHandler<RemoveApplicatio
 
     public async Task Handle(RemoveApplicationRoleByIdCommand request, CancellationToken cancellationToken)
     {
-        await _manager.RemoveApplicationRoleById(request.Id);
+        var @role = await _manager.FindApplicationRoleById(request.Id);
+
+        await _manager.RemoveApplicationRole(@role);
     }
 }

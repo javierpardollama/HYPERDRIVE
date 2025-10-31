@@ -32,11 +32,11 @@ namespace Hyperdrive.Domain.Managers
         Task<ApplicationRole> FindApplicationRoleById(int @id);
 
         /// <summary>
-        /// Removes Application Role By Id
+        /// Removes Application Role
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveApplicationRoleById(int @id);
+        Task RemoveApplicationRole(ApplicationRole @entity);
 
         /// <summary>
         /// Updates Application Role

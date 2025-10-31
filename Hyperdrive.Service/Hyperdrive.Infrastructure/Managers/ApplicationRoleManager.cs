@@ -193,22 +193,20 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Removes Application Role By Id
+        /// Removes Application Role
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task RemoveApplicationRoleById(int @id)
-        {
-            ApplicationRole @applicationRole = await FindApplicationRoleById(@id);
-
-            IdentityResult @identityResult = await @roleManager.DeleteAsync(@applicationRole);
+        public async Task RemoveApplicationRole(ApplicationRole @entity)
+        {           
+            IdentityResult @identityResult = await @roleManager.DeleteAsync(@entity);
 
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
            
             // Log
             string @logData = nameof(ApplicationRole)
                 + " with Id "
-                + @applicationRole.Id
+                + @entity.Id
                 + " was removed at "
                 + DateTime.UtcNow.ToShortTimeString();
 

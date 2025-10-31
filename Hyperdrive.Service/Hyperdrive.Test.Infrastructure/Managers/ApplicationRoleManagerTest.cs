@@ -205,7 +205,9 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task RemoveApplicationRoleById()
         {
-            await Manager.RemoveApplicationRoleById(2);
+            var @role = Context.Roles.First(x => x.Id == 2);
+
+            await Manager.RemoveApplicationRole(@role);
 
             Assert.Pass();
         }
