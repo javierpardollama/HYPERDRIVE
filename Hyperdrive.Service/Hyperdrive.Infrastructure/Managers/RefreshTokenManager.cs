@@ -70,8 +70,8 @@ namespace Hyperdrive.Infrastructure.Managers
 
             // Log
             string @logData = nameof(ApplicationUserRefreshToken)
-                + " with Id "
-                + @refreshToken.Id
+                + " with Name "
+                + @refreshToken.Name
                 + " was revoked at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -88,8 +88,8 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             ApplicationUserRefreshToken @refreshToken = await Context.UserRefreshTokens
                 .TagWith("FindApplicationUserRefreshTokenByCredentials")
-                .Include(x => x.ApplicationUser)
-                .FirstOrDefaultAsync(x => x.ApplicationUser.Id == @userid && x.Value == @token);
+                .Include(x => x.User)
+                .FirstOrDefaultAsync(x => x.UserId == @userid && x.Value == @token);
 
             if (@refreshToken is null)
             {
@@ -117,7 +117,7 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 Name = Guid.NewGuid().ToString(),
                 LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @user,
+                UserId = @user.Id,             
                 Value = WriteJwtRefreshToken(),
                 ExpiresAt = GenerateRefreshTokenExpirationDate()               
             };
@@ -128,8 +128,8 @@ namespace Hyperdrive.Infrastructure.Managers
             
             // Log
             string @logData = nameof(ApplicationUserRefreshToken)
-                              + " with Id "
-                              + @refreshToken.Id
+                              + " with Name "
+                              + @refreshToken.Name
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 

@@ -106,7 +106,9 @@ public class DriveItemManagerTest : BaseManagerTest
                 Id = 2,
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
+                ById = 1,
                 Parent = null,
+                ParentId = null,
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 Activity = [
@@ -125,7 +127,9 @@ public class DriveItemManagerTest : BaseManagerTest
                 Id = 3,               
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
+                ById = 1,
                 Parent = null,
+                ParentId = null,
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 Activity = [
@@ -144,7 +148,9 @@ public class DriveItemManagerTest : BaseManagerTest
                 Id = 4,              
                 Folder = true,
                 By = Context.Users.First(x => x.Id == 1),
+                ById = 1,
                 Parent = null,
+                ParentId = null,
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
                 Activity = [
@@ -168,7 +174,9 @@ public class DriveItemManagerTest : BaseManagerTest
                     Id = 1,                    
                     Folder = true,
                     By = Context.Users.First(x => x.Id == 1),
+                    ById = 1,
                     Parent = null,
+                    ParentId = null,
                     CreatedAt = DateTime.UtcNow,
                     Deleted = false,
                     Activity = [
@@ -209,7 +217,7 @@ public class DriveItemManagerTest : BaseManagerTest
             Context.ApplicationUserDriveItems.Add(new ApplicationUserDriveItem
             {
                 DriveItem = Context.DriveItems.First(x => x.Id == 5),
-                ApplicationUser = Context.Users.First(x => x.Id == 3),
+                User = Context.Users.First(x => x.Id == 3),
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });
@@ -217,7 +225,7 @@ public class DriveItemManagerTest : BaseManagerTest
             Context.ApplicationUserDriveItems.Add(new ApplicationUserDriveItem
             {
                 DriveItem = Context.DriveItems.First(x => x.Id == 5),
-                ApplicationUser = Context.Users.First(x => x.Id == 3),
+                User = Context.Users.First(x => x.Id == 3),
                 CreatedAt = DateTime.UtcNow,
                 Deleted = false,
             });

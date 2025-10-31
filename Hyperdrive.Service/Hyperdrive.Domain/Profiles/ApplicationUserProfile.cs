@@ -20,12 +20,12 @@ public static class ApplicationUserProfile
         {
             Id = @entity.Id,
             LastModified = @entity.ModifiedAt ?? @entity.CreatedAt,
-            ApplicationRoles = [.. @entity.ApplicationUserRoles.Select(x=>x.ApplicationRole.ToCatalog())],
-            Token = @entity.ApplicationUserTokens
+            ApplicationRoles = [.. @entity.UserRoles.Select(x=>x.Role.ToCatalog())],
+            Token = @entity.Tokens
                 .OrderByDescending(x=> x.ModifiedAt)
                 .LastOrDefault()?
                 .ToDto(),
-            RefreshToken = @entity.ApplicationUserRefreshTokens
+            RefreshToken = @entity.RefreshTokens
                 .OrderByDescending(x=> x.ModifiedAt)
                 .LastOrDefault()?
                 .ToDto(),

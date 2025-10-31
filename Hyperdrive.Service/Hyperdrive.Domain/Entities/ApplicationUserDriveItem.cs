@@ -48,9 +48,21 @@ namespace Hyperdrive.Domain.Entities
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUser"/>
+        /// Gets or Sets <see cref="UserId"/>
         /// </summary>
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        [Required]
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="User"/>
+        /// </summary>
+        public virtual ApplicationUser User { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="DriveItemId"/>
+        /// </summary>
+        [Required]
+        public int DriveItemId { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DriveItem"/>

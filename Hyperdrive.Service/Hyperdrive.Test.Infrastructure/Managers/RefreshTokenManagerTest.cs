@@ -63,14 +63,16 @@ public class RefreshTokenManagerTest: BaseManagerTest
         if (!Context.UserRefreshTokens.Any())
         {
             Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
-            {
-                Id = 1,
+            {                
                 Value = "i5E%@VRMZ)%3AuWuA+A+%PAcEE0q.x",
+                Name = new Guid().ToString(),
+                LoginProvider = "https://localhost:7297",
                 ExpiresAt = DateTime.UtcNow.AddDays(2),
                 CreatedAt = DateTime.UtcNow,
                 ModifiedAt = DateTime.UtcNow,
                 Deleted = false,
-                ApplicationUser = new ApplicationUser
+                UserId = 10,
+                User = new ApplicationUser
                 {
                     Id = 10,
                     FirstName = "Cali ",
@@ -83,15 +85,17 @@ public class RefreshTokenManagerTest: BaseManagerTest
                 }
             });
             Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
-            {
-                Id = 2,
+            {               
                 Value = "&91eVg+82z*q5qfwCLp.*f=x)];]27",
+                Name = new Guid().ToString(),
+                LoginProvider = "https://localhost:7297",
                 Revoked = false,
                 ExpiresAt = DateTime.UtcNow.AddDays(2),
                 CreatedAt = DateTime.UtcNow,
                 ModifiedAt = DateTime.UtcNow,
                 Deleted = false,
-                ApplicationUser = new ApplicationUser
+                UserId = 11,
+                User = new ApplicationUser
                 {
                     Id = 11,
                     FirstName = "Barb Román",

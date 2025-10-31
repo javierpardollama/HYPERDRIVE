@@ -48,13 +48,13 @@ namespace Hyperdrive.Domain.Entities
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRoles"/>
+        /// Gets or Sets <see cref="UserRoles"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; } = [];
+        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationRoleClaims"/>
+        /// Gets or Sets <see cref="RoleClaims"/>
         /// </summary>
-        public virtual ICollection<ApplicationRoleClaim> ApplicationRoleClaims { get; set; } = [];
+        public virtual ICollection<ApplicationRoleClaim> RoleClaims { get; set; } = [];
     }
 }

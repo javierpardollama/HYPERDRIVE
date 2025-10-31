@@ -46,12 +46,22 @@ namespace Hyperdrive.Domain.Entities
         /// </summary>
         [Required]
         public virtual ApplicationUser By { get; set; }
-        
+
         /// <summary>
-        /// Gets or Sets <see cref="Parent"/>
+        /// Gets or Sets <see cref="ById"/>
         /// </summary>
         [Required]
+        public int ById { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Parent"/>
+        /// </summary>     
         public virtual DriveItem Parent { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="ParentId"/>
+        /// </summary>        
+        public int? ParentId { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Folder"/>

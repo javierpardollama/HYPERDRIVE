@@ -40,8 +40,8 @@ namespace Hyperdrive.Domain.Entities
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationRole"/>
+        /// Gets or Sets <see cref="Role"/>
         /// </summary>
-        public virtual ApplicationRole ApplicationRole { get; set; }
+        public virtual ApplicationRole Role { get; set; }
     }
 }

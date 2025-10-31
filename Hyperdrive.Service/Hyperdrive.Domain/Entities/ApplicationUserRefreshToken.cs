@@ -1,24 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Hyperdrive.Domain.Entities.Interfaces;
+﻿using Hyperdrive.Domain.Entities.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Domain.Entities
 {
     /// <summary>
     /// Represents a <see cref="ApplicationUserRefreshToken"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
-    public class ApplicationUserRefreshToken : IKey, IBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="Id"/>
-        /// </summary>
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+    public class ApplicationUserRefreshToken : IBase
+    {    
         /// <summary>
         /// Gets or Sets <see cref="CreatedAt"/>
         /// </summary>
@@ -49,9 +40,15 @@ namespace Hyperdrive.Domain.Entities
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUser"/>
+        /// Gets or Sets <see cref="User"/>
         /// </summary>
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="UserId"/>
+        /// </summary>
+        [Required]
+        public int UserId { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="ExpiresAt"/>

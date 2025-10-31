@@ -53,29 +53,29 @@ namespace Hyperdrive.Domain.Entities
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRoles"/>
+        /// Gets or Sets <see cref="UserRoles"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserRole> ApplicationUserRoles { get; set; } = [];
+        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserClaims"/>
+        /// Gets or Sets <see cref="UserClaims"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserClaim> ApplicationUserClaims { get; set; } = [];
+        public virtual ICollection<ApplicationUserClaim> UserClaims { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserLogins"/>
+        /// Gets or Sets <see cref="UserLogins"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserLogin> ApplicationUserLogins { get; set; } = [];
+        public virtual ICollection<ApplicationUserLogin> UserLogins { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserTokens"/>
+        /// Gets or Sets <see cref="UserTokens"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserToken> ApplicationUserTokens { get; set; } = [];
+        public virtual ICollection<ApplicationUserToken> Tokens { get; set; } = [];
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshTokens"/>
+        /// Gets or Sets <see cref="RefreshTokens"/>
         /// </summary>
-        public virtual ICollection<ApplicationUserRefreshToken> ApplicationUserRefreshTokens { get; set; } = [];
+        public virtual ICollection<ApplicationUserRefreshToken>RefreshTokens { get; set; } = [];
 
         /// <summary>
         /// Gets or Sets <see cref="DriveItems"/>

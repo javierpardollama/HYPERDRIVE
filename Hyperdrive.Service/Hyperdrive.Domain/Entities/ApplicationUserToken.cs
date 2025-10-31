@@ -9,16 +9,8 @@ namespace Hyperdrive.Domain.Entities
     /// <summary>
     /// Represents a <see cref="ApplicationUserToken"/> class. Implements <see cref="IdentityUserToken{int}"/>, <see cref="IKey"/>, <see cref="IBase"/>
     /// </summary>
-    public partial class ApplicationUserToken : IdentityUserToken<int>, IKey, IBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="Id"/>
-        /// </summary>
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+    public partial class ApplicationUserToken : IdentityUserToken<int>, IBase
+    {       
         /// <summary>
         /// Gets or Sets <see cref="CreatedAt"/>
         /// </summary>
@@ -49,8 +41,8 @@ namespace Hyperdrive.Domain.Entities
         public byte[] Version { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ApplicationUser"/>
+        /// Gets or Sets <see cref="User"/>
         /// </summary>
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

@@ -128,8 +128,8 @@ namespace Hyperdrive.Infrastructure.Managers
                     SecurityAlgorithms.HmacSha256Signature),
             }.Union(JwtSettings.Value.JwtAudiences
                 .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
-             .Union(@applicationUser.ApplicationUserRoles
-                .Select(@applicationUserRole => new Claim(ClaimTypes.Role, $"{@applicationUserRole?.ApplicationRole?.Name }")))];
+             .Union(@applicationUser.UserRoles
+                .Select(@applicationUserRole => new Claim(ClaimTypes.Role, $"{@applicationUserRole?.Role?.Name }")))];
         
         /// <summary>
         /// Adds Application User Token
@@ -141,8 +141,7 @@ namespace Hyperdrive.Infrastructure.Managers
             ApplicationUserToken @userToken = new ApplicationUserToken
             {
                 Name = Guid.NewGuid().ToString(),
-                LoginProvider = JwtSettings.Value.JwtIssuer,
-                ApplicationUser = @user,
+                LoginProvider = JwtSettings.Value.JwtIssuer,              
                 UserId = @user.Id,
                 Value = CreateToken(GenerateTokenDescriptor(@user))              
             };
@@ -153,8 +152,8 @@ namespace Hyperdrive.Infrastructure.Managers
             
             // Log
             string @logData = nameof(ApplicationUserToken)
-                              + " with Id "
-                              + @userToken.Id
+                              + " with Name "
+                              + @userToken.Name
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 

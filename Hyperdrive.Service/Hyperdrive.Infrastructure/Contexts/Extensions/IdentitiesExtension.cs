@@ -14,74 +14,182 @@ namespace Hyperdrive.Infrastructure.Contexts.Extensions
         /// <param name="this">Injected <see cref="ModelBuilder"/></param>
         public static void AddCustomizedIdentities(this ModelBuilder @this)
         {
-            @this.Entity<ApplicationUserRole>(applicationUserRole =>
+            @this.Entity<ApplicationUser>(b =>
             {
-                applicationUserRole.ToTable("ApplicationUserRole");
+                // Primary key
+                b.HasKey(u => u.Id);
 
-                applicationUserRole.HasOne(x => x.ApplicationUser)
-                .WithMany(x => x.ApplicationUserRoles)
-                .HasForeignKey(x => x.UserId);
+                // Indexes for "normalized" username and email, to allow efficient lookups
+                b.HasIndex(u => u.NormalizedUserName).HasDatabaseName("UserNameIndex");
+                b.HasIndex(u => u.NormalizedEmail).HasDatabaseName("EmailIndex");
 
-                applicationUserRole.HasOne(x => x.ApplicationRole)
-                .WithMany(x => x.ApplicationUserRoles)
-                .HasForeignKey(x => x.RoleId);
+                // Maps to the AspNetUsers table
+                b.ToTable("AspNetUsers");
+
+                // A concurrency token for use with the optimistic concurrency checking
+                b.Property(u => u.ConcurrencyStamp).IsConcurrencyToken();
+
+                // Limit the size of columns to use efficient database types
+                b.Property(u => u.UserName).HasMaxLength(256);
+                b.Property(u => u.NormalizedUserName).HasMaxLength(256);
+                b.Property(u => u.Email).HasMaxLength(256);
+                b.Property(u => u.NormalizedEmail).HasMaxLength(256);
+
+                // The relationships between User and other entity types
+                // Note that these relationships are configured with no navigation properties
+
+                // Each User can have many UserClaims
+                b.HasMany<ApplicationUserClaim>().WithOne().HasForeignKey(uc => uc.UserId).IsRequired();
+
+                // Each User can have many UserLogins
+                b.HasMany<ApplicationUserLogin>().WithOne().HasForeignKey(ul => ul.UserId).IsRequired();
+
+                // Each User can have many UserTokens
+                b.HasMany<ApplicationUserToken>().WithOne().HasForeignKey(ut => ut.UserId).IsRequired();
+
+                // Each User can have many entries in the UserRole join table
+                b.HasMany<ApplicationUserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();               
+
+                // Each User can have many entries in the UserRefreshTokens join table
+                b.HasMany<ApplicationUserRefreshToken>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
+
+                // Each User can have many UserClaims
+                b.HasMany(e => e.UserClaims)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(uc => uc.UserId)
+                    .IsRequired();
+
+                // Each User can have many UserLogins
+                b.HasMany(e => e.UserLogins)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ul => ul.UserId)
+                    .IsRequired();
+
+                // Each User can have many UserTokens
+                b.HasMany(e => e.Tokens)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ut => ut.UserId)
+                    .IsRequired();
+
+                // Each User can have many UserTokens
+                b.HasMany(e => e.RefreshTokens)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ut => ut.UserId)
+                    .IsRequired();
+
+                // Each User can have many entries in the UserRole join table
+                b.HasMany(e => e.UserRoles)
+                    .WithOne(e => e.User)
+                    .HasForeignKey(ur => ur.UserId)
+                    .IsRequired();
             });
 
-            @this.Entity<ApplicationRoleClaim>(applicationRoleClaim =>
+            @this.Entity<ApplicationUserClaim>(b =>
             {
-                applicationRoleClaim.ToTable("ApplicationRoleClaim");
+                // Primary key
+                b.HasKey(uc => uc.Id);
 
-                applicationRoleClaim.HasOne(x => x.ApplicationRole)
-                .WithMany(x => x.ApplicationRoleClaims)
-                .HasForeignKey(x => x.RoleId);
+                // Maps to the AspNetUserClaims table
+                b.ToTable("AspNetUserClaims");
             });
 
-            @this.Entity<ApplicationUserClaim>(applicationUserClaim =>
+            @this.Entity<ApplicationUserLogin>(b =>
             {
-                applicationUserClaim.ToTable("ApplicationUserClaim");
+                // Composite primary key consisting of the LoginProvider and the key to use
+                // with that provider
+                b.HasKey(l => new { l.LoginProvider, l.ProviderKey });
 
-                applicationUserClaim.HasOne(x => x.ApplicationUser)
-                .WithMany(x => x.ApplicationUserClaims)
-                .HasForeignKey(x => x.UserId);
+                // Limit the size of the composite key columns due to common DB restrictions
+                b.Property(l => l.LoginProvider).HasMaxLength(128);
+                b.Property(l => l.ProviderKey).HasMaxLength(128);
+
+                // Maps to the AspNetUserLogins table
+                b.ToTable("AspNetUserLogins");
             });
 
-            @this.Entity<ApplicationUserLogin>(applicationUserLogin =>
+            @this.Entity<ApplicationUserToken>(b =>
             {
-                applicationUserLogin.ToTable("ApplicationUserLogin");
+                // Composite primary key consisting of the UserId, LoginProvider and Name
+                b.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
 
-                applicationUserLogin.HasOne(x => x.ApplicationUser)
-                .WithMany(x => x.ApplicationUserLogins)
-                .HasForeignKey(x => x.UserId);
+                // Limit the size of the composite key columns due to common DB restrictions
+                b.Property(t => t.LoginProvider).HasMaxLength(128);
+                b.Property(t => t.Name).HasMaxLength(128);
 
+                // Maps to the AspNetUserTokens table
+                b.ToTable("AspNetUserTokens");
             });
 
-            @this.Entity<ApplicationUserToken>(applicationUserToken =>
+            @this.Entity<ApplicationRole>(b =>
             {
-                applicationUserToken.ToTable("ApplicationUserToken");
+                // Primary key
+                b.HasKey(r => r.Id);
 
-                applicationUserToken.HasOne(x => x.ApplicationUser)
-                .WithMany(x => x.ApplicationUserTokens)
-                .HasForeignKey(x => x.UserId);
+                // Index for "normalized" role name to allow efficient lookups
+                b.HasIndex(r => r.NormalizedName).HasDatabaseName("RoleNameIndex");
+
+                // Maps to the AspNetRoles table
+                b.ToTable("AspNetRoles");
+
+                // A concurrency token for use with the optimistic concurrency checking
+                b.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
+
+                // Limit the size of columns to use efficient database types
+                b.Property(u => u.Name).HasMaxLength(256);
+                b.Property(u => u.NormalizedName).HasMaxLength(256);
+
+                // The relationships between Role and other entity types
+                // Note that these relationships are configured with no navigation properties
+
+                // Each Role can have many entries in the UserRole join table
+                b.HasMany<ApplicationUserRole>().WithOne().HasForeignKey(ur => ur.RoleId).IsRequired();
+
+                // Each Role can have many associated RoleClaims
+                b.HasMany<ApplicationRoleClaim>().WithOne().HasForeignKey(rc => rc.RoleId).IsRequired();
+
+                // Each Role can have many entries in the UserRole join table
+                b.HasMany(e => e.UserRoles)
+                    .WithOne(e => e.Role)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .IsRequired();
+
+                // Each Role can have many associated RoleClaims
+                b.HasMany(e => e.RoleClaims)
+                    .WithOne(e => e.Role)
+                    .HasForeignKey(rc => rc.RoleId)
+                    .IsRequired();
             });
 
-            @this.Entity<ApplicationUser>(applicationUser =>
+            @this.Entity<ApplicationRoleClaim>(b =>
             {
-                applicationUser.ToTable("ApplicationUser");
+                // Primary key
+                b.HasKey(rc => rc.Id);
 
-                applicationUser.HasIndex(p => new { p.NormalizedEmail, p.Deleted })
-                .IsUnique(false);
-
-                applicationUser.HasIndex(p => new { p.NormalizedUserName, p.Deleted })
-               .IsUnique(false);
+                // Maps to the AspNetRoleClaims table
+                b.ToTable("AspNetRoleClaims");
             });
 
-            @this.Entity<ApplicationRole>(applicationRole =>
+            @this.Entity<ApplicationUserRole>(b =>
             {
-                applicationRole.ToTable("ApplicationRole");
+                // Primary key
+                b.HasKey(r => new { r.UserId, r.RoleId });
 
-                applicationRole.HasIndex(p => new { p.NormalizedName, p.Deleted })
-               .IsUnique(false);
+                // Maps to the AspNetUserRoles table
+                b.ToTable("AspNetUserRoles");
             });
+
+            @this.Entity<ApplicationUserRefreshToken>(b =>
+            {                
+                // Composite primary key consisting of the UserId, LoginProvider and Name
+                b.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+
+                // Limit the size of the composite key columns due to common DB restrictions
+                b.Property(t => t.LoginProvider).HasMaxLength(128);
+                b.Property(t => t.Name).HasMaxLength(128);
+
+                // Maps to the AspNetUserRefreshToken table
+                b.ToTable("AspNetUserRefreshToken");
+            });          
         }
     }
 }

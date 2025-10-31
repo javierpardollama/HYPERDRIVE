@@ -101,8 +101,13 @@ namespace Hyperdrive.Domain.Entities
 
         /// <summary>
         /// Gets or Sets <see cref="DriveItem"/>
+        /// </summary>       
+        public virtual DriveItem DriveItem { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="DriveItemId"/>
         /// </summary>
         [Required]
-        public virtual DriveItem DriveItem { get; set; }
+        public int DriveItemId { get; set; }
     }
 }

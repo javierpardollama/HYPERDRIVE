@@ -60,8 +60,8 @@ namespace Hyperdrive.Infrastructure.Managers
                     .TagWith("FindPaginatedApplicationUser")
                     .AsNoTracking()
                     .AsSplitQuery()
-                    .Include(x => x.ApplicationUserRoles)
-                    .ThenInclude(x => x.ApplicationRole)
+                    .Include(x => x.UserRoles)
+                    .ThenInclude(x => x.Role)
                     .Skip(@index * @size)
                     .Take(@size)
                     .Select(x => x.ToDto())
@@ -80,8 +80,8 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserById")
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
+                .Include(x => x.UserRoles)
+                .ThenInclude(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Id == @id);
 
             if (@applicationUser is null)
@@ -126,8 +126,8 @@ namespace Hyperdrive.Infrastructure.Managers
 
             ApplicationUser @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserById")
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
+                .Include(x => x.UserRoles)
+                .ThenInclude(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Email == @email);
 
             if (@applicationUser is null)
@@ -320,10 +320,10 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             ApplicationUserDto @applicationUser = await @userManager.Users
                 .TagWith("FindApplicationUserById")
-                .Include(x => x.ApplicationUserRoles)
-                .ThenInclude(x => x.ApplicationRole)
-                .Include(x => x.ApplicationUserRefreshTokens)
-                .Include(x => x.ApplicationUserTokens)
+                .Include(x => x.UserRoles)
+                .ThenInclude(x => x.Role)
+                .Include(x => x.RefreshTokens)
+                .Include(x => x.Tokens)
                 .Where(x => x.Id == @id)
                 .Select(x => x.ToDto())
                 .FirstOrDefaultAsync();

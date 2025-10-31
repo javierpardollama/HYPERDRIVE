@@ -35,7 +35,7 @@ public static class DriveItemProfile
             LastModified = @entity.Activity
               .OrderByDescending(x=>x.CreatedAt)
               .LastOrDefault()?.CreatedAt,
-            SharedWith = [.. @entity.SharedWith.Select(x=> x.ApplicationUser.ToCatalog())],
+            SharedWith = [.. @entity.SharedWith.Select(x=> x.User.ToCatalog())],
         };
     }
 
