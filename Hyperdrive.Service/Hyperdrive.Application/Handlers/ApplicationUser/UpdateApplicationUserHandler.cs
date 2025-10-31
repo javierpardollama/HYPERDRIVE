@@ -19,10 +19,12 @@ public class UpdateApplicationUserHandler : IRequestHandler<UpdateApplicationUse
     
     public async Task<ViewApplicationUser> Handle(UpdateApplicationUserCommand request, CancellationToken cancellationToken)
     {
-        var @user = await _manager.UpdateApplicationUserRoles(
-            request.ViewModel.ApplicationRoleNames,
-            request.ViewModel.ApplicationUserId);
+        var @user = await _manager.FindApplicationUserById(request.ViewModel.ApplicationUserId);
 
-        return @user.ToViewModel();
+        var @dto = await _manager.UpdateApplicationUserRoles(
+            request.ViewModel.ApplicationRoleNames,
+            @user);
+
+        return @dto.ToViewModel();
     }
 }

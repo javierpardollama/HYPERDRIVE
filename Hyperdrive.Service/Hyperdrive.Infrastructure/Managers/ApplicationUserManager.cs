@@ -175,26 +175,24 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Updates Application User Roles
         /// </summary>
         /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        public async Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, int @id)
-        {
-            ApplicationUser @applicationUser = await FindApplicationUserById(@id);
-
-            await RemoveApplicationUserRoles(@applicationUser); 
+        public async Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user)
+        {           
+            await RemoveApplicationUserRoles(@user); 
             
-            await AddApplicationUserRoles(roles, @applicationUser); 
+            await AddApplicationUserRoles(roles, @user); 
 
             // Log
             string @logData = nameof(ApplicationUser)
                               + " with Id"
-                              + @id
+                              + @user.Id
                               + " was modified at "
                               + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogInformation(@logData);
 
-            return applicationUser.ToDto();
+            return @user.ToDto();
         }
 
         public async Task<bool> AddApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user)

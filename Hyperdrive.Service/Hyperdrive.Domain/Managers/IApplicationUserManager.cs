@@ -56,9 +56,9 @@ namespace Hyperdrive.Domain.Managers
         /// Updates Application User
         /// </summary>
         /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, int @id);
+        Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user);
         
         /// <summary>
         /// Adds Application Roles to Application User
