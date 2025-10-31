@@ -231,7 +231,7 @@ namespace Hyperdrive.Infrastructure.Managers
             var @entity = new DriveItem()
             {               
                 Folder = @folder,
-                Parent = @parent is not null ? await FindDriveItemById(@parent) : null,
+                ParentId = @parent,               
                 ById = @byid
             };
 
