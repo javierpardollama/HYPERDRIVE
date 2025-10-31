@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 namespace Hyperdrive.Test.Service.Controllers
 {
     [TestFixture]
-    public class ApplicationRoleControllerTest : BaseControllerTest
+    public class ApplicationUserControllerTest : AuthControllerTest
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/applicationrole") };
+        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/") };
 
         private ViewApplicationRole Role { get; set; }
 
         [Test, Order(1)]
         public async Task FindAllApplicationRole()
         {
-            var response = await Client.GetAsync("all");
+            var response = await Client.GetAsync("applicationuser/all");
             response.EnsureSuccessStatusCode();
             var roles = await response.Content.ReadFromJsonAsync<List<ViewCatalog>>();
 
@@ -30,19 +30,19 @@ namespace Hyperdrive.Test.Service.Controllers
         [Test, Order(2)]
         public async Task FindPaginatedApplicationRole()
         {
-            var content = JsonContent.Create(new FilterPageApplicationRole { Index = 0, Size = 20, ApplicationUserId = User.Id });
+            var content = JsonContent.Create(new FilterPageApplicationUser { Index = 0, Size = 20, ApplicationUserId = User.Id });
 
-            var response = await Client.PostAsync("page", content);
+            var response = await Client.PostAsync("applicationuser/page", content);
             response.EnsureSuccessStatusCode();
-            var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewApplicationRole>>();
+            var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewApplicationUser>>();
 
             Assert.Pass();
         }
 
         [Test, Order(3)]
-        public async Task AddApplicationRole() 
+        public async Task AddApplicationRole()
         {
-            var content = JsonContent.Create(new AddApplicationRole { ApplicationUserId = User.Id, Name = "Dungeon Master", ImageUri = "URL/Dungeon_Master_500px.png" });
+            var content = JsonContent.Create(new AddApplicationRole { ApplicationUserId = User.Id, Name = "Rogue", ImageUri = "URL/Rogue_500px.png" });
 
             var response = await Client.PostAsync("create", content);
             response.EnsureSuccessStatusCode();
@@ -52,22 +52,22 @@ namespace Hyperdrive.Test.Service.Controllers
         }
 
         [Test, Order(4)]
-        public async Task UpdateApplicationRole() 
+        public async Task UpdateApplicationUser() 
         {
-            var content = JsonContent.Create(new UpdateApplicationRole { ApplicationUserId = User.Id, Id = Role.Id, Name = "Dungeon Master", ImageUri = "URL/Dungeon_Master_500px.png" });
+            var content = JsonContent.Create(new UpdateApplicationUser { ApplicationUserId = User.Id, ApplicationRoleNames = [ Role.Name ], Id = User.Id });
 
             var response = await Client.PutAsync("update", content);
             response.EnsureSuccessStatusCode();
-            var role = await response.Content.ReadFromJsonAsync<ViewApplicationRole>();
+            var user = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
             Assert.Pass();
         }
 
         [Test, Order(5)]
         public async Task RemoveApplicationRoleById()
-        {     
+        {
             var response = await Client.DeleteAsync($"remove/{Role.Id}");
-            response.EnsureSuccessStatusCode();            
+            response.EnsureSuccessStatusCode();
 
             Assert.Pass();
         }
