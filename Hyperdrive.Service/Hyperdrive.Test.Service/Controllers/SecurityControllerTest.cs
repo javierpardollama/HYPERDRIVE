@@ -17,7 +17,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityPasswordChange { ApplicationUserId = User.Id, CurrentPassword = OldPassWord, NewPassword = NewPassWord });
 
-            var response = await Client.PostAsync("password/change", content);
+            var response = await Client.PutAsync("password/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -29,7 +29,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityPasswordChange { ApplicationUserId = User.Id, CurrentPassword = NewPassWord, NewPassword = OldPassWord });
 
-            var response = await Client.PostAsync("password/change", content);
+            var response = await Client.PutAsync("password/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -41,7 +41,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityEmailChange { ApplicationUserId = User.Id, NewEmail = NewEmail });
 
-            var response = await Client.PostAsync("email/change", content);
+            var response = await Client.PutAsync("email/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -53,7 +53,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityEmailChange { ApplicationUserId = User.Id, NewEmail = OldEmail });
 
-            var response = await Client.PostAsync("email/change", content);
+            var response = await Client.PutAsync("email/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -65,7 +65,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityPhoneNumberChange { ApplicationUserId = User.Id, NewPhoneNumber ="19830324" });
 
-            var response = await Client.PostAsync("phonenumber/change", content);
+            var response = await Client.PutAsync("phonenumber/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -77,7 +77,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityNameChange { ApplicationUserId = User.Id, NewFirstName ="Lora", NewLastName = "Baines" });
 
-            var response = await Client.PostAsync("applicationuser/name/change", content);
+            var response = await Client.PutAsync("applicationuser/name/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -89,7 +89,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityNameChange { ApplicationUserId = User.Id, NewFirstName = "Quorra", NewLastName = "Flynn" });
 
-            var response = await Client.PostAsync("applicationuser/name/change", content);
+            var response = await Client.PutAsync("applicationuser/name/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
