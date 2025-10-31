@@ -250,7 +250,9 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public async Task RemoveDriveItemById()
     {
-        await Manager.RemoveDriveItemById(1);
+        var @item = Context.DriveItems.First(x => x.Id == 1);
+
+        await Manager.RemoveDriveItem(@item);
         Assert.Pass();
     }
 
@@ -277,10 +279,8 @@ public class DriveItemManagerTest : BaseManagerTest
 
     [Test]
     public async Task AddDriveItem()
-    {
-        var @user = Context.Users.First(x => x.Id == 1);
-
-        await Manager.AddDriveItem("Everybody.mp3", 1, false, @user);
+    {      
+        await Manager.AddDriveItem("Everybody.mp3", 1, false, 1);
 
         Assert.Pass();
     }
@@ -299,20 +299,16 @@ public class DriveItemManagerTest : BaseManagerTest
 
     [Test]
     public async Task AddAsFileNameActivity()
-    {
-        var @item = Context.DriveItems.First(x => x.Id == 5);
-
-        await Manager.AddAsFileNameActivity(item, "Wanabe.mp3", "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
+    {        
+        await Manager.AddAsFileNameActivity(5, "Wanabe.mp3", "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
 
         Assert.Pass();
     }
 
     [Test]
     public async Task AddAsNameActivity()
-    {
-        var @item = Context.DriveItems.First(x => x.Id == 5);
-
-        await Manager.AddAsNameActivity(@item, "Spice Girls - Wannabe", "mp3");
+    {      
+        await Manager.AddAsNameActivity(5, "Spice Girls - Wannabe", "mp3");
 
         Assert.Pass();
     }

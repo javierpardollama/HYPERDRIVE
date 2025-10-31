@@ -100,22 +100,20 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Removes Drive Item By Id
+        /// Removes Drive Item
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task RemoveDriveItemById(int @id)
-        {
-            DriveItem @archive = await FindDriveItemById(@id);
-
-            Context.DriveItems.Remove(@archive);
+        public async Task RemoveDriveItem(DriveItem @entity)
+        {           
+            Context.DriveItems.Remove(@entity);
 
             await Context.SaveChangesAsync();
 
             // Log
             string @logData = nameof(DriveItem)
                               + " with Id "
-                              + archive.Id
+                              + @entity.Id
                               + " was removed at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -228,15 +226,13 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="folder">Injected <see cref="bool"/></param>
         /// <param name="by">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public async Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, ApplicationUser @by)
-        {
-            await CheckFileName(@filename, @parent, @by.Id);
-
+        public async Task<DriveItem> AddDriveItem(string @filename, int? parent, bool folder, int @byid)
+        {          
             var @entity = new DriveItem()
             {               
                 Folder = @folder,
                 Parent = @parent is not null ? await FindDriveItemById(@parent) : null,
-                By = @by
+                ById = @byid
             };
 
             await Context.DriveItems.AddAsync(@entity);
@@ -290,7 +286,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="type">Injected <see cref="string"/></param>
         /// <param name="size">Injected <see cref="float?"/></param>
         ///  <param name="data">Injected <see cref="string"/></param>
-        public async Task AddAsFileNameActivity(DriveItem @entity, string @filename, string @type, float? @size, string @data)
+        public async Task AddAsFileNameActivity(int driveitemid, string @filename, string @type, float? @size, string @data)
         {
             DriveItemVersion @version = new()
             {
@@ -303,7 +299,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 Type = @type,
                 Size = @size,
                 Data = Convert.FromBase64String(@data),
-                DriveItem = @entity
+                DriveItemId = driveitemid
             };
 
             await Context.DriveItemVersions.AddAsync(@version);
@@ -323,10 +319,10 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Adds Activity
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <param name="driveitemid">Injected <see cref="int"/></param>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="extension">Injected <see cref="string"/></param>
-        public async Task AddAsNameActivity(DriveItem @entity, string @name, string @extension) 
+        public async Task AddAsNameActivity(int driveitemid, string @name, string @extension) 
         {        
             DriveItemVersion @version = new()
             {
@@ -336,7 +332,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 NormalizedFileName = $"{@name?.Trim().ToUpper()}.{extension.Trim().ToUpper()}",
                 Name = @name.Trim(),
                 NormalizedName = @name.Trim().ToUpper(),    
-                DriveItem = @entity
+                DriveItemId = driveitemid
             };
 
             await Context.DriveItemVersions.AddAsync(@version);

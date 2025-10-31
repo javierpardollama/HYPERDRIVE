@@ -27,7 +27,7 @@ public class UpdateDriveItemNameHandler : IRequestHandler<UpdateDriveItemNameCom
 
         var @archive = await _manager.FindDriveItemById(request.ViewModel.Id);
         
-        await _manager.AddAsNameActivity(@archive,
+        await _manager.AddAsNameActivity(@archive.Id,
                                          request.ViewModel.Name,
                                          request.ViewModel.Extension);      
 

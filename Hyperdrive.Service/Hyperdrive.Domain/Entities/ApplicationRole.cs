@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Hyperdrive.Domain.Entities.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Hyperdrive.Domain.Entities.Interfaces;
-using Microsoft.AspNetCore.Identity;
 
 namespace Hyperdrive.Domain.Entities
 {

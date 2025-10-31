@@ -1,8 +1,8 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.DriveItem;
 using Hyperdrive.Domain.Managers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Application.Handlers.DriveItem;
 
@@ -17,6 +17,8 @@ public class RemoveDriveItemByIdHandler : IRequestHandler<RemoveDriveItemByIdCom
     
     public async Task Handle(RemoveDriveItemByIdCommand request, CancellationToken cancellationToken)
     {
-        await _manager.RemoveDriveItemById(request.Id);
+        var @archive = await _manager.FindDriveItemById(request.Id);
+
+        await _manager.RemoveDriveItem(@archive);
     }
 }

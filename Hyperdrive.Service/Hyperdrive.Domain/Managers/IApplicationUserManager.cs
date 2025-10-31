@@ -46,11 +46,11 @@ namespace Hyperdrive.Domain.Managers
         Task<ApplicationUser> FindApplicationUserByEmail(string @email);
 
         /// <summary>
-        /// Removes Application User By Id
+        /// Removes Application User
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="@user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveApplicationUserById(int @id);
+        Task RemoveApplicationUser(ApplicationUser @user);
 
         /// <summary>
         /// Updates Application User

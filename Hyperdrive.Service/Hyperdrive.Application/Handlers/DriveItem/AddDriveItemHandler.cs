@@ -25,14 +25,14 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
 
         await _driveItemManager.CheckFileName(request.ViewModel.FileName,
                                               request.ViewModel.ParentId,
-                                              request.ViewModel.ApplicationUserId);
+                                              @by.Id);
 
         var @archive = await _driveItemManager.AddDriveItem(request.ViewModel.FileName,
                                                             request.ViewModel.ParentId,
                                                             request.ViewModel.Folder,
-                                                            @by);
+                                                            @by.Id);
        
-        await _driveItemManager.AddAsFileNameActivity(@archive,
+        await _driveItemManager.AddAsFileNameActivity(@archive.Id,
                                                       request.ViewModel.FileName,
                                                       request.ViewModel.Type,
                                                       request.ViewModel.Size,

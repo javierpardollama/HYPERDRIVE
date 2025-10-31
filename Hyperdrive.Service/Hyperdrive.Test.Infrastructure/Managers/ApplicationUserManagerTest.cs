@@ -228,7 +228,9 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task RemoveApplicationUserById()
         {
-            await Manager.RemoveApplicationUserById(2);
+            var @user = Context.Users.First(x => x.Id == 2);
+
+            await Manager.RemoveApplicationUser(@user);
 
             Assert.Pass();
         }
@@ -240,7 +242,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task AddApplicationUserRoles()
         {
-            var @user = await Manager.FindApplicationUserById(3);
+            var @user = Context.Users.First(x => x.Id == 3);           
 
             var @roles = new List<string>() { "Rogue", "Bard" };
 

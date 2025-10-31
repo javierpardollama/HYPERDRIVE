@@ -43,8 +43,7 @@ namespace Hyperdrive.Domain.Entities
 
         /// <summary>
         /// Gets or Sets <see cref="ApplicationUser"/>
-        /// </summary>
-        [Required]
+        /// </summary>       
         public virtual ApplicationUser By { get; set; }
 
         /// <summary>

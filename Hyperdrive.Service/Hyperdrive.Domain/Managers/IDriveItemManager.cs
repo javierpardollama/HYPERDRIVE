@@ -27,11 +27,11 @@ namespace Hyperdrive.Domain.Managers
         Task<DriveItem> FindDriveItemByFileName(string @filename, int? @parent, int @userid);
 
         /// <summary>
-        /// Removes Drive Item By Id
+        /// Removes Drive Item
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="entity">Injected <see cref="DriveItem"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveDriveItemById(int @id);
+        Task RemoveDriveItem(DriveItem @entity);
 
         /// <summary>
         /// Finds Paginated Drive Item By Application User Id
@@ -65,9 +65,9 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parent">Injected <see cref="int?"/></param>
         /// <param name="folder">Injected <see cref="bool"/></param>
-        /// <param name="by">Injected <see cref="ApplicationUser"/></param>
+        /// <param name="@byi">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> AddDriveItem(string @filename, int? parent, bool @folder, ApplicationUser @by);
+        Task<DriveItem> AddDriveItem(string @filename, int? parent, bool @folder, int @byi);
 
         /// <summary>
         /// Adds Shared With
@@ -79,20 +79,20 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Adds Activity
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <param name="driveitemid">Injected <see cref="int"/></param>
         /// <param name="filename">Injected <see cref="string"/></param>        
         /// <param name="type">Injected <see cref="string"/></param>
         /// <param name="size">Injected <see cref="float?"/></param>
         /// <param name="data">Injected <see cref="string"/></param>
-        Task AddAsFileNameActivity(DriveItem @entity, string @filename, string @type, float? @size, string @data);
+        Task AddAsFileNameActivity(int driveitemid, string @filename, string @type, float? @size, string @data);
 
         /// <summary>
         /// Adds Activity
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItem"/></param>
+        /// <param name="driveitemid">Injected <see cref="DriveItem"/></param>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="extension">Injected <see cref="string"/></param>
-        Task AddAsNameActivity(DriveItem @entity, string @name, string @extension);
+        Task AddAsNameActivity(int driveitemid, string @name, string @extension);
 
         /// <summary>
         /// Checks File Name

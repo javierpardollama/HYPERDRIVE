@@ -151,22 +151,20 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Removes Application User By Id
+        /// Removes Application User
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="id">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task RemoveApplicationUserById(int @id)
-        {
-            ApplicationUser @applicationUser = await FindApplicationUserById(@id);
-
-            IdentityResult @identityResult = await @userManager.DeleteAsync(@applicationUser);
+        public async Task RemoveApplicationUser(ApplicationUser @user)
+        {           
+            IdentityResult @identityResult = await @userManager.DeleteAsync(@user);
 
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
 
             // Log
             string @logData = nameof(ApplicationUser)
                               + " with Id "
-                              + @applicationUser.Id
+                              + @user.Id
                               + " was removed at "
                               + DateTime.UtcNow.ToShortTimeString();
 

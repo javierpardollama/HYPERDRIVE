@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Hyperdrive.Domain.Entities.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Hyperdrive.Domain.Entities.Interfaces;
 
 namespace Hyperdrive.Domain.Entities
 {
