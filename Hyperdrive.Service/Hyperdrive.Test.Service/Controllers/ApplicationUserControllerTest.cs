@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Hyperdrive.Test.Service.Controllers
 {
     [TestFixture]
-    public class ApplicationUserControllerTest : AuthControllerTest
+    public class ApplicationUserControllerTest : BaseControllerTest
     {
         private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/") };
 
