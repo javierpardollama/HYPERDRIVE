@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Hyperdrive.Application.ViewModels.Interfaces.Updates;
 
 namespace Hyperdrive.Application.ViewModels.Updates
 {
     /// <summary>
-    /// Represents a <see cref="UpdateBase"/> class. Inplemennts <see cref="IUpdateBase"/>
+    /// Represents a <see cref="UpdateBase"/> class.
     /// </summary>
-    public class UpdateBase : IUpdateBase
+    public class UpdateBase
     {
         /// <summary>
         /// Gets or Sets <see cref="Id"/>
