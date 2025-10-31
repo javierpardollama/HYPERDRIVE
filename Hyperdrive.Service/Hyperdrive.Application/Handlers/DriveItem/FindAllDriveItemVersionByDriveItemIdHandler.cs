@@ -22,6 +22,6 @@ public class FindAllDriveItemVersionByDriveItemIdHandler : IRequestHandler<FindA
     {
         var @items = await _manager.FindAllDriveItemVersionByDriveItemId(request.Id);
 
-        return @items.Select(x => new ViewDriveItemVersion()).ToList();
+        return [.. @items.Select(x => new ViewDriveItemVersion())];
     }
 }

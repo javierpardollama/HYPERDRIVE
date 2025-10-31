@@ -21,10 +21,10 @@ namespace Hyperdrive.Domain.Managers
         /// Finds Drive Item By FileName
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
-        /// <param name="parent">Injected <see cref="int?"/></param>       
+        /// <param name="parentid">Injected <see cref="int?"/></param>       
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> FindDriveItemByFileName(string @filename, int? @parent, int @userid);
+        Task<DriveItem> FindDriveItemByFileName(string @filename, int? @parentid, int @userid);
 
         /// <summary>
         /// Removes Drive Item
@@ -39,9 +39,9 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="index">Injected <see cref="int"/></param>
         /// <param name="size">Injected <see cref="int"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
-        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="parentid">Injected <see cref="int?"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parent);
+        Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parentid);
 
         /// <summary>
         /// Finds Paginated Shared Drive Item By Application User Id
@@ -63,11 +63,11 @@ namespace Hyperdrive.Domain.Managers
         /// Adds Drive Item
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
-        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="parentid">Injected <see cref="int?"/></param>
         /// <param name="folder">Injected <see cref="bool"/></param>
-        /// <param name="@byi">Injected <see cref="int"/></param>
+        /// <param name="byid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        Task<DriveItem> AddDriveItem(string @filename, int? parent, bool @folder, int @byi);
+        Task<DriveItem> AddDriveItem(string @filename, int? parentid, bool @folder, int @byid);
 
         /// <summary>
         /// Adds Shared With
@@ -98,21 +98,21 @@ namespace Hyperdrive.Domain.Managers
         /// Checks File Name
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
-        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="parentid">Injected <see cref="int?"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckFileName(string @filename, int? @parent, int @userid);
+        Task<bool> CheckFileName(string @filename, int? @parentid, int @userid);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>       
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="parentid">Injected <see cref="int?"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="extension">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckName(string @name, int @id, int? @parent, int @userid, string @extension = null);
+        Task<bool> CheckName(string @name, int @id, int? @parentid, int @userid, string @extension = null);
         
         /// <summary>
         /// Finds Drive Item Binary By Id
