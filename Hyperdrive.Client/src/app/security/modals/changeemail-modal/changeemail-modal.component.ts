@@ -55,6 +55,10 @@ export class ChangeEmailModalComponent implements OnInit {
                     Validators.required,
                     Validators.email
                 ]),
+            ApplicationUserRefreshToken: new FormControl<string>(this.User.RefreshToken?.Value ?? TextAppVariants.AppEmptyCoreText,
+                [
+                    Validators.required
+                ]),
         });
     }
 

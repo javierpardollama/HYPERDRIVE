@@ -58,6 +58,10 @@ export class ChangeNameModalComponent {
                 [
                     Validators.required,
                 ]),
+            ApplicationUserRefreshToken: new FormControl<string>(this.User.RefreshToken?.Value ?? TextAppVariants.AppEmptyCoreText,
+                [
+                    Validators.required
+                ]),
         });
     }
 

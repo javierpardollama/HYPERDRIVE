@@ -12,6 +12,12 @@ namespace Hyperdrive.Application.ViewModels.Security
         /// </summary>
         [Required]
         [Phone]
-        public string NewPhoneNumber { get; set; }       
+        public string NewPhoneNumber { get; set; }     
+        
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
+        /// </summary>
+        [Required]
+        public string ApplicationUserRefreshToken  { get; set; }
     }
 }

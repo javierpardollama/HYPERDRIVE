@@ -52,7 +52,11 @@ export class ChangePasswordModalComponent implements OnInit {
             CurrentPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [Validators.required]),
             NewPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required])
+                [Validators.required]),
+            ApplicationUserRefreshToken: new FormControl<string>(this.User.RefreshToken?.Value ?? TextAppVariants.AppEmptyCoreText,
+                [
+                    Validators.required
+                ]),
         });
     }
 
