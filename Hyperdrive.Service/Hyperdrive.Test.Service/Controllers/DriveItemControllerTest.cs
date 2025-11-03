@@ -80,7 +80,26 @@ namespace Hyperdrive.Test.Service.Controllers
 
             var response = await Client.PostAsync("up", content);
             response.EnsureSuccessStatusCode();
-            var item = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
+            Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
+
+            Assert.Pass();
+        }
+
+        [Test, Order(5)]
+        public async Task FindDriveItemBinaryById()
+        {           
+            var response = await Client.GetAsync($"down/{Archive.Id}");
+            response.EnsureSuccessStatusCode();
+            var binary = await response.Content.ReadFromJsonAsync<ViewDriveItemBinary>();
+
+            Assert.Pass();
+        }
+
+        [Test, Order(6)]
+        public async Task RemoveDriveItemById()
+        {
+            var response = await Client.DeleteAsync($"remove/{Archive.Id}");
+            response.EnsureSuccessStatusCode();
 
             Assert.Pass();
         }
