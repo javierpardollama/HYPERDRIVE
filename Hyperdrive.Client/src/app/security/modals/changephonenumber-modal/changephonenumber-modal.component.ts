@@ -57,10 +57,6 @@ export class ChangePhoneNumberModalComponent implements OnInit {
                     Validators.required,
                     Validators.pattern(new RegExp(ExpressionAppVariants.AppPhoneNumberExpression))
                 ]),
-            ApplicationUserRefreshToken: new FormControl<string>(this.User.RefreshToken?.Value ?? TextAppVariants.AppEmptyCoreText,
-                [
-                    Validators.required
-                ]),
         });
     }
 

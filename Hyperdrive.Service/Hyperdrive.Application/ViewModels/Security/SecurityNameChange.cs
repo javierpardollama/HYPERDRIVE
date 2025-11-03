@@ -7,7 +7,7 @@ namespace Hyperdrive.Application.ViewModels.Security
     /// Represents a <see cref="SecurityNameChange"/> class. Inherits <see cref="SecurityBase"/>
     /// </summary>
     public class SecurityNameChange : SecurityBase
-    {       
+    {
         /// <summary>
         /// Gets or Sets <see cref="NewFirstName"/>
         /// </summary>
@@ -19,11 +19,5 @@ namespace Hyperdrive.Application.ViewModels.Security
         /// </summary>
         [Required]
         public string NewLastName { get; set; }
-        
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
-        /// </summary>
-        [Required]
-        public string ApplicationUserRefreshToken  { get; set; }
     }
 }

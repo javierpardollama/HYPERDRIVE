@@ -7,18 +7,12 @@ namespace Hyperdrive.Application.ViewModels.Security
     /// Represents a <see cref="SecurityEmailChange"/> class. Inherits <see cref="SecurityBase"/>
     /// </summary>
     public class SecurityEmailChange : SecurityBase
-    {      
+    {
         /// <summary>
         /// Gets or Sets <see cref="NewEmail"/>
         /// </summary>
         [Required]
         [EmailAddress]
-        public string NewEmail { get; set; }      
-        
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
-        /// </summary>
-        [Required]
-        public string ApplicationUserRefreshToken  { get; set; }
+        public string NewEmail { get; set; }
     }
 }

@@ -1,28 +1,25 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.Security;
 using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Application.Handlers.Security;
 
 public class RefreshTokenResetHandler : IRequestHandler<RefreshTokenResetCommand, ViewApplicationUser>
 {
-    private readonly IApplicationUserManager _userManager;
-    private readonly IAuthManager _authManager;
+    private readonly IApplicationUserManager _userManager;   
     private readonly ITokenManager _tokenManager;
     private readonly IRefreshTokenManager _refreshTokenManager;
     
     public RefreshTokenResetHandler(
-        IApplicationUserManager userManager, 
-        IAuthManager authManager, 
+        IApplicationUserManager userManager,     
         ITokenManager tokenManager, 
         IRefreshTokenManager refreshTokenManager)
     {
-        _userManager = userManager;
-        _authManager = authManager;
+        _userManager = userManager;     
         _tokenManager = tokenManager;
         _refreshTokenManager = refreshTokenManager;
     }

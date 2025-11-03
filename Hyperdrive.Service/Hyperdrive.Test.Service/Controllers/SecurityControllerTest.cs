@@ -17,8 +17,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityPasswordChange
             {
-                ApplicationUserId = User.Id, 
-                ApplicationUserRefreshToken = User.RefreshToken.Value,
+                ApplicationUserId = User.Id,                
                 CurrentPassword = OldPassWord, NewPassword = NewPassWord
             });
 
@@ -34,8 +33,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityPasswordChange
                 { 
-                    ApplicationUserId = User.Id,
-                    ApplicationUserRefreshToken = User.RefreshToken.Value,
+                    ApplicationUserId = User.Id,                 
                     CurrentPassword = NewPassWord, 
                     NewPassword = OldPassWord 
                 });
@@ -52,8 +50,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityEmailChange
             {
-                ApplicationUserId = User.Id,
-                ApplicationUserRefreshToken = User.RefreshToken.Value,
+                ApplicationUserId = User.Id,              
                 NewEmail = NewEmail
             });
 
@@ -69,8 +66,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityEmailChange
             {
-                ApplicationUserId = User.Id,
-                ApplicationUserRefreshToken = User.RefreshToken.Value,
+                ApplicationUserId = User.Id,               
                 NewEmail = OldEmail
             });
 
@@ -86,8 +82,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityPhoneNumberChange
             {
-                ApplicationUserId = User.Id,
-                ApplicationUserRefreshToken = User.RefreshToken.Value,
+                ApplicationUserId = User.Id,              
                 NewPhoneNumber = "19830324"
             });
 
@@ -103,8 +98,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityNameChange
             {
-                ApplicationUserId = User.Id,
-                ApplicationUserRefreshToken = User.RefreshToken.Value,
+                ApplicationUserId = User.Id,              
                 NewFirstName = "Lora",
                 NewLastName = "Baines"
             });
@@ -121,8 +115,7 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new SecurityNameChange
             {
-                ApplicationUserId = User.Id,
-                ApplicationUserRefreshToken = User.RefreshToken.Value,
+                ApplicationUserId = User.Id,              
                 NewFirstName = "Quorra",
                 NewLastName = "Flynn"
             });

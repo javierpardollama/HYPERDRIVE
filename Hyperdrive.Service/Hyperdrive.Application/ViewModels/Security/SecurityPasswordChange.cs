@@ -6,7 +6,7 @@ namespace Hyperdrive.Application.ViewModels.Security
     /// Represents a <see cref="SecurityPasswordChange"/> class. Inherits <see cref="SecurityBase"/>
     /// </summary>
     public class SecurityPasswordChange : SecurityBase
-    {       
+    {
         /// <summary>
         /// Gets or Sets <see cref="CurrentPassword"/>
         /// </summary>
@@ -17,12 +17,6 @@ namespace Hyperdrive.Application.ViewModels.Security
         /// Gets or Sets <see cref="NewPassword"/>
         /// </summary>
         [Required]
-        public string NewPassword { get; set; }      
-        
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserRefreshToken"/>
-        /// </summary>
-        [Required]
-        public string ApplicationUserRefreshToken  { get; set; }
+        public string NewPassword { get; set; }
     }
 }
