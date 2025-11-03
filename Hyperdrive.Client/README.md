@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Documentation
 
-This project's documentation is generated with [Compodoc](https://compodoc.app/). Run `npm run compodoc`. The build artifacts will be stored in the `documentation/` directory.
+This project's documentation is generated with [Compodoc](https://compodoc.app/). Run `npm run doc`. The build artifacts will be stored in the `documentation/` directory.
 
 ## Code scaffolding
 
