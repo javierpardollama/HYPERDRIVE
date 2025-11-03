@@ -2,9 +2,11 @@
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
 using Hyperdrive.Application.ViewModels.Views;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -13,9 +15,15 @@ namespace Hyperdrive.Test.Service.Controllers
     [TestFixture]
     public class ApplicationRoleControllerTest : BaseControllerTest
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/applicationrole") };
+        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/applicationrole/") };
 
         private ViewApplicationRole Role { get; set; }
+
+        [SetUp]
+        public new void SetUp()
+        {
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
+        }
 
         [Test, Order(1)]
         public async Task FindAllApplicationRole()

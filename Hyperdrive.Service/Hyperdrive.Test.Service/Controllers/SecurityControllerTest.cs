@@ -1,7 +1,9 @@
 ﻿using Hyperdrive.Application.ViewModels.Security;
 using Hyperdrive.Application.ViewModels.Views;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -10,7 +12,13 @@ namespace Hyperdrive.Test.Service.Controllers
     [TestFixture]
     public class SecurityControllerTest : BaseControllerTest
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/") };
+        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/security/") };
+
+        [SetUp]
+        public new void SetUp()
+        {
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
+        }
 
         [Test, Order(1)]
         public async Task ChangePassword()
@@ -103,7 +111,7 @@ namespace Hyperdrive.Test.Service.Controllers
                 NewLastName = "Baines"
             });
 
-            var response = await Client.PutAsync("applicationuser/name/change", content);
+            var response = await Client.PutAsync("name/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
@@ -120,7 +128,7 @@ namespace Hyperdrive.Test.Service.Controllers
                 NewLastName = "Flynn"
             });
 
-            var response = await Client.PutAsync("applicationuser/name/change", content);
+            var response = await Client.PutAsync("name/change", content);
             response.EnsureSuccessStatusCode();
             User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
