@@ -85,7 +85,7 @@ namespace Hyperdrive.Test.Service.Controllers
             Assert.Pass();
         }       
 
-        [Test, Order(6)]
+        [Test, Order(5)]
         public async Task RemoveDriveItemById()
         {
             var response = await Client.DeleteAsync($"remove/{Archive.Id}");
