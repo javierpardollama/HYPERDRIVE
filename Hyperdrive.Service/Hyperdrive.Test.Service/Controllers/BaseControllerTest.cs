@@ -20,7 +20,7 @@ namespace Hyperdrive.Test.Service.Controllers
 
         protected string NewPassWord = "P@ssw0rd.n3w";
 
-        protected string OldEmail = "quorra@encom.com";
+        protected string OldEmail = "quorra.flynn@encom.com";
 
         protected string NewEmail = "lora.baines@encom.com";
 
