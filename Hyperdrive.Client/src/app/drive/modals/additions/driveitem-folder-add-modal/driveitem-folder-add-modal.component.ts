@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {DriveItemService} from "../../../../../services/driveitem.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {TextAppVariants} from "../../../../../variants/text.app.variants";
-import {ExpressionAppVariants} from "../../../../../variants/expression.app.variants";
-import {TimeAppVariants} from "../../../../../variants/time.app.variants";
-import {AddDriveItem} from "../../../../../viewmodels/additions/adddriveitem";
-import {ViewApplicationUser} from "../../../../../viewmodels/views/viewapplicationuser";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { DriveItemService } from "../../../../../services/driveitem.service";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { TextAppVariants } from "../../../../../variants/text.app.variants";
+import { ExpressionAppVariants } from "../../../../../variants/expression.app.variants";
+import { TimeAppVariants } from "../../../../../variants/time.app.variants";
+import { AddDriveItem } from "../../../../../viewmodels/additions/adddriveitem";
+import { ViewApplicationUser } from "../../../../../viewmodels/views/viewapplicationuser";
+import { ViewDriveItem } from 'src/viewmodels/views/viewdriveitem';
 
 @Component({
     selector: 'app-driveitem-folder-add-modal',
@@ -25,7 +26,8 @@ export class DriveItemFolderAddModalComponent implements OnInit {
         private driveItemService: DriveItemService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveItemFolderAddModalComponent>,
-        private matSnackBar: MatSnackBar) {
+        private matSnackBar: MatSnackBar,
+        @Inject(MAT_DIALOG_DATA) public data: number | undefined) {
     }
 
 
@@ -38,7 +40,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            ParentId: new FormControl<number | undefined>(undefined,
+            ParentId: new FormControl<number | undefined>(this.data,
                 []),
             FileName: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [
@@ -51,7 +53,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
                 [
                     Validators.required,
                     Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
-                ])
+                ]),
         });
     }
 
@@ -63,7 +65,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
         }
 
         this.dialogRef.close();

@@ -1,19 +1,19 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {DriveItemService} from "../../../../services/driveitem.service";
-import {ViewDriveItem} from "../../../../viewmodels/views/viewdriveitem";
-import {MatTableDataSource} from "@angular/material/table";
-import {FilterPageDriveItem} from "../../../../viewmodels/filters/filterpagedriveitem";
-import {ViewScroll} from "../../../../viewmodels/views/viewscroll";
-import {ViewApplicationUser} from "../../../../viewmodels/views/viewapplicationuser";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
-import {DriveItemContextMenuComponent} from "../../menus/drive-item-context-menu/drive-item-context-menu.component";
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { DriveItemService } from "../../../../services/driveitem.service";
+import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
+import { MatTableDataSource } from "@angular/material/table";
+import { FilterPageDriveItem } from "../../../../viewmodels/filters/filterpagedriveitem";
+import { ViewScroll } from "../../../../viewmodels/views/viewscroll";
+import { ViewApplicationUser } from "../../../../viewmodels/views/viewapplicationuser";
+import { MatBottomSheet } from "@angular/material/bottom-sheet";
+import { DriveItemContextMenuComponent } from "../../menus/drive-item-context-menu/drive-item-context-menu.component";
 import {
     DriveItemFolderAddModalComponent
 } from "../../modals/additions/driveitem-folder-add-modal/driveitem-folder-add-modal.component";
 import {
     DriveItemFileAddModalComponent
 } from "../../modals/additions/driveitem-file-add-modal/driveitem-file-add-modal.component";
-import {MatDialog} from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
     selector: 'app-driveitem-grid',
@@ -100,7 +100,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     public NewFolder(): void {
         const dialogRef = this.matDialog.open(DriveItemFolderAddModalComponent, {
-            width: '450px'
+            width: '450px',
+            data: this.page.ParentId,
         });
 
         dialogRef.afterClosed().subscribe(() => {
@@ -110,7 +111,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     public NewFile(): void {
         const dialogRef = this.matDialog.open(DriveItemFileAddModalComponent, {
-            width: '450px'
+            width: '450px',
+            data: this.page.ParentId,
         });
 
         dialogRef.afterClosed().subscribe(() => {

@@ -1,4 +1,6 @@
-﻿using Hyperdrive.Application.ViewModels.Filters;
+﻿using Hyperdrive.Application.ViewModels.Additions;
+using Hyperdrive.Application.ViewModels.Filters;
+using Hyperdrive.Application.ViewModels.Updates;
 using Hyperdrive.Application.ViewModels.Views;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
@@ -10,9 +12,11 @@ using System.Threading.Tasks;
 namespace Hyperdrive.Test.Service.Controllers
 {
     [TestFixture]
-    public class DriveItemControllerTest: BaseControllerTest
+    public class DriveItemControllerTest : BaseControllerTest
     {
         private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/driveitem/") };
+
+        private ViewDriveItem Archive { get; set; }
 
         [SetUp]
         public new void SetUp()
@@ -32,7 +36,7 @@ namespace Hyperdrive.Test.Service.Controllers
             Assert.Pass();
         }
 
-        [Test, Order(1)]
+        [Test, Order(2)]
         public async Task FindPaginatedSharedDriveItemByApplicationUserId()
         {
             var content = JsonContent.Create(new FilterPageDriveItem { Index = 0, Size = 20, ApplicationUserId = User.Id });
@@ -42,6 +46,43 @@ namespace Hyperdrive.Test.Service.Controllers
             var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItem>>();
 
             Assert.Pass();
-        }       
+        }
+
+        [Test, Order(3)]
+        public async Task AddDriveItem()
+        {
+            var content = JsonContent.Create(new AddDriveItem
+            {
+                Data = null,
+                FileName = "Root",
+                Folder = true,
+                ApplicationUserId = User.Id
+            });
+
+            var response = await Client.PostAsync("up", content);
+            response.EnsureSuccessStatusCode();
+            Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
+
+            Assert.Pass();
+        }
+
+        [Test, Order(4)]
+        public async Task UpdateDriveItemName()
+        {
+            var content = JsonContent.Create(new UpdateDriveItemName
+            {
+               Extension = Archive.Extension,
+               Name = "Source",
+               ParentId = Archive.Parent?.Id,               
+               Id = Archive.Id,
+               ApplicationUserId = User.Id
+            });
+
+            var response = await Client.PostAsync("up", content);
+            response.EnsureSuccessStatusCode();
+            var item = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
+
+            Assert.Pass();
+        }
     }
 }

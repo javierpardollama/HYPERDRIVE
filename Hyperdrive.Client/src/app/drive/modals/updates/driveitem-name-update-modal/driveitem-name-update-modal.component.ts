@@ -1,13 +1,13 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {ExpressionAppVariants} from "../../../../../variants/expression.app.variants";
-import {TextAppVariants} from "../../../../../variants/text.app.variants";
-import {TimeAppVariants} from "../../../../../variants/time.app.variants";
-import {ViewDriveItem} from "../../../../../viewmodels/views/viewdriveitem";
-import {DriveItemService} from "../../../../../services/driveitem.service";
-import {UpdateDriveItemName} from "../../../../../viewmodels/updates/updatedriveitemname";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ExpressionAppVariants } from "../../../../../variants/expression.app.variants";
+import { TextAppVariants } from "../../../../../variants/text.app.variants";
+import { TimeAppVariants } from "../../../../../variants/time.app.variants";
+import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
+import { DriveItemService } from "../../../../../services/driveitem.service";
+import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedriveitemname";
 
 @Component({
     selector: 'app-driveitem-name-update-modal',
@@ -42,6 +42,8 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
                 Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
             ]),
             Extension: new FormControl<string>(this.data.Extension, [Validators.required]),
+            ParentId: new FormControl<number | undefined>(this.data?.Parent?.Id,
+                []),
         });
     }
 
@@ -53,7 +55,7 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
         }
 
         this.dialogRef.close();

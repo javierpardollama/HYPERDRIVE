@@ -9,9 +9,8 @@ namespace Hyperdrive.Application.ViewModels.Updates
     {
         /// <summary>
         /// Gets or Sets <see cref="ParentId"/>
-        /// </summary>
-        [Required]
-        public int ParentId { get; set; }
+        /// </summary>      
+        public int? ParentId { get; set; }
         
         /// <summary>
         /// Gets or Sets <see cref="Name"/>
