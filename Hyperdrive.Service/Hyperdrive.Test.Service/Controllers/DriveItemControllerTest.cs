@@ -4,6 +4,7 @@ using Hyperdrive.Application.ViewModels.Updates;
 using Hyperdrive.Application.ViewModels.Views;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -71,11 +72,11 @@ namespace Hyperdrive.Test.Service.Controllers
         {
             var content = JsonContent.Create(new UpdateDriveItemName
             {
-               Extension = Archive.Extension,
-               Name = "Source",
-               ParentId = Archive.Parent?.Id,               
-               Id = Archive.Id,
-               ApplicationUserId = User.Id
+                Extension = Archive.Extension,
+                Name = "Source",
+                ParentId = Archive.Parent?.Id,
+                Id = Archive.Id,
+                ApplicationUserId = User.Id
             });
 
             var response = await Client.PostAsync("up", content);
@@ -83,7 +84,17 @@ namespace Hyperdrive.Test.Service.Controllers
             Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
 
             Assert.Pass();
-        }       
+        }
+
+        [Test, Order(5)]
+        public async Task FindAllDriveItemVersionByDriveItemId()
+        {
+            var response = await Client.DeleteAsync($"all/version/{Archive.Id}");
+            response.EnsureSuccessStatusCode();
+            var versions = await response.Content.ReadFromJsonAsync<IList<ViewDriveItemVersion>>();
+
+            Assert.Pass();
+        }
 
         [Test, Order(5)]
         public async Task RemoveDriveItemById()
