@@ -1,7 +1,5 @@
 import { AddDriveItem } from '../viewmodels/additions/adddriveitem';
 
-import { UpdateDriveItem } from '../viewmodels/updates/updatedriveitem';
-
 import { UpdateDriveItemName } from '../viewmodels/updates/updatedriveitemname';
 
 import { UpdateDriveItemSharedWith } from '../viewmodels/updates/updatedriveitemsharedwith';
@@ -78,11 +76,6 @@ export class DriveItemService extends BaseService {
     public AddDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {
         return firstValueFrom(this.httpClient.post<ViewDriveItem>(`${environment.Api.Service}api/v1/driveitem/up`, viewModel)
             .pipe(catchError(this.HandleError<ViewDriveItem>('AddDriveItem', undefined))));
-    }
-
-    public UpdateDriveItem(viewModel: UpdateDriveItem): Promise<ViewDriveItem> {
-        return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/v1/driveitem/update`, viewModel)
-            .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItem', undefined))));
     }
 
     public RemoveDriveItemById(id: number): Promise<void> {

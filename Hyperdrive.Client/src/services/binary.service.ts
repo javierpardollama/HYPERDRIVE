@@ -4,10 +4,6 @@ import { BinaryAddDriveItem } from '../viewmodels/binary/binaryadddriveitem';
 
 import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
-import { UpdateDriveItem } from '../viewmodels/updates/updatedriveitem';
-
-import { BinaryUpdateDriveItem } from '../viewmodels/binary/binaryupdatedriveitem';
-
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
