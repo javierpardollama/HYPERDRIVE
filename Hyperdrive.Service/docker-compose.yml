@@ -1,0 +1,6 @@
+services:
+  hyperdrive.service:
+    image: ${DOCKER_REGISTRY-}hyperdriveservice
+    build:
+      context: .
+      dockerfile: Hyperdrive.Service/Dockerfile
