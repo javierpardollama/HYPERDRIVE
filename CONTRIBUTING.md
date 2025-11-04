@@ -41,4 +41,4 @@ Me indica el problema que has encontrado, y la pull request me muestra la acció
 
 ### ¿Cumple con el pacto de los colaboradores?
 
-Este repositorio tiene un [código de conducta](CODE_OF_CONDUCT.md). Eliminaré el contenido que no lo respete.
+Este repositorio tiene un [código de conducta](https://github.com/javierpardollama/HYPERDRIVE/blob/main/CODE_OF_CONDUCT.MD). Eliminaré el contenido que no lo respete.
