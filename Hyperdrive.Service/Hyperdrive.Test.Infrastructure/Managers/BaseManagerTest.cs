@@ -62,7 +62,7 @@ public abstract class BaseManagerTest
     /// <summary>
     /// Gets or Sets <see cref="ContextOptionsAction"/>
     /// </summary>
-    private Action<DbContextOptionsBuilder> ContextOptionsAction = options =>
+    private readonly Action<DbContextOptionsBuilder> ContextOptionsAction = options =>
     {
         options.UseInMemoryDatabase("hyperdrive.db");
         options.AddInterceptors(new SoftDeleteInterceptor());
