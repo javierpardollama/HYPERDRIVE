@@ -14,6 +14,12 @@ import {
     DriveItemFileAddModalComponent
 } from "../../modals/additions/driveitem-file-add-modal/driveitem-file-add-modal.component";
 import { MatDialog } from "@angular/material/dialog";
+import { BinaryService } from 'src/services/binary.service';
+import { BinaryAddDriveItem } from 'src/viewmodels/binary/binaryadddriveitem';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TextAppVariants } from 'src/variants/text.app.variants';
+import { TimeAppVariants } from 'src/variants/time.app.variants';
+
 
 @Component({
     selector: 'app-driveitem-grid',
@@ -40,8 +46,10 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     // Constructor
     constructor(
+        private matSnackBar: MatSnackBar,
         public matDialog: MatDialog,
         private driveItemService: DriveItemService,
+        private binaryService: BinaryService,
         public bottomSheet: MatBottomSheet) {
 
     }
@@ -118,6 +126,31 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
         dialogRef.afterClosed().subscribe(() => {
 
         });
+    }
+
+    public async DropFile(event: DragEvent): Promise<void> {
+        if (event?.dataTransfer?.files?.length) {
+
+            let binaries = Array.from(event.dataTransfer.files).map(file => ({
+                ApplicationUserId: this.page.ApplicationUserId!,
+                Data: file,
+                ParentId: this.page.ParentId,
+                Folder: false
+            } as BinaryAddDriveItem));
+
+            await Promise.all(
+                binaries.map(async binary => {
+                    let viewModel = await this.binaryService.EncodeAddDriveItem(binary);
+
+                    let archive = await this.driveItemService.AddDriveItem(viewModel);
+                    if (archive)
+                        this.matSnackBar.open(
+                            TextAppVariants.AppOperationSuccessCoreText,
+                            TextAppVariants.AppOkButtonText,
+                            { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+                })
+            );
+        }
     }
 
     private TurnThePage = async (event: Event): Promise<void> => {

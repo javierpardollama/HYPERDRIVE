@@ -8,7 +8,6 @@ import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { BinaryService } from "../../../../../services/binary.service";
 import { BinaryAddDriveItem } from "../../../../../viewmodels/binary/binaryadddriveitem";
-import { ViewDriveItem } from 'src/viewmodels/views/viewdriveitem';
 
 @Component({
     selector: 'app-driveitem-file-add-modal',
