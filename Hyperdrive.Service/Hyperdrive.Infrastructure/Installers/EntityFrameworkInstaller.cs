@@ -25,7 +25,7 @@ public static class EntityFrameworkInstaller
         @this.AddDbContext<ApplicationContext>(options =>
         {
             options.AddInterceptors(new SoftDeleteInterceptor());
-            options.UseSqlite(@configuration.GetConnectionString("DefaultConnection"));
+            options.UseNpgsql(@configuration.GetConnectionString("DefaultConnection"));
         });
         
         @this.AddIdentity<ApplicationUser, ApplicationRole>()
