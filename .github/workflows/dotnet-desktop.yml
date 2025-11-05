@@ -12,10 +12,13 @@ permissions:
 defaults:
   run:
     working-directory: Hyperdrive.Service
-
+    
 jobs:
   build:
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
 
     steps:
       - name: 📦 Checkout repository
