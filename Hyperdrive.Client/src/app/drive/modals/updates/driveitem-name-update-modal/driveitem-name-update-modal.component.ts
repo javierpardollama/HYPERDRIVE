@@ -8,6 +8,8 @@ import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedriveitemname";
+import { Decrypt } from 'src/services/crypto.sevice';
+import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 
 @Component({
     selector: 'app-driveitem-name-update-modal',
@@ -17,6 +19,8 @@ import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedri
 export class DriveitemNameUpdateModalComponent implements OnInit {
 
     public formGroup!: FormGroup;
+
+    public User?: ViewApplicationUser;
 
     // Constructor
     constructor(
@@ -29,7 +33,8 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
 
 
     // Life Cicle
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+        await this.GetLocalUser();
         this.CreateForm();
     }
 
@@ -44,6 +49,10 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
             Extension: new FormControl<string>(this.data.Extension, [Validators.required]),
             ParentId: new FormControl<number | undefined>(this.data?.Parent?.Id,
                 []),
+            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
+                [
+                    Validators.required
+                ])
         });
     }
 
@@ -59,5 +68,10 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
         }
 
         this.dialogRef.close();
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

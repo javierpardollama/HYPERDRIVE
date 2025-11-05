@@ -1,15 +1,17 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ApplicationUserService} from "../../../../../services/applicationuser.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {UpdateApplicationUser} from "../../../../../viewmodels/updates/updateapplicationuser";
-import {TextAppVariants} from "../../../../../variants/text.app.variants";
-import {TimeAppVariants} from "../../../../../variants/time.app.variants";
-import {ViewDriveItem} from "../../../../../viewmodels/views/viewdriveitem";
-import {ViewCatalog} from "../../../../../viewmodels/views/viewcatalog";
-import {DriveItemService} from "../../../../../services/driveitem.service";
-import {UpdateDriveItemSharedWith} from "../../../../../viewmodels/updates/updatedriveitemsharedwith";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ApplicationUserService } from "../../../../../services/applicationuser.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { UpdateApplicationUser } from "../../../../../viewmodels/updates/updateapplicationuser";
+import { TextAppVariants } from "../../../../../variants/text.app.variants";
+import { TimeAppVariants } from "../../../../../variants/time.app.variants";
+import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
+import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
+import { DriveItemService } from "../../../../../services/driveitem.service";
+import { UpdateDriveItemSharedWith } from "../../../../../viewmodels/updates/updatedriveitemsharedwith";
+import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
+import { Decrypt } from 'src/services/crypto.sevice';
 
 @Component({
     selector: 'app-driveitem-share-with-update-modal',
@@ -19,6 +21,8 @@ import {UpdateDriveItemSharedWith} from "../../../../../viewmodels/updates/updat
 export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     public formGroup!: FormGroup;
+
+    public User?: ViewApplicationUser;
 
     public applicationusers: ViewCatalog[] = [];
 
@@ -36,6 +40,7 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     // Life Cicle
     async ngOnInit(): Promise<void> {
+        await this.GetLocalUser();
         this.CreateForm();
         await this.FindAllApplicationUser();
     }
@@ -44,7 +49,11 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
             Id: new FormControl<number>(this.data.Id, [Validators.required]),
-            ApplicationUserIds: new FormControl<number[]>(this.data.SharedWith.map(({Id}) => Id), [Validators.required])
+            ApplicationUserIds: new FormControl<number[]>(this.data.SharedWith.map(({ Id }) => Id), [Validators.required]),
+            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
+                [
+                    Validators.required
+                ])
         });
     }
 
@@ -56,7 +65,7 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
         }
 
         this.dialogRef.close();
@@ -68,7 +77,7 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
         this.matSnackBar.open(
             TextAppVariants.AppOperationSuccessCoreText,
             TextAppVariants.AppOkButtonText,
-            {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+            { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
         this.dialogRef.close();
 
@@ -77,5 +86,10 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
     // Get Data from Service
     public async FindAllApplicationUser(): Promise<void> {
         this.applicationusers = await this.applicationuserService.FindAllApplicationUser();
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

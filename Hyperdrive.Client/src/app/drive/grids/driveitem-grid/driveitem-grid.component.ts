@@ -61,7 +61,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     async ngAfterViewInit(): Promise<void> {
-        this.GetLocalUser();
+        await this.GetLocalUser();
         this.SetFilterUser()
         await this.FindPaginatedDriveItem();
     }

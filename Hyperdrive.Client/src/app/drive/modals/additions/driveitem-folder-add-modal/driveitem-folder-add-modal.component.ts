@@ -33,7 +33,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
 
     // Life Cicle
     async ngOnInit(): Promise<void> {
-        this.GetLocalUser();
+        await this.GetLocalUser();
         this.CreateForm();
     }
 
@@ -51,9 +51,8 @@ export class DriveItemFolderAddModalComponent implements OnInit {
                 [Validators.required]),
             ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
                 [
-                    Validators.required,
-                    Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
-                ]),
+                    Validators.required
+                ])
         });
     }
 
