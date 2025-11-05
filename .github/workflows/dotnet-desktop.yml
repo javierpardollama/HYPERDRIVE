@@ -12,7 +12,7 @@ permissions:
 defaults:
   run:
     working-directory: Hyperdrive.Service
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,13 +30,14 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 📥 Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Hyperdrive.Service.csproj
 
       - name: ♻️ Clean project
-        run: dotnet clean
+        run: dotnet clean Hyperdrive.Service.csproj
 
       - name: 🏗️ Build project
-        run: dotnet build --no-restore    
+        run: dotnet build Hyperdrive.Service.csproj --no-restore
 
-      - name: ✅ Run tests      
-        run:  dotnet test Hyperdrive.Test.Infrastructure --no-build
+      - name: ✅ Run tests
+        run: dotnet test Hyperdrive.Test.Infrastructure --no-build
+
