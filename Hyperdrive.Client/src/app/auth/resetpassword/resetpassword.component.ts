@@ -44,8 +44,10 @@ export class ResetPasswordComponent implements OnInit {
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
             Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required,
-                Validators.pattern(ExpressionAppVariants.AppMailExpression)]),
+                [
+                    Validators.required,
+                    Validators.email
+                ]),
             NewPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [Validators.required])
         });

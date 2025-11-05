@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {AuthService} from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
-import {AuthSignIn} from '../../../viewmodels/auth/authsignin';
+import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
-import {TextAppVariants} from '../../../variants/text.app.variants';
-import {Location} from "@angular/common";
+import { TextAppVariants } from '../../../variants/text.app.variants';
+import { Location } from "@angular/common";
 import { Encrypt } from 'src/services/crypto.sevice';
 
 @Component({
@@ -40,6 +40,7 @@ export class JoinInComponent implements OnInit {
             Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
+                    Validators.email
                 ]),
             Password: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [Validators.required])

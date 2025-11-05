@@ -46,6 +46,7 @@ export class SignInComponent implements OnInit {
       Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
           Validators.required,
+          Validators.email
         ]),
       Password: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [Validators.required])
