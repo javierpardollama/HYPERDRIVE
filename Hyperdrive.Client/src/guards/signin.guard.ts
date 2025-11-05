@@ -5,6 +5,7 @@ import {
 } from '@angular/router';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
+import { Decrypt } from 'src/services/crypto.sevice';
 
 @Injectable({
     providedIn: 'root'
@@ -32,7 +33,7 @@ export class SignInGuard {
     }
 
     // Get User from Storage
-    public GetLocalUser() {
-        this.User = JSON.parse(sessionStorage.getItem('User')!);
-    }
+   public GetLocalUser(): void {
+           this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+       }
 }

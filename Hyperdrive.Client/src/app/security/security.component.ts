@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
-import {ChangeNameModalComponent} from './modals/changename-modal/changename-modal.component';
+import { ChangeNameModalComponent } from './modals/changename-modal/changename-modal.component';
 
-import {ChangeEmailModalComponent} from './modals/changeemail-modal/changeemail-modal.component';
+import { ChangeEmailModalComponent } from './modals/changeemail-modal/changeemail-modal.component';
 
-import {ChangePasswordModalComponent} from './modals/changepassword-modal/changepassword-modal.component';
+import { ChangePasswordModalComponent } from './modals/changepassword-modal/changepassword-modal.component';
 
-import {ChangePhoneNumberModalComponent} from './modals/changephonenumber-modal/changephonenumber-modal.component';
+import { ChangePhoneNumberModalComponent } from './modals/changephonenumber-modal/changephonenumber-modal.component';
 
-import {ViewApplicationUser} from '../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../viewmodels/views/viewapplicationuser';
+import { Decrypt } from 'src/services/crypto.sevice';
 
 
 @Component({
@@ -74,6 +75,6 @@ export class SecurityComponent implements OnInit {
 
     // Get User from Storage
     public GetLocalUser(): void {
-        this.User = JSON.parse(sessionStorage.getItem('User')!);
+        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

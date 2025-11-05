@@ -8,6 +8,7 @@ import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { BinaryService } from "../../../../../services/binary.service";
 import { BinaryAddDriveItem } from "../../../../../viewmodels/binary/binaryadddriveitem";
+import { Decrypt } from 'src/services/crypto.sevice';
 
 @Component({
     selector: 'app-driveitem-file-add-modal',
@@ -73,6 +74,6 @@ export class DriveItemFileAddModalComponent implements OnInit {
 
     // Get User from Storage
     public GetLocalUser(): void {
-        this.User = JSON.parse(sessionStorage.getItem('User')!);
+        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

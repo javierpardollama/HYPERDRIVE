@@ -17,6 +17,7 @@ import { AuthService } from '../../../services/auth.service';
 import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
 import { TextAppVariants } from '../../../variants/text.app.variants';
+import { Encrypt } from 'src/services/crypto.sevice';
 
 
 @Component({
@@ -35,12 +36,12 @@ export class SignInComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   // Life Cicle
-  ngOnInit():void {
+  ngOnInit(): void {
     this.CreateForm();
   }
 
   // Form
-  CreateForm():void {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
@@ -52,11 +53,11 @@ export class SignInComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: AuthSignIn):Promise<void> {
+  async onSubmit(viewModel: AuthSignIn): Promise<void> {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
-      sessionStorage.setItem('User', JSON.stringify(user));
+      sessionStorage.setItem('User', Encrypt(user));
 
       await this.router.navigate(['/']);
     }

@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {MatDialogRef} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import {SecurityService} from '../../../../services/security.service';
+import { SecurityService } from '../../../../services/security.service';
 
-import {SecurityEmailChange} from '../../../../viewmodels/security/securityemailchange';
+import { SecurityEmailChange } from '../../../../viewmodels/security/securityemailchange';
 
-import {ViewApplicationUser} from '../../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import {TextAppVariants} from '../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
 
-import {TimeAppVariants} from '../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../variants/time.app.variants';
+import { Decrypt, Encrypt } from 'src/services/crypto.sevice';
 
 @Component({
     selector: 'app-changeemail-modal',
@@ -42,7 +43,7 @@ export class ChangeEmailModalComponent implements OnInit {
 
     // Get User from Storage
     public GetLocalUser(): void {
-        this.User = JSON.parse(sessionStorage.getItem('User')!);
+        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 
     // Form
@@ -54,7 +55,7 @@ export class ChangeEmailModalComponent implements OnInit {
                 [
                     Validators.required,
                     Validators.email
-                ]),         
+                ]),
         });
     }
 
@@ -66,9 +67,9 @@ export class ChangeEmailModalComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', JSON.stringify(user));
+            sessionStorage.setItem('User', Encrypt(user));
         }
 
         this.dialogRef.close();

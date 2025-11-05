@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {SecurityService} from '../../../services/security.service';
+import { SecurityService } from '../../../services/security.service';
 
-import {SecurityPasswordReset} from '../../../viewmodels/security/securitypasswordreset';
+import { SecurityPasswordReset } from '../../../viewmodels/security/securitypasswordreset';
 
-import {TextAppVariants} from '../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../variants/text.app.variants';
 
-import {ExpressionAppVariants} from '../../../variants/expression.app.variants';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {TimeAppVariants} from '../../../variants/time.app.variants';
+import { ExpressionAppVariants } from '../../../variants/expression.app.variants';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TimeAppVariants } from '../../../variants/time.app.variants';
+import { Encrypt } from 'src/services/crypto.sevice';
 
 @Component({
     selector: 'app-resetpassword',
@@ -44,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
         this.formGroup = this.formBuilder.group({
             Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [Validators.required,
-                    Validators.pattern(ExpressionAppVariants.AppMailExpression)]),
+                Validators.pattern(ExpressionAppVariants.AppMailExpression)]),
             NewPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [Validators.required])
         });
@@ -58,9 +59,9 @@ export class ResetPasswordComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', JSON.stringify(user));
+            sessionStorage.setItem('User', Encrypt(user));
 
             await this.router.navigate(['/']);
         }

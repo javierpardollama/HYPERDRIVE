@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {AuthService} from '../../../../services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 
-import {ViewApplicationUser} from '../../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
-import {AuthSignOut} from '../../../../viewmodels/auth/authsignout';
+import { AuthSignOut } from '../../../../viewmodels/auth/authsignout';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import {MatBottomSheetRef} from "@angular/material/bottom-sheet";
+import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { Decrypt } from 'src/services/crypto.sevice';
 
 @Component({
     selector: 'app-profile-context-menu',
@@ -37,9 +38,9 @@ export class ProfileContextMenuComponent implements OnInit {
 
     public async SignOut(): Promise<void> {
         const viewModel: AuthSignOut =
-            {
-                Email: this.User!.Email
-            };
+        {
+            Email: this.User!.Email
+        };
 
         this.sheetRef.dismiss();
 
@@ -52,6 +53,6 @@ export class ProfileContextMenuComponent implements OnInit {
 
     // Get User from Storage
     public GetLocalUser(): void {
-        this.User = JSON.parse(sessionStorage.getItem('User')!);
+        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

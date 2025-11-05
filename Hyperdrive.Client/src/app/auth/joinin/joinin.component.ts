@@ -10,6 +10,7 @@ import {AuthSignIn} from '../../../viewmodels/auth/authsignin';
 
 import {TextAppVariants} from '../../../variants/text.app.variants';
 import {Location} from "@angular/common";
+import { Encrypt } from 'src/services/crypto.sevice';
 
 @Component({
     selector: 'app-joinin-auth',
@@ -50,7 +51,7 @@ export class JoinInComponent implements OnInit {
         let user = await this.authService.JoinIn(viewModel);
 
         if (user) {
-            sessionStorage.setItem('User', JSON.stringify(user));
+            sessionStorage.setItem('User', Encrypt(user));
 
             await this.router.navigate(['/']);
         }
