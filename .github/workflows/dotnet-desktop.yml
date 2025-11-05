@@ -30,13 +30,13 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 📥 Restore dependencies
-        run: dotnet restore Hyperdrive.Service.csproj
+        run: dotnet restore
 
       - name: ♻️ Clean project
-        run: dotnet clean Hyperdrive.Service.csproj 
+        run: dotnet clean
 
       - name: 🏗️ Build project
-        run: dotnet build Hyperdrive.Service.csproj --no-restore    
+        run: dotnet build --no-restore    
 
       - name: ✅ Run tests      
         run:  dotnet test Hyperdrive.Test.Infrastructure --no-build
