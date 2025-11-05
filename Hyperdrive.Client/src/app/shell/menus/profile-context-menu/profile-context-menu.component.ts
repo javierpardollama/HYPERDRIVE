@@ -27,8 +27,8 @@ export class ProfileContextMenuComponent implements OnInit {
     }
 
 
-    ngOnInit(): void {
-        this.GetLocalUser()
+    async ngOnInit(): Promise<void> {
+        await this.GetLocalUser()
     }
 
     public async Security(): Promise<void> {
@@ -52,7 +52,7 @@ export class ProfileContextMenuComponent implements OnInit {
     }
 
     // Get User from Storage
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

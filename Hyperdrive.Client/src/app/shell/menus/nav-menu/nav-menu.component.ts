@@ -21,8 +21,8 @@ export class NavMenuComponent implements OnInit {
     }
 
     // Life Cicle
-    ngOnInit(): void {
-        this.GetLocalUser();
+    async ngOnInit(): Promise<void> {
+        await this.GetLocalUser();
     }
 
     // Nav Actions
@@ -44,7 +44,7 @@ export class NavMenuComponent implements OnInit {
 
 
     // Get User from Storage
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

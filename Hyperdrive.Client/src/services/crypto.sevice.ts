@@ -1,26 +1,53 @@
-import * as crypto from 'crypto';
 import { CryptoData } from 'src/viewmodels/crypto/cryptodata';
 
-const algorithm = 'aes-256-cbc';
-const key = crypto.randomBytes(32); // 256-bit key
-const iv = crypto.randomBytes(16);  // 128-bit IV
+const algorithm = 'AES-CBC';
+const keyLength = 256; // bits
+const ivLength = 16;   // bytes
 
-export function Encrypt(obj: Record<string, any>): string {
+
+export async function Encrypt(obj: Record<string, any>): Promise<string> {
   const json = JSON.stringify(obj);
-  const cipher = crypto.createCipheriv(algorithm, key, iv);
-  let encrypted = cipher.update(json, 'utf8', 'base64');
-  encrypted += cipher.final('base64');
-  let data: CryptoData = {
-    Iv: iv.toString('base64'),
+  const iv = crypto.getRandomValues(new Uint8Array(ivLength));
+  const keyData = crypto.getRandomValues(new Uint8Array(keyLength / 8));
+
+  const key = await crypto.subtle.importKey(
+    'raw',
+    keyData,
+    { name: algorithm },
+    false,
+    ['encrypt']
+  );
+
+  const encoded = new TextEncoder().encode(json);
+  const encryptedBuffer = await crypto.subtle.encrypt(
+    { name: algorithm, iv },
+    key,
+    encoded
+  );
+
+  const encrypted = btoa(String.fromCharCode(...new Uint8Array(encryptedBuffer)));
+
+  const data: CryptoData = {
+    Key: key,
+    Iv: btoa(String.fromCharCode(...iv)),
     Data: encrypted
-  }
+  };
+
   return JSON.stringify(data);
 }
 
-export function Decrypt(encryptedStr: string): Record<string, any> {
-  const { Iv, Data } = JSON.parse(encryptedStr) as CryptoData;
-  const decipher = crypto.createDecipheriv(algorithm, key, Buffer.from(Iv, 'base64'));
-  let decrypted = decipher.update(Data, 'base64', 'utf8');
-  decrypted += decipher.final('utf8');
+export async function Decrypt(encryptedStr: string): Promise<Record<string, any>> {
+  const { Key, Iv, Data } = JSON.parse(encryptedStr) as CryptoData;
+
+  const iv = Uint8Array.from(atob(Iv), c => c.charCodeAt(0));
+  const encryptedBytes = Uint8Array.from(atob(Data), c => c.charCodeAt(0));
+
+  const decryptedBuffer = await crypto.subtle.decrypt(
+    { name: algorithm, iv },
+    Key,
+    encryptedBytes
+  );
+
+  const decrypted = new TextDecoder().decode(decryptedBuffer);
   return JSON.parse(decrypted);
 }

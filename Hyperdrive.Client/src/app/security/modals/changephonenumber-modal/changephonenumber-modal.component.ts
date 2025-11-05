@@ -38,14 +38,14 @@ export class ChangePhoneNumberModalComponent implements OnInit {
     }
 
     // Life Cicle
-    ngOnInit() {
+    async ngOnInit(): Promise<void> {
         this.GetLocalUser();
         this.CreateForm();
     }
 
     // Get User from Storage
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 
     // Form
@@ -71,7 +71,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', Encrypt(user));
+            sessionStorage.setItem('User', await Encrypt(user));
         }
 
         this.dialogRef.close();

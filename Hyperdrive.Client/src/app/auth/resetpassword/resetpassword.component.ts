@@ -61,7 +61,7 @@ export class ResetPasswordComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', Encrypt(user));
+            sessionStorage.setItem('User', await Encrypt(user));
 
             await this.router.navigate(['/']);
         }

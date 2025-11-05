@@ -32,7 +32,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
 
 
     // Life Cicle
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.GetLocalUser();
         this.CreateForm();
     }
@@ -72,7 +72,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
     }
 
     // Get User from Storage
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

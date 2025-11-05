@@ -51,7 +51,7 @@ export class JoinInComponent implements OnInit {
         let user = await this.authService.JoinIn(viewModel);
 
         if (user) {
-            sessionStorage.setItem('User', Encrypt(user));
+            sessionStorage.setItem('User', await Encrypt(user));
 
             await this.router.navigate(['/']);
         }

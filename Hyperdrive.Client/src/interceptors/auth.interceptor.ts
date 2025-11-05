@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   // Get User from Storage
-  public GetLocalUser(): void {
-    this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+  public async GetLocalUser(): Promise<void> {
+    this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
   }
 }

@@ -29,8 +29,8 @@ export class SecurityComponent implements OnInit {
     }
 
     // Life Cicle
-    ngOnInit() {
-        this.GetLocalUser()
+    async ngOnInit(): Promise<void> {
+        await this.GetLocalUser()
     }
 
     ChangeName(): void {
@@ -74,7 +74,7 @@ export class SecurityComponent implements OnInit {
     }
 
     // Get User from Storage
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

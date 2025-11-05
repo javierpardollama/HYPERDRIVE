@@ -164,8 +164,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
         }
     }
 
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 
     public SetFilterUser(): void {

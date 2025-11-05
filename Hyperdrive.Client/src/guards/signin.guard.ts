@@ -19,9 +19,9 @@ export class SignInGuard {
 
     constructor(private router: Router) { }
 
-    canActivate() {
+    async canActivate() {
 
-        this.GetLocalUser();
+        await this.GetLocalUser();
 
         if (!this.User) {
             this.router.navigateByUrl('auth/signin');
@@ -33,7 +33,7 @@ export class SignInGuard {
     }
 
     // Get User from Storage
-   public GetLocalUser(): void {
-           this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+   public async GetLocalUser(): Promise<void> {
+           this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
        }
 }

@@ -35,14 +35,14 @@ export class ChangePasswordModalComponent implements OnInit {
     }
 
     // Life Cicle
-    ngOnInit(): void {
-        this.GetLocalUser();
+    async ngOnInit(): Promise<void> {
+        await this.GetLocalUser();
         this.CreateForm();
     }
 
     // Get User from Storage
-    public GetLocalUser(): void {
-        this.User = Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    public async GetLocalUser(): Promise<void> {
+        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 
     // Form
@@ -67,7 +67,7 @@ export class ChangePasswordModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', Encrypt(user));
+            sessionStorage.setItem('User', await Encrypt(user));
         }
 
         this.dialogRef.close();
