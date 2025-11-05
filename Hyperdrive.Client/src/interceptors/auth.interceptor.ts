@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom, from, Observable } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 import { Decrypt } from 'src/services/crypto.sevice';
@@ -17,9 +17,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor() { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    this.GetLocalUser();
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return from(this.SetRequest(req, next));
+  }
+
+  private async SetRequest(req: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
+    await this.GetLocalUser();
 
     if (this.User) {
       req = req.clone({
@@ -31,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(req);
+    return firstValueFrom(next.handle(req));
   }
 
   // Get User from Storage
