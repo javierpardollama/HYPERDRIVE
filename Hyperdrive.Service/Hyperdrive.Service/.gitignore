@@ -229,15 +229,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-
-#SQLite
-*.db
-*.bat
-*.exp
-*.pdb
-*.dll
-*.a
-*.so
-*.db-shm
-*.db-wal
-*.sqlite

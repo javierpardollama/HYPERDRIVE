@@ -68,15 +68,15 @@ namespace Hyperdrive.Infrastructure.Managers
             var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ById == @userid);
             var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => x.FileName == @filename.Trim());
             var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => parentid == null || x.DriveItem.ParentId == @parentid);
-            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);          
+            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);
 
             var @archive = await Context.DriveItemVersions
                 .TagWith("FindDriveItemByFileName")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.DriveItem)                
+                .Include(x => x.DriveItem)
                 .Where(@comboexp)
-                .Select(x=> x.DriveItem)
+                .Select(x => x.DriveItem)
                 .FirstOrDefaultAsync();
 
             if (@archive is null)
@@ -105,7 +105,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
         public async Task RemoveDriveItem(DriveItem @entity)
-        {           
+        {
             Context.DriveItems.Remove(@entity);
 
             await Context.SaveChangesAsync();
@@ -131,8 +131,8 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parentid)
         {
             var @expr1 = (Expression<Func<DriveItem, bool>>)(x => x.ById == @userid);
-            var @expr2 = (Expression<Func<DriveItem, bool>>)(x => parentid == null || x.ParentId == @parentid);           
-            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2);            
+            var @expr2 = (Expression<Func<DriveItem, bool>>)(x => parentid == null || x.ParentId == @parentid);
+            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2);
 
             PageDto<DriveItemDto> @page = new()
             {
@@ -177,7 +177,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 Length = await Context.ApplicationUserDriveItems.TagWith("CountAllSharedDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
-                    .Include(x => x.User)                    
+                    .Include(x => x.User)
                     .Where(x => x.UserId == @userid)
                     .CountAsync(),
                 Index = @index,
@@ -227,11 +227,11 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="byid">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<DriveItem> AddDriveItem(string @filename, int? parentid, bool folder, int @byid)
-        {          
+        {
             var @entity = new DriveItem()
-            {               
+            {
                 Folder = @folder,
-                ParentId = @parentid,               
+                ParentId = @parentid,
                 ById = @byid
             };
 
@@ -298,7 +298,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 NormalizedExtension = Path.GetExtension(@filename.Trim()).ToUpper(),
                 Type = @type,
                 Size = @size,
-                Data = Convert.FromBase64String(@data),
+                Data = !string.IsNullOrWhiteSpace(@data) ? Convert.FromBase64String(@data) : null,
                 DriveItemId = driveitemid
             };
 
@@ -322,8 +322,8 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="driveitemid">Injected <see cref="int"/></param>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="extension">Injected <see cref="string"/></param>
-        public async Task AddAsNameActivity(int driveitemid, string @name, string @extension) 
-        {        
+        public async Task AddAsNameActivity(int driveitemid, string @name, string @extension)
+        {
             DriveItemVersion @version = new()
             {
                 Extension = @extension.Trim(),
@@ -331,7 +331,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 FileName = $"{@name?.Trim()}.{extension.Trim()}",
                 NormalizedFileName = $"{@name?.Trim().ToUpper()}.{extension.Trim().ToUpper()}",
                 Name = @name.Trim(),
-                NormalizedName = @name.Trim().ToUpper(),    
+                NormalizedName = @name.Trim().ToUpper(),
                 DriveItemId = driveitemid
             };
 
@@ -358,18 +358,18 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
         public async Task<bool> CheckFileName(string @filename, int? @parentid, int @userid)
         {
-            var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.FileName == @filename.Trim());           
-            var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => @parentid == null || x.DriveItem.ParentId == @parentid);            
+            var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.FileName == @filename.Trim());
+            var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => @parentid == null || x.DriveItem.ParentId == @parentid);
             var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ById == @userid);
-            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);          
+            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);
 
             var @found = await Context.DriveItemVersions
                 .TagWith("CheckFileName")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.DriveItem)               
+                .Include(x => x.DriveItem)
                 .Where(@comboexp)
-                .Select(x=> x.DriveItem)
+                .Select(x => x.DriveItem)
                 .AnyAsync();
 
             if (@found)
@@ -404,13 +404,13 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
         public async Task<bool> CheckName(string @name, int @id, int? @parentid, int userid, string @extension = null)
-        {           
+        {
             var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.Name == @name.Trim());
             var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => @extension == null || x.Extension == @extension.Trim());
             var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => parentid == null || x.DriveItem.ParentId == @parentid);
             var @expr4 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.Id != @id);
             var @expr5 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ById == @userid);
-            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3, @expr4, @expr5);           
+            var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3, @expr4, @expr5);
 
             var @found = await Context.DriveItemVersions
                 .TagWith("CheckName")
@@ -488,7 +488,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("ReloadDriveItemById")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.By)               
+                .Include(x => x.By)
                 .Include(x => x.SharedWith)
                 .ThenInclude(x => x.User)
                 .Where(x => x.Id == @id)

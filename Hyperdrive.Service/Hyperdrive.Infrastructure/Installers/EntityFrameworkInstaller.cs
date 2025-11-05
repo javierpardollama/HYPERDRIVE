@@ -27,7 +27,7 @@ public static class EntityFrameworkInstaller
             options.AddInterceptors(new SoftDeleteInterceptor());
             options.UseNpgsql(@configuration.GetConnectionString("DefaultConnection"));
         });
-        
+
         @this.AddIdentity<ApplicationUser, ApplicationRole>()
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
@@ -44,6 +44,7 @@ public static class EntityFrameworkInstaller
     {
         using var @scope = @this.Services.CreateScope();
 
+        @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.EnsureCreated();
         @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
 
         // Add other services here

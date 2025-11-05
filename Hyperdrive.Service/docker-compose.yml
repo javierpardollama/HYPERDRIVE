@@ -1,27 +1,35 @@
 services:
   db:
+    container_name: db
     image: postgres
     restart: always
+    user: postgres
     env_file:
-      - .env
-    environment:
-      PGDATA: /var/lib/postgresql/data
-      PGUSER: ${POSTGRES_USER}
-      PGDATABASE: ${POSTGRES_DB}
-      PGPASSWORD: ${POSTGRES_PASSWORD}
-    healthcheck:
+      - path: .env
+        required: true
+    environment:     
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:     
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
+      interval: 1s
+      timeout: 5s
+      retries: 10
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/etc/data
     ports:
       - "${POSTGRES_PORT}:5432"
 
   hyperdrive.service:
+    container_name: service
     image: ${DOCKER_REGISTRY-}hyperdriveservice
     build:
       context: .
       dockerfile: Hyperdrive.Service/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db-data:

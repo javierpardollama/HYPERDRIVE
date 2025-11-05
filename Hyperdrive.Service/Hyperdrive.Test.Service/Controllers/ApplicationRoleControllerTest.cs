@@ -15,7 +15,7 @@ namespace Hyperdrive.Test.Service.Controllers
     [TestFixture]
     public class ApplicationRoleControllerTest : BaseControllerTest
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/applicationrole/") };
+        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/applicationrole/") };
 
         private ViewApplicationRole Role { get; set; }
 

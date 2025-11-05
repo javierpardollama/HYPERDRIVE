@@ -15,7 +15,7 @@ namespace Hyperdrive.Test.Service.Controllers
     [TestFixture]
     public class DriveItemControllerTest : BaseControllerTest
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/driveitem/") };
+        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/driveitem/") };
 
         private ViewDriveItem Archive { get; set; }
 
