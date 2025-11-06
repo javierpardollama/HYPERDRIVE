@@ -50,7 +50,7 @@ namespace Hyperdrive.Test.Service.Controllers
         }
 
         [Test, Order(3)]
-        public async Task AddDriveItem()
+        public async Task AddParentDriveItem()
         {
             var content = JsonContent.Create(new AddDriveItem
             {
@@ -79,7 +79,7 @@ namespace Hyperdrive.Test.Service.Controllers
                 ApplicationUserId = User.Id
             });
 
-            var response = await Client.PostAsync("up", content);
+            var response = await Client.PostAsync("name/change", content);
             response.EnsureSuccessStatusCode();
             Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
 
