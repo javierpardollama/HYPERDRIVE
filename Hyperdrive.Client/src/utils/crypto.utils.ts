@@ -1,12 +1,11 @@
+import { Base64StringToBytes } from "./encoding.utils";
+
 const Algorithm = 'AES-CBC';
 const KeyLength = 256; // bits
 const IvLength = 16;   // bytes
 
-function Base64ToBytes(base64: string) {
-    return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
-}
 
-export async function Encrypt(object: Record<string, any>): Promise<string> {
+export async function EncryptObject(object: Record<string, any>): Promise<string> {
 
     const iv = crypto.getRandomValues(new Uint8Array(IvLength));
     const keydata = crypto.getRandomValues(new Uint8Array(KeyLength / 8));
@@ -20,8 +19,8 @@ export async function Encrypt(object: Record<string, any>): Promise<string> {
     );
 
     const encoded = new TextEncoder().encode(JSON.stringify(object));
-    
-    const encryptedBuffer = await crypto.subtle.encrypt(
+
+    const encryptedbuffer = await crypto.subtle.encrypt(
         { name: Algorithm, iv },
         key,
         encoded
@@ -31,7 +30,7 @@ export async function Encrypt(object: Record<string, any>): Promise<string> {
 
     const keybase64 = btoa(String.fromCharCode(...new Uint8Array(exportedkey)));
 
-    const encrypted = btoa(String.fromCharCode(...new Uint8Array(encryptedBuffer)));
+    const encrypted = btoa(String.fromCharCode(...new Uint8Array(encryptedbuffer)));
 
     const data = {
         Key: keybase64,
@@ -43,13 +42,13 @@ export async function Encrypt(object: Record<string, any>): Promise<string> {
 }
 
 
-export async function Decrypt(jsonstring: string): Promise<any> {
+export async function DecryptObject(jsonstring: string): Promise<any> {
 
     const data = JSON.parse(jsonstring);
 
-    const keybytes = Base64ToBytes(data.Key);
-    const iv = Base64ToBytes(data.Iv);
-    const encryptedbytes = Base64ToBytes(data.Data);
+    const keybytes = Base64StringToBytes(data.Key);
+    const iv = Base64StringToBytes(data.Iv);
+    const encryptedbytes = Base64StringToBytes(data.Data);
 
     // Import the key
     const key = await crypto.subtle.importKey(

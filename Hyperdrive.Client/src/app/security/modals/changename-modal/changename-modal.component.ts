@@ -14,7 +14,7 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 import { TextAppVariants } from '../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
-import { Decrypt, Encrypt } from 'src/utils/crypto.utils';
+import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-changename-modal',
@@ -43,7 +43,7 @@ export class ChangeNameModalComponent {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 
     // Form
@@ -72,7 +72,7 @@ export class ChangeNameModalComponent {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', await Encrypt(user));
+            sessionStorage.setItem('User', await EncryptObject(user));
         }
 
         this.dialogRef.close();

@@ -13,7 +13,8 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 
 import { Router } from '@angular/router';
-import { Base64ToBlob, FileToBase64 } from 'src/utils/blob.utils';
+
+import { Base64FileStringToBlob, FileToBase64String } from 'src/utils/blob.utils';
 
 
 @Injectable({
@@ -33,7 +34,7 @@ export class BinaryService extends BaseService {
         const resultModel: AddDriveItem =
         {
             ApplicationUserId: viewModel.ApplicationUserId,
-            Data: await FileToBase64(viewModel.Data),
+            Data: await FileToBase64String(viewModel.Data),
             Size: viewModel.Data.size,
             FileName: viewModel.Data.name,
             Type: viewModel.Data.type,
@@ -45,7 +46,7 @@ export class BinaryService extends BaseService {
 
     public async DecodeViewDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
 
-        const blob = await Base64ToBlob(viewModel.Data!, viewModel.Type);
+        const blob = await Base64FileStringToBlob(viewModel.Data!, viewModel.Type);
 
         const url = window.URL.createObjectURL(blob);
 

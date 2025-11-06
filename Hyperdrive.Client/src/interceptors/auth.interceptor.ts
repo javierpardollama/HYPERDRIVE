@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom, from, Observable } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
-import { Decrypt } from 'src/utils/crypto.utils';
+import { DecryptObject } from 'src/utils/crypto.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Get User from Storage
   public async GetLocalUser(): Promise<void> {
-    this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
   }
 }

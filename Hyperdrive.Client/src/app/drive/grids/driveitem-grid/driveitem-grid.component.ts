@@ -19,7 +19,7 @@ import { BinaryAddDriveItem } from 'src/viewmodels/binary/binaryadddriveitem';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TextAppVariants } from 'src/variants/text.app.variants';
 import { TimeAppVariants } from 'src/variants/time.app.variants';
-import { Decrypt } from 'src/utils/crypto.utils';
+import { DecryptObject } from 'src/utils/crypto.utils';
 
 
 @Component({
@@ -165,7 +165,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async GetLocalUser(): Promise<void> {
-        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 
     public SetFilterUser(): void {

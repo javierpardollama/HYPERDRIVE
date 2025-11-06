@@ -17,7 +17,7 @@ import { AuthService } from '../../../services/auth.service';
 import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
 import { TextAppVariants } from '../../../variants/text.app.variants';
-import { Encrypt } from 'src/utils/crypto.utils';
+import { EncryptObject } from 'src/utils/crypto.utils';
 
 
 @Component({
@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
-      sessionStorage.setItem('User', await Encrypt(user));
+      sessionStorage.setItem('User', await EncryptObject(user));
 
       await this.router.navigate(['/']);
     }

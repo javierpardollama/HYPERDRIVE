@@ -8,7 +8,7 @@ import { ExpressionAppVariants } from "../../../../../variants/expression.app.va
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { AddDriveItem } from "../../../../../viewmodels/additions/adddriveitem";
 import { ViewApplicationUser } from "../../../../../viewmodels/views/viewapplicationuser";
-import { Decrypt } from 'src/utils/crypto.utils';
+import { DecryptObject } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-driveitem-folder-add-modal',
@@ -72,6 +72,6 @@ export class DriveItemFolderAddModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

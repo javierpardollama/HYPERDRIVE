@@ -9,7 +9,7 @@ import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedriveitemname";
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
-import { Decrypt } from 'src/utils/crypto.utils';
+import { DecryptObject } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-driveitem-name-update-modal',
@@ -72,6 +72,6 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

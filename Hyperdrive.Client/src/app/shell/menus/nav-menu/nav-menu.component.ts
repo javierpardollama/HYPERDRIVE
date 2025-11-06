@@ -4,7 +4,7 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 import { ProfileContextMenuComponent } from '../profile-context-menu/profile-context-menu.component';
 import { ToolboxContextMenuComponent } from '../toolbox-context-menu/toolbox-context-menu.component';
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { Decrypt } from 'src/utils/crypto.utils';
+import { DecryptObject } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-nav-menu',
@@ -45,6 +45,6 @@ export class NavMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await Decrypt(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
     }
 }

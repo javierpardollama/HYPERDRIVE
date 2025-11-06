@@ -14,7 +14,7 @@ import { TextAppVariants } from '../../../variants/text.app.variants';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimeAppVariants } from '../../../variants/time.app.variants';
-import { Encrypt } from 'src/utils/crypto.utils';
+import { EncryptObject } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-resetpassword',
@@ -62,7 +62,7 @@ export class ResetPasswordComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', await Encrypt(user));
+            sessionStorage.setItem('User', await EncryptObject(user));
 
             await this.router.navigate(['/']);
         }
