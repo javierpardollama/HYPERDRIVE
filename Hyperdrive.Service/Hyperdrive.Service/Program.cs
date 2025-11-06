@@ -1,8 +1,6 @@
 using Hyperdrive.Application.Installers;
-using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Installers;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
@@ -30,21 +28,14 @@ builder.Services.InstallApiVersions();
 
 @builder.Services.AddResponseCaching();
 
-// Register the Jwt Settings to the configuration container.
-var @jwtSettings = new JwtSettings();
-@builder.Configuration.GetSection("Jwt").Bind(@jwtSettings);
-@builder.Services.Configure<JwtSettings>(@builder.Configuration.GetSection("Jwt"));
+var @jwtSettings = @builder.InstallJwtSetttings();
+var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);
 
-// Register the Rate Limit Settings to the configuration container.
-var @rateSettings = new RateLimitSettings();
-@builder.Configuration.GetSection("RateLimit").Bind(@rateSettings);
-@builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
-
-// Return the Problem Details format for non-successful responses
 @builder.Services.InstallProblemDetails();
+
 @builder.Services.InstallRateLimiter(@rateSettings);
 
 @builder.InstallAspireServices();
