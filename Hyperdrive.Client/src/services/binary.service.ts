@@ -13,6 +13,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 
 import { Router } from '@angular/router';
+import { Base64ToBlob, FileToBase64 } from 'src/utils/blob.utils';
 
 
 @Injectable({
@@ -32,7 +33,7 @@ export class BinaryService extends BaseService {
         const resultModel: AddDriveItem =
         {
             ApplicationUserId: viewModel.ApplicationUserId,
-            Data: await this.EncodeContent(viewModel.Data),
+            Data: await FileToBase64(viewModel.Data),
             Size: viewModel.Data.size,
             FileName: viewModel.Data.name,
             Type: viewModel.Data.type,
@@ -44,7 +45,7 @@ export class BinaryService extends BaseService {
 
     public async DecodeViewDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
 
-        const blob = await this.DecodeContent(viewModel.Data!, viewModel.Type);
+        const blob = await Base64ToBlob(viewModel.Data!, viewModel.Type);
 
         const url = window.URL.createObjectURL(blob);
 
@@ -54,23 +55,5 @@ export class BinaryService extends BaseService {
         anchor.click();
 
         window.URL.revokeObjectURL(url);
-    }
-
-    public async EncodeContent(file: File): Promise<string> {
-
-        const bytes = new Uint8Array(await file.arrayBuffer());
-
-        const binaryString = Array.from(bytes).map(byte => String.fromCharCode(byte)).join('');
-
-        return window.btoa(binaryString);
-    }
-
-    public async DecodeContent(content: string, type: string): Promise<Blob> {
-
-        const bytes = new Uint8Array(
-            Array.from(window.atob(content!), char => char.charCodeAt(0))
-        );
-
-        return new Blob([bytes], { type: type });
     }
 }
