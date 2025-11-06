@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom, from, Observable } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Injectable({
   providedIn: 'root'

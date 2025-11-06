@@ -12,10 +12,9 @@ import { SecurityPasswordReset } from '../../../viewmodels/security/securitypass
 
 import { TextAppVariants } from '../../../variants/text.app.variants';
 
-import { ExpressionAppVariants } from '../../../variants/expression.app.variants';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimeAppVariants } from '../../../variants/time.app.variants';
-import { Encrypt } from 'src/services/crypto.sevice';
+import { Encrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-resetpassword',

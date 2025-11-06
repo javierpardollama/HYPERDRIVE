@@ -4,7 +4,7 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 import { ProfileContextMenuComponent } from '../profile-context-menu/profile-context-menu.component';
 import { ToolboxContextMenuComponent } from '../toolbox-context-menu/toolbox-context-menu.component';
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-nav-menu',

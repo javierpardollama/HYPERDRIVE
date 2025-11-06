@@ -9,7 +9,7 @@ import { AuthSignOut } from '../../../../viewmodels/auth/authsignout';
 import { Router } from '@angular/router';
 
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-profile-context-menu',

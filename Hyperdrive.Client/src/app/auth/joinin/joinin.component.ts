@@ -10,7 +10,7 @@ import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
 import { TextAppVariants } from '../../../variants/text.app.variants';
 import { Location } from "@angular/common";
-import { Encrypt } from 'src/services/crypto.sevice';
+import { Encrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-joinin-auth',

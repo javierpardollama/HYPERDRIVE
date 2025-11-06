@@ -16,7 +16,7 @@ import { TextAppVariants } from '../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../variants/expression.app.variants';
-import { Decrypt, Encrypt } from 'src/services/crypto.sevice';
+import { Decrypt, Encrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-changephonenumber-modal',

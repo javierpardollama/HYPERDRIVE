@@ -5,7 +5,7 @@ import {
 } from '@angular/router';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Injectable({
     providedIn: 'root'

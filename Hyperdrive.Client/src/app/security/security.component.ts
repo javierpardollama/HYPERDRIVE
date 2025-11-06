@@ -10,7 +10,7 @@ import { ChangePasswordModalComponent } from './modals/changepassword-modal/chan
 import { ChangePhoneNumberModalComponent } from './modals/changephonenumber-modal/changephonenumber-modal.component';
 
 import { ViewApplicationUser } from '../../viewmodels/views/viewapplicationuser';
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 
 @Component({

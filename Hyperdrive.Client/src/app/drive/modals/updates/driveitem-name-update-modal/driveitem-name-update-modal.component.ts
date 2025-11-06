@@ -8,8 +8,8 @@ import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedriveitemname";
-import { Decrypt } from 'src/services/crypto.sevice';
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-driveitem-name-update-modal',

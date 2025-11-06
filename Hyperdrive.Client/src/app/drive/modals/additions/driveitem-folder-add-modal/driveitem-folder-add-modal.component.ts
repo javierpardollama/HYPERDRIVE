@@ -8,7 +8,7 @@ import { ExpressionAppVariants } from "../../../../../variants/expression.app.va
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { AddDriveItem } from "../../../../../viewmodels/additions/adddriveitem";
 import { ViewApplicationUser } from "../../../../../viewmodels/views/viewapplicationuser";
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-driveitem-folder-add-modal',

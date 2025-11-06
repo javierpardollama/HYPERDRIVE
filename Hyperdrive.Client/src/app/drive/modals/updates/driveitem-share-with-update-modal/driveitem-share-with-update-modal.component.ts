@@ -11,7 +11,7 @@ import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemSharedWith } from "../../../../../viewmodels/updates/updatedriveitemsharedwith";
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-driveitem-share-with-update-modal',

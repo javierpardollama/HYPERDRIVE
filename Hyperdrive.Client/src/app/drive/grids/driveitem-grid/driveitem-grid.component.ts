@@ -19,7 +19,7 @@ import { BinaryAddDriveItem } from 'src/viewmodels/binary/binaryadddriveitem';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TextAppVariants } from 'src/variants/text.app.variants';
 import { TimeAppVariants } from 'src/variants/time.app.variants';
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 
 @Component({

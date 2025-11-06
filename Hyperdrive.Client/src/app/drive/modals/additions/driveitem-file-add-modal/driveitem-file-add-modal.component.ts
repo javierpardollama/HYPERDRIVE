@@ -8,7 +8,7 @@ import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { BinaryService } from "../../../../../services/binary.service";
 import { BinaryAddDriveItem } from "../../../../../viewmodels/binary/binaryadddriveitem";
-import { Decrypt } from 'src/services/crypto.sevice';
+import { Decrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-driveitem-file-add-modal',

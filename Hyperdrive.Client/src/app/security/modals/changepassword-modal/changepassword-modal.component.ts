@@ -13,7 +13,7 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 
 import { TextAppVariants } from '../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
-import { Decrypt, Encrypt } from 'src/services/crypto.sevice';
+import { Decrypt, Encrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-changepassword-modal',

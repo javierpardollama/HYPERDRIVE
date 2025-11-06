@@ -14,7 +14,7 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 import { TextAppVariants } from '../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
-import { Decrypt, Encrypt } from 'src/services/crypto.sevice';
+import { Decrypt, Encrypt } from 'src/utils/crypto.utils';
 
 @Component({
     selector: 'app-changeemail-modal',
@@ -37,7 +37,7 @@ export class ChangeEmailModalComponent implements OnInit {
 
     // Life Cicle
     async ngOnInit(): Promise<void> {
-        this.GetLocalUser();
+        await this.GetLocalUser();
         this.CreateForm();
     }
 
