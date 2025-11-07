@@ -29,20 +29,23 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: 📥 Restore dependencies
-        run:  | 
-          dotnet restore Hyperdrive.Service/Hyperdrive.Service.csproj
-          dotnet restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj
+      - name: 📥 Restore service dependencies
+        run: dotnet restore Hyperdrive.Service/Hyperdrive.Service.csproj        
 
-      - name: ♻️ Clean project
-        run: | 
-          dotnet clean Hyperdrive.Service/Hyperdrive.Service.csproj
-          dotnet clean Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj
+      - name: 📥 Restore test dependencies
+        run: dotnet restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj
 
-      - name: 🏗️ Build project
-        run: |
-          dotnet build --no-restore Hyperdrive.Service/Hyperdrive.Service.csproj
-          dotnet build --no-restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj
+      - name: ♻️ Clean service project
+        run: dotnet clean Hyperdrive.Service/Hyperdrive.Service.csproj         
+
+      - name: ♻️ Clean test project
+        run: dotnet clean Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj    
+
+      - name: 🏗️ Build service project
+        run: dotnet build --no-restore Hyperdrive.Service/Hyperdrive.Service.csproj         
+       
+      - name: 🏗️ Build test project
+        run: dotnet build --no-restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj    
 
       - name: ✅ Run tests
         run: dotnet test Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj --no-build
