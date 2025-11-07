@@ -1,9 +1,10 @@
-import { Base64StringToBytes } from "./encoding.utils";
-
 const Algorithm = 'AES-CBC';
 const KeyLength = 256; // bits
 const IvLength = 16;   // bytes
 
+export function GetBytes(base64: string) {
+    return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+}
 
 export async function EncryptObject(object: Record<string, any>): Promise<string> {
 
@@ -14,7 +15,7 @@ export async function EncryptObject(object: Record<string, any>): Promise<string
         'raw',
         keydata,
         { name: Algorithm },
-        false, // allow export
+        true,
         ['encrypt']
     );
 
@@ -46,16 +47,16 @@ export async function DecryptObject(jsonstring: string): Promise<any> {
 
     const data = JSON.parse(jsonstring);
 
-    const keybytes = Base64StringToBytes(data.Key);
-    const iv = Base64StringToBytes(data.Iv);
-    const encryptedbytes = Base64StringToBytes(data.Data);
+    const keybytes = GetBytes(data.Key);
+    const iv = GetBytes(data.Iv);
+    const encryptedbytes = GetBytes(data.Data);
 
     // Import the key
     const key = await crypto.subtle.importKey(
         'raw',
         keybytes,
         { name: Algorithm },
-        false,
+        true,
         ['decrypt']
     );
 

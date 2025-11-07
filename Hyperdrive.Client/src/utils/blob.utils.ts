@@ -1,6 +1,6 @@
-import { Base64StringToBytes } from "./encoding.utils";
+import { GetBytes } from "./crypto.utils";
 
-export async function FileToBase64String(file: File): Promise<string> {
+export async function EncodeBlob(file: File): Promise<string> {
 
     const bytes = new Uint8Array(await file.arrayBuffer());
 
@@ -9,9 +9,9 @@ export async function FileToBase64String(file: File): Promise<string> {
     return window.btoa(binarystring);
 }
 
-export async function Base64FileStringToBlob(content: string, type: string): Promise<Blob> {
+export async function DecodeBlob(content: string, type: string): Promise<Blob> {
 
-    const bytes = Base64StringToBytes(content);
+    const bytes = GetBytes(content);
 
     return new Blob([bytes], { type: type });
 }
