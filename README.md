@@ -1,5 +1,7 @@
 # HYPERDRIVE
 
+[![Build & Test .NET API](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-desktop.yml) [![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml)
+
 Este proyecto surge como una solución para gestionar el estado actual de los archivos reservados, administrando la carga de los archivos suministrados, así como su descarga. 
 
 ## ARQUITECTURA
