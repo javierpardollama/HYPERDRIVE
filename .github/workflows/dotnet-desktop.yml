@@ -39,5 +39,5 @@ jobs:
         run: dotnet build --no-restore Hyperdrive.Service/Hyperdrive.Service.csproj
 
       - name: ✅ Run tests
-        run: dotnet test Hyperdrive.Test.Infrastructure --no-build
+        run: dotnet test Hyperdrive.Service/Hyperdrive.Test.Infrastructure --no-build
 
