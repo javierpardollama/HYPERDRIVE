@@ -33,7 +33,7 @@ export class SignInGuard {
     }
 
     // Get User from Storage
-   public async GetLocalUser(): Promise<void> {
-           this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
-       }
+    public async GetLocalUser(): Promise<void> {
+        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    }
 }

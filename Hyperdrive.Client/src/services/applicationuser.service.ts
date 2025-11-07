@@ -20,7 +20,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import {ViewCatalog} from "../viewmodels/views/viewcatalog";
+import { ViewCatalog } from "../viewmodels/views/viewcatalog";
 
 @Injectable({
     providedIn: 'root',

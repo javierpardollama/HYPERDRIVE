@@ -1,5 +1,4 @@
-export interface ViewToken
-{
+export interface ViewToken {
     IssuedAt: Date;
     LoginProvider: string;
     Value: string;

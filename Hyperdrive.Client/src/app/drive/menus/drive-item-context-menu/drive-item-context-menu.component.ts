@@ -1,12 +1,12 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
-import {ViewDriveItem} from "../../../../viewmodels/views/viewdriveitem";
-import {DriveItemService} from "../../../../services/driveitem.service";
-import {BinaryService} from "../../../../services/binary.service";
-import {TextAppVariants} from "../../../../variants/text.app.variants";
-import {TimeAppVariants} from "../../../../variants/time.app.variants";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog} from "@angular/material/dialog";
+import { Component, Inject } from '@angular/core';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
+import { DriveItemService } from "../../../../services/driveitem.service";
+import { BinaryService } from "../../../../services/binary.service";
+import { TextAppVariants } from "../../../../variants/text.app.variants";
+import { TimeAppVariants } from "../../../../variants/time.app.variants";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog } from "@angular/material/dialog";
 import {
     DriveitemNameUpdateModalComponent
 } from "../../modals/updates/driveitem-name-update-modal/driveitem-name-update-modal.component";
@@ -69,7 +69,7 @@ export class DriveItemContextMenuComponent {
         this.snackBar.open(
             TextAppVariants.AppOperationSuccessCoreText,
             TextAppVariants.AppOkButtonText,
-            {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+            { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
         this.sheetRef.dismiss();
     }

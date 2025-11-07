@@ -20,7 +20,7 @@
                 <mat-form-field appearance="fill" class="form-element">
                     <mat-label>Password</mat-label>
                     <input type="password" matInput placeholder="Password" formControlName="Password"
-                           spellcheck="false">
+                        spellcheck="false">
                     <mat-error *ngIf="!formGroup.controls['Password'].valid && formGroup.controls['Password'].touched">
                         Required field.
                     </mat-error>
@@ -29,19 +29,20 @@
 
             <div class="content-line">
                 <button mat-raised-button color="primary" type="submit" class="center-button" id="btn-sign-in"
-                        (click)="onSubmit(formGroup.value)"
-                        [disabled]="!formGroup.valid">GET STARTED
+                    (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">GET STARTED
                 </button>
             </div>
             <div class="content-line-flex-reverse">
                 <button mat-button color="accent" type="button" id="btn-forget-password"
-                        routerLink='/auth/resetpassword'>
+                    routerLink='/auth/resetpassword'>
                     Forgot Pasword?
                 </button>
             </div>
             <div class="content-line-flex">
-                <button mat-button routerLink='/auth/joinin' type="button" class="left-button" id="btn-join-in">CREATE ACCOUNT</button>
-                <button mat-button routerLink='/hept' type="button" class="right-button" id="btn-help">NEED HELP?</button>
+                <button mat-button routerLink='/auth/joinin' type="button" class="left-button" id="btn-join-in">CREATE
+                    ACCOUNT</button>
+                <button mat-button routerLink='/hept' type="button" class="right-button" id="btn-help">NEED
+                    HELP?</button>
             </div>
 
         </form>

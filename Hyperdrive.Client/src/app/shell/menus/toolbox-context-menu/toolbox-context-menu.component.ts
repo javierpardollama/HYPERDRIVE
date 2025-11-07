@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {ViewLink} from '../../../../viewmodels/views/viewlink';
-import {NavigationService} from '../../../../services/navigation.service';
+import { Component } from '@angular/core';
+import { ViewLink } from '../../../../viewmodels/views/viewlink';
+import { NavigationService } from '../../../../services/navigation.service';
 
-import {Router} from '@angular/router';
-import {MatBottomSheetRef} from "@angular/material/bottom-sheet";
+import { Router } from '@angular/router';
+import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 
 @Component({
     selector: 'app-toolbox-context-menu',

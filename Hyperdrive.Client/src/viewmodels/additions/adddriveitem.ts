@@ -1,7 +1,7 @@
 import { AddBase } from "./addbase";
 
 export interface AddDriveItem extends AddBase {
-    ParentId?:number;
+    ParentId?: number;
     Data?: string;
     FileName: string;
     Folder: boolean;

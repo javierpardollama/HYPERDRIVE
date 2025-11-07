@@ -1,21 +1,21 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {ViewApplicationRole} from './../../../../../viewmodels/views/viewapplicationrole';
+import { ViewApplicationRole } from './../../../../../viewmodels/views/viewapplicationrole';
 
-import {UpdateApplicationRole} from './../../../../../viewmodels/updates/updateapplicationrole';
+import { UpdateApplicationRole } from './../../../../../viewmodels/updates/updateapplicationrole';
 
-import {ApplicationRoleService} from './../../../../../services/applicationrole.service';
+import { ApplicationRoleService } from './../../../../../services/applicationrole.service';
 
-import {TextAppVariants} from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
 
-import {TimeAppVariants} from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
-import {ExpressionAppVariants} from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
 
 @Component({
     selector: 'app-applicationrole-update-modal',
@@ -61,7 +61,7 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
         }
 
         this.dialogRef.close();
@@ -74,7 +74,7 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
         this.matSnackBar.open(
             TextAppVariants.AppOperationSuccessCoreText,
             TextAppVariants.AppOkButtonText,
-            {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+            { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
         this.dialogRef.close();
     }

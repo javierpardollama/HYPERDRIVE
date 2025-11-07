@@ -10,17 +10,18 @@
           Required field.
         </mat-error>
       </mat-form-field>
-    </div>  
-    
+    </div>
+
     <div class="modal-content-line">
       <div class="modal-option-image modal-role-image" aria-label="ApplicationRolesId"></div>
       <mat-form-field class="search-half-width">
         <mat-label>ApplicationRolesId</mat-label>
-        <mat-select formControlName="ApplicationRolesId" multiple>        
-            <mat-option *ngFor="let applicationrole of applicationroles" [value]="applicationrole.Id">
-              <span>{{applicationrole.Name}}</span>
-            </mat-option>         
-          <mat-error *ngIf="!formGroup.controls['ApplicationRolesId'].valid && formGroup.controls['ApplicationRolesId'].touched">
+        <mat-select formControlName="ApplicationRolesId" multiple>
+          <mat-option *ngFor="let applicationrole of applicationroles" [value]="applicationrole.Id">
+            <span>{{applicationrole.Name}}</span>
+          </mat-option>
+          <mat-error
+            *ngIf="!formGroup.controls['ApplicationRolesId'].valid && formGroup.controls['ApplicationRolesId'].touched">
             Required field.
           </mat-error>
         </mat-select>

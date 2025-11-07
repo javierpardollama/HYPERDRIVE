@@ -20,7 +20,8 @@
                     <mat-option *ngFor="let applicationuser of applicationusers" [value]="applicationuser.Id">
                         <span>{{applicationuser.Name}}</span>
                     </mat-option>
-                    <mat-error *ngIf="!formGroup.controls['ApplicationUserIds'].valid && formGroup.controls['ApplicationUserIds'].touched">
+                    <mat-error
+                        *ngIf="!formGroup.controls['ApplicationUserIds'].valid && formGroup.controls['ApplicationUserIds'].touched">
                         Required field.
                     </mat-error>
                 </mat-select>
@@ -29,10 +30,10 @@
 
         <div class="form-element">
             <button mat-raised-button color="primary" type="submit" class="button form-button"
-                    (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
+                (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
             </button>
             <button mat-raised-button color="accent" type="button" class="button form-button"
-                    (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
+                (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
             </button>
         </div>
 

@@ -90,7 +90,7 @@ import { ApplicationRoleAddModalComponent }
   from './management/modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
 import { DriveItemFolderAddModalComponent } from "./drive/modals/additions/driveitem-folder-add-modal/driveitem-folder-add-modal.component";
 import {
-    DriveItemFileAddModalComponent
+  DriveItemFileAddModalComponent
 } from "./drive/modals/additions/driveitem-file-add-modal/driveitem-file-add-modal.component";
 
 // App-Modal-Update
@@ -99,10 +99,10 @@ import { ApplicationRoleUpdateModalComponent }
 import { ApplicationUserUpdateModalComponent }
   from './management/modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 import {
-    DriveitemNameUpdateModalComponent
+  DriveitemNameUpdateModalComponent
 } from "./drive/modals/updates/driveitem-name-update-modal/driveitem-name-update-modal.component";
 import {
-    DriveitemShareWithUpdateModalComponent
+  DriveitemShareWithUpdateModalComponent
 } from "./drive/modals/updates/driveitem-share-with-update-modal/driveitem-share-with-update-modal.component";
 
 // App-Drive-Context

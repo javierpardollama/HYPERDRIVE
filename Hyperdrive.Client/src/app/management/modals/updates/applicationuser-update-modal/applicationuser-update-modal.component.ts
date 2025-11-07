@@ -1,22 +1,22 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {ViewApplicationUser} from '../../../../../viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../../viewmodels/views/viewapplicationuser';
 
-import {UpdateApplicationUser} from '../../../../../viewmodels/updates/updateapplicationuser';
+import { UpdateApplicationUser } from '../../../../../viewmodels/updates/updateapplicationuser';
 
-import {ApplicationUserService} from '../../../../../services/applicationuser.service';
+import { ApplicationUserService } from '../../../../../services/applicationuser.service';
 
-import {ApplicationRoleService} from '../../../../../services/applicationrole.service';
+import { ApplicationRoleService } from '../../../../../services/applicationrole.service';
 
-import {TextAppVariants} from '../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import {TimeAppVariants} from '../../../../../variants/time.app.variants';
-import {ViewCatalog} from "../../../../../viewmodels/views/viewcatalog";
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
+import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
 
 @Component({
     selector: 'app-applicationuser-update-modal',
@@ -52,7 +52,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
             Id: new FormControl<number>(this.data.Id, [Validators.required]),
-            ApplicationRolesId: new FormControl<number[]>(this.data.ApplicationRoles.map(({Id}) => Id), [Validators.required])
+            ApplicationRolesId: new FormControl<number[]>(this.data.ApplicationRoles.map(({ Id }) => Id), [Validators.required])
         });
     }
 
@@ -64,7 +64,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
             this.matSnackBar.open(
                 TextAppVariants.AppOperationSuccessCoreText,
                 TextAppVariants.AppOkButtonText,
-                {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
         }
 
         this.dialogRef.close();
@@ -76,7 +76,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
         this.matSnackBar.open(
             TextAppVariants.AppOperationSuccessCoreText,
             TextAppVariants.AppOkButtonText,
-            {duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks});
+            { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
         this.dialogRef.close();
 

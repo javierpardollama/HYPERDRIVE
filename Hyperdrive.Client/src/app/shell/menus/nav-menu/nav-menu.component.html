@@ -2,7 +2,7 @@
     <mat-toolbar>
         <ul class="container">
             <div class="left">
-                <li >
+                <li>
                     <button type="button" mat-button id="nav-toggle" class="toolbar-title" (click)="sidenav.toggle()">
                         <div class="toolbar-option-image nav-menu-app-image" matTooltip="Hyperdrive"></div>
                     </button>
@@ -18,7 +18,8 @@
             <div class="right">
                 <li class="toolbar-title" *ngIf="User">
                     <button type="button" mat-button (click)="Profile()">
-                        <div class="toolbar-option-image nav-menu-initial-image"><span matTooltip="{{User.Email}}">{{User.Initial}}</span></div>
+                        <div class="toolbar-option-image nav-menu-initial-image"><span
+                                matTooltip="{{User.Email}}">{{User.Initial}}</span></div>
                     </button>
                 </li>
             </div>

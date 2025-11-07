@@ -1,7 +1,7 @@
 import { ViewKey } from './viewkey';
 import { ViewBase } from './viewbase';
-import {ViewCatalog} from './viewcatalog';
-import {ViewToken} from './viewtoken';
+import { ViewCatalog } from './viewcatalog';
+import { ViewToken } from './viewtoken';
 
 export interface ViewApplicationUser extends ViewKey, ViewBase {
   Email: string;
