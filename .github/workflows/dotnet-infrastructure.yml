@@ -1,0 +1,43 @@
+name: Test .NET Infrastructure
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read  
+
+defaults:
+  run:
+    working-directory: Hyperdrive.Service
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'      
+
+      - name: 📥 Restore dependencies
+        run: dotnet restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj     
+
+      - name: ♻️ Clean project
+        run: dotnet clean Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj          
+       
+      - name: 🏗️ Build project
+        run: dotnet build --no-restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj    
+
+      - name: ✅ Run tests
+        run: dotnet test Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj --no-build
+
