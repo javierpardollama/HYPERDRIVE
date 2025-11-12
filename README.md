@@ -1,6 +1,6 @@
 # HYPERDRIVE
 
-[![Build & Test .NET API](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-desktop.yml) [![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml)
+[![Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml)
 
 Este proyecto surge como una solución para gestionar el estado actual de los archivos reservados, administrando la carga de los archivos suministrados, así como su descarga. 
 
