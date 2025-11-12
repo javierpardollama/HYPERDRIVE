@@ -17,9 +17,11 @@ const CreateWindow = () => {
 
     if (!app.isPackaged) {
         win.loadURL('https://localhost:4200');
+        win.webContents.on('did-fail-load', () => win.loadURL('https://localhost:4200'));
         win.webContents.openDevTools();
     } else{
         win.loadFile(path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html'));
+        win.webContents.on('did-fail-load', () => win.loadFile(path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html')));
     }
 }
 
