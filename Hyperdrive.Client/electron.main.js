@@ -17,7 +17,7 @@ const CreateWindow = () => {
 
     const isdev = !app.isPackaged;
 
-    const mainurl = isisdevDev
+    const mainurl = isdev
         ? 'https://localhost:4200'
         : path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html');
 
