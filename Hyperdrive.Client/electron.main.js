@@ -15,13 +15,23 @@ const CreateWindow = () => {
         },
     });
 
-    if (!app.isPackaged) {
-        win.loadURL('https://localhost:4200');
-        win.webContents.on('did-fail-load', () => win.loadURL('https://localhost:4200'));
+    const isdev = !app.isPackaged;
+
+    const mainurl = isisdevDev
+        ? 'https://localhost:4200'
+        : path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html');
+
+    // Load initial content
+    isdev ? win.loadURL(mainurl) : win.loadFile(mainurl);
+
+    // Retry on fail
+    win.webContents.on('did-fail-load', () => {
+        isdev ? win.loadURL(mainurl) : win.loadFile(mainurl);
+    });
+
+    // Open DevTools in development
+    if (isdev) {
         win.webContents.openDevTools();
-    } else{
-        win.loadFile(path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html'));
-        win.webContents.on('did-fail-load', () => win.loadFile(path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html')));
     }
 }
 
