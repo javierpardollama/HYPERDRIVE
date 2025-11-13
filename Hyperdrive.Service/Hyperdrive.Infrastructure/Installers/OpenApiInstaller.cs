@@ -49,7 +49,7 @@ public static class OpenApiInstaller
                 {
                     new OpenApiSecuritySchemeReference(JwtBearerDefaults.AuthenticationScheme,
                                                        document),
-                    ["readAccess", "writeAccess"]
+                    ["read", "write"]
                 }
             });            
         });
