@@ -18,8 +18,7 @@ En esta capa la información es almacenada y redistribuida al sistema de almacen
 
 3. [Application](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Application)
 
-En esta capa se coordina el envío y/o recepción entre la capa de dominio (Domain) y la capa de infrastructura (Infrastrucure).
-
+En esta capa se coordina el envío y/o recepción entre la capa de dominio (Domain) y la capa de infrastructura (Infrastructure).
 
 ## BUILD
 
@@ -27,15 +26,23 @@ Para compilar y hacer funcionar este proyecto se recomienda utilizar una serie d
 
 1. [.NET](https://dotnet.microsoft.com/)
 
-Este framework es utilizado para construir todo lo referente a las capas Data Tier y Logic Tier.
+Este framework es utilizado para construir todo lo referente al Servicio: La capas Dominio, la capa de Infrastructura y la capa de Aplicación.
+
+1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+Esta plataforma es utilizada para empaquetar el Servicio.
 
 2. [Node.js](https://nodejs.org/es/)
 
-Este framework es utilizado para construir el entorno necesario para la capa Presentation Tier.
+Este entorno de ejecución es utilizado para construir el entorno necesario para la capa de Presentación.
 
 3. [Angular Cli](https://cli.angular.io/)
 
-Este framework es utilizado para construir todo lo referente a la capa Presentation Tier.
+Este framework es utilizado para construir todo lo referente a la capa de Presentación.
+
+## RUN
+
+Este proyecto incluye un fichero "docker-compose". Configúralo para que sea tu proyecto de arranque (en el IDE que prefieras) y ejecútalo sin miedo.
 
 ## LICENSE
 
