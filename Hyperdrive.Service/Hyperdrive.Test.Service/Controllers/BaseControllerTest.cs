@@ -12,7 +12,7 @@ namespace Hyperdrive.Test.Service.Controllers
 {
     public class BaseControllerTest
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/") };
+        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:5001/api/v1/") };
 
         protected ViewApplicationUser User { get; set; }    
         
