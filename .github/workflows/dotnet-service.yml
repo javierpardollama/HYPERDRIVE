@@ -41,7 +41,7 @@ jobs:
       - name: 🐋 Setup Docker
         uses: docker/setup-buildx-action@v3
 
-      - name: ⏹ Stop containers
+      - name: ♻️ Clean containers
         run: docker compose down --remove-orphans
 
       - name: 🏗️ Build containers
