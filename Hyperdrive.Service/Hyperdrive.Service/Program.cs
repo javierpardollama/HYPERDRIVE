@@ -1,12 +1,13 @@
 using Hyperdrive.Application.Installers;
 using Hyperdrive.Infrastructure.Installers;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Configuration.AddEnvironmentVariables(); 
 
 @builder.Services.InstallEntityFramework(builder.Configuration);
 

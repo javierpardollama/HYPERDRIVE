@@ -21,7 +21,7 @@ public static class EntityFrameworkInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     /// <param name="configuration">Injected <see cref="IConfiguration" />></param>
     public static void InstallEntityFramework(this IServiceCollection @this, IConfiguration @configuration)
-    {
+    {      
         @this.AddDbContext<ApplicationContext>(options =>
         {
             options.AddInterceptors(new SoftDeleteInterceptor());
