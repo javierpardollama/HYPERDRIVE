@@ -30,6 +30,16 @@ services:
     environment:            
        ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
        ConnectionStrings__DefaultConnection: ${DB_CONNECTION}
+       Jwt__JwtAudiences: ${JWT_AUDIENCES}
+       Jwt__JwtExpireMinutes: ${JWT_EXPIRE_MINUTES}
+       Jwt__JwtExpireDays: ${JWT_EXPIRE_DAYS}
+       Jwt__JwtAuthority: ${JWT_AUTHORITY}
+       Jwt__JwtIssuer: ${JWT_ISSUER}
+       Jwt__JwtKey: ${JWT_KEY}
+       RateLimit__PolicyName: ${RATELIMIT_POLICYNAME}
+       RateLimit__PermitLimit: ${RATELIMIT_PERMITLIMIT}
+       RateLimit__QueueProcessingOrder: ${RATELIMIT_QUEUEPROCESSINGORDER}
+       RateLimit__QueueLimit: ${RATELIMIT_QUEUELIMIT}
     ports:
         - 5001:80
     depends_on:
