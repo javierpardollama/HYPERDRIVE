@@ -19,6 +19,9 @@ namespace Hyperdrive.Infrastructure.Installers;
 /// </summary>
 public static class ResilienceInstaller
 {
+    private const string HealthEndpointPath = "/health";
+    private const string AlivenessEndpointPath = "/alive";
+
     /// <summary>
     /// Installs Aspire Services
     /// </summary>
@@ -40,7 +43,7 @@ public static class ResilienceInstaller
             // Turn on service discovery by default
             http.AddServiceDiscovery();
         });
-       
+
         builder.Services.Configure<ServiceDiscoveryOptions>(options => { options.AllowedSchemes = ["https"]; });
 
         return builder;
@@ -68,7 +71,12 @@ public static class ResilienceInstaller
             })
             .WithTracing(tracing =>
             {
-                tracing.AddAspNetCoreInstrumentation()
+                tracing.AddAspNetCoreInstrumentation(tracing =>
+                            // Exclude health check requests from tracing
+                            tracing.Filter = context =>
+                                !context.Request.Path.StartsWithSegments(HealthEndpointPath)
+                                && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath)
+                        )
                     .AddHttpClientInstrumentation();
             });
 
@@ -87,9 +95,9 @@ public static class ResilienceInstaller
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
 
         if (useOtlpExporter) builder.Services.AddOpenTelemetry().UseOtlpExporter();
-       
+
         var useAzureMonitor = !string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
-        
+
         if (useAzureMonitor) builder.Services.AddOpenTelemetry().UseAzureMonitor();
 
         return builder;
@@ -127,15 +135,13 @@ public static class ResilienceInstaller
     {
         app.MapGroup("").CacheOutput("HealthChecks").WithRequestTimeout("HealthChecks");
 
-        // All health checks must pass for app to be
-        // considered ready to accept traffic after starting
-        app.MapHealthChecks("/health");
+        // All health checks must pass for app to be considered ready to accept traffic after starting
+        app.MapHealthChecks(HealthEndpointPath);
 
-        // Only health checks tagged with the "live" tag
-        // must pass for app to be considered alive
-        app.MapHealthChecks("/alive", new HealthCheckOptions
+        // Only health checks tagged with the "live" tag must pass for app to be considered alive
+        app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
         {
-            Predicate = static r => r.Tags.Contains("live")
+            Predicate = r => r.Tags.Contains("live")
         });
 
         return app;
