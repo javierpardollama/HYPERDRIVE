@@ -5,7 +5,7 @@
 export const environment = {
   Api:
   {
-    Service: "https://localhost:55897/"
+    Service: "https://localhost:5001/"
   }, Otel:
   {
     Exporter: "https://localhost:21023/v1/traces",

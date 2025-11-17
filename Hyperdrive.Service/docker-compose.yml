@@ -29,6 +29,8 @@ services:
       dockerfile: Hyperdrive.Service/Dockerfile
     environment:            
        ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+       ASPNETCORE_URLS:  ${ASPNETCORE_URLS}
+       PUBLIC_URL: ${PUBLIC_URL}
        ConnectionStrings__DefaultConnection: ${DB_CONNECTION}
        Jwt__JwtAudiences: ${JWT_AUDIENCES}
        Jwt__JwtExpireMinutes: ${JWT_EXPIRE_MINUTES}
@@ -39,9 +41,11 @@ services:
        RateLimit__PolicyName: ${RATELIMIT_POLICYNAME}
        RateLimit__PermitLimit: ${RATELIMIT_PERMITLIMIT}
        RateLimit__QueueProcessingOrder: ${RATELIMIT_QUEUEPROCESSINGORDER}
-       RateLimit__QueueLimit: ${RATELIMIT_QUEUELIMIT}
+       RateLimit__QueueLimit: ${RATELIMIT_QUEUELIMIT}      
     ports:
-        - 5001:80
+      - "5000:80"
+      - "5001:443"
+
     depends_on:
       db:
         condition: service_healthy

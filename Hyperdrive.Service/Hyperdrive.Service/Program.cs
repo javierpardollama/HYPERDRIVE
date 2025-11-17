@@ -7,7 +7,10 @@ using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddEnvironmentVariables(); 
+builder.Configuration.AddEnvironmentVariables();
+
+var @jwtSettings = @builder.InstallJwtSetttings();
+var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallEntityFramework(builder.Configuration);
 
@@ -28,9 +31,6 @@ builder.Services.InstallApiVersions();
 @builder.Services.InstallMediatR();
 
 @builder.Services.AddResponseCaching();
-
-var @jwtSettings = @builder.InstallJwtSetttings();
-var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);
