@@ -8,50 +8,32 @@
       "sslPort": 44398
     }
   },
-  "profiles": {
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {      
-        "ASPNETCORE_ENVIRONMENT": "",
-        "OTEL_EXPORTER_OTLP_ENDPOINT": "",
-        "APPLICATIONINSIGHTS_CONNECTION_STRING": ""
-      },
-      "publishAllPorts": true,
-      "useSSL": true
-    },
+  "profiles": {   
     "Development": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",        
-        "OTEL_EXPORTER_OTLP_ENDPOINT": "",
-        "APPLICATIONINSIGHTS_CONNECTION_STRING": ""
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Staging": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",      
+      "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Staging",     
-        "OTEL_EXPORTER_OTLP_ENDPOINT": "",
-        "APPLICATIONINSIGHTS_CONNECTION_STRING": ""
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     },
     "Production": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",     
+      "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production",        
-        "OTEL_EXPORTER_OTLP_ENDPOINT": "",
-        "APPLICATIONINSIGHTS_CONNECTION_STRING": ""
+        "ASPNETCORE_ENVIRONMENT": "Production"
       }
     }
   }
