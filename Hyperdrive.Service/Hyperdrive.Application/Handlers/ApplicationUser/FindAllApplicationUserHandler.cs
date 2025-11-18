@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.Queries.ApplicationUser;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
@@ -22,6 +23,6 @@ public class FindAllApplicationUserHandler : IRequestHandler< FindAllApplication
     {
         var @users = await _manager.FindAllApplicationUser();
 
-        return @users.Select(x => new ViewCatalog()).ToList();
+        return [.. @users.Select(x => x.ToCatalogViewModel())];
     }
 }

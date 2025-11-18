@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.Queries.ApplicationRole;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
@@ -22,6 +23,6 @@ public class FindAllApplicationRoleHandler : IRequestHandler<FindAllApplicationR
     {
         var @roles = await _manager.FindAllApplicationRole();
 
-        return @roles.Select(x => new ViewCatalog()).ToList();
+        return [.. @roles.Select(x => x.ToCatalogViewModel())];
     }
 }

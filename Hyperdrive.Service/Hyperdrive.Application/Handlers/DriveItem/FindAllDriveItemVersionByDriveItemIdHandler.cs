@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.Queries.DriveItem;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
@@ -22,6 +23,6 @@ public class FindAllDriveItemVersionByDriveItemIdHandler : IRequestHandler<FindA
     {
         var @items = await _manager.FindAllDriveItemVersionByDriveItemId(request.Id);
 
-        return [.. @items.Select(x => new ViewDriveItemVersion())];
+        return [.. @items.Select(x => x.ToViewModel())];
     }
 }
