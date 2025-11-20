@@ -1,13 +1,16 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Hyperdrive.Application.Commands.ApplicationUser;
 using Hyperdrive.Application.Queries.ApplicationUser;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
+using Hyperdrive.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Service.Controllers.V1
 {
@@ -41,6 +44,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("update")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> UpdateApplicationUser([FromBody] UpdateApplicationUser @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationUserCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -54,6 +65,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("all")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewCatalog>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> FindAllApplicationUser() => Ok(value: await mediator.Send(new FindAllApplicationUserQuery()));
            
 
@@ -73,6 +92,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("page")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewApplicationUser>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> FindPaginatedApplicationUser([FromBody] FilterPageApplicationUser @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationUserQuery { ViewModel = @viewModel}));
 
         /// <summary>
@@ -91,6 +118,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpDelete]
         [Route("remove/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> RemoveApplicationUserById(int @id)
         {
             await mediator.Send(new RemoveApplicationUserByIdCommand { Id = @id });

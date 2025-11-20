@@ -1,14 +1,17 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Hyperdrive.Application.Commands.ApplicationRole;
 using Hyperdrive.Application.Queries.ApplicationRole;
 using Hyperdrive.Application.ViewModels.Additions;
 using Hyperdrive.Application.ViewModels.Filters;
 using Hyperdrive.Application.ViewModels.Updates;
+using Hyperdrive.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Service.Controllers.V1
 {
@@ -41,6 +44,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("update")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationRole))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> UpdateApplicationRole([FromBody] UpdateApplicationRole @viewModel) => Ok(value: await mediator.Send(new UpdateApplicationRoleCommand {ViewModel = @viewModel}));
 
         /// <summary>
@@ -59,6 +70,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("all")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewCatalog>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> FindAllApplicationRole() => Ok(value: await mediator.Send(new FindAllApplicationRoleQuery()));
 
         /// <summary>
@@ -77,6 +96,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("page")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewApplicationRole>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> FindPaginatedApplicationRole([FromBody] FilterPageApplicationRole @viewModel) => Ok(value: await mediator.Send(new FindPaginatedApplicationRoleQuery { ViewModel = viewModel }));
 
         /// <summary>
@@ -95,6 +122,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPost]
         [Route("create")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationRole))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> AddApplicationRole([FromBody] AddApplicationRole @viewModel) => Ok(value: await mediator.Send(new AddApplicationRoleCommand { ViewModel = viewModel }));
 
         /// <summary>
@@ -113,6 +148,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpDelete]
         [Route("remove/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> RemoveApplicationRoleById(int @id)
         {
             await mediator.Send(new RemoveApplicationRoleByIdCommand { Id = @id });

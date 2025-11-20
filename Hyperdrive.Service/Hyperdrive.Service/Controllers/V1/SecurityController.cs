@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Hyperdrive.Application.Commands.Security;
 using Hyperdrive.Application.ViewModels.Security;
+using Hyperdrive.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Service.Controllers.V1
 {
@@ -37,6 +39,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("password/reset")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await mediator.Send(new PasswordResetCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -56,6 +66,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [HttpPut]
         [Route("password/change")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> ChangePassword([FromBody] SecurityPasswordChange @viewModel) => Ok(value:   await mediator.Send(new PasswordChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -75,6 +93,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [HttpPut]
         [Route("email/change")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> ChangeEmail([FromBody] SecurityEmailChange @viewModel) => Ok(value: await mediator.Send(new EmailChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -94,6 +120,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [HttpPut]
         [Route("phonenumber/change")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => Ok(value:   await mediator.Send(new PhoneNumberChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -113,6 +147,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [HttpPut]
         [Route("name/change")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => Ok(value:   await mediator.Send(new NameChangeCommand { ViewModel = @viewModel }));
 
         /// <summary>
@@ -131,6 +173,14 @@ namespace Hyperdrive.Service.Controllers.V1
         [MapToApiVersion(1.0)]
         [HttpPut]
         [Route("tokens/refresh")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewApplicationUser))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value:   await mediator.Send(new RefreshTokenResetCommand { ViewModel = @viewModel }));
     }
 }
