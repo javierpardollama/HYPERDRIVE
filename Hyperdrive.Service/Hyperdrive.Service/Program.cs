@@ -65,6 +65,7 @@ var @app = @builder.Build();
 @app.MapControllers();
 
 @app.UseDefaultHealthEndpoints();
+@app.UseDefaultPrometheusScrapingEndpoint();
 
 @app.UseRequestTimeouts();
 @app.UseOutputCache();

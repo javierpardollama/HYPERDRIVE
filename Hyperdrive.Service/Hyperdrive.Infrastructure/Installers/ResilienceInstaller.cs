@@ -67,10 +67,11 @@ public static class ResilienceInstaller
             {
                 metrics.AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddRuntimeInstrumentation();
+                    .AddRuntimeInstrumentation()
+                    .AddPrometheusExporter();
             })
             .WithTracing(tracing =>
-            {
+            {                
                 tracing.AddAspNetCoreInstrumentation(tracing =>
                             // Exclude health check requests from tracing
                             tracing.Filter = context =>
@@ -146,4 +147,17 @@ public static class ResilienceInstaller
 
         return app;
     }
+
+    /// <summary>
+    /// Uses Default Prometheus Scraping Endpoint
+    /// </summary>
+    /// <param name="app">Injected <see cref="WebApplication"/></param>
+    /// <returns>Instance of <see cref="WebApplication"/></returns>
+    public static WebApplication UseDefaultPrometheusScrapingEndpoint(this WebApplication app)
+    {
+        app.MapPrometheusScrapingEndpoint();
+
+        return app;
+    }
+
 }
