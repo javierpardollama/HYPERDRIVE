@@ -1,52 +1,43 @@
-const { app, screen, BrowserWindow } = require('electron/main')
+const { app, BrowserWindow } = require('electron/main')
 const path = require('path');
 
 const CreateWindow = () => {
-    const size = screen.getPrimaryDisplay().workAreaSize;
+
+    const isDev = !app.isPackaged;
 
     const win = new BrowserWindow({
-        x: 0,
-        y: 0,
-        width: size.width,
-        height: size.height,
+        fullscreen: true,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
         },
     });
 
-    const isdev = !app.isPackaged;
-
-    const mainurl = isdev
+    const mainUrl = isDev
         ? 'https://localhost:4200'
         : path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html');
 
-    // Load initial content
-    isdev ? win.loadURL(mainurl) : win.loadFile(mainurl);
+    const LoadContent = () => {
+        isDev ? win.loadURL(mainUrl) : win.loadFile(mainUrl);
+    };
 
-    // Retry on fail
-    win.webContents.on('did-fail-load', () => {
-        isdev ? win.loadURL(mainurl) : win.loadFile(mainurl);
-    });
+    LoadContent();
 
-    // Open DevTools in development
-    if (isdev) {
-        win.webContents.openDevTools();
-    }
+    win.webContents.on('did-fail-load', LoadContent);
+
+    if (isDev) win.webContents.openDevTools();
 }
 
-app.on('ready', () => {
-    CreateWindow()
+
+app.whenReady().then(() => {
+    CreateWindow();
 
     app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            CreateWindow()
-        }
-    })
-})
+        if (BrowserWindow.getAllWindows().length === 0) CreateWindow();
+    });
+});
+
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
+    if (process.platform !== 'darwin') app.quit();
 })
