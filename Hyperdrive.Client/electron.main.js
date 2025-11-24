@@ -3,7 +3,7 @@ const path = require('path');
 
 const CreateWindow = () => {
 
-    const isDev = !app.isPackaged;
+    const isdev = !app.isPackaged;
 
     const win = new BrowserWindow({
         fullscreen: true,
@@ -13,12 +13,12 @@ const CreateWindow = () => {
         },
     });
 
-    const mainUrl = isDev
+    const mainurl = isdev
         ? 'https://localhost:4200'
         : path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html');
 
     const LoadContent = () => {
-        isDev ? win.loadURL(mainUrl) : win.loadFile(mainUrl);
+        isdev ? win.loadURL(mainurl) : win.loadFile(mainurl);
     };
 
     LoadContent();
