@@ -1,9 +1,9 @@
-using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Exceptions;
+using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Managers;
+using Hyperdrive.Test.Infrastructure.Extensions;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,11 +30,12 @@ public class DriveItemManagerTest : BaseManagerTest
     {
         InstallServices();
 
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
+        Context.Seed();
+
         InstallHttpContext();
 
         InstallLogger();
-
-        Seed();
 
         Manager = new DriveItemManager(Context, Logger);
     }
@@ -53,185 +54,6 @@ public class DriveItemManagerTest : BaseManagerTest
         });
 
         Logger = @loggerFactory.CreateLogger<DriveItemManager>();
-    }
-
-    /// <summary>
-    /// Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.Users.Any())
-        {
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 1,
-                FirstName = "Stafford",
-                LastName = "Parker",
-                UserName = "stafford.parker",
-                Email = "stafford.parker@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 2,
-                FirstName = "Dee",
-                LastName = "Sandy",
-                UserName = "dee.sandy",
-                Email = "dee.sandy@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 3,
-                FirstName = "Orinda Navy",
-                LastName = "Navy",
-                UserName = "orinda.navy",
-                Email = "orinda.navy@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-        }
-
-        Context.SaveChanges();
-
-        if (!Context.DriveItems.Any())
-        {
-            Context.DriveItems.Add(new DriveItem
-            {
-                Id = 2,
-                Folder = true,
-                By = Context.Users.First(x => x.Id == 1),
-                ById = 1,
-                Parent = null,
-                ParentId = null,
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                Activity = [
-                    new() {
-                         Id = 21,
-                        Name = "Documents",
-                        NormalizedName = "DOCUMENTS",
-                        FileName = "Documents",
-                        NormalizedFileName = "DOCUMENTS",
-                        CreatedAt = DateTime.UtcNow,
-                    }
-            ]
-            });
-            Context.DriveItems.Add(new DriveItem
-            {
-                Id = 3,               
-                Folder = true,
-                By = Context.Users.First(x => x.Id == 1),
-                ById = 1,
-                Parent = null,
-                ParentId = null,
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                Activity = [
-                    new()
-                    {
-                        Id = 31,
-                        Name = "Music",
-                        NormalizedName = "MUSIC",
-                        FileName = "Music",
-                        NormalizedFileName = "MUSIC",
-                        CreatedAt = DateTime.UtcNow,
-                    }]
-            });
-            Context.DriveItems.Add(new DriveItem
-            {
-                Id = 4,              
-                Folder = true,
-                By = Context.Users.First(x => x.Id == 1),
-                ById = 1,
-                Parent = null,
-                ParentId = null,
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                Activity = [
-                    new()
-                    {
-                        Id = 41,
-                        Name = "Pictures",
-                        NormalizedName = "PICTURES",
-                        FileName = "Pictures",
-                        NormalizedFileName = "PICTURES",
-                        CreatedAt = DateTime.UtcNow,
-                    }]
-            });
-            Context.DriveItems.Add(new DriveItem
-            {
-                Id = 5,              
-                Folder = true,
-                By = Context.Users.First(x => x.Id == 1),
-                Parent = new DriveItem
-                {
-                    Id = 1,                    
-                    Folder = true,
-                    By = Context.Users.First(x => x.Id == 1),
-                    ById = 1,
-                    Parent = null,
-                    ParentId = null,
-                    CreatedAt = DateTime.UtcNow,
-                    Deleted = false,
-                    Activity = [
-                    new()
-                    {
-                        Id = 11,
-                        Name = "Shared",
-                        NormalizedName = "SHARED",
-                        FileName = "Shared",
-                        NormalizedFileName = "SHARED",
-                        CreatedAt = DateTime.UtcNow,
-                    }],
-                },
-                Activity = [
-                    new()
-                    {
-                        Id = 51,
-                        Name = "Wanabe",
-                        NormalizedName = "WANABE",
-                        FileName = "Wanabe.mp3",
-                        NormalizedFileName = "WANABE.MP3",
-                        Extension = "mp3",
-                        NormalizedExtension = "MP3",
-                        Type = "audio/mpeg",
-                        Size = 120, 
-                        Data = new byte[25],
-                        CreatedAt = DateTime.UtcNow,
-                    }],
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-            });
-        }
-
-        Context.SaveChanges();
-
-        if (!Context.ApplicationUserDriveItems.Any())
-        {
-            Context.ApplicationUserDriveItems.Add(new ApplicationUserDriveItem
-            {
-                DriveItem = Context.DriveItems.First(x => x.Id == 5),
-                User = Context.Users.First(x => x.Id == 3),
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-            });
-
-            Context.ApplicationUserDriveItems.Add(new ApplicationUserDriveItem
-            {
-                DriveItem = Context.DriveItems.First(x => x.Id == 5),
-                User = Context.Users.First(x => x.Id == 3),
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-            });
-        }
-
-        Context.SaveChanges();
     }
 
     [Test]

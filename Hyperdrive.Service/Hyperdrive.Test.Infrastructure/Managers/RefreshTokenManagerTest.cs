@@ -1,9 +1,10 @@
 using Hyperdrive.Domain.Entities;
+using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Managers;
+using Hyperdrive.Test.Infrastructure.Extensions;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
@@ -32,9 +33,10 @@ public class RefreshTokenManagerTest: BaseManagerTest
     {
         InstallServices();
 
-        InstallLogger();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
+        Context.Seed();
 
-        Seed();
+        InstallLogger();      
 
         Manager = new RefreshTokenManager(Context, Logger, ApiOptions);
     }
@@ -53,64 +55,7 @@ public class RefreshTokenManagerTest: BaseManagerTest
         });
 
         Logger = @loggerFactory.CreateLogger<RefreshTokenManager>();
-    }
-
-    /// <summary>
-    /// Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.UserRefreshTokens.Any())
-        {
-            Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
-            {                
-                Value = "i5E%@VRMZ)%3AuWuA+A+%PAcEE0q.x",
-                Name = new Guid().ToString(),
-                LoginProvider = "https://localhost:7297",
-                ExpiresAt = DateTime.UtcNow.AddDays(2),
-                CreatedAt = DateTime.UtcNow,
-                ModifiedAt = DateTime.UtcNow,
-                Deleted = false,
-                UserId = 10,
-                User = new ApplicationUser
-                {
-                    Id = 10,
-                    FirstName = "Cali ",
-                    LastName = "Trafford",
-                    UserName = "cali.trafford",
-                    Email = "cali.trafford@email.com",
-                    CreatedAt = DateTime.UtcNow,
-                    Deleted = false,
-                    SecurityStamp = new Guid().ToString()
-                }
-            });
-            Context.UserRefreshTokens.Add(new ApplicationUserRefreshToken
-            {               
-                Value = "&91eVg+82z*q5qfwCLp.*f=x)];]27",
-                Name = new Guid().ToString(),
-                LoginProvider = "https://localhost:7297",
-                Revoked = false,
-                ExpiresAt = DateTime.UtcNow.AddDays(2),
-                CreatedAt = DateTime.UtcNow,
-                ModifiedAt = DateTime.UtcNow,
-                Deleted = false,
-                UserId = 11,
-                User = new ApplicationUser
-                {
-                    Id = 11,
-                    FirstName = "Barb Román",
-                    LastName = "Román",
-                    UserName = "barb.román",
-                    Email = "barb.román@email.com",
-                    CreatedAt = DateTime.UtcNow,
-                    Deleted = false,
-                    SecurityStamp = new Guid().ToString()
-                }
-            });
-        }
-
-        Context.SaveChanges();
-    }
+    }    
 
     /// <summary>
     /// Writes Jwt Refresh Token

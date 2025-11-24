@@ -1,9 +1,10 @@
 using Hyperdrive.Domain.Entities;
+using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Managers;
+using Hyperdrive.Test.Infrastructure.Extensions;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
@@ -32,11 +33,12 @@ public class AuthManagerTest : BaseManagerTest
     {
         InstallServices();
 
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
+        Context.Seed();
+
         InstallHttpContext();
 
-        InstallLogger();
-
-        Seed();
+        InstallLogger();      
 
         Manager = new AuthManager(Logger, UserManager, SignInManager);
     }
@@ -55,63 +57,7 @@ public class AuthManagerTest : BaseManagerTest
         });
 
         Logger = @loggerFactory.CreateLogger<AuthManager>();
-    }
-
-    /// <summary>
-    /// Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.Users.Any())
-        {
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 1,
-                FirstName = "Stafford",
-                LastName = "Parker",
-                UserName = "stafford.parker",
-                Email = "stafford.parker@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 2,
-                FirstName = "Dee",
-                LastName = "Sandy",
-                UserName = "dee.sandy",
-                Email = "dee.sandy@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 3,
-                FirstName = "Orinda Navy",
-                LastName = "Navy",
-                UserName = "orinda.navy",
-                Email = "orinda.navy@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-            Context.Users.Add(new ApplicationUser
-            {
-                Id = 4,
-                FirstName = "Genesis",
-                LastName = "Gavin",
-                UserName = "genesis.gavin",
-                Email = "genesis.gavin@email.com",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                SecurityStamp = new Guid().ToString()
-            });
-        }
-
-        Context.SaveChanges();
-    }
+    }   
 
     /// <summary>
     /// Joins In

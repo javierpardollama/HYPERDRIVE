@@ -1,13 +1,14 @@
-﻿using System;
-using Hyperdrive.Domain.Entities;
+﻿using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Interceptors;
+using Hyperdrive.Test.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
@@ -47,7 +48,7 @@ public abstract class BaseManagerTest
     /// <summary>
     ///     Gets or Sets <see cref="ApplicationContext" />
     /// </summary>
-    protected ApplicationContext Context { get; private set; }
+    protected ApplicationContext Context { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="ServiceCollection"/>
@@ -69,6 +70,15 @@ public abstract class BaseManagerTest
         options.EnableSensitiveDataLogging();
     };
 
+
+    /// <summary>
+    /// Gets or Sets <see cref="ContextOptionsBuilder"/>
+    /// </summary>
+    protected DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder => 
+        (DbContextOptionsBuilder<ApplicationContext>) new DbContextOptionsBuilder<ApplicationContext>()
+        .Also(ContextOptionsAction);
+
+
     /// <summary>
     /// Install Services
     /// </summary>
@@ -81,8 +91,7 @@ public abstract class BaseManagerTest
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
 
-        ServiceProvider = Services.BuildServiceProvider();
-        Context = ServiceProvider.GetRequiredService<ApplicationContext>();
+        ServiceProvider = Services.BuildServiceProvider();      
         UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
         SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
