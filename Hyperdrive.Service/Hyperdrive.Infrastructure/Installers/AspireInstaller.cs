@@ -11,13 +11,14 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 using System;
+using System.Linq;
 
 namespace Hyperdrive.Infrastructure.Installers;
 
 /// <summary>
-///     Represents a <see cref="ResilienceInstaller" /> class.
+///     Represents a <see cref="AspireInstaller" /> class.
 /// </summary>
-public static class ResilienceInstaller
+public static class AspireInstaller
 {
     private const string HealthEndpointPath = "/health";
     private const string AlivenessEndpointPath = "/alive";
@@ -71,14 +72,12 @@ public static class ResilienceInstaller
                     .AddPrometheusExporter();
             })
             .WithTracing(tracing =>
-            {                
-                tracing.AddAspNetCoreInstrumentation(tracing =>
-                            // Exclude health check requests from tracing
-                            tracing.Filter = context =>
-                                !context.Request.Path.StartsWithSegments(HealthEndpointPath)
-                                && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath)
-                        )
-                    .AddHttpClientInstrumentation();
+            {
+                 tracing.AddAspNetCoreInstrumentation(tracing =>
+                     // Exclude health check requests from tracing
+                     tracing.Filter = context => !new[] { HealthEndpointPath, AlivenessEndpointPath }.Any(x => context.Request.Path.StartsWithSegments(x))
+                 )
+                 .AddHttpClientInstrumentation();
             });
 
         builder.InstallOpenTelemetryExporters();
