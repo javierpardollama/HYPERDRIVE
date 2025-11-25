@@ -9,6 +9,7 @@
   "main": "electron.main.js",
   "scripts": {
     "ng": "ng",
+    "clean": "rimraf dist",
     "web": "ng serve --ssl",
     "desktop": "ng serve --ssl | electron .",
     "dev": "ng build --base-href ./  --configuration development",
@@ -56,6 +57,7 @@
     "@electron-forge/plugin-fuses": "^7.10.2",
     "@electron/fuses": "^1.8.0",
     "electron": "^38.3.0",
+    "rimraf": "^6.1.2",
     "typescript": "~5.4.5"
   }
 }

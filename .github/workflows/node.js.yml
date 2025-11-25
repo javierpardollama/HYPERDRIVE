@@ -36,5 +36,8 @@ jobs:
       - name: 📥 Install dependencies
         run: npm ci
 
+      - name: ♻️ Clean project
+        run: npm run clean 
+
       - name: 🏗️ Build project
         run: npm run dev --if-present
