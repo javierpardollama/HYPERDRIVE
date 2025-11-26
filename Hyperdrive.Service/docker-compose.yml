@@ -25,7 +25,7 @@ services:
     volumes:
       - db-data:/etc/data
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT"
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     networks:
       - monitoring
 

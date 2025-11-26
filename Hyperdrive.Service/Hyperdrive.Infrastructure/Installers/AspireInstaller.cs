@@ -144,18 +144,6 @@ public static class AspireInstaller
         });
 
         return app;
-    }
-
-    /// <summary>
-    /// Uses Default Prometheus Scraping Endpoint
-    /// </summary>
-    /// <param name="app">Injected <see cref="WebApplication"/></param>
-    /// <returns>Instance of <see cref="WebApplication"/></returns>
-    public static WebApplication UseDefaultPrometheusScrapingEndpoint(this WebApplication app)
-    {
-        app.MapPrometheusScrapingEndpoint();
-
-        return app;
-    }
+    }    
 
 }
