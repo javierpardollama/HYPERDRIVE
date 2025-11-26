@@ -28,6 +28,9 @@ import { DecryptObject } from 'src/utils/crypto.utils';
     styleUrl: './driveitem-grid.component.scss'
 })
 export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy {
+
+    public loading: boolean = false;
+
     public ELEMENT_DATA: ViewDriveItem[] = [];
 
     public displayedColumns: string[] = ['Id', 'Name', 'Folder', 'LastModified', 'SharedWith'];
@@ -72,8 +75,9 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     // Get Data from Service
     public async FindPaginatedDriveItem(): Promise<void> {
-
+        this.loading = true;
         const view = await this.driveItemService.FindPaginatedDriveItemByApplicationUserId(this.page);
+        this.loading = false;
 
         if (view) {
             this.page.Length = view.Length;

@@ -1,6 +1,8 @@
-<div *ngIf="dataSource.data.length == 0" class="spinner-container">
+@if (loading) {
+<div class="spinner-container">
   <div class="spinner"></div>
 </div>
+}
 
 <div class="grid-page">
   <h4 class="breadcrumb">Management / Roles</h4>

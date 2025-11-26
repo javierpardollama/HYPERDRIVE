@@ -22,6 +22,8 @@ import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 })
 export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
+    public loading: boolean = false;
+
     public ELEMENT_DATA: ViewApplicationUser[] = [];
 
     public displayedColumns: string[] = ['Id', 'FirstName', 'ApplicationRoles', 'LastModified'];
@@ -56,7 +58,9 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
 
     // Get Data from Service
     public async FindPaginatedApplicationUser(): Promise<void> {
+        this.loading = true;
         const view = await this.applicationUserService.FindPaginatedApplicationUser(this.page);
+        this.loading = false;
 
         if (view) {
             this.page.Length = view.Length;

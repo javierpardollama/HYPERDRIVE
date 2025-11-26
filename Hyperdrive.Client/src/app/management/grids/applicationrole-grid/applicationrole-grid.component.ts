@@ -30,6 +30,8 @@ import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 })
 export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  public loading: boolean = false;
+
   public ELEMENT_DATA: ViewApplicationRole[] = [];
 
   public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
@@ -65,8 +67,10 @@ export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDe
 
   // Get Data from Service
   public async FindPaginatedApplicationRole(): Promise<void> {
+    this.loading = true;
     const view = await this.applicationRoleService.FindPaginatedApplicationRole(this.page);
-
+    this.loading = false;
+    
     if (view) {
       this.page.Length = view?.Length;
       this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view?.Items).reduce((m, t): Map<ViewApplicationRole, ViewApplicationRole> => m.set(t?.Id, t), new Map()).values());
