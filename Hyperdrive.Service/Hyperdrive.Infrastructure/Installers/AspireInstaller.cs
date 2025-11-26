@@ -68,8 +68,7 @@ public static class AspireInstaller
             {
                 metrics.AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddRuntimeInstrumentation()
-                    .AddPrometheusExporter();
+                    .AddRuntimeInstrumentation();
             })
             .WithTracing(tracing =>
             {
