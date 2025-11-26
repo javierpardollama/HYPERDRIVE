@@ -1,6 +1,4 @@
-version: "3.9"
-
-networks:
+﻿networks:
   monitoring:
     driver: bridge
 
@@ -65,9 +63,16 @@ services:
   tempo: # TRACES BACKEND
     image: grafana/tempo:latest
     container_name: tempo
+    command: [ "--config.file=/etc/tempo/tempo.yaml" ] # Force config
     ports:
       - "${TEMPO_GRPC_PORT}:${TEMPO_GRPC_PORT}"
       - "${TEMPO_HTTP_PORT}:${TEMPO_HTTP_PORT}"
+    volumes:    
+      - tempo-data:/var/tempo
+      - ./otel/tempo.yaml:/etc/tempo/tempo.yaml
+    networks:
+      - monitoring 
+
 
   prometheus: #METRICS BACKEND
     image: prom/prometheus:latest
@@ -75,7 +80,7 @@ services:
     ports:
       - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./otel/prometheus.yml:/etc/prometheus/prometheus.yml
       - prom-data:/prometheus
     command:
       - --config.file=/etc/prometheus/prometheus.yml
@@ -94,37 +99,27 @@ services:
     container_name: loki
     ports:
       - "${LOKI_PORT}:${LOKI_PORT}"
+    networks:
+      - monitoring
 
 
   alloy: #OTEL COLLECTOR
     image: grafana/alloy:latest
     container_name: alloy
     volumes:
-      - ./grafana/alloy-config.yaml:/etc/alloy/config.yaml
+      - ./otel/alloy.yaml:/etc/alloy/config.yaml
+      - alloy-data:/alloy
     ports:
       - "${ALLOY_UI_PORT}:${ALLOY_UI_PORT}"
-    depends_on:
-      - prometheus
-      - loki
-      - tempo
-
-
-  grafana: # VISUALIZATION
-    image: grafana/grafana
-    ports:
-      - "${GRAFANA_PORT}:${GRAFANA_PORT}"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    volumes:
-      - ./grafana:/var/lib/grafana
-    depends_on:
-      - prometheus
-      - loki
-      - tempo
     networks:
       - monitoring
-      
+    depends_on:
+      - prometheus
+      - loki
+      - tempo      
 
 volumes:
   db-data:
   prom-data:
+  alloy-data:
+  tempo-data:
