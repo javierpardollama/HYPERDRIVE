@@ -3,7 +3,7 @@
     driver: bridge
 
 services:
-  db: #DATABASE
+  db:
     container_name: db
     image: postgres
     restart: always
@@ -28,12 +28,15 @@ services:
       - monitoring
 
 
-  service: #API
+  service:
     container_name: service
     image: ${DOCKER_REGISTRY-}hyperdriveservice
     build:
       context: .
       dockerfile: Hyperdrive.Service/Dockerfile
+    env_file:
+      - path: .env
+        required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
       ASPNETCORE_HTTP_PORTS: ${ASPNETCORE_HTTP_PORTS}
@@ -41,16 +44,10 @@ services:
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${DB_CONNECTION}
-      Jwt__JwtAudiences: ${JWT_AUDIENCES}
-      Jwt__JwtExpireMinutes: ${JWT_EXPIRE_MINUTES}
-      Jwt__JwtExpireDays: ${JWT_EXPIRE_DAYS}
+      Jwt__JwtAudiences: ${JWT_AUDIENCES}    
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
-      RateLimit__PolicyName: ${RATELIMIT_POLICYNAME}
-      RateLimit__PermitLimit: ${RATELIMIT_PERMITLIMIT}
-      RateLimit__QueueProcessingOrder: ${RATELIMIT_QUEUEPROCESSINGORDER}
-      RateLimit__QueueLimit: ${RATELIMIT_QUEUELIMIT}
     ports:
       - "${ASPNETCORE_HTTP_PORTS}:${ASPNETCORE_HTTP_PORTS}"
       - "${ASPNETCORE_HTTPS_PORTS}:${ASPNETCORE_HTTPS_PORTS}"
@@ -59,67 +56,5 @@ services:
     depends_on:
       - db
 
-
-  tempo: # TRACES BACKEND
-    image: grafana/tempo:latest
-    container_name: tempo
-    command: [ "--config.file=/etc/tempo/tempo.yaml" ] # Force config
-    ports:
-      - "${TEMPO_GRPC_PORT}:${TEMPO_GRPC_PORT}"
-      - "${TEMPO_HTTP_PORT}:${TEMPO_HTTP_PORT}"
-    volumes:    
-      - tempo-data:/var/tempo
-      - ./otel/tempo.yaml:/etc/tempo/tempo.yaml
-    networks:
-      - monitoring 
-
-
-  prometheus: #METRICS BACKEND
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports:
-      - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
-    volumes:
-      - ./otel/prometheus.yml:/etc/prometheus/prometheus.yml
-      - prom-data:/prometheus
-    command:
-      - --config.file=/etc/prometheus/prometheus.yml
-      - --storage.tsdb.path=/prometheus
-      - --web.console.libraries=/etc/prometheus/console_libraries
-      - --web.console.templates=/etc/prometheus/consoles
-      - --web.enable-lifecycle
-      - --web.enable-otlp-receiver
-    networks:
-      - monitoring
-    restart: unless-stopped
-
-
-  loki: #LOGS BACKEND
-    image: grafana/loki:latest
-    container_name: loki
-    ports:
-      - "${LOKI_PORT}:${LOKI_PORT}"
-    networks:
-      - monitoring
-
-
-  alloy: #OTEL COLLECTOR
-    image: grafana/alloy:latest
-    container_name: alloy
-    volumes:
-      - ./otel/alloy.yaml:/etc/alloy/config.yaml
-      - alloy-data:/alloy
-    ports:
-      - "${ALLOY_UI_PORT}:${ALLOY_UI_PORT}"
-    networks:
-      - monitoring
-    depends_on:
-      - prometheus
-      - loki
-      - tempo      
-
 volumes:
   db-data:
-  prom-data:
-  alloy-data:
-  tempo-data:
