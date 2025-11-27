@@ -47,9 +47,9 @@ export async function EncryptObject(object: Record<string, any>): Promise<string
 
 export async function DecryptObject(jsonstring?: string): Promise<any> {
 
-    const data = JSON.parse(jsonstring ?? '{}');
+    if (IsEmpty(jsonstring)) return;
 
-    if (IsEmpty(data)) return;
+    const data = JSON.parse(jsonstring!);
 
     const keybytes = GetBytes(data.Key);
     const iv = GetBytes(data.Iv);
