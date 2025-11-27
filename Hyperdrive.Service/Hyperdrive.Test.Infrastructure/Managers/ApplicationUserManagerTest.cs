@@ -1,3 +1,4 @@
+using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Managers;
 using Hyperdrive.Test.Infrastructure.Extensions;
@@ -36,7 +37,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
             Context = new ApplicationContext(ContextOptionsBuilder.Options);
             Context.Seed();
 
-            InstallLogger();         
+            InstallLogger();
 
             Manager = new ApplicationUserManager(Logger, UserManager);
         }
@@ -56,7 +57,7 @@ namespace Hyperdrive.Test.Infrastructure.Managers
 
             Logger = @loggerFactory.CreateLogger<ApplicationUserManager>();
         }
-       
+
 
         /// <summary>
         /// Finds All Application User
@@ -139,13 +140,23 @@ namespace Hyperdrive.Test.Infrastructure.Managers
         [Test]
         public async Task AddApplicationUserRoles()
         {
-            var @user = Context.Users.First(x => x.Id == 3);           
+            var @user = Context.Users.First(x => x.Id == 3);
 
             var @roles = new List<string>() { "Rogue", "Bard" };
 
             await Manager.AddApplicationUserRoles(roles, user);
 
             Assert.Pass();
+        }
+
+        /// <summary>
+        /// Checks Email
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task CheckEmail()
+        {
+            Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckEmail("stafford.parker@email.com"));
         }
 
         /// <summary>
