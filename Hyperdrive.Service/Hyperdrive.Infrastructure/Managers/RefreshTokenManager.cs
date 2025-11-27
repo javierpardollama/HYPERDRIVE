@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Entities;
+﻿using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Managers;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts.Interfaces;
@@ -8,6 +6,9 @@ using Hyperdrive.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Infrastructure.Managers
 {
@@ -87,7 +88,8 @@ namespace Hyperdrive.Infrastructure.Managers
             ApplicationUserRefreshToken @refreshToken = await Context.UserRefreshTokens
                 .TagWith("FindApplicationUserRefreshTokenByCredentials")
                 .Include(x => x.User)
-                .FirstOrDefaultAsync(x => x.UserId == @userid && x.Value == @token);
+                .Where(x => x.UserId == @userid && x.Value == @token)
+                .FirstOrDefaultAsync();
 
             if (@refreshToken is null)
             {
@@ -109,7 +111,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
         public async Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(ApplicationUser @user)
         {
-            ApplicationUserRefreshToken @refreshToken = new ApplicationUserRefreshToken
+            ApplicationUserRefreshToken @refreshToken = new()
             {
                 Name = Guid.NewGuid().ToString(),
                 LoginProvider = JwtSettings.Value.JwtIssuer,

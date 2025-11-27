@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Entities;
+﻿using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Managers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Hyperdrive.Infrastructure.Managers

@@ -34,7 +34,8 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             DriveItem @archive = await Context.DriveItems
                 .TagWith("FindDriveItemById")
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
 
             if (@archive is null)
             {
@@ -128,9 +129,7 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 Length = await Context.DriveItems.TagWith("CountAllDriveItemByApplicationUserId")
                     .AsSplitQuery()
-                    .AsNoTracking()
-                    .Include(x => x.By)
-                    .Include(x => x.Parent)
+                    .AsNoTracking()                 
                     .Where(@comboexp)
                     .CountAsync(),
                 Index = @index,
@@ -139,8 +138,11 @@ namespace Hyperdrive.Infrastructure.Managers
                     .TagWith("FindPaginatedDriveItemByApplicationUserId")
                     .AsSplitQuery()
                     .AsNoTracking()
-                    .Include(x => x.By)
+                    .Include(x => x.Activity)
                     .Include(x => x.Parent)
+                    .Include(x => x.By)
+                    .Include(x => x.SharedWith)
+                    .ThenInclude(x => x.User)
                     .Where(@comboexp)
                     .Skip(@index * @size)
                     .Take(@size)
@@ -166,8 +168,7 @@ namespace Hyperdrive.Infrastructure.Managers
             {
                 Length = await Context.ApplicationUserDriveItems.TagWith("CountAllSharedDriveItemByApplicationUserId")
                     .AsSplitQuery()
-                    .AsNoTracking()
-                    .Include(x => x.User)
+                    .AsNoTracking()                   
                     .Where(x => x.UserId == @userid)
                     .CountAsync(),
                 Index = @index,
@@ -175,9 +176,11 @@ namespace Hyperdrive.Infrastructure.Managers
                 Items = await Context.ApplicationUserDriveItems
                     .TagWith("FindPaginatedSharedDriveItemByApplicationUserId")
                     .AsSplitQuery()
-                    .AsNoTracking()
+                    .AsNoTracking()                    
                     .Include(x => x.User)
                     .Include(x => x.DriveItem.Activity)
+                    .Include(x => x.DriveItem.By)
+                    .Include(x => x.DriveItem.Parent)
                     .Where(x => x.UserId == @userid)
                     .Skip(@index * @size)
                     .Take(@size)
@@ -198,9 +201,7 @@ namespace Hyperdrive.Infrastructure.Managers
             IList<DriveItemVersionDto> @versions = await Context.DriveItemVersions
                 .TagWith("FindAllDriveItemVersionByDriveItemId")
                 .AsSplitQuery()
-                .AsNoTracking()
-                .Include(x => x.DriveItem)
-                .ThenInclude(x => x.By)
+                .AsNoTracking()               
                 .Where(x => x.DriveItemId == @id)
                 .Select(x => x.ToDto())
                 .ToListAsync();
@@ -212,7 +213,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Adds Drive Item
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
-        /// <param name="parent">Injected <see cref="int?"/></param>
+        /// <param name="parentid">Injected <see cref="int?"/></param>
         /// <param name="folder">Injected <see cref="bool"/></param>
         /// <param name="byid">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
@@ -335,7 +336,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// Checks File Name
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
-        /// <param name="parent">Injected <see cref="int"/></param>
+        /// <param name="parentid">Injected <see cref="int"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
         public async Task<bool> CheckFileName(string @filename, int? @parentid, int @userid)
@@ -394,8 +395,7 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("CheckName")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Include(x => x.DriveItem)
-                .Include(x => x.DriveItem)
+                .Include(x => x.DriveItem)             
                 .Where(@comboexp)
                 .AnyAsync();
 
@@ -458,6 +458,8 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("ReloadDriveItemById")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .Include(x => x.Activity)
+                .Include(x => x.Parent)
                 .Include(x => x.By)
                 .Include(x => x.SharedWith)
                 .ThenInclude(x => x.User)

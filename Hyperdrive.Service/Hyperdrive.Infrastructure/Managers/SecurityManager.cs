@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Entities;
+﻿using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Managers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Infrastructure.Managers
 {

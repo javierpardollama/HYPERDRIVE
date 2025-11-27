@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Dtos;
+﻿using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Exceptions;
 using Hyperdrive.Domain.Managers;
@@ -10,6 +6,10 @@ using Hyperdrive.Domain.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Infrastructure.Managers
 {
@@ -82,7 +82,8 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("FindApplicationUserById")
                 .Include(x => x.UserRoles)
                 .ThenInclude(x => x.Role)
-                .FirstOrDefaultAsync(x => x.Id == @id);
+                .Where(x => x.Id == @id)
+                .FirstOrDefaultAsync() ;
 
             if (@applicationUser is null)
             {
@@ -109,7 +110,7 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             var @tasks = @ids.Select(@id => FindApplicationUserById(@id));
             var users = await Task.WhenAll(tasks);
-            return users.ToList();
+            return [.. users];
         }
 
         /// <summary>
@@ -124,7 +125,8 @@ namespace Hyperdrive.Infrastructure.Managers
                 .TagWith("FindApplicationUserById")
                 .Include(x => x.UserRoles)
                 .ThenInclude(x => x.Role)
-                .FirstOrDefaultAsync(x => x.Email == @email);
+                .Where(x => x.Email == @email)
+                .FirstOrDefaultAsync();
 
             if (@applicationUser is null)
             {

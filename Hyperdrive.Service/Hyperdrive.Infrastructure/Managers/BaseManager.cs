@@ -39,15 +39,6 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             Context = @context;
             JwtSettings = @jwtSettings;
-        }
-       
-        /// <summary>
-        /// Initializes a new Instance of <see cref="BaseManager"/>
-        /// </summary>
-        /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-        public BaseManager(IOptions<JwtSettings> @jwtSettings)
-        {
-            JwtSettings = @jwtSettings;
-        }
+        }      
     }
 }

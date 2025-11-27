@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Hyperdrive.Domain.Entities;
+﻿using Hyperdrive.Domain.Entities;
 using Hyperdrive.Domain.Managers;
 using Hyperdrive.Domain.Settings;
 using Hyperdrive.Infrastructure.Contexts.Interfaces;
@@ -12,6 +6,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Infrastructure.Managers
 {
@@ -37,7 +37,7 @@ namespace Hyperdrive.Infrastructure.Managers
             Issuer = JwtSettings.Value.JwtIssuer,
             IssuedAt = DateTime.UtcNow,
             NotBefore = DateTime.UtcNow,
-            Expires = DateTime.UtcNow.AddMinutes(JwtSettings.Value.JwtExpireMinutes),
+            Expires = GenerateTokenExpirationDate(),
             SigningCredentials = GenerateSigningCredentials(GenerateSymmetricSecurityKey())
         };
 
@@ -138,7 +138,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <returns>Instance of <see cref="ApplicationUserToken"/></returns>
         public async Task<ApplicationUserToken> AddApplicationUserToken(ApplicationUser @user)
         {
-            ApplicationUserToken @userToken = new ApplicationUserToken
+            ApplicationUserToken @userToken = new()
             {
                 Name = Guid.NewGuid().ToString(),
                 LoginProvider = JwtSettings.Value.JwtIssuer,              
