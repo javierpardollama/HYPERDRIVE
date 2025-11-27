@@ -20,9 +20,7 @@ public static class ApplicationUserProfile
         {
             Id = @dto.Id,
             LastModified = @dto.LastModified,
-            ApplicationRoles = @dto.ApplicationRoles
-                .Select(x=>x.ToCatalogViewModel())
-                .ToList(),
+            ApplicationRoles = [.. @dto.ApplicationRoles.Select(x=>x.ToCatalogViewModel())],
             Token = @dto.Token?.ToViewModel(),
             RefreshToken = @dto.RefreshToken?.ToViewModel(),
             FirstName = @dto.FirstName,
@@ -45,7 +43,7 @@ public static class ApplicationUserProfile
             Index = @dto.Index,
             Length = @dto.Length,
             Size = @dto.Size,
-            Items = dto.Items.Select(x=> x.ToViewModel()).ToList()
+            Items = [.. dto.Items.Select(x=> x.ToViewModel())]
         };
     }
     

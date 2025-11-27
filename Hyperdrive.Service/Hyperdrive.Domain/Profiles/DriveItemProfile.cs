@@ -22,19 +22,19 @@ public static class DriveItemProfile
             Id = @entity.Id,
             FileName = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
-              .LastOrDefault()?.FileName,
+              .FirstOrDefault()?.FileName,
             Name = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
-              .LastOrDefault()?.Name,
+              .FirstOrDefault()?.Name,
             Extension = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
-              .LastOrDefault()?.Extension,
+              .FirstOrDefault()?.Extension,
             By = @entity.By?.ToCatalog(),
             Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
             LastModified = @entity.Activity
               .OrderByDescending(x=>x.CreatedAt)
-              .LastOrDefault()?.CreatedAt,
+              .FirstOrDefault()?.CreatedAt,
             SharedWith = [.. @entity.SharedWith.Select(x=> x.User.ToCatalog())],
         };
     }
@@ -51,7 +51,7 @@ public static class DriveItemProfile
             Id = @entity.Id,
             Name = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
-              .LastOrDefault()?.FileName
+              .FirstOrDefault()?.FileName
         };
     }
     

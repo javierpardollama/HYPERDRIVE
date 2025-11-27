@@ -69,9 +69,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(ApplicationUserRefreshToken)
-                + " with Name "
-                + @refreshToken.Name
+            string @logData = nameof(ApplicationUserRefreshToken)               
                 + " was revoked at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -94,9 +92,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@refreshToken is null)
             {
                 // Log
-                string @logData = nameof(ApplicationUserRefreshToken)
-                    + " with User Id "
-                    + @userid
+                string @logData = nameof(ApplicationUserRefreshToken)                 
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
@@ -127,9 +123,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
             
             // Log
-            string @logData = nameof(ApplicationUserRefreshToken)
-                              + " with Name "
-                              + @refreshToken.Name
+            string @logData = nameof(ApplicationUserRefreshToken)                             
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 

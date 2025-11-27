@@ -38,9 +38,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@signInResult.Succeeded) throw new UnauthorizedAccessException("Authentication Error");
            
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Email "
-                              + @email
+            string @logData = nameof(ApplicationUser)                            
                               + " logged in at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -59,9 +57,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await @signInManager.SignOutAsync();
            
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Email "
-                              + @email
+            string @logData = nameof(ApplicationUser)                             
                               + " logged out at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -91,9 +87,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new UnauthorizedAccessException("Authentication Error");
           
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Email "
-                              + @email
+            string @logData = nameof(ApplicationUser)                           
                               + " joined in at "
                               + DateTime.UtcNow.ToShortTimeString();
 

@@ -30,9 +30,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded)  throw new UnauthorizedAccessException("Security Error");
             
             // Log
-            string @logData = nameof(ApplicationUser)
-                + " with Id "
-                + @user.Id
+            string @logData = nameof(ApplicationUser)             
                 + " restored its Password at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -54,9 +52,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new UnauthorizedAccessException("Security Error");
            
             // Log
-            string @logData = nameof(ApplicationUser)
-                + " with Id "
-                + @user.Id
+            string @logData = nameof(ApplicationUser)              
                 + " restored its Password at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -78,9 +74,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new UnauthorizedAccessException("Security Error");
             
             // Log
-            string @logData = nameof(ApplicationUser)
-                + " with Id "
-                + @user.Email
+            string @logData = nameof(ApplicationUser)               
                 + " restored its Email at "
                 + DateTime.UtcNow.ToShortTimeString();
             
@@ -102,9 +96,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new UnauthorizedAccessException("Security Error");
                 
             // Log
-            string @logData = nameof(ApplicationUser)
-                + " with Id "
-                + @user.Id
+            string @logData = nameof(ApplicationUser)              
                 + " restored its Phone Number at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -130,9 +122,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new UnauthorizedAccessException("Security Error");
                 
             // Log
-            string @logData = nameof(ApplicationUser)
-                + " with Id "
-                + @user.Id
+            string @logData = nameof(ApplicationUser)              
                 + " was modified at "
                 + DateTime.UtcNow.ToShortTimeString();
             

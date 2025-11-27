@@ -26,9 +26,7 @@ public static class DriveItemProfile
             Parent = @dto.Parent?.ToCatalogViewModel(),
             Folder = @dto.Folder,
             LastModified = @dto.LastModified,
-            SharedWith = @dto.SharedWith
-                .Select(x=> x.ToCatalogViewModel())
-                .ToList(),
+            SharedWith = [.. @dto.SharedWith.Select(x=> x.ToCatalogViewModel())],
         };
     }
     
@@ -44,7 +42,7 @@ public static class DriveItemProfile
             Index = @dto.Index,
             Length = @dto.Length,
             Size = @dto.Size,
-            Items = dto.Items.Select(x=> x.ToViewModel()).ToList()
+            Items = [.. dto.Items.Select(x=> x.ToViewModel())]
         };
     }
     

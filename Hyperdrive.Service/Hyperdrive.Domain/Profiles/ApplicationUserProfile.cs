@@ -23,11 +23,11 @@ public static class ApplicationUserProfile
             ApplicationRoles = [.. @entity.UserRoles.Select(x=>x.Role.ToCatalog())],
             Token = @entity.Tokens
                 .OrderByDescending(x=> x.ModifiedAt)
-                .LastOrDefault()?
+                .FirstOrDefault()?
                 .ToDto(),
             RefreshToken = @entity.RefreshTokens
                 .OrderByDescending(x=> x.ModifiedAt)
-                .LastOrDefault()?
+                .FirstOrDefault()?
                 .ToDto(),
             FirstName = @entity.FirstName,
             LastName = @entity.LastName,

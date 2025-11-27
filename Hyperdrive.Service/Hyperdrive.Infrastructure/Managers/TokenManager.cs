@@ -151,9 +151,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
             
             // Log
-            string @logData = nameof(ApplicationUserToken)
-                              + " with Name "
-                              + @userToken.Name
+            string @logData = nameof(ApplicationUserToken)                              
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 

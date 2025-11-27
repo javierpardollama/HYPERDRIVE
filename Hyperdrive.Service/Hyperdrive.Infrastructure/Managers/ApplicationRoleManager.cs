@@ -36,9 +36,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
             
             // Log
-            string @logData = nameof(ApplicationRole)
-                + " with Id "
-                + @entity.Id
+            string @logData = nameof(ApplicationRole)              
                 + " was added at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -63,17 +61,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@found)
             {
                 // Log
-                string @logData = nameof(ApplicationRole)
-                    + " with Name "
-                    + @name
+                string @logData = nameof(ApplicationRole)                   
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationRole)
-                    + " with Name "
-                    + @name
+                throw new ServiceException(nameof(ApplicationRole)                   
                     + " already exists");
             }
 
@@ -98,17 +92,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@found)
             {
                 // Log
-                string @logData = nameof(ApplicationRole)
-                    + " with Name "
-                    + @name
+                string @logData = nameof(ApplicationRole)                  
                     + " was already found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationRole)
-                    + " with Name "
-                    + @name
+                throw new ServiceException(nameof(ApplicationRole)                  
                     + " already exists");
             }
 
@@ -175,17 +165,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@applicationRole is null)
             {
                 // Log
-                string @logData = nameof(ApplicationRole)
-                    + " with Id "
-                    + @id
+                string @logData = nameof(ApplicationRole)                   
                     + " was not found at "
                     + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationRole)
-                    + " with Id "
-                    + id
+                throw new ServiceException(nameof(ApplicationRole)                    
                     + " does not exist");
             }
 
@@ -204,9 +190,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
            
             // Log
-            string @logData = nameof(ApplicationRole)
-                + " with Id "
-                + @entity.Id
+            string @logData = nameof(ApplicationRole)               
                 + " was removed at "
                 + DateTime.UtcNow.ToShortTimeString();
 
@@ -233,9 +217,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
             
             // Log
-            string @logData = nameof(ApplicationRole)
-                + " with Id "
-                + @entity.Id
+            string @logData = nameof(ApplicationRole)               
                 + " was modified at "
                 + DateTime.UtcNow.ToShortTimeString();
 

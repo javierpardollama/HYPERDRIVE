@@ -39,17 +39,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@archive is null)
             {
                 // Log
-                string @logData = nameof(@archive)
-                                  + " with Id "
-                                  + id
+                string @logData = nameof(DriveItem)                                
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(DriveItem)
-                                           + " with Id "
-                                           + id
+                throw new ServiceException(nameof(DriveItem)                                          
                                            + " does not exist");
             }
 
@@ -82,17 +78,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@archive is null)
             {
                 // Log
-                string @logData = nameof(DriveItem)
-                                  + " with FileName "
-                                  + @filename
+                string @logData = nameof(DriveItem)                                
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(DriveItem)
-                                           + " with FileName "
-                                           + @filename
+                throw new ServiceException(nameof(DriveItem)                                          
                                            + " already exists");
             }
 
@@ -111,9 +103,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(DriveItem)
-                              + " with Id "
-                              + @entity.Id
+            string @logData = nameof(DriveItem)                             
                               + " was removed at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -240,9 +230,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(DriveItem)
-                              + " with Id "
-                              + @entity.Id
+            string @logData = nameof(DriveItem)                             
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -269,9 +257,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(ApplicationUserDriveItem)
-                              + "s with Ids "
-                              + string.Join(",", @userDriveItems.Select(x => x.Id))
+            string @logData = nameof(ApplicationUserDriveItem)                             
                               + " were added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -307,9 +293,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(DriveItemVersion)
-                              + " with Id "
-                              + @version.Id
+            string @logData = nameof(DriveItemVersion)                             
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -340,9 +324,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = nameof(DriveItemVersion)
-                              + " with Id "
-                              + @version.Id
+            string @logData = nameof(DriveItemVersion)                             
                               + " was added at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -375,17 +357,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@found)
             {
                 // Log
-                string @logData = nameof(DriveItem)
-                                  + " with FileName "
-                                  + @filename
+                string @logData = nameof(DriveItem)                                 
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(DriveItem)
-                                           + " with FileName "
-                                           + @filename
+                throw new ServiceException(nameof(DriveItem)                                          
                                            + " already exists");
             }
 
@@ -424,17 +402,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@found)
             {
                 // Log
-                string @logData = nameof(DriveItem)
-                                  + " with Name "
-                                  + name
+                string @logData = nameof(DriveItem)                                 
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(DriveItem)
-                                           + " with Name "
-                                           + @name
+                throw new ServiceException(nameof(DriveItem)                                          
                                            + " already exists");
             }
 
@@ -460,17 +434,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@archive is null)
             {
                 // Log
-                string @logData = nameof(DriveItem)
-                                  + " with Id "
-                                  + id
+                string @logData = nameof(DriveItem)                                
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(DriveItem)
-                                           + " with Id "
-                                           + id
+                throw new ServiceException(nameof(DriveItem)                                          
                                            + " does not exist");
             }
 
@@ -498,9 +468,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@archive is null)
             {
                 // Log
-                string @logData = nameof(@archive)
-                                  + " with Id "
-                                  + id
+                string @logData = nameof(DriveItem)                                
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 

@@ -87,17 +87,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Id "
-                                  + @id
+                string @logData = nameof(ApplicationUser)                                 
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Id "
-                                           + @id
+                throw new ServiceException(nameof(ApplicationUser)                                           
                                            + " does not exist");
             }
 
@@ -133,17 +129,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Email "
-                                  + @email
+                string @logData = nameof(ApplicationUser)                                
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Email "
-                                           + @email
+                throw new ServiceException(nameof(ApplicationUser)                                        
                                            + " does not exist");
             }
 
@@ -162,9 +154,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
 
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Id "
-                              + @user.Id
+            string @logData = nameof(ApplicationUser)                            
                               + " was removed at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -184,9 +174,7 @@ namespace Hyperdrive.Infrastructure.Managers
             await AddApplicationUserRoles(roles, @user); 
 
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Id"
-                              + @user.Id
+            string @logData = nameof(ApplicationUser)                            
                               + " was modified at "
                               + DateTime.UtcNow.ToShortTimeString();
 
@@ -202,9 +190,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
             
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Id"
-                              + @user.Id
+            string @logData = nameof(ApplicationUser)                              
                               + " added its "
                               + nameof(ApplicationRole)
                               + " at "
@@ -224,9 +210,7 @@ namespace Hyperdrive.Infrastructure.Managers
             if (!@identityResult.Succeeded) throw new ServiceException("Management Error");
 
             // Log
-            string @logData = nameof(ApplicationUser)
-                              + " with Id"
-                              + @user.Id
+            string @logData = nameof(ApplicationUser)                            
                               + " removed its "
                               + nameof(ApplicationRole)
                               + " at "
@@ -255,17 +239,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@found)
             {
                 // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Email "
-                                  + @email
+                string @logData = nameof(ApplicationUser)                                 
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Email "
-                                           + @email
+                throw new ServiceException(nameof(ApplicationUser)                                         
                                            + " already exists");
             }
 
@@ -289,17 +269,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@found)
             {
                 // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Email "
-                                  + @email
+                string @logData = nameof(ApplicationUser)                                  
                                   + " was already found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Email "
-                                           + @email
+                throw new ServiceException(nameof(ApplicationUser)                                          
                                            + " already exists");
             }
 
@@ -327,17 +303,13 @@ namespace Hyperdrive.Infrastructure.Managers
             if (@applicationUser is null)
             {
                 // Log
-                string @logData = nameof(ApplicationUser)
-                                  + " with Id "
-                                  + @id
+                string @logData = nameof(ApplicationUser)                               
                                   + " was not found at "
                                   + DateTime.UtcNow.ToShortTimeString();
 
                 @logger.LogWarning(@logData);
 
-                throw new ServiceException(nameof(ApplicationUser)
-                                           + " with Id "
-                                           + @id
+                throw new ServiceException(nameof(ApplicationUser)                                           
                                            + " does not exist");
             }
 
