@@ -1,4 +1,4 @@
-export function IsDefined<T>(value: T): value is T {
+function IsDefined<T>(value: T): value is T {
     return <T>value !== undefined && <T>value !== null;
 }
 
