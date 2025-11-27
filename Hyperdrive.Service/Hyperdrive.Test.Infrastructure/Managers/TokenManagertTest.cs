@@ -36,7 +36,7 @@ public class TokenManagertTest : BaseManagerTest
         Context = new ApplicationContext(ContextOptionsBuilder.Options);
         Context.Seed();
 
-        InstallLogger();       
+        InstallLogger();
 
         Manager = new TokenManager(Context, Logger, ApiOptions);
     }
@@ -55,7 +55,7 @@ public class TokenManagertTest : BaseManagerTest
         });
 
         Logger = @loggerFactory.CreateLogger<TokenManager>();
-    }    
+    }
 
     /// <summary>
     /// Generates Token Descriptor
@@ -119,6 +119,7 @@ public class TokenManagertTest : BaseManagerTest
     /// <summary>
     /// Generates Signing Credentials
     /// </summary>
+    [Test]
     public void GenerateSigningCredentials()
     {
         var @key = Manager.GenerateSymmetricSecurityKey();
