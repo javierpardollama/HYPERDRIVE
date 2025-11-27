@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hyperdrive.Domain.Settings
 {
@@ -23,9 +25,14 @@ namespace Hyperdrive.Domain.Settings
         public string JwtAuthority { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="JwtAudience"/>
+        /// </summary>
+        public string JwtAudience { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="JwtAudiences"/>
         /// </summary>
-        public IList<string> JwtAudiences { get; set; }
+        public IList<string> JwtAudiences => [..JwtAudience.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(a => a.Trim())];
 
         /// <summary>
         /// Gets or Sets <see cref="JwtExpireMinutes"/>

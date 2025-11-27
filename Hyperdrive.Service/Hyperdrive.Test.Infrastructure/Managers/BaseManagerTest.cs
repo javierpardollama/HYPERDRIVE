@@ -37,7 +37,7 @@ public abstract class BaseManagerTest
     /// </summary>
     protected IOptions<JwtSettings> ApiOptions { get; set; } = Options.Create(new JwtSettings
     {
-        JwtAudiences = ["https://localhost:4200"],
+        JwtAudience = "https://localhost:4200",
         JwtAuthority = "https://localhost:7297",
         JwtIssuer = "https://localhost:7297",
         JwtExpireDays = 2,

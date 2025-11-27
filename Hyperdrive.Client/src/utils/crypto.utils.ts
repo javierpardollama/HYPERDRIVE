@@ -1,3 +1,5 @@
+import { IsEmpty } from "./object.utils";
+
 const Algorithm = 'AES-CBC';
 const KeyLength = 256; // bits
 const IvLength = 16;   // bytes
@@ -43,9 +45,11 @@ export async function EncryptObject(object: Record<string, any>): Promise<string
 }
 
 
-export async function DecryptObject(jsonstring: string): Promise<any> {
+export async function DecryptObject(jsonstring?: string): Promise<any> {
 
-    const data = JSON.parse(jsonstring);
+    const data = JSON.parse(jsonstring ?? '{}');
+
+    if (IsEmpty(data)) return;
 
     const keybytes = GetBytes(data.Key);
     const iv = GetBytes(data.Iv);

@@ -44,7 +44,7 @@ services:
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${DB_CONNECTION}
-      Jwt__JwtAudiences: ${JWT_AUDIENCES}    
+      Jwt__JwtAudience: ${JWT_AUDIENCE}    
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}

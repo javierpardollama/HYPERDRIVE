@@ -6,6 +6,7 @@ import { firstValueFrom, from, Observable } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { IsEmpty } from 'src/utils/object.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private async SetRequest(req: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
     await this.GetLocalUser();
 
-    if (this.User) {
+    if (!IsEmpty(this.User)) {     
       req = req.clone({
         setHeaders: {
           'Content-Type': 'application/json; charset=utf-8',
