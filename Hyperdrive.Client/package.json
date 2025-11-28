@@ -18,8 +18,7 @@
     "doc": "npx compodoc -p tsconfig.doc.json",
     "forge": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
-    "start": "electron-forge start"
+    "make": "electron-forge make"   
   },
   "private": true,
   "dependencies": {

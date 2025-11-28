@@ -1,12 +1,16 @@
-const { app, BrowserWindow } = require('electron/main')
+const { app, screen, BrowserWindow } = require('electron/main')
 const path = require('path');
 
 const CreateWindow = () => {
-
     const isdev = !app.isPackaged;
 
+    const size = screen.getPrimaryDisplay().workAreaSize;
+
     const win = new BrowserWindow({
-        fullscreen: true,
+        x: 0,
+        y: 0,
+        width: size.width,
+        height: size.height,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
@@ -25,7 +29,7 @@ const CreateWindow = () => {
 
     win.webContents.on('did-fail-load', LoadContent);
 
-    if (isDev) win.webContents.openDevTools();
+    if (isdev) win.webContents.openDevTools();
 }
 
 

@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 
 import { Injectable } from '@angular/core';
 
-import { firstValueFrom, from, Observable } from 'rxjs';
+import { firstValueFrom, from, Observable, switchMap } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 import { DecryptObject } from 'src/utils/crypto.utils';
@@ -20,24 +20,22 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return from(this.SetRequest(req, next));
+    return from(this.GetLocalUser()).pipe(
+      switchMap(() => {
+        if (!IsEmpty(this.User)) {
+          req = req.clone({
+            setHeaders: {
+              'Content-Type': 'application/json; charset=utf-8',
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${this.User?.Token?.Value}`,
+            },
+          });
+        }
+        return next.handle(req); // return original Observable
+      })
+    );
   }
 
-  private async SetRequest(req: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
-    await this.GetLocalUser();
-
-    if (!IsEmpty(this.User)) {     
-      req = req.clone({
-        setHeaders: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${this.User?.Token?.Value}`,
-        },
-      });
-    }
-
-    return firstValueFrom(next.handle(req));
-  }
 
   // Get User from Storage
   public async GetLocalUser(): Promise<void> {
