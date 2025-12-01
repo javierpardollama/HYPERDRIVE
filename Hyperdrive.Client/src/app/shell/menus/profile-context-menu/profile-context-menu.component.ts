@@ -14,7 +14,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-profile-context-menu',
     templateUrl: './profile-context-menu.component.html',
-    styleUrl: './profile-context-menu.component.scss'
+    styleUrl: './profile-context-menu.component.scss',
+    standalone: false
 })
 export class ProfileContextMenuComponent implements OnInit {
 

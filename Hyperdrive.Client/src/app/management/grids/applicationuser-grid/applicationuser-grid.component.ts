@@ -18,7 +18,8 @@ import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 @Component({
     selector: 'app-applicationuser-grid',
     templateUrl: './applicationuser-grid.component.html',
-    styleUrls: ['./applicationuser-grid.component.scss']
+    styleUrls: ['./applicationuser-grid.component.scss'],
+    standalone: false
 })
 export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

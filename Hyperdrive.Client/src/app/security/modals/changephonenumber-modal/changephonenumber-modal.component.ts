@@ -21,7 +21,8 @@ import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-changephonenumber-modal',
     templateUrl: './changephonenumber-modal.component.html',
-    styleUrls: ['./changephonenumber-modal.component.scss']
+    styleUrls: ['./changephonenumber-modal.component.scss'],
+    standalone: false
 })
 export class ChangePhoneNumberModalComponent implements OnInit {
 

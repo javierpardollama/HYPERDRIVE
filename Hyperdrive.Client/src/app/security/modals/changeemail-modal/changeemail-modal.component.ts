@@ -19,7 +19,8 @@ import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-changeemail-modal',
     templateUrl: './changeemail-modal.component.html',
-    styleUrls: ['./changeemail-modal.component.scss']
+    styleUrls: ['./changeemail-modal.component.scss'],
+    standalone: false
 })
 export class ChangeEmailModalComponent implements OnInit {
 

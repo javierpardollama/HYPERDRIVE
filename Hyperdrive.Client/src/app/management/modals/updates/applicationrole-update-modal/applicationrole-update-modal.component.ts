@@ -20,7 +20,8 @@ import { ExpressionAppVariants } from './../../../../../variants/expression.app.
 @Component({
     selector: 'app-applicationrole-update-modal',
     templateUrl: './applicationrole-update-modal.component.html',
-    styleUrls: ['./applicationrole-update-modal.component.scss']
+    styleUrls: ['./applicationrole-update-modal.component.scss'],
+    standalone: false
 })
 export class ApplicationRoleUpdateModalComponent implements OnInit {
 

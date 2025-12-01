@@ -19,7 +19,8 @@ import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-changename-modal',
     templateUrl: './changename-modal.component.html',
-    styleUrl: './changename-modal.component.scss'
+    styleUrl: './changename-modal.component.scss',
+    standalone: false
 })
 export class ChangeNameModalComponent {
 

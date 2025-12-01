@@ -21,9 +21,10 @@ import { EncryptObject } from 'src/utils/crypto.utils';
 
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+    selector: 'app-signin',
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.scss'],
+    standalone: false
 })
 export class SignInComponent implements OnInit {
 

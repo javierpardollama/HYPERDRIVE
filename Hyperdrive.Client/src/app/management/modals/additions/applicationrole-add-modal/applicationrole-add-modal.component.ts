@@ -18,7 +18,8 @@ import { ExpressionAppVariants } from '../../../../../variants/expression.app.va
 @Component({
     selector: 'app-applicationrole-add-modal',
     templateUrl: './applicationrole-add-modal.component.html',
-    styleUrls: ['./applicationrole-add-modal.component.scss']
+    styleUrls: ['./applicationrole-add-modal.component.scss'],
+    standalone: false
 })
 export class ApplicationRoleAddModalComponent implements OnInit {
 

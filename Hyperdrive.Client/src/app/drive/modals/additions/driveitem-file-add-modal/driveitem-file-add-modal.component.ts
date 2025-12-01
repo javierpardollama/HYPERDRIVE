@@ -13,7 +13,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-driveitem-file-add-modal',
     templateUrl: './driveitem-file-add-modal.component.html',
-    styleUrl: './driveitem-file-add-modal.component.scss'
+    styleUrl: './driveitem-file-add-modal.component.scss',
+    standalone: false
 })
 export class DriveItemFileAddModalComponent implements OnInit {
 

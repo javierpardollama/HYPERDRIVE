@@ -21,7 +21,8 @@ import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
 @Component({
     selector: 'app-applicationuser-update-modal',
     templateUrl: './applicationuser-update-modal.component.html',
-    styleUrls: ['./applicationuser-update-modal.component.scss']
+    styleUrls: ['./applicationuser-update-modal.component.scss'],
+    standalone: false
 })
 export class ApplicationUserUpdateModalComponent implements OnInit {
 

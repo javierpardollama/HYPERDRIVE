@@ -16,7 +16,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-driveitem-share-with-update-modal',
     templateUrl: './driveitem-share-with-update-modal.component.html',
-    styleUrl: './driveitem-share-with-update-modal.component.scss'
+    styleUrl: './driveitem-share-with-update-modal.component.scss',
+    standalone: false
 })
 export class DriveitemShareWithUpdateModalComponent implements OnInit {
 

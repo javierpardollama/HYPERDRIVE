@@ -9,7 +9,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-nav-menu',
     templateUrl: './nav-menu.component.html',
-    styleUrls: ['./nav-menu.component.scss']
+    styleUrls: ['./nav-menu.component.scss'],
+    standalone: false
 })
 export class NavMenuComponent implements OnInit {
 

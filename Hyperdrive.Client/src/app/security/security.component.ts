@@ -16,7 +16,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-security',
     templateUrl: './security.component.html',
-    styleUrls: ['./security.component.scss']
+    styleUrls: ['./security.component.scss'],
+    standalone: false
 })
 export class SecurityComponent implements OnInit {
 

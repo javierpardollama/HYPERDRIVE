@@ -25,7 +25,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-driveitem-grid',
     templateUrl: './driveitem-grid.component.html',
-    styleUrl: './driveitem-grid.component.scss'
+    styleUrl: './driveitem-grid.component.scss',
+    standalone: false
 })
 export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

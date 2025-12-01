@@ -8,7 +8,8 @@ import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 @Component({
     selector: 'app-toolbox-context-menu',
     templateUrl: './toolbox-context-menu.component.html',
-    styleUrl: './toolbox-context-menu.component.scss'
+    styleUrl: './toolbox-context-menu.component.scss',
+    standalone: false
 })
 export class ToolboxContextMenuComponent {
 

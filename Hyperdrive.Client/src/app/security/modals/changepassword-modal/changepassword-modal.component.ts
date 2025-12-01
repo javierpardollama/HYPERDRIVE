@@ -18,7 +18,8 @@ import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-changepassword-modal',
     templateUrl: './changepassword-modal.component.html',
-    styleUrls: ['./changepassword-modal.component.scss']
+    styleUrls: ['./changepassword-modal.component.scss'],
+    standalone: false
 })
 export class ChangePasswordModalComponent implements OnInit {
 

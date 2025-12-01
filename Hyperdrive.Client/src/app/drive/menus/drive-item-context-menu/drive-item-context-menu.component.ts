@@ -17,7 +17,8 @@ import {
 @Component({
     selector: 'app-drive-item-context-menu',
     templateUrl: './drive-item-context-menu.component.html',
-    styleUrl: './drive-item-context-menu.component.scss'
+    styleUrl: './drive-item-context-menu.component.scss',
+    standalone: false
 })
 export class DriveItemContextMenuComponent {
 

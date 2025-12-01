@@ -24,9 +24,10 @@ import { FilterPageApplicationRole } from 'src/viewmodels/filters/filterpageappl
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 
 @Component({
-  selector: 'app-applicationrole-grid',
-  templateUrl: './applicationrole-grid.component.html',
-  styleUrls: ['./applicationrole-grid.component.scss']
+    selector: 'app-applicationrole-grid',
+    templateUrl: './applicationrole-grid.component.html',
+    styleUrls: ['./applicationrole-grid.component.scss'],
+    standalone: false
 })
 export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

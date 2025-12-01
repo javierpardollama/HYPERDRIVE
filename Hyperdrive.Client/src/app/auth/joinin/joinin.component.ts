@@ -15,7 +15,8 @@ import { EncryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-joinin-auth',
     templateUrl: './joinin.component.html',
-    styleUrls: ['./joinin.component.scss']
+    styleUrls: ['./joinin.component.scss'],
+    standalone: false
 })
 export class JoinInComponent implements OnInit {
 

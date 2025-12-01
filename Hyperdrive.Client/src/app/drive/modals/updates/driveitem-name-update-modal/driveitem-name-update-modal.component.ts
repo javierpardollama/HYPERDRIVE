@@ -14,7 +14,8 @@ import { DecryptObject } from 'src/utils/crypto.utils';
 @Component({
     selector: 'app-driveitem-name-update-modal',
     templateUrl: './driveitem-name-update-modal.component.html',
-    styleUrl: './driveitem-name-update-modal.component.scss'
+    styleUrl: './driveitem-name-update-modal.component.scss',
+    standalone: false
 })
 export class DriveitemNameUpdateModalComponent implements OnInit {
 
