@@ -28,6 +28,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @Component({
@@ -45,7 +47,9 @@ import { CommonModule } from '@angular/common';
         MatInputModule,
         MatMenuModule,
         MatFormFieldModule,
-        CommonModule
+        CommonModule,
+        MatPaginatorModule,
+        MatSortModule,
     ]
 })
 export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy {

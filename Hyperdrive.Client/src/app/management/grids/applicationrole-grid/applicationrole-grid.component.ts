@@ -27,6 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-applicationrole-grid',
@@ -39,7 +41,9 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatTooltipModule,
     MatFormFieldModule,
-    CommonModule
+    CommonModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDestroy {

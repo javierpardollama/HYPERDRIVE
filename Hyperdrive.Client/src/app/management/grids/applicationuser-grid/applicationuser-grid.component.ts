@@ -19,6 +19,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @Component({
@@ -33,7 +35,9 @@ import { CommonModule } from '@angular/common';
         MatTooltipModule,
         MatChipsModule,
         MatFormFieldModule,
-        CommonModule
+        CommonModule,
+        MatPaginatorModule,
+        MatSortModule,
     ]
 })
 export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDestroy {
