@@ -82,6 +82,7 @@ export class ChangePasswordModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
+            this.sessionService.CreateKey(viewModel.NewPassword);
             this.sessionService.EncryptUser(user);
         }
 

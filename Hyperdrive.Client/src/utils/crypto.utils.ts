@@ -51,8 +51,6 @@ export async function DecryptObject(jsonstring: string, cryptokey: CryptoKey): P
     return JSON.parse(new TextDecoder().decode(decryptedBuffer));
 }
 
-
-
 function ToBase64(bytes: Uint8Array): string {
     return btoa(String.fromCharCode(...bytes));
 }

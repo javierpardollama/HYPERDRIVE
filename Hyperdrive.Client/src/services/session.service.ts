@@ -8,7 +8,7 @@ import { ViewApplicationUser } from "src/viewmodels/views/viewapplicationuser";
 
 export class SessionService {
 
-    private Key: CryptoKey | undefined;
+    private Key?: CryptoKey;
 
     public async CreateKey(password: string) {
         this.Key = await CreateCryptoKey(password);
