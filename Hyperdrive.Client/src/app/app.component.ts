@@ -19,7 +19,13 @@ export class AppComponent {
   }
 
   ApplyContenSecurityPolicy(): void {
-    let content = `default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self' ${environment.Api.Service} ${environment.Otel.Exporter}`;
+    const content = [
+      "default-src 'self'",
+      "style-src 'self' 'unsafe-inline'",
+      "script-src 'self'",
+      "img-src 'self' data:",
+      `connect-src 'self' ${environment.Api.Service} ${environment.Otel.Exporter}`
+    ].join("; ");
 
     this.meta.addTag({ 'http-equiv': 'Content-Security-Policy', content });
   }
