@@ -1,4 +1,4 @@
-import { GetBytes } from "./crypto.utils";
+import { DecodeBase64 } from "./byte.utils";
 
 export async function EncodeBlob(file: File): Promise<string> {
 
@@ -11,7 +11,7 @@ export async function EncodeBlob(file: File): Promise<string> {
 
 export async function DecodeBlob(content: string, type: string): Promise<Blob> {
 
-    const bytes = GetBytes(content);
+    const bytes = DecodeBase64(content);
 
     return new Blob([bytes], { type: type });
 }

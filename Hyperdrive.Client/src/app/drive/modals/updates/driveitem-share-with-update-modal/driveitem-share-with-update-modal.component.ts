@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 @Component({
     selector: 'app-driveitem-share-with-update-modal',
@@ -45,7 +45,7 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
     constructor(
         private applicationuserService: ApplicationUserService,
         private driveItemService: DriveItemService,
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveitemShareWithUpdateModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -105,6 +105,6 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionService.DecryptUser();;
+        this.User = await this.sessionVaultService.DecryptUser();;
     }
 }

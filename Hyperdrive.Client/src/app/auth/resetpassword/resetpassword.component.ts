@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 @Component({
     selector: 'app-resetpassword',
@@ -43,7 +43,7 @@ export class ResetPasswordComponent implements OnInit {
         private router: Router,
         private location: Location,
         private securityService: SecurityService,
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         private formBuilder: FormBuilder,
         private matSnackBar: MatSnackBar) {
     }
@@ -76,8 +76,8 @@ export class ResetPasswordComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.sessionService.CreateKey(viewModel.NewPassword);
-            await this.sessionService.EncryptUser(user);
+            await this.sessionVaultService.CreateKey(viewModel.NewPassword);
+            await this.sessionVaultService.EncryptUser(user);
 
             await this.router.navigate(['/']);
         }

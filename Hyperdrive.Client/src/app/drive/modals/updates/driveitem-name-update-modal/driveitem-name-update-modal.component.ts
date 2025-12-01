@@ -12,7 +12,7 @@ import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 @Component({
     selector: 'app-driveitem-name-update-modal',
@@ -37,7 +37,7 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
     // Constructor
     constructor(
         private driveItemService: DriveItemService,
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveitemNameUpdateModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -85,6 +85,6 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionService.DecryptUser();;
+        this.User = await this.sessionVaultService.DecryptUser();;
     }
 }

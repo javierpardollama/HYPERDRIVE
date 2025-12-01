@@ -6,11 +6,11 @@ import { ViewApplicationUser } from "src/viewmodels/views/viewapplicationuser";
     providedIn: 'root',
 })
 
-export class SessionService {
+export class SessionVaultService {
 
     private Key?: CryptoKey;
 
-    public async CreateKey(password: string) {
+    public async CreateKey(password: string): Promise<void> {
         this.Key = await CreateCryptoKey(password);
     }
 

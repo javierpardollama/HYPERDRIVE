@@ -35,8 +35,8 @@ export function IsEmpty<T>(value: T): boolean {
     }
 
     if (IsCustomClass(value)) {
-        return false; // Custom classes as non-empty by default
+        return false;
     }
 
-    return false; // Numbers, booleans, etc.
+    return false;
 }

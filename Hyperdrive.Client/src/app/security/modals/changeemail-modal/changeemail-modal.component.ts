@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 @Component({
     selector: 'app-changeemail-modal',
@@ -45,7 +45,7 @@ export class ChangeEmailModalComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<ChangeEmailModalComponent>,
         private securityService: SecurityService,
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         private formBuilder: FormBuilder,
         private matSnackBar: MatSnackBar) {
     }
@@ -58,7 +58,7 @@ export class ChangeEmailModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionService.DecryptUser();;
+        this.User = await this.sessionVaultService.DecryptUser();;
     }
 
     // Form
@@ -84,7 +84,7 @@ export class ChangeEmailModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.sessionService.EncryptUser(user);
+            await this.sessionVaultService.EncryptUser(user);
         }
 
         this.dialogRef.close();

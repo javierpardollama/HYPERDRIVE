@@ -12,7 +12,7 @@ import { MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/botto
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class ProfileContextMenuComponent implements OnInit {
     public constructor(
         public sheetRef: MatBottomSheetRef<ProfileContextMenuComponent>,
         private authService: AuthService,
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         private router: Router) {
     }
 
@@ -65,6 +65,6 @@ export class ProfileContextMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionService.DecryptUser();;
+        this.User = await this.sessionVaultService.DecryptUser();;
     }
 }

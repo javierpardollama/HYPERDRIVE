@@ -14,7 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class SecurityComponent implements OnInit {
 
     // Constructor
     constructor(
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         public matDialog: MatDialog
     ) {
 
@@ -89,6 +89,6 @@ export class SecurityComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionService.DecryptUser();;
+        this.User = await this.sessionVaultService.DecryptUser();;
     }
 }

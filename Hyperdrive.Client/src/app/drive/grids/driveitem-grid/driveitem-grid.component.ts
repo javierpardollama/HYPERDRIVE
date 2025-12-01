@@ -29,7 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { SessionService } from 'src/services/session.service';
+import { SessionVaultService } from 'src/services/session.vault.service';
 
 
 @Component({
@@ -79,7 +79,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
         public matDialog: MatDialog,
         private driveItemService: DriveItemService,
         private binaryService: BinaryService,
-        private sessionService: SessionService,
+        private sessionVaultService: SessionVaultService,
         public bottomSheet: MatBottomSheet) {
 
     }
@@ -195,7 +195,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionService.DecryptUser();;
+        this.User = await this.sessionVaultService.DecryptUser();;
     }
 
     public SetFilterUser(): void {
