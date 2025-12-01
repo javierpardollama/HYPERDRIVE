@@ -20,9 +20,8 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Signs In
         /// </summary>
-        /// <param name="email">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task SignOut(string email);
+        Task SignOut();
 
         /// <summary>
         /// Joins In

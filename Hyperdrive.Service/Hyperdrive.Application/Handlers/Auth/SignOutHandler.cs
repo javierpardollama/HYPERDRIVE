@@ -31,6 +31,6 @@ public class SignOutHandler : IRequestHandler<SignOutCommand>
         
         await _refreshTokenManager.Revoke(request.ViewModel.ApplicationUserId, request.ViewModel.ApplicationUserRefreshToken);
         
-        await _authManager.SignOut(@user.Email);
+        await _authManager.SignOut();
     }
 }

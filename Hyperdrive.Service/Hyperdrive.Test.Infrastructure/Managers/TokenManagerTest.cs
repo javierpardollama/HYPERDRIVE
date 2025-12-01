@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
 /// <summary>
-/// Represents a <see cref="TokenManagertTest"/> class. Inherits <see cref="BaseManagerTest"/>
+/// Represents a <see cref="TokenManagerTest"/> class. Inherits <see cref="BaseManagerTest"/>
 /// </summary>
 [TestFixture]
-public class TokenManagertTest : BaseManagerTest
+public class TokenManagerTest : BaseManagerTest
 {
     /// <summary>
     /// Instance of <see cref="ILogger{TokenManager}"/>

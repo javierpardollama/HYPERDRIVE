@@ -62,7 +62,7 @@ export class SecurityService extends BaseService {
   }
 
   public ChangeName(viewModel: SecurityNameChange): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/changename`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/name/change`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeName', undefined))));
   }
 

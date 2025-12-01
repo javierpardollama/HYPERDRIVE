@@ -97,7 +97,7 @@ public class AuthManagerTest : BaseManagerTest
     [Test]
     public async Task SignOut()
     {
-        await Manager.SignOut("monique.genaro@mail.com");
+        await Manager.SignOut();
 
         Assert.Pass();
     }

@@ -37,7 +37,7 @@ public static class ApplicationRoleProfile
             Index = @dto.Index,
             Length = @dto.Length,
             Size = @dto.Size,
-            Items = dto.Items.Select(x=> x.ToViewModel()).ToList()
+            Items = [.. dto.Items.Select(x=> x.ToViewModel())]
         };
     }
 }

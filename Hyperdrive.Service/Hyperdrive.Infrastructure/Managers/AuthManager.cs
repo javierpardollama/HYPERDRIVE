@@ -52,7 +52,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        public async Task SignOut(string @email)
+        public async Task SignOut()
         {
             await @signInManager.SignOutAsync();
            

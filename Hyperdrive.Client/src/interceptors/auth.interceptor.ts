@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 
 import { Injectable } from '@angular/core';
 
-import { firstValueFrom, from, Observable, switchMap } from 'rxjs';
+import { from, Observable, switchMap } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 import { DecryptObject } from 'src/utils/crypto.utils';
