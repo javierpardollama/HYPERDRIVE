@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SessionVaultService } from 'src/services/session.vault.service';
+import { SecureStorage } from 'src/services/secure.storage';
 
 @Component({
     selector: 'app-joinin-auth',
@@ -39,7 +39,7 @@ export class JoinInComponent implements OnInit {
         private location: Location,
         private router: Router,
         private authService: AuthService,
-        private sessionVaultService: SessionVaultService,
+        private secureStorage: SecureStorage,
         private formBuilder: FormBuilder
     ) {
     }
@@ -67,8 +67,8 @@ export class JoinInComponent implements OnInit {
         let user = await this.authService.JoinIn(viewModel);
 
         if (user) {
-            await this.sessionVaultService.CreateKey(viewModel.Password);
-            await this.sessionVaultService.EncryptUser(user);
+            this.secureStorage.CreateKey(viewModel.Password);
+            this.secureStorage.StoreObject('User', user);
 
             await this.router.navigate(['/']);
         }

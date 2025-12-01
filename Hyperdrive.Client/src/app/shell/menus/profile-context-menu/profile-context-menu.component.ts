@@ -12,7 +12,7 @@ import { MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/botto
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SessionVaultService } from 'src/services/session.vault.service';
+import { SecureStorage } from 'src/services/secure.storage';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class ProfileContextMenuComponent implements OnInit {
     public constructor(
         public sheetRef: MatBottomSheetRef<ProfileContextMenuComponent>,
         private authService: AuthService,
-        private sessionVaultService: SessionVaultService,
+        private secureStorage: SecureStorage,
         private router: Router) {
     }
 
@@ -58,13 +58,13 @@ export class ProfileContextMenuComponent implements OnInit {
 
         await this.authService.SignOut(viewModel);
 
-        this.sessionVaultService.ClearUser();
+        this.secureStorage.removeItem('User');
 
         await this.router.navigate(['']);
     }
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionVaultService.DecryptUser();;
+        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');;
     }
 }

@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SessionVaultService } from 'src/services/session.vault.service';
+import { SecureStorage } from 'src/services/secure.storage';
 
 @Component({
     selector: 'app-changeemail-modal',
@@ -39,13 +39,13 @@ export class ChangeEmailModalComponent implements OnInit {
 
     public formGroup!: FormGroup;
 
-    public User!: ViewApplicationUser;
+    public User?: ViewApplicationUser;
 
     // Constructor
     constructor(
         public dialogRef: MatDialogRef<ChangeEmailModalComponent>,
         private securityService: SecurityService,
-        private sessionVaultService: SessionVaultService,
+        private secureStorage: SecureStorage,
         private formBuilder: FormBuilder,
         private matSnackBar: MatSnackBar) {
     }
@@ -58,13 +58,13 @@ export class ChangeEmailModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionVaultService.DecryptUser();;
+        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');;
     }
 
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            ApplicationUserId: new FormControl<number>(this.User.Id,
+            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
                 [Validators.required]),
             NewEmail: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [
@@ -84,7 +84,7 @@ export class ChangeEmailModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.sessionVaultService.EncryptUser(user);
+            await this.secureStorage.StoreObject('User', user);
         }
 
         this.dialogRef.close();

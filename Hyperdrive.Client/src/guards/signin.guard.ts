@@ -5,7 +5,8 @@ import {
 } from '@angular/router';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
-import { SessionVaultService } from 'src/services/session.vault.service';
+import { SecureStorage } from 'src/services/secure.storage';
+import { IsEmpty } from 'src/utils/object.utils';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,7 @@ export class SignInGuard {
     private Activated = false;
 
     constructor(
-        private sessionVaultService: SessionVaultService,
+        private secureStorage: SecureStorage,
         private router: Router
     ) { }
 
@@ -37,6 +38,6 @@ export class SignInGuard {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionVaultService.DecryptUser();
+        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');
     }
 }

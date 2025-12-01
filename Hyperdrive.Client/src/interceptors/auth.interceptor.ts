@@ -6,7 +6,7 @@ import { from, Observable, switchMap } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 import { IsEmpty } from 'src/utils/object.utils';
-import { SessionVaultService } from 'src/services/session.vault.service';
+import { SecureStorage } from 'src/services/secure.storage';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private User?: ViewApplicationUser;
 
-  constructor(private sessionVaultService: SessionVaultService) { }
+  constructor(private secureStorage: SecureStorage) { }
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -39,6 +39,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Get User from Storage
   public async GetLocalUser(): Promise<void> {
-    this.User = await this.sessionVaultService.DecryptUser();
+    this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');
   }
 }

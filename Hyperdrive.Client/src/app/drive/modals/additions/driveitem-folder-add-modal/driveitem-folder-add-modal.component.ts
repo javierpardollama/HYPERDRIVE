@@ -11,7 +11,7 @@ import { ViewApplicationUser } from "../../../../../viewmodels/views/viewapplica
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SessionVaultService } from 'src/services/session.vault.service';
+import { SecureStorage } from 'src/services/secure.storage';
 
 @Component({
     selector: 'app-driveitem-folder-add-modal',
@@ -36,7 +36,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
     // Constructor
     constructor(
         private driveItemService: DriveItemService,
-        private sessionVaultService: SessionVaultService,
+        private secureStorage: SecureStorage,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveItemFolderAddModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -85,6 +85,6 @@ export class DriveItemFolderAddModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.sessionVaultService.DecryptUser();;
+        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');;
     }
 }
