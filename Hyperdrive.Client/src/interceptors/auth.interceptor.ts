@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 import { from, Observable, switchMap } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { IsEmpty } from 'src/utils/object.utils';
+import { SessionService } from 'src/services/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private User?: ViewApplicationUser;
 
-  constructor() { }
+  constructor(private sessionService: SessionService) { }
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -39,6 +39,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Get User from Storage
   public async GetLocalUser(): Promise<void> {
-    this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+    this.User = await this.sessionService.DecryptUser();
   }
 }

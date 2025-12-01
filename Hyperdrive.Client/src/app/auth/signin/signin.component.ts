@@ -19,11 +19,11 @@ import { AuthService } from '../../../services/auth.service';
 import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
 import { TextAppVariants } from '../../../variants/text.app.variants';
-import { EncryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SessionService } from 'src/services/session.service';
 
 
 @Component({
@@ -48,6 +48,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private sessionService: SessionService,
     private formBuilder: FormBuilder) { }
 
   // Life Cicle
@@ -73,7 +74,8 @@ export class SignInComponent implements OnInit {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
-      sessionStorage.setItem('User', await EncryptObject(user));
+      await this.sessionService.CreateKey(viewModel.Password);
+      await this.sessionService.EncryptUser(user);
 
       await this.router.navigate(['/']);
     }

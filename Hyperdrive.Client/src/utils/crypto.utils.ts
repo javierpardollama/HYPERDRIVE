@@ -1,77 +1,89 @@
 import { IsEmpty } from "./object.utils";
 
-const Algorithm = 'AES-CBC';
-const KeyLength = 256; // bits
-const IvLength = 16;   // bytes
+const ALGORITHM = 'AES-GCM'; // Use AES-GCM for confidentiality + integrity
+const IV_LENGTH = 12;        // bytes (recommended for AES-GCM)
+const SALT_LENGTH = 16;      // bytes for PBKDF2
 
 export function GetBytes(base64: string) {
     return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
 }
 
-export async function EncryptObject(object: Record<string, any>): Promise<string> {
+export async function CreateCryptoKey(password: string) {
+    const salt = crypto.getRandomValues(new Uint8Array(SALT_LENGTH));
+    return await DeriveKey(password, salt);
+}
 
-    const iv = crypto.getRandomValues(new Uint8Array(IvLength));
-    const keydata = crypto.getRandomValues(new Uint8Array(KeyLength / 8));
 
-    const key = await crypto.subtle.importKey(
-        'raw',
-        keydata,
-        { name: Algorithm },
-        true,
-        ['encrypt']
-    );
+export async function EncryptObject(object: Record<string, any>, key: CryptoKey): Promise<string> {
+    const iv = crypto.getRandomValues(new Uint8Array(IV_LENGTH));
 
     const encoded = new TextEncoder().encode(JSON.stringify(object));
 
-    const encryptedbuffer = await crypto.subtle.encrypt(
-        { name: Algorithm, iv },
+    const encryptedBuffer = await crypto.subtle.encrypt(
+        { name: ALGORITHM, iv },
         key,
         encoded
     );
 
-    const exportedkey = await crypto.subtle.exportKey('raw', key);
+    return JSON.stringify({
+        Iv: ToBase64(iv),
+        Data: ToBase64(new Uint8Array(encryptedBuffer))
+    });
+}
 
-    const keybase64 = btoa(String.fromCharCode(...new Uint8Array(exportedkey)));
+export async function DecryptObject(jsonstring: string, cryptokey: CryptoKey): Promise<any> {
+    if (IsEmpty(jsonstring) || IsEmpty(cryptokey)) return;
 
-    const encrypted = btoa(String.fromCharCode(...new Uint8Array(encryptedbuffer)));
+    const { Iv, Data } = JSON.parse(jsonstring);
 
-    const data = {
-        Key: keybase64,
-        Iv: btoa(String.fromCharCode(...iv)),
-        Data: encrypted
-    };
+    const iv = FromBase64(Iv);
+    const encryptedBytes = FromBase64(Data);
 
-    return JSON.stringify(data);
+    const decryptedBuffer = await crypto.subtle.decrypt(
+        {
+            name: ALGORITHM,
+            iv: iv.buffer as ArrayBuffer
+        },
+        cryptokey,
+        encryptedBytes.buffer as ArrayBuffer
+    );
+
+    return JSON.parse(new TextDecoder().decode(decryptedBuffer));
 }
 
 
-export async function DecryptObject(jsonstring?: string): Promise<any> {
 
-    if (IsEmpty(jsonstring)) return;
+function ToBase64(bytes: Uint8Array): string {
+    return btoa(String.fromCharCode(...bytes));
+}
 
-    const data = JSON.parse(jsonstring!);
+function FromBase64(base64: string): Uint8Array {
+    return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+}
 
-    const keybytes = GetBytes(data.Key);
-    const iv = GetBytes(data.Iv);
-    const encryptedbytes = GetBytes(data.Data);
-
-    // Import the key
-    const key = await crypto.subtle.importKey(
+async function DeriveKey(password: string, salt: Uint8Array): Promise<CryptoKey> {
+    const encoder = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey(
         'raw',
-        keybytes,
-        { name: Algorithm },
-        true,
-        ['decrypt']
+        encoder.encode(password),
+        { name: 'PBKDF2' },
+        false,
+        ['deriveKey']
     );
 
-    // Decrypt
-    const decryptedbuffer = await crypto.subtle.decrypt(
-        { name: Algorithm, iv },
-        key,
-        encryptedbytes
+    return crypto.subtle.deriveKey(
+        {
+            name: 'PBKDF2',
+            salt: salt.buffer as ArrayBuffer,
+            iterations: 100000,
+            hash: 'SHA-256'
+        },
+        keyMaterial,
+        {
+            name: ALGORITHM,
+            length: 256
+        },
+        false,
+        ['encrypt', 'decrypt']
     );
-
-    const decryptedtext = new TextDecoder().decode(decryptedbuffer);
-    return JSON.parse(decryptedtext);
 }
-

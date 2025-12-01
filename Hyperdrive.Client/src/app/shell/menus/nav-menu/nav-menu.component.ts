@@ -4,12 +4,12 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 import { ProfileContextMenuComponent } from '../profile-context-menu/profile-context-menu.component';
 import { ToolboxContextMenuComponent } from '../toolbox-context-menu/toolbox-context-menu.component';
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-nav-menu',
@@ -28,7 +28,10 @@ export class NavMenuComponent implements OnInit {
     public User?: ViewApplicationUser;
 
     // Constructor
-    constructor(public bottomSheet: MatBottomSheet) {
+    constructor(
+        private sessionService: SessionService,
+        public bottomSheet: MatBottomSheet
+    ) {
 
     }
 
@@ -57,6 +60,6 @@ export class NavMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 }

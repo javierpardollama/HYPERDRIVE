@@ -10,11 +10,11 @@ import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 
 import { TextAppVariants } from '../../../variants/text.app.variants';
 import { Location } from "@angular/common";
-import { EncryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-joinin-auth',
@@ -39,7 +39,9 @@ export class JoinInComponent implements OnInit {
         private location: Location,
         private router: Router,
         private authService: AuthService,
-        private formBuilder: FormBuilder) {
+        private sessionService: SessionService,
+        private formBuilder: FormBuilder
+    ) {
     }
 
     // Life Cicle
@@ -65,7 +67,8 @@ export class JoinInComponent implements OnInit {
         let user = await this.authService.JoinIn(viewModel);
 
         if (user) {
-            sessionStorage.setItem('User', await EncryptObject(user));
+            await this.sessionService.CreateKey(viewModel.Password);
+            await this.sessionService.EncryptUser(user);
 
             await this.router.navigate(['/']);
         }

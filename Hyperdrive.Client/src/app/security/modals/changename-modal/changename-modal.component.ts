@@ -14,17 +14,17 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 import { TextAppVariants } from '../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
-import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-changename-modal',
     templateUrl: './changename-modal.component.html',
     styleUrl: './changename-modal.component.scss',
-  imports: [
+    imports: [
         MatDialogModule,
         MatButtonModule,
         FormsModule,
@@ -45,6 +45,7 @@ export class ChangeNameModalComponent {
     constructor(
         public dialogRef: MatDialogRef<ChangeNameModalComponent>,
         private securityService: SecurityService,
+        private sessionService: SessionService,
         private formBuilder: FormBuilder,
         private matSnackBar: MatSnackBar) {
     }
@@ -57,7 +58,7 @@ export class ChangeNameModalComponent {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 
     // Form
@@ -86,7 +87,7 @@ export class ChangeNameModalComponent {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', await EncryptObject(user));
+            await this.sessionService.EncryptUser(user);
         }
 
         this.dialogRef.close();

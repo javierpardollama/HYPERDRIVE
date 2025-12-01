@@ -9,10 +9,10 @@ import { AuthSignOut } from '../../../../viewmodels/auth/authsignout';
 import { Router, RouterModule } from '@angular/router';
 
 import { MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/bottom-sheet";
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SessionService } from 'src/services/session.service';
 
 
 @Component({
@@ -34,6 +34,7 @@ export class ProfileContextMenuComponent implements OnInit {
     public constructor(
         public sheetRef: MatBottomSheetRef<ProfileContextMenuComponent>,
         private authService: AuthService,
+        private sessionService: SessionService,
         private router: Router) {
     }
 
@@ -64,6 +65,6 @@ export class ProfileContextMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 }

@@ -9,10 +9,10 @@ import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedriveitemname";
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-driveitem-name-update-modal',
@@ -37,6 +37,7 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
     // Constructor
     constructor(
         private driveItemService: DriveItemService,
+        private sessionService: SessionService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveitemNameUpdateModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -84,6 +85,6 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 }

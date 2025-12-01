@@ -11,11 +11,11 @@ import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemSharedWith } from "../../../../../viewmodels/updates/updatedriveitemsharedwith";
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-driveitem-share-with-update-modal',
@@ -45,6 +45,7 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
     constructor(
         private applicationuserService: ApplicationUserService,
         private driveItemService: DriveItemService,
+        private sessionService: SessionService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveitemShareWithUpdateModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -104,6 +105,6 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 }

@@ -8,10 +8,10 @@ import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { BinaryService } from "../../../../../services/binary.service";
 import { BinaryAddDriveItem } from "../../../../../viewmodels/binary/binaryadddriveitem";
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-driveitem-file-add-modal',
@@ -37,6 +37,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
     constructor(
         private driveItemService: DriveItemService,
         private binaryService: BinaryService,
+        private sessionService: SessionService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<DriveItemFileAddModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -86,6 +87,6 @@ export class DriveItemFileAddModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 }

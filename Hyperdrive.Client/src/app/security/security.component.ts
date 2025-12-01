@@ -10,11 +10,11 @@ import { ChangePasswordModalComponent } from './modals/changepassword-modal/chan
 import { ChangePhoneNumberModalComponent } from './modals/changephonenumber-modal/changephonenumber-modal.component';
 
 import { ViewApplicationUser } from '../../viewmodels/views/viewapplicationuser';
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
+import { SessionService } from 'src/services/session.service';
 
 
 @Component({
@@ -36,7 +36,9 @@ export class SecurityComponent implements OnInit {
 
     // Constructor
     constructor(
-        public matDialog: MatDialog) {
+        private sessionService: SessionService,
+        public matDialog: MatDialog
+    ) {
 
     }
 
@@ -87,6 +89,6 @@ export class SecurityComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 }

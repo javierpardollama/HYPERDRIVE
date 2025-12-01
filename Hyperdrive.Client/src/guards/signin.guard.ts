@@ -5,7 +5,7 @@ import {
 } from '@angular/router';
 
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
-import { DecryptObject } from 'src/utils/crypto.utils';
+import { SessionService } from 'src/services/session.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class SignInGuard {
 
     private Activated = false;
 
-    constructor(private router: Router) { }
+    constructor(private sessionService: SessionService, private router: Router) { }
 
     async canActivate() {
 
@@ -34,6 +34,6 @@ export class SignInGuard {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();
     }
 }

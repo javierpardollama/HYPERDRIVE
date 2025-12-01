@@ -29,7 +29,6 @@ namespace Hyperdrive.Application.ViewModels.Filters
         /// <summary>
         /// Gets or Sets <see cref="ParentId"/>
         /// </summary>
-        [Required]
         public int? ParentId { get; set; }
     }
 }

@@ -29,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-applicationrole-grid',
@@ -44,6 +45,7 @@ import { MatSortModule } from '@angular/material/sort';
     CommonModule,
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
   ]
 })
 export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDestroy {

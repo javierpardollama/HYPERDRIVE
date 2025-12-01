@@ -19,7 +19,6 @@ import { BinaryAddDriveItem } from 'src/viewmodels/binary/binaryadddriveitem';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TextAppVariants } from 'src/variants/text.app.variants';
 import { TimeAppVariants } from 'src/variants/time.app.variants';
-import { DecryptObject } from 'src/utils/crypto.utils';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -30,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { SessionService } from 'src/services/session.service';
 
 
 @Component({
@@ -79,6 +79,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
         public matDialog: MatDialog,
         private driveItemService: DriveItemService,
         private binaryService: BinaryService,
+        private sessionService: SessionService,
         public bottomSheet: MatBottomSheet) {
 
     }
@@ -194,7 +195,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 
     public SetFilterUser(): void {

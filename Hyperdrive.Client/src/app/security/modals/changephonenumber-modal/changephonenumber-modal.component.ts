@@ -16,11 +16,11 @@ import { TextAppVariants } from '../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../variants/expression.app.variants';
-import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SessionService } from 'src/services/session.service';
 
 @Component({
     selector: 'app-changephonenumber-modal',
@@ -47,6 +47,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<ChangePhoneNumberModalComponent>,
         private securityService: SecurityService,
+        private sessionService: SessionService,
         private formBuilder: FormBuilder,
         private matSnackBar: MatSnackBar) {
     }
@@ -59,7 +60,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await DecryptObject(sessionStorage.getItem('User')!) as ViewApplicationUser;
+        this.User = await this.sessionService.DecryptUser();;
     }
 
     // Form
@@ -85,7 +86,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            sessionStorage.setItem('User', await EncryptObject(user));
+            await this.sessionService.EncryptUser(user);
         }
 
         this.dialogRef.close();
