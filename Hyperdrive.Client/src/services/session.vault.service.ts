@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { CreateCryptoKey, DecryptObject, EncryptObject } from "src/utils/crypto.utils";
 import { ViewApplicationUser } from "src/viewmodels/views/viewapplicationuser";
 
@@ -6,9 +6,13 @@ import { ViewApplicationUser } from "src/viewmodels/views/viewapplicationuser";
     providedIn: 'root',
 })
 
-export class SessionVaultService {
+export class SessionVaultService implements OnDestroy {
 
     private Key?: CryptoKey;
+
+    ngOnDestroy(): void {
+        this.ClearUser();
+    }
 
     public async CreateKey(password: string): Promise<void> {
         this.Key = await CreateCryptoKey(password);
@@ -21,5 +25,10 @@ export class SessionVaultService {
 
     public async EncryptUser(user: ViewApplicationUser): Promise<void> {
         sessionStorage.setItem('User', await EncryptObject(user, this.Key!));
+    }
+
+    public ClearUser() {
+        this.Key = undefined;
+        sessionStorage.removeItem('User');
     }
 }

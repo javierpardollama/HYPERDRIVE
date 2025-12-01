@@ -56,9 +56,9 @@ export class ProfileContextMenuComponent implements OnInit {
 
         this.sheetRef.dismiss();
 
-        sessionStorage.removeItem('User');
-
         await this.authService.SignOut(viewModel);
+
+        this.sessionVaultService.ClearUser();
 
         await this.router.navigate(['']);
     }
