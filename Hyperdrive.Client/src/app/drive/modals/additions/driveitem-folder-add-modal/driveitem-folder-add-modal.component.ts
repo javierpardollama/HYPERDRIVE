@@ -1,20 +1,31 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { DriveItemService } from "../../../../../services/driveitem.service";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { ExpressionAppVariants } from "../../../../../variants/expression.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
 import { AddDriveItem } from "../../../../../viewmodels/additions/adddriveitem";
 import { ViewApplicationUser } from "../../../../../viewmodels/views/viewapplicationuser";
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-driveitem-folder-add-modal',
     templateUrl: './driveitem-folder-add-modal.component.html',
     styleUrl: './driveitem-folder-add-modal.component.scss',
-    standalone: false
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class DriveItemFolderAddModalComponent implements OnInit {
 

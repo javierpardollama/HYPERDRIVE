@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-unknown',
-    templateUrl: './unknown.component.html',
-    styleUrl: './unknown.component.scss',
-    standalone: false
+  selector: 'app-unknown',
+  templateUrl: './unknown.component.html',
+  styleUrl: './unknown.component.scss',
+  imports: [
+    MatButtonModule,
+    MatTooltipModule,
+    RouterModule
+  ]
 })
 export class UnknownComponent {
 

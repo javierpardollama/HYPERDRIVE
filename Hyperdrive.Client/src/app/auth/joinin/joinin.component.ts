@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -11,12 +11,22 @@ import { AuthSignIn } from '../../../viewmodels/auth/authsignin';
 import { TextAppVariants } from '../../../variants/text.app.variants';
 import { Location } from "@angular/common";
 import { EncryptObject } from 'src/utils/crypto.utils';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-joinin-auth',
     templateUrl: './joinin.component.html',
     styleUrls: ['./joinin.component.scss'],
-    standalone: false
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        RouterModule
+    ]
 })
 export class JoinInComponent implements OnInit {
 

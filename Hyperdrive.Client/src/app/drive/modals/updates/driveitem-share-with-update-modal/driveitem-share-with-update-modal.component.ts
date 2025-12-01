@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ApplicationUserService } from "../../../../../services/applicationuser.service";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { UpdateApplicationUser } from "../../../../../viewmodels/updates/updateapplicationuser";
 import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
@@ -12,12 +12,25 @@ import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemSharedWith } from "../../../../../viewmodels/updates/updatedriveitemsharedwith";
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-driveitem-share-with-update-modal',
     templateUrl: './driveitem-share-with-update-modal.component.html',
     styleUrl: './driveitem-share-with-update-modal.component.scss',
-    standalone: false
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class DriveitemShareWithUpdateModalComponent implements OnInit {
 

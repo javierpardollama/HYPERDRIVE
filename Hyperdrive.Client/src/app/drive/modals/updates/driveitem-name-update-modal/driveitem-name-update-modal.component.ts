@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { ExpressionAppVariants } from "../../../../../variants/expression.app.variants";
 import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../../variants/time.app.variants";
@@ -10,12 +10,23 @@ import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemName } from "../../../../../viewmodels/updates/updatedriveitemname";
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-driveitem-name-update-modal',
     templateUrl: './driveitem-name-update-modal.component.html',
     styleUrl: './driveitem-name-update-modal.component.scss',
-    standalone: false
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class DriveitemNameUpdateModalComponent implements OnInit {
 

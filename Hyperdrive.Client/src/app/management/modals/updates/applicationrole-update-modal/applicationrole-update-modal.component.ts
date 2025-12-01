@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ViewApplicationRole } from './../../../../../viewmodels/views/viewapplicationrole';
 
@@ -16,12 +16,25 @@ import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-applicationrole-update-modal',
     templateUrl: './applicationrole-update-modal.component.html',
     styleUrls: ['./applicationrole-update-modal.component.scss'],
-    standalone: false
+    imports: [
+        MatDialogModule,
+        MatButtonModule,
+        FormsModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class ApplicationRoleUpdateModalComponent implements OnInit {
 

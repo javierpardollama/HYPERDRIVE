@@ -1,24 +1,32 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
 import { DriveItemService } from "../../../../services/driveitem.service";
 import { BinaryService } from "../../../../services/binary.service";
 import { TextAppVariants } from "../../../../variants/text.app.variants";
 import { TimeAppVariants } from "../../../../variants/time.app.variants";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import {
     DriveitemNameUpdateModalComponent
 } from "../../modals/updates/driveitem-name-update-modal/driveitem-name-update-modal.component";
 import {
     DriveitemShareWithUpdateModalComponent
 } from "../../modals/updates/driveitem-share-with-update-modal/driveitem-share-with-update-modal.component";
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
     selector: 'app-drive-item-context-menu',
     templateUrl: './drive-item-context-menu.component.html',
     styleUrl: './drive-item-context-menu.component.scss',
-    standalone: false
+    imports: [
+        MatListModule,
+        MatDividerModule,
+        MatBottomSheetModule,
+        MatSnackBarModule,
+        MatDialogModule
+    ]
 })
 export class DriveItemContextMenuComponent {
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SecurityService } from '../../../../services/security.service';
 
@@ -17,12 +17,25 @@ import { TimeAppVariants } from '../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../variants/expression.app.variants';
 import { DecryptObject, EncryptObject } from 'src/utils/crypto.utils';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-changephonenumber-modal',
     templateUrl: './changephonenumber-modal.component.html',
     styleUrls: ['./changephonenumber-modal.component.scss'],
-    standalone: false
+    imports: [
+        MatDialogModule,
+        MatButtonModule,
+        FormsModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class ChangePhoneNumberModalComponent implements OnInit {
 

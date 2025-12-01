@@ -1,36 +1,38 @@
 <div id="nav-menu">
-    <mat-toolbar>
-        <ul class="container">
-            <div class="left">
-                <li>
-                    <button type="button" mat-button id="nav-toggle" class="toolbar-title" (click)="sidenav.toggle()">
-                        <div class="toolbar-option-image nav-menu-app-image" matTooltip="Hyperdrive"></div>
-                    </button>
-                </li>
-            </div>
-            <div class="center">
-                <li>
-                    <button type="button" mat-button class="toolbar-title" (click)="Toolbox()">
-                        <div class="toolbar-option-image nav-menu-toolbox-image" matTooltip="Tools"></div>
-                    </button>
-                </li>
-            </div>
-            <div class="right">
-                <li class="toolbar-title" *ngIf="User">
-                    <button type="button" mat-button (click)="Profile()">
-                        <div class="toolbar-option-image nav-menu-initial-image"><span
-                                matTooltip="{{User.Email}}">{{User.Initial}}</span></div>
-                    </button>
-                </li>
-            </div>
-        </ul>
-    </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="over">
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <ng-content></ng-content>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+  <mat-toolbar>
+    <ul class="container">
+      <div class="left">
+        <li>
+          <button type="button" mat-button id="nav-toggle" class="toolbar-title" (click)="sidenav.toggle()">
+            <div class="toolbar-option-image nav-menu-app-image" matTooltip="Hyperdrive"></div>
+          </button>
+        </li>
+      </div>
+      <div class="center">
+        <li>
+          <button type="button" mat-button class="toolbar-title" (click)="Toolbox()">
+            <div class="toolbar-option-image nav-menu-toolbox-image" matTooltip="Tools"></div>
+          </button>
+        </li>
+      </div>
+      <div class="right">
+        @if (User) {
+          <li class="toolbar-title">
+            <button type="button" mat-button (click)="Profile()">
+              <div class="toolbar-option-image nav-menu-initial-image"><span
+              matTooltip="{{User.Email}}">{{User.Initial}}</span></div>
+            </button>
+          </li>
+        }
+      </div>
+    </ul>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over">
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
 </div>

@@ -5,14 +5,16 @@
       <mat-form-field class="form-element">
         <mat-label>NewPhoneNumber</mat-label>
         <input type="tel" matInput placeholder="NewPhoneNumber" formControlName="NewPhoneNumber" spellcheck="false">
-        <mat-error *ngIf="!formGroup.controls['NewPhoneNumber'].valid && formGroup.controls['NewPhoneNumber'].touched">
-          Required field.
-        </mat-error>
+        @if (!formGroup.controls['NewPhoneNumber'].valid && formGroup.controls['NewPhoneNumber'].touched) {
+          <mat-error>
+            Required field.
+          </mat-error>
+        }
       </mat-form-field>
     </div>
     <div class="form-element">
       <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
-        [disabled]="!formGroup.valid">Save
+        [disabled]="!formGroup.valid" matTooltip="Save">Save
       </button>
     </div>
   </form>

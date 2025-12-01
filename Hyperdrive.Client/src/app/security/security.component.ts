@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { ChangeNameModalComponent } from './modals/changename-modal/changename-modal.component';
 
@@ -11,13 +11,24 @@ import { ChangePhoneNumberModalComponent } from './modals/changephonenumber-moda
 
 import { ViewApplicationUser } from '../../viewmodels/views/viewapplicationuser';
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
     selector: 'app-security',
     templateUrl: './security.component.html',
     styleUrls: ['./security.component.scss'],
-    standalone: false
+    imports:
+        [
+            MatExpansionModule,
+            MatButtonModule,
+            MatTooltipModule,
+            MatDialogModule,
+            CommonModule
+        ]
 })
 export class SecurityComponent implements OnInit {
 

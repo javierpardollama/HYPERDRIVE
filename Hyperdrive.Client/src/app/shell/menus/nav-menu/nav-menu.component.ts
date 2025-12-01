@@ -5,12 +5,23 @@ import { ProfileContextMenuComponent } from '../profile-context-menu/profile-con
 import { ToolboxContextMenuComponent } from '../toolbox-context-menu/toolbox-context-menu.component';
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 
 @Component({
     selector: 'app-nav-menu',
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.scss'],
-    standalone: false
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatTooltipModule,
+        MatBottomSheetModule
+    ]
 })
 export class NavMenuComponent implements OnInit {
 

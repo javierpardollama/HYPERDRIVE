@@ -1,41 +1,47 @@
 <div id="driveitem-share-with-update-modal" class="container">
-    <form [formGroup]="formGroup" class="form" novalidate>
+  <form [formGroup]="formGroup" class="form" novalidate>
 
-        <div class="modal-content-line">
-            <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
-            <mat-form-field class="form-element">
-                <mat-label>Id</mat-label>
-                <input type="number" matInput placeholder="Id" formControlName="Id" readonly>
-                <mat-error *ngIf="!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched">
-                    Required field.
-                </mat-error>
-            </mat-form-field>
-        </div>
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
+      <mat-form-field class="form-element">
+        <mat-label>Id</mat-label>
+        <input type="number" matInput placeholder="Id" formControlName="Id" readonly>
+        @if (!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched) {
+          <mat-error>
+            Required field.
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
 
-        <div class="modal-content-line">
-            <div class="modal-option-image modal-user-image" aria-label="ApplicationUserIds"></div>
-            <mat-form-field class="search-half-width">
-                <mat-label>ApplicationUserIds</mat-label>
-                <mat-select formControlName="ApplicationUserIds" multiple>
-                    <mat-option *ngFor="let applicationuser of applicationusers" [value]="applicationuser.Id">
-                        <span>{{applicationuser.Name}}</span>
-                    </mat-option>
-                    <mat-error
-                        *ngIf="!formGroup.controls['ApplicationUserIds'].valid && formGroup.controls['ApplicationUserIds'].touched">
-                        Required field.
-                    </mat-error>
-                </mat-select>
-            </mat-form-field>
-        </div>
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-user-image" aria-label="ApplicationUserIds"></div>
+      <mat-form-field class="search-half-width">
+        <mat-label>ApplicationUserIds</mat-label>
+        <mat-select formControlName="ApplicationUserIds" multiple>
+          @for (applicationuser of applicationusers; track applicationuser) {
+            <mat-option [value]="applicationuser.Id">
+              <span>{{applicationuser.Name}}</span>
+            </mat-option>
+          }
+          @if (!formGroup.controls['ApplicationUserIds'].valid && formGroup.controls['ApplicationUserIds'].touched) {
+            <mat-error
+              >
+              Required field.
+            </mat-error>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-        <div class="form-element">
-            <button mat-raised-button color="primary" type="submit" class="button form-button"
-                (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
-            </button>
-            <button mat-raised-button color="accent" type="button" class="button form-button"
-                (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
-            </button>
-        </div>
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button form-button"
+        (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
+      </button>
+      <button mat-raised-button color="accent" type="button" class="button form-button"
+        (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
+      </button>
+    </div>
 
-    </form>
+  </form>
 </div>

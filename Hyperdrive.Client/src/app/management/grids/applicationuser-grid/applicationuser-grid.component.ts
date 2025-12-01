@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 
@@ -13,13 +13,28 @@ import {
 
 import { FilterPageApplicationUser } from 'src/viewmodels/filters/filterpageapplicationuser';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
     selector: 'app-applicationuser-grid',
     templateUrl: './applicationuser-grid.component.html',
     styleUrls: ['./applicationuser-grid.component.scss'],
-    standalone: false
+    imports: [
+        MatTableModule,
+        MatDialogModule,
+        FormsModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatChipsModule,
+        MatFormFieldModule,
+        CommonModule
+    ]
 })
 export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

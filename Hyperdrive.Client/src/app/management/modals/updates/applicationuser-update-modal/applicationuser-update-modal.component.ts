@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ViewApplicationUser } from '../../../../../viewmodels/views/viewapplicationuser';
 
@@ -17,12 +17,27 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-applicationuser-update-modal',
     templateUrl: './applicationuser-update-modal.component.html',
     styleUrls: ['./applicationuser-update-modal.component.scss'],
-    standalone: false
+    imports: [
+        MatDialogModule,
+        MatButtonModule,
+        FormsModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class ApplicationUserUpdateModalComponent implements OnInit {
 

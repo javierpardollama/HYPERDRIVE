@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { Location } from '@angular/common';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SecurityService } from '../../../services/security.service';
 
@@ -15,12 +15,22 @@ import { TextAppVariants } from '../../../variants/text.app.variants';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimeAppVariants } from '../../../variants/time.app.variants';
 import { EncryptObject } from 'src/utils/crypto.utils';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-resetpassword',
     templateUrl: './resetpassword.component.html',
     styleUrls: ['./resetpassword.component.scss'],
-    standalone: false
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        RouterModule
+    ]
 })
 export class ResetPasswordComponent implements OnInit {
 

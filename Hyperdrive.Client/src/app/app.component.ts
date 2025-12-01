@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { NavMenuComponent } from './shell/menus/nav-menu/nav-menu.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  imports: [
+    RouterModule,
+    NavMenuComponent
+  ]
 })
 export class AppComponent {
   constructor(private meta: Meta) {

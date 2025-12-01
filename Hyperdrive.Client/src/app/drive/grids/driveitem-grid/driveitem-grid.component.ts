@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { DriveItemService } from "../../../../services/driveitem.service";
 import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { FilterPageDriveItem } from "../../../../viewmodels/filters/filterpagedriveitem";
 import { ViewScroll } from "../../../../viewmodels/views/viewscroll";
 import { ViewApplicationUser } from "../../../../viewmodels/views/viewapplicationuser";
-import { MatBottomSheet } from "@angular/material/bottom-sheet";
+import { MatBottomSheet, MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { DriveItemContextMenuComponent } from "../../menus/drive-item-context-menu/drive-item-context-menu.component";
 import {
     DriveItemFolderAddModalComponent
@@ -13,20 +13,40 @@ import {
 import {
     DriveItemFileAddModalComponent
 } from "../../modals/additions/driveitem-file-add-modal/driveitem-file-add-modal.component";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { BinaryService } from 'src/services/binary.service';
 import { BinaryAddDriveItem } from 'src/viewmodels/binary/binaryadddriveitem';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TextAppVariants } from 'src/variants/text.app.variants';
 import { TimeAppVariants } from 'src/variants/time.app.variants';
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
     selector: 'app-driveitem-grid',
     templateUrl: './driveitem-grid.component.html',
     styleUrl: './driveitem-grid.component.scss',
-    standalone: false
+    imports: [
+        MatTableModule,
+        MatDialogModule,
+        FormsModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatChipsModule,
+        MatBottomSheetModule,
+        MatInputModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        CommonModule
+    ]
 })
 export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

@@ -6,16 +6,26 @@ import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicatio
 
 import { AuthSignOut } from '../../../../viewmodels/auth/authsignout';
 
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
-import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import { DecryptObject } from 'src/utils/crypto.utils';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @Component({
     selector: 'app-profile-context-menu',
     templateUrl: './profile-context-menu.component.html',
     styleUrl: './profile-context-menu.component.scss',
-    standalone: false
+    imports: [
+        MatListModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatBottomSheetModule,
+        RouterModule
+    ]
 })
 export class ProfileContextMenuComponent implements OnInit {
 

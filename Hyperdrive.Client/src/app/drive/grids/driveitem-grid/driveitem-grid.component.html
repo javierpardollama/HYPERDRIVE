@@ -7,11 +7,11 @@
 <div class="grid-page">
     <h4 class="breadcrumb">My Files</h4>
 
-    <button mat-raised-button [matMenuTriggerFor]="menu" color="primary" class="add-button"><span>Add New
+    <button mat-raised-button [matMenuTriggerFor]="menu" color="primary" class="add-button" matTooltip="Add New"><span>Add New
             &plus;</span></button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="NewFolder()">New Folder</button>
-        <button mat-menu-item (click)="NewFile()">Upload File</button>
+        <button mat-menu-item (click)="NewFolder()" matTooltip="New Folder">New Folder</button>
+        <button mat-menu-item (click)="NewFile()" matTooltip="Upload File">Upload File</button>
     </mat-menu>
 
     <mat-form-field class="grid-filter">

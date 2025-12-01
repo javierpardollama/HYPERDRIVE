@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Hyperdrive.Application.ViewModels.Interfaces.Views;
+﻿using Hyperdrive.Application.ViewModels.Interfaces.Views;
+using System;
 
 namespace Hyperdrive.Application.ViewModels.Views
 {
@@ -12,8 +11,6 @@ namespace Hyperdrive.Application.ViewModels.Views
       
         public string Name { get; set; }
      
-        public string ImageUri { get; set; }
-       
-        public virtual ICollection<ViewCatalog> ApplicationUsers { get; set; } = [];
+        public string ImageUri { get; set; }       
     }
 }
