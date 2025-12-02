@@ -67,8 +67,8 @@ export class JoinInComponent implements OnInit {
         let user = await this.authService.JoinIn(viewModel);
 
         if (user) {
-            this.secureStorageService.CreateKey(viewModel.Password);
-            this.secureStorageService.StoreObject('User', user);
+            await this.secureStorageService.CreateKey(viewModel.Password);
+            await this.secureStorageService.StoreObject('User', user);
 
             await this.router.navigate(['/']);
         }

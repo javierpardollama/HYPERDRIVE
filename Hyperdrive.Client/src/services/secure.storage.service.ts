@@ -28,7 +28,7 @@ export class SecureStorageService {
     }
 
     public async RetrieveObject<T>(key: string): Promise<T | undefined> {
-        if (IsEmpty(key)) return undefined;
+        if (IsEmpty(this.CryptoKey)) return undefined;
 
         const encrypted = sessionStorage.getItem(key);
 

@@ -9,6 +9,10 @@ table {
     max-height: 450px;
 }
 
+th {
+    z-index: unset !important;
+}
+
 .grid-page {
     margin: 8px;
 }
