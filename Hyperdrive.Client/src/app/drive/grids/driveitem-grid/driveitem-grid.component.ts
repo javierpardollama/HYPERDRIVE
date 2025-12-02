@@ -29,7 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { SecureStorage } from 'src/services/secure.storage';
+import { SecureStorageService } from 'src/services/secure.storage.service';
 
 
 @Component({
@@ -79,7 +79,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
         public matDialog: MatDialog,
         private driveItemService: DriveItemService,
         private binaryService: BinaryService,
-        private secureStorage: SecureStorage,
+        private secureStorageService: SecureStorageService,
         public bottomSheet: MatBottomSheet) {
 
     }
@@ -195,7 +195,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
     }
 
     public SetFilterUser(): void {

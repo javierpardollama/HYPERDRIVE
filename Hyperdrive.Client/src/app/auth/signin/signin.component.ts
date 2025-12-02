@@ -23,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SecureStorage } from 'src/services/secure.storage';
+import { SecureStorageService } from 'src/services/secure.storage.service';
 
 
 @Component({
@@ -48,7 +48,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private secureStorage: SecureStorage,
+    private secureStorageService: SecureStorageService,
     private formBuilder: FormBuilder) { }
 
   // Life Cicle
@@ -74,8 +74,8 @@ export class SignInComponent implements OnInit {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
-      await this.secureStorage.CreateKey(viewModel.Password);
-      await this.secureStorage.StoreObject('User', user);
+      await this.secureStorageService.CreateKey(viewModel.Password);
+      await this.secureStorageService.StoreObject('User', user);
 
       await this.router.navigate(['/']);
     }

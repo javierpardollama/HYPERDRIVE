@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
-import { SecureStorage } from 'src/services/secure.storage';
+import { SecureStorageService } from 'src/services/secure.storage.service';
 
 @Component({
     selector: 'app-nav-menu',
@@ -29,7 +29,7 @@ export class NavMenuComponent implements OnInit {
 
     // Constructor
     constructor(
-        private secureStorage: SecureStorage,
+        private secureStorageService: SecureStorageService,
         public bottomSheet: MatBottomSheet
     ) {
 
@@ -59,6 +59,6 @@ export class NavMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
     }
 }

@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SecureStorage } from 'src/services/secure.storage';
+import { SecureStorageService } from 'src/services/secure.storage.service';
 
 @Component({
     selector: 'app-changephonenumber-modal',
@@ -47,7 +47,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<ChangePhoneNumberModalComponent>,
         private securityService: SecurityService,
-        private secureStorage: SecureStorage,
+        private secureStorageService: SecureStorageService,
         private formBuilder: FormBuilder,
         private matSnackBar: MatSnackBar) {
     }
@@ -60,7 +60,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorage.RetrieveItem<ViewApplicationUser>('User');
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');
     }
 
     // Form
@@ -86,7 +86,7 @@ export class ChangePhoneNumberModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.secureStorage.StoreObject('User', user);
+            await this.secureStorageService.StoreObject('User', user);
         }
 
         this.dialogRef.close();

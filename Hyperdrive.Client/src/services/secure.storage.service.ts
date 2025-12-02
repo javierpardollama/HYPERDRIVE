@@ -5,15 +5,13 @@ import { IsEmpty } from "src/utils/object.utils";
 @Injectable({
     providedIn: 'root',
 })
-export class SecureStorage {
+export class SecureStorageService {
 
     private CryptoKey?: CryptoKey;
 
-    constructor() { }
-
-    public async CreateKey(Password: string): Promise<void> {
+    public async CreateKey(password: string): Promise<void> {
         const salt = crypto.getRandomValues(new Uint8Array(16));
-        this.CryptoKey = await DeriveKey(Password, salt);
+        this.CryptoKey = await DeriveKey(password, salt);
     }
 
     public async StoreObject(key: string, value: any): Promise<void> {
@@ -29,14 +27,14 @@ export class SecureStorage {
         sessionStorage.setItem(key, JSON.stringify(encryptedData));
     }
 
-    public async RetrieveItem<T>(key: string): Promise<T | undefined> {
+    public async RetrieveObject<T>(key: string): Promise<T | undefined> {
         if (IsEmpty(key)) return undefined;
 
         const encrypted = sessionStorage.getItem(key);
 
-        if (!encrypted) return undefined;
+        if (IsEmpty(encrypted)) return undefined;
 
-        const parsed = JSON.parse(encrypted);
+        const parsed = JSON.parse(encrypted!);
         const iv = new Uint8Array(parsed.iv);
         const data = new Uint8Array(parsed.data);
 
@@ -44,7 +42,7 @@ export class SecureStorage {
         return JSON.parse(new TextDecoder().decode(decrypted)) as T;
     }
 
-    public removeItem(key: string): void {
+    public RemoveObject(key: string): void {
         sessionStorage.removeItem(key);
     }
 }
