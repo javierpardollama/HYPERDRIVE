@@ -64,7 +64,7 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ById == @userid);
             var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => x.FileName == @filename.Trim());
-            var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => parentid == null || x.DriveItem.ParentId == @parentid);
+            var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ParentId == @parentid);
             var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);
 
             var @archive = await Context.DriveItemVersions
@@ -122,7 +122,7 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parentid)
         {
             var @expr1 = (Expression<Func<DriveItem, bool>>)(x => x.ById == @userid);
-            var @expr2 = (Expression<Func<DriveItem, bool>>)(x => parentid == null || x.ParentId == @parentid);
+            var @expr2 = (Expression<Func<DriveItem, bool>>)(x => x.ParentId == @parentid);
             var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2);
 
             PageDto<DriveItemDto> @page = new()
@@ -342,7 +342,7 @@ namespace Hyperdrive.Infrastructure.Managers
         public async Task<bool> CheckFileName(string @filename, int? @parentid, int @userid)
         {
             var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.FileName == @filename.Trim());
-            var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => @parentid == null || x.DriveItem.ParentId == @parentid);
+            var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ParentId == @parentid);
             var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ById == @userid);
             var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);
 
@@ -386,7 +386,7 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             var @expr1 = (Expression<Func<DriveItemVersion, bool>>)(x => x.Name == @name.Trim());
             var @expr2 = (Expression<Func<DriveItemVersion, bool>>)(x => @extension == null || x.Extension == @extension.Trim());
-            var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => parentid == null || x.DriveItem.ParentId == @parentid);
+            var @expr3 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ParentId == @parentid);
             var @expr4 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.Id != @id);
             var @expr5 = (Expression<Func<DriveItemVersion, bool>>)(x => x.DriveItem.ById == @userid);
             var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3, @expr4, @expr5);
