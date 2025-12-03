@@ -1,3 +1,4 @@
 export interface AuthSignOut {
-    Email: string;
+    ApplicationUserRefreshToken: string;
+    ApplicationUserId: number;
 }

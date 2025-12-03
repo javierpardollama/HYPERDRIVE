@@ -22,11 +22,11 @@ public static class ApplicationUserProfile
             LastModified = @entity.ModifiedAt ?? @entity.CreatedAt,
             ApplicationRoles = [.. @entity.UserRoles.Select(x=>x.Role.ToCatalog())],
             Token = @entity.Tokens
-                .OrderByDescending(x=> x.ModifiedAt)
+                .OrderByDescending(x=> x.CreatedAt)
                 .FirstOrDefault()?
                 .ToDto(),
             RefreshToken = @entity.RefreshTokens
-                .OrderByDescending(x=> x.ModifiedAt)
+                .OrderByDescending(x=> x.CreatedAt)
                 .FirstOrDefault()?
                 .ToDto(),
             FirstName = @entity.FirstName,

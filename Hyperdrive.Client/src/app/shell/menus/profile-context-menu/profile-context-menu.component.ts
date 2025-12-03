@@ -51,7 +51,8 @@ export class ProfileContextMenuComponent implements OnInit {
     public async SignOut(): Promise<void> {
         const viewModel: AuthSignOut =
         {
-            Email: this.User!.Email
+            ApplicationUserId: this.User!.Id,
+            ApplicationUserRefreshToken: this.User!.RefreshToken!.Value
         };
 
         this.sheetRef.dismiss();
@@ -60,7 +61,7 @@ export class ProfileContextMenuComponent implements OnInit {
 
         this.secureStorageService.RemoveObject('User');
 
-        await this.router.navigate(['']);
+        await this.router.navigate(['auth/signin']);
     }
 
     // Get User from Storage
