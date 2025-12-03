@@ -5,30 +5,33 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { ZoneContextManager } from '@opentelemetry/context-zone';
 import { environment } from './environments/environment';
 
-// Batch traces before sending them
-const provider = new WebTracerProvider({
-    spanProcessors: [
-        new BatchSpanProcessor(
-            new OTLPTraceExporter({
-                url: `${environment.Otel.Exporter}`,
-                headers: {
-                    'x-otlp-api-key': environment.Otel.Key
-                },
-            })
-        )]
-});
+if (environment.Otel.Enabled) {
 
-provider.register({
-    contextManager: new ZoneContextManager()
-});
+    // Batch traces before sending them
+    const provider = new WebTracerProvider({
+        spanProcessors: [
+            new BatchSpanProcessor(
+                new OTLPTraceExporter({
+                    url: `${environment.Otel.Exporter}`,
+                    headers: {
+                        'x-otlp-api-key': environment.Otel.Key
+                    },
+                })
+            )]
+    });
 
-registerInstrumentations({
-    instrumentations: [
-        getWebAutoInstrumentations({
-            '@opentelemetry/instrumentation-document-load': {},
-            '@opentelemetry/instrumentation-user-interaction': {},
-            '@opentelemetry/instrumentation-fetch': {},
-            '@opentelemetry/instrumentation-xml-http-request': {},
-        }),
-    ],
-});
+    provider.register({
+        contextManager: new ZoneContextManager()
+    });
+
+    registerInstrumentations({
+        instrumentations: [
+            getWebAutoInstrumentations({
+                '@opentelemetry/instrumentation-document-load': {},
+                '@opentelemetry/instrumentation-user-interaction': {},
+                '@opentelemetry/instrumentation-fetch': {},
+                '@opentelemetry/instrumentation-xml-http-request': {},
+            }),
+        ],
+    });
+}
