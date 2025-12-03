@@ -14,7 +14,7 @@ namespace Hyperdrive.Service.Controllers.V1
     /// <summary>
     /// Represents a <see cref="AuthController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>   
-    //// <param name="mediator">Injected <see cref="IMediator"/></param>
+    /// <param name="mediator">Injected <see cref="IMediator"/></param>
     [ApiVersion(1.0)]
     [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v{v:apiVersion}/auth")]
