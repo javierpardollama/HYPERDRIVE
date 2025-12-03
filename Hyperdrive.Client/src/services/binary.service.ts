@@ -30,7 +30,7 @@ export class BinaryService extends BaseService {
         super(httpClient, matSnackBar, router);
     }
 
-    public async EncodeAddDriveItem(viewModel: BinaryAddDriveItem): Promise<AddDriveItem> {
+    public async EncodeDriveItem(viewModel: BinaryAddDriveItem): Promise<AddDriveItem> {
         const resultModel: AddDriveItem =
         {
             ApplicationUserId: viewModel.ApplicationUserId,
@@ -44,7 +44,7 @@ export class BinaryService extends BaseService {
         return resultModel;
     }
 
-    public async DecodeViewDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
+    public async DecodeDriveItem(viewModel: ViewDriveItemBinary): Promise<void> {
 
         const blob = await DecodeBlob(viewModel.Data!, viewModel.Type);
 

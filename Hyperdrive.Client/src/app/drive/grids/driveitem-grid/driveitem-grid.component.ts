@@ -171,7 +171,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
             await Promise.all(
                 binaries.map(async binary => {
-                    let viewModel = await this.binaryService.EncodeAddDriveItem(binary);
+                    let viewModel = await this.binaryService.EncodeDriveItem(binary);
 
                     let archive = await this.driveItemService.AddDriveItem(viewModel);
                     if (archive)

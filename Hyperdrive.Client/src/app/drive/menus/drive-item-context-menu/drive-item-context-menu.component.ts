@@ -53,7 +53,7 @@ export class DriveItemContextMenuComponent {
 
     public async Download(): Promise<void> {
         const binary = await this.driveItemService.FindDriveItemBinaryById(this.data.Id);
-        await this.binaryService.DecodeViewDriveItem(binary);
+        await this.binaryService.DecodeDriveItem(binary);
         this.sheetRef.dismiss();
     }
 
