@@ -52,13 +52,14 @@ export class ChangeNameModalComponent {
 
     // Life Cicle
     async ngOnInit(): Promise<void> {
-        await this.GetLocalUser();
         this.CreateForm();
+        await this.GetLocalUser();
     }
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');
+        this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 
     // Form
