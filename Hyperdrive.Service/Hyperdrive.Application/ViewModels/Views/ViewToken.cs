@@ -1,5 +1,4 @@
 ﻿using System;
-using Hyperdrive.Application.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Application.ViewModels.Views
 {

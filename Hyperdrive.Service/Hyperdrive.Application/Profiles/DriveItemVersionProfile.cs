@@ -19,6 +19,7 @@ public static class DriveItemVersionProfile
         return new ViewDriveItemVersion
         {
             Id = @dto.Id,
+            FileName = @dto.FileName,
             LastModified = @dto.LastModified,
             Size = @dto.Size,
             Type = @dto.Type,

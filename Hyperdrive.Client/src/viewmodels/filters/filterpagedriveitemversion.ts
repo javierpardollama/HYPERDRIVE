@@ -1,5 +1,5 @@
-export interface FilterPageDriveItemVersion {
-    Index: number;
-    Size: number;
+import { FilterPageBase } from "./filterpagebase";
+
+export interface FilterPageDriveItemVersion extends FilterPageBase {
     Id: number;
 }

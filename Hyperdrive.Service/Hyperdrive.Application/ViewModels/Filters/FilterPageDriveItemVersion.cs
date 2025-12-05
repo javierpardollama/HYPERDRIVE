@@ -1,8 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Hyperdrive.Application.ViewModels.Interfaces.Filters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Application.ViewModels.Filters
 {
-    public class FilterPageDriveItemVersion
+    /// <summary>
+    /// Represents a <see cref="FilterPageDriveItemVersion"/> class. Implements <see cref="IFilterPage"/>
+    /// </summary>
+    public class FilterPageDriveItemVersion : IFilterPage
     {
         /// <summary>
         /// Gets or Sets <see cref="Index"/>

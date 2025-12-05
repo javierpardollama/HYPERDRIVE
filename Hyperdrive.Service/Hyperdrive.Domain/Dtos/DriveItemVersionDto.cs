@@ -11,7 +11,12 @@ public class DriveItemVersionDto
     /// Gets or Sets <see cref="Id"/>
     /// </summary>
     public int Id { get; set; }
-   
+
+    /// <summary>
+    /// Gets or Sets <see cref="FileName"/>
+    /// </summary>
+    public string FileName { get; set; }   
+
     /// <summary>
     /// Gets or Sets <see cref="Size"/>
     /// </summary>

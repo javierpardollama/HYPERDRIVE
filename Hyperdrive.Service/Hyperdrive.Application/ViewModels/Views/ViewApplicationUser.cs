@@ -4,6 +4,9 @@ using Hyperdrive.Application.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Application.ViewModels.Views
 {
+    /// <summary>
+    /// Represents a <see cref="ViewApplicationUser"/> class. Implements <see cref="IViewKey"/>, <see cref="IViewBase"/>
+    /// </summary>
     public class ViewApplicationUser : IViewKey, IViewBase
     {
        

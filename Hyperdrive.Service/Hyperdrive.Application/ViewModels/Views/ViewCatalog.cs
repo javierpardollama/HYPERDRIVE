@@ -3,6 +3,9 @@ using Hyperdrive.Application.ViewModels.Interfaces.Views;
 
 namespace Hyperdrive.Application.ViewModels.Views;
 
+/// <summary>
+/// Represents a <see cref="ViewCatalog"/> class. mplements <see cref="IViewKey"/>, <see cref="IViewBase"/>
+/// </summary>
 public class ViewCatalog : IViewKey, IViewBase
 {
     /// <summary>

@@ -1,5 +1,8 @@
 namespace Hyperdrive.Domain.Dtos;
 
+/// <summary>
+/// Represents a <see cref="CatalogDto"/> class.
+/// </summary>
 public class CatalogDto
 {
     /// <summary>

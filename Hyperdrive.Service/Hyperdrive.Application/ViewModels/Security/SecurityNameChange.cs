@@ -1,5 +1,4 @@
-﻿using Hyperdrive.Application.ViewModels.Updates;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Application.ViewModels.Security
 {

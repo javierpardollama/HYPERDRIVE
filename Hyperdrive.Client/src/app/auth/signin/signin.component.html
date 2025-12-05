@@ -11,9 +11,9 @@
           <mat-label>Email</mat-label>
           <input type="email" matInput placeholder="Email" formControlName="Email" spellcheck="false">
           @if (!formGroup.controls['Email'].valid && formGroup.controls['Email'].touched) {
-            <mat-error>
-              Required field.
-            </mat-error>
+          <mat-error>
+            Required field.
+          </mat-error>
           }
         </mat-form-field>
       </div>
@@ -21,34 +21,35 @@
         <div class="option-image password-image" aria-label="Password"></div>
         <mat-form-field appearance="fill" class="form-element">
           <mat-label>Password</mat-label>
-          <input type="password" matInput placeholder="Password" formControlName="Password"
-            spellcheck="false">
-            @if (!formGroup.controls['Password'].valid && formGroup.controls['Password'].touched) {
-              <mat-error>
-                Required field.
-              </mat-error>
-            }
-          </mat-form-field>
-        </div>
+          <input type="password" matInput placeholder="Password" formControlName="Password" spellcheck="false">
+          @if (!formGroup.controls['Password'].valid && formGroup.controls['Password'].touched) {
+          <mat-error>
+            Required field.
+          </mat-error>
+          }
+        </mat-form-field>
+      </div>
 
-        <div class="content-line">
-          <button mat-raised-button color="primary" type="submit" class="center-button" id="btn-sign-in"
-            (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">GET STARTED
-          </button>
-        </div>
-        <div class="content-line-flex-reverse">
-          <button mat-button color="accent" type="button" id="btn-forget-password"
-            routerLink='/auth/resetpassword' matTooltip="Forgot Password?">
-            Forgot Pasword?
-          </button>
-        </div>
-        <div class="content-line-flex">
-          <button mat-button routerLink='/auth/joinin' type="button" class="left-button" id="btn-join-in" matTooltip="Create Account">CREATE
+      <div class="content-line">
+        <button mat-raised-button color="primary" type="submit" class="center-button" id="btn-sign-in"
+          (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">GET STARTED
+        </button>
+      </div>
+      <div class="content-line-flex-reverse">
+        <button mat-button color="accent" type="button" id="btn-forget-password" routerLink='/auth/resetpassword'
+          matTooltip="Forgot Password?">
+          Forgot Pasword?
+        </button>
+      </div>
+      <div class="content-line-flex">
+        <button mat-button routerLink='/auth/joinin' type="button" class="left-button" id="btn-join-in"
+          matTooltip="Create Account">CREATE
           ACCOUNT</button>
-          <button mat-button routerLink='/hept' type="button" class="right-button" id="btn-help" matTooltip="Need Help?">NEED
+        <button mat-button routerLink='/hept' type="button" class="right-button" id="btn-help"
+          matTooltip="Need Help?">NEED
           HELP?</button>
-        </div>
+      </div>
 
-      </form>
-    </div>
+    </form>
   </div>
+</div>
