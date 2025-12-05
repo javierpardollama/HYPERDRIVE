@@ -1,5 +1,6 @@
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Dtos;
+using System.Linq;
 
 namespace Hyperdrive.Application.Profiles;
 
@@ -21,6 +22,22 @@ public static class DriveItemVersionProfile
             LastModified = @dto.LastModified,
             Size = @dto.Size,
             Type = @dto.Type,
+        };
+    }
+
+    /// <summary>
+    /// Transforms to Page ViewModel
+    /// </summary>
+    /// <param name="dto">Injected <see cref="PageDto{DriveItemVersionDto}"/></param>
+    /// <returns>Instance of <see cref="ViewPage{ViewDriveItemVersion}"/></returns>
+    public static ViewPage<ViewDriveItemVersion> ToPageViewModel(this PageDto<DriveItemVersionDto> @dto)
+    {
+        return new ViewPage<ViewDriveItemVersion>
+        {
+            Index = @dto.Index,
+            Length = @dto.Length,
+            Size = @dto.Size,
+            Items = [.. dto.Items.Select(x => x.ToViewModel())]
         };
     }
 }

@@ -1,6 +1,6 @@
-﻿using System;
-using Hyperdrive.Domain.Exceptions;
+﻿using Hyperdrive.Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
+using System;
 
 namespace Hyperdrive.Application.Profiles;
 

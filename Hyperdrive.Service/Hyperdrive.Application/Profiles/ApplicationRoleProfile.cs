@@ -1,6 +1,6 @@
-using System.Linq;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Dtos;
+using System.Linq;
 
 namespace Hyperdrive.Application.Profiles;
 
@@ -26,7 +26,7 @@ public static class ApplicationRoleProfile
     }
     
     /// <summary>
-    /// Transforms to ViewModel
+    /// Transforms to Page ViewModel
     /// </summary>
     /// <param name="dto">Injected <see cref="PageDto{ApplicationRoleDto}"/></param>
     /// <returns>Instance of <see cref="ViewPage{ViewApplicationRole}"/></returns>

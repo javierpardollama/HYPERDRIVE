@@ -93,9 +93,10 @@ public class DriveItemManagerTest : BaseManagerTest
     }
 
     [Test]
-    public async Task FindAllDriveItemVersionByDriveItemId()
+    public async Task FindPaginatedDriveItemVersionByDriveItemId()
     {
-        await Manager.FindAllDriveItemVersionByDriveItemId(1);
+        await Manager.FindPaginatedDriveItemVersionByDriveItemId(1, 15, 5);
+       
         Assert.Pass();
     }
 

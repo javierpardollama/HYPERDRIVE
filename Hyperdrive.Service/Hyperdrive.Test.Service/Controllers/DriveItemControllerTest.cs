@@ -4,7 +4,6 @@ using Hyperdrive.Application.ViewModels.Updates;
 using Hyperdrive.Application.ViewModels.Views;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -87,11 +86,18 @@ namespace Hyperdrive.Test.Service.Controllers
         }
 
         [Test, Order(5)]
-        public async Task FindAllDriveItemVersionByDriveItemId()
+        public async Task FindPaginatedDriveItemVersionByDriveItemId()
         {
-            var response = await Client.DeleteAsync($"all/version/{Archive.Id}");
+            var content = JsonContent.Create(new FilterPageDriveItemVersion
+            {
+                Index = 0,
+                Size = 20,
+                Id = Archive.Id,                
+            });
+
+            var response = await Client.PostAsync($"page/version", content);
             response.EnsureSuccessStatusCode();
-            var versions = await response.Content.ReadFromJsonAsync<IList<ViewDriveItemVersion>>();
+            var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItemVersion>>();
 
             Assert.Pass();
         }

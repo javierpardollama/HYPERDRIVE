@@ -20,34 +20,34 @@ public static class MediatRInstaller
     {
         @this.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddApplicationRoleHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllApplicationRoleHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedApplicationRoleHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveApplicationRoleByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateApplicationRoleHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddApplicationRoleHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllApplicationRoleHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedApplicationRoleHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveApplicationRoleByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateApplicationRoleHandler>();
                     
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllApplicationUserHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedApplicationUserHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveApplicationUserByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateApplicationUserHandler));
+            cfg.RegisterServicesFromAssemblyContaining<FindAllApplicationUserHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedApplicationUserHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveApplicationUserByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateApplicationUserHandler>();
                     
-            cfg.RegisterServicesFromAssemblyContaining(typeof(JoinInHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(SignInHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(SignOutHandler));
+            cfg.RegisterServicesFromAssemblyContaining<JoinInHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<SignInHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<SignOutHandler>();
             
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddDriveItemHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllDriveItemVersionByDriveItemIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedDriveItemByApplicationUserIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedSharedDriveItemByApplicationUserIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveDriveItemByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateDriveItemNameHandler));           
-            
-            cfg.RegisterServicesFromAssemblyContaining(typeof(EmailChangeHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(PasswordChangeHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(NameChangeHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(PasswordResetHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(PhoneNumberChangeHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RefreshTokenResetHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddDriveItemHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedDriveItemVersionByDriveItemIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedDriveItemByApplicationUserIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedSharedDriveItemByApplicationUserIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveDriveItemByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateDriveItemNameHandler>();
+
+            cfg.RegisterServicesFromAssemblyContaining<EmailChangeHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<PasswordChangeHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<NameChangeHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<PasswordResetHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<PhoneNumberChangeHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RefreshTokenResetHandler>();
         });
     }
 }

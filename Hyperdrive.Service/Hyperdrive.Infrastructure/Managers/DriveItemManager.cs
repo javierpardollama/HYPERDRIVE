@@ -192,21 +192,35 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Finds All Drive Item Version By Drive Item Id
+        /// Finds Paginated Drive Item Version By Drive Item Id
         /// </summary>
+        /// <param name="index">Injected <see cref="int"/></param>
+        /// <param name="size">Injected <see cref="int"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{IList{DriveItemVersionDto}}"/></returns>
-        public async Task<IList<DriveItemVersionDto>> FindAllDriveItemVersionByDriveItemId(int @id)
+        /// <returns>Instance of <see cref="Task{PageDto{DriveItemVersionDto}}"/></returns>
+        public async Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index, int @size, int @id)
         {
-            IList<DriveItemVersionDto> @versions = await Context.DriveItemVersions
-                .TagWith("FindAllDriveItemVersionByDriveItemId")
-                .AsSplitQuery()
-                .AsNoTracking()               
-                .Where(x => x.DriveItemId == @id)
-                .Select(x => x.ToDto())
-                .ToListAsync();
+            PageDto<DriveItemVersionDto> @page = new()
+            {
+                Length = await Context.DriveItemVersions.TagWith("CountAllDriveItemVersionByDriveItemId")
+                   .AsSplitQuery()
+                   .AsNoTracking()
+                   .Where(x => x.DriveItemId == @id)
+                   .CountAsync(),
+                Index = @index,
+                Size = @size,
+                Items = await Context.DriveItemVersions
+                   .TagWith("FindPaginatedDriveItemVersionByDriveItemId")
+                   .AsSplitQuery()
+                   .AsNoTracking()                
+                   .Where(x => x.DriveItemId == @id)
+                   .Skip(@index * @size)
+                   .Take(@size)
+                   .Select(x => x.ToDto())
+                   .ToListAsync()
+            };
 
-            return @versions;
+            return page;
         }
 
         /// <summary>

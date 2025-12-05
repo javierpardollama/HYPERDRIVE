@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Service.Controllers.V1
@@ -81,7 +80,7 @@ namespace Hyperdrive.Service.Controllers.V1
         public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedSharedDriveItemByApplicationUserIdQuery {ViewModel = @viewModel}));
 
         /// <summary>
-        /// Finds All DriveItem Version By DriveItem Id
+        /// Finds Paginated DriveItem Version By DriveItem Id
         /// </summary>
         /// <response code="200">Ok</response>
         /// <response code="400">BadRequest</response>
@@ -91,12 +90,12 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
         /// <response code="500">InternalServerError</response>     
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPageDriveItemVersion"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
-        [HttpGet]
-        [Route("all/version/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewDriveItemVersion>))]
+        [HttpPost]
+        [Route("page/version")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewDriveItemVersion>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
@@ -104,7 +103,7 @@ namespace Hyperdrive.Service.Controllers.V1
         [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-        public async Task<IActionResult> FindAllDriveItemVersionByDriveItemId(int @id) => Ok(value: await mediator.Send(new FindAllDriveItemVersionByDriveItemIdQuery {Id = @id}));
+        public async Task<IActionResult> FindPaginatedDriveItemVersionByDriveItemId([FromBody] FilterPageDriveItemVersion @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemVersionByDriveItemIdQuery { ViewModel = viewModel}));
       
         /// <summary>
         /// Finds Drive Item Binary By DriveItem Id

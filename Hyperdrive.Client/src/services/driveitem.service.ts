@@ -29,6 +29,7 @@ import { BaseService } from './base.service';
 import { environment } from '../environments/environment';
 
 import { Router } from '@angular/router';
+import { FilterPageDriveItemVersion } from 'src/viewmodels/filters/filterpagedriveitemversion';
 
 @Injectable({
     providedIn: 'root',
@@ -63,9 +64,9 @@ export class DriveItemService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItem>>('FindPaginatedSharedDriveItemByApplicationUserId', undefined))));
     }
 
-    public FindAllDriveItemVersionByDriveItemId(id: number): Promise<ViewDriveItemVersion[]> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemVersion[]>(`${environment.Api.Service}api/v1/driveitem/all/version/${id}`)
-            .pipe(catchError(this.HandleError<ViewDriveItemVersion[]>('FindAllDriveItemVersionByDriveItemId', []))));
+    public FindPaginatedDriveItemVersionByDriveItemId(page:FilterPageDriveItemVersion): Promise<ViewPage<ViewDriveItemVersion>> {
+        return firstValueFrom(this.httpClient.get<ViewDriveItemVersion[]>(`${environment.Api.Service}api/v1/driveitem/page/version`, page)
+            .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
 
     public FindDriveItemBinaryById(id: number): Promise<ViewDriveItemBinary> {

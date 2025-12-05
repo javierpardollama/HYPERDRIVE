@@ -1,10 +1,10 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.ApplicationRole;
 using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 using Entities = Hyperdrive.Domain.Entities;
 
 namespace Hyperdrive.Application.Handlers.ApplicationRole;

@@ -1,10 +1,10 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Hyperdrive.Application.Commands.Auth;
 using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Application.Handlers.Auth;
 
@@ -19,7 +19,6 @@ public class JoinInHandler : IRequestHandler<JoinInCommand, ViewApplicationUser>
     public JoinInHandler(
         IApplicationUserManager userManager, 
         IAuthManager authManager, 
-        IDriveItemManager driveItemManager,
         ITokenManager tokenManager, 
         IRefreshTokenManager refreshTokenManager
         )

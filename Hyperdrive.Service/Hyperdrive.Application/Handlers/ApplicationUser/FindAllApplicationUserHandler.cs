@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Hyperdrive.Application.Profiles;
 using Hyperdrive.Application.Queries.ApplicationUser;
 using Hyperdrive.Application.ViewModels.Views;
 using Hyperdrive.Domain.Managers;
 using MediatR;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hyperdrive.Application.Handlers.ApplicationUser;
 

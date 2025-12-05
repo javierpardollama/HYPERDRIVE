@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Hyperdrive.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Hyperdrive.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Infrastructure.Contexts.Interfaces
 {

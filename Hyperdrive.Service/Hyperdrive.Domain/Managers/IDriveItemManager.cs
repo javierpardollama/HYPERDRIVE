@@ -53,11 +53,13 @@ namespace Hyperdrive.Domain.Managers
         Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @userid);
 
         /// <summary>
-        /// Finds All Drive Item Version By Drive Item Id
+        /// Finds Paginated Drive Item Version By Drive Item Id
         /// </summary>
+        /// <param name="index">Injected <see cref="int"/></param>
+        /// <param name="size">Injected <see cref="int"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{IList{DriveItemVersionDto}}"/></returns>
-        Task<IList<DriveItemVersionDto>> FindAllDriveItemVersionByDriveItemId(int @id);
+        /// <returns>Instance of <see cref="Task{PageDto{DriveItemVersionDto}}"/></returns>
+        Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index,int @size,int @id);
 
         /// <summary>
         /// Adds Drive Item
