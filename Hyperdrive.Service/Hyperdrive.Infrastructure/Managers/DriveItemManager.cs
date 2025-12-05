@@ -263,8 +263,8 @@ namespace Hyperdrive.Infrastructure.Managers
         {
             var @userDriveItems = users.Select(@user => new ApplicationUserDriveItem()
             {
-                DriveItem = @entity,
-                User = @user
+                DriveItemId = @entity.Id,
+                UserId = @user.Id
             }).ToList();
 
             await Context.ApplicationUserDriveItems.AddRangeAsync(@userDriveItems);
@@ -282,7 +282,7 @@ namespace Hyperdrive.Infrastructure.Managers
         /// <summary>
         /// Adds Drive Item Version
         /// </summary>
-        /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+        /// <param name="driveitemid">Injected <see cref="int"/></param>
         /// <param name="filename">Injected <see cref="string"/></param>       
         /// <param name="type">Injected <see cref="string"/></param>
         /// <param name="size">Injected <see cref="float?"/></param>
