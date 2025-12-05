@@ -64,8 +64,8 @@ export class DriveItemService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItem>>('FindPaginatedSharedDriveItemByApplicationUserId', undefined))));
     }
 
-    public FindPaginatedDriveItemVersionByDriveItemId(page:FilterPageDriveItemVersion): Promise<ViewPage<ViewDriveItemVersion>> {
-        return firstValueFrom(this.httpClient.post<ViewDriveItemVersion[]>(`${environment.Api.Service}api/v1/driveitem/page/version`, page)
+    public FindPaginatedDriveItemVersionByDriveItemId(page: FilterPageDriveItemVersion): Promise<ViewPage<ViewDriveItemVersion>> {
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItemVersion>>(`${environment.Api.Service}api/v1/driveitem/page/version`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
 
