@@ -65,7 +65,7 @@ export class DriveItemService extends BaseService {
     }
 
     public FindPaginatedDriveItemVersionByDriveItemId(page:FilterPageDriveItemVersion): Promise<ViewPage<ViewDriveItemVersion>> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemVersion[]>(`${environment.Api.Service}api/v1/driveitem/page/version`, page)
+        return firstValueFrom(this.httpClient.post<ViewDriveItemVersion[]>(`${environment.Api.Service}api/v1/driveitem/page/version`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
 
