@@ -62,6 +62,7 @@ namespace Hyperdrive.Infrastructure.Managers
                     .AsSplitQuery()
                     .Include(x => x.UserRoles)
                     .ThenInclude(x => x.Role)
+                    .OrderByDescending(x => x.CreatedAt)
                     .Skip(@index * @size)
                     .Take(@size)
                     .Select(x => x.ToDto())

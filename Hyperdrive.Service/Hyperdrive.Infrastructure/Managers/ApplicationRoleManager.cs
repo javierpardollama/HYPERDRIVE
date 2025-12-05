@@ -142,6 +142,7 @@ namespace Hyperdrive.Infrastructure.Managers
                .TagWith("FindPaginatedApplicationRole")
                .AsNoTracking()
                .AsSplitQuery()
+               .OrderByDescending(x => x.CreatedAt)
                .Select(role => role.ToDto())
                .Skip(@index * @size)
                .Take(@size)
