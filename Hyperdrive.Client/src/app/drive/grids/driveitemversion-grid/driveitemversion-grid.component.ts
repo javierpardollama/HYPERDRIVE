@@ -12,6 +12,7 @@ import { DriveItemService } from 'src/services/driveitem.service';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 import { ViewDriveItemVersion } from 'src/viewmodels/views/viewdriveitemversion';
 import { FilterPageDriveItemVersion } from 'src/viewmodels/filters/filterpagedriveitemversion';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-driveitemversion-grid',
