@@ -23,6 +23,7 @@ public static class DriveItemVersionProfile
             LastModified = @entity.CreatedAt,
             Size = @entity.Size,
             Type = @entity.Type,
+            Downloadeable = @entity.Size.HasValue
         };
     }
 

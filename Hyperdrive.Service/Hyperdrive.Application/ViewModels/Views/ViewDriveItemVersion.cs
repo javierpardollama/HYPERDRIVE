@@ -32,5 +32,10 @@ namespace Hyperdrive.Application.ViewModels.Views
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         public DateTime? LastModified { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Downloadeable"/>
+        /// </summary>
+        public bool Downloadeable { get; set; }
     }
 }

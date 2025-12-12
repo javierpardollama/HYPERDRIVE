@@ -5,4 +5,5 @@ export interface ViewDriveItemVersion extends ViewKey, ViewBase {
     FileName: string;
     Size?: number;
     Type: string;
+    Downloadeable: boolean;
 }
