@@ -1,7 +1,7 @@
 {
   "name": "hyperdrive.client",
   "version": "0.0.0",
-  "description": "Solución para gestionar el almacenamiento, visualización y descarga de ficheros.",
+  "description": "Solution for managing file storage, viewing, and downloading",
   "author": {
     "name": "Javier Pardo",
     "email": ""
