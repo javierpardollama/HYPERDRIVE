@@ -106,7 +106,7 @@ namespace Hyperdrive.Service.Controllers.V1
         public async Task<IActionResult> FindPaginatedDriveItemVersionByDriveItemId([FromBody] FilterPageDriveItemVersion @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemVersionByDriveItemIdQuery { ViewModel = viewModel}));
       
         /// <summary>
-        /// Finds Drive Item Binary By DriveItem Id
+        /// Finds Latest Drive Item Binary By DriveItem Id
         /// </summary>
         /// <response code="200">Ok</response>
         /// <response code="400">BadRequest</response>
@@ -120,7 +120,7 @@ namespace Hyperdrive.Service.Controllers.V1
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
         [MapToApiVersion(1.0)]
         [HttpGet]
-        [Route("down/{id}")]
+        [Route("binary/last/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewDriveItemBinary))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
@@ -129,8 +129,35 @@ namespace Hyperdrive.Service.Controllers.V1
         [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-        public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery {Id = @id}));
-        
+        public async Task<IActionResult> FindLatestDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindLatestDriveItemBinaryByIdQuery {Id = @id}));
+
+        /// <summary>
+        /// Finds Latest Drive Item Binary By DriveItem Id
+        /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="400">BadRequest</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>     
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
+        [MapToApiVersion(1.0)]
+        [HttpGet]
+        [Route("binary/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewDriveItemBinary))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
+        public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery { Id = @id }));
+
+
         /// <summary>
         /// Adds DriveItem
         /// </summary>

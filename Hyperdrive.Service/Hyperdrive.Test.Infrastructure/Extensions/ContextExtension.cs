@@ -159,7 +159,8 @@ namespace Hyperdrive.Test.Infrastructure.Extensions
                     Deleted = false,
                     Activity = [
                         new() {
-                         Id = 21,
+                        Id = 21,
+                        DriveItemId = 2,
                         Name = "Documents",
                         NormalizedName = "DOCUMENTS",
                         FileName = "Documents",
@@ -182,6 +183,7 @@ namespace Hyperdrive.Test.Infrastructure.Extensions
                         new()
                     {
                         Id = 31,
+                        DriveItemId = 3,
                         Name = "Music",
                         NormalizedName = "MUSIC",
                         FileName = "Music",
@@ -203,6 +205,7 @@ namespace Hyperdrive.Test.Infrastructure.Extensions
                         new()
                     {
                         Id = 41,
+                        DriveItemId = 4,
                         Name = "Pictures",
                         NormalizedName = "PICTURES",
                         FileName = "Pictures",
@@ -240,6 +243,7 @@ namespace Hyperdrive.Test.Infrastructure.Extensions
                         new()
                     {
                         Id = 51,
+                        DriveItemId = 5,
                         Name = "Wanabe",
                         NormalizedName = "WANABE",
                         FileName = "Wanabe.mp3",

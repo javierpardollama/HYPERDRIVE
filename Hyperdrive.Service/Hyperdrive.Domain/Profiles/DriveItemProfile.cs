@@ -58,7 +58,7 @@ public static class DriveItemProfile
     /// <summary>
     /// Transforms to Binary Dto
     /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+    /// <param name="entity">Injected <see cref="DriveItem"/></param>
     /// <returns>Instance of <see cref="DriveItemBinaryDto"/></returns>
     public static DriveItemBinaryDto ToBinary(this DriveItem @entity)
     {

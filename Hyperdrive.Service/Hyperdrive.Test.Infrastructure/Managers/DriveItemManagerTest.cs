@@ -92,13 +92,7 @@ public class DriveItemManagerTest : BaseManagerTest
         Assert.Pass();
     }
 
-    [Test]
-    public async Task FindPaginatedDriveItemVersionByDriveItemId()
-    {
-        await Manager.FindPaginatedDriveItemVersionByDriveItemId(1, 15, 5);
-       
-        Assert.Pass();
-    }
+   
 
     [Test]
     public async Task AddDriveItem()
@@ -149,9 +143,9 @@ public class DriveItemManagerTest : BaseManagerTest
     }
 
     [Test]
-    public async Task FindDriveItemBinaryById()
+    public async Task FindLatestDriveItemBinaryById()
     {
-        await Manager.FindDriveItemBinaryById(5);
+        await Manager.FindLatestDriveItemBinaryById(5);
 
         Assert.Pass();
     }

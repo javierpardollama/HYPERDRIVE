@@ -20,6 +20,7 @@ public static class ManagerInstaller
         @this.AddTransient<IAuthManager, AuthManager>();
         @this.AddTransient<ITokenManager, TokenManager>();
         @this.AddTransient<IDriveItemManager, DriveItemManager>();
+        @this.AddTransient<IDriveItemVersionManager, DriveItemVersionManager>();
         @this.AddTransient<IRefreshTokenManager, RefreshTokenManager>();
         @this.AddTransient<ITokenManager, TokenManager>();
         @this.AddTransient<ISecurityManager, SecurityManager>();

@@ -69,8 +69,13 @@ export class DriveItemService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
 
+    public FindLatestDriveItemBinaryById(driveitemid: number): Promise<ViewDriveItemBinary> {
+        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/binary/last/${driveitemid}`)
+            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindLatestDriveItemBinaryById', undefined))));
+    }
+
     public FindDriveItemBinaryById(id: number): Promise<ViewDriveItemBinary> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/down/${id}`)
+        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/binary/${id}`)
             .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindDriveItemBinaryById', undefined))));
     }
 

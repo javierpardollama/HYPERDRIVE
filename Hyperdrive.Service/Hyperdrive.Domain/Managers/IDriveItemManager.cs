@@ -50,16 +50,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="size">Injected <see cref="int"/></param>
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-        Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @userid);
-
-        /// <summary>
-        /// Finds Paginated Drive Item Version By Drive Item Id
-        /// </summary>
-        /// <param name="index">Injected <see cref="int"/></param>
-        /// <param name="size">Injected <see cref="int"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{PageDto{DriveItemVersionDto}}"/></returns>
-        Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index,int @size,int @id);
+        Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index, int @size, int @userid);       
 
         /// <summary>
         /// Adds Drive Item
@@ -115,13 +106,13 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="extension">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
         Task<bool> CheckName(string @name, int @id, int? @parentid, int @userid, string @extension = null);
-        
+
         /// <summary>
-        /// Finds Drive Item Binary By Id
+        /// Finds Latest Drive Item Binary By Drive Item Id
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="driveitemid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-        Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @id);
+        Task<DriveItemBinaryDto> FindLatestDriveItemBinaryById(int @driveitemid);
         
         /// <summary>
         /// Reloads Drive Item By Id

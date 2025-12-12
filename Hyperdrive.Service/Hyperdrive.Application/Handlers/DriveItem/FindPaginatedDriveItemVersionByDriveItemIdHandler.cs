@@ -10,9 +10,9 @@ namespace Hyperdrive.Application.Handlers.DriveItem;
 
 public class FindPaginatedDriveItemVersionByDriveItemIdHandler : IRequestHandler<FindPaginatedDriveItemVersionByDriveItemIdQuery, ViewPage<ViewDriveItemVersion>>
 {
-    private readonly IDriveItemManager _manager;
+    private readonly IDriveItemVersionManager _manager;
 
-    public FindPaginatedDriveItemVersionByDriveItemIdHandler(IDriveItemManager manager)
+    public FindPaginatedDriveItemVersionByDriveItemIdHandler(IDriveItemVersionManager manager)
     {
         _manager = manager;
     }

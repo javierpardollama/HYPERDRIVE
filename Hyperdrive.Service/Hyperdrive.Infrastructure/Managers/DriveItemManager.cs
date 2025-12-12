@@ -193,38 +193,7 @@ namespace Hyperdrive.Infrastructure.Managers
             return @page;
         }
 
-        /// <summary>
-        /// Finds Paginated Drive Item Version By Drive Item Id
-        /// </summary>
-        /// <param name="index">Injected <see cref="int"/></param>
-        /// <param name="size">Injected <see cref="int"/></param>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{PageDto{DriveItemVersionDto}}"/></returns>
-        public async Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index, int @size, int @id)
-        {
-            PageDto<DriveItemVersionDto> @page = new()
-            {
-                Length = await Context.DriveItemVersions.TagWith("CountAllDriveItemVersionByDriveItemId")
-                   .AsSplitQuery()
-                   .AsNoTracking()
-                   .Where(x => x.DriveItemId == @id)
-                   .CountAsync(),
-                Index = @index,
-                Size = @size,
-                Items = await Context.DriveItemVersions
-                   .TagWith("FindPaginatedDriveItemVersionByDriveItemId")
-                   .AsSplitQuery()
-                   .AsNoTracking()                
-                   .Where(x => x.DriveItemId == @id)
-                   .OrderByDescending(x => x.CreatedAt)
-                   .Skip(@index * @size)
-                   .Take(@size)
-                   .Select(x => x.ToDto())
-                   .ToListAsync()
-            };
-
-            return page;
-        }
+       
 
         /// <summary>
         /// Adds Drive Item
@@ -433,18 +402,19 @@ namespace Hyperdrive.Infrastructure.Managers
         }
 
         /// <summary>
-        /// Finds Drive Item Binary By Id
+        /// Finds Latest Drive Item Binary By Drive Item Id
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
+        /// <param name="driveitemid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-        public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @id)
+        public async Task<DriveItemBinaryDto> FindLatestDriveItemBinaryById(int @driveitemid)
         {
             DriveItemBinaryDto @archive = await Context.DriveItems
-                .TagWith("FindDriveItemBinaryById")
+                .TagWith("FindLatestDriveItemBinaryById")
                 .AsNoTracking()
-                .AsSplitQuery()
+                .AsSplitQuery()               
                 .Include(x => x.Activity)
-                .Where(x => x.Id == @id)
+                .Where(x=> x.Id == @driveitemid)
+                .OrderByDescending(x=> x.CreatedAt)
                 .Select(x => x.ToBinary())
                 .FirstOrDefaultAsync();
 
