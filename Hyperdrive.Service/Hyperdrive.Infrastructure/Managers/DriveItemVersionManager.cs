@@ -28,16 +28,16 @@ public class DriveItemVersionManager(
     /// </summary>
     /// <param name="index">Injected <see cref="int"/></param>
     /// <param name="size">Injected <see cref="int"/></param>
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="driveitemid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{PageDto{DriveItemVersionDto}}"/></returns>
-    public async Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index, int @size, int @id)
+    public async Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index, int @size, int @driveitemid)
     {
         PageDto<DriveItemVersionDto> @page = new()
         {
             Length = await Context.DriveItemVersions.TagWith("CountAllDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
-               .Where(x => x.DriveItemId == @id)
+               .Where(x => x.DriveItemId == @driveitemid)
                .CountAsync(),
             Index = @index,
             Size = @size,
@@ -45,7 +45,7 @@ public class DriveItemVersionManager(
                .TagWith("FindPaginatedDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
-               .Where(x => x.DriveItemId == @id)
+               .Where(x => x.DriveItemId == @driveitemid)
                .OrderByDescending(x => x.CreatedAt)
                .Skip(@index * @size)
                .Take(@size)
