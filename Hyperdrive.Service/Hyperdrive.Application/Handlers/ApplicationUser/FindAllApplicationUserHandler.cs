@@ -23,6 +23,6 @@ public class FindAllApplicationUserHandler : IRequestHandler< FindAllApplication
     {
         var @users = await _manager.FindAllApplicationUser();
 
-        return [.. @users.Select(x => x.ToCatalogViewModel())];
+        return [.. @users.Select(x => x.ToViewModel())];
     }
 }

@@ -20,7 +20,7 @@ public static class ApplicationUserProfile
         {
             Id = @dto.Id,
             LastModified = @dto.LastModified,
-            ApplicationRoles = [.. @dto.ApplicationRoles.Select(x=>x.ToCatalogViewModel())],
+            ApplicationRoles = [.. @dto.ApplicationRoles.Select(x=>x.ToViewModel())],
             Token = @dto.Token?.ToViewModel(),
             RefreshToken = @dto.RefreshToken?.ToViewModel(),
             FirstName = @dto.FirstName,

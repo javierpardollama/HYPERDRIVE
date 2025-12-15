@@ -22,11 +22,11 @@ public static class DriveItemProfile
             FileName = @dto.Name,
             Name = @dto.Name,
             Extension = @dto.Extension,
-            By = @dto.By?.ToCatalogViewModel(),
-            Parent = @dto.Parent?.ToCatalogViewModel(),
+            By = @dto.By?.ToViewModel(),
+            Parent = @dto.Parent?.ToViewModel(),
             Folder = @dto.Folder,
             LastModified = @dto.LastModified,
-            SharedWith = [.. @dto.SharedWith.Select(x=> x.ToCatalogViewModel())],
+            SharedWith = [.. @dto.SharedWith.Select(x=> x.ToViewModel())],
             Downloadeable = @dto.Downloadeable,
         };
     }
@@ -45,20 +45,5 @@ public static class DriveItemProfile
             Size = @dto.Size,
             Items = [.. dto.Items.Select(x=> x.ToViewModel())]
         };
-    }
-    
-    /// <summary>
-    /// Transforms to Binary ViewModel
-    /// </summary>
-    /// <param name="dto">Injected <see cref="DriveItemBinaryDto"/></param>
-    /// <returns>Instance of <see cref="ViewDriveItemBinary"/></returns>
-    public static ViewDriveItemBinary ToViewModel(this DriveItemBinaryDto @dto)
-    {
-        return new ViewDriveItemBinary
-        {
-            FileName = @dto.FileName,
-            Data = @dto.Data,
-            Type = @dto.Type
-        };
-    }
+    }   
 }

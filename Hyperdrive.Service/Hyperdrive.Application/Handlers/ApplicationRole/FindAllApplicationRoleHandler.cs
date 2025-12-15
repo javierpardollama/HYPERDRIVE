@@ -23,6 +23,6 @@ public class FindAllApplicationRoleHandler : IRequestHandler<FindAllApplicationR
     {
         var @roles = await _manager.FindAllApplicationRole();
 
-        return [.. @roles.Select(x => x.ToCatalogViewModel())];
+        return [.. @roles.Select(x => x.ToViewModel())];
     }
 }

@@ -13,7 +13,7 @@ public static class CatalogProfile
     /// </summary>
     /// <param name="dto">Injected <see cref="CatalogDto"/></param>
     /// <returns>Instance of <see cref="ViewCatalog"/></returns>
-    public static ViewCatalog ToCatalogViewModel(this CatalogDto @dto)
+    public static ViewCatalog ToViewModel(this CatalogDto @dto)
     {
         return new ViewCatalog
         {
