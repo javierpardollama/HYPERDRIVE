@@ -36,6 +36,9 @@ public static class DriveItemProfile
               .OrderByDescending(x=>x.CreatedAt)
               .FirstOrDefault()?.CreatedAt,
             SharedWith = [.. @entity.SharedWith.Select(x=> x.User.ToCatalog())],
+            Downloadeable = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .Any(x => x.Size.HasValue)
         };
     }
 

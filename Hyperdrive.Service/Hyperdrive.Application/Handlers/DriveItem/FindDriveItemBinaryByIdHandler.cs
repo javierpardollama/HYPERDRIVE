@@ -10,9 +10,9 @@ namespace Hyperdrive.Application.Handlers.DriveItem;
 
 public class FindDriveItemBinaryByIdHandler : IRequestHandler<FindDriveItemBinaryByIdQuery, ViewDriveItemBinary>
 {
-    private readonly IDriveItemVersionManager _manager;
+    private readonly IDriveItemBinaryManager _manager;
 
-    public FindDriveItemBinaryByIdHandler(IDriveItemVersionManager manager)
+    public FindDriveItemBinaryByIdHandler(IDriveItemBinaryManager manager)
     {
         _manager = manager;
     }

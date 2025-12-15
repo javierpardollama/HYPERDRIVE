@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
+/// <summary>
+/// Represents a <see cref="DriveItemManagerTest"/> class. Inherits <see cref="BaseManagerTest"/>
+/// </summary>
+[TestFixture]
 public class DriveItemManagerTest : BaseManagerTest
 {
     /// <summary>
@@ -140,15 +144,7 @@ public class DriveItemManagerTest : BaseManagerTest
     public void CheckName()
     {
         Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", 1, null, 1));
-    }
-
-    [Test]
-    public async Task FindLatestDriveItemBinaryById()
-    {
-        await Manager.FindLatestDriveItemBinaryById(5);
-
-        Assert.Pass();
-    }
+    }  
 
     [Test]
     public async Task ReloadDriveItemById()

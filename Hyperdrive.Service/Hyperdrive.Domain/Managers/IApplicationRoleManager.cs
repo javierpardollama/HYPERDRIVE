@@ -14,7 +14,7 @@ namespace Hyperdrive.Domain.Managers
         /// Finds All Application Role
         /// </summary>
         /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
-        Task<ICollection<CatalogDto>> FindAllApplicationRole();
+        public Task<ICollection<CatalogDto>> FindAllApplicationRole();
 
         /// <summary>
         /// Finds Paginated Application Role
@@ -29,35 +29,35 @@ namespace Hyperdrive.Domain.Managers
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
-        Task<ApplicationRole> FindApplicationRoleById(int @id);
+        public Task<ApplicationRole> FindApplicationRoleById(int @id);
 
         /// <summary>
         /// Removes Application Role
         /// </summary>
         /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveApplicationRole(ApplicationRole @entity);
+        public Task RemoveApplicationRole(ApplicationRole @entity);
 
         /// <summary>
         /// Updates Application Role
         /// </summary>
         /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationRoleDto}"/></returns>
-        Task<ApplicationRoleDto> UpdateApplicationRole(ApplicationRole @entity);
+        public Task<ApplicationRoleDto> UpdateApplicationRole(ApplicationRole @entity);
 
         /// <summary>
         /// Adds Application Role
         /// </summary>
         /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationRoleDto}"/></returns>
-        Task<ApplicationRoleDto> AddApplicationRole(ApplicationRole @entity);
+        public Task<ApplicationRoleDto> AddApplicationRole(ApplicationRole @entity);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="name">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckName(string @name);
+        public Task<bool> CheckName(string @name);
 
         /// <summary>
         /// Checks Name
@@ -65,6 +65,6 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="name">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckName(string @name, int @id);
+        public Task<bool> CheckName(string @name, int @id);
     }
 }

@@ -10,4 +10,5 @@ export interface ViewDriveItem extends ViewKey, ViewBase {
     Extension: string;
     Parent: ViewCatalog;
     SharedWith: ViewCatalog[];
+    Downloadeable: boolean;
 }

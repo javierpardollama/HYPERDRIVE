@@ -1,15 +1,14 @@
 ﻿using System;
 
-namespace Hyperdrive.Application.ViewModels.Interfaces.Views
+namespace Hyperdrive.Application.ViewModels.Interfaces.Views;
+
+/// <summary>
+/// Represents a <see cref="IViewBase"/> interface
+/// </summary>
+public interface IViewBase
 {
     /// <summary>
-    /// Represents a <see cref="IViewBase"/> interface
+    /// Gets or Sets <see cref="LastModified"/>
     /// </summary>
-    public interface IViewBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="LastModified"/>
-        /// </summary>
-        DateTime? LastModified { get; set; }
-    }
+    DateTime? LastModified { get; set; }
 }

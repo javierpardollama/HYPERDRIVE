@@ -14,7 +14,7 @@ namespace Hyperdrive.Domain.Managers
         /// Finds All Application User
         /// </summary>
         /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
-        Task<ICollection<CatalogDto>> FindAllApplicationUser();
+        public Task<ICollection<CatalogDto>> FindAllApplicationUser();
 
         /// <summary>
         /// Finds Paginated Application User
@@ -29,28 +29,28 @@ namespace Hyperdrive.Domain.Managers
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        Task<ApplicationUser> FindApplicationUserById(int @id);
+        public Task<ApplicationUser> FindApplicationUserById(int @id);
         
         /// <summary>
         /// Finds All Application User By Ids
         /// </summary>
         /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        Task<IList<ApplicationUser>> FindAllApplicationUserByIds(ICollection<int> @ids);
+        public Task<IList<ApplicationUser>> FindAllApplicationUserByIds(ICollection<int> @ids);
         
         /// <summary>
         /// Finds Application User By Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
-        Task<ApplicationUser> FindApplicationUserByEmail(string @email);
+        public Task<ApplicationUser> FindApplicationUserByEmail(string @email);
 
         /// <summary>
         /// Removes Application User
         /// </summary>
         /// <param name="@user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveApplicationUser(ApplicationUser @user);
+        public Task RemoveApplicationUser(ApplicationUser @user);
 
         /// <summary>
         /// Updates Application User
@@ -58,7 +58,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
         /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user);
+        public Task<ApplicationUserDto> UpdateApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user);
         
         /// <summary>
         /// Adds Application Roles to Application User
@@ -66,14 +66,14 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
         /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> AddApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user);
+        public Task<bool> AddApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user);
         
         /// <summary>
         /// Removes Application Roles from Application User
         /// </summary>
         /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> RemoveApplicationUserRoles(ApplicationUser @user);
+        public Task<bool> RemoveApplicationUserRoles(ApplicationUser @user);
         
         /// <summary>
         /// Checks Email
@@ -81,20 +81,20 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckEmail(string @email, int @id);
+        public Task<bool> CheckEmail(string @email, int @id);
         
         /// <summary>
         /// Checks Email
         /// </summary>
         /// <param name="email">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> CheckEmail(string @email);
+        public Task<bool> CheckEmail(string @email);
         
         /// <summary>
         /// Reloads Application User By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{ApplicationUserDto}"/></returns>
-        Task<ApplicationUserDto> ReloadApplicationUserById(int @id);
+        public Task<ApplicationUserDto> ReloadApplicationUserById(int @id);
     }
 }

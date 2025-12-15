@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 namespace Hyperdrive.Test.Infrastructure.Managers;
 
 /// <summary>
-/// Represents a <see cref="DriveItemVersionManagerTest"/> class. Inherits <see cref="BaseManagerTest"/>
+/// Represents a <see cref="DriveItemBinaryManagerTest"/> class. Inherits <see cref="BaseManagerTest"/>
 /// </summary>
 [TestFixture]
-public class DriveItemVersionManagerTest : BaseManagerTest
+public class DriveItemBinaryManagerTest : BaseManagerTest
 {
     /// <summary>
-    /// Instance of <see cref="ILogger{DriveItemVersionManager}"/>
+    /// Instance of <see cref="ILogger{DriveItemBinaryManager}"/>
     /// </summary>
-    private ILogger<DriveItemVersionManager> Logger;
+    private ILogger<DriveItemBinaryManager> Logger;
 
     /// <summary>
     /// Instance of <see cref="DriveItemManager"/>
     /// </summary>
-    private DriveItemVersionManager Manager;
+    private DriveItemBinaryManager Manager;
 
     /// <summary>
     /// Sets Up
@@ -38,7 +38,7 @@ public class DriveItemVersionManagerTest : BaseManagerTest
 
         InstallLogger();
 
-        Manager = new DriveItemVersionManager(Context, Logger);
+        Manager = new DriveItemBinaryManager(Context, Logger);
     }
 
     /// <summary>
@@ -54,15 +54,23 @@ public class DriveItemVersionManagerTest : BaseManagerTest
                 .AddConsole();
         });
 
-        Logger = @loggerFactory.CreateLogger<DriveItemVersionManager>();
-    }
+        Logger = @loggerFactory.CreateLogger<DriveItemBinaryManager>();
+    }       
 
     [Test]
-    public async Task FindPaginatedDriveItemVersionByDriveItemId()
+    public async Task FindDriveItemBinaryById()
     {
-        await Manager.FindPaginatedDriveItemVersionByDriveItemId(1, 15, 5);
+        await Manager.FindDriveItemBinaryById(51);
 
         Assert.Pass();
     }
-   
+
+
+    [Test]
+    public async Task FindLatestDriveItemBinaryById()
+    {
+        await Manager.FindLatestDriveItemBinaryById(5);
+
+        Assert.Pass();
+    }
 }

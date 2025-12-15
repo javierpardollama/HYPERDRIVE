@@ -15,13 +15,13 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="password">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> SignIn(ApplicationUser @user, string email, string password);
+        public Task<bool> SignIn(ApplicationUser @user, string email, string password);
         
         /// <summary>
         /// Signs In
         /// </summary>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task SignOut();
+        public Task SignOut();
 
         /// <summary>
         /// Joins In
@@ -29,6 +29,6 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="email">Injected <see cref="string"/></param>
         /// <param name="password">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task{bool}"/></returns>
-        Task<bool> JoinIn(string email, string password);
+        public Task<bool> JoinIn(string email, string password);
     }
 }

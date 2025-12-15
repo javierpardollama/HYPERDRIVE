@@ -15,6 +15,7 @@ import {
 } from "../../modals/updates/driveitem-share-with-update-modal/driveitem-share-with-update-modal.component";
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { DriveItemBinaryService } from 'src/services/driveitembinary.service';
 
 @Component({
     selector: 'app-drive-item-context-menu',
@@ -35,6 +36,7 @@ export class DriveItemContextMenuComponent {
         public matDialog: MatDialog,
         public snackBar: MatSnackBar,
         public driveItemService: DriveItemService,
+        public driveItemBinaryService: DriveItemBinaryService,
         public binaryService: BinaryService,
         public sheetRef: MatBottomSheetRef<DriveItemContextMenuComponent>,
         @Inject(MAT_BOTTOM_SHEET_DATA) public data: ViewDriveItem) {
@@ -52,7 +54,7 @@ export class DriveItemContextMenuComponent {
     }
 
     public async Download(): Promise<void> {
-        const binary = await this.driveItemService.FindLatestDriveItemBinaryByDriveItemId(this.data.Id);
+        const binary = await this.driveItemBinaryService.FindLatestDriveItemBinaryByDriveItemId(this.data.Id);
         await this.binaryService.DecodeDriveItem(binary);
         this.sheetRef.dismiss();
     }

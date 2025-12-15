@@ -1,23 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Hyperdrive.Application.ViewModels.Updates
+namespace Hyperdrive.Application.ViewModels.Updates;
+
+/// <summary>
+/// Represents a <see cref="UpdateApplicationRole"/> class. Inherits <see cref="UpdateBase"/>
+/// </summary>
+public class UpdateApplicationRole : UpdateBase
 {
     /// <summary>
-    /// Represents a <see cref="UpdateApplicationRole"/> class. Inherits <see cref="UpdateBase"/>
+    /// Gets or Sets <see cref="Name"/>
     /// </summary>
-    public class UpdateApplicationRole : UpdateBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="Name"/>
-        /// </summary>
-        [Required]
-        public string Name { get; set; }
+    [Required]
+    public string Name { get; set; }
 
-        /// <summary>
-        /// Gets or Sets <see cref="ImageUri"/>
-        /// </summary>
-        [Required]
-        [Url]
-        public string ImageUri { get; set; }
-    }
+    /// <summary>
+    /// Gets or Sets <see cref="ImageUri"/>
+    /// </summary>
+    [Required]
+    [Url]
+    public string ImageUri { get; set; }
 }

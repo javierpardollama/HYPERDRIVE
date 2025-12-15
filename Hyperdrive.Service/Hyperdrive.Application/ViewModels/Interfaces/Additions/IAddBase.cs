@@ -1,13 +1,12 @@
-﻿namespace Hyperdrive.Application.ViewModels.Interfaces.Additions
+﻿namespace Hyperdrive.Application.ViewModels.Interfaces.Additions;
+
+/// <summary>
+/// Represents a <see cref="IAddBase"/> interface
+/// </summary>
+public interface IAddBase
 {
     /// <summary>
-    /// Represents a <see cref="IAddBase"/> interface
+    /// Gets or Sets <see cref="ApplicationUserId"/>
     /// </summary>
-    public interface IAddBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserId"/>
-        /// </summary>
-        public int ApplicationUserId { get; set; }
-    }
+    public int ApplicationUserId { get; set; }
 }

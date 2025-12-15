@@ -8,66 +8,65 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Hyperdrive.Test.Service.Controllers
+namespace Hyperdrive.Test.Service.Controllers;
+
+public class BaseControllerTest
 {
-    public class BaseControllerTest
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:5001/api/v1/") };
+
+    protected ViewApplicationUser User { get; set; }    
+    
+    protected string OldPassWord = "P@ssw0rd.0!d";
+
+    protected string NewPassWord = "P@ssw0rd.n3w";
+
+    protected string OldEmail = "quorra.flynn@encom.com";
+
+    protected string NewEmail = "lora.baines@encom.com";
+
+    [OneTimeSetUp]
+    public async Task OneTimeSetUp()
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:5001/api/v1/") };
+        var content = JsonContent.Create(new AuthJoinIn { Email = OldEmail, Password = OldPassWord });
 
-        protected ViewApplicationUser User { get; set; }    
-        
-        protected string OldPassWord = "P@ssw0rd.0!d";
+        var response = await Client.PostAsync("auth/in", content);
 
-        protected string NewPassWord = "P@ssw0rd.n3w";
+        response.EnsureSuccessStatusCode();
 
-        protected string OldEmail = "quorra.flynn@encom.com";
+        User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
-        protected string NewEmail = "lora.baines@encom.com";
+        Assert.Pass();
+    }
 
-        [OneTimeSetUp]
-        public async Task OneTimeSetUp()
-        {
-            var content = JsonContent.Create(new AuthJoinIn { Email = OldEmail, Password = OldPassWord });
+    [SetUp]
+    public void SetUp() 
+    {
+        Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
+    }
 
-            var response = await Client.PostAsync("auth/in", content);
+    [TearDown]
+    public async Task TearDown()
+    {
+        var content = JsonContent.Create(new SecurityRefreshTokenReset { ApplicationUserId = User.Id, ApplicationUserRefreshToken = User.RefreshToken.Value });
 
-            response.EnsureSuccessStatusCode();
+        var response = await Client.PutAsync("security/tokens/refresh", content);
 
-            User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
+        response.EnsureSuccessStatusCode();
 
-            Assert.Pass();
-        }
+        User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
 
-        [SetUp]
-        public void SetUp() 
-        {
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
-        }
+        Assert.Pass();
+    }
 
-        [TearDown]
-        public async Task TearDown()
-        {
-            var content = JsonContent.Create(new SecurityRefreshTokenReset { ApplicationUserId = User.Id, ApplicationUserRefreshToken = User.RefreshToken.Value });
+    [OneTimeTearDown]
+    public async Task OneTimeTearDown()
+    {
+        var content = JsonContent.Create(new AuthSignOut { ApplicationUserId = User.Id, ApplicationUserRefreshToken = User.RefreshToken.Value });
 
-            var response = await Client.PutAsync("security/tokens/refresh", content);
+        var response = await Client.PostAsync("auth/out", content);
 
-            response.EnsureSuccessStatusCode();
+        response.EnsureSuccessStatusCode();           
 
-            User = await response.Content.ReadFromJsonAsync<ViewApplicationUser>();
-
-            Assert.Pass();
-        }
-
-        [OneTimeTearDown]
-        public async Task OneTimeTearDown()
-        {
-            var content = JsonContent.Create(new AuthSignOut { ApplicationUserId = User.Id, ApplicationUserRefreshToken = User.RefreshToken.Value });
-
-            var response = await Client.PostAsync("auth/out", content);
-
-            response.EnsureSuccessStatusCode();           
-
-            Assert.Pass();
-        }
+        Assert.Pass();
     }
 }

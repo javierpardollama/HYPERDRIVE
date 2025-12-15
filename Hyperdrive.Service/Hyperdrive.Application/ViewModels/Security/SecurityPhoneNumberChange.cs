@@ -1,17 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Hyperdrive.Application.ViewModels.Security
+namespace Hyperdrive.Application.ViewModels.Security;
+
+/// <summary>
+/// Represents a <see cref="SecurityPhoneNumberChange"/> class. Inherits <see cref="SecurityBase"/>
+/// </summary>
+public class SecurityPhoneNumberChange : SecurityBase
 {
     /// <summary>
-    /// Represents a <see cref="SecurityPhoneNumberChange"/> class. Inherits <see cref="SecurityBase"/>
+    /// Gets or Sets <see cref="NewPhoneNumber"/>
     /// </summary>
-    public class SecurityPhoneNumberChange : SecurityBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="NewPhoneNumber"/>
-        /// </summary>
-        [Required]
-        [Phone]
-        public string NewPhoneNumber { get; set; }
-    }
+    [Required]
+    [Phone]
+    public string NewPhoneNumber { get; set; }
 }

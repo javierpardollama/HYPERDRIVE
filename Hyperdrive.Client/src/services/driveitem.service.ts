@@ -64,21 +64,6 @@ export class DriveItemService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItem>>('FindPaginatedSharedDriveItemByApplicationUserId', undefined))));
     }
 
-    public FindPaginatedDriveItemVersionByDriveItemId(page: FilterPageDriveItemVersion): Promise<ViewPage<ViewDriveItemVersion>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItemVersion>>(`${environment.Api.Service}api/v1/driveitem/page/version`, page)
-            .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
-    }
-
-    public FindLatestDriveItemBinaryByDriveItemId(driveitemid: number): Promise<ViewDriveItemBinary> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/binary/last/${driveitemid}`)
-            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindLatestDriveItemBinaryByDriveItemId', undefined))));
-    }
-
-    public FindDriveItemBinaryById(id: number): Promise<ViewDriveItemBinary> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/binary/${id}`)
-            .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindDriveItemBinaryById', undefined))));
-    }
-
     public AddDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {
         return firstValueFrom(this.httpClient.post<ViewDriveItem>(`${environment.Api.Service}api/v1/driveitem/up`, viewModel)
             .pipe(catchError(this.HandleError<ViewDriveItem>('AddDriveItem', undefined))));

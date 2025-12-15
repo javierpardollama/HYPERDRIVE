@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Hyperdrive.Application.ViewModels.Security
+namespace Hyperdrive.Application.ViewModels.Security;
+
+/// <summary>
+/// Represents a <see cref="SecurityRefreshTokenReset"/> class. Inherits <see cref="SecurityBase"/>
+/// </summary>
+public class SecurityRefreshTokenReset : SecurityBase
 {
     /// <summary>
-    /// Represents a <see cref="SecurityRefreshTokenReset"/> class. Inherits <see cref="SecurityBase"/>
+    /// Gets or Sets <see cref="ApplicationUserId"/>
     /// </summary>
-    public class SecurityRefreshTokenReset : SecurityBase
-    {
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserId"/>
-        /// </summary>
-        [Required]
-        public string ApplicationUserRefreshToken { get; set; }
-    }
+    [Required]
+    public string ApplicationUserRefreshToken { get; set; }
 }

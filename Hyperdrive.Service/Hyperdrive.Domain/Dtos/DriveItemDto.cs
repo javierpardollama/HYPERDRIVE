@@ -52,4 +52,9 @@ public class DriveItemDto
     /// Gets or Sets <see cref="SharedWith"/>
     /// </summary>
     public virtual ICollection<CatalogDto> SharedWith { get; set; } = [];
+
+    /// <summary>
+    /// Gets or Sets <see cref="Downloadeable"/>
+    /// </summary>
+    public bool Downloadeable { get; set; }
 }

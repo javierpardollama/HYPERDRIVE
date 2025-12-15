@@ -27,6 +27,7 @@ public static class DriveItemProfile
             Folder = @dto.Folder,
             LastModified = @dto.LastModified,
             SharedWith = [.. @dto.SharedWith.Select(x=> x.ToCatalogViewModel())],
+            Downloadeable = @dto.Downloadeable,
         };
     }
     

@@ -9,106 +9,89 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Hyperdrive.Test.Service.Controllers
+namespace Hyperdrive.Test.Service.Controllers;
+
+[TestFixture]
+public class DriveItemControllerTest : BaseControllerTest
 {
-    [TestFixture]
-    public class DriveItemControllerTest : BaseControllerTest
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/driveitem/") };
+
+    private ViewDriveItem Archive { get; set; }
+
+    [SetUp]
+    public new void SetUp()
     {
-        private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/driveitem/") };
+        Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
+    }
 
-        private ViewDriveItem Archive { get; set; }
+    [Test, Order(1)]
+    public async Task FindPaginatedDriveItemByApplicationUserId()
+    {
+        var content = JsonContent.Create(new FilterPageDriveItem { Index = 0, Size = 20, ApplicationUserId = User.Id });
 
-        [SetUp]
-        public new void SetUp()
+        var response = await Client.PostAsync("page", content);
+        response.EnsureSuccessStatusCode();
+        var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItem>>();
+
+        Assert.Pass();
+    }
+
+    [Test, Order(2)]
+    public async Task FindPaginatedSharedDriveItemByApplicationUserId()
+    {
+        var content = JsonContent.Create(new FilterPageDriveItem { Index = 0, Size = 20, ApplicationUserId = User.Id });
+
+        var response = await Client.PostAsync("page/shared", content);
+        response.EnsureSuccessStatusCode();
+        var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItem>>();
+
+        Assert.Pass();
+    }
+
+    [Test, Order(3)]
+    public async Task AddParentDriveItem()
+    {
+        var content = JsonContent.Create(new AddDriveItem
         {
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
-        }
+            Data = null,
+            FileName = "Root",
+            Folder = true,
+            ApplicationUserId = User.Id
+        });
 
-        [Test, Order(1)]
-        public async Task FindPaginatedDriveItemByApplicationUserId()
+        var response = await Client.PostAsync("up", content);
+        response.EnsureSuccessStatusCode();
+        Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
+
+        Assert.Pass();
+    }
+
+    [Test, Order(4)]
+    public async Task UpdateDriveItemName()
+    {
+        var content = JsonContent.Create(new UpdateDriveItemName
         {
-            var content = JsonContent.Create(new FilterPageDriveItem { Index = 0, Size = 20, ApplicationUserId = User.Id });
+            Extension = Archive.Extension,
+            Name = "Source",
+            ParentId = Archive.Parent?.Id,
+            Id = Archive.Id,
+            ApplicationUserId = User.Id
+        });
 
-            var response = await Client.PostAsync("page", content);
-            response.EnsureSuccessStatusCode();
-            var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItem>>();
+        var response = await Client.PostAsync("name/change", content);
+        response.EnsureSuccessStatusCode();
+        Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
 
-            Assert.Pass();
-        }
+        Assert.Pass();
+    }
+   
 
-        [Test, Order(2)]
-        public async Task FindPaginatedSharedDriveItemByApplicationUserId()
-        {
-            var content = JsonContent.Create(new FilterPageDriveItem { Index = 0, Size = 20, ApplicationUserId = User.Id });
+    [Test, Order(5)]
+    public async Task RemoveDriveItemById()
+    {
+        var response = await Client.DeleteAsync($"remove/{Archive.Id}");
+        response.EnsureSuccessStatusCode();
 
-            var response = await Client.PostAsync("page/shared", content);
-            response.EnsureSuccessStatusCode();
-            var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItem>>();
-
-            Assert.Pass();
-        }
-
-        [Test, Order(3)]
-        public async Task AddParentDriveItem()
-        {
-            var content = JsonContent.Create(new AddDriveItem
-            {
-                Data = null,
-                FileName = "Root",
-                Folder = true,
-                ApplicationUserId = User.Id
-            });
-
-            var response = await Client.PostAsync("up", content);
-            response.EnsureSuccessStatusCode();
-            Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
-
-            Assert.Pass();
-        }
-
-        [Test, Order(4)]
-        public async Task UpdateDriveItemName()
-        {
-            var content = JsonContent.Create(new UpdateDriveItemName
-            {
-                Extension = Archive.Extension,
-                Name = "Source",
-                ParentId = Archive.Parent?.Id,
-                Id = Archive.Id,
-                ApplicationUserId = User.Id
-            });
-
-            var response = await Client.PostAsync("name/change", content);
-            response.EnsureSuccessStatusCode();
-            Archive = await response.Content.ReadFromJsonAsync<ViewDriveItem>();
-
-            Assert.Pass();
-        }
-
-        [Test, Order(5)]
-        public async Task FindPaginatedDriveItemVersionByDriveItemId()
-        {
-            var content = JsonContent.Create(new FilterPageDriveItemVersion
-            {
-                Index = 0,
-                Size = 20,
-                Id = Archive.Id,                
-            });
-
-            var response = await Client.PostAsync($"page/version", content);
-            response.EnsureSuccessStatusCode();
-            var page = await response.Content.ReadFromJsonAsync<ViewPage<ViewDriveItemVersion>>();
-
-            Assert.Pass();
-        }
-
-        [Test, Order(6)]
-        public async Task RemoveDriveItemById()
-        {
-            var response = await Client.DeleteAsync($"remove/{Archive.Id}");
-            response.EnsureSuccessStatusCode();
-
-            Assert.Pass();
-        }
+        Assert.Pass();
     }
 }

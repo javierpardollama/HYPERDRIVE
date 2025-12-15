@@ -13,13 +13,13 @@ namespace Hyperdrive.Domain.Managers
         /// Writes Jwt Refresh Token
         /// </summary>
         /// <returns>Instance of <see cref="string"/></returns>
-        string WriteJwtRefreshToken();
+        public string WriteJwtRefreshToken();
 
         /// <summary>
         /// Generates Jwt Refresh Token Expiration Date 
         /// </summary>
         /// <returns>Instance of <see cref="DateTime"/></returns>
-        DateTime GenerateRefreshTokenExpirationDate();
+        public DateTime GenerateRefreshTokenExpirationDate();
 
         /// <summary>
         /// Checks whether Jwt Refresh Token is Revoked
@@ -27,7 +27,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task IsRevoked(int @userid, string @token);
+        public Task IsRevoked(int @userid, string @token);
 
         /// <summary>
         /// Revokes Jwt Refresh Token
@@ -35,7 +35,7 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="userid">Injected <see cref="int"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task Revoke(int @userid, string @token);
+        public Task Revoke(int @userid, string @token);
 
         /// <summary>
         /// Finds Application User Refresh Token By User Id
@@ -43,13 +43,13 @@ namespace Hyperdrive.Domain.Managers
         /// <param name="userid">Injected <see cref="string"/></param>
         /// <param name="token">Injected <see cref="string"/></param>
         /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
-        Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByCredentials(int @userid, string @token);
+        public Task<ApplicationUserRefreshToken> FindApplicationUserRefreshTokenByCredentials(int @userid, string @token);
         
         /// <summary>
         /// Adds Application User Refresh Token
         /// </summary>
         /// <param name="user">Injected <see cref="ApplicationUser"/></param>
         /// <returns>Instance of <see cref="ApplicationUserRefreshToken"/></returns>
-        Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(ApplicationUser @user);
+        public Task<ApplicationUserRefreshToken> AddApplicationUserRefreshToken(ApplicationUser @user);
     }
 }

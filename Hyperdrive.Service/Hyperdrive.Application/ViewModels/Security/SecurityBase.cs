@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Hyperdrive.Application.ViewModels.Security
-{
+namespace Hyperdrive.Application.ViewModels.Security;
+
+/// <summary>
+/// Represents a <see cref="SecurityBase"/> class. 
+/// </summary>
+public class SecurityBase
+{       
     /// <summary>
-    /// Represents a <see cref="SecurityBase"/> class. 
+    /// Gets or Sets <see cref="ApplicationUserId"/>
     /// </summary>
-    public class SecurityBase
-    {       
-        /// <summary>
-        /// Gets or Sets <see cref="ApplicationUserId"/>
-        /// </summary>
-        [Required]
-        public int ApplicationUserId { get; set; }
-    }
+    [Required]
+    public int ApplicationUserId { get; set; }
 }

@@ -9,157 +9,156 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hyperdrive.Test.Infrastructure.Managers
+namespace Hyperdrive.Test.Infrastructure.Managers;
+
+/// <summary>
+/// Represents a <see cref="ApplicationRoleManagerTest"/> class. Inherits <see cref="BaseManagerTest"/>
+/// </summary>
+[TestFixture]
+public class ApplicationRoleManagerTest : BaseManagerTest
 {
     /// <summary>
-    /// Represents a <see cref="ApplicationRoleManagerTest"/> class. Inherits <see cref="BaseManagerTest"/>
+    /// Instance of <see cref="ILogger{ApplicationRoleManager}"/>
     /// </summary>
-    [TestFixture]
-    public class ApplicationRoleManagerTest : BaseManagerTest
+    private ILogger<ApplicationRoleManager> Logger;
+
+    /// <summary>
+    /// Instance of <see cref="ApplicationRoleManager"/>
+    /// </summary>
+    private ApplicationRoleManager Manager;
+
+    /// <summary>
+    /// Sets Up
+    /// </summary>
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
     {
-        /// <summary>
-        /// Instance of <see cref="ILogger{ApplicationRoleManager}"/>
-        /// </summary>
-        private ILogger<ApplicationRoleManager> Logger;
+        InstallServices();
 
-        /// <summary>
-        /// Instance of <see cref="ApplicationRoleManager"/>
-        /// </summary>
-        private ApplicationRoleManager Manager;
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
+        Context.Seed();
 
-        /// <summary>
-        /// Sets Up
-        /// </summary>
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        InstallLogger();         
+
+        Manager = new ApplicationRoleManager(Logger, RoleManager);
+    }
+
+    /// <summary>
+    /// Installs Logger
+    /// </summary>
+    private void InstallLogger()
+    {
+        ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
         {
-            InstallServices();
+            builder
+                .AddFilter("Microsoft", LogLevel.Warning)
+                .AddFilter("System", LogLevel.Warning)
+                .AddConsole();
+        });
 
-            Context = new ApplicationContext(ContextOptionsBuilder.Options);
-            Context.Seed();
+        Logger = @loggerFactory.CreateLogger<ApplicationRoleManager>();
+    }       
 
-            InstallLogger();         
+    /// <summary>
+    /// Finds All Application Role
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task FindAllApplicationRole()
+    {
+        await Manager.FindAllApplicationRole();
 
-            Manager = new ApplicationRoleManager(Logger, RoleManager);
-        }
+        Assert.Pass();
+    }
 
-        /// <summary>
-        /// Installs Logger
-        /// </summary>
-        private void InstallLogger()
+
+    /// <summary>
+    /// Finds Paginated Application Role
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task FindPaginatedApplicationRole()
+    {
+        await Manager.FindPaginatedApplicationRole(1, 5);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Finds Application Role By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task FindApplicationRoleById()
+    {
+        await Manager.FindApplicationRoleById(1);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Removes Application Role By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task RemoveApplicationRoleById()
+    {
+        var @role = Context.Roles.First(x => x.Id == 2);
+
+        await Manager.RemoveApplicationRole(@role);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Updates Application Role
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task UpdateApplicationRole()
+    {
+        var @role = new ApplicationRole
         {
-            ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder
-                    .AddFilter("Microsoft", LogLevel.Warning)
-                    .AddFilter("System", LogLevel.Warning)
-                    .AddConsole();
-            });
+            Id = 5,
+            Name = "Princess",
+            CreatedAt = DateTime.UtcNow,
+            Deleted = false,
+            ImageUri = "URL/Princess_500px.png"
+        };
 
-            Logger = @loggerFactory.CreateLogger<ApplicationRoleManager>();
-        }       
+        await Manager.UpdateApplicationRole(@role);
 
-        /// <summary>
-        /// Finds All Application Role
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task FindAllApplicationRole()
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Adds Application Role
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task AddApplicationRole()
+    {
+        var @role = new ApplicationRole
         {
-            await Manager.FindAllApplicationRole();
+            Name = "Witch",
+            CreatedAt = DateTime.UtcNow,
+            Deleted = false,
+            ImageUri = "URL/Witch_500px.png"
+        };
 
-            Assert.Pass();
-        }
+        await Manager.AddApplicationRole(@role);
 
+        Assert.Pass();
+    }
 
-        /// <summary>
-        /// Finds Paginated Application Role
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task FindPaginatedApplicationRole()
-        {
-            await Manager.FindPaginatedApplicationRole(1, 5);
+    /// <summary>
+    /// Checks Name
+    /// </summary>
+    [Test]
+    public void CheckName()
+    {
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Paladin"));
 
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Finds Application Role By Id
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task FindApplicationRoleById()
-        {
-            await Manager.FindApplicationRoleById(1);
-
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Removes Application Role By Id
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task RemoveApplicationRoleById()
-        {
-            var @role = Context.Roles.First(x => x.Id == 2);
-
-            await Manager.RemoveApplicationRole(@role);
-
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Updates Application Role
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task UpdateApplicationRole()
-        {
-            var @role = new ApplicationRole
-            {
-                Id = 5,
-                Name = "Princess",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Princess_500px.png"
-            };
-
-            await Manager.UpdateApplicationRole(@role);
-
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Adds Application Role
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task AddApplicationRole()
-        {
-            var @role = new ApplicationRole
-            {
-                Name = "Witch",
-                CreatedAt = DateTime.UtcNow,
-                Deleted = false,
-                ImageUri = "URL/Witch_500px.png"
-            };
-
-            await Manager.AddApplicationRole(@role);
-
-            Assert.Pass();
-        }
-
-        /// <summary>
-        /// Checks Name
-        /// </summary>
-        [Test]
-        public void CheckName()
-        {
-            Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Paladin"));
-
-            Assert.Pass();
-        }
+        Assert.Pass();
     }
 }
