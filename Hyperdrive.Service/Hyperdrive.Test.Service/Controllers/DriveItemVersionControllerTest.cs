@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Service.Controllers;
 
+[TestFixture]
 public class DriveItemVersionControllerTest : BaseControllerTest
 {
     private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/driveitem") };
