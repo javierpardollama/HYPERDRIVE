@@ -9,7 +9,7 @@ namespace Hyperdrive.Infrastructure.Installers;
 public static class MiddlewareInstaller
 {
     /// <summary>
-    ///     Use Middlewares
+    ///     Uses Middlewares
     /// </summary>
     /// <param name="this">Injected <see cref="WebApplication" /></param>
     public static void UseMiddlewares(this WebApplication @this)

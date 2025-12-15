@@ -37,7 +37,7 @@ public static class EntityFrameworkInstaller
 
 
     /// <summary>
-    ///     Use Migrations
+    ///     Uses Migrations
     /// </summary>
     /// <param name="this">Injected <see cref="WebApplication" /></param>
     public static void UseMigrations(this WebApplication @this)
