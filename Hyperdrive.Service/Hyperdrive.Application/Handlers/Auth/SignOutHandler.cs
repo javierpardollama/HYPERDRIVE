@@ -15,7 +15,6 @@ public class SignOutHandler : IRequestHandler<SignOutCommand>
     public SignOutHandler(
         IApplicationUserManager userManager, 
         IAuthManager authManager, 
-        ITokenManager tokenManager, 
         IRefreshTokenManager refreshTokenManager)
     {
         _userManager = userManager;
