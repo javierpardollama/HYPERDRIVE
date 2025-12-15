@@ -18,7 +18,6 @@ namespace Hyperdrive.Infrastructure.Managers;
 /// <param name="context">Injected <see cref="IApplicationContext"/></param>
 /// <param name="logger">Injected <see cref="ILogger{RefreshTokenManager}"/></param>
 /// <param name="jwtSettings">Injected <see cref="IOptions{JwtSettings}"/></param>
-
 public class RefreshTokenManager(IApplicationContext @context,
                                  ILogger<RefreshTokenManager> @logger,
                                  IOptions<JwtSettings> @jwtSettings) : BaseManager(@context, @jwtSettings), IRefreshTokenManager

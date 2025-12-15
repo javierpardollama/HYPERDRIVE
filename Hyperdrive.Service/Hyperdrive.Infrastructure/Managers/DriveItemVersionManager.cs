@@ -3,7 +3,6 @@ using Hyperdrive.Domain.Managers;
 using Hyperdrive.Domain.Profiles;
 using Hyperdrive.Infrastructure.Contexts.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,10 +13,8 @@ namespace Hyperdrive.Infrastructure.Managers;
 /// Represents a <see cref="DriveItemVersionManager"/> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IDriveItemVersionManager"/>
 /// </summary>    
 /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-/// <param name="logger">Injected <see cref="ILogger"/></param>
 public class DriveItemVersionManager(
-    IApplicationContext context,
-    ILogger<DriveItemVersionManager> logger) : BaseManager(context), IDriveItemVersionManager
+    IApplicationContext context) : BaseManager(context), IDriveItemVersionManager
 {
 
     /// <summary>

@@ -186,6 +186,11 @@ public class ApplicationUserManager(
         return @user.ToDto();
     }
 
+    /// Adds Application Roles to Application User
+    /// </summary>
+    /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
+    /// <param name="user">Injected <see cref="ApplicationUser"/></param>
+    /// <returns>Instance of <see cref="Task{bool}"/></returns>
     public async Task<bool> AddApplicationUserRoles(ICollection<string> @roles, ApplicationUser @user)
     {
         IdentityResult @identityResult = await @userManager.AddToRolesAsync(@user, @roles);
@@ -204,6 +209,11 @@ public class ApplicationUserManager(
         return @identityResult.Succeeded;
     }
 
+    /// <summary>
+    /// Removes Application Roles from Application User
+    /// </summary>
+    /// <param name="user">Injected <see cref="ApplicationUser"/></param>
+    /// <returns>Instance of <see cref="Task{bool}"/></returns>
     public async Task<bool> RemoveApplicationUserRoles(ApplicationUser user)
     {
         var @roles = await userManager.GetRolesAsync(user);

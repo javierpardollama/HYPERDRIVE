@@ -150,6 +150,36 @@ public class ApplicationUserManagerTest : BaseManagerTest
     }
 
     /// <summary>
+    /// Updates Application User Roles
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task UpdateApplicationUserRoles()
+    {
+        var @user = Context.Users.First(x => x.Id == 3);
+
+        var @roles = new List<string>() { "Paladin" };
+
+        await Manager.UpdateApplicationUserRoles(roles, user);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Adds Application Roles to Application User
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task RemoveApplicationUserRoles()
+    {
+        var @user = Context.Users.First(x => x.Id == 3);     
+
+        await Manager.RemoveApplicationUserRoles(user);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
     /// Checks Email
     /// </summary>
     /// <returns>Instance of <see cref="Task"/></returns>
