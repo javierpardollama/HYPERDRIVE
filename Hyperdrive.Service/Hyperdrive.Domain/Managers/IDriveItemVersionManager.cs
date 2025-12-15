@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Hyperdrive.Domain.Managers;
 
 /// <summary>
-/// Represents a <see cref="IDriveItemManager"/> interface. Inherits <see cref="IBaseManager"/>
+/// Represents a <see cref="IDriveItemVersionManager"/> interface. Inherits <see cref="IBaseManager"/>
 /// </summary>
 public interface IDriveItemVersionManager : IBaseManager
 {
