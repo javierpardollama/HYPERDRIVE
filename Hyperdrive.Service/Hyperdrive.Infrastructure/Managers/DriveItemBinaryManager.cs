@@ -33,8 +33,7 @@ public class DriveItemBinaryManager(IApplicationContext context,
             .AsNoTracking()
             .AsSplitQuery()
             .Include(x => x.Activity)
-            .Where(x => x.Id == @driveitemid)
-            .OrderByDescending(x => x.CreatedAt)
+            .Where(x => x.Id == @driveitemid)        
             .Select(x => x.ToBinary())
             .FirstOrDefaultAsync();
 
