@@ -94,9 +94,7 @@ public class DriveItemManagerTest : BaseManagerTest
     {
         await Manager.FindPaginatedSharedDriveItemWithApplicationUserId(1, 15, 5);
         Assert.Pass();
-    }
-
-   
+    }   
 
     [Test]
     public async Task AddDriveItem()

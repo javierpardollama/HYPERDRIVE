@@ -39,4 +39,9 @@ export class DriveItemVersionService extends BaseService {
         return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItemVersion>>(`${environment.Api.Service}api/v1/driveitem/version/page`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
+
+     public TargetDriveItemVersionById(id: number): Promise<void> {
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/driveitem/version/target/${id}`)
+            .pipe(catchError(this.HandleError<any>('TargetDriveItemVersionById', undefined))));
+    }
 }

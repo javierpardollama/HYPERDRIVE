@@ -16,7 +16,7 @@ namespace Hyperdrive.Infrastructure.Managers;
 /// Represents a <see cref="DriveItemBinaryManager"/> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IDriveItemBinaryManager"/>
 /// </summary>    
 /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-/// <param name="logger">Injected <see cref="ILogger"/></param>
+/// <param name="logger">Injected <see cref="ILogger{DriveItemBinaryManager}"/></param>
 public class DriveItemBinaryManager(IApplicationContext context,
     ILogger<DriveItemBinaryManager> logger) : BaseManager(context), IDriveItemBinaryManager
 {

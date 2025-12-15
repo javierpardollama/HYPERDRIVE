@@ -11,7 +11,7 @@ namespace Hyperdrive.Infrastructure.Managers;
 /// Represents a <see cref="SecurityManager"/> class. Implements <see cref="ISecurityManager"/>
 /// </summary>   
 /// <param name="userManager">Injected <see cref="UserManager{ApplicationUser}"/></param>
-/// <param name="logger">Injected <see cref="ILogger"/></param>
+/// <param name="logger">Injected <see cref="ILogger{SecurityManager}"/></param>
 public class SecurityManager(UserManager<ApplicationUser> @userManager,
                    ILogger<SecurityManager> @logger) : ISecurityManager
 {

@@ -1,7 +1,9 @@
 ﻿using Hyperdrive.Infrastructure.Contexts;
 using Hyperdrive.Infrastructure.Managers;
 using Hyperdrive.Test.Infrastructure.Extensions;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Test.Infrastructure.Managers;
@@ -18,6 +20,11 @@ public class DriveItemVersionManagerTest : BaseManagerTest
     private DriveItemVersionManager Manager;
 
     /// <summary>
+    /// Instance of <see cref="ILogger{DriveItemVersionManager}"/>
+    /// </summary>
+    private ILogger<DriveItemVersionManager> Logger;
+
+    /// <summary>
     /// Sets Up
     /// </summary>
     [OneTimeSetUp]
@@ -30,10 +37,31 @@ public class DriveItemVersionManagerTest : BaseManagerTest
 
         InstallHttpContext();
 
+        InstallLogger();
 
-        Manager = new DriveItemVersionManager(Context);
+        Manager = new DriveItemVersionManager(Context, Logger);
     }
 
+    /// <summary>
+    /// Installs Logger
+    /// </summary>
+    private void InstallLogger()
+    {
+        ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder
+                .AddFilter("Microsoft", LogLevel.Warning)
+                .AddFilter("System", LogLevel.Warning)
+                .AddConsole();
+        });
+
+        Logger = @loggerFactory.CreateLogger<DriveItemVersionManager>();
+    }
+
+    /// <summary>
+    /// Finds Paginated Drive Item Version By Drive Item Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task}"/></returns>
     [Test]
     public async Task FindPaginatedDriveItemVersionByDriveItemId()
     {
@@ -41,5 +69,29 @@ public class DriveItemVersionManagerTest : BaseManagerTest
 
         Assert.Pass();
     }
-   
+
+    /// <summary>
+    /// Finds Drive Item Version By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task FindDriveItemById()
+    {
+        await Manager.FindDriveItemVersionById(51);
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Targets Drive Item Version
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task TargetDriveItemVersion()
+    {
+        var @entity = Context.DriveItemVersions.First(x => x.Id == 51);      
+
+        await Manager.TargetDriveItemVersion(@entity);
+        Assert.Pass();
+    }
+
 }

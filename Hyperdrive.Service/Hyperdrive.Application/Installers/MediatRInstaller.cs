@@ -43,6 +43,7 @@ public static class MediatRInstaller
             cfg.RegisterServicesFromAssemblyContaining<UpdateDriveItemNameHandler>();
             cfg.RegisterServicesFromAssemblyContaining<FindLatestDriveItemBinaryByIdHandler>();
             cfg.RegisterServicesFromAssemblyContaining<FindDriveItemBinaryByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<TargetDriveItemVersionByIdHandler>();
 
             cfg.RegisterServicesFromAssemblyContaining<EmailChangeHandler>();
             cfg.RegisterServicesFromAssemblyContaining<PasswordChangeHandler>();
