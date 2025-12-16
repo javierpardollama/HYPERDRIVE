@@ -18,7 +18,7 @@
         <input matInput (keyup)="ApplyMyFilter($event.target)" placeholder="Filter">
     </mat-form-field>
 
-    <div class="grid-container mat-elevation-z8" app-drag-drop (OnDropped)="DropFile($event)">
+    <div class="grid-container mat-elevation-z8" app-drag-drop (OnDropped)="OnDropFiles($event)">
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- Id Column -->
