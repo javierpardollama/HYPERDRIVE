@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { DriveItemBinaryService } from 'src/services/driveitembinary.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-drive-item-context-menu',
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [
         MatListModule,
         MatButtonModule,
+        MatTooltipModule,
         MatDividerModule,
         MatBottomSheetModule,
         MatSnackBarModule,

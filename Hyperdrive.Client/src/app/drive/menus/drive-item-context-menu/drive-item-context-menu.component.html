@@ -2,13 +2,18 @@
     <mat-list-item>{{data.FileName}}</mat-list-item>
     <mat-divider></mat-divider>
     @if (data.Downloadeable) {
-    <mat-list-item (click)="Share()"><button mat-button type="button">Share</button></mat-list-item>
+    <mat-list-item (click)="Share()"><button mat-button type="button" matTooltip="Share"
+            id="btn-context-drive-item-share">Share</button></mat-list-item>
     }
     <mat-divider></mat-divider>
     @if (data.Downloadeable) {
-    <mat-list-item (click)="Download()"><button mat-button type="button">Download</button></mat-list-item>
+    <mat-list-item (click)="Download()"><button mat-button type="button" matTooltip="Download"
+            id="btn-context-drive-item-download">Download</button></mat-list-item>
     }
-    <mat-list-item (click)="Rename()"><button mat-button type="button">Rename</button></mat-list-item>
-    <mat-list-item (click)="Activity()"><button mat-button type="button">Activity</button></mat-list-item>
-    <mat-list-item (click)="Remove()"><button mat-button type="button">Remove</button></mat-list-item>
+    <mat-list-item (click)="Rename()"><button mat-button type="button" matTooltip="Rename"
+            id="btn-context-drive-item-rename">Rename</button></mat-list-item>
+    <mat-list-item (click)="Activity()"><button mat-button type="button" matTooltip="Activity"
+            id="btn-context-drive-item-activity">Activity</button></mat-list-item>
+    <mat-list-item (click)="Remove()"><button mat-button type="button" matTooltip="Remove"
+            id="btn-context-drive-item-remove">Remove</button></mat-list-item>
 </mat-list>
