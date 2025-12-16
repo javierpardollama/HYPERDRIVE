@@ -169,12 +169,12 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     public async DropFile(event: DragEvent): Promise<void> {
         if (event?.dataTransfer?.files?.length) {
 
-            let binaries = Array.from(event.dataTransfer.files).map(file => ({
+            let binaries: BinaryAddDriveItem[] = [...event.dataTransfer.files].map(file => ({
                 ApplicationUserId: this.page.ApplicationUserId!,
                 File: file,
                 ParentId: this.page.ParentId,
                 Folder: false
-            } as BinaryAddDriveItem));
+            }));
 
             await Promise.all(
                 binaries.map(async binary => {
