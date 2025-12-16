@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter, HostBinding } from '@angular/core';
 
 @Directive({
     selector: '[app-drag-drop]'
