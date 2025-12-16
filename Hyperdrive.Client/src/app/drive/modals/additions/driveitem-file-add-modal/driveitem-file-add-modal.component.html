@@ -2,16 +2,16 @@
   <form [formGroup]="formGroup" class="form" novalidate>
 
     <div class="modal-content-line">
-      <div class="modal-option-image modal-file-image" aria-label="Data"></div>
-      <mat-form-field class="form-element">
+      <div class="modal-option-image modal-file-image" aria-label="File"></div>
+      <div class="form-element">
         <mat-label>Data</mat-label>
-        <input type="file" matInput placeholder="Data" formControlName="Data">
-        @if (!formGroup.controls['Data'].valid && formGroup.controls['Data'].touched) {
-          <mat-error>
-            Required field.
-          </mat-error>
+        <input #fileInput type="file" placeholder="File" formControlName="File" (change)="onSelectFile(fileInput.files?.[0])">
+        @if (!formGroup.controls['File'].valid && formGroup.controls['File'].touched) {
+        <mat-error>
+          Required field.
+        </mat-error>
         }
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="form-element">

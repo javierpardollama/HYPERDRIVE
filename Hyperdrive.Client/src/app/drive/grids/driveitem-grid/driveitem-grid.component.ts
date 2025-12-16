@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SecureStorageService } from 'src/services/secure.storage.service';
+import { DragDropDirective } from 'src/directives/drag-drop.directive';
 
 
 @Component({
@@ -50,6 +51,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
         CommonModule,
         MatPaginatorModule,
         MatSortModule,
+        DragDropDirective
     ]
 })
 export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -118,16 +120,21 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async ToRecord(row: ViewDriveItem): Promise<void> {
+        if (row.Folder) {
+            this.ELEMENT_DATA = [];
 
-        this.ELEMENT_DATA = [];
+            this.page.ParentId = row.Id;
 
-        this.page.ParentId = row.Id;
-
-        await this.FindPaginatedDriveItem();
+            await this.FindPaginatedDriveItem();
+        }
 
     }
 
-    public ToContext(row: ViewDriveItem): void {
+    public ToContext(event: MouseEvent, row: ViewDriveItem): void {
+
+        event.preventDefault(); // disables the browser's right-click menu
+        event.stopPropagation(); // prevents bubbling
+
         const sheetRef = this.bottomSheet.open(DriveItemContextMenuComponent, {
             data: row
         });
@@ -164,7 +171,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
             let binaries = Array.from(event.dataTransfer.files).map(file => ({
                 ApplicationUserId: this.page.ApplicationUserId!,
-                Data: file,
+                File: file,
                 ParentId: this.page.ParentId,
                 Folder: false
             } as BinaryAddDriveItem));

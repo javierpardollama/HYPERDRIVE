@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SecureStorageService } from 'src/services/secure.storage.service';
+import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 
 @Component({
     selector: 'app-applicationrole-update-modal',
@@ -38,11 +40,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class ApplicationRoleUpdateModalComponent implements OnInit {
 
+    public User?: ViewApplicationUser;
+
     public formGroup!: FormGroup;
 
     // Constructor
     constructor(
         private applicationroleService: ApplicationRoleService,
+        private secureStorageService: SecureStorageService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ApplicationRoleUpdateModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -51,8 +56,9 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
 
 
     // Life Cicle
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.CreateForm();
+        await this.GetLocalUser();
     }
 
     // Form
@@ -64,6 +70,9 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
                 Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
             ]),
             ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
+            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id, [
+                Validators.required
+            ])
         });
     }
 
@@ -91,5 +100,11 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
             { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
         this.dialogRef.close();
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
+        this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

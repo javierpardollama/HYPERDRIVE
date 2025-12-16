@@ -33,11 +33,12 @@ export class BinaryService extends BaseService {
     public async EncodeDriveItem(viewModel: BinaryAddDriveItem): Promise<AddDriveItem> {
         const resultModel: AddDriveItem =
         {
+            ParentId:viewModel.ParentId,
             ApplicationUserId: viewModel.ApplicationUserId,
-            Data: await EncodeBlob(viewModel.Data),
-            Size: viewModel.Data.size,
-            FileName: viewModel.Data.name,
-            Type: viewModel.Data.type,
+            Data: await EncodeBlob(viewModel.File),
+            Size: viewModel.File.size,
+            FileName: viewModel.File.name,
+            Type: viewModel.File.type,
             Folder: viewModel.Folder
         };
 

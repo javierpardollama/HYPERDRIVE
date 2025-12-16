@@ -18,7 +18,7 @@
         <input matInput (keyup)="ApplyMyFilter($event.target)" placeholder="Filter">
     </mat-form-field>
 
-    <div class="grid-container mat-elevation-z8">
+    <div class="grid-container mat-elevation-z8" app-drag-drop (OnDropped)="DropFile($event)">
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- Id Column -->
@@ -59,7 +59,7 @@
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="ToRecord(row)"
-                (contextmenu)="ToContext(row)">
+                (contextmenu)="ToContext($event, row)">
             </tr>
         </table>
     </div>

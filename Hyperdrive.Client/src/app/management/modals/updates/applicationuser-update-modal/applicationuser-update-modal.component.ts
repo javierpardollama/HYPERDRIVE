@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SecureStorageService } from 'src/services/secure.storage.service';
 
 @Component({
     selector: 'app-applicationuser-update-modal',
@@ -41,6 +42,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class ApplicationUserUpdateModalComponent implements OnInit {
 
+    public User?: ViewApplicationUser;
+
     public formGroup!: FormGroup;
 
     public applicationroles: ViewCatalog[] = [];
@@ -50,6 +53,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
     constructor(
         private applicationuserService: ApplicationUserService,
         private applicationroleService: ApplicationRoleService,
+        private secureStorageService: SecureStorageService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ApplicationUserUpdateModalComponent>,
         private matSnackBar: MatSnackBar,
@@ -61,14 +65,20 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
     async ngOnInit(): Promise<void> {
         this.CreateForm();
         await this.FindAllApplicationRole();
-
+        await this.GetLocalUser();
     }
 
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Id: new FormControl<number>(this.data.Id, [Validators.required]),
-            ApplicationRolesId: new FormControl<number[]>(this.data.ApplicationRoles.map(({ Id }) => Id), [Validators.required])
+            Id: new FormControl<number>(this.data.Id, [
+                Validators.required
+            ]),
+            ApplicationRolesId: new FormControl<number[]>(this.data.ApplicationRoles.map(({ Id }) => Id), [
+                Validators.required]),
+            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id, [
+                Validators.required
+            ])
         });
     }
 
@@ -101,5 +111,11 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
     // Get Data from Service
     public async FindAllApplicationRole(): Promise<void> {
         this.applicationroles = await this.applicationroleService.FindAllApplicationRole();
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
+        this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

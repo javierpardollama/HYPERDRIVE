@@ -1,6 +1,15 @@
 .grid-container {
     max-height: 450px;
     overflow: auto;
+    cursor: pointer;
+
+    &.dragging {
+        border: 3px solid #3f51b5;
+    }
+
+    &:focus-within {
+        border: 3px solid #3f51b5;
+    }
 }
 
 table {
@@ -30,29 +39,6 @@ th {
     color: #3f51b5 !important;
     width: fit-content !important;
 }
-
-.drag-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(204, 204, 204, 0.5);
-    display: block;
-    cursor: pointer;
-
-    &.dragging {
-        background-color: #cdcdff;
-        border: 3px dashed #999999;
-    }
-
-    &:focus-within {
-        border: 1px solid #999999;
-    }
-}
-
-.hidden {
-    display: none;
-}
-
 
 @media screen and (max-width: 960px) {
     .add-button {

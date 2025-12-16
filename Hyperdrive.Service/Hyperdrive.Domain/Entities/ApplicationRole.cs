@@ -15,7 +15,6 @@ public partial class ApplicationRole : IdentityRole<int>, IKey, IBase
     /// Gets or Sets <see cref="ImageUri"/>
     /// </summary>
     [Required]
-    [Url]
     public string ImageUri { get; set; }
 
     /// <summary>

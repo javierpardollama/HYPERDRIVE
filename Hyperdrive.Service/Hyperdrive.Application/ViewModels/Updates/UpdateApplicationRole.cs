@@ -17,6 +17,5 @@ public class UpdateApplicationRole : UpdateBase
     /// Gets or Sets <see cref="ImageUri"/>
     /// </summary>
     [Required]
-    [Url]
     public string ImageUri { get; set; }
 }

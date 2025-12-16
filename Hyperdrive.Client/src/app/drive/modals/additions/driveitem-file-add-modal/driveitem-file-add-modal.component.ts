@@ -33,6 +33,8 @@ export class DriveItemFileAddModalComponent implements OnInit {
 
     public User?: ViewApplicationUser;
 
+    public File?: File;
+
     // Constructor
     constructor(
         private driveItemService: DriveItemService,
@@ -56,7 +58,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
         this.formGroup = this.formBuilder.group({
             ParentId: new FormControl<number | undefined>(this.data,
                 []),
-            Data: new FormControl<File | undefined>(undefined,
+            File: new FormControl<File | undefined>(undefined,
                 [
                     Validators.required
                 ]),
@@ -70,7 +72,14 @@ export class DriveItemFileAddModalComponent implements OnInit {
     }
 
     // Form Actions
+    onSelectFile(file?: File) {
+        this.File = file;
+    }
+
     async onSubmit(binary: BinaryAddDriveItem): Promise<void> {
+
+        binary.File = this.File!;
+
         let viewModel = await this.binaryService.EncodeDriveItem(binary);
 
         let archive = await this.driveItemService.AddDriveItem(viewModel);

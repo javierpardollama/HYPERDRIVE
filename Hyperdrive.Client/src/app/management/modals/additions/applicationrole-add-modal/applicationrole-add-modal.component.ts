@@ -17,6 +17,8 @@ import { ExpressionAppVariants } from '../../../../../variants/expression.app.va
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
+import { SecureStorageService } from 'src/services/secure.storage.service';
 
 @Component({
     selector: 'app-applicationrole-add-modal',
@@ -34,11 +36,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class ApplicationRoleAddModalComponent implements OnInit {
 
+    public User?: ViewApplicationUser;
+
     public formGroup!: FormGroup;
 
     // Constructor
     constructor(
         private applicationroleService: ApplicationRoleService,
+        private secureStorageService: SecureStorageService,
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ApplicationRoleAddModalComponent>,
         private matSnackBar: MatSnackBar) {
@@ -46,8 +51,9 @@ export class ApplicationRoleAddModalComponent implements OnInit {
 
 
     // Life Cicle
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.CreateForm();
+        await this.GetLocalUser();
     }
 
     // Form
@@ -60,6 +66,10 @@ export class ApplicationRoleAddModalComponent implements OnInit {
                 ]),
             ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
                 [Validators.required]),
+            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
+                [
+                    Validators.required
+                ])
         });
     }
 
@@ -75,5 +85,11 @@ export class ApplicationRoleAddModalComponent implements OnInit {
         }
 
         this.dialogRef.close();
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
+        this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }
