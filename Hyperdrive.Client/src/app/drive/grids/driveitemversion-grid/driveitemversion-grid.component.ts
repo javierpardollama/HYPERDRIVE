@@ -8,11 +8,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DriveItemService } from 'src/services/driveitem.service';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 import { ViewDriveItemVersion } from 'src/viewmodels/views/viewdriveitemversion';
 import { FilterPageDriveItemVersion } from 'src/viewmodels/filters/filterpagedriveitemversion';
 import { FormsModule } from '@angular/forms';
+import { DriveItemVersionService } from 'src/services/driveitemversion.service';
 
 @Component({
   selector: 'app-driveitemversion-grid',
@@ -50,7 +50,7 @@ export class DriveitemversionGridComponent implements OnInit, AfterViewInit, OnD
   // Constructor
   constructor(
     public matDialog: MatDialog,
-    private driveItemService: DriveItemService) {
+    private driveItemVersionService: DriveItemVersionService) {
 
   }
 
@@ -70,7 +70,7 @@ export class DriveitemversionGridComponent implements OnInit, AfterViewInit, OnD
   // Get Data from Service
   public async FindPaginatedDriveItemVersionByDriveItemId(): Promise<void> {
     this.loading = true;
-    const view = await this.driveItemService.FindPaginatedDriveItemVersionByDriveItemId(this.page);
+    const view = await this.driveItemVersionService.FindPaginatedDriveItemVersionByDriveItemId(this.page);
     this.loading = false;
 
     if (view) {
