@@ -66,7 +66,7 @@ public class DriveItemVersionController(IMediator @mediator) : ControllerBase
     /// <param name="id">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
-    [HttpDelete]
+    [HttpPost]
     [Route("target/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]

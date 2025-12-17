@@ -41,7 +41,7 @@ export class DriveItemVersionService extends BaseService {
     }
 
      public TargetDriveItemVersionById(id: number): Promise<void> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/driveitem/version/target/${id}`)
+        return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/v1/driveitem/version/target/${id}`)
             .pipe(catchError(this.HandleError<any>('TargetDriveItemVersionById', undefined))));
     }
 }
