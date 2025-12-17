@@ -71,6 +71,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
             Length: 0,
             ApplicationUserId: undefined,
             ParentId: undefined,
+            ParentName: undefined
         };
 
     private User?: ViewApplicationUser;
@@ -120,14 +121,13 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async ToRecord(row: ViewDriveItem): Promise<void> {
-        if (row.Folder) {
-            this.ELEMENT_DATA = [];
+        if (!row.Folder) return;
 
-            this.page.ParentId = row.Id;
+        this.ELEMENT_DATA = [];
 
-            await this.FindPaginatedDriveItem();
-        }
+        this.page = { ...this.page, ParentId: row.Id, ParentName: row.Name };
 
+        await this.FindPaginatedDriveItem();
     }
 
     public ToContext(event: MouseEvent, row: ViewDriveItem): void {

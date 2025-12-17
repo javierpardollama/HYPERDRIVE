@@ -5,7 +5,7 @@
 }
 
 <div class="grid-page">
-    <h4 class="breadcrumb">My Files</h4>
+    <h4 class="breadcrumb">{{page?.ParentName ?? "My Files"}}</h4>
 
     <button mat-raised-button [matMenuTriggerFor]="menu" color="primary" class="add-button" matTooltip="Add New"><span>Add New
             &plus;</span></button>
