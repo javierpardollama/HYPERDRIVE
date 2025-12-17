@@ -150,8 +150,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
             data: this.page.ParentId,
         });
 
-        dialogRef.afterClosed().subscribe(() => {
-
+        dialogRef.afterClosed().subscribe(async () => {
+            await this.FindPaginatedDriveItem();
         });
     }
 
@@ -161,8 +161,8 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
             data: this.page.ParentId,
         });
 
-        dialogRef.afterClosed().subscribe(() => {
-
+        dialogRef.afterClosed().subscribe(async () => {
+            await this.FindPaginatedDriveItem();
         });
     }
 
