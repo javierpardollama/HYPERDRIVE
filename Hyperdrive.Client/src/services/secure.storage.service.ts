@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { VaultMetaV1 } from "src/types/vaultmeta";
+import { CryptoMeta } from "src/viewmodels/crypto/crytpometa";
 import { DecodeBase64, EncodeBase64 } from "src/utils/byte.utils";
 import { DeriveKey } from "src/utils/crypto.utils";
 import { VAULT_META_KEY } from "src/variants/vault.keys.variants";
+import { CryptoData } from "src/viewmodels/crypto/cryptodata";
 
 @Injectable({
     providedIn: 'root',
@@ -19,15 +20,14 @@ export class SecureStorageService {
 
         // Load or create vault metadata
         const metaRaw = sessionStorage.getItem(VAULT_META_KEY);
-        let meta: VaultMetaV1;
 
         if (metaRaw) {
-            meta = JSON.parse(metaRaw) as VaultMetaV1;
+            let meta: CryptoMeta = JSON.parse(metaRaw) as CryptoMeta;
             if (meta.V !== 1) throw new Error('Unsupported vault version');
             this.Salt = DecodeBase64(meta.SaltBase64);
         } else {
             const salt = crypto.getRandomValues(new Uint8Array(16));
-            meta = { V: 1, SaltBase64: EncodeBase64(salt) };
+            let meta: CryptoMeta = { V: 1, SaltBase64: EncodeBase64(salt) };
             sessionStorage.setItem(VAULT_META_KEY, JSON.stringify(meta));
             this.Salt = salt;
         }
@@ -40,11 +40,10 @@ export class SecureStorageService {
         const encoded = new TextEncoder().encode(JSON.stringify(value));
         const cipher = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, this.CryptoKey!, encoded);
 
-        const encryptedData = {
-
-            v: 1 as const,
-            ivB64: EncodeBase64(iv),
-            dataB64: EncodeBase64(cipher),
+        const encryptedData: CryptoData = {
+            V: 1 as const,
+            IvBase64: EncodeBase64(iv),
+            DataBase64: EncodeBase64(cipher),
         };
 
         sessionStorage.setItem(key, JSON.stringify(encryptedData));
@@ -56,22 +55,23 @@ export class SecureStorageService {
         const raw = sessionStorage.getItem(key);
         if (!raw) return undefined;
 
-        let parsed: { v: number; ivB64: string; dataB64: string };
+        let parsed: CryptoData;
+
         try {
-            parsed = JSON.parse(raw);
+            parsed = JSON.parse(raw) as CryptoData;
         } catch {
             // Tampered or legacy; remove
             sessionStorage.removeItem(key);
             return undefined;
         }
 
-        if (parsed.v !== 1 || !parsed.ivB64 || !parsed.dataB64) {
+        if (parsed.V !== 1 || !parsed.IvBase64 || !parsed.DataBase64) {
             sessionStorage.removeItem(key);
             return undefined;
         }
 
-        const iv = DecodeBase64(parsed.ivB64);
-        const data = DecodeBase64(parsed.dataB64);
+        const iv = DecodeBase64(parsed.IvBase64);
+        const data = DecodeBase64(parsed.DataBase64);
 
         try {
             const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, this.CryptoKey, data);

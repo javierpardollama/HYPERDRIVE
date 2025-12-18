@@ -1,4 +1,4 @@
-export type VaultMetaV1 = {
+export interface CryptoMeta {
     V: 1;
     SaltBase64: string;
 };
