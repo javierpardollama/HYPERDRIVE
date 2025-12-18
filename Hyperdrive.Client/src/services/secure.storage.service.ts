@@ -19,15 +19,17 @@ export class SecureStorageService {
         if (!password) throw new Error('Password must be non-empty');
 
         // Load or create vault metadata
-        const metaRaw = sessionStorage.getItem(VAULT_META_KEY);
+        const metaraw = sessionStorage.getItem(VAULT_META_KEY);
 
-        if (metaRaw) {
-            let meta: CryptoMeta = JSON.parse(metaRaw) as CryptoMeta;
+        let meta: CryptoMeta
+
+        if (metaraw) {
+            meta = JSON.parse(metaraw) as CryptoMeta;
             if (meta.V !== 1) throw new Error('Unsupported vault version');
             this.Salt = DecodeBase64(meta.SaltBase64);
         } else {
             const salt = crypto.getRandomValues(new Uint8Array(16));
-            let meta: CryptoMeta = { V: 1, SaltBase64: EncodeBase64(salt) };
+            meta = { V: 1, SaltBase64: EncodeBase64(salt) };
             sessionStorage.setItem(VAULT_META_KEY, JSON.stringify(meta));
             this.Salt = salt;
         }
