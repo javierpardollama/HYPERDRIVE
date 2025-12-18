@@ -1,2 +1,5 @@
-export const VAULT_META_KEY = '__vault_meta__'; // stores salt and version
-export const VAULT_USER_KEY ='__vault_user__';
+export class VaultKeyAppVariants {
+    // Vault Key invariants
+    public static readonly VAULT_META_KEY = '__vault_meta__';
+    public static readonly VAULT_USER_KEY = '__vault_user__';
+}

@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { SecureStorageService } from 'src/services/secure.storage.service';
-import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
+import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
@@ -90,6 +90,6 @@ export class SecurityComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
     }
 }

@@ -31,7 +31,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SecureStorageService } from 'src/services/secure.storage.service';
 import { DragDropDirective } from 'src/directives/drag-drop.directive';
-import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
+import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
@@ -203,7 +203,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
     }
 
     public SetFilterUser(): void {

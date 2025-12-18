@@ -22,7 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SecureStorageService } from 'src/services/secure.storage.service';
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
-import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
+import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
     selector: 'app-applicationrole-update-modal',
@@ -105,7 +105,7 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

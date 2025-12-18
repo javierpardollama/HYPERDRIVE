@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { CryptoMeta } from "src/viewmodels/crypto/crytpometa";
 import { DecodeBase64, EncodeBase64 } from "src/utils/byte.utils";
 import { DeriveKey } from "src/utils/crypto.utils";
-import { VAULT_META_KEY } from "src/variants/vault.keys.variants";
+import { VaultKeyAppVariants } from "src/variants/vault.keys.variants";
 import { CryptoData } from "src/viewmodels/crypto/cryptodata";
+import { IsEmpty } from "src/utils/object.utils";
 
 @Injectable({
     providedIn: 'root',
@@ -18,8 +19,7 @@ export class SecureStorageService {
 
         if (!password) throw new Error('Password must be non-empty');
 
-        // Load or create vault metadata
-        const metaraw = sessionStorage.getItem(VAULT_META_KEY);
+        const metaraw = sessionStorage.getItem(VaultKeyAppVariants.VAULT_META_KEY);
 
         let meta: CryptoMeta
 
@@ -30,7 +30,7 @@ export class SecureStorageService {
         } else {
             const salt = crypto.getRandomValues(new Uint8Array(16));
             meta = { V: 1, SaltBase64: EncodeBase64(salt) };
-            sessionStorage.setItem(VAULT_META_KEY, JSON.stringify(meta));
+            sessionStorage.setItem(VaultKeyAppVariants.VAULT_META_KEY, JSON.stringify(meta));
             this.Salt = salt;
         }
 
@@ -53,9 +53,11 @@ export class SecureStorageService {
 
     public async RetrieveObject<T>(key: string): Promise<T | undefined> {
 
-        if (!this.CryptoKey) return undefined;
-        const raw = sessionStorage.getItem(key);
-        if (!raw) return undefined;
+        if (IsEmpty(this.CryptoKey)) return undefined;
+
+        const raw = sessionStorage.getItem(key)!;
+
+        if (IsEmpty(raw)) return undefined;
 
         let parsed: CryptoData;
 
@@ -67,7 +69,7 @@ export class SecureStorageService {
             return undefined;
         }
 
-        if (parsed.V !== 1 || !parsed.IvBase64 || !parsed.DataBase64) {
+        if (IsEmpty(parsed)) {
             sessionStorage.removeItem(key);
             return undefined;
         }
@@ -76,7 +78,7 @@ export class SecureStorageService {
         const data = DecodeBase64(parsed.DataBase64);
 
         try {
-            const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, this.CryptoKey, data);
+            const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, this.CryptoKey!, data);
             return JSON.parse(new TextDecoder().decode(decrypted)) as T;
         } catch {
             // Auth tag mismatch (tampering), wrong password/salt, or corrupted data

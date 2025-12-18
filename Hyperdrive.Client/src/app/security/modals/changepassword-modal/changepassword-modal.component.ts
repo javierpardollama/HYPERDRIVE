@@ -18,7 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SecureStorageService } from 'src/services/secure.storage.service';
-import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
+import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
     selector: 'app-changepassword-modal',
@@ -58,7 +58,7 @@ export class ChangePasswordModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 
@@ -85,7 +85,7 @@ export class ChangePasswordModalComponent implements OnInit {
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
             await this.secureStorageService.CreateKey(viewModel.NewPassword);
-            await this.secureStorageService.StoreObject(VAULT_USER_KEY, user);
+            await this.secureStorageService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
         }
 
         this.dialogRef.close();

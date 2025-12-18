@@ -13,7 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SecureStorageService } from 'src/services/secure.storage.service';
-import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
+import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
@@ -60,13 +60,13 @@ export class ProfileContextMenuComponent implements OnInit {
 
         await this.authService.SignOut(viewModel);
 
-        this.secureStorageService.RemoveObject(VAULT_USER_KEY);
+        this.secureStorageService.RemoveObject(VaultKeyAppVariants.VAULT_USER_KEY);
 
         await this.router.navigate(['auth/signin']);
     }
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
     }
 }

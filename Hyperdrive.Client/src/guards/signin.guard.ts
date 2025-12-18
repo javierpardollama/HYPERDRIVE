@@ -7,7 +7,7 @@ import {
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
 import { SecureStorageService } from 'src/services/secure.storage.service';
 import { IsEmpty } from 'src/utils/object.utils';
-import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
+import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +28,7 @@ export class SignInGuard {
 
         await this.GetLocalUser();
 
-        if (!this.User) {
+        if (IsEmpty(this.User)) {
             this.router.navigateByUrl('auth/signin');
         } else {
             this.Activated = true;
@@ -39,6 +39,6 @@ export class SignInGuard {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
     }
 }
