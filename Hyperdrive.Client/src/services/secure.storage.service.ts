@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
+import { VaultMetaV1 } from "src/types/vaultmeta";
+import { DecodeBase64, EncodeBase64 } from "src/utils/byte.utils";
 import { DeriveKey } from "src/utils/crypto.utils";
-import { IsEmpty } from "src/utils/object.utils";
+import { VAULT_META_KEY } from "src/variants/vault.keys.variants";
 
 @Injectable({
     providedIn: 'root',
@@ -9,9 +11,28 @@ export class SecureStorageService {
 
     private CryptoKey?: CryptoKey;
 
+    private Salt?: Uint8Array<ArrayBuffer>;
+
     public async CreateKey(password: string): Promise<void> {
-        const salt = crypto.getRandomValues(new Uint8Array(16));
-        this.CryptoKey = await DeriveKey(password, salt);
+
+        if (!password) throw new Error('Password must be non-empty');
+
+        // Load or create vault metadata
+        const metaRaw = sessionStorage.getItem(VAULT_META_KEY);
+        let meta: VaultMetaV1;
+
+        if (metaRaw) {
+            meta = JSON.parse(metaRaw) as VaultMetaV1;
+            if (meta.V !== 1) throw new Error('Unsupported vault version');
+            this.Salt = DecodeBase64(meta.SaltBase64);
+        } else {
+            const salt = crypto.getRandomValues(new Uint8Array(16));
+            meta = { V: 1, SaltBase64: EncodeBase64(salt) };
+            sessionStorage.setItem(VAULT_META_KEY, JSON.stringify(meta));
+            this.Salt = salt;
+        }
+
+        this.CryptoKey = await DeriveKey(password, this.Salt);
     }
 
     public async StoreObject(key: string, value: any): Promise<void> {
@@ -20,29 +41,48 @@ export class SecureStorageService {
         const cipher = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, this.CryptoKey!, encoded);
 
         const encryptedData = {
-            iv: Array.from(iv),
-            data: Array.from(new Uint8Array(cipher))
+
+            v: 1 as const,
+            ivB64: EncodeBase64(iv),
+            dataB64: EncodeBase64(cipher),
         };
 
         sessionStorage.setItem(key, JSON.stringify(encryptedData));
     }
 
     public async RetrieveObject<T>(key: string): Promise<T | undefined> {
-        if (IsEmpty(this.CryptoKey)) return undefined;
 
-        const encrypted = sessionStorage.getItem(key);
+        if (!this.CryptoKey) return undefined;
+        const raw = sessionStorage.getItem(key);
+        if (!raw) return undefined;
 
-        if (IsEmpty(encrypted)) return undefined;
+        let parsed: { v: number; ivB64: string; dataB64: string };
+        try {
+            parsed = JSON.parse(raw);
+        } catch {
+            // Tampered or legacy; remove
+            sessionStorage.removeItem(key);
+            return undefined;
+        }
 
-        const parsed = JSON.parse(encrypted!);
-        const iv = new Uint8Array(parsed.iv);
-        const data = new Uint8Array(parsed.data);
+        if (parsed.v !== 1 || !parsed.ivB64 || !parsed.dataB64) {
+            sessionStorage.removeItem(key);
+            return undefined;
+        }
 
-        const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, this.CryptoKey!, data);
-        return JSON.parse(new TextDecoder().decode(decrypted)) as T;
+        const iv = DecodeBase64(parsed.ivB64);
+        const data = DecodeBase64(parsed.dataB64);
+
+        try {
+            const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, this.CryptoKey, data);
+            return JSON.parse(new TextDecoder().decode(decrypted)) as T;
+        } catch {
+            // Auth tag mismatch (tampering), wrong password/salt, or corrupted data
+            return undefined;
+        }
     }
 
     public RemoveObject(key: string): void {
         sessionStorage.removeItem(key);
     }
-}
+}   

@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SecureStorageService } from 'src/services/secure.storage.service';
+import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
 
 @Component({
     selector: 'app-changename-modal',
@@ -58,7 +59,7 @@ export class ChangeNameModalComponent {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 
@@ -88,7 +89,7 @@ export class ChangeNameModalComponent {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.secureStorageService.StoreObject('User', user);
+            await this.secureStorageService.StoreObject(VAULT_USER_KEY, user);
         }
 
         this.dialogRef.close();

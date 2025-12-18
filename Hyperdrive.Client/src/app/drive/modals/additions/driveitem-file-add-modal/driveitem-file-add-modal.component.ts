@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SecureStorageService } from 'src/services/secure.storage.service';
+import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
 
 @Component({
     selector: 'app-driveitem-file-add-modal',
@@ -96,7 +97,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);;
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

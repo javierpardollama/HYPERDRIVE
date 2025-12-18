@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SecureStorageService } from 'src/services/secure.storage.service';
+import { VAULT_USER_KEY } from 'src/variants/vault.keys.variants';
 
 @Component({
     selector: 'app-driveitem-share-with-update-modal',
@@ -105,7 +106,7 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>('User');;
+        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VAULT_USER_KEY);;
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }
