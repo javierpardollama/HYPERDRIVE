@@ -24,7 +24,8 @@ public static class FiltersExtension
         @this.Entity<ApplicationUserToken>().HasQueryFilter(p => !p.Deleted);
         @this.Entity<DriveItem>().HasQueryFilter(p => !p.Deleted);
         @this.Entity<ApplicationUserDriveItem>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<DriveItemVersion>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<DriveItemInfo>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<DriveItemContent>().HasQueryFilter(p => !p.Deleted);
         @this.Entity<ApplicationUserRefreshToken>().HasQueryFilter(p => !p.Deleted);
 
     }

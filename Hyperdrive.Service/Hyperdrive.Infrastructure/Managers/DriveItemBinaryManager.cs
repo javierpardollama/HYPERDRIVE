@@ -28,25 +28,26 @@ public class DriveItemBinaryManager(IApplicationContext context,
     /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
     public async Task<DriveItemBinaryDto> FindLatestDriveItemBinaryById(int @driveitemid)
     {
-        DriveItemBinaryDto @binary = await Context.DriveItems
+        DriveItemBinaryDto @binary = await Context.DriveItemContents
             .TagWith("FindLatestDriveItemBinaryById")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.Activity)
-            .Where(x => x.Id == @driveitemid)        
-            .Select(x => x.ToBinary())
+            .Include(x => x.DriveItemInfo.DriveItem)
+            .Where(x => x.DriveItemInfo.DriveItemId == @driveitemid)
+            .OrderByDescending(x=> x.CreatedAt)
+            .Select(x => x.DriveItemInfo.ToBinary())
             .FirstOrDefaultAsync();
 
         if (@binary is null)
         {
             // Log
-            string @logData = nameof(DriveItem)
+            string @logData = nameof(DriveItemContent)
                               + " was not found at "
                               + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogWarning(@logData);
 
-            throw new ServiceException(nameof(DriveItem)
+            throw new ServiceException(nameof(DriveItemContent)
                                        + " does not exist");
         }
 
@@ -60,24 +61,25 @@ public class DriveItemBinaryManager(IApplicationContext context,
     /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
     public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @driveitemversionid)
     {
-        DriveItemBinaryDto @binary = await Context.DriveItemVersions
+        DriveItemBinaryDto @binary = await Context.DriveItemContents
                        .TagWith("FindDriveItemBinaryById")
                        .AsNoTracking()
                        .AsSplitQuery()
-                       .Where(x => x.Id == @driveitemversionid)
-                       .Select(x => x.ToBinary())
+                       .Include(x=> x.DriveItemInfo)
+                       .Where(x => x.DriveItemInfoId == @driveitemversionid)
+                       .Select(x => x.DriveItemInfo.ToBinary())
                        .FirstOrDefaultAsync();
 
         if (@binary is null)
         {
             // Log
-            string @logData = nameof(DriveItemVersion)
+            string @logData = nameof(DriveItemContent)
                               + " was not found at "
                               + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogWarning(@logData);
 
-            throw new ServiceException(nameof(DriveItemVersion)
+            throw new ServiceException(nameof(DriveItemContent)
                                        + " does not exist");
         }
 

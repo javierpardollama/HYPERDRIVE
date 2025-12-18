@@ -13,32 +13,22 @@ public static class DriveItemProfile
     /// <summary>
     /// Transforms to Dto
     /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItem"/></param>
+    /// <param name="entity">Injected <see cref="DriveItemInfo"/></param>
     /// <returns>Instance of <see cref="DriveItemDto"/></returns>
-    public static DriveItemDto ToDto(this DriveItem @entity)
+    public static DriveItemDto ToDto(this DriveItemInfo @entity)
     {
         return new DriveItemDto
         {
-            Id = @entity.Id,
-            FileName = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.FileName,
-            Name = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.Name,
-            Extension = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.Extension,
-            By = @entity.By?.ToCatalog(),
-            Parent = @entity.Parent?.ToCatalog(),
-            Folder = @entity.Folder,
-            LastModified = @entity.Activity
-              .OrderByDescending(x=>x.CreatedAt)
-              .FirstOrDefault()?.CreatedAt,
-            SharedWith = [.. @entity.SharedWith.Select(x=> x.User.ToCatalog())],
-            Downloadeable = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .Any(x => x.Size.HasValue)
+            Id = @entity.DriveItem.Id,
+            FileName = @entity.FileName,
+            Name = @entity.Name,
+            Extension = @entity.Extension,
+            By = @entity.DriveItem.By?.ToCatalog(),
+            Parent = @entity.DriveItem?.Parent?.ToCatalog(),
+            Folder = @entity.DriveItem.Folder,
+            LastModified = @entity.CreatedAt,
+            SharedWith = [.. @entity.DriveItem.SharedWith.Select(x=> x.User.ToCatalog())],
+            Downloadeable = @entity.Content?.Size.HasValue ?? false
         };
     }
 
@@ -55,23 +45,6 @@ public static class DriveItemProfile
             Name = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
               .FirstOrDefault()?.FileName
-        };
-    }
-    
-    /// <summary>
-    /// Transforms to Binary Dto
-    /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItem"/></param>
-    /// <returns>Instance of <see cref="DriveItemBinaryDto"/></returns>
-    public static DriveItemBinaryDto ToBinary(this DriveItem @entity)
-    {
-        return new DriveItemBinaryDto
-        {
-            FileName = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.FileName,
-            Data = Convert.ToBase64String(@entity.Activity.Where(x => x.Data is not null).OrderByDescending(x=> x.CreatedAt).First().Data),
-            Type = @entity.Activity.Where(x=> x.Type is not null).OrderByDescending(x=> x.CreatedAt).First().Type
         };
     }
 }

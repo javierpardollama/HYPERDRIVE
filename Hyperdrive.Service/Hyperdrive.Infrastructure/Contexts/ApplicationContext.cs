@@ -63,9 +63,14 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
     public virtual DbSet<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItemVersion}"/>
+    /// Gets or Sets <see cref="DbSet{DriveItemInfo}"/>
     /// </summary>
-    public virtual DbSet<DriveItemVersion> DriveItemVersions { get; set; }
+    public virtual DbSet<DriveItemInfo> DriveItemInfos { get; set; }
+
+    /// <summary>
+    /// Gets or Sets <see cref="DbSet{DriveItemContent}"/>
+    /// </summary>
+    public virtual DbSet<DriveItemContent> DriveItemContents { get; set; }
 
     /// <summary>
     /// Overrides Model Creation
