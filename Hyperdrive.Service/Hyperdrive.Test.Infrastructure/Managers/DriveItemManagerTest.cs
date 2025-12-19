@@ -117,9 +117,19 @@ public class DriveItemManagerTest : BaseManagerTest
     }
 
     [Test]
-    public async Task AddAsFileNameActivity()
+    public async Task AddAsFileNameInfo()
     {        
-        await Manager.AddAsFileNameActivity(5, "Wanabe.mp3", "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
+        await Manager.AddAsFileNameInfo(5, "Wanabe.mp3");
+
+        Assert.Pass();
+    }
+
+    [Test]
+    public async Task AddAsFileContent()
+    {
+        var info = await Manager.AddAsFileNameInfo(5, "Wanabe.mp3");
+
+        await Manager.AddAsFileContent(info.Id, "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
 
         Assert.Pass();
     }
@@ -127,7 +137,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public async Task AddAsNameActivity()
     {      
-        await Manager.AddAsNameActivity(5, "Spice Girls - Wannabe", "mp3");
+        await Manager.AddAsNameInfo(5, "Spice Girls - Wannabe", "mp3");
 
         Assert.Pass();
     }

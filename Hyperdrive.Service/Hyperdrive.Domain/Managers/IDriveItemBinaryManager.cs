@@ -16,9 +16,9 @@ public interface IDriveItemBinaryManager : IBaseManager
     public Task<DriveItemBinaryDto> FindLatestDriveItemBinaryById(int @driveitemid);
 
     /// <summary>
-    /// Finds Drive Item Binary By Id
+    /// Finds Drive Item Binary By Drive Item Info Id
     /// </summary>
-    /// <param name="driveitemversionid">Injected <see cref="int"/></param>
+    /// <param name="driveiteminfoid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-    public Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @driveitemversionid);
+    public Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @driveiteminfoid);
 }

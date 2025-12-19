@@ -32,14 +32,14 @@ public class DriveItemVersionManager(IApplicationContext context,
     {
         PageDto<DriveItemVersionDto> @page = new()
         {
-            Length = await Context.DriveItemVersions.TagWith("CountAllDriveItemVersionByDriveItemId")
+            Length = await Context.DriveItemInfos.TagWith("CountAllDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
                .Where(x => x.DriveItemId == @driveitemid)
                .CountAsync(),
             Index = @index,
             Size = @size,
-            Items = await Context.DriveItemVersions
+            Items = await Context.DriveItemInfos
                .TagWith("FindPaginatedDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
@@ -61,7 +61,7 @@ public class DriveItemVersionManager(IApplicationContext context,
     /// <returns>Instance of <see cref="Task{DriveItemVersion}"/></returns>
     public async Task<DriveItemInfo> FindDriveItemVersionById(int @id)
     {
-        DriveItemInfo @entity = await Context.DriveItemVersions
+        DriveItemInfo @entity = await Context.DriveItemInfos
                        .TagWith("FindDriveItemVersionById")
                        .AsNoTracking()
                        .AsSplitQuery()

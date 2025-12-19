@@ -32,10 +32,10 @@ public class DriveItemBinaryManager(IApplicationContext context,
             .TagWith("FindLatestDriveItemBinaryById")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.DriveItemInfo.DriveItem)
+            .Include(x => x.DriveItemInfo)
             .Where(x => x.DriveItemInfo.DriveItemId == @driveitemid)
             .OrderByDescending(x=> x.CreatedAt)
-            .Select(x => x.DriveItemInfo.ToBinary())
+            .Select(x => x.ToBinary())
             .FirstOrDefaultAsync();
 
         if (@binary is null)
@@ -55,19 +55,19 @@ public class DriveItemBinaryManager(IApplicationContext context,
     }
 
     /// <summary>
-    /// Finds Drive Item Binary By Id
+    /// Finds Drive Item Binary By Drive Item Info Id
     /// </summary>
-    /// <param name="driveitemversionid">Injected <see cref="int"/></param>
+    /// <param name="driveiteminfoid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-    public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @driveitemversionid)
+    public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @driveiteminfoid)
     {
         DriveItemBinaryDto @binary = await Context.DriveItemContents
                        .TagWith("FindDriveItemBinaryById")
                        .AsNoTracking()
                        .AsSplitQuery()
                        .Include(x=> x.DriveItemInfo)
-                       .Where(x => x.DriveItemInfoId == @driveitemversionid)
-                       .Select(x => x.DriveItemInfo.ToBinary())
+                       .Where(x => x.DriveItemInfoId == @driveiteminfoid)
+                       .Select(x => x.ToBinary())
                        .FirstOrDefaultAsync();
 
         if (@binary is null)

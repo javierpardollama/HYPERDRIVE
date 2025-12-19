@@ -60,7 +60,7 @@ public class DriveItemManager(
     /// <param name="parentid">Injected <see cref="int?"/></param>       
     /// <param name="userid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<DriveItem> FindDriveItemByFileName(string @filename, int? parentid, int userid)
+    public async Task<DriveItem> FindDriveItemByFileName(string @filename, int? parentid, int @userid)
     {
         var @expr1 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ById == @userid);
         var @expr2 = (Expression<Func<DriveItemInfo, bool>>)(x => x.FileName == @filename.Trim());
@@ -203,7 +203,7 @@ public class DriveItemManager(
     /// <param name="folder">Injected <see cref="bool"/></param>
     /// <param name="byid">Injected <see cref="ApplicationUser"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<DriveItem> AddDriveItem(string @filename, int? parentid, bool folder, int @byid)
+    public async Task<DriveItem> AddDriveItem(string @filename, int? parentid, bool @folder, int @byid)
     {
         var @entity = new DriveItem()
         {
@@ -404,7 +404,7 @@ public class DriveItemManager(
         var @expr1 = (Expression<Func<DriveItemInfo, bool>>)(x => x.Name == @name.Trim());
         var @expr2 = (Expression<Func<DriveItemInfo, bool>>)(x => @extension == null || x.Extension == @extension.Trim());
         var @expr3 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ParentId == @parentid);
-        var @expr4 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.Id != @id);
+        var @expr4 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItemId != @id);
         var @expr5 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ById == @userid);
         var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3, @expr4, @expr5);
 
