@@ -7,7 +7,7 @@ Apoyamos el [código de conducta](https://dotnetfoundation.org/about/policies/co
 Léelo y síguelo antes de interactuar con la comunidad del proyecto. Esperamos que todos los colaboradores se respeten mutuamente y fomenten un entorno positivo e inclusivo.
 
 ## Cómo Contribuir
-Hay muchas maneras de contribuir a este proyecto, según tus habilidades, intereses y disponibilidad. Estas son algunas formas comunes:
+Hay muchas maneras de contribuir a este proyecto, según tus habilidades, intereses y disponibilidad. Estas son algunas de las formas más comunes:
 
 ### Informar de errores
 Si encuentras algún problema o error al usar el proyecto, crea un problema en GitHub y describe lo sucedido. Incluye la mayor cantidad de detalles posible, como los pasos para reproducir el error, el comportamiento esperado y real, y cualquier mensaje de error o captura de pantalla. Esto nos ayudará a diagnosticar y solucionar el problema más rápidamente.
@@ -16,7 +16,7 @@ Si encuentras algún problema o error al usar el proyecto, crea un problema en G
 Si tienes una idea para una característica nueva o mejorada para el proyecto, crea una incidencia en GitHub y describe tu propuesta. Explica en qué consiste la característica, por qué es útil o necesaria y cómo debería funcionar. Revisaremos tu sugerencia y la discutiremos contigo.
 
 ### Escribir código
-Si quieres implementar una corrección de errores o una característica tú mismo, no dudes en hacerlo y crear una solicitud de extracción en GitHub. Además, escribe un mensaje de confirmación claro y conciso y una descripción de la solicitud de extracción que explique qué hiciste y por qué.
+Si quieres implementar una corrección de errores o una característica tú mismo, no dudes en hacerlo y crea una solicitud de extracción en GitHub. Además, escribe un mensaje de confirmación claro y conciso y una descripción de la solicitud de extracción que explique qué hiciste y por qué.
 
 Asegúrate además de lo siguiente:
 1. Que la estructura actual del código no se vea comprometida.
@@ -32,4 +32,6 @@ Si tienes experiencia con el proyecto o las tecnologías involucradas, puedes ay
 Si tienes experiencia o interés en el dominio del proyecto, puedes ayudarnos a mejorar nuestra documentación escribiendo o editando contenido para el README, la wiki o el sitio web. También puedes crear tutoriales, guías, ejemplos o preguntas frecuentes que demuestren cómo usar el proyecto eficazmente.
 
 ### Corre la voz
-Si te gusta el proyecto y lo encuentras útil o interesante, puedes apoyarnos compartiéndolo con otras personas que puedan beneficiarse de él. También puedes destacar el proyecto en GitHub o darnos tu opinión sobre lo que te gusta o no. **¡Gracias por ser parte de esto! 🙌**
+Si te gusta el proyecto y lo encuentras útil o interesante, puedes apoyarnos compartiéndolo con otras personas que puedan beneficiarse de él. También puedes destacar el proyecto en GitHub o darnos tu opinión sobre lo que te gusta y lo que no. 
+
+**¡Gracias por ser parte de esto! 🙌**
