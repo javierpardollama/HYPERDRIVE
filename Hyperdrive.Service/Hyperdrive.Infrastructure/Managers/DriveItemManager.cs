@@ -197,12 +197,11 @@ public class DriveItemManager(
     /// <summary>
     /// Adds Drive Item
     /// </summary>
-    /// <param name="filename">Injected <see cref="string"/></param>
     /// <param name="parentid">Injected <see cref="int?"/></param>
     /// <param name="folder">Injected <see cref="bool"/></param>
     /// <param name="byid">Injected <see cref="ApplicationUser"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<DriveItem> AddDriveItem(string @filename, int? parentid, bool @folder, int @byid)
+    public async Task<DriveItem> AddDriveItem(int? parentid, bool @folder, int @byid)
     {
         var @entity = new DriveItem()
         {

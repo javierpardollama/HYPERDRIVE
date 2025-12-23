@@ -55,12 +55,11 @@ namespace Hyperdrive.Domain.Managers
         /// <summary>
         /// Adds Drive Item
         /// </summary>
-        /// <param name="filename">Injected <see cref="string"/></param>
         /// <param name="parentid">Injected <see cref="int?"/></param>
         /// <param name="folder">Injected <see cref="bool"/></param>
         /// <param name="byid">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-        public Task<DriveItem> AddDriveItem(string @filename, int? parentid, bool @folder, int @byid);
+        public Task<DriveItem> AddDriveItem(int? parentid, bool @folder, int @byid);
 
         /// <summary>
         /// Adds Shared With

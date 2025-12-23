@@ -97,7 +97,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public async Task AddDriveItem()
     {      
-        await Manager.AddDriveItem("Everybody.mp3", 1, false, 1);
+        await Manager.AddDriveItem(1, false, 1);
 
         Assert.Pass();
     }
