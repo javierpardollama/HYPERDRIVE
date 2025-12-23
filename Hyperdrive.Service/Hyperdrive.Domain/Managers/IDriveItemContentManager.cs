@@ -14,6 +14,7 @@ public interface IDriveItemContentManager : IBaseManager
     /// <param name="type">Injected <see cref="string"/></param>
     /// <param name="size">Injected <see cref="float"/></param>
     /// <param name="data">Injected <see cref="string"/></param>
-    public Task AddAsFileContent(int @driveiteminfoid, string @type, float? @size, string @data);
+    /// <param name="folder">Injected <see cref="bool"/></param>
+    public Task AddAsFileContent(int @driveiteminfoid, string @type, float? @size, string @data, bool folder);
 
 }

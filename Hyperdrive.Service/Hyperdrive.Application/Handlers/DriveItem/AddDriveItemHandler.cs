@@ -40,9 +40,13 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
                                                             @by.Id);
        
 
-        var @version = await _driveItemInfoManager.AddAsFileNameInfo(@archive.Id,request.ViewModel.FileName);
+        var @version = await _driveItemInfoManager.AddAsFileNameInfo(@archive.Id, request.ViewModel.FileName);
 
-        await _driveItemContentManager.AddAsFileContent(@version.Id, request.ViewModel.Type, request.ViewModel.Size, request.ViewModel.Data);
+        await _driveItemContentManager.AddAsFileContent(@version.Id, 
+            request.ViewModel.Type, 
+            request.ViewModel.Size, 
+            request.ViewModel.Data, 
+            request.ViewModel.Folder);
 
         var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);
 
