@@ -35,8 +35,6 @@ public class DriveItemVersionManagerTest : BaseManagerTest
         Context = new ApplicationContext(ContextOptionsBuilder.Options);
         Context.Seed();
 
-        InstallHttpContext();
-
         InstallLogger();
 
         Manager = new DriveItemVersionManager(Context, Logger);
