@@ -7,11 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Hyperdrive.Domain.Entities;
 
 /// <summary>
-/// Represents a <see cref="DriveItemVersion"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
+/// Represents a <see cref="DriveItemInfo"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
 /// </summary>
 [Index(nameof(Name), nameof(Deleted))]
 [Index(nameof(FileName), nameof(Deleted))]
-public class DriveItemVersion : IKey, IBase
+public class DriveItemInfo : IKey, IBase
 {
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
@@ -75,22 +75,7 @@ public class DriveItemVersion : IKey, IBase
     /// <summary>
     /// Gets or Sets <see cref="NormalizedExtension"/>
     /// </summary>
-    public string NormalizedExtension { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="Data"/>
-    /// </summary>
-    public byte[] Data { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="Size"/>
-    /// </summary>
-    public float? Size { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="Type"/>
-    /// </summary>
-    public string Type { get; set; }
+    public string NormalizedExtension { get; set; }   
 
     /// <summary>
     /// Gets or Sets <see cref="Version"/>
@@ -109,4 +94,9 @@ public class DriveItemVersion : IKey, IBase
     /// </summary>
     [Required]
     public int DriveItemId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets <see cref="Content"/>
+    /// </summary>    
+    public virtual DriveItemContent Content { get; set; }
 }

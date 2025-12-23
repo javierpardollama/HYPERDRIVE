@@ -5,38 +5,38 @@ using System;
 namespace Hyperdrive.Domain.Profiles;
 
 /// <summary>
-/// Represents a <see cref="DriveItemVersionProfile"/> class.
+/// Represents a <see cref="DriveItemContentProfile"/> class.
 /// </summary>
-public static class DriveItemVersionProfile
+public static class DriveItemContentProfile
 {
     /// <summary>
     /// Transforms to Dto
     /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+    /// <param name="entity">Injected <see cref="DriveItemContent"/></param>
     /// <returns>Instance of <see cref="DriveItemVersionDto"/></returns>
-    public static DriveItemVersionDto ToDto(this DriveItemVersion @entity)
+    public static DriveItemVersionDto ToDto(this DriveItemContent @entity)
     {
         return new DriveItemVersionDto
         {
             Id = @entity.Id,
-            FileName = @entity.FileName,
+            FileName = @entity.DriveItemInfo.FileName,
             LastModified = @entity.CreatedAt,
             Size = @entity.Size,
             Type = @entity.Type,
-            Downloadeable = @entity.Size.HasValue
+            Downloadeable = @entity?.Size.HasValue ?? false
         };
     }
 
     /// <summary>
     /// Transforms to Binary Dto
     /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+    /// <param name="entity">Injected <see cref="DriveItemContent"/></param>
     /// <returns>Instance of <see cref="DriveItemBinaryDto"/></returns>
-    public static DriveItemBinaryDto ToBinary(this DriveItemVersion @entity)
+    public static DriveItemBinaryDto ToBinary(this DriveItemContent @entity)
     {
         return new DriveItemBinaryDto
         {
-            FileName = @entity.FileName,
+            FileName = @entity.DriveItemInfo.FileName,
             Data = Convert.ToBase64String(@entity.Data),
             Type = @entity.Type
         };

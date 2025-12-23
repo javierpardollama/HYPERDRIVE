@@ -83,5 +83,5 @@ public class DriveItem : IKey, IBase
     /// <summary>
     /// Gets or Sets <see cref="Activity"/>
     /// </summary>
-    public virtual ICollection<DriveItemVersion> Activity { get; set; } = [];
+    public virtual ICollection<DriveItemInfo> Activity { get; set; } = [];
 }

@@ -22,6 +22,8 @@ public static class ManagerInstaller
         @this.AddTransient<IDriveItemManager, DriveItemManager>();
         @this.AddTransient<IDriveItemVersionManager, DriveItemVersionManager>();
         @this.AddTransient<IDriveItemBinaryManager, DriveItemBinaryManager>();
+        @this.AddTransient<IDriveItemInfoManager, DriveItemInfoManager>();
+        @this.AddTransient<IDriveItemContentManager, DriveItemContentManager>();
         @this.AddTransient<IRefreshTokenManager, RefreshTokenManager>();
         @this.AddTransient<ITokenManager, TokenManager>();
         @this.AddTransient<ISecurityManager, SecurityManager>();

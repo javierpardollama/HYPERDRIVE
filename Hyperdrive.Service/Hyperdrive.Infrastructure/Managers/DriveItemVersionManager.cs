@@ -32,14 +32,14 @@ public class DriveItemVersionManager(IApplicationContext context,
     {
         PageDto<DriveItemVersionDto> @page = new()
         {
-            Length = await Context.DriveItemVersions.TagWith("CountAllDriveItemVersionByDriveItemId")
+            Length = await Context.DriveItemInfos.TagWith("CountAllDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
                .Where(x => x.DriveItemId == @driveitemid)
                .CountAsync(),
             Index = @index,
             Size = @size,
-            Items = await Context.DriveItemVersions
+            Items = await Context.DriveItemInfos
                .TagWith("FindPaginatedDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
@@ -59,9 +59,9 @@ public class DriveItemVersionManager(IApplicationContext context,
     /// </summary>
     /// <param name="id">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemVersion}"/></returns>
-    public async Task<DriveItemVersion> FindDriveItemVersionById(int @id)
+    public async Task<DriveItemInfo> FindDriveItemVersionById(int @id)
     {
-        DriveItemVersion @entity = await Context.DriveItemVersions
+        DriveItemInfo @entity = await Context.DriveItemInfos
                        .TagWith("FindDriveItemVersionById")
                        .AsNoTracking()
                        .AsSplitQuery()
@@ -71,13 +71,13 @@ public class DriveItemVersionManager(IApplicationContext context,
         if (@entity is null)
         {
             // Log
-            string @logData = nameof(DriveItemVersion)
+            string @logData = nameof(DriveItemInfo)
                               + " was not found at "
                               + DateTime.UtcNow.ToShortTimeString();
 
             @logger.LogWarning(@logData);
 
-            throw new ServiceException(nameof(DriveItemVersion)
+            throw new ServiceException(nameof(DriveItemInfo)
                                        + " does not exist");
         }
 
@@ -87,11 +87,11 @@ public class DriveItemVersionManager(IApplicationContext context,
     /// <summary>
     /// Targets Drive Item Version
     /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+    /// <param name="entity">Injected <see cref="DriveItemInfo"/></param>
     /// <returns>Instance of <see cref="Task"/></returns>
-    public async Task TargetDriveItemVersion(DriveItemVersion @entity)
+    public async Task TargetDriveItemVersion(DriveItemInfo @entity)
     {
-        DriveItemVersion @version = new()
+        DriveItemInfo @version = new()
         {
             FileName = @entity.FileName,
             NormalizedFileName = @entity.NormalizedFileName,
@@ -99,18 +99,20 @@ public class DriveItemVersionManager(IApplicationContext context,
             NormalizedName = @entity.NormalizedName,
             Extension = @entity.Extension,
             NormalizedExtension = @entity.NormalizedExtension,
-            Type = @entity.Type,
-            Size = @entity.Size,
-            Data = @entity.Data,
-            DriveItemId = @entity.DriveItemId,
+            Content = new()
+            {
+                Type = @entity.Content.Type,
+                Size = @entity.Content.Size,
+                Data = @entity.Content.Data,             
+            }
         };
 
-        await Context.DriveItemVersions.AddAsync(@version);
+        await Context.DriveItemInfos.AddAsync(@version);
 
         await Context.SaveChangesAsync();
 
         // Log
-        string @logData = nameof(DriveItemVersion)
+        string @logData = nameof(DriveItemInfo)
                           + " was added at "
                           + DateTime.UtcNow.ToShortTimeString();
 

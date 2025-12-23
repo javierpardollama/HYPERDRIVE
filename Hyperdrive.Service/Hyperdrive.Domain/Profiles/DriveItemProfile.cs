@@ -1,6 +1,5 @@
 using Hyperdrive.Domain.Dtos;
 using Hyperdrive.Domain.Entities;
-using System;
 using System.Linq;
 
 namespace Hyperdrive.Domain.Profiles;
@@ -20,25 +19,15 @@ public static class DriveItemProfile
         return new DriveItemDto
         {
             Id = @entity.Id,
-            FileName = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.FileName,
-            Name = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.Name,
-            Extension = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.Extension,
+            FileName = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault().FileName,
+            Name = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault().Name,
+            Extension = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault().Extension,
             By = @entity.By?.ToCatalog(),
             Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
-            LastModified = @entity.Activity
-              .OrderByDescending(x=>x.CreatedAt)
-              .FirstOrDefault()?.CreatedAt,
-            SharedWith = [.. @entity.SharedWith.Select(x=> x.User.ToCatalog())],
-            Downloadeable = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .Any(x => x.Size.HasValue)
+            LastModified = @entity.CreatedAt,
+            SharedWith = [.. @entity.SharedWith.Select(x => x.User.ToCatalog())],
+            Downloadeable = @entity.Activity.OrderByDescending(x => x.CreatedAt).Any(x => x.Content is not null)
         };
     }
 
@@ -55,23 +44,6 @@ public static class DriveItemProfile
             Name = @entity.Activity
               .OrderByDescending(x => x.CreatedAt)
               .FirstOrDefault()?.FileName
-        };
-    }
-    
-    /// <summary>
-    /// Transforms to Binary Dto
-    /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItem"/></param>
-    /// <returns>Instance of <see cref="DriveItemBinaryDto"/></returns>
-    public static DriveItemBinaryDto ToBinary(this DriveItem @entity)
-    {
-        return new DriveItemBinaryDto
-        {
-            FileName = @entity.Activity
-              .OrderByDescending(x => x.CreatedAt)
-              .FirstOrDefault()?.FileName,
-            Data = Convert.ToBase64String(@entity.Activity.Where(x => x.Data is not null).OrderByDescending(x=> x.CreatedAt).First().Data),
-            Type = @entity.Activity.Where(x=> x.Type is not null).OrderByDescending(x=> x.CreatedAt).First().Type
         };
     }
 }

@@ -117,7 +117,7 @@ public static class ContextExtension
                 Deleted = false,
                 SecurityStamp = new Guid().ToString()
             });
-            
+
             @this.Users.Add(new ApplicationUser
             {
                 Id = 5,
@@ -250,9 +250,13 @@ public static class ContextExtension
                     NormalizedFileName = "WANABE.MP3",
                     Extension = "mp3",
                     NormalizedExtension = "MP3",
-                    Type = "audio/mpeg",
-                    Size = 120,
-                    Data = new byte[25],
+                    Content = new(){
+                        Id = 501,
+                        Size = 120,
+                        Type = "audio/mpeg",
+                        Data = new byte[25],
+                        CreatedAt = DateTime.UtcNow
+                    },
                     CreatedAt = DateTime.UtcNow,
                 }],
                 CreatedAt = DateTime.UtcNow,
@@ -332,6 +336,6 @@ public static class ContextExtension
             });
 
             @this.SaveChanges();
-        }           
+        }
     }
 }

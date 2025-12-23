@@ -70,24 +70,6 @@ namespace Hyperdrive.Domain.Managers
         public Task AddSharedWith(IList<ApplicationUser> @users, DriveItem @entity);
 
         /// <summary>
-        /// Adds Activity
-        /// </summary>
-        /// <param name="driveitemid">Injected <see cref="int"/></param>
-        /// <param name="filename">Injected <see cref="string"/></param>        
-        /// <param name="type">Injected <see cref="string"/></param>
-        /// <param name="size">Injected <see cref="float?"/></param>
-        /// <param name="data">Injected <see cref="string"/></param>
-        public Task AddAsFileNameActivity(int driveitemid, string @filename, string @type, float? @size, string @data);
-
-        /// <summary>
-        /// Adds Activity
-        /// </summary>
-        /// <param name="driveitemid">Injected <see cref="DriveItem"/></param>
-        /// <param name="name">Injected <see cref="string"/></param>
-        /// <param name="extension">Injected <see cref="string"/></param>
-        public Task AddAsNameActivity(int driveitemid, string @name, string @extension);
-
-        /// <summary>
         /// Checks File Name
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>

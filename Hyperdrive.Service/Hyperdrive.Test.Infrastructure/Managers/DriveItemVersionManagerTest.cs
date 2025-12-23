@@ -35,8 +35,6 @@ public class DriveItemVersionManagerTest : BaseManagerTest
         Context = new ApplicationContext(ContextOptionsBuilder.Options);
         Context.Seed();
 
-        InstallHttpContext();
-
         InstallLogger();
 
         Manager = new DriveItemVersionManager(Context, Logger);
@@ -88,7 +86,7 @@ public class DriveItemVersionManagerTest : BaseManagerTest
     [Test]
     public async Task TargetDriveItemVersion()
     {
-        var @entity = Context.DriveItemVersions.First(x => x.Id == 51);      
+        var @entity = Context.DriveItemInfos.First(x => x.Id == 51);      
 
         await Manager.TargetDriveItemVersion(@entity);
         Assert.Pass();

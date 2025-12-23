@@ -22,13 +22,13 @@ public interface IDriveItemVersionManager : IBaseManager
     /// Finds Drive Item Version By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int"/></param>
-    /// <returns>Instance of <see cref="Task{DriveItemVersion}"/></returns>
-    public Task<DriveItemVersion> FindDriveItemVersionById(int @id);
+    /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
+    public Task<DriveItemInfo> FindDriveItemVersionById(int @id);
 
     /// <summary>
     /// Targets Drive Item Version
     /// </summary>
-    /// <param name="entity">Injected <see cref="DriveItemVersion"/></param>
+    /// <param name="entity">Injected <see cref="DriveItemInfo"/></param>
     /// <returns>Instance of <see cref="Task"/></returns>
-    public Task TargetDriveItemVersion(DriveItemVersion @entity);       
+    public Task TargetDriveItemVersion(DriveItemInfo @entity);       
 }

@@ -62,9 +62,14 @@ public interface IApplicationContext : IDisposable
     DbSet<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItemVersion}"/>
+    /// Gets or Sets <see cref="DbSet{DriveItemInfo}"/>
     /// </summary>
-    DbSet<DriveItemVersion> DriveItemVersions { get; set; }
+    DbSet<DriveItemInfo> DriveItemInfos { get; set; }
+
+    /// <summary>
+    /// Gets or Sets <see cref="DbSet{DriveItemContent}"/>
+    /// </summary>
+    DbSet<DriveItemContent> DriveItemContents { get; set; }
 
     /// <summary>
     /// Saves Changes Syncronously
