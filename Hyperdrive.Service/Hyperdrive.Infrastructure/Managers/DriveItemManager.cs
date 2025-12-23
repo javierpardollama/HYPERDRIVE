@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -250,105 +249,7 @@ public class DriveItemManager(
 
         @logger.LogInformation(@logData);
     }
-
-    /// <summary>
-    /// Adds Drive Item Info
-    /// </summary>
-    /// <param name="driveitemid">Injected <see cref="int"/></param>
-    /// <param name="filename">Injected <see cref="string"/></param>       
-    /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
-    public async Task<DriveItemInfo> AddAsFileNameInfo(int driveitemid, string @filename)
-    {
-        DriveItemInfo @version = new()
-        {
-            FileName = @filename.Trim(),
-            NormalizedFileName = @filename.Trim().ToUpper(),
-            Name = Path.GetFileNameWithoutExtension(@filename.Trim()),
-            NormalizedName = Path.GetFileNameWithoutExtension(@filename.Trim()).ToUpper(),
-            Extension = Path.GetExtension(@filename.Trim()),
-            NormalizedExtension = Path.GetExtension(@filename.Trim()).ToUpper(),           
-            DriveItemId = driveitemid
-        };
-
-        await Context.DriveItemInfos.AddAsync(@version);
-
-        await Context.SaveChangesAsync();
-
-        // Log
-        string @logData = nameof(DriveItemInfo)                             
-                          + " was added at "
-                          + DateTime.UtcNow.ToShortTimeString();
-
-        @logger.LogInformation(@logData);
-
-        return @version;
-    }
-
-    /// <summary>
-    /// Adds Drive Item Content
-    /// </summary>
-    /// <param name="driveiteminfoid">Injected <see cref="int?"/></param>
-    /// <param name="type">Injected <see cref="string"/></param>
-    /// <param name="size">Injected <see cref="float"/></param>
-    /// <param name="data">Injected <see cref="string"/></param>
-    public async Task AddAsFileContent(int? @driveiteminfoid, string @type, float? @size, string @data) 
-    {
-        if (@driveiteminfoid is null) return;
-
-        DriveItemContent @content = new()
-        {
-            DriveItemInfoId = @driveiteminfoid,
-            Type = @type,
-            Size = @size,
-            Data = Convert.FromBase64String(@data)
-        };
-
-        await Context.DriveItemContents.AddAsync(@content);
-
-        await Context.SaveChangesAsync();
-
-        // Log
-        string @logData = nameof(DriveItemContent)
-                          + " was added at "
-                          + DateTime.UtcNow.ToShortTimeString();
-
-        @logger.LogInformation(@logData);
-    }
-
-    /// <summary>
-    /// Adds Activity
-    /// </summary>
-    /// <param name="driveitemid">Injected <see cref="int"/></param>
-    /// <param name="name">Injected <see cref="string"/></param>
-    /// <param name="extension">Injected <see cref="string"/></param>
-    /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
-    public async Task<DriveItemInfo> AddAsNameInfo(int @driveitemid, string @name, string @extension)
-    {
-        DriveItemInfo @version = new()
-        {
-            Extension = @extension.Trim(),
-            NormalizedExtension = @extension.Trim().ToUpper(),
-            FileName = $"{@name?.Trim()}.{extension.Trim()}",
-            NormalizedFileName = $"{@name?.Trim().ToUpper()}.{extension.Trim().ToUpper()}",
-            Name = @name.Trim(),
-            NormalizedName = @name.Trim().ToUpper(),
-            DriveItemId = @driveitemid
-        };
-
-        await Context.DriveItemInfos.AddAsync(@version);
-
-        await Context.SaveChangesAsync();
-
-        // Log
-        string @logData = nameof(DriveItemInfo)                             
-                          + " was added at "
-                          + DateTime.UtcNow.ToShortTimeString();
-
-        @logger.LogInformation(@logData);
-
-        return @version;
-    }
-
+    
     /// <summary>
     /// Checks File Name
     /// </summary>
@@ -387,8 +288,6 @@ public class DriveItemManager(
 
         return @found;
     }
-
-
 
     /// <summary>
     /// Checks Name

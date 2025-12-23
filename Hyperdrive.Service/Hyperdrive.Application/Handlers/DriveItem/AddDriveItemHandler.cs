@@ -11,11 +11,18 @@ namespace Hyperdrive.Application.Handlers.DriveItem;
 public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriveItem>
 {
     private readonly IDriveItemManager _driveItemManager;
+    private readonly IDriveItemInfoManager _driveItemInfoManager;
+    private readonly IDriveItemContentManager _driveItemContentManager;
     private readonly IApplicationUserManager _applicationUserManager;
 
-    public AddDriveItemHandler(IDriveItemManager driveItemManager, IApplicationUserManager applicationUserManager)
+    public AddDriveItemHandler(IDriveItemManager driveItemManager,
+        IDriveItemInfoManager driveItemInfoManager,
+        IDriveItemContentManager driveItemContentManager,
+        IApplicationUserManager applicationUserManager)
     {
         _driveItemManager = driveItemManager;
+        _driveItemInfoManager = driveItemInfoManager;
+        _driveItemContentManager = driveItemContentManager;
         _applicationUserManager = applicationUserManager;
     }
     
@@ -33,9 +40,9 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
                                                             @by.Id);
        
 
-        var @version = await _driveItemManager.AddAsFileNameInfo(@archive.Id,request.ViewModel.FileName);
+        var @version = await _driveItemInfoManager.AddAsFileNameInfo(@archive.Id,request.ViewModel.FileName);
 
-        await _driveItemManager.AddAsFileContent(@version.Id, request.ViewModel.Type, request.ViewModel.Size, request.ViewModel.Data);
+        await _driveItemContentManager.AddAsFileContent(@version.Id, request.ViewModel.Type, request.ViewModel.Size, request.ViewModel.Data);
 
         var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);
 

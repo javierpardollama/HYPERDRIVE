@@ -36,9 +36,7 @@ public class DriveItemManagerTest : BaseManagerTest
 
         Context = new ApplicationContext(ContextOptionsBuilder.Options);
         Context.Seed();
-
-        InstallHttpContext();
-
+        
         InstallLogger();
 
         Manager = new DriveItemManager(Context, Logger);
@@ -112,32 +110,6 @@ public class DriveItemManagerTest : BaseManagerTest
         var @users = Context.Users.Where(x => new List<int>() { 2, 3 }.Contains(x.Id)).ToList();
 
         await Manager.AddSharedWith(users, item);
-
-        Assert.Pass();
-    }
-
-    [Test]
-    public async Task AddAsFileNameInfo()
-    {        
-        await Manager.AddAsFileNameInfo(5, "Wanabe.mp3");
-
-        Assert.Pass();
-    }
-
-    [Test]
-    public async Task AddAsFileContent()
-    {
-        var info = await Manager.AddAsFileNameInfo(5, "Wanabe.mp3");
-
-        await Manager.AddAsFileContent(info.Id, "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==");
-
-        Assert.Pass();
-    }
-
-    [Test]
-    public async Task AddAsNameActivity()
-    {      
-        await Manager.AddAsNameInfo(5, "Spice Girls - Wannabe", "mp3");
 
         Assert.Pass();
     }

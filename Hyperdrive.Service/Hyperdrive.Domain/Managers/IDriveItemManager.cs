@@ -70,32 +70,6 @@ namespace Hyperdrive.Domain.Managers
         public Task AddSharedWith(IList<ApplicationUser> @users, DriveItem @entity);
 
         /// <summary>
-        /// Adds Activity
-        /// </summary>
-        /// <param name="driveitemid">Injected <see cref="int"/></param>
-        /// <param name="filename">Injected <see cref="string"/></param>      
-        /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
-        public Task<DriveItemInfo> AddAsFileNameInfo(int @driveitemid, string @filename);
-
-        /// <summary>
-        /// Adds Activity
-        /// </summary>
-        /// <param name="driveitemid">Injected <see cref="DriveItem"/></param>
-        /// <param name="name">Injected <see cref="string"/></param>
-        /// <param name="extension">Injected <see cref="string"/></param>
-        /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
-        public Task<DriveItemInfo> AddAsNameInfo(int @driveitemid, string @name, string @extension);
-
-        /// <summary>
-        /// Adds Drive Item Content
-        /// </summary>
-        /// <param name="driveiteminfoid">Injected <see cref="int?"/></param>
-        /// <param name="type">Injected <see cref="string"/></param>
-        /// <param name="size">Injected <see cref="float"/></param>
-        /// <param name="data">Injected <see cref="string"/></param>
-        public Task AddAsFileContent(int? driveiteminfoid, string @type, float? @size, string @data);
-
-        /// <summary>
         /// Checks File Name
         /// </summary>
         /// <param name="filename">Injected <see cref="string"/></param>
