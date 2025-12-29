@@ -1,5 +1,5 @@
 # Pautas de contribución
-¡Gracias por tu interés en contribuir a este proyecto! Agradecemos cualquier tipo de contribución, ya sea código, documentación, informes de errores, solicitudes de funcionalidades o comentarios. Siga estas directrices para que el proceso sea más sencillo y eficaz para todos los involucrados.
+¡Gracias por tu interés en contribuir a este proyecto! Agradecemos cualquier tipo de contribución, ya sea código, documentación, informes de errores, solicitudes de funcionalidades o comentarios. Sigue estas directrices para que el proceso sea más sencillo y eficaz para todos los involucrados.
 
 ## Código de Conducta
 Apoyamos el [código de conducta](https://dotnetfoundation.org/about/policies/code-of-conduct) oficial definido por la organización .NET Foundation.
