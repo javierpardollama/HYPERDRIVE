@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { DriveItemVersionService } from 'src/services/driveitemversion.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-driveitemversion-grid',
   imports: [
     MatTableModule,
@@ -31,6 +32,10 @@ import { DriveItemVersionService } from 'src/services/driveitemversion.service';
   styleUrl: './driveitemversion-grid.component.scss',
 })
 export class DriveitemversionGridComponent implements OnInit, AfterViewInit, OnDestroy {
+  // DI
+  matDialog = inject(MatDialog);
+  private driveItemVersionService = inject(DriveItemVersionService);
+
   public loading: boolean = false;
 
   public ELEMENT_DATA: ViewDriveItemVersion[] = [];
@@ -48,9 +53,7 @@ export class DriveitemversionGridComponent implements OnInit, AfterViewInit, OnD
     };
 
   // Constructor
-  constructor(
-    public matDialog: MatDialog,
-    private driveItemVersionService: DriveItemVersionService) {
+  constructor() {
 
   }
 

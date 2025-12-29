@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
@@ -16,6 +16,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-driveitem-name-update-modal',
     templateUrl: './driveitem-name-update-modal.component.html',
     styleUrl: './driveitem-name-update-modal.component.scss',
@@ -30,21 +31,21 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class DriveitemNameUpdateModalComponent implements OnInit {
+    // DI
+    private driveItemService = inject(DriveItemService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<DriveitemNameUpdateModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject<ViewDriveItem>(MAT_DIALOG_DATA);
 
     public formGroup!: FormGroup;
 
     public User?: ViewApplicationUser;
 
     // Constructor
-    constructor(
-        private driveItemService: DriveItemService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DriveitemNameUpdateModalComponent>,
-        private matSnackBar: MatSnackBar,
-        @Inject(MAT_DIALOG_DATA) public data: ViewDriveItem) {
+    constructor() {
     }
-
 
     // Life Cicle
     async ngOnInit(): Promise<void> {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DriveItemService } from "../../../../services/driveitem.service";
 import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
@@ -35,6 +35,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-driveitem-grid',
     templateUrl: './driveitem-grid.component.html',
     styleUrl: './driveitem-grid.component.scss',
@@ -56,6 +57,13 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy {
+    // DI
+    private matSnackBar = inject(MatSnackBar);
+    matDialog = inject(MatDialog);
+    private driveItemService = inject(DriveItemService);
+    private binaryService = inject(BinaryService);
+    private secureStorageService = inject(SecureStorageService);
+    bottomSheet = inject(MatBottomSheet);
 
     public loading: boolean = false;
 
@@ -78,14 +86,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     private User?: ViewApplicationUser;
 
     // Constructor
-    constructor(
-        private matSnackBar: MatSnackBar,
-        public matDialog: MatDialog,
-        private driveItemService: DriveItemService,
-        private binaryService: BinaryService,
-        private secureStorageService: SecureStorageService,
-        public bottomSheet: MatBottomSheet) {
-
+    constructor() {
     }
 
     // Life Cicle

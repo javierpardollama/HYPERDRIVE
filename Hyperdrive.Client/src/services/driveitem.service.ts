@@ -6,10 +6,6 @@ import { UpdateDriveItemSharedWith } from '../viewmodels/updates/updatedriveitem
 
 import { ViewDriveItem } from '../viewmodels/views/viewdriveitem';
 
-import { ViewDriveItemVersion } from '../viewmodels/views/viewdriveitemversion';
-
-import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
-
 import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { FilterPageDriveItem } from '../viewmodels/filters/filterpagedriveitem';
@@ -18,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -29,19 +25,26 @@ import { BaseService } from './base.service';
 import { environment } from '../environments/environment';
 
 import { Router } from '@angular/router';
-import { FilterPageDriveItemVersion } from 'src/viewmodels/filters/filterpagedriveitemversion';
 
 @Injectable({
     providedIn: 'root',
 })
 
 export class DriveItemService extends BaseService {
+    protected override httpClient: HttpClient;
+    protected override matSnackBar: MatSnackBar;
+    protected override router: Router;
 
-    public constructor(
-        protected override httpClient: HttpClient,
-        protected override matSnackBar: MatSnackBar,
-        protected override router: Router) {
+    public constructor() {
+        const httpClient = inject(HttpClient);
+        const matSnackBar = inject(MatSnackBar);
+        const router = inject(Router);
+
         super(httpClient, matSnackBar, router);
+    
+        this.httpClient = httpClient;
+        this.matSnackBar = matSnackBar;
+        this.router = router;
     }
 
     public UpdateDriveItemName(viewModel: UpdateDriveItemName): Promise<ViewDriveItem> {

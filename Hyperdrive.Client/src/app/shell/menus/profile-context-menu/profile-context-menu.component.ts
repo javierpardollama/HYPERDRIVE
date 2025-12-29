@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { AuthService } from '../../../../services/auth.service';
 
@@ -17,6 +17,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-profile-context-menu',
     templateUrl: './profile-context-menu.component.html',
     styleUrl: './profile-context-menu.component.scss',
@@ -29,14 +30,15 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class ProfileContextMenuComponent implements OnInit {
+    // DI
+    sheetRef = inject<MatBottomSheetRef<ProfileContextMenuComponent>>(MatBottomSheetRef);
+    private authService = inject(AuthService);
+    private secureStorageService = inject(SecureStorageService);
+    private router = inject(Router);
 
     public User?: ViewApplicationUser;
 
-    public constructor(
-        public sheetRef: MatBottomSheetRef<ProfileContextMenuComponent>,
-        private authService: AuthService,
-        private secureStorageService: SecureStorageService,
-        private router: Router) {
+    public constructor() {
     }
 
 

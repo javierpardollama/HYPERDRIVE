@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -15,6 +15,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-driveitem-folder-add-modal',
     templateUrl: './driveitem-folder-add-modal.component.html',
     styleUrl: './driveitem-folder-add-modal.component.scss',
@@ -29,21 +30,21 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class DriveItemFolderAddModalComponent implements OnInit {
+    // DI
+    private driveItemService = inject(DriveItemService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<DriveItemFolderAddModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject(MAT_DIALOG_DATA);
 
     public formGroup!: FormGroup;
 
     public User?: ViewApplicationUser;
 
     // Constructor
-    constructor(
-        private driveItemService: DriveItemService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DriveItemFolderAddModalComponent>,
-        private matSnackBar: MatSnackBar,
-        @Inject(MAT_DIALOG_DATA) public data: number | undefined) {
+    constructor() {
     }
-
 
     // Life Cicle
     async ngOnInit(): Promise<void> {

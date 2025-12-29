@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { ChangeNameModalComponent } from './modals/changename-modal/changename-modal.component';
@@ -19,6 +19,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-security',
     templateUrl: './security.component.html',
     styleUrls: ['./security.component.scss'],
@@ -32,15 +33,14 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
         ]
 })
 export class SecurityComponent implements OnInit {
+    // DI
+    private secureStorageService = inject(SecureStorageService);
+    matDialog = inject(MatDialog);
 
     public User?: ViewApplicationUser;
 
     // Constructor
-    constructor(
-        private secureStorageService: SecureStorageService,
-        public matDialog: MatDialog
-    ) {
-
+    constructor() {
     }
 
     // Life Cicle

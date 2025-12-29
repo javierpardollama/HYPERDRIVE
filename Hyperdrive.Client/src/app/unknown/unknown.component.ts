@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-unknown',
   templateUrl: './unknown.component.html',
   styleUrl: './unknown.component.scss',
@@ -14,9 +15,11 @@ import { Router, RouterModule } from '@angular/router';
   ]
 })
 export class UnknownComponent {
+  // DI
+  private router = inject(Router);
 
   // Constructor
-  constructor(private router: Router) { }
+  constructor() { }
 
   public async Back(): Promise<void> {
     await this.router.navigate([""]);

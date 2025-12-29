@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import {
     Router
@@ -14,15 +14,15 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 })
 
 export class SignInGuard {
+    // DI
+    private secureStorageService = inject(SecureStorageService);
+    private router = inject(Router);
 
     private User?: ViewApplicationUser;
 
     private Activated = false;
 
-    constructor(
-        private secureStorageService: SecureStorageService,
-        private router: Router
-    ) { }
+    constructor() { }
 
     async canActivate() {
 

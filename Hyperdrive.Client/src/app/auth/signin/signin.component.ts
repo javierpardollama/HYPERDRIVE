@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 
@@ -28,6 +25,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
@@ -42,15 +40,16 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
   ]
 })
 export class SignInComponent implements OnInit {
+  // DI
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private secureStorageService = inject(SecureStorageService);
+  private formBuilder = inject(FormBuilder);
 
   public formGroup!: FormGroup;
 
   // Constructor
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private secureStorageService: SecureStorageService,
-    private formBuilder: FormBuilder) { }
+  constructor() { }
 
   // Life Cicle
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-applicationuser-grid',
     templateUrl: './applicationuser-grid.component.html',
     styleUrls: ['./applicationuser-grid.component.scss'],
@@ -43,6 +44,9 @@ import { MatInputModule } from '@angular/material/input';
     ]
 })
 export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDestroy {
+    // DI
+    private applicationUserService = inject(ApplicationUserService);
+    matDialog = inject(MatDialog);
 
     public loading: boolean = false;
 
@@ -60,9 +64,7 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
         };
 
     // Constructor
-    constructor(
-        private applicationUserService: ApplicationUserService,
-        public matDialog: MatDialog) {
+    constructor() {
     }
 
     // Life Cicle

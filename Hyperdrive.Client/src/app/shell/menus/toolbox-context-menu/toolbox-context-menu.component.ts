@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ViewLink } from '../../../../viewmodels/views/viewlink';
 import { NavigationService } from '../../../../services/navigation.service';
 
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-toolbox-context-menu',
     templateUrl: './toolbox-context-menu.component.html',
     styleUrl: './toolbox-context-menu.component.scss',
@@ -21,14 +22,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ]
 })
 export class ToolboxContextMenuComponent {
+    // DI
+    private router = inject(Router);
+    sheetRef = inject<MatBottomSheetRef<ToolboxContextMenuComponent>>(MatBottomSheetRef);
+    private navigationService = inject(NavigationService);
 
     public NavigationLinks: ViewLink[];
 
     // Constructor
-    constructor(
-        private router: Router,
-        public sheetRef: MatBottomSheetRef<ToolboxContextMenuComponent>,
-        private navigationService: NavigationService) {
+    constructor() {
         this.NavigationLinks = this.navigationService.GetToolBoxNavigationLinks();
     }
 

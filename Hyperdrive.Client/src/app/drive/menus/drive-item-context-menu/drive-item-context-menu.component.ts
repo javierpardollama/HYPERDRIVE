@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
 import { DriveItemService } from "../../../../services/driveitem.service";
@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-drive-item-context-menu',
     templateUrl: './drive-item-context-menu.component.html',
     styleUrl: './drive-item-context-menu.component.scss',
@@ -34,16 +35,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ]
 })
 export class DriveItemContextMenuComponent {
+    // DI
+    matDialog = inject(MatDialog);
+    snackBar = inject(MatSnackBar);
+    driveItemService = inject(DriveItemService);
+    driveItemBinaryService = inject(DriveItemBinaryService);
+    binaryService = inject(BinaryService);
+    sheetRef = inject<MatBottomSheetRef<DriveItemContextMenuComponent>>(MatBottomSheetRef);
+    data = inject<ViewDriveItem>(MAT_BOTTOM_SHEET_DATA);
 
     // Constructor
-    constructor(
-        public matDialog: MatDialog,
-        public snackBar: MatSnackBar,
-        public driveItemService: DriveItemService,
-        public driveItemBinaryService: DriveItemBinaryService,
-        public binaryService: BinaryService,
-        public sheetRef: MatBottomSheetRef<DriveItemContextMenuComponent>,
-        @Inject(MAT_BOTTOM_SHEET_DATA) public data: ViewDriveItem) {
+    constructor() {
     }
 
     public Share(): void {

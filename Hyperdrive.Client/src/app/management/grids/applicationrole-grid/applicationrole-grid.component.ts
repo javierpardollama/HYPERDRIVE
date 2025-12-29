@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -32,6 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-applicationrole-grid',
   templateUrl: './applicationrole-grid.component.html',
   styleUrls: ['./applicationrole-grid.component.scss'],
@@ -49,6 +45,9 @@ import { MatInputModule } from '@angular/material/input';
   ]
 })
 export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDestroy {
+  // DI
+  private applicationRoleService = inject(ApplicationRoleService);
+  matDialog = inject(MatDialog);
 
   public loading: boolean = false;
 
@@ -66,10 +65,7 @@ export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDe
     };
 
   // Constructor
-  constructor(
-    private applicationRoleService: ApplicationRoleService,
-    public matDialog: MatDialog) {
-
+  constructor() {
   }
 
   // Life Cicle

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { ViewApplicationUser } from '../../../../viewmodels/views/viewapplicationuser';
 import { ProfileContextMenuComponent } from '../profile-context-menu/profile-context-menu.component';
@@ -13,6 +13,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-nav-menu',
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.scss'],
@@ -25,14 +26,14 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class NavMenuComponent implements OnInit {
+    // DI
+    private secureStorageService = inject(SecureStorageService);
+    bottomSheet = inject(MatBottomSheet);
 
     public User?: ViewApplicationUser;
 
     // Constructor
-    constructor(
-        private secureStorageService: SecureStorageService,
-        public bottomSheet: MatBottomSheet
-    ) {
+    constructor() {
 
     }
 

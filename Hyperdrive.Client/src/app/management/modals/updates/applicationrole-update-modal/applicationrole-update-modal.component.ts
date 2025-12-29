@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -25,6 +25,7 @@ import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-applicationrole-update-modal',
     templateUrl: './applicationrole-update-modal.component.html',
     styleUrls: ['./applicationrole-update-modal.component.scss'],
@@ -40,21 +41,21 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class ApplicationRoleUpdateModalComponent implements OnInit {
+    // DI
+    private applicationroleService = inject(ApplicationRoleService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<ApplicationRoleUpdateModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject<ViewApplicationRole>(MAT_DIALOG_DATA);
 
     public User?: ViewApplicationUser;
 
     public formGroup!: FormGroup;
 
     // Constructor
-    constructor(
-        private applicationroleService: ApplicationRoleService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<ApplicationRoleUpdateModalComponent>,
-        private matSnackBar: MatSnackBar,
-        @Inject(MAT_DIALOG_DATA) public data: ViewApplicationRole) {
+    constructor() {
     }
-
 
     // Life Cicle
     async ngOnInit(): Promise<void> {

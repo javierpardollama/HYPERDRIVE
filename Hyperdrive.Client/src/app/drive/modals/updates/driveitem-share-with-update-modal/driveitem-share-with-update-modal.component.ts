@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ApplicationUserService } from "../../../../../services/applicationuser.service";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
@@ -19,6 +19,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-driveitem-share-with-update-modal',
     templateUrl: './driveitem-share-with-update-modal.component.html',
     styleUrl: './driveitem-share-with-update-modal.component.scss',
@@ -34,6 +35,14 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class DriveitemShareWithUpdateModalComponent implements OnInit {
+    // DI
+    private applicationuserService = inject(ApplicationUserService);
+    private driveItemService = inject(DriveItemService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<DriveitemShareWithUpdateModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject<ViewDriveItem>(MAT_DIALOG_DATA);
 
     public formGroup!: FormGroup;
 
@@ -41,16 +50,8 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     public applicationusers: ViewCatalog[] = [];
 
-
     // Constructor
-    constructor(
-        private applicationuserService: ApplicationUserService,
-        private driveItemService: DriveItemService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DriveitemShareWithUpdateModalComponent>,
-        private matSnackBar: MatSnackBar,
-        @Inject(MAT_DIALOG_DATA) public data: ViewDriveItem) {
+    constructor() {
     }
 
 

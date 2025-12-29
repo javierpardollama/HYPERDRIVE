@@ -17,7 +17,6 @@ import { CodeAppVariants } from '../variants/codes.app.variants';
 
 import { Router } from '@angular/router';
 
-
 export class BaseService {
 
     public constructor(

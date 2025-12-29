@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { from, Observable, switchMap } from 'rxjs';
 
@@ -14,11 +14,12 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 })
 
 export class AuthInterceptor implements HttpInterceptor {
+  // DI
+  private secureStorageService = inject(SecureStorageService);
 
   private User?: ViewApplicationUser;
 
-  constructor(private secureStorageService: SecureStorageService) { }
-
+  constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return from(this.GetLocalUser()).pipe(

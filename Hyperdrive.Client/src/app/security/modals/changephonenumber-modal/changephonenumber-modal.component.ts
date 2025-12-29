@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -24,6 +24,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-changephonenumber-modal',
     templateUrl: './changephonenumber-modal.component.html',
     styleUrls: ['./changephonenumber-modal.component.scss'],
@@ -39,18 +40,19 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class ChangePhoneNumberModalComponent implements OnInit {
+    // DI
+    dialogRef = inject<MatDialogRef<ChangePhoneNumberModalComponent>>(MatDialogRef);
+    private securityService = inject(SecurityService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    private matSnackBar = inject(MatSnackBar);
 
     public formGroup!: FormGroup;
 
     public User?: ViewApplicationUser;
 
     // Constructor
-    constructor(
-        public dialogRef: MatDialogRef<ChangePhoneNumberModalComponent>,
-        private securityService: SecurityService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        private matSnackBar: MatSnackBar) {
+    constructor() {
     }
 
     // Life Cicle

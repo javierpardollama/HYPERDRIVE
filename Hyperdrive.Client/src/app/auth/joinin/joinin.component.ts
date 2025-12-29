@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 
@@ -18,6 +18,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-joinin-auth',
     templateUrl: './joinin.component.html',
     styleUrls: ['./joinin.component.scss'],
@@ -32,17 +33,17 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class JoinInComponent implements OnInit {
+    // DI
+    private location = inject(Location);
+    private router = inject(Router);
+    private authService = inject(AuthService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
 
     public formGroup!: FormGroup;
 
     // Constructor
-    constructor(
-        private location: Location,
-        private router: Router,
-        private authService: AuthService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder
-    ) {
+    constructor() {
     }
 
     // Life Cicle

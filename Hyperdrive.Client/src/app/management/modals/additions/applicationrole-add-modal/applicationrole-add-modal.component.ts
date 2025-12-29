@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -22,6 +22,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-applicationrole-add-modal',
     templateUrl: './applicationrole-add-modal.component.html',
     styleUrls: ['./applicationrole-add-modal.component.scss'],
@@ -36,20 +37,20 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class ApplicationRoleAddModalComponent implements OnInit {
+    // DI
+    private applicationroleService = inject(ApplicationRoleService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<ApplicationRoleAddModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
 
     public User?: ViewApplicationUser;
 
     public formGroup!: FormGroup;
 
     // Constructor
-    constructor(
-        private applicationroleService: ApplicationRoleService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<ApplicationRoleAddModalComponent>,
-        private matSnackBar: MatSnackBar) {
+    constructor() {
     }
-
 
     // Life Cicle
     async ngOnInit(): Promise<void> {

@@ -20,8 +20,6 @@ import { environment } from '../environments/environment';
 
 import { Router } from '@angular/router';
 
-
-
 @Injectable({
     providedIn: 'root',
 })
@@ -40,8 +38,8 @@ export class DriveItemVersionService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
 
-     public TargetDriveItemVersionById(id: number): Promise<void> {
-        return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/v1/driveitem/version/target/${id}`)
+    public TargetDriveItemVersionById(id: number): Promise<void> {
+        return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/v1/driveitem/version/target/${id}`, {})
             .pipe(catchError(this.HandleError<any>('TargetDriveItemVersionById', undefined))));
     }
 }

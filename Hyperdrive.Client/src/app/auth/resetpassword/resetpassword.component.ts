@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 
@@ -22,6 +22,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-resetpassword',
     templateUrl: './resetpassword.component.html',
     styleUrls: ['./resetpassword.component.scss'],
@@ -36,17 +37,18 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class ResetPasswordComponent implements OnInit {
+    // DI
+    private router = inject(Router);
+    private location = inject(Location);
+    private securityService = inject(SecurityService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    private matSnackBar = inject(MatSnackBar);
 
     public formGroup!: FormGroup;
 
     // Constructor
-    constructor(
-        private router: Router,
-        private location: Location,
-        private securityService: SecurityService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        private matSnackBar: MatSnackBar) {
+    constructor() {
     }
 
     // Life Cicle

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -26,6 +26,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-applicationuser-update-modal',
     templateUrl: './applicationuser-update-modal.component.html',
     styleUrls: ['./applicationuser-update-modal.component.scss'],
@@ -42,6 +43,14 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class ApplicationUserUpdateModalComponent implements OnInit {
+    // DI
+    private applicationuserService = inject(ApplicationUserService);
+    private applicationroleService = inject(ApplicationRoleService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<ApplicationUserUpdateModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject<ViewApplicationUser>(MAT_DIALOG_DATA);
 
     public User?: ViewApplicationUser;
 
@@ -49,18 +58,9 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
 
     public applicationroles: ViewCatalog[] = [];
 
-
     // Constructor
-    constructor(
-        private applicationuserService: ApplicationUserService,
-        private applicationroleService: ApplicationRoleService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<ApplicationUserUpdateModalComponent>,
-        private matSnackBar: MatSnackBar,
-        @Inject(MAT_DIALOG_DATA) public data: ViewApplicationUser) {
+    constructor() {
     }
-
 
     // Life Cicle
     async ngOnInit(): Promise<void> {

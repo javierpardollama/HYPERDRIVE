@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ViewApplicationUser } from "../../../../../viewmodels/views/viewapplicationuser";
 import { DriveItemService } from "../../../../../services/driveitem.service";
@@ -15,6 +15,7 @@ import { SecureStorageService } from 'src/services/secure.storage.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-driveitem-file-add-modal',
     templateUrl: './driveitem-file-add-modal.component.html',
     styleUrl: './driveitem-file-add-modal.component.scss',
@@ -29,6 +30,14 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
     ]
 })
 export class DriveItemFileAddModalComponent implements OnInit {
+    // DI
+    private driveItemService = inject(DriveItemService);
+    private binaryService = inject(BinaryService);
+    private secureStorageService = inject(SecureStorageService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<DriveItemFileAddModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject(MAT_DIALOG_DATA);
 
     public formGroup!: FormGroup;
 
@@ -37,14 +46,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
     public File?: File;
 
     // Constructor
-    constructor(
-        private driveItemService: DriveItemService,
-        private binaryService: BinaryService,
-        private secureStorageService: SecureStorageService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<DriveItemFileAddModalComponent>,
-        private matSnackBar: MatSnackBar,
-        @Inject(MAT_DIALOG_DATA) public data: number | undefined) {
+    constructor() {
     }
 
 
