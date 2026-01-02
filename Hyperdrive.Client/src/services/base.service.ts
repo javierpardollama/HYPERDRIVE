@@ -16,13 +16,16 @@ import { TextAppVariants } from '../variants/text.app.variants';
 import { CodeAppVariants } from '../variants/codes.app.variants';
 
 import { Router } from '@angular/router';
+import { inject } from '@angular/core';
 
 export class BaseService {
 
-    public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar,
-        protected router: Router) {
+    protected httpClient = inject(HttpClient);;
+    protected matSnackBar = inject(MatSnackBar);
+    protected router = inject(Router);
+
+    public constructor() {
+
     }
 
     public HandleError<T>(operation = 'Operation', result?: T) {

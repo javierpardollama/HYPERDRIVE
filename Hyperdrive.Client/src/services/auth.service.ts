@@ -6,11 +6,7 @@ import { AuthSignOut } from '../viewmodels/auth/authsignout';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 
-import { HttpClient } from '@angular/common/http';
-
-import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 
@@ -20,27 +16,14 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from '../environments/environment';
 
-import { Router } from '@angular/router';
-
 @Injectable({
   providedIn: 'root',
 })
 
 export class AuthService extends BaseService {
-  protected override httpClient: HttpClient;
-  protected override matSnackBar: MatSnackBar;
-  protected override router: Router;
 
   public constructor() {
-    const httpClient = inject(HttpClient);
-    const matSnackBar = inject(MatSnackBar);
-    const router = inject(Router);
-
-    super(httpClient, matSnackBar, router);
-  
-    this.httpClient = httpClient;
-    this.matSnackBar = matSnackBar;
-    this.router = router;
+    super();
   }
 
   public SignIn(viewModel: AuthSignIn): Promise<ViewApplicationUser> {

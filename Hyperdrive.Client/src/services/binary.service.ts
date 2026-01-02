@@ -4,15 +4,7 @@ import { BinaryAddDriveItem } from '../viewmodels/binary/binaryadddriveitem';
 
 import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
-import { HttpClient } from '@angular/common/http';
-
-import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { Injectable, inject } from '@angular/core';
-
-import { BaseService } from './base.service';
-
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 import { DecodeBlob, EncodeBlob } from 'src/utils/blob.utils';
 
@@ -21,27 +13,15 @@ import { DecodeBlob, EncodeBlob } from 'src/utils/blob.utils';
     providedIn: 'root',
 })
 
-export class BinaryService extends BaseService {
-    protected override httpClient: HttpClient;
-    protected override matSnackBar: MatSnackBar;
-    protected override router: Router;
+export class BinaryService {
 
     public constructor() {
-        const httpClient = inject(HttpClient);
-        const matSnackBar = inject(MatSnackBar);
-        const router = inject(Router);
-
-        super(httpClient, matSnackBar, router);
-    
-        this.httpClient = httpClient;
-        this.matSnackBar = matSnackBar;
-        this.router = router;
     }
 
     public async EncodeDriveItem(viewModel: BinaryAddDriveItem): Promise<AddDriveItem> {
         const resultModel: AddDriveItem =
         {
-            ParentId:viewModel.ParentId,
+            ParentId: viewModel.ParentId,
             ApplicationUserId: viewModel.ApplicationUserId,
             Data: await EncodeBlob(viewModel.File),
             Size: viewModel.File.size,
