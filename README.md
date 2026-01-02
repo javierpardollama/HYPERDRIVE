@@ -28,15 +28,15 @@ Para compilar y hacer funcionar este proyecto se recomienda utilizar una serie d
 
 Este framework es utilizado para construir todo lo referente al Servicio: La capas Dominio, la capa de Infrastructura y la capa de Aplicación.
 
-1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+2. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 Esta plataforma es utilizada para empaquetar el Servicio.
 
-2. [Node.js](https://nodejs.org/es/)
+3. [Node.js](https://nodejs.org/es/)
 
 Este entorno de ejecución es utilizado para construir el entorno necesario para la capa de Presentación.
 
-3. [Angular Cli](https://cli.angular.io/)
+4. [Angular Cli](https://cli.angular.io/)
 
 Este framework es utilizado para construir todo lo referente a la capa de Presentación.
 
