@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
@@ -43,7 +43,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 export class ApplicationRoleUpdateModalComponent implements OnInit {
     // DI
     private applicationroleService = inject(ApplicationRoleService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     private formBuilder = inject(FormBuilder);
     dialogRef = inject<MatDialogRef<ApplicationRoleUpdateModalComponent>>(MatDialogRef);
     private matSnackBar = inject(MatSnackBar);
@@ -106,7 +106,7 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

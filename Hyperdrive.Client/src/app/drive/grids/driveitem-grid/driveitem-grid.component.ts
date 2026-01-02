@@ -29,7 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { DragDropDirective } from 'src/directives/drag-drop.directive';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
@@ -62,7 +62,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     matDialog = inject(MatDialog);
     private driveItemService = inject(DriveItemService);
     private binaryService = inject(BinaryService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     bottomSheet = inject(MatBottomSheet);
 
     public loading: boolean = false;
@@ -204,7 +204,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
     }
 
     public SetFilterUser(): void {

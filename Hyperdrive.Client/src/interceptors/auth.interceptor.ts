@@ -6,15 +6,15 @@ import { from, switchMap } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 import { IsEmpty } from 'src/utils/object.utils';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
-  const secureStorageService = inject(SecureStorageService);
+  const cryptoService = inject(CryptoService);
 
   return from(
-    secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY)
+    cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY)
   ).pipe(
     switchMap((user) => {
       if (!IsEmpty(user)) {

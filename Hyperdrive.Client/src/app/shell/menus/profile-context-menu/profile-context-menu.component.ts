@@ -12,7 +12,7 @@ import { MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/botto
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
@@ -33,7 +33,7 @@ export class ProfileContextMenuComponent implements OnInit {
     // DI
     sheetRef = inject<MatBottomSheetRef<ProfileContextMenuComponent>>(MatBottomSheetRef);
     private authService = inject(AuthService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     private router = inject(Router);
 
     public User?: ViewApplicationUser;
@@ -62,13 +62,13 @@ export class ProfileContextMenuComponent implements OnInit {
 
         await this.authService.SignOut(viewModel);
 
-        this.secureStorageService.RemoveObject(VaultKeyAppVariants.VAULT_USER_KEY);
+        this.cryptoService.RemoveObject(VaultKeyAppVariants.VAULT_USER_KEY);
 
         await this.router.navigate(['auth/signin']);
     }
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
     }
 }

@@ -14,7 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
@@ -34,7 +34,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 })
 export class SecurityComponent implements OnInit {
     // DI
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     matDialog = inject(MatDialog);
 
     public User?: ViewApplicationUser;
@@ -90,6 +90,6 @@ export class SecurityComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
     }
 }

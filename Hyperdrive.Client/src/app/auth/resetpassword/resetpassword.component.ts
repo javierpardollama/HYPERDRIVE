@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
@@ -41,7 +41,7 @@ export class ResetPasswordComponent implements OnInit {
     private router = inject(Router);
     private location = inject(Location);
     private securityService = inject(SecurityService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     private formBuilder = inject(FormBuilder);
     private matSnackBar = inject(MatSnackBar);
 
@@ -79,8 +79,8 @@ export class ResetPasswordComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.secureStorageService.CreateKey(viewModel.NewPassword);
-            await this.secureStorageService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
+            await this.cryptoService.CreateKey(viewModel.NewPassword);
+            await this.cryptoService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
 
             await this.router.navigate(['/']);
         }

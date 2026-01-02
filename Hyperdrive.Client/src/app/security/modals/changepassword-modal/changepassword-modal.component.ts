@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
@@ -40,7 +40,7 @@ export class ChangePasswordModalComponent implements OnInit {
     // DI
     dialogRef = inject<MatDialogRef<ChangePasswordModalComponent>>(MatDialogRef);
     private securityService = inject(SecurityService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     private formBuilder = inject(FormBuilder);
     private matSnackBar = inject(MatSnackBar);
 
@@ -60,7 +60,7 @@ export class ChangePasswordModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 
@@ -86,8 +86,8 @@ export class ChangePasswordModalComponent implements OnInit {
                 TextAppVariants.AppOkButtonText,
                 { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
-            await this.secureStorageService.CreateKey(viewModel.NewPassword);
-            await this.secureStorageService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
+            await this.cryptoService.CreateKey(viewModel.NewPassword);
+            await this.cryptoService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
         }
 
         this.dialogRef.close();

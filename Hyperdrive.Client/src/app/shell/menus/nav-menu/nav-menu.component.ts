@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
@@ -27,7 +27,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 })
 export class NavMenuComponent implements OnInit {
     // DI
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     bottomSheet = inject(MatBottomSheet);
 
     public User?: ViewApplicationUser;
@@ -61,6 +61,6 @@ export class NavMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
     }
 }

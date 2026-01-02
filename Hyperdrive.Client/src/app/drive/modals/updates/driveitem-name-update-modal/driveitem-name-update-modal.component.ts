@@ -12,7 +12,7 @@ import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
@@ -33,7 +33,7 @@ import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 export class DriveitemNameUpdateModalComponent implements OnInit {
     // DI
     private driveItemService = inject(DriveItemService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     private formBuilder = inject(FormBuilder);
     dialogRef = inject<MatDialogRef<DriveitemNameUpdateModalComponent>>(MatDialogRef);
     private matSnackBar = inject(MatSnackBar);
@@ -87,7 +87,7 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

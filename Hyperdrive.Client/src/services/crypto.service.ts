@@ -9,7 +9,7 @@ import { IsEmpty } from "src/utils/object.utils";
 @Injectable({
     providedIn: 'root',
 })
-export class SecureStorageService {
+export class CryptoService {
 
     private CryptoKey?: CryptoKey;
 

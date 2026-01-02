@@ -11,7 +11,7 @@ import { BinaryAddDriveItem } from "../../../../../viewmodels/binary/binaryadddr
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 @Component({
@@ -33,7 +33,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
     // DI
     private driveItemService = inject(DriveItemService);
     private binaryService = inject(BinaryService);
-    private secureStorageService = inject(SecureStorageService);
+    private cryptoService = inject(CryptoService);
     private formBuilder = inject(FormBuilder);
     dialogRef = inject<MatDialogRef<DriveItemFileAddModalComponent>>(MatDialogRef);
     private matSnackBar = inject(MatSnackBar);
@@ -99,7 +99,7 @@ export class DriveItemFileAddModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.secureStorageService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SecureStorageService } from 'src/services/secure.storage.service';
+import { CryptoService } from 'src/services/crypto.service';
 import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
 
 
@@ -43,7 +43,7 @@ export class SignInComponent implements OnInit {
   // DI
   private router = inject(Router);
   private authService = inject(AuthService);
-  private secureStorageService = inject(SecureStorageService);
+  private cryptoService = inject(CryptoService);
   private formBuilder = inject(FormBuilder);
 
   public formGroup!: FormGroup;
@@ -74,8 +74,8 @@ export class SignInComponent implements OnInit {
     let user = await this.authService.SignIn(viewModel);
 
     if (user) {
-      await this.secureStorageService.CreateKey(viewModel.Password);
-      await this.secureStorageService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
+      await this.cryptoService.CreateKey(viewModel.Password);
+      await this.cryptoService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
 
       await this.router.navigate(['/']);
     }
