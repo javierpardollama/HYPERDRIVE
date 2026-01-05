@@ -6,7 +6,7 @@ import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 
 import { Injectable } from '@angular/core';
 
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
@@ -34,7 +34,10 @@ export class ApplicationUserService extends BaseService {
 
     public FindAllApplicationUser(): Promise<ViewCatalog[]> {
         return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/applicationuser/all`)
-            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllApplicationUser', []))));
+            .pipe(
+                // Cache the latest emission
+                shareReplay({ bufferSize: 1, refCount: true }),
+                catchError(this.HandleError<ViewCatalog[]>('FindAllApplicationUser', []))));
     }
 
     public FindPaginatedApplicationUser(viewModel: FilterPageApplicationUser): Promise<ViewPage<ViewApplicationUser>> {
