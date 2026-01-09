@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 USER $APP_UID
 WORKDIR /app
 
-# Opcional: fija los puerto HTTP/HTTPS explícitamente (coincide con EXPOSE)
+# Opcional: fija los puertos HTTP/HTTPS explícitamente (coincide con EXPOSE)
 ENV ASPNETCORE_HTTP_PORTS=http://+:8080
 ENV ASPNETCORE_HTTPS_PORTS=https://+:8081
 
