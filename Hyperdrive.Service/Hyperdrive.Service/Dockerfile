@@ -26,7 +26,7 @@ COPY ["Hyperdrive.Domain/Hyperdrive.Domain.csproj", "Hyperdrive.Domain/"]
 COPY ["Hyperdrive.Infrastructure/Hyperdrive.Infrastructure.csproj", "Hyperdrive.Infrastructure/"]
 
 # Restore del proyecto principal (sin compilar) usando el runtime actual para cache estable
-RUN dotnet restore "./Hyperdrive.Service/Hyperdrive.Service.csproj" -use-current-runtime
+RUN dotnet restore "./Hyperdrive.Service/Hyperdrive.Service.csproj" --use-current-runtime
 
 # Ahora copia el resto del código (esto invalida el caché sólo si cambian fuentes)
 COPY . .
