@@ -8,6 +8,8 @@ namespace Hyperdrive.Infrastructure.Contexts.Extensions;
 /// </summary>
 public static class FiltersExtension
 {
+    public const string SoftDeleteFilter = nameof(SoftDeleteFilter);
+
     /// <summary>
     /// Extends Customized Filters
     /// </summary>
@@ -15,18 +17,18 @@ public static class FiltersExtension
     public static void AddCustomizedFilters(this ModelBuilder @this)
     {
         // Configure entity filters      
-        @this.Entity<ApplicationRole>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationRoleClaim>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUser>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUserClaim>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUserLogin>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUserRole>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUserToken>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<DriveItem>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUserDriveItem>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<DriveItemInfo>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<DriveItemContent>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ApplicationUserRefreshToken>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<ApplicationRole>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationRoleClaim>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUser>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUserClaim>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUserLogin>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUserRole>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUserToken>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<DriveItem>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUserDriveItem>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<DriveItemInfo>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<DriveItemContent>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<ApplicationUserRefreshToken>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
 
     }
 }
