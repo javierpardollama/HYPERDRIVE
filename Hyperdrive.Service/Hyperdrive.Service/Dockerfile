@@ -40,7 +40,7 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 
 # Publica sin AppHost y sin restaurar, reduciendo tamaño final
-RUN dotnet publish "Hyperdrive.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restore /p:UseAppHost=false /p:PublishReadyToRun=true
+RUN dotnet publish "Hyperdrive.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restore /p:UseAppHost=false
 
 # Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
 FROM base AS final
