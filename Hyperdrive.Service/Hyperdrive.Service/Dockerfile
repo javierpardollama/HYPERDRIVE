@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Opcional: fija los puerto HTTP/HTTPS explícitamente (coincide con EXPOSE)
 ENV ASPNETCORE_HTTP_PORTS=http://+:8080
-ENV ASPNETCORE_HTTPS_PORTS=http://+:8081
+ENV ASPNETCORE_HTTPS_PORTS=https://+:8081
 
 # Expone sólo los puertos necesarios.
 EXPOSE 8080
