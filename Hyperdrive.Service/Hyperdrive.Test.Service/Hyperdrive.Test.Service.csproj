@@ -5,7 +5,7 @@
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<NuGetAuditMode>direct</NuGetAuditMode>
-
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
@@ -16,12 +16,12 @@
 		<PackageReference Include="NUnit3TestAdapter" Version="6.1.0" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <Using Include="NUnit.Framework" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="NUnit.Framework" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Hyperdrive.Application\Hyperdrive.Application.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Hyperdrive.Application\Hyperdrive.Application.csproj" />
+	</ItemGroup>
 
 </Project>

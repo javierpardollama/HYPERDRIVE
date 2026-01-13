@@ -5,6 +5,7 @@
 		<Nullable>disable</Nullable>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<NuGetAuditMode>direct</NuGetAuditMode>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<UserSecretsId>e9196cd5-6407-4e22-b5b0-afd5daf98089</UserSecretsId>

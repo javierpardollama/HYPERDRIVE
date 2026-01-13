@@ -30,7 +30,7 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: 📥 Restore dependencies
-        run: dotnet restore Hyperdrive.Service/Hyperdrive.Service.csproj
+        run: dotnet restore --locked-mode Hyperdrive.Service/Hyperdrive.Service.csproj
 
       - name: ♻️ Clean project
         run: dotnet clean Hyperdrive.Service/Hyperdrive.Service.csproj
