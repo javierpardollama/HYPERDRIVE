@@ -60,7 +60,7 @@
               ],
               "outputHashing": "all"
             },
-             "staging": {
+            "staging": {
               "budgets": [
                 {
                   "type": "initial",
@@ -95,6 +95,9 @@
           "configurations": {
             "production": {
               "buildTarget": "Hyperdrive.Client:build:production"
+            },
+            "staging": {
+              "buildTarget": "Hyperdrive.Client:build:staging"
             },
             "development": {
               "buildTarget": "Hyperdrive.Client:build:development"
