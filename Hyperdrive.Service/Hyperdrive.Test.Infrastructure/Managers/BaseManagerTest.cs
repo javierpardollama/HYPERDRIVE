@@ -103,6 +103,6 @@ public abstract class BaseManagerTest
     public void InstallHttpContext()
     {
         Services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor()
-            { HttpContext = new DefaultHttpContext() { RequestServices = ServiceProvider } });
+        { HttpContext = new DefaultHttpContext() { RequestServices = ServiceProvider } });
     }
 }

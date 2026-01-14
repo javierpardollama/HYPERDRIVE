@@ -14,7 +14,7 @@ public static class ContextExtension
     /// <summary>
     /// Seeds
     /// </summary>
-    /// <param name="this">INjected <see cref="ApplicationContext"/></param>
+    /// <param name="this">Injected <see cref="ApplicationContext"/></param>
     public static void Seed(this ApplicationContext @this)
     {
         @this.Database.EnsureDeleted();
