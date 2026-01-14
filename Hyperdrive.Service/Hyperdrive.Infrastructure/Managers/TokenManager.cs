@@ -130,7 +130,7 @@ public class TokenManager(IApplicationContext @context,
             .Select(@audience => new Claim(JwtRegisteredClaimNames.Aud, @audience)))
          .Union(@applicationUser.UserRoles
             .Select(@applicationUserRole => new Claim(ClaimTypes.Role, $"{@applicationUserRole?.Role?.Name }")))];
-    
+
     /// <summary>
     /// Adds Application User Token
     /// </summary>
@@ -141,17 +141,18 @@ public class TokenManager(IApplicationContext @context,
         ApplicationUserToken @userToken = new()
         {
             Name = Guid.NewGuid().ToString(),
-            LoginProvider = JwtSettings.Value.JwtIssuer,              
+            LoginProvider = JwtSettings.Value.JwtIssuer,
             UserId = @user.Id,
-            Value = CreateToken(GenerateTokenDescriptor(@user))              
+            Value = CreateToken(GenerateTokenDescriptor(@user)),
+            ExpiresAt = GenerateTokenExpirationDate()
         };
-        
+
         await Context.UserTokens.AddAsync(@userToken);
-        
+
         await Context.SaveChangesAsync();
-        
+
         // Log
-        string @logData = nameof(ApplicationUserToken)                              
+        string @logData = nameof(ApplicationUserToken)
                           + " was added at "
                           + DateTime.UtcNow.ToShortTimeString();
 

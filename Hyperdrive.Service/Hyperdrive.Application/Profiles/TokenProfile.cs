@@ -18,6 +18,7 @@ public static class TokenProfile
         return new ViewToken
         {
             IssuedAt = @dto.IssuedAt,
+            ExpiresAt = @dto.ExpiresAt,
             LoginProvider = @dto.LoginProvider,
             Value = @dto.Value
         };

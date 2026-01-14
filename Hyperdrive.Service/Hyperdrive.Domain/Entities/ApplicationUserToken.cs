@@ -9,7 +9,13 @@ namespace Hyperdrive.Domain.Entities;
 /// Represents a <see cref="ApplicationUserToken"/> class. Implements <see cref="IdentityUserToken{int}"/>, <see cref="IKey"/>, <see cref="IBase"/>
 /// </summary>
 public partial class ApplicationUserToken : IdentityUserToken<int>, IBase
-{       
+{
+    /// <summary>
+    /// Gets or Sets <see cref="ExpiresAt"/>
+    /// </summary>
+    [Required]
+    public DateTime ExpiresAt { get; set; }
+
     /// <summary>
     /// Gets or Sets <see cref="CreatedAt"/>
     /// </summary>
