@@ -43,6 +43,7 @@ public class DriveItemVersionManager(IApplicationContext context,
                .TagWith("FindPaginatedDriveItemVersionByDriveItemId")
                .AsSplitQuery()
                .AsNoTracking()
+               .Include(x=> x.Content)
                .Where(x => x.DriveItemId == @driveitemid)
                .OrderByDescending(x => x.CreatedAt)
                .Skip(@index * @size)
@@ -65,6 +66,7 @@ public class DriveItemVersionManager(IApplicationContext context,
                        .TagWith("FindDriveItemVersionById")
                        .AsNoTracking()
                        .AsSplitQuery()
+                       .Include(x=> x.Content)
                        .Where(x => x.Id == @id)
                        .FirstOrDefaultAsync();
 
@@ -99,7 +101,7 @@ public class DriveItemVersionManager(IApplicationContext context,
             NormalizedName = @entity.NormalizedName,
             Extension = @entity.Extension,
             NormalizedExtension = @entity.NormalizedExtension,
-            Content = new()
+            Content = @entity.Content is null ? null : new()
             {
                 Type = @entity.Content.Type,
                 Size = @entity.Content.Size,
