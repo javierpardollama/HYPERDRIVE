@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Hyperdrive.Ai.Application/Hyperdrive.Ai.Application.csproj" />
+  <Project Path="Hyperdrive.Ai.Domain/Hyperdrive.Ai.Domain.csproj" />
+  <Project Path="Hyperdrive.Ai.Infrastructure/Hyperdrive.Ai.Infrastructure.csproj" />
+  <Project Path="Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj" />
+</Solution>

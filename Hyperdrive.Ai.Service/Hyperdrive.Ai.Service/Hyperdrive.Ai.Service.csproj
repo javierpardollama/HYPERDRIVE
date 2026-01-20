@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<NuGetAuditMode>direct</NuGetAuditMode>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+
+		<ProjectReference Include="..\Hyperdrive.Ai.Application\Hyperdrive.Ai.Application.csproj" />
+		<ProjectReference Include="..\Hyperdrive.Ai.Infrastructure\Hyperdrive.Ai.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>
