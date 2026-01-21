@@ -6,6 +6,7 @@
 		<Nullable>disable</Nullable>
 		<NuGetAuditMode>direct</NuGetAuditMode>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<UseAppHost>false</UseAppHost>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
