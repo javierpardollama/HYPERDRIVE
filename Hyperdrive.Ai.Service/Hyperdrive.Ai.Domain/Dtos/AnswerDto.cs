@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hyperdrive.Ai.Application.ViewModels.Views;
+namespace Hyperdrive.Ai.Domain.Dtos;
 
-public class ViewAnswer
+public class AnswerDto
 {
     public string Text { get; set; }
 
     public DateTime? LastModified { get; set; }
 
-    public ICollection<ViewSource> Sources { get; set; }
+    public virtual ICollection<SourceDto> Sources { get; set; } = [];
+
 }

@@ -10,6 +10,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Queries\**" />
+	  <EmbeddedResource Remove="Queries\**" />
+	  <None Remove="Queries\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
@@ -19,10 +25,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Hyperdrive.Ai.Domain\Hyperdrive.Ai.Domain.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Queries\" />
 	</ItemGroup>
 
 </Project>

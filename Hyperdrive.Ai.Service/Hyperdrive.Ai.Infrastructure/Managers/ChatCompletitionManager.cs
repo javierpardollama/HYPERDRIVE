@@ -1,4 +1,4 @@
-﻿using Hyperdrive.Ai.Domain.Dtos;
+﻿using Hyperdrive.Ai.Domain.Entities;
 using Hyperdrive.Ai.Domain.Managers;
 using Hyperdrive.Ai.Domain.Profiles;
 using OpenAI.Chat;
@@ -28,12 +28,12 @@ public class ChatCompletitionManager : IChatCompletitionManager
     /// <summary>
     /// Gets Chat Completition
     /// </summary>
-    /// <param name="text">Injected <see cref="string"/></param>
+    /// <param name="query">Injected <see cref="Query"/></param>
     /// <param name="chunks">Injected <see cref="List{Entities.Chunk}"/></param>
-    /// <returns>Instance of <see cref="RagAnswerDto"/></returns>
-    public async Task<RagAnswerDto> GetCompletionAsync(string text, List<Entities.Chunk> chunks)
+    /// <returns>Instance of <see cref="Answer"/></returns>
+    public async Task<Answer> GetCompletionAsync(Query query, List<Entities.Chunk> chunks)
     {
-
+        /*
         string contextText = string.Join("\n\n---\n\n",
              chunks.Select((c, i) => $"[Chunk {i + 1}] {c.Text}"));
 
@@ -42,23 +42,23 @@ public class ChatCompletitionManager : IChatCompletitionManager
         If the answer is not in the context, say “I don’t know.” Cite chunk numbers.";
 
         string user =
-        $@"Question: {text}
+        $@"Question: {query.Text}
         Context:
         `{contextText}
         Instructions:
         - Answer concisely (<= 6 sentences).
         - Include citations like [Chunk 2], [Chunk 4] where applicable.";
-
+        */
         var reply = await Client.CompleteChatAsync(
             [
-                new SystemChatMessage(system),
-                new UserChatMessage(user)
+                new SystemChatMessage(query.System),
+                new UserChatMessage(query.User)
             ]);
 
-        return new RagAnswerDto
+        return new Answer
         {
-            Answer = reply.Value.Content[0].Text,
-            Sources = [.. chunks.Select(c => c?.ToRagDto())]
+            Text = reply.Value.Content[0].Text,
+            Sources = [.. chunks.Select(c => c?.ToSource())]
         };
     }
 }

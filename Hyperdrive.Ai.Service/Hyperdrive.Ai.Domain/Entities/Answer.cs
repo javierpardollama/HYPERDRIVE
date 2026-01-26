@@ -6,10 +6,7 @@ using System.Collections.Generic;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 
-/// <summary>
-/// Represents a <see cref="Chat"/> class. Implements <see cref="IBase"/>, <see cref="IKey"/>
-/// </summary>
-public class Chat : IBase, IKey
+public class Answer : IBase, IKey
 {
     [BsonId]
     [BsonRepresentation(BsonType.Binary)]
@@ -21,11 +18,11 @@ public class Chat : IBase, IKey
     [BsonElement("created_by")]
     public Guid CreatedBy { get; set; }
 
-    [BsonElement("modified_at")]
-    public DateTime? ModifiedAt { get; set; }
-
     [BsonElement("modified_by")]
     public Guid? ModifiedBy { get; set; }
+
+    [BsonElement("modified_at")]
+    public DateTime? ModifiedAt { get; set; }
 
     [BsonElement("deleted_at")]
     public DateTime? DeletedAt { get; set; }
@@ -36,6 +33,9 @@ public class Chat : IBase, IKey
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
-    public virtual ICollection<Interaction> Interactions { get; set; } = [];
+    [BsonElement("text")]
+    public string Text { get; set; }
 
+    [BsonElement("sources")]
+    public virtual ICollection<Source> Sources { get; set; } = [];
 }

@@ -12,13 +12,14 @@ public static class AnswerProfile
     /// <summary>
     /// Transforms to ViewModel
     /// </summary>
-    /// <param name="@dto">Injected <see cref="RagAnswerDto"/></param>
+    /// <param name="dto">Injected <see cref="AnswerDto"/></param>
     /// <returns>Instance of <see cref="ViewAnswer"/></returns>
-    public static ViewAnswer ToViewModel(this RagAnswerDto @dto)
+    public static ViewAnswer ToViewModel(this AnswerDto @dto)
     {
         return new ViewAnswer
         {
-            Answer = dto.Answer,
+            Text = @dto.Text,
+            LastModified = @dto.LastModified,
             Sources = [.. dto.Sources.Select(s => s.ToViewModel())]
         };
     }

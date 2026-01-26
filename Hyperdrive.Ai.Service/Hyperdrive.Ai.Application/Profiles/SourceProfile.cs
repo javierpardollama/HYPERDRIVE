@@ -11,14 +11,15 @@ public static class SourceProfile
     /// <summary>
     /// Transforms to ViewModel
     /// </summary>
-    /// <param name="dto">Injected <see cref="RagSourceDto"/></param>
+    /// <param name="dto">Injected <see cref="SourceDto"/></param>
     /// <returns>Instance of <see cref="ViewSource"/></returns>
-    public static ViewSource ToViewModel(this RagSourceDto @dto)
+    public static ViewSource ToViewModel(this SourceDto @dto)
     {
         return new ViewSource
         {
             DocumentId = @dto.DocumentId,
             Preview = @dto.Preview,
+            LastModified = @dto.LastModified,
         };
     }
 }

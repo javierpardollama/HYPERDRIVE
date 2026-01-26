@@ -30,7 +30,7 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
     /// <summary>
     ///     Gets or Sets <see cref="DbSet{Message}" />
     /// </summary>
-    public virtual DbSet<Message> Message { get; set; }
+    public virtual DbSet<Interaction> Message { get; set; }
 
     /// <summary>
     ///     Overrides Model Creation

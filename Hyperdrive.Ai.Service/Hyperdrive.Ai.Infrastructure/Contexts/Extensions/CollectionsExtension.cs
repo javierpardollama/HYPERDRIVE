@@ -19,7 +19,7 @@ namespace Hyperdrive.Ai.Infrastructure.Contexts.Extensions
             @this.Entity<Document>().ToCollection("documents");            
             @this.Entity<Chunk>().ToCollection("chunks");
             @this.Entity<Chat>().ToCollection("chats");
-            @this.Entity<Message>().ToCollection("messages");
+            @this.Entity<Interaction>().ToCollection("messages");
         }
     }
 }

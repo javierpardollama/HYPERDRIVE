@@ -2,11 +2,9 @@
 
 namespace Hyperdrive.Ai.Application.ViewModels.Views;
 
-public class ViewSource
+public class ViewQuery
 {
-    public Guid DocumentId { get; set; }
-
-    public string Preview { get; set; }
+    public string Text { get; set; }
 
     public DateTime? LastModified { get; set; }
 }

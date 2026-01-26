@@ -2,14 +2,13 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
-using System.Collections.Generic;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 
 /// <summary>
-/// Represents a <see cref="Chat"/> class. Implements <see cref="IBase"/>, <see cref="IKey"/>
+/// Represents a <see cref="Interaction"/> class. Implements <see cref="IBase"/>, <see cref="IKey"/>
 /// </summary>
-public class Chat : IBase, IKey
+public class Interaction : IBase, IKey
 {
     [BsonId]
     [BsonRepresentation(BsonType.Binary)]
@@ -21,11 +20,11 @@ public class Chat : IBase, IKey
     [BsonElement("created_by")]
     public Guid CreatedBy { get; set; }
 
-    [BsonElement("modified_at")]
-    public DateTime? ModifiedAt { get; set; }
-
     [BsonElement("modified_by")]
     public Guid? ModifiedBy { get; set; }
+
+    [BsonElement("modified_at")]
+    public DateTime? ModifiedAt { get; set; }
 
     [BsonElement("deleted_at")]
     public DateTime? DeletedAt { get; set; }
@@ -36,6 +35,15 @@ public class Chat : IBase, IKey
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
-    public virtual ICollection<Interaction> Interactions { get; set; } = [];
+    [BsonElement("chat_id")]
+    public ObjectId ChatId { get; set; }
 
+    [BsonIgnore]
+    public virtual Chat Chat { get; set; }
+
+    [BsonElement("query")]
+    public Query Query { get; set; }
+
+    [BsonElement("answer")]
+    public Answer Answer { get; set; }
 }

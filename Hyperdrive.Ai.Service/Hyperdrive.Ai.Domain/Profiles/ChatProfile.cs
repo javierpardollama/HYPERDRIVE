@@ -19,7 +19,7 @@ public static class ChatProfile
         return new ChatDto
         {
             Id = @entity.Id,
-            Messages = entity.Messages?.Select(x => x.ToDto()).ToList()
+            Interactions = [.. entity.Interactions?.Select(i => i?.ToDto())]
         };
     }
 }

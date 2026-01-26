@@ -1,4 +1,4 @@
-﻿using Hyperdrive.Ai.Domain.Dtos;
+﻿using Hyperdrive.Ai.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,8 +12,8 @@ public interface IChatCompletitionManager
     /// <summary>
     /// Gets Chat Completition
     /// </summary>
-    /// <param name="text">Injected <see cref="string"/></param>
+    /// <param name="query">Injected <see cref="Query"/></param>
     /// <param name="chunks">Injected <see cref="List{Entities.Chunk}"/></param>
-    /// <returns>Instance of <see cref="RagAnswerDto"/></returns>
-    public Task<RagAnswerDto> GetCompletionAsync(string text, List<Entities.Chunk> chunks);
+    /// <returns>Instance of <see cref="Answer"/></returns>
+    public Task<Answer> GetCompletionAsync(Query query, List<Entities.Chunk> chunks);
 }

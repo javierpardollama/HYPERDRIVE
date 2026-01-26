@@ -5,10 +5,7 @@ using System;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 
-/// <summary>
-/// Represents a <see cref="Message"/> class. Implements <see cref="IBase"/>, <see cref="IKey"/>
-/// </summary>
-public class Message : IBase, IKey
+public class Query : IBase, IKey
 {
     [BsonId]
     [BsonRepresentation(BsonType.Binary)]
@@ -35,13 +32,17 @@ public class Message : IBase, IKey
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
-    [BsonElement("chat_id")]
-    public ObjectId ChatId { get; set; }
-
-    [BsonIgnore]
-    public virtual Chat Chat { get; set; }
-
     [BsonElement("text")]
     public string Text { get; set; }
 
+    [BsonElement("context")]
+    public string Context { get; set; }
+
+    [BsonElement("system")]
+    public string System { get; set; } = @"You are a helpful assistant. 
+        Answer strictly using the provided context.
+        If the answer is not in the context, say “I don’t know.” Cite chunk numbers.";
+
+    [BsonElement("user")]
+    public string User { get; set; }
 }

@@ -14,7 +14,12 @@ public class ViewChat
     public Guid Id { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Messages" />
+    ///     Gets or Sets <see cref="LastModified" />
     /// </summary>
-    public virtual ICollection<ViewMessage> Messages { get; set; } = [];
+    public DateTime LastModified { get; set; }
+
+    /// <summary>
+    ///     Gets or Sets <see cref="Interactions" />
+    /// </summary>
+    public virtual ICollection<ViewInteraction> Interactions { get; set; } = [];
 }

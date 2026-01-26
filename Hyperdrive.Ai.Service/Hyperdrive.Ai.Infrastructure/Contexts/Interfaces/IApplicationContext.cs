@@ -29,7 +29,7 @@ public interface IApplicationContext : IDisposable
     /// <summary>
     ///     Gets or Sets <see cref="DbSet{Message}" />
     /// </summary>
-    public DbSet<Message> Message { get; set; }
+    public DbSet<Interaction> Message { get; set; }
 
     /// <summary>
     ///     Saves Changes Synchronously
