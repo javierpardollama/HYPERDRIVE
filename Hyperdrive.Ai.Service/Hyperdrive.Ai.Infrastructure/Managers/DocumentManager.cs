@@ -119,7 +119,7 @@ public class DocumentManager(IApplicationContext context,
     /// </summary>
     /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{Entities.Document}"/></returns>
-    public async Task<Entities.Document> FindDocumentById(Guid id)
+    public async Task<Entities.Document> FindDocumentById(Guid @id)
     {
         Entities.Document @document = await Context.Document
         .TagWith("FindDocumentById")
@@ -128,7 +128,7 @@ public class DocumentManager(IApplicationContext context,
 
         if (@document == null)
         {
-            string @logData = $"{nameof(Entities.Document)} with Id {id} was not found at {DateTime.UtcNow:t}";
+            string @logData = $"{nameof(Entities.Document)} with Id {@id} was not found at {DateTime.UtcNow:t}";
 
             logger.LogError(@logData);
 
@@ -218,7 +218,7 @@ public class DocumentManager(IApplicationContext context,
         if (@document is null)
         {
 
-            string @logData = $"{nameof(Entities.Document)} with Id {@document.Id} was not found at at {DateTime.UtcNow:t}";
+            string @logData = $"{nameof(Entities.Document)} with Id {@id} was not found at at {DateTime.UtcNow:t}";
 
             @logger.LogWarning(@logData);
 

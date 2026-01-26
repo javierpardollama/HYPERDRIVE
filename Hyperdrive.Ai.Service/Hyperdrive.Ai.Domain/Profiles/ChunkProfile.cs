@@ -26,9 +26,9 @@ public static class ChunkProfile
     /// <summary>
     /// Transforms to Context
     /// </summary>
-    /// <param name="entities">Injected <see cref="List{Chunk}>"/></param>
+    /// <param name="entities">Injected <see cref="ICollection{Chunk}>"/></param>
     /// <returns>Instance of <see cref="string"/></returns>
-    public static string ToContext(this List<Chunk> @entities)
+    public static string ToContext(this ICollection<Chunk> @entities)
     {
         return string.Join("\n\n---\n\n",
               @entities.Select((c, i) => $"[Chunk {i + 1}] {c.Text}")); ;

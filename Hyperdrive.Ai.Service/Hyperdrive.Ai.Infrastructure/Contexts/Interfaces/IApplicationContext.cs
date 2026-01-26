@@ -22,14 +22,14 @@ public interface IApplicationContext : IDisposable
     public DbSet<Document> Document { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Document}" />
+    ///     Gets or Sets <see cref="DbSet{Chat}" />
     /// </summary>
     public DbSet<Chat> Chat { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Message}" />
+    ///     Gets or Sets <see cref="DbSet{Interaction}" />
     /// </summary>
-    public DbSet<Interaction> Message { get; set; }
+    public DbSet<Interaction> Interactions { get; set; }
 
     /// <summary>
     ///     Saves Changes Synchronously

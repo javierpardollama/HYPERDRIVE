@@ -13,7 +13,7 @@ public interface IChatCompletitionManager
     /// Gets Chat Completition
     /// </summary>
     /// <param name="query">Injected <see cref="Query"/></param>
-    /// <param name="chunks">Injected <see cref="List{Entities.Chunk}"/></param>
+    /// <param name="chunks">Injected <see cref="ICollection{Entities.Chunk}"/></param>
     /// <returns>Instance of <see cref="Answer"/></returns>
-    public Task<Answer> GetCompletionAsync(Query query, List<Entities.Chunk> chunks);
+    public Task<Answer> GetCompletionAsync(Query query, ICollection<Entities.Chunk> chunks);
 }

@@ -8,9 +8,14 @@ namespace Hyperdrive.Ai.Application.ViewModels.Additions;
 public class ViewAddChatMessage
 {
     /// <summary>
-    ///     Gets or Sets <see cref="Message" />
+    ///     Gets or Sets <see cref="ChatId" />
     /// </summary>
-    public string Message { get; set; }
+    public Guid ChatId { get; set; }
+
+    /// <summary>
+    ///     Gets or Sets <see cref="Text" />
+    /// </summary>
+    public string Text { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="CreatedBy" />

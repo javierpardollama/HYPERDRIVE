@@ -23,14 +23,14 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
     public virtual DbSet<Chunk> Chunk { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Document}" />
+    ///     Gets or Sets <see cref="DbSet{Chat}" />
     /// </summary>
     public virtual DbSet<Chat> Chat { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Message}" />
+    ///     Gets or Sets <see cref="DbSet{Interaction}" />
     /// </summary>
-    public virtual DbSet<Interaction> Message { get; set; }
+    public virtual DbSet<Interaction> Interactions { get; set; }
 
     /// <summary>
     ///     Overrides Model Creation

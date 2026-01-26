@@ -1,4 +1,5 @@
-﻿using Hyperdrive.Ai.Application.Handlers.Documents;
+﻿using Hyperdrive.Ai.Application.Handlers.Chats;
+using Hyperdrive.Ai.Application.Handlers.Documents;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyperdrive.Ai.Application.Installers;
@@ -17,6 +18,7 @@ public static class MediatRInstaller
         @this.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssemblyContaining<AddDocumentHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddChatMessageHandler>();
         });
     }
 }

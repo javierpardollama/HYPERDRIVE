@@ -22,5 +22,7 @@ public static class FiltersExtension
         @this.Entity<Chunk>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<Chat>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<Interaction>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Query>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Answer>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
     }
 }

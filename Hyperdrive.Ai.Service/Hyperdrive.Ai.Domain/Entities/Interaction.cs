@@ -17,9 +17,13 @@ public class Interaction : IBase, IKey
     [BsonElement("created_at")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+    [BsonId]
+    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("created_by")]
     public Guid CreatedBy { get; set; }
 
+    [BsonId]
+    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("modified_by")]
     public Guid? ModifiedBy { get; set; }
 
@@ -29,14 +33,18 @@ public class Interaction : IBase, IKey
     [BsonElement("deleted_at")]
     public DateTime? DeletedAt { get; set; }
 
+    [BsonId]
+    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("deleted_by")]
     public Guid? DeletedBy { get; set; }
 
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
+    [BsonId]
+    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("chat_id")]
-    public ObjectId ChatId { get; set; }
+    public Guid ChatId { get; set; }
 
     [BsonIgnore]
     public virtual Chat Chat { get; set; }

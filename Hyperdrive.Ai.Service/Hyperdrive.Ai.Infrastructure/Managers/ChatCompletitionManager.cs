@@ -29,26 +29,10 @@ public class ChatCompletitionManager : IChatCompletitionManager
     /// Gets Chat Completition
     /// </summary>
     /// <param name="query">Injected <see cref="Query"/></param>
-    /// <param name="chunks">Injected <see cref="List{Entities.Chunk}"/></param>
+    /// <param name="chunks">Injected <see cref="ICollection{Entities.Chunk}"/></param>
     /// <returns>Instance of <see cref="Answer"/></returns>
-    public async Task<Answer> GetCompletionAsync(Query query, List<Entities.Chunk> chunks)
+    public async Task<Answer> GetCompletionAsync(Query query, ICollection<Entities.Chunk> chunks)
     {
-        /*
-        string contextText = string.Join("\n\n---\n\n",
-             chunks.Select((c, i) => $"[Chunk {i + 1}] {c.Text}"));
-
-        string system =
-        @"You are a helpful assistant. Answer strictly using the provided context.
-        If the answer is not in the context, say “I don’t know.” Cite chunk numbers.";
-
-        string user =
-        $@"Question: {query.Text}
-        Context:
-        `{contextText}
-        Instructions:
-        - Answer concisely (<= 6 sentences).
-        - Include citations like [Chunk 2], [Chunk 4] where applicable.";
-        */
         var reply = await Client.CompleteChatAsync(
             [
                 new SystemChatMessage(query.System),
