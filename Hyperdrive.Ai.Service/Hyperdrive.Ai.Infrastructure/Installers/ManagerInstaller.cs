@@ -20,6 +20,7 @@ public static class ManagerInstaller
         @this.AddTransient<IChunkManager, ChunkManager>();
         @this.AddTransient<IChatCompletitionManager, ChatCompletitionManager>();
         @this.AddTransient<IInteractionManager, InteractionManager>();
+        @this.AddTransient<IAnswerManager, AnswerManager>();
         @this.AddTransient<IChatManager, ChatManager>();
         // Add other managers here
     }

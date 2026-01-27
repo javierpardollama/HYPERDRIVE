@@ -14,8 +14,11 @@ using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 
+/// <summary>
+///     Represents a <see cref="ChatManager" /> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IChatManager"/>
+/// </summary>
 public class ChatManager(IApplicationContext context,
-                             ILogger<DocumentManager> logger) : BaseManager(context), IChatManager
+                             ILogger<ChatManager> logger) : BaseManager(context), IChatManager
 {
     /// <summary>
     /// Reloads Chat By Id

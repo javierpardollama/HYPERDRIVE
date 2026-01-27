@@ -14,6 +14,9 @@ using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 
+/// <summary>
+///     Represents a <see cref="InteractionManager" /> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IInteractionManager"/>
+/// </summary>
 public class InteractionManager(IApplicationContext context,
                          ILogger<InteractionManager> logger) : BaseManager(context), IInteractionManager
 {
