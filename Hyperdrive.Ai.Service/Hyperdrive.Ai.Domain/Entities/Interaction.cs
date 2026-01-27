@@ -49,6 +49,9 @@ public class Interaction : IBase, IKey
     [BsonIgnore]
     public virtual Chat Chat { get; set; }
 
+    [BsonElement("arrange")]
+    public Arrange Arrange { get; set; }
+
     [BsonElement("query")]
     public Query Query { get; set; }
 

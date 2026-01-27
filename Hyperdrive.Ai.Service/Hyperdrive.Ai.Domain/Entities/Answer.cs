@@ -33,8 +33,8 @@ public class Answer : IBase, IKey
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
-    [BsonElement("text")]
-    public string Text { get; set; }
+    [BsonElement("content")]
+    public string Content { get; set; }
 
     [BsonElement("sources")]
     public virtual ICollection<Source> Sources { get; set; } = [];

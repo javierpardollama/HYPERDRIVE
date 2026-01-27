@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
@@ -31,6 +32,7 @@ public class InteractionManager(IApplicationContext context,
         {
             ChatId = entity.ChatId,
             CreatedBy = entity.CreatedBy,
+            Arrange = entity.Arrange,
             Answer = entity.Answer,
             Query = entity.Query,
         };
@@ -71,5 +73,23 @@ public class InteractionManager(IApplicationContext context,
         }
 
         return @interaction;
+    }
+
+    /// <summary>
+    /// Finds Latest Iterations By Chat Id
+    /// </summary>
+    /// <param name="chatid">Injected <see cref="Guid"/></param>
+    /// <returns>Instance of <see cref="ICollection{string}"/></returns>
+    public async Task<ICollection<string>> FindLatestIterationsByChatId(Guid @chatid)
+    {
+        var answers = await Context.Interactions
+                .AsNoTracking()
+                .Where(x => x.ChatId == chatid)
+                .OrderByDescending(x => x.CreatedAt)
+                .Take(5)
+                .SelectMany(x => new[] { x.Query.Content, x.Answer.Content })
+                .ToListAsync();
+
+        return answers;
     }
 }

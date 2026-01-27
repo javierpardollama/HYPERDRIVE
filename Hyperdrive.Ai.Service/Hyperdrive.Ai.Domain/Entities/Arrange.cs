@@ -5,7 +5,7 @@ using System;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 
-public class Query : IBase, IKey
+public class Arrange : IBase, IKey
 {
     [BsonId]
     [BsonRepresentation(BsonType.Binary)]
@@ -32,17 +32,8 @@ public class Query : IBase, IKey
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
-    [BsonElement("text")]
-    public string Text { get; set; }
-
-    [BsonElement("api_context")]
-    public string Context { get; set; }
-
-    [BsonElement("api_text")]
-    public string Content { get; set => field = $@"Question: {Text}
-                    Context:
-                    `{Context}
-                    Instructions:
-                    - Answer concisely (<= 6 sentences).
-                    - Include citations like [Chunk 2], [Chunk 4] where applicable."; }
+    [BsonElement("content")]
+    public string Content { get; set; } = @"You are a helpful assistant. 
+        Answer strictly using the provided context.
+        If the answer is not in the context, say “I don’t know.” Cite chunk numbers.";
 }

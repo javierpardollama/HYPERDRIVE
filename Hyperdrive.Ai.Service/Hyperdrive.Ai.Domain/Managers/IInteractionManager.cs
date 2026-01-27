@@ -1,5 +1,6 @@
 ﻿using Hyperdrive.Ai.Domain.Dtos;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Domain.Managers;
@@ -22,4 +23,11 @@ public interface IInteractionManager : IBaseManager
     /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{InteractionDto}"/></returns>
     public Task<InteractionDto> ReloadInteractionById(Guid @id);
+
+    /// <summary>
+    /// Finds Latest Iterations By Chat Id
+    /// </summary>
+    /// <param name="chatid">Injected <see cref="Guid"/></param>
+    /// <returns>Instance of <see cref="ICollection{string}"/></returns>
+    public Task<ICollection<string>> FindLatestIterationsByChatId(Guid @chatid);
 }

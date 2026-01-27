@@ -29,26 +29,27 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
     {
         var @chunks = await _chunkManager.FindByText(request.ViewModel.Text);
 
+        var @arrange = new Entities.Arrange()
+        {
+            CreatedBy = request.ViewModel.CreatedBy
+        };
+
         var @query = new Entities.Query()
         {
             CreatedBy = request.ViewModel.CreatedBy,
             Text = request.ViewModel.Text,
-            User = $@"Question: {request.ViewModel.Text}
-                    Context:
-                    `{chunks.ToContext()}
-                    Instructions:
-                    - Answer concisely (<= 6 sentences).
-                    - Include citations like [Chunk 2], [Chunk 4] where applicable."
+            Context = chunks.ToContext()
         };
-        var @answer = await _chatCompletitionManager.GetCompletionAsync(@query, @chunks);
 
         var @interaction = new Entities.Interaction()
         {
             ChatId = request.ViewModel.ChatId,
             CreatedBy = request.ViewModel.CreatedBy,
-            Query = @query,
-            Answer = @answer
+            Arrange = @arrange,
+            Query = @query
         };
+
+        @interaction = await _chatCompletitionManager.GetCompletionAsync(@interaction, @chunks);
 
         await _interactionManager.AddInteraction(@interaction);
 

@@ -28,21 +28,23 @@ public class ChatCompletitionManager : IChatCompletitionManager
     /// <summary>
     /// Gets Chat Completition
     /// </summary>
-    /// <param name="query">Injected <see cref="Query"/></param>
+    /// <param name="interaction">Injected <see cref="Entities.Interaction"/></param>
     /// <param name="chunks">Injected <see cref="ICollection{Entities.Chunk}"/></param>
     /// <returns>Instance of <see cref="Answer"/></returns>
-    public async Task<Answer> GetCompletionAsync(Query query, ICollection<Entities.Chunk> chunks)
+    public async Task<Interaction> GetCompletionAsync(Entities.Interaction @interaction, ICollection<Entities.Chunk> chunks)
     {
         var reply = await Client.CompleteChatAsync(
             [
-                new SystemChatMessage(query.System),
-                new UserChatMessage(query.User)
+                new SystemChatMessage(interaction.Arrange.Content),
+                new UserChatMessage(interaction.Query.Content)
             ]);
 
-        return new Answer
+        @interaction.Answer = new Answer
         {
-            Text = reply.Value.Content[0].Text,
+            Content = reply.Value.Content[0].Text,
             Sources = [.. chunks.Select(c => c?.ToSource())]
         };
+
+        return @interaction;
     }
 }

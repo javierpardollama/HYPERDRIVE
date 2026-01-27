@@ -18,7 +18,7 @@ public static class AnswerProfile
     {
         return new AnswerDto
         {
-            Text = @entity.Text,
+            Text = @entity.Content,
             LastModified = @entity.ModifiedAt ?? @entity.CreatedAt,
             Sources = [.. entity.Sources.Select(s => s?.ToDto())]
         };
