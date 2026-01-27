@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Hyperdrive.Ai.Application.ViewModels.Deletions;
+namespace Hyperdrive.Ai.Application.ViewModels.Removes;
 
 /// <summary>
-///     Represents a <see cref="DeleteDocumentViewModel" /> class
+///     Represents a <see cref="ViewRemoveChat" /> class
 /// </summary>
-public class DeleteDocumentViewModel
+public class ViewRemoveChat
 {
     /// <summary>
     ///     Gets or Sets <see cref="Id" />

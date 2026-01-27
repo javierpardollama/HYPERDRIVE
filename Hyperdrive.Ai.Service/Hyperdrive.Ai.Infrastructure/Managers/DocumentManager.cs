@@ -153,8 +153,8 @@ public class DocumentManager(IApplicationContext context,
             Entities.Document @document = await FindDocumentById(@entity.Id);
 
             @document.DeletedBy = @entity.DeletedBy;
-            @document.DeletedAt = DateTime.UtcNow;
-            @document.Deleted = true;
+            @document.DeletedAt = @entity.DeletedAt;
+            @document.Deleted = @entity.Deleted;
 
             Context.Document.Update(@document);
 

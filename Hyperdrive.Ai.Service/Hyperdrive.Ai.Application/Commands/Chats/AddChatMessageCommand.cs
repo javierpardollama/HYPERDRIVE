@@ -4,6 +4,9 @@ using MediatR;
 
 namespace Hyperdrive.Ai.Application.Commands.Chats;
 
+/// <summary>
+/// Represents a <see cref="AddChatMessageCommand" /> class. Inherits <see cref="IRequest{ViewInteraction}" />
+/// </summary>
 public class AddChatMessageCommand : IRequest<ViewInteraction>
 {
     /// <summary>

@@ -19,6 +19,8 @@ public static class MediatRInstaller
         {
             cfg.RegisterServicesFromAssemblyContaining<AddDocumentHandler>();
             cfg.RegisterServicesFromAssemblyContaining<AddChatMessageHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveDocumentHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveChatHandler>();
         });
     }
 }

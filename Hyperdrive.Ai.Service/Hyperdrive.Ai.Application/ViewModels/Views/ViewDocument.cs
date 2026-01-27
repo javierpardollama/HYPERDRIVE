@@ -3,7 +3,7 @@
 namespace Hyperdrive.Ai.Application.ViewModels.Views;
 
 /// <summary>
-///     Represents a <see cref="ViewBase" /> class.
+///     Represents a <see cref="ViewDocument" /> class.
 /// </summary>
 public class ViewDocument
 {
