@@ -26,7 +26,7 @@ public class ChunkManager(IApplicationContext context,
     /// </summary>
     /// <param name="documentid">Injected <see cref="Guid"/></param>
     /// <param name="filecontent">Injected <see cref="string"/></param>
-    /// <returns>Instance of <see cref="Task{Entities.Document}"/></returns>
+    /// <returns>Instance of <see cref="Task"/></returns>
     public async Task AddChunks(Guid @documentid,
                                 string @filecontent)
     {
@@ -61,6 +61,11 @@ public class ChunkManager(IApplicationContext context,
         }
     }
 
+    /// <summary>
+    /// Finds Chunks By Text
+    /// </summary>
+    /// <param name="text">Injected <see cref="string"/></param>
+    /// <returns>Instance of <see cref="Task{ICollection{Entities.Chunk}}"/></returns>
     public async Task<ICollection<Chunk>> FindByText(string @text)
     {
         var @embedding = await embeddingManager.GetEmbedding(@text);

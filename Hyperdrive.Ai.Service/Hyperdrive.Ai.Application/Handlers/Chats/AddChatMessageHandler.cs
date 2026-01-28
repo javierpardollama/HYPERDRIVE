@@ -1,9 +1,12 @@
 ﻿using Hyperdrive.Ai.Application.Commands.Chats;
 using Hyperdrive.Ai.Application.Profiles;
 using Hyperdrive.Ai.Application.ViewModels.Views;
+using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Managers;
 using Hyperdrive.Ai.Domain.Profiles;
 using MediatR;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
@@ -15,24 +18,55 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
     private readonly IChunkManager _chunkManager;
     private readonly IChatCompletitionManager _chatCompletitionManager;
     private readonly IInteractionManager _interactionManager;
+    private readonly IChatMessageManager _chatMessageManager;
+    private readonly IChatSummaryManager _chatSummaryManager;
 
     public AddChatMessageHandler(IChunkManager chunkManager,
                                  IChatCompletitionManager chatCompletitionManager,
-                                 IInteractionManager interactionManager)
+                                 IInteractionManager interactionManager,
+                                 IChatMessageManager chatMessageManager,
+                                 IChatSummaryManager chatSummaryManager)
     {
         _chunkManager = chunkManager;
         _chatCompletitionManager = chatCompletitionManager;
         _interactionManager = interactionManager;
+        _chatMessageManager = chatMessageManager;
+        _chatSummaryManager = chatSummaryManager;
     }
 
     public async Task<ViewInteraction> Handle(AddChatMessageCommand request, CancellationToken cancellationToken)
     {
+        var @messages = new List<ChatMessageDto>();
+
+        var @interaction = new Entities.Interaction()
+        {
+            ChatId = request.ViewModel.ChatId,
+            CreatedBy = request.ViewModel.CreatedBy
+        };
+
         var @chunks = await _chunkManager.FindByText(request.ViewModel.Text);
+
+        var @previous = await _chatMessageManager.FindLatestChatMessagesByChatId(request.ViewModel.ChatId);
 
         var @arrange = new Entities.Arrange()
         {
             CreatedBy = request.ViewModel.CreatedBy
         };
+
+        @interaction.Arrange = @arrange;
+
+        if (previous.Count > 0)
+        {
+            var @summary = new Entities.Summary()
+            {
+                CreatedBy = request.ViewModel.CreatedBy,
+                Content = await _chatSummaryManager.GetChatSummaryAsync(@previous)
+            };
+
+            @interaction.Summary = @summary;
+
+            @messages = [.. @messages, @summary.ToMessageDto()];
+        }
 
         var @query = new Entities.Query()
         {
@@ -41,15 +75,18 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
             Context = chunks.ToContext()
         };
 
-        var @interaction = new Entities.Interaction()
+        @interaction.Query = @query;
+
+        @messages = [.. @messages, @arrange.ToMessageDto(), @query.ToMessageDto()];
+
+        var @answer = new Entities.Answer()
         {
-            ChatId = request.ViewModel.ChatId,
             CreatedBy = request.ViewModel.CreatedBy,
-            Arrange = @arrange,
-            Query = @query
+            Sources = [.. chunks.Select(c => c?.ToSource())],
+            Content = await _chatCompletitionManager.GetCompletionAsync(messages)
         };
 
-        @interaction = await _chatCompletitionManager.GetCompletionAsync(@interaction, @chunks);
+        @interaction.Answer = @answer;
 
         await _interactionManager.AddInteraction(@interaction);
 

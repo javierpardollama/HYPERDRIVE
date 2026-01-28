@@ -1279,8 +1279,8 @@
       },
       "OpenAI": {
         "type": "Transitive",
-        "resolved": "2.7.0",
-        "contentHash": "zodE/lrDzSUxgFzuHP+fiR56VBQZyy3H7le8VH9fiuB8SCgs7YSKpK/pwSpYZln3HVX6RyPDuALIOVPQMhnRFQ==",
+        "resolved": "2.8.0",
+        "contentHash": "KcYpZ9IhuxFD2hGAJlL5vABtkr00CjeJU0SY8CjZQyzvzkzLop8jhdX3iDvteVJg6e3y4TEiY+Kti4gDJAagnA==",
         "dependencies": {
           "System.ClientModel": "1.8.1"
         }
@@ -1478,7 +1478,8 @@
       "hyperdrive.ai.domain": {
         "type": "Project",
         "dependencies": {
-          "MongoDB.Bson": "[3.6.0, )"
+          "MongoDB.Bson": "[3.6.0, )",
+          "OpenAI": "[2.8.0, )"
         }
       }
     }

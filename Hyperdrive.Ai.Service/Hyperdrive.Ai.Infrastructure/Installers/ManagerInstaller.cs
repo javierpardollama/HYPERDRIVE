@@ -19,6 +19,8 @@ public static class ManagerInstaller
         @this.AddTransient<IEmbeddingManager, EmbeddingManager>();
         @this.AddTransient<IChunkManager, ChunkManager>();
         @this.AddTransient<IChatCompletitionManager, ChatCompletitionManager>();
+        @this.AddTransient<IChatMessageManager, ChatMessageManager>();
+        @this.AddTransient<IChatSummaryManager, ChatSummaryManager>();
         @this.AddTransient<IInteractionManager, InteractionManager>();
         @this.AddTransient<IChatManager, ChatManager>();
         // Add other managers here

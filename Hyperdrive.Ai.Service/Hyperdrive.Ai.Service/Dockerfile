@@ -26,7 +26,7 @@ COPY ["Hyperdrive.Ai.Domain/Hyperdrive.Ai.Domain.csproj", "Hyperdrive.Ai.Domain/
 COPY ["Hyperdrive.Ai.Infrastructure/Hyperdrive.Ai.Infrastructure.csproj", "Hyperdrive.Ai.Infrastructure/"]
 
 # Restore del proyecto principal (sin compilar) usando el runtime actual para cache estable
-RUN dotnet restore "./Hyperdrive.Service/Hyperdrive.Service.csproj" --locked-mode
+RUN dotnet restore "./Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj" --locked-mode
 
 # Ahora copia el resto del código (esto invalida el caché sólo si cambian fuentes)
 COPY . .

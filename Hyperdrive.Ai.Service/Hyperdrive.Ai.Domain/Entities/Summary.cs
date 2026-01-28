@@ -5,10 +5,7 @@ using System;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 
-/// <summary>
-/// Represents a <see cref="Interaction"/> class. Implements <see cref="IBase"/>, <see cref="IKey"/>
-/// </summary>
-public class Interaction : IBase, IKey
+public class Summary : IBase, IKey
 {
     [BsonId]
     [BsonRepresentation(BsonType.Binary)]
@@ -17,13 +14,9 @@ public class Interaction : IBase, IKey
     [BsonElement("created_at")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("created_by")]
     public Guid CreatedBy { get; set; }
 
-    [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("modified_by")]
     public Guid? ModifiedBy { get; set; }
 
@@ -33,31 +26,18 @@ public class Interaction : IBase, IKey
     [BsonElement("deleted_at")]
     public DateTime? DeletedAt { get; set; }
 
-    [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("deleted_by")]
     public Guid? DeletedBy { get; set; }
 
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
-    [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
-    [BsonElement("chat_id")]
-    public Guid ChatId { get; set; }
-
-    [BsonIgnore]
-    public virtual Chat Chat { get; set; }
-
-    [BsonElement("arrange")]
-    public Arrange Arrange { get; set; }
-
-    [BsonElement("summary")]
-    public Summary Summary { get; set; }
-
-    [BsonElement("query")]
-    public Query Query { get; set; }
-
-    [BsonElement("answer")]
-    public Answer Answer { get; set; }
+    [BsonElement("content")]
+    public string Content { get; set; } = @"You are a helpful assistant. Summarize the conversation for a busy reader.
+                Return:
+                3–6 bullet key points 
+                Decisions made 
+                Open questions 
+                next steps.
+                Keep it under 120 words, neutral tone.";
 }

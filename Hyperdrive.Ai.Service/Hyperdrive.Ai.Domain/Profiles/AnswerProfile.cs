@@ -23,4 +23,18 @@ public static class AnswerProfile
             Sources = [.. entity.Sources.Select(s => s?.ToDto())]
         };
     }
+
+    /// <summary>
+    /// Transforms to Message Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Answer"/></param>
+    /// <returns>Instance of <see cref="ChatMessageDto"/></returns>
+    public static ChatMessageDto ToMessageDto(this Answer @entity)
+    {
+        return new ChatMessageDto
+        {
+            Message = @entity.Content,
+            Role = "Assistant"
+        };
+    }
 }

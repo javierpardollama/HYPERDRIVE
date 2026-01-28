@@ -23,6 +23,12 @@ public class EmbeddingManager : IEmbeddingManager
         Client = client;
     }
 
+    /// <summary>
+    /// Gets Embedding
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="ct"></param>
+    /// <returns>Instance of <see cref="Task{float[]}"/></returns>
     public async Task<float[]> GetEmbedding(string text, CancellationToken ct = default)
     {
         var result = await Client.GenerateEmbeddingAsync(text, cancellationToken: ct);
@@ -30,6 +36,12 @@ public class EmbeddingManager : IEmbeddingManager
         return result.Value.ToFloats().ToArray();
     }
 
+    /// <summary>
+    /// Gets Embeddings
+    /// </summary>
+    /// <param name="texts"></param>
+    /// <param name="ct"></param>
+    /// <returns>Instance of <see cref="Task{IReadOnlyList{float[]}}"/></returns>
     public async Task<IReadOnlyList<float[]>> GetEmbeddings(IReadOnlyList<string> texts, CancellationToken ct = default)
     {
         var result = await Client.GenerateEmbeddingsAsync(texts, cancellationToken: ct);

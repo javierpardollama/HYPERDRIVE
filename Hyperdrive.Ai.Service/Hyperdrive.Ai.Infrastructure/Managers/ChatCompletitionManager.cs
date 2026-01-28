@@ -1,11 +1,9 @@
-﻿using Hyperdrive.Ai.Domain.Entities;
+﻿using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Managers;
-using Hyperdrive.Ai.Domain.Profiles;
 using OpenAI.Chat;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 
@@ -16,35 +14,35 @@ public class ChatCompletitionManager : IChatCompletitionManager
 {
     private readonly ChatClient Client;
 
+    private readonly IChatMessageManager ChatMessageManager;
+
     /// <summary>
     ///     Initializes a new Instance of <see cref="ChatCompletitionManager" />
     /// </summary>
     /// <param name="client">Injected <see cref="ChatClient" /></param>
-    public ChatCompletitionManager(ChatClient client)
+    public ChatCompletitionManager(ChatClient client, IChatMessageManager chatMessageManager)
     {
         Client = client;
+        ChatMessageManager = chatMessageManager;
     }
 
     /// <summary>
     /// Gets Chat Completition
     /// </summary>
-    /// <param name="interaction">Injected <see cref="Entities.Interaction"/></param>
-    /// <param name="chunks">Injected <see cref="ICollection{Entities.Chunk}"/></param>
-    /// <returns>Instance of <see cref="Answer"/></returns>
-    public async Task<Interaction> GetCompletionAsync(Entities.Interaction @interaction, ICollection<Entities.Chunk> chunks)
+    /// <param name="messages">Injected <see cref="ICollection{ChatMessageDto}"/></param>
+    /// <returns>Instance of <see cref="Task{string}"/></returns>
+    public async Task<string> GetCompletionAsync(ICollection<ChatMessageDto> messages)
     {
-        var reply = await Client.CompleteChatAsync(
-            [
-                new SystemChatMessage(interaction.Arrange.Content),
-                new UserChatMessage(interaction.Query.Content)
-            ]);
-
-        @interaction.Answer = new Answer
+        var msgs = messages.Select(x => x.Role switch
         {
-            Content = reply.Value.Content[0].Text,
-            Sources = [.. chunks.Select(c => c?.ToSource())]
-        };
+            "User" => new UserChatMessage(x.Message),
+            "Assistant" => new AssistantChatMessage(x.Message),
+            "System" => (ChatMessage)new SystemChatMessage(x.Message),
+            _ => throw new System.NotImplementedException(),
+        }).ToList();
 
-        return @interaction;
+        var reply = await Client.CompleteChatAsync(msgs);
+
+        return reply.Value.Content[0].Text;
     }
 }

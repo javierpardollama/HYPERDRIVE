@@ -21,10 +21,32 @@
         "resolved": "3.6.0",
         "contentHash": "lP+nZHej9cGFVsZSZQhSdBpD60q7a/ZiLBJcfd+CRWs36BHYteaMx6m1qaHCBWT1wft640r9I4SexqpMc3VscA=="
       },
+      "OpenAI": {
+        "type": "Transitive",
+        "resolved": "2.8.0",
+        "contentHash": "KcYpZ9IhuxFD2hGAJlL5vABtkr00CjeJU0SY8CjZQyzvzkzLop8jhdX3iDvteVJg6e3y4TEiY+Kti4gDJAagnA==",
+        "dependencies": {
+          "System.ClientModel": "1.8.1"
+        }
+      },
+      "System.ClientModel": {
+        "type": "Transitive",
+        "resolved": "1.8.1",
+        "contentHash": "4oUQgw/vaO4FBOk3YsH40hbrjxRED1l95rRLvTMtHXfQxapXya9IfPpm/KgwValFFtYTfYGFOs/qzGmGyexicQ==",
+        "dependencies": {
+          "System.Memory.Data": "8.0.1"
+        }
+      },
+      "System.Memory.Data": {
+        "type": "Transitive",
+        "resolved": "8.0.1",
+        "contentHash": "BVYuec3jV23EMRDeR7Dr1/qhx7369dZzJ9IWy2xylvb4YfXsrUxspWc4UWYid/tj4zZK58uGZqn2WQiaDMhmAg=="
+      },
       "hyperdrive.ai.domain": {
         "type": "Project",
         "dependencies": {
-          "MongoDB.Bson": "[3.6.0, )"
+          "MongoDB.Bson": "[3.6.0, )",
+          "OpenAI": "[2.8.0, )"
         }
       }
     }
