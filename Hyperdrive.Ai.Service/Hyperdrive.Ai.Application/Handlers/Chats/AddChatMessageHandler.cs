@@ -48,13 +48,6 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
 
         var @previous = await _chatMessageManager.FindLatestChatMessagesByChatId(request.ViewModel.ChatId);
 
-        var @arrange = new Entities.Arrange()
-        {
-            CreatedBy = request.ViewModel.CreatedBy
-        };
-
-        @interaction.Arrange = @arrange;
-
         if (previous.Count > 0)
         {
             var @summary = new Entities.Summary()
@@ -68,6 +61,14 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
             @messages = [.. @messages, @summary.ToMessageDto()];
         }
 
+        var @arrange = new Entities.Arrange()
+        {
+            CreatedBy = request.ViewModel.CreatedBy
+        };
+
+        @interaction.Arrange = @arrange;
+        @messages = [.. @messages, @arrange.ToMessageDto()];
+
         var @query = new Entities.Query()
         {
             CreatedBy = request.ViewModel.CreatedBy,
@@ -76,8 +77,7 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
         };
 
         @interaction.Query = @query;
-
-        @messages = [.. @messages, @arrange.ToMessageDto(), @query.ToMessageDto()];
+        @messages = [.. @messages, @query.ToMessageDto()];
 
         var @answer = new Entities.Answer()
         {
