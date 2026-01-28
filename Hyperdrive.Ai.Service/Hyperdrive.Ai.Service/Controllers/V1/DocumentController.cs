@@ -35,7 +35,7 @@ public class DocumentController(IMediator @mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="ViewAddDocument"/></param>
-    /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult}"/></returns>   
+    /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult{ViewDocument}}"/></returns>   
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("create")]
@@ -73,7 +73,7 @@ public class DocumentController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> RemoveFlagById([FromBody] ViewRemoveDocument @viewModel)
+    public async Task<IActionResult> RemoveDocumentById([FromBody] ViewRemoveDocument @viewModel)
     {
         await mediator.Send(new RemoveDocumentCommand { ViewModel = @viewModel });
 
