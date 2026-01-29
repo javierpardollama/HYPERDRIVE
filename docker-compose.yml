@@ -37,7 +37,7 @@ services:
     init: true
     build:
       context: .
-      dockerfile: Hyperdrive.Service/Dockerfile
+      dockerfile: Hyperdrive.Service/Hyperdrive.Service/Dockerfile
     env_file:
       - path: .env
         required: true

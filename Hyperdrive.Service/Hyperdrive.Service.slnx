@@ -1,7 +1,4 @@
 <Solution>
-  <Project Path="docker-compose.dcproj">
-    <Build />
-  </Project>
   <Project Path="Hyperdrive.Application/Hyperdrive.Application.csproj" />
   <Project Path="Hyperdrive.Domain/Hyperdrive.Domain.csproj" />
   <Project Path="Hyperdrive.Infrastructure/Hyperdrive.Infrastructure.csproj" />
