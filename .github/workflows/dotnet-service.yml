@@ -36,13 +36,4 @@ jobs:
         run: dotnet clean Hyperdrive.Service/Hyperdrive.Service.csproj
 
       - name: 🏗️ Build project
-        run: dotnet build --no-restore Hyperdrive.Service/Hyperdrive.Service.csproj
-
-      - name: 🐋 Setup Docker
-        uses: docker/setup-buildx-action@v3
-
-      - name: ♻️ Clean containers
-        run: docker compose down --remove-orphans
-
-      - name: 🏗️ Build containers
-        run: docker compose build
+        run: dotnet build --no-restore Hyperdrive.Service/Hyperdrive.Service.csproj    
