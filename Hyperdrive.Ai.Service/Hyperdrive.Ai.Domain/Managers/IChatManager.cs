@@ -45,4 +45,11 @@ public interface IChatManager : IBaseManager
     /// <param name="userid">Injected <see cref="Guid" /></param>
     /// <returns>Instance of <see cref="Task{PageDto{ChatDto}}" /></returns>
     public Task<PageDto<ChatDto>> FindPaginatedChat(int @index, int @size, Guid @userid);
+
+    /// <summary>
+    /// Updates Chat
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Entities.Chat"/></param>
+    /// <returns>Instance of <see cref="Task{Entities.Chat}"/></returns>
+    public Task<Entities.Chat> UpdateChat(Entities.Chat @entity);
 }

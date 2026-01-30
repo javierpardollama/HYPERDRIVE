@@ -159,4 +159,32 @@ public class ChatManager(IApplicationContext context,
 
         return @page;
     }
+
+    /// <summary>
+    /// Updates Chat
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Entities.Chat"/></param>
+    /// <returns>Instance of <see cref="Task{Entities.Chat}"/></returns>
+    public async Task<Entities.Chat> UpdateChat(Entities.Chat @entity)
+    {
+        Entities.Chat @chat = await FindChatById(@entity.Id);
+        @chat.Title = @entity.Title.Trim();
+        @chat.ModifiedBy = @entity.ModifiedBy;
+        chat.ModifiedAt = @entity.ModifiedAt;
+
+        Context.Chat.Update(@chat);
+
+        await Context.SaveChangesAsync();
+
+        // Log
+        var logData = nameof(Entities.Chat)
+                      + " with Id "
+                      + @entity.Id
+                      + " was modified at "
+                      + DateTime.Now.ToShortTimeString();
+
+        logger.LogInformation(logData);
+
+        return @chat;
+    }
 }

@@ -2,6 +2,7 @@
 using Hyperdrive.Ai.Application.Commands.Chats;
 using Hyperdrive.Ai.Application.ViewModels.Additions;
 using Hyperdrive.Ai.Application.ViewModels.Removes;
+using Hyperdrive.Ai.Application.ViewModels.Updates;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -47,7 +48,7 @@ public class ChatController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> RemoveChatById([FromBody] ViewRemoveChat @viewModel)
+    public async Task<IActionResult> RemoveChat([FromBody] ViewRemoveChat @viewModel)
     {
         await mediator.Send(new RemoveChatCommand { ViewModel = @viewModel });
 
@@ -82,4 +83,31 @@ public class ChatController(IMediator @mediator) : ControllerBase
     {
         return Ok(await mediator.Send(new AddChatCommand { ViewModel = viewModel }));
     }
+
+    /// <summary>
+    /// Updates Chat Title
+    /// </summary>
+    /// <response code="200">Ok</response>
+    /// <response code="400">BadRequest</response>
+    /// <response code="401">Unauthorized</response>
+    /// <response code="408">RequestTimeout</response>
+    /// <response code="404">NotFound</response>
+    /// <response code="409">Conflict</response>
+    /// <response code="503">ServiceUnavailable</response>
+    /// <response code="500">InternalServerError</response>     
+    /// <param name="viewModel">Injected <see cref="ViewUpdateChatTitle"/></param>
+    /// <returns>Instance of <see cref="Task{OkObjectResult{ViewChat}}"/></returns>   
+    [MapToApiVersion(1.0)]
+    [HttpPut]
+    [Route("title/change")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewChat))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
+    public async Task<IActionResult> UpdateChatTitle([FromBody] ViewUpdateChatTitle @viewModel) => Ok(value: await mediator.Send(new UpdateChatTitleCommand { ViewModel = @viewModel }));
+
 }
