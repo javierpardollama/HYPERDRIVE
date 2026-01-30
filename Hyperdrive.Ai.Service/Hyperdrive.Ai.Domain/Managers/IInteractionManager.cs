@@ -28,6 +28,7 @@ public interface IInteractionManager : IBaseManager
     /// </summary>
     /// <param name="index">Injected <see cref="int" /></param>
     /// <param name="size">Injected <see cref="int" /></param>
+    /// <param name="chatid">Injected <see cref="Guid" /></param>
     /// <returns>Instance of <see cref="Task{PageDto{InteractionDto}}" /></returns>
-    public Task<PageDto<InteractionDto>> FindPaginatedInteraction(int @index, int @size);
+    public Task<PageDto<InteractionDto>> FindPaginatedInteraction(int @index, int @size, Guid chatid);
 }

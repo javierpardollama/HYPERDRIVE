@@ -125,4 +125,38 @@ public class ChatManager(IApplicationContext context,
 
         return @chat;
     }
+
+    /// <summary>
+    ///     Finds Paginated Chat
+    /// </summary>
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <param name="userid">Injected <see cref="Guid" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ChatDto}}" /></returns>
+    public async Task<PageDto<ChatDto>> FindPaginatedChat(int @index, int @size, Guid @userid)
+    {
+        PageDto<ChatDto> @page = new()
+        {
+            Length = await Context.Chat
+                        .TagWith("CountAllInteraction")
+                        .AsNoTracking()
+                        .AsSplitQuery()
+                        .Where(x => x.CreatedBy == userid)
+                        .CountAsync(),
+            Index = @index,
+            Size = @size,
+            Items = await Context.Chat
+                        .TagWith("FindPaginatedInteraction")
+                        .AsNoTracking()
+                        .AsSplitQuery()
+                         .Where(x => x.CreatedBy == userid)
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Skip(@index * @size)
+                        .Take(@size)
+                        .Select(x => x.ToDto())
+                        .ToListAsync()
+        };
+
+        return @page;
+    }
 }

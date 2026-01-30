@@ -50,6 +50,40 @@ public class InteractionManager(IApplicationContext context,
     }
 
     /// <summary>
+    ///     Finds Paginated Interaction
+    /// </summary>
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <param name="chatid">Injected <see cref="Guid" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{InteractionDto}}" /></returns>
+    public async Task<PageDto<InteractionDto>> FindPaginatedInteraction(int index, int size, Guid chatid)
+    {
+        PageDto<InteractionDto> @page = new()
+        {
+            Length = await Context.Interactions
+                        .TagWith("CountAllInteraction")
+                        .AsNoTracking()
+                        .AsSplitQuery()
+                        .Where(x => x.ChatId == @chatid)
+                        .CountAsync(),
+            Index = @index,
+            Size = @size,
+            Items = await Context.Interactions
+                        .TagWith("FindPaginatedInteraction")
+                        .AsNoTracking()
+                        .AsSplitQuery()
+                        .Where(x => x.ChatId == @chatid)
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Skip(@index * @size)
+                        .Take(@size)
+                        .Select(x => x.ToDto())
+                        .ToListAsync()
+        };
+
+        return @page;
+    }
+
+    /// <summary>
     /// Reloads Interaction By Id
     /// </summary>
     /// <param name="id">Injected <see cref="Guid"/></param>
