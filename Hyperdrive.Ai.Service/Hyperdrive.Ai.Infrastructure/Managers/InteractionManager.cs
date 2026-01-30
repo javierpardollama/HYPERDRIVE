@@ -31,7 +31,7 @@ public class InteractionManager(IApplicationContext context,
         {
             ChatId = entity.ChatId,
             CreatedBy = entity.CreatedBy,
-            Arrange = entity.Arrange,
+            Setup = entity.Setup,
             Summary = entity.Summary,
             Answer = entity.Answer,
             Query = entity.Query,

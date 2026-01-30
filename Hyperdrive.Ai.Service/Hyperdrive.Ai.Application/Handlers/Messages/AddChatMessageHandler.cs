@@ -1,4 +1,4 @@
-﻿using Hyperdrive.Ai.Application.Commands.Chats;
+﻿using Hyperdrive.Ai.Application.Commands.Messages;
 using Hyperdrive.Ai.Application.Profiles;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Dtos;
@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
 
-namespace Hyperdrive.Ai.Application.Handlers.Chats;
+namespace Hyperdrive.Ai.Application.Handlers.Messages;
 
 public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, ViewInteraction>
 {
@@ -48,7 +48,7 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
 
         var @previous = await _chatMessageManager.FindLatestChatMessagesByChatId(request.ViewModel.ChatId);
 
-        if (previous.Count > 0)
+        if (previous is { Count: >= 10 })
         {
             var @summary = new Entities.Summary()
             {
@@ -61,13 +61,13 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
             @messages = [.. @messages, @summary.ToMessageDto()];
         }
 
-        var @arrange = new Entities.Arrange()
+        var @setup = new Entities.Setup()
         {
             CreatedBy = request.ViewModel.CreatedBy
         };
 
-        @interaction.Arrange = @arrange;
-        @messages = [.. @messages, @arrange.ToMessageDto()];
+        @interaction.Setup = @setup;
+        @messages = [.. @messages, @setup.ToMessageDto()];
 
         var @query = new Entities.Query()
         {

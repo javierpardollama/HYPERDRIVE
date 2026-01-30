@@ -5,7 +5,7 @@ using MediatR;
 namespace Hyperdrive.Ai.Application.Commands.Documents;
 
 /// <summary>
-/// Represents a <see cref="AddDocumentCommand" /> class. Inherits <see cref="IRequest{ViewDocument}" />
+/// Represents a <see cref="AddDocumentCommand" /> class. Implements <see cref="IRequest{ViewDocument}" />
 /// </summary>
 public class AddDocumentCommand : IRequest<ViewDocument>
 {

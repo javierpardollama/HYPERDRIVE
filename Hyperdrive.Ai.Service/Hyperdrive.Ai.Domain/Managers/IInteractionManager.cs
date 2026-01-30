@@ -22,4 +22,12 @@ public interface IInteractionManager : IBaseManager
     /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{InteractionDto}"/></returns>
     public Task<InteractionDto> ReloadInteractionById(Guid @id);
+
+    /// <summary>
+    ///     Finds Paginated Interaction
+    /// </summary>
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{InteractionDto}}" /></returns>
+    public Task<PageDto<InteractionDto>> FindPaginatedInteraction(int @index, int @size);
 }

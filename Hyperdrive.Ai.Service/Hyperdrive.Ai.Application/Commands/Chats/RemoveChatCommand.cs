@@ -4,7 +4,7 @@ using MediatR;
 namespace Hyperdrive.Ai.Application.Commands.Chats;
 
 /// <summary>
-/// Represents a <see cref="RemoveChatCommand" /> class. Inherits <see cref="IRequest" />
+/// Represents a <see cref="RemoveChatCommand" /> class. Implements <see cref="IRequest" />
 /// </summary>
 public class RemoveChatCommand : IRequest
 {

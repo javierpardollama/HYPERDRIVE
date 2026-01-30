@@ -29,4 +29,19 @@ public interface IChatManager : IBaseManager
     /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{Entities.Chat}"/></returns>
     public Task<Entities.Chat> FindChatById(Guid @id);
+
+    /// <summary>
+    /// Adds Chat
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Entities.Chat"/></param>
+    /// <returns>Instance of <see cref="Task{Entities.Chat}"/></returns>
+    public Task<Entities.Chat> AddChat(Entities.Chat @entity);
+
+    /// <summary>
+    ///     Finds Paginated Chat
+    /// </summary>
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ChatDto}}" /></returns>
+    public Task<PageDto<ChatDto>> FindPaginatedChat(int @index, int @size);
 }

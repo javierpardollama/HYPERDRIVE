@@ -1,5 +1,6 @@
 ﻿using Hyperdrive.Ai.Infrastructure.Contexts;
 using Hyperdrive.Ai.Infrastructure.Contexts.Interfaces;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +22,18 @@ public static class EntityFrameworkInstaller
         @this.AddDbContext<ApplicationContext>(options =>
         {
             options.UseMongoDB(configuration.GetConnectionString("DefaultConnection"));
-        });    
+        });
 
         @this.AddScoped<IApplicationContext, ApplicationContext>();
+    }
+
+    /// <summary>
+    ///     Uses Migrations
+    /// </summary>
+    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    public static void UseMigrations(this WebApplication @this)
+    {
+        // Add other services here
     }
 
 }

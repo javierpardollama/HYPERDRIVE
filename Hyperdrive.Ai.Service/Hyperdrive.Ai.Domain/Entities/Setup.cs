@@ -5,7 +5,7 @@ using System;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 
-public class Arrange : IBase, IKey
+public class Setup : IBase, IKey
 {
     [BsonId]
     [BsonRepresentation(BsonType.Binary)]

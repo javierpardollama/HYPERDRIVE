@@ -2,10 +2,10 @@
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
 
-namespace Hyperdrive.Ai.Application.Commands.Chats;
+namespace Hyperdrive.Ai.Application.Commands.Messages;
 
 /// <summary>
-/// Represents a <see cref="AddChatMessageCommand" /> class. Inherits <see cref="IRequest{ViewInteraction}" />
+/// Represents a <see cref="AddChatMessageCommand" /> class. Implements <see cref="IRequest{ViewInteraction}" />
 /// </summary>
 public class AddChatMessageCommand : IRequest<ViewInteraction>
 {

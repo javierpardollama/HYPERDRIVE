@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Hyperdrive.Ai.Application.ViewModels.Views;
 
@@ -19,7 +18,7 @@ public class ViewChat
     public DateTime LastModified { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Interactions" />
+    ///     Gets or Sets <see cref="Title" />
     /// </summary>
-    public virtual ICollection<ViewInteraction> Interactions { get; set; } = [];
+    public string Title { get; set; }
 }

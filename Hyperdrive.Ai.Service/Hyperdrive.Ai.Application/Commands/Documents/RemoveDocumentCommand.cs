@@ -4,7 +4,7 @@ using MediatR;
 namespace Hyperdrive.Ai.Application.Commands.Documents;
 
 /// <summary>
-/// Represents a <see cref="RemoveDocumentCommand" /> class. Inherits <see cref="IRequest" />
+/// Represents a <see cref="RemoveDocumentCommand" /> class. Implements <see cref="IRequest" />
 /// </summary>
 public class RemoveDocumentCommand : IRequest
 {

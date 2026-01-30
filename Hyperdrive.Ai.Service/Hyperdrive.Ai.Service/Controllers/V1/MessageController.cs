@@ -1,5 +1,5 @@
 ﻿using Asp.Versioning;
-using Hyperdrive.Ai.Application.Commands.Chats;
+using Hyperdrive.Ai.Application.Commands.Messages;
 using Hyperdrive.Ai.Application.ViewModels.Additions;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;

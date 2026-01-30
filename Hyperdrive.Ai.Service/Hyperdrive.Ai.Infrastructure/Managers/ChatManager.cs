@@ -101,4 +101,28 @@ public class ChatManager(IApplicationContext context,
 
         return @chat;
     }
+
+    /// <summary>
+    /// Adds Chat
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Entities.Chat"/></param>
+    /// <returns>Instance of <see cref="Task{Entities.Chat}"/></returns>
+    public async Task<Entities.Chat> AddChat(Entities.Chat @entity)
+    {
+        Entities.Chat @chat = new()
+        {
+            CreatedBy = entity.CreatedBy
+        };
+
+        await Context.Chat.AddAsync(@chat);
+
+        await Context.SaveChangesAsync();
+
+        // Log
+        string @logData = $"{nameof(Entities.Chat)} {@chat.Id} was added at {DateTime.UtcNow:t}";
+
+        logger.LogInformation(logData);
+
+        return @chat;
+    }
 }

@@ -59,6 +59,7 @@ var @app = @builder.Build();
 @app.UseOpenApi();
 
 // 4. Apply migrations (usually early, before requests)
+@app.UseMigrations();
 
 // 5. CORS (must be before endpoints)
 @app.UseCors();

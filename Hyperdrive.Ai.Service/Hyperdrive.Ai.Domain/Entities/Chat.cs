@@ -36,6 +36,9 @@ public class Chat : IBase, IKey
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;
 
+    [BsonElement("title")]
+    public string Title { get; set; }
+
     public virtual ICollection<Interaction> Interactions { get; set; } = [];
 
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Hyperdrive.Ai.Domain.Dtos;
 
@@ -19,7 +18,7 @@ public class ChatDto
     public DateTime LastModified { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Interactions" />
+    ///     Gets or Sets <see cref="Title" />
     /// </summary>
-    public virtual ICollection<InteractionDto> Interactions { get; set; } = [];
+    public string Title { get; set; }
 }

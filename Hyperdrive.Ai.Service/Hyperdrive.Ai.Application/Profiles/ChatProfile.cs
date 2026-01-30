@@ -1,6 +1,5 @@
 ﻿using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Dtos;
-using System.Linq;
 
 namespace Hyperdrive.Ai.Application.Profiles;
 
@@ -19,7 +18,7 @@ public static class ChatProfile
         return new ViewChat
         {
             LastModified = @dto.LastModified,
-            Interactions = [.. dto.Interactions.Select(i => i?.ToViewModel())]
+            Title = @dto.Title
         };
     }
 }

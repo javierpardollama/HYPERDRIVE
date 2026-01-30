@@ -1,6 +1,5 @@
 ﻿using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Entities;
-using System.Linq;
 
 namespace Hyperdrive.Ai.Domain.Profiles;
 
@@ -19,7 +18,7 @@ public static class ChatProfile
         return new ChatDto
         {
             Id = @entity.Id,
-            Interactions = [.. entity.Interactions?.Select(i => i?.ToDto())]
+            Title = @entity.Title
         };
     }
 }
