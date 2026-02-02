@@ -1,6 +1,7 @@
 ﻿using Hyperdrive.Ai.Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Ai.Application.Profiles;
 
@@ -18,6 +19,7 @@ public static class ExceptionProfile
     {
         return exception.GetType().Name switch
         {
+            nameof(ValidationException) => StatusCodes.Status400BadRequest,
             nameof(ArgumentNullException) => StatusCodes.Status400BadRequest,
             nameof(UnauthorizedAccessException) => StatusCodes.Status401Unauthorized,
             nameof(NullReferenceException) => StatusCodes.Status404NotFound,
