@@ -23,18 +23,18 @@ public class ProblemDetailsExceptionHandler(IProblemDetailsService problemDetail
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
         CancellationToken cancellationToken)
     {
-        httpContext.Response.StatusCode = exception.ToCode();
-
         return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
         {
             HttpContext = httpContext,
             ProblemDetails =
             {
-                Title = "https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml",
+                Title = nameof(Exception),
                 Detail = exception.Message,
-                Type = exception.GetType().Name
+                Type = exception.GetType().Name,
+                Status = ExceptionProfile.ToCode(exception),
             },
-            Exception = exception
+            Exception = exception,
+
         });
     }
 }

@@ -16,10 +16,10 @@ namespace Hyperdrive.Ai.Infrastructure.Contexts.Extensions
         public static void AddCustomizedCollections(this ModelBuilder @this)
         {
             // Configure entity filters           
-            @this.Entity<Document>().ToCollection("documents");            
+            @this.Entity<Document>().ToCollection("documents");
             @this.Entity<Chunk>().ToCollection("chunks");
             @this.Entity<Chat>().ToCollection("chats");
-            @this.Entity<Interaction>().ToCollection("messages");
+            @this.Entity<Interaction>().ToCollection("interactions");
         }
     }
 }
