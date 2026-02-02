@@ -28,6 +28,8 @@ public class ChatManager(IApplicationContext context,
     public async Task<ChatDto> ReloadChatById(Guid @id)
     {
         ChatDto @chat = await Context.Chat
+        .AsNoTracking()
+        .AsSplitQuery()
         .TagWith("ReloadChatById")
         .Where(x => x.Id == @id)
         .Select(x => x.ToDto())

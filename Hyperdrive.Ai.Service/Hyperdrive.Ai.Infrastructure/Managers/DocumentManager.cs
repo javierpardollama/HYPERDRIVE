@@ -210,6 +210,8 @@ public class DocumentManager(IApplicationContext context,
     public async Task<DocumentDto> ReloadDocumentById(Guid @id)
     {
         DocumentDto @document = await Context.Document
+        .AsNoTracking()
+        .AsSplitQuery()
         .TagWith("ReloadDocumentById")
         .Where(x => x.Id == @id)
         .Select(x => x.ToDto())

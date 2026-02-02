@@ -26,6 +26,7 @@ public class ChatMessageManager(IApplicationContext context,
     {
         var messages = await Context.Interactions
                 .AsNoTracking()
+                .AsSplitQuery()
                 .Where(x => x.ChatId == chatid)
                 .OrderByDescending(x => x.CreatedAt)
                 .Take(5)
