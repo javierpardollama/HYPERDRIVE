@@ -14,8 +14,8 @@ namespace Hyperdrive.Ai.Application.Handlers.Documents;
 /// </summary>
 public class AddDocumentHandler : IRequestHandler<AddDocumentCommand, ViewDocument>
 {
-    private readonly IDocumentManager DocumentManager;
-    private readonly IChunkManager ChunkManager;
+    private readonly IDocumentManager _documentManager;
+    private readonly IChunkManager _chunkManager;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="AddDocumentHandler" />
@@ -24,8 +24,8 @@ public class AddDocumentHandler : IRequestHandler<AddDocumentCommand, ViewDocume
     /// <param name="chunkManager">Injected <see cref="IChunkManager"/></param>
     public AddDocumentHandler(IDocumentManager documentManager, IChunkManager chunkManager)
     {
-        DocumentManager = documentManager;
-        ChunkManager = chunkManager;
+        _documentManager = documentManager;
+        _chunkManager = chunkManager;
     }
 
     public async Task<ViewDocument> Handle(AddDocumentCommand request, CancellationToken cancellationToken)
@@ -37,13 +37,13 @@ public class AddDocumentHandler : IRequestHandler<AddDocumentCommand, ViewDocume
             CreatedBy = request.ViewModel.CreatedBy,
         };
 
-        await DocumentManager.CheckFileId(@entity.FileId);
+        await _documentManager.CheckFileId(@entity.FileId);
 
-        var @document = await DocumentManager.AddDocument(@entity);
+        var @document = await _documentManager.AddDocument(@entity);
 
-        await ChunkManager.AddChunks(document.Id, request.ViewModel.Content);
+        await _chunkManager.AddChunks(document.Id, request.ViewModel.Content);
 
-        var @dto = await DocumentManager.ReloadDocumentById(@document.Id);
+        var @dto = await _documentManager.ReloadDocumentById(@document.Id);
 
         return @dto.ToViewModel();
     }
