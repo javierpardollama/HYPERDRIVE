@@ -24,6 +24,9 @@ public static class MediatRInstaller
             cfg.RegisterServicesFromAssemblyContaining<AddChatHandler>();
             cfg.RegisterServicesFromAssemblyContaining<UpdateChatTitleHandler>();
             cfg.RegisterServicesFromAssemblyContaining<RemoveChatHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedChatHandler>();
+
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedInteractionHandler>();
 
             cfg.RegisterServicesFromAssemblyContaining<AddChatMessageHandler>();
         });

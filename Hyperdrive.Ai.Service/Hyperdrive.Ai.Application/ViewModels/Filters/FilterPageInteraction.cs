@@ -1,18 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Ai.Application.ViewModels.Filters;
 
 /// <summary>
-///     Represents a <see cref="FilterPage" /> class.
+///     Represents a <see cref="FilterPageInteraction" /> class.
 /// </summary>
-public class FilterPage
+public class FilterPageInteraction
 {
     /// <summary>
-    ///     Initializes a new Instance of <see cref="FilterPage" />
+    ///     Gets or Sets <see cref="ChatId" />
     /// </summary>
-    public FilterPage()
-    {
-    }
+    [Required]
+    public Guid ChatId { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="Index" />

@@ -12,6 +12,6 @@ public class FindPaginatedChatQuery : IRequest<ViewPage<ViewChat>>
     /// <summary>
     /// Gets or Sets <see cref="ViewModel"/>
     /// </summary>
-    public FilterPage ViewModel { get; set; }
+    public FilterPageChat ViewModel { get; set; }
 }
 

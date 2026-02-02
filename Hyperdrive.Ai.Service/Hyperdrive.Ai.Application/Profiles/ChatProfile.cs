@@ -1,5 +1,6 @@
 ﻿using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Dtos;
+using System.Linq;
 
 namespace Hyperdrive.Ai.Application.Profiles;
 
@@ -19,6 +20,22 @@ public static class ChatProfile
         {
             LastModified = @dto.LastModified,
             Title = @dto.Title
+        };
+    }
+
+    /// <summary>
+    /// Transforms to Page ViewModel
+    /// </summary>
+    /// <param name="dto">Injected <see cref="PageDto{ChatDto}"/></param>
+    /// <returns>Instance of <see cref="ViewPage{ViewChat}"/></returns>
+    public static ViewPage<ViewChat> ToPageViewModel(this PageDto<ChatDto> @dto)
+    {
+        return new ViewPage<ViewChat>
+        {
+            Index = @dto.Index,
+            Length = @dto.Length,
+            Size = @dto.Size,
+            Items = [.. dto.Items.Select(x => x.ToViewModel())]
         };
     }
 }

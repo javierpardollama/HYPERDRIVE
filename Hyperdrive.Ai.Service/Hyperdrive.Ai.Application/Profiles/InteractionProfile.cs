@@ -1,5 +1,6 @@
 ﻿using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Dtos;
+using System.Linq;
 
 namespace Hyperdrive.Ai.Application.Profiles;
 
@@ -20,6 +21,22 @@ public static class InteractionProfile
             LastModified = @dto.LastModified,
             Query = dto.Query?.ToViewModel(),
             Answer = dto.Answer?.ToViewModel()
+        };
+    }
+
+    /// <summary>
+    /// Transforms to Page ViewModel
+    /// </summary>
+    /// <param name="dto">Injected <see cref="PageDto{InteractionDto}"/></param>
+    /// <returns>Instance of <see cref="ViewPage{ViewInteraction}"/></returns>
+    public static ViewPage<ViewInteraction> ToPageViewModel(this PageDto<InteractionDto> @dto)
+    {
+        return new ViewPage<ViewInteraction>
+        {
+            Index = @dto.Index,
+            Length = @dto.Length,
+            Size = @dto.Size,
+            Items = [.. dto.Items.Select(x => x.ToViewModel())]
         };
     }
 }
