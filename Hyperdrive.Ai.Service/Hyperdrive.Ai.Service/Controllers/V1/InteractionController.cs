@@ -3,6 +3,7 @@ using Hyperdrive.Ai.Application.Queries.Interactions;
 using Hyperdrive.Ai.Application.ViewModels.Filters;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -20,6 +21,7 @@ namespace Hyperdrive.Ai.Service.Controllers.V1;
 [Route("api/v{v:apiVersion}/interaction")]
 [Produces("application/json")]
 [ApiController]
+[Authorize]
 [EnableRateLimiting("Concurrency")]
 public class InteractionController(IMediator @mediator) : ControllerBase
 {

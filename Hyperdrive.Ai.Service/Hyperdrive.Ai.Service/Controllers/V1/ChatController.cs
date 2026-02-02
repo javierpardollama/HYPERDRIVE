@@ -7,6 +7,7 @@ using Hyperdrive.Ai.Application.ViewModels.Removes;
 using Hyperdrive.Ai.Application.ViewModels.Updates;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -23,6 +24,7 @@ namespace Hyperdrive.Ai.Service.Controllers.V1;
 [Route("api/v{v:apiVersion}/chat")]
 [Produces("application/json")]
 [ApiController]
+[Authorize]
 [EnableRateLimiting("Concurrency")]
 public class ChatController(IMediator @mediator) : ControllerBase
 {

@@ -37,6 +37,7 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 @builder.Services.AddResponseCaching();
 
 // Add customized Authentication to the services container.
+@builder.Services.InstallIdentification(@apiSettings);
 @builder.Services.InstallCors(@apiSettings);
 
 @builder.Services.InstallProblemDetails();
@@ -68,6 +69,7 @@ var @app = @builder.Build();
 @app.UseSecureApi();
 
 // 7. Identification & custom middlewares
+@app.UseIdentification();
 @app.UseMiddlewares();
 
 // 8. Performance features

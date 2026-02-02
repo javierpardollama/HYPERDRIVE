@@ -3,6 +3,7 @@ using Hyperdrive.Ai.Application.Commands.Messages;
 using Hyperdrive.Ai.Application.ViewModels.Additions;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -19,6 +20,7 @@ namespace Hyperdrive.Ai.Service.Controllers.V1;
 [Route("api/v{v:apiVersion}/message")]
 [Produces("application/json")]
 [ApiController]
+[Authorize]
 [EnableRateLimiting("Concurrency")]
 public class MessageController(IMediator @mediator) : ControllerBase
 {
