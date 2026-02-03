@@ -16,6 +16,7 @@ EXPOSE 8081
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
+ARG TARGET_ARCH=linux-x64
 
 WORKDIR /src
 
@@ -38,6 +39,7 @@ RUN dotnet build "./Hyperdrive.Service.csproj" -c $BUILD_CONFIGURATION --no-rest
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
+ARG TARGET_ARCH=linux-x64
 
 # Publica sin compilar y sin restaurar, reduciendo tamaño final
 RUN dotnet publish "Hyperdrive.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restore
