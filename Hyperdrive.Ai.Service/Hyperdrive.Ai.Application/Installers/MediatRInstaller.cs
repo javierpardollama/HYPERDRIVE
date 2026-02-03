@@ -28,7 +28,7 @@ public static class MediatRInstaller
 
             cfg.RegisterServicesFromAssemblyContaining<FindPaginatedInteractionHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<AddChatMessageHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddInteractionHandler>();
         });
     }
 }

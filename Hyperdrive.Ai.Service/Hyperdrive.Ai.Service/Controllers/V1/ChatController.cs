@@ -83,10 +83,7 @@ public class ChatController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> AddChat([FromBody] ViewAddChat viewModel)
-    {
-        return Ok(await mediator.Send(new AddChatCommand { ViewModel = viewModel }));
-    }
+    public async Task<IActionResult> AddChat([FromBody] ViewAddChat viewModel) => Ok(await mediator.Send(new AddChatCommand { ViewModel = viewModel }));
 
     /// <summary>
     /// Updates Chat Title

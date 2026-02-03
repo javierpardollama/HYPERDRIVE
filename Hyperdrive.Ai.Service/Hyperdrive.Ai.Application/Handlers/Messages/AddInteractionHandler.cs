@@ -13,7 +13,7 @@ using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Application.Handlers.Messages;
 
-public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, ViewInteraction>
+public class AddInteractionHandler : IRequestHandler<AddInteractionCommand, ViewInteraction>
 {
     private readonly IChunkManager _chunkManager;
     private readonly IChatCompletitionManager _chatCompletitionManager;
@@ -21,7 +21,7 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
     private readonly IChatMessageManager _chatMessageManager;
     private readonly IChatSummaryManager _chatSummaryManager;
 
-    public AddChatMessageHandler(IChunkManager chunkManager,
+    public AddInteractionHandler(IChunkManager chunkManager,
                                  IChatCompletitionManager chatCompletitionManager,
                                  IInteractionManager interactionManager,
                                  IChatMessageManager chatMessageManager,
@@ -34,7 +34,7 @@ public class AddChatMessageHandler : IRequestHandler<AddChatMessageCommand, View
         _chatSummaryManager = chatSummaryManager;
     }
 
-    public async Task<ViewInteraction> Handle(AddChatMessageCommand request, CancellationToken cancellationToken)
+    public async Task<ViewInteraction> Handle(AddInteractionCommand request, CancellationToken cancellationToken)
     {
         var @messages = new List<ChatMessageDto>();
 

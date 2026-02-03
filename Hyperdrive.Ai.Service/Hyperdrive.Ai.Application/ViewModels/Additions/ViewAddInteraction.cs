@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Hyperdrive.Ai.Application.ViewModels.Additions;
 
 /// <summary>
-///     Represents a <see cref="ViewAddChatMessage" /> class
+///     Represents a <see cref="ViewAddInteraction" /> class
 /// </summary>
-public class ViewAddChatMessage
+public class ViewAddInteraction
 {
     /// <summary>
     ///     Gets or Sets <see cref="ChatId" />
