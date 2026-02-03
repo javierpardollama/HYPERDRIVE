@@ -1,6 +1,6 @@
 ﻿using Hyperdrive.Ai.Application.Handlers.Chats;
 using Hyperdrive.Ai.Application.Handlers.Documents;
-using Hyperdrive.Ai.Application.Handlers.Messages;
+using Hyperdrive.Ai.Application.Handlers.Interactions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyperdrive.Ai.Application.Installers;

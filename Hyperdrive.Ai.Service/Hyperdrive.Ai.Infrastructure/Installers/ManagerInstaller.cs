@@ -22,6 +22,7 @@ public static class ManagerInstaller
         @this.AddTransient<IChatCompletitionManager, ChatCompletitionManager>();
         @this.AddTransient<IChatMessageManager, ChatMessageManager>();
         @this.AddTransient<IChatSummaryManager, ChatSummaryManager>();
+        @this.AddTransient<IChatTitleManager, ChatTitleManager>();
         @this.AddTransient<IInteractionManager, InteractionManager>();
         @this.AddTransient<IChatManager, ChatManager>();
         // Add other managers here

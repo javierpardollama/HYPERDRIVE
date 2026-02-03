@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
 
-namespace Hyperdrive.Ai.Application.Handlers.Messages;
+namespace Hyperdrive.Ai.Application.Handlers.Interactions;
 
 public class AddInteractionHandler : IRequestHandler<AddInteractionCommand, ViewInteraction>
 {
