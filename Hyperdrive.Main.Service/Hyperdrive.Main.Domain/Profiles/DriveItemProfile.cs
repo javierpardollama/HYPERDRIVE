@@ -1,0 +1,49 @@
+using Hyperdrive.Main.Domain.Dtos;
+using Hyperdrive.Main.Domain.Entities;
+using System.Linq;
+
+namespace Hyperdrive.Main.Domain.Profiles;
+
+/// <summary>
+/// Represents a <see cref="DriveItemProfile"/> class.
+/// </summary>
+public static class DriveItemProfile
+{
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="DriveItem"/></param>
+    /// <returns>Instance of <see cref="DriveItemDto"/></returns>
+    public static DriveItemDto ToDto(this DriveItem @entity)
+    {
+        return new DriveItemDto
+        {
+            Id = @entity.Id,
+            FileName = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault().FileName,
+            Name = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault().Name,
+            Extension = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault().Extension,
+            By = @entity.By?.ToCatalog(),
+            Parent = @entity.Parent?.ToCatalog(),
+            Folder = @entity.Folder,
+            LastModified = @entity.CreatedAt,
+            SharedWith = [.. @entity.SharedWith.Select(x => x.User.ToCatalog())],
+            Downloadeable = @entity.Activity.OrderByDescending(x => x.CreatedAt).Any(x => x.Content is not null)
+        };
+    }
+
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="DriveItem"/></param>
+    /// <returns>Instance of <see cref="CatalogDto"/></returns>
+    public static CatalogDto ToCatalog(this DriveItem @entity)
+    {
+        return new CatalogDto
+        {
+            Id = @entity.Id,
+            Name = @entity.Activity
+              .OrderByDescending(x => x.CreatedAt)
+              .FirstOrDefault()?.FileName
+        };
+    }
+}

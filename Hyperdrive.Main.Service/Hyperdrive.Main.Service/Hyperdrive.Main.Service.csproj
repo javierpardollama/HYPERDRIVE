@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<NuGetAuditMode>direct</NuGetAuditMode>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<UseAppHost>false</UseAppHost>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<UserSecretsId>e9196cd5-6407-4e22-b5b0-afd5daf98089</UserSecretsId>		
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
+
+		<ProjectReference Include="..\Hyperdrive.Main.Application\Hyperdrive.Main.Application.csproj" />
+		<ProjectReference Include="..\Hyperdrive.main.Infrastructure\Hyperdrive.Main.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<NuGetAuditMode>direct</NuGetAuditMode>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<UseAppHost>false</UseAppHost>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="12.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hyperdrive.Main.Domain\Hyperdrive.Main.Domain.csproj" />
+	</ItemGroup>
+</Project>

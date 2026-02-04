@@ -1,0 +1,70 @@
+﻿using Hyperdrive.Main.Domain.Dtos;
+using Hyperdrive.Main.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Hyperdrive.Main.Domain.Managers
+{
+    /// <summary>
+    /// Represents a <see cref="IApplicationRoleManager"/> interface. Inherits <see cref="IBaseManager"/>
+    /// </summary>
+    public interface IApplicationRoleManager : IBaseManager
+    {
+        /// <summary>
+        /// Finds All Application Role
+        /// </summary>
+        /// <returns>Instance of <see cref="Task{ICollection{CatalogDto}}"/></returns>
+        public Task<ICollection<CatalogDto>> FindAllApplicationRole();
+
+        /// <summary>
+        /// Finds Paginated Application Role
+        /// </summary>
+        /// <param name="index">Injected <see cref="int"/></param>
+        /// <param name="size">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ApplicationRoleDto}}"/></returns>
+        public Task<PageDto<ApplicationRoleDto>> FindPaginatedApplicationRole(int @index, int @size);
+
+        /// <summary>
+        /// Finds Application Role By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationRole}"/></returns>
+        public Task<ApplicationRole> FindApplicationRoleById(int @id);
+
+        /// <summary>
+        /// Removes Application Role
+        /// </summary>
+        /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        public Task RemoveApplicationRole(ApplicationRole @entity);
+
+        /// <summary>
+        /// Updates Application Role
+        /// </summary>
+        /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationRoleDto}"/></returns>
+        public Task<ApplicationRoleDto> UpdateApplicationRole(ApplicationRole @entity);
+
+        /// <summary>
+        /// Adds Application Role
+        /// </summary>
+        /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
+        /// <returns>Instance of <see cref="Task{ApplicationRoleDto}"/></returns>
+        public Task<ApplicationRoleDto> AddApplicationRole(ApplicationRole @entity);
+
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public Task<bool> CheckName(string @name);
+
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="name">Injected <see cref="string"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{bool}"/></returns>
+        public Task<bool> CheckName(string @name, int @id);
+    }
+}

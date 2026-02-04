@@ -11,7 +11,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: Hyperdrive.Service
+    working-directory: Hyperdrive.Main.Service
 
 jobs:
   build:
@@ -30,14 +30,14 @@ jobs:
           dotnet-version: '10.0.x'      
 
       - name: 📥 Restore dependencies
-        run: dotnet restore --locked-mode Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj     
+        run: dotnet restore --locked-mode Hyperdrive.Main.Test.Infrastructure/Hyperdrive.Main.Test.Infrastructure.csproj     
 
       - name: ♻️ Clean project
-        run: dotnet clean Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj          
+        run: dotnet clean Hyperdrive.Main.Test.Infrastructure/Hyperdrive.Main.Test.Infrastructure.csproj          
        
       - name: 🏗️ Build project
-        run: dotnet build --no-restore Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj    
+        run: dotnet build --no-restore Hyperdrive.Main.Test.Infrastructure/Hyperdrive.Main.Test.Infrastructure.csproj    
 
       - name: ✅ Run tests
-        run: dotnet test Hyperdrive.Test.Infrastructure/Hyperdrive.Test.Infrastructure.csproj --no-build
+        run: dotnet test Hyperdrive.Main.Test.Infrastructure/Hyperdrive.Main.Test.Infrastructure.csproj --no-build
 
