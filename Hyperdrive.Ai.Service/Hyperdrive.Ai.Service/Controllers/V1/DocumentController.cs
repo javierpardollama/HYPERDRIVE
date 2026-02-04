@@ -37,7 +37,7 @@ public class DocumentController(IMediator @mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="ViewAddDocument"/></param>
-    /// <returns>Instance of <see cref="Task{JsonReOkObjectResultsult{ViewDocument}}"/></returns>   
+    /// <returns>Instance of <see cref="Task{OkObjectResult{ViewDocument}}"/></returns>   
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("create")]
