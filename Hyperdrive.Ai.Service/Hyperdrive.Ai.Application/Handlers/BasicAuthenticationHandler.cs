@@ -26,7 +26,7 @@ public class BasicAuthenticationHandler(
     ICredentialManager credentialManager) : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
 {
     /// <summary>
-    /// Gets Authentication Ticket
+    /// Creates Authentication Ticket
     /// </summary>
     /// <param name="@credentials">Injected <see cref="Tuple{string, string}" /></param>
     /// <returns>Instance of <see cref="AuthenticationTicket" /></returns>
@@ -35,7 +35,7 @@ public class BasicAuthenticationHandler(
         List<Claim> @claims =
         [
             new(ClaimTypes.Name, @credentials.Name),
-            new(ClaimTypes.AuthenticationInstant, DateTime.Now.ToString()),
+            new(ClaimTypes.AuthenticationInstant, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
             new(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
             new(ClaimTypes.Version, Environment.OSVersion.VersionString),
             new(ClaimTypes.System, Environment.MachineName)
