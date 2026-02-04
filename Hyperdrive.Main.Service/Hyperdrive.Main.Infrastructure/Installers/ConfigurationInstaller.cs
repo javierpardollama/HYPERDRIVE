@@ -25,6 +25,20 @@ public static class ConfigurationInstaller
     }
 
     /// <summary>
+    ///     Installs Rabbit Settings
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder" /></param>
+    public static RabbitSettings InstallRabbitSetttings(this IHostApplicationBuilder @builder)
+    {
+        var @rabbitSettings = new RabbitSettings();
+
+        @builder.Configuration.GetSection("Rabbit").Bind(@rabbitSettings);
+        @builder.Services.Configure<RabbitSettings>(@builder.Configuration.GetSection("Rabbit"));
+
+        return @rabbitSettings;
+    }
+
+    /// <summary>
     ///     Installs Rate Limit Settings
     /// </summary>
     /// <param name="builder">Injected <see cref="IHostApplicationBuilder" /></param>

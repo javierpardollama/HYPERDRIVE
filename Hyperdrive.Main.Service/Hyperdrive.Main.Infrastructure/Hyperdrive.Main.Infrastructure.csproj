@@ -16,6 +16,7 @@
 	<ItemGroup>
 		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.1" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
+		<PackageReference Include="RabbitMQ.Client" Version="7.2.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.2" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />

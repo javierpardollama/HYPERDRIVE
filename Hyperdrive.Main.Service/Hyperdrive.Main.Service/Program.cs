@@ -11,6 +11,7 @@ builder.Configuration.AddEnvironmentVariables();
 
 var @jwtSettings = @builder.InstallJwtSetttings();
 var @rateSettings = @builder.InstallRateLimitSettings();
+var @rabbitSettings = @builder.InstallRabbitSetttings();
 
 @builder.Services.InstallEntityFramework(builder.Configuration);
 
@@ -38,6 +39,8 @@ builder.Services.InstallApiVersions();
 @builder.Services.InstallProblemDetails();
 
 @builder.Services.InstallRateLimiter(@rateSettings);
+
+@builder.Services.InstallRabbit(@rabbitSettings);
 
 @builder.InstallAspireServices();
 
