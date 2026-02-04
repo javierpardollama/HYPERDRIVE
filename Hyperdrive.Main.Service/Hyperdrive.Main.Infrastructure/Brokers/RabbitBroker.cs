@@ -17,8 +17,8 @@ namespace Hyperdrive.Main.Infrastructure.Brokers;
 /// <param name="settings">Injected <see cref="IOptions{RabbitSettings}"/></param>
 public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> settings) : IRabbitBroker
 {
-    private readonly IConnection _connection = connection;
-    private readonly IOptions<RabbitSettings> _settings = settings;
+    private readonly IConnection Connection = connection;
+    private readonly IOptions<RabbitSettings> Settings = settings;
 
     /// <summary>
     /// Publishes Messages
@@ -29,16 +29,16 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
     public async Task Publish(string message, CancellationToken cancellationToken = default)
     {
         var channelOptions = new CreateChannelOptions(
-             publisherConfirmationsEnabled: _settings.Value.PublisherConfirmationsEnabled,
-             publisherConfirmationTrackingEnabled: _settings.Value.PublisherConfirmationTrackingEnabled
+             publisherConfirmationsEnabled: Settings.Value.PublisherConfirmationsEnabled,
+             publisherConfirmationTrackingEnabled: Settings.Value.PublisherConfirmationTrackingEnabled
          );
 
-        await using var channel = await _connection.CreateChannelAsync(channelOptions, cancellationToken);
+        await using var channel = await Connection.CreateChannelAsync(channelOptions, cancellationToken);
 
-        await channel.QueueDeclareAsync(queue: _settings.Value.Queue,
-                                        durable: _settings.Value.Durable,
-                                        exclusive: _settings.Value.Exclusive,
-                                        autoDelete: _settings.Value.AutoDelete,
+        await channel.QueueDeclareAsync(queue: Settings.Value.Queue,
+                                        durable: Settings.Value.Durable,
+                                        exclusive: Settings.Value.Exclusive,
+                                        autoDelete: Settings.Value.AutoDelete,
                                         cancellationToken: cancellationToken);
 
         var props = new BasicProperties
@@ -52,8 +52,8 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
         {
             await channel.BasicPublishAsync(
                 exchange: string.Empty,
-                routingKey: _settings.Value.Key,
-                mandatory: _settings.Value.Mandatory,
+                routingKey: Settings.Value.Key,
+                mandatory: Settings.Value.Mandatory,
                 body: body,
                 basicProperties: props,
                 cancellationToken: cancellationToken
