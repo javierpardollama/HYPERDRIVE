@@ -3,7 +3,6 @@ using Hyperdrive.Ai.Domain.Managers;
 using Hyperdrive.Ai.Domain.Profiles;
 using Hyperdrive.Ai.Infrastructure.Contexts.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +13,7 @@ namespace Hyperdrive.Ai.Infrastructure.Managers;
 /// <summary>
 ///     Represents a <see cref="ChatMessageManager" /> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IChatMessageManager"/>
 /// </summary>
-public class ChatMessageManager(IApplicationContext context,
-                     ILogger<ChatMessageManager> logger) : BaseManager(context), IChatMessageManager
+public class ChatMessageManager(IApplicationContext context) : BaseManager(context), IChatMessageManager
 {
     /// <summary>
     /// Finds Latest Chat Messages By Chat Id

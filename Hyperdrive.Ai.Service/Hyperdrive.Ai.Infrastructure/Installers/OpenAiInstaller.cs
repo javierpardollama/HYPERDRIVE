@@ -19,12 +19,12 @@ public static class OpenAiInstaller
     {
         @this.AddSingleton(serviceProvider =>
         {
-            return new ChatClient(@settings.Model, @settings.Key);
+            return new ChatClient(@settings.Chat.Model, @settings.Chat.Key);
         });
 
         @this.AddSingleton(serviceProvider =>
         {
-            return new EmbeddingClient(@settings.Model, @settings.Key);
+            return new EmbeddingClient(@settings.Embedding.Model, @settings.Embedding.Key);
         });
     }
 }
