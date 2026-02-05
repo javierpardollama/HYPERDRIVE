@@ -4,6 +4,7 @@ using Hyperdrive.Main.Domain.Settings;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
+using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,12 +29,11 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
     /// <returns>Instance of <see cref="Task"/></returns>
     public async Task Publish(string message, CancellationToken cancellationToken = default)
     {
-        var channelOptions = new CreateChannelOptions(
-             publisherConfirmationsEnabled: Settings.Value.PublisherConfirmationsEnabled,
-             publisherConfirmationTrackingEnabled: Settings.Value.PublisherConfirmationTrackingEnabled
-         );
+        var channelOptions = new CreateChannelOptions(publisherConfirmationsEnabled: Settings.Value.PublisherConfirmationsEnabled,
+                                                      publisherConfirmationTrackingEnabled: Settings.Value.PublisherConfirmationTrackingEnabled);
 
-        await using var channel = await Connection.CreateChannelAsync(channelOptions, cancellationToken);
+        await using var channel = await Connection.CreateChannelAsync(channelOptions,
+                                                                      cancellationToken);
 
         await channel.QueueDeclareAsync(queue: Settings.Value.Queue,
                                         durable: Settings.Value.Durable,
@@ -50,14 +50,16 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
 
         try
         {
-            await channel.BasicPublishAsync(
-                exchange: string.Empty,
-                routingKey: Settings.Value.Key,
-                mandatory: Settings.Value.Mandatory,
-                body: body,
-                basicProperties: props,
-                cancellationToken: cancellationToken
-            );
+            await channel.BasicPublishAsync(exchange: string.Empty,
+                                            routingKey: Settings.Value.Key,
+                                            mandatory: Settings.Value.Mandatory,
+                                            body: body,
+                                            basicProperties: props,
+                                            cancellationToken: cancellationToken);
+        }
+        catch (PublishException ex)
+        {
+            throw new BrokerException("Message not send.", ex);
         }
         catch (AlreadyClosedException ex)
         {
@@ -67,5 +69,14 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
         {
             throw new BrokerException("Broker did not confirm.", ex);
         }
+        catch (OperationCanceledException ex)
+        {
+            throw new BrokerException("Message cancelled.", ex);
+        }
+        catch (SemaphoreFullException ex)
+        {
+            throw new BrokerException("Threads exceded.", ex);
+        }
+
     }
 }
