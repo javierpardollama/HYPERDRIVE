@@ -15,7 +15,7 @@ public static class ExceptionProfile
     /// </summary>
     /// <param name="exception">Injected <see cref="Exception" /></param>
     /// <returns>Instance of <see cref="int" /></returns>
-    public static int ToCode(Exception exception)
+    public static int ToCode(this Exception exception)
     {
         return exception.GetType().Name switch
         {

@@ -31,7 +31,7 @@ public class ProblemDetailsExceptionHandler(IProblemDetailsService problemDetail
                 Title = nameof(Exception),
                 Detail = exception.Message,
                 Type = exception.GetType().Name,
-                Status = ExceptionProfile.ToCode(exception),
+                Status = exception.ToCode(),
             },
             Exception = exception,
 

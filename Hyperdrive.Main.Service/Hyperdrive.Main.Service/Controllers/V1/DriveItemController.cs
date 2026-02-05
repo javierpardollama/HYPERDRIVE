@@ -36,6 +36,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
@@ -49,6 +50,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindPaginatedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedDriveItemByApplicationUserIdQuery { ViewModel = @viewModel }));
@@ -62,6 +64,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="FilterPageDriveItem"/></param>
@@ -75,6 +78,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindPaginatedSharedDriveItemByApplicationUserId([FromBody] FilterPageDriveItem @viewModel) => Ok(value: await mediator.Send(new FindPaginatedSharedDriveItemByApplicationUserIdQuery { ViewModel = @viewModel }));
@@ -88,6 +92,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="AddDriveItem"/></param>
@@ -101,6 +106,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> AddDriveItem([FromBody] AddDriveItem @viewModel) => Ok(value: await mediator.Send(new AddDriveItemCommand { ViewModel = @viewModel }));
@@ -114,6 +120,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="UpdateDriveItemName"/></param>
@@ -127,6 +134,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> UpdateDriveItemName([FromBody] UpdateDriveItemName @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemNameCommand { ViewModel = @viewModel }));
@@ -140,6 +148,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="UpdateDriveItemName"/></param>
@@ -153,6 +162,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> UpdateDriveItemSharedWith([FromBody] UpdateDriveItemSharedWith @viewModel) => Ok(value: await mediator.Send(new UpdateDriveItemSharedWithCommand { ViewModel = @viewModel }));
@@ -166,6 +176,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="id">Injected <see cref="int"/></param>
@@ -179,6 +190,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> RemoveDriveItemById(int @id)

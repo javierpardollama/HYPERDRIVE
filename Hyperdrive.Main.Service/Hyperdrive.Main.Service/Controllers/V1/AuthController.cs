@@ -32,8 +32,9 @@ public class AuthController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>     
+    /// <response code="500">InternalServerError</response>       
     /// <param name="viewModel">Injected <see cref="AuthSignIn"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
@@ -46,6 +47,7 @@ public class AuthController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> SignIn([FromBody] AuthSignIn @viewModel) => Ok(value: await mediator.Send(new SignInCommand { ViewModel = @viewModel }));
@@ -59,8 +61,9 @@ public class AuthController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>     
+    /// <response code="500">InternalServerError</response>      
     /// <param name="viewModel">Injected <see cref="AuthJoinIn"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
@@ -73,6 +76,7 @@ public class AuthController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> JoinIn([FromBody] AuthJoinIn @viewModel) => Ok(value: await mediator.Send(new JoinInCommand { ViewModel = @viewModel }));
@@ -86,6 +90,7 @@ public class AuthController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="AuthSignOut"/></param>
@@ -100,6 +105,7 @@ public class AuthController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> SignOut([FromBody] AuthSignOut @viewModel)

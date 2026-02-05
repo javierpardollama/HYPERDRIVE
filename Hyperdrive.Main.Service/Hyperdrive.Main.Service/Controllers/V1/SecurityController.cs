@@ -32,8 +32,9 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>     
+    /// <response code="500">InternalServerError</response>      
     /// <param name="viewModel">Injected <see cref="SecurityPasswordChange"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
@@ -46,6 +47,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ResetPassword([FromBody] SecurityPasswordReset @viewModel) => Ok(value: await mediator.Send(new PasswordResetCommand { ViewModel = @viewModel }));
@@ -59,6 +61,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="SecurityPasswordReset"/></param>
@@ -73,6 +76,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ChangePassword([FromBody] SecurityPasswordChange @viewModel) => Ok(value: await mediator.Send(new PasswordChangeCommand { ViewModel = @viewModel }));
@@ -86,8 +90,9 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>     
+    /// <response code="500">InternalServerError</response>      
     /// <param name="viewModel">Injected <see cref="SecurityEmailChange"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
@@ -100,6 +105,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ChangeEmail([FromBody] SecurityEmailChange @viewModel) => Ok(value: await mediator.Send(new EmailChangeCommand { ViewModel = @viewModel }));
@@ -113,6 +119,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="SecurityPhoneNumberChange"/></param>
@@ -127,6 +134,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ChangePhoneNumber([FromBody] SecurityPhoneNumberChange @viewModel) => Ok(value: await mediator.Send(new PhoneNumberChangeCommand { ViewModel = @viewModel }));
@@ -140,6 +148,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="SecurityNameChange"/></param>
@@ -154,6 +163,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> ChangeName([FromBody] SecurityNameChange @viewModel) => Ok(value: await mediator.Send(new NameChangeCommand { ViewModel = @viewModel }));
@@ -167,6 +177,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     /// <response code="408">RequestTimeout</response>
     /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
+    /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
     /// <param name="viewModel">Injected <see cref="SecurityRefreshTokenReset"/></param>
@@ -180,6 +191,7 @@ public class SecurityController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> RefreshTokens([FromBody] SecurityRefreshTokenReset @viewModel) => Ok(value: await mediator.Send(new RefreshTokenResetCommand { ViewModel = @viewModel }));
