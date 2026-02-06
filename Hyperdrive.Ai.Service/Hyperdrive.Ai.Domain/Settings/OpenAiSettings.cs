@@ -27,9 +27,9 @@ public class EmbeddingSettings
     public string Model { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Key" />
+    ///     Gets or Sets <see cref="ApiKey" />
     /// </summary>
-    public string Key { get; set; }
+    public string ApiKey { get; set; }
 }
 
 
@@ -44,7 +44,7 @@ public class ChatSettings
     public string Model { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Key" />
+    ///     Gets or Sets <see cref="ApiKey" />
     /// </summary>
-    public string Key { get; set; }
+    public string ApiKey { get; set; }
 }

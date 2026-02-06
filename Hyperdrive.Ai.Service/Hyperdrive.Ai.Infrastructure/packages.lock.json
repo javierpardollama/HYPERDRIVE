@@ -120,11 +120,11 @@
       },
       "MongoDB.EntityFrameworkCore": {
         "type": "Direct",
-        "requested": "[9.0.4, )",
-        "resolved": "9.0.4",
-        "contentHash": "fCC2DDBL9rxBAAS/UYZm8tT176353S9F0RjhvRdENb70agPWRSv7ybhwDRCopcVKkXqGlpATHGhXGk5amB77sw==",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "brb1VNR3wuAsqklREP5rkUTFFe/QFWI7l40Y/kGIiYsRES8IVsr2NQoNfalFt4Of9c2omEQYQrIPU1Hf3k+7PQ==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.12",
+          "Microsoft.EntityFrameworkCore": "10.0.2",
           "MongoDB.Driver": "3.6.0"
         }
       },

@@ -18,8 +18,8 @@ public class CredentialManager(IOptions<ApiSettings> apiSettings) : BaseManager(
     /// <returns>Instance of <see cref="bool" /></returns>
     public bool CanAuthenticate(string name, string password)
     {
-        bool @result = ApiSettings.Value.ApiLock == name &&
-                 ApiSettings.Value.ApiKey == password;
+        bool @result = ApiSettings.Value.ApiUser == name &&
+                 ApiSettings.Value.ApiPassword == password;
 
         return @result;
     }
