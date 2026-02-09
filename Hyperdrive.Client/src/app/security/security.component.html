@@ -1,15 +1,15 @@
 <div class="container">
 
     <div class="profile-content-line">
-        <strong>Bienvenid&commat;</strong>
+        <strong>Welcome</strong>
     </div>
 
     <div class="profile-content-line">
-        Gestiona tu información y la seguridad para mejorar tu experiencia.
+       Manage your info and security to make your experience better.
     </div>
 
     <div class="profile-content-line">
-        Esta es la información de tu perfil:
+        This is your profile info:
     </div>
 
     <div class="profile-content-line profile-content-line-update">
@@ -21,15 +21,15 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>Información básica</mat-panel-title>
+                <mat-panel-title>Basic info</mat-panel-title>
             </mat-expansion-panel-header>
             <div class="profile-content-line">
-                <p><em>Es posible que otr&commat;s usuari&commat;s puedan ver parte de la información</em></p>
+                <p><em>It's possible that other users might be able to see some of the information</em></p>
             </div>
 
             <div class="profile-content-line">
                 <div class="profile-content-cell profile-content-cell-start">
-                    <p>Nombre: {{User?.FirstName}} {{User?.LastName}}</p>
+                    <p>Name: {{User?.FirstName}} {{User?.LastName}}</p>
                 </div>
                 <div class="profile-content-cell profile-content-cell-end">
                     <button type="button" id="security-name-change-button" mat-raised-button color="primary"
@@ -40,12 +40,12 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>Información de contacto</mat-panel-title>
+                <mat-panel-title>Contact info</mat-panel-title>
             </mat-expansion-panel-header>
 
             <div class="profile-content-line">
                 <div class="profile-content-cell profile-content-cell-start">
-                    <p>Correo electrónico: {{User?.Email}}</p>
+                    <p>Email: {{User?.Email}}</p>
                 </div>
                 <div class="profile-content-cell profile-content-cell-end">
                     <button type="button" id="security-email-change-button" mat-raised-button color="primary"
@@ -54,7 +54,7 @@
             </div>
             <div class="profile-content-line">
                 <div class="profile-content-cell profile-content-cell-start">
-                    <p>Teléfono: {{User?.PhoneNumber}}</p>
+                    <p>Phone: {{User?.PhoneNumber}}</p>
                 </div>
                 <div class="profile-content-cell profile-content-cell-end">
                     <button type="button" id="security-phonenumber-change-button" mat-raised-button color="primary"
@@ -65,15 +65,15 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>Contraseña</mat-panel-title>
+                <mat-panel-title>Password</mat-panel-title>
             </mat-expansion-panel-header>
 
             <div class="profile-content-line">
-                <p><em>Si eliges una contraseña segura, ayudas a proteger tu cuenta</em></p>
+                <p><em>If you pick a strong password, you help keep your account safe</em></p>
             </div>
             <div class="profile-content-line">
                 <div class="profile-content-cell profile-content-cell-start">
-                    <p>Contraseña: ********</p>
+                    <p>Password: ********</p>
                 </div>
                 <div class="profile-content-cell profile-content-cell-end">
                     <button type="button" id="security-password-change-button" mat-raised-button color="primary"
