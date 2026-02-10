@@ -11,19 +11,16 @@ namespace Hyperdrive.Ai.Domain.Entities;
 public class Interaction : IBase, IKey
 {
     [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [BsonElement("created_at")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("created_by")]
     public Guid CreatedBy { get; set; }
 
     [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("modified_by")]
     public Guid? ModifiedBy { get; set; }
 
@@ -34,7 +31,6 @@ public class Interaction : IBase, IKey
     public DateTime? DeletedAt { get; set; }
 
     [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("deleted_by")]
     public Guid? DeletedBy { get; set; }
 
@@ -42,7 +38,6 @@ public class Interaction : IBase, IKey
     public bool Deleted { get; set; } = false;
 
     [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     [BsonElement("chat_id")]
     public Guid ChatId { get; set; }
 

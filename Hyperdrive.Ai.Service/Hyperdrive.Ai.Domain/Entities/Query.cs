@@ -8,7 +8,6 @@ namespace Hyperdrive.Ai.Domain.Entities;
 public class Query : IBase, IKey
 {
     [BsonId]
-    [BsonRepresentation(BsonType.Binary)]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [BsonElement("created_at")]

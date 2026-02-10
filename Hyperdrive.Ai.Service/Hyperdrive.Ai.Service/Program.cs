@@ -11,6 +11,7 @@ var @builder = WebApplication.CreateBuilder(args);
 
 var @apiSettings = @builder.InstallApiSetttings();
 var @aiSettings = @builder.InstallOpenAiSettings();
+var @rabbitSettings = @builder.InstallRabbitSetttings();
 var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallEntityFramework(@builder.Configuration);
@@ -42,6 +43,8 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallProblemDetails();
 @builder.Services.InstallRateLimiter(@rateSettings);
+
+@builder.Services.InstallRabbit(@rabbitSettings);
 
 @builder.InstallAspireServices();
 

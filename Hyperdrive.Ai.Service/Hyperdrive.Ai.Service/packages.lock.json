@@ -1332,6 +1332,11 @@
           "Polly.Core": "8.4.2"
         }
       },
+      "RabbitMQ.Client": {
+        "type": "Transitive",
+        "resolved": "7.2.0",
+        "contentHash": "PPQ7cF7lwbhqC4up6en1bTUZlz06YqQwJecOJzsguTtyhNA7oL5uNDZIx/h6ZfcyPZV4V3DYKSCxfm4RUFLcbA=="
+      },
       "SharpCompress": {
         "type": "Transitive",
         "resolved": "0.30.1",
@@ -1510,6 +1515,7 @@
           "OpenTelemetry.Instrumentation.AspNetCore": "[1.15.0, )",
           "OpenTelemetry.Instrumentation.Http": "[1.15.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.15.0, )",
+          "RabbitMQ.Client": "[7.2.0, )",
           "Swashbuckle.AspNetCore": "[10.1.2, )"
         }
       }
