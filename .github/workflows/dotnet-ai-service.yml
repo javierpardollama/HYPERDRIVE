@@ -1,4 +1,4 @@
-name: Build .NET Service
+name: Ai - Build .NET Service
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: Hyperdrive.Main.Service
+    working-directory: Hyperdrive.Ai.Service
 
 jobs:
   build:
@@ -30,10 +30,10 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: 📥 Restore dependencies
-        run: dotnet restore --locked-mode Hyperdrive.Main.Service/Hyperdrive.Main.Service.csproj
+        run: dotnet restore --locked-mode Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj
 
       - name: ♻️ Clean project
-        run: dotnet clean Hyperdrive.Main.Service/Hyperdrive.Main.Service.csproj
+        run: dotnet clean Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj
 
       - name: 🏗️ Build project
-        run: dotnet build --no-restore Hyperdrive.Main.Service/Hyperdrive.Main.Service.csproj    
+        run: dotnet build --no-restore Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj    

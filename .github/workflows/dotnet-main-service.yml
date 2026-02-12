@@ -1,0 +1,39 @@
+name: Main - Build .NET Service
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: Hyperdrive.Main.Service
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🛠️ Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: 📥 Restore dependencies
+        run: dotnet restore --locked-mode Hyperdrive.Main.Service/Hyperdrive.Main.Service.csproj
+
+      - name: ♻️ Clean project
+        run: dotnet clean Hyperdrive.Main.Service/Hyperdrive.Main.Service.csproj
+
+      - name: 🏗️ Build project
+        run: dotnet build --no-restore Hyperdrive.Main.Service/Hyperdrive.Main.Service.csproj    

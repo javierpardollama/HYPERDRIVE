@@ -1,6 +1,11 @@
 # HYPERDRIVE
 
-[![Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]([https://github.com/coverlet-coverage/coverlet/blob/master/LICENSE](https://github.com/javierpardollama/HYPERDRIVE/blob/main/LICENSE))
+[![Main - Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-infrastructure.yml) 
+[![Main - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-service.yml) 
+[![Ai - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-ai-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-ai-service.yml) 
+[![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml) 
+![GitHub License](https://img.shields.io/github/license/javierpardollama/HYPERDRIVE)
+
 
 This project arose as a solution for managing the current state of reserved files, administering the uploading and downloading of supplied files.
 
