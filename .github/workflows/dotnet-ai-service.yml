@@ -2,9 +2,14 @@ name: Ai - Build .NET Service
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]    
+    paths:
+        - 'Hyperdrive.Ai.Service/**'
+
   pull_request:
-    branches: [main]
+    branches: [ main ]
+    paths:
+        - 'Hyperdrive.Ai.Service/**'
 
 permissions:
   contents: read
