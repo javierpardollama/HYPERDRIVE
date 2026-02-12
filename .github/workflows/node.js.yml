@@ -2,9 +2,14 @@ name: Build Angular App
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]    
+    paths:
+        - 'Hyperdrive.Client/**'
+
   pull_request:
     branches: [ main ]
+    paths:
+        - 'Hyperdrive.Client/**'
 
 permissions:
   contents: read  
