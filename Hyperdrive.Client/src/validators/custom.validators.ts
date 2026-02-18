@@ -56,8 +56,17 @@ export class CustomValidators {
                 });
             }
 
-            return hasduplicates ? { duplicate: true } : null;
+            return hasduplicates ? { duplicated: true } : null;
         };
     }
 
+    public static Empty(): ValidationErrors | null {
+        return (control: AbstractControl): ValidationErrors | null => {
+            const v = control.value;
+
+            const isempty = IsEmpty(v);
+
+            return isempty ? { empty: true } : null;
+        };
+    }
 }
