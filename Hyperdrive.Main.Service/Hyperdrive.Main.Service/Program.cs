@@ -30,6 +30,7 @@ builder.Services.InstallApiVersions();
 
 @builder.Services.InstallManagers();
 @builder.Services.InstallMediatR();
+@builder.Services.InstallRabbit();
 
 @builder.Services.AddResponseCaching();
 
@@ -39,8 +40,6 @@ builder.Services.InstallApiVersions();
 @builder.Services.InstallProblemDetails();
 
 @builder.Services.InstallRateLimiter(@rateSettings);
-
-@builder.Services.InstallRabbit(@rabbitSettings);
 
 @builder.InstallAspireServices();
 

@@ -16,6 +16,11 @@ public class RabbitSettings
     public string Queue { get; set; }
 
     /// <summary>
+    /// Gets or Sets <see cref="User"/>
+    /// </summary>
+    public string User { get; set; }
+
+    /// <summary>
     /// Gets or Sets <see cref="Key"/>
     /// </summary>
     public string Key { get; set; }
@@ -34,6 +39,11 @@ public class RabbitSettings
     /// Gets or Sets <see cref="AutomaticRecoveryEnabled"/>
     /// </summary>
     public bool AutomaticRecoveryEnabled { get; set; }
+
+    /// <summary>
+    /// Gets or Sets <see cref="NetworkRecoveryInterval"/>
+    /// </summary>
+    public int NetworkRecoveryInterval { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="TopologyRecoveryEnabled"/>

@@ -24,7 +24,7 @@ public class RabbitBroker : IHostedService, IRabbitBroker
     private readonly IOptions<RabbitSettings> _settings;
 
     /// <summary>
-    /// Initializes a new Instane of <see cref="RabbitBroker"/>
+    /// Initializes a new Instance of <see cref="RabbitBroker"/>
     /// </summary>
     /// <param name="settings">Injected <see cref="IOptions{RabbitSettings}"/></param>
     public RabbitBroker(IOptions<RabbitSettings> settings)

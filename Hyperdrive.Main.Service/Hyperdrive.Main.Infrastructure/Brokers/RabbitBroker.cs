@@ -14,12 +14,54 @@ namespace Hyperdrive.Main.Infrastructure.Brokers;
 /// <summary>
 /// Represents a <see cref="RabbitBroker"/> class. Implements <see cref="IRabbitBroker"/>
 /// </summary>
-/// <param name="connection">Injected <see cref="IConnection"/></param>
-/// <param name="settings">Injected <see cref="IOptions{RabbitSettings}"/></param>
-public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> settings) : IRabbitBroker
+public class RabbitBroker : IRabbitBroker
 {
-    private readonly IConnection Connection = connection;
-    private readonly IOptions<RabbitSettings> Settings = settings;
+    private readonly ConnectionFactory _factory;
+    private IConnection _connection;
+    private IChannel _channel;
+    private readonly IOptions<RabbitSettings> _settings;
+
+    /// <summary>
+    /// Initializes a new Instance of <see cref="RabbitBroker"/>
+    /// </summary>
+    /// <param name="settings">Injected <see cref="IOptions{RabbitSettings}"/></param>
+    public RabbitBroker(IOptions<RabbitSettings> settings)
+    {
+        _settings = settings;
+        _factory = new ConnectionFactory
+        {
+            HostName = settings.Value.Url,
+            UserName = settings.Value.User,
+            Password = settings.Value.Key,
+            AutomaticRecoveryEnabled = settings.Value.AutomaticRecoveryEnabled,
+            NetworkRecoveryInterval = TimeSpan.FromSeconds(settings.Value.NetworkRecoveryInterval)
+        };
+    }
+
+    /// <summary>
+    /// Connects
+    /// </summary>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task"/></returns>   
+    public async Task ConnectAsync(CancellationToken cancellationToken = default)
+    {
+        if (_connection is { IsOpen: true })
+            return;
+
+        _connection = await _factory.CreateConnectionAsync(cancellationToken);
+
+        var channelOptions = new CreateChannelOptions(publisherConfirmationsEnabled: _settings.Value.PublisherConfirmationsEnabled,
+                                                     publisherConfirmationTrackingEnabled: _settings.Value.PublisherConfirmationTrackingEnabled);
+
+        _channel = await _connection.CreateChannelAsync(channelOptions,
+                                                      cancellationToken);
+
+        await _channel.QueueDeclareAsync(queue: _settings.Value.Queue,
+                                        durable: _settings.Value.Durable,
+                                        exclusive: _settings.Value.Exclusive,
+                                        autoDelete: _settings.Value.AutoDelete,
+                                        cancellationToken: cancellationToken);
+    }
 
     /// <summary>
     /// Publishes Messages
@@ -29,18 +71,6 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
     /// <returns>Instance of <see cref="Task"/></returns>
     public async Task Publish(string message, CancellationToken cancellationToken = default)
     {
-        var channelOptions = new CreateChannelOptions(publisherConfirmationsEnabled: Settings.Value.PublisherConfirmationsEnabled,
-                                                      publisherConfirmationTrackingEnabled: Settings.Value.PublisherConfirmationTrackingEnabled);
-
-        await using var channel = await Connection.CreateChannelAsync(channelOptions,
-                                                                      cancellationToken);
-
-        await channel.QueueDeclareAsync(queue: Settings.Value.Queue,
-                                        durable: Settings.Value.Durable,
-                                        exclusive: Settings.Value.Exclusive,
-                                        autoDelete: Settings.Value.AutoDelete,
-                                        cancellationToken: cancellationToken);
-
         var props = new BasicProperties
         {
             DeliveryMode = DeliveryModes.Persistent
@@ -50,9 +80,11 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
 
         try
         {
-            await channel.BasicPublishAsync(exchange: string.Empty,
-                                            routingKey: Settings.Value.Key,
-                                            mandatory: Settings.Value.Mandatory,
+            await ConnectAsync(cancellationToken);
+
+            await _channel.BasicPublishAsync(exchange: string.Empty,
+                                            routingKey: _settings.Value.Key,
+                                            mandatory: _settings.Value.Mandatory,
                                             body: body,
                                             basicProperties: props,
                                             cancellationToken: cancellationToken);
@@ -78,5 +110,15 @@ public class RabbitBroker(IConnection connection, IOptions<RabbitSettings> setti
             throw new BrokerException("Threads exceded.", ex);
         }
 
+    }
+
+    /// <summary>
+    /// Disposes see <see cref="RabbitBroker"/>
+    /// </summary>
+    /// <returns>Instance of <see cref="ValueTask"/></returns>
+    public async ValueTask DisposeAsync()
+    {
+        await _channel.DisposeAsync();
+        await _connection.DisposeAsync();
     }
 }
