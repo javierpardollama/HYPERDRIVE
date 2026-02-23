@@ -1,5 +1,4 @@
-﻿using Hyperdrive.Ai.Domain.Brokers;
-using Hyperdrive.Ai.Domain.Settings;
+﻿using Hyperdrive.Ai.Domain.Settings;
 using Hyperdrive.Ai.Infrastructure.Brokers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +16,6 @@ public static class BrokerInstaller
     /// <param name="settings">Injected <see cref="RabbitSettings" /></param>
     public static void InstallRabbit(this IServiceCollection @this, RabbitSettings @settings)
     {
-        @this.AddSingleton<IRabbitBroker, RabbitBroker>();
+        @this.AddHostedService<RabbitBroker>();
     }
 }
