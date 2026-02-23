@@ -79,8 +79,7 @@ public class RabbitBroker : IHostedService, IRabbitBroker
             var consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.ReceivedAsync += (model, ea) =>
             {
-                var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
+                var message = Encoding.UTF8.GetString(ea.Body.Span);
                 return Task.CompletedTask;
             };
 
