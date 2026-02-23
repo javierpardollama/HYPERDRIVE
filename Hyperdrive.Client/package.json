@@ -2,6 +2,26 @@
   "name": "hyperdrive.client",
   "version": "0.0.0",
   "description": "Solution for managing file storage, viewing, and downloading",
+  "keywords": [
+    "open-source",
+    "csharp",
+    "rest-api",
+    "angular-material",
+    "domain-driven-design",
+    "clean-architecture",
+    "electron-app",
+    "nunit-tests",
+    "unlicense-license",
+    "postgresql-database",
+    "hexagonal-architecture",
+    "open-api-v3",
+    "document-management",
+    "github-actions",
+    "pwa-app",
+    "open-telemetry",
+    "net10",
+    "angular21"
+  ],
   "author": {
     "name": "Javier Pardo",
     "email": ""
