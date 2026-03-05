@@ -51,4 +51,4 @@ This project includes a "docker-compose" file. Configure it to be your startup p
 
 ## LICENSE
 
-[MIT](https://github.com/javierpardollama/HYPERDRIVE/blob/master/LICENSE)
+[Unlicense](https://github.com/javierpardollama/HYPERDRIVE/blob/main/LICENSE)
