@@ -5,20 +5,13 @@
 }
 
 <div class="grid-page">
-    <h4 class="breadcrumb">{{page.ParentName ?? ""}}</h4>
-
-    <button mat-raised-button [matMenuTriggerFor]="menu" color="primary" class="add-button" matTooltip="Add New"><span>Add New
-            &plus;</span></button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="NewFolder()" matTooltip="New Folder" id="btn-grid-drive-item-folder-new">Folder</button>
-        <button mat-menu-item (click)="NewFile()" matTooltip="Upload File" id="btn-grid-drive-item-file-new">File</button>
-    </mat-menu>
+    <h4 class="breadcrumb">{{""}}</h4>
 
     <mat-form-field class="grid-filter">
         <input matInput (keyup)="ApplyMyFilter($event.target)" placeholder="Filter">
     </mat-form-field>
 
-    <div class="grid-container mat-elevation-z8" app-drag-drop (OnDropped)="OnDropFiles($event)">
+    <div class="grid-container mat-elevation-z8" app-drag-drop>
         <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- Id Column -->
@@ -58,8 +51,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="ToRecord(row)"
-                (contextmenu)="ToContext($event, row)">
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
         </table>
     </div>

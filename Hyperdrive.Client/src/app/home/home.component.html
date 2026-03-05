@@ -1,1 +1,8 @@
-<app-driveitem-grid></app-driveitem-grid>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="My Files">
+        <app-driveitem-grid></app-driveitem-grid>
+    </mat-tab>
+    <mat-tab label="Shared with me">
+        <app-drive-item-shared-grid></app-drive-item-shared-grid>
+    </mat-tab>
+</mat-tab-group>
