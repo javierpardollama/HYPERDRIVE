@@ -6,15 +6,16 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
 using System;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Infrastructure.Brokers;
 
 /// <summary>
-/// Represents a <see cref="RabbitBroker"/> class. Implements <see cref="IRabbitBroker"/>
+/// Represents a <see cref="RabbitBroker{T}"/> class. Implements <see cref="IRabbitBroker{T}"/>
 /// </summary>
-public class RabbitBroker : IRabbitBroker
+public class RabbitBroker<T> : IRabbitBroker<T>
 {
     private readonly ConnectionFactory _factory;
     private IConnection _connection;
@@ -66,20 +67,22 @@ public class RabbitBroker : IRabbitBroker
     /// <summary>
     /// Publishes Messages
     /// </summary>
-    /// <param name="message">Injected <see cref="string"/></param>
+    /// <param name="message">Injected <see cref="T"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
     /// <returns>Instance of <see cref="Task"/></returns>
-    public async Task Publish(string message, CancellationToken cancellationToken = default)
+    public async Task Publish(T message, CancellationToken cancellationToken = default)
     {
         var props = new BasicProperties
         {
             DeliveryMode = DeliveryModes.Persistent
         };
 
-        var body = Encoding.UTF8.GetBytes(message);
-
         try
         {
+            var messagejson = JsonSerializer.Serialize(message);
+
+            var body = Encoding.UTF8.GetBytes(messagejson);
+
             await ConnectAsync(cancellationToken);
 
             await _channel.BasicPublishAsync(exchange: string.Empty,
@@ -88,6 +91,19 @@ public class RabbitBroker : IRabbitBroker
                                             body: body,
                                             basicProperties: props,
                                             cancellationToken: cancellationToken);
+        }
+
+        catch (NotSupportedException ex)
+        {
+            throw new BrokerException("Message contained unsupported types.", ex);
+        }
+        catch (JsonException ex)
+        {
+            throw new BrokerException("Message contained malformed JSON.", ex);
+        }
+        catch (InvalidOperationException ex)
+        {
+            throw new BrokerException("Invalid JSON Serializer options.", ex);
         }
         catch (PublishException ex)
         {
