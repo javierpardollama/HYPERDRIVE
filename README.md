@@ -4,7 +4,7 @@
 [![Main - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-service.yml) 
 [![Ai - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-ai-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-ai-service.yml) 
 [![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml) 
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+![GitHub License](https://img.shields.io/github/license/javierpardollama/HYPERDRIVE)
 
 
 This project arose as a solution for managing the current state of reserved files, administering the uploading and downloading of supplied files.
@@ -53,4 +53,4 @@ If you are interested in reporting/fixing issues and contributing directly to th
 
 ## LICENSE
 
-[Unlicense](https://github.com/javierpardollama/HYPERDRIVE/blob/main/LICENSE)
+[MIT](https://github.com/javierpardollama/HYPERDRIVE/blob/main/LICENSE)
