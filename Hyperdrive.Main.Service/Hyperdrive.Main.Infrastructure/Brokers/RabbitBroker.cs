@@ -129,7 +129,7 @@ public class RabbitBroker<T> : IRabbitBroker<T>
     }
 
     /// <summary>
-    /// Disposes see <see cref="RabbitBroker{T}"/>
+    /// Disposes <see cref="RabbitBroker{T}"/>
     /// </summary>
     /// <returns>Instance of <see cref="ValueTask"/></returns>
     public async ValueTask DisposeAsync()
