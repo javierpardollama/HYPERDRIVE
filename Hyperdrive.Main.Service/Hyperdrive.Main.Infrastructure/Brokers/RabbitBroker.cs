@@ -129,11 +129,13 @@ public class RabbitBroker<T> : IRabbitBroker<T>
     }
 
     /// <summary>
-    /// Disposes see <see cref="RabbitBroker"/>
+    /// Disposes see <see cref="RabbitBroker{T}"/>
     /// </summary>
     /// <returns>Instance of <see cref="ValueTask"/></returns>
     public async ValueTask DisposeAsync()
     {
+        await _channel.CloseAsync();
+        await _connection.CloseAsync();
         await _channel.DisposeAsync();
         await _connection.DisposeAsync();
     }

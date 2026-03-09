@@ -116,6 +116,8 @@ public class RabbitBroker : IHostedService, IRabbitBroker
     {
         await _channel.CloseAsync(cancellationToken);
         await _connection.CloseAsync(cancellationToken);
+        await _channel.DisposeAsync();
+        await _connection.DisposeAsync();
     }
 
     /// <summary>
@@ -124,6 +126,8 @@ public class RabbitBroker : IHostedService, IRabbitBroker
     /// <returns>Instance of <see cref="ValueTask"/></returns>
     public async ValueTask DisposeAsync()
     {
+        await _channel.CloseAsync();
+        await _connection.CloseAsync();
         await _channel.DisposeAsync();
         await _connection.DisposeAsync();
     }
