@@ -31,11 +31,11 @@ public class RabbitBroker<T> : IRabbitBroker<T>
         _settings = settings;
         _factory = new ConnectionFactory
         {
-            HostName = settings.Value.Url,
-            UserName = settings.Value.User,
-            Password = settings.Value.Key,
-            AutomaticRecoveryEnabled = settings.Value.AutomaticRecoveryEnabled,
-            NetworkRecoveryInterval = TimeSpan.FromSeconds(settings.Value.NetworkRecoveryInterval)
+            HostName = _settings.Value.Url,
+            UserName = _settings.Value.User,
+            Password = _settings.Value.Key,
+            AutomaticRecoveryEnabled = _settings.Value.AutomaticRecoveryEnabled,
+            NetworkRecoveryInterval = TimeSpan.FromSeconds(_settings.Value.NetworkRecoveryInterval)
         };
     }
 
