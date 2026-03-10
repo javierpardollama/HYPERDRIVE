@@ -66,7 +66,7 @@ public class RabbitSettings
     public bool Durable { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="exclusive"/>
+    /// Gets or Sets <see cref="Exclusive"/>
     /// </summary>
     public bool Exclusive { get; set; }
 
