@@ -24,11 +24,13 @@ export class AppComponent {
 
   ApplyContenSecurityPolicy(): void {
     const content = [
-      "default-src 'self'",
-      "style-src 'self' 'unsafe-inline'",
-      "script-src 'self'",
-      "img-src 'self' data:",
-      `connect-src 'self' ${environment.Api.Service} ${environment.Otel.Exporter}`
+      `default-src 'self'`,
+      `style-src 'self' 'unsafe-inline'`,
+      `script-src 'self'`,
+      `img-src 'self' data:`,
+      `connect-src 'self' ${environment.Api.Service} ${environment.Otel.Exporter}`,
+      `trusted-types angular angular#bundler`,
+      `require-trusted-types-for 'script'`
     ].join("; ");
 
     this.meta.addTag({ 'http-equiv': 'Content-Security-Policy', content });
