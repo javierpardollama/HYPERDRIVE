@@ -3,8 +3,8 @@
     driver: bridge
 
 services:
-  db:
-    container_name: db
+  postgres:
+    container_name: postgres
     image: postgres
     restart: always
     init: true
@@ -23,16 +23,37 @@ services:
       retries: 10
       start_period: 10s
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - pg-db-data:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     networks:
       - monitoring
 
+  atlas:
+    container_name: atlas
+    image: mongodb/mongodb-atlas-local:latest   
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: ${ATLAS_INITDB_ROOT_USERNAME}
+      MONGODB_INITDB_ROOT_PASSWORD: ${ATLAS_INITDB_ROOT_PASSWORD}    
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    volumes:
+      - atlas-db-data:/data/db
+    ports:
+      - "${ATLAS_PORT}:${ATLAS_PORT}"
+    networks:
+      - monitoring
 
-  service:
-    container_name: service
-    image: ${DOCKER_REGISTRY-}hyperdriveservice    
+  hyperdrive-main-service:
+    container_name: hyperdrive-main-service
+    image: ${DOCKER_REGISTRY-}hyperdrive-main-service    
     restart: unless-stopped
     init: true
     build:
@@ -47,7 +68,7 @@ services:
       ASPNETCORE_HTTPS_PORTS: ${ASPNETCORE_HTTPS_PORTS}
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-      ConnectionStrings__DefaultConnection: ${DB_CONNECTION}
+      ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
       Jwt__JwtAudience: ${JWT_AUDIENCE}    
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
@@ -58,7 +79,34 @@ services:
     networks:
       - monitoring
     depends_on:
-      - db
+      - postgres
+
+  hyperdrive-ai-service:
+    container_name: hyperdrive-ai-service
+    image: ${DOCKER_REGISTRY-}hyperdrive-ai-service  
+    restart: unless-stopped
+    init: true
+    build:
+      context: .
+      dockerfile: Hyperdrive.Ai.Service/Hyperdrive.Ai.Service/Dockerfile
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ASPNETCORE_HTTP_PORTS: ${ASPNETCORE_HTTP_PORTS}
+      ASPNETCORE_HTTPS_PORTS: ${ASPNETCORE_HTTPS_PORTS}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+      APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
+      ConnectionStrings__DefaultConnection: ${ATLAS_CONNECTION}      
+    ports:
+      - "${ASPNETCORE_HTTP_PORTS}:${ASPNETCORE_HTTP_PORTS}"
+      - "${ASPNETCORE_HTTPS_PORTS}:${ASPNETCORE_HTTPS_PORTS}"
+    networks:
+      - monitoring
+    depends_on:
+      - atlas
 
 volumes:
-  db-data:
+  pg-db-data:
+  atlas-db-data:
