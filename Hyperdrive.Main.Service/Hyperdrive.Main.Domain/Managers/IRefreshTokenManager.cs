@@ -1,6 +1,4 @@
 ﻿using Hyperdrive.Main.Domain.Entities;
-using System;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Domain.Managers
 {

@@ -1,7 +1,5 @@
 ﻿using Hyperdrive.Main.Domain.Dtos;
 using Hyperdrive.Main.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Domain.Managers
 {

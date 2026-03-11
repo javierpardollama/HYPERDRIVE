@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Ai.Domain.Entities.Interfaces;
 
@@ -44,5 +43,5 @@ public interface IBase
     /// Gets or Sets <see cref="Deleted"/>
     /// </summary>
     [Required]
-    public bool Deleted { get; set; }   
+    public bool Deleted { get; set; }
 }

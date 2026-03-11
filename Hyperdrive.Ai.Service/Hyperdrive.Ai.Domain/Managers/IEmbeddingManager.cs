@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Hyperdrive.Ai.Domain.Managers;
+﻿namespace Hyperdrive.Ai.Domain.Managers;
 
 /// <summary>
 /// Represents a <see cref="IEmbeddingManager"/> interface.

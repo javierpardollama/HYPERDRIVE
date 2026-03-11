@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>disable</ImplicitUsings>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<NuGetAuditMode>direct</NuGetAuditMode>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>

@@ -1,6 +1,5 @@
 ﻿using Hyperdrive.Main.Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hyperdrive.Main.Application.Profiles;

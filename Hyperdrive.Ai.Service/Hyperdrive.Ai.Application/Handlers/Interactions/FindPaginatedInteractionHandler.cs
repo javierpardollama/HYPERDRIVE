@@ -3,8 +3,6 @@ using Hyperdrive.Ai.Application.Queries.Interactions;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Managers;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Application.Handlers.Chats;
 

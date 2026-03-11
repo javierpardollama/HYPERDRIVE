@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Hyperdrive.Main.Application.ViewModels.Views;
+﻿namespace Hyperdrive.Main.Application.ViewModels.Views;
 
 /// <summary>
 /// Represents a <see cref="ViewPage{T}"/> class.

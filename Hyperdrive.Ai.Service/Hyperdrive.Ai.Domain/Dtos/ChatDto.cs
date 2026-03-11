@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hyperdrive.Ai.Domain.Dtos;
+﻿namespace Hyperdrive.Ai.Domain.Dtos;
 
 /// <summary>
 ///     Represents a <see cref="ChatDto" /> class

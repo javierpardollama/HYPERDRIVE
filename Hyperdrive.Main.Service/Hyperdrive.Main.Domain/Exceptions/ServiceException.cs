@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hyperdrive.Main.Domain.Exceptions
+﻿namespace Hyperdrive.Main.Domain.Exceptions
 {
     /// <summary>
     /// Represents a <see cref="ServiceException"/> class. Inherits <see cref="Exception"/>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Hyperdrive.Ai.Application.ViewModels.Views;
+﻿namespace Hyperdrive.Ai.Application.ViewModels.Views;
 
 /// <summary>
 ///     Represents a <see cref="ViewAnswer" /> class

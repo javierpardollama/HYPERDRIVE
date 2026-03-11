@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Hyperdrive.Main.Application.ViewModels.Updates;
+﻿namespace Hyperdrive.Main.Application.ViewModels.Updates;
 
 /// <summary>
 /// Represents a <see cref="UpdateApplicationUser"/> class. Inherits <see cref="UpdateBase"/>

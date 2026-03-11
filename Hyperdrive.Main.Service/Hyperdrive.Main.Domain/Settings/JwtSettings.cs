@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Hyperdrive.Main.Domain.Settings;
+﻿namespace Hyperdrive.Main.Domain.Settings;
 
 /// <summary>
 /// Represents a <see cref="JwtSettings"/> class

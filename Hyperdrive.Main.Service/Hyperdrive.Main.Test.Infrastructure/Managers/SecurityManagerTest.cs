@@ -2,10 +2,8 @@ using Hyperdrive.Main.Domain.Entities;
 using Hyperdrive.Main.Infrastructure.Contexts;
 using Hyperdrive.Main.Infrastructure.Managers;
 using Hyperdrive.Main.Test.Infrastructure.Extensions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using System;
 
 namespace Hyperdrive.Main.Test.Infrastructure.Managers;
 

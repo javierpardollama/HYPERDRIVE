@@ -1,8 +1,5 @@
 using Hyperdrive.Main.Application.Installers;
 using Hyperdrive.Main.Infrastructure.Installers;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);

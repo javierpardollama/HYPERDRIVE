@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Infrastructure.Middlewares;
 

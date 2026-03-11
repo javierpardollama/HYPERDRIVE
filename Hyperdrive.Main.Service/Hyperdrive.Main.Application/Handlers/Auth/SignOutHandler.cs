@@ -1,8 +1,6 @@
 using Hyperdrive.Main.Application.Commands.Auth;
 using Hyperdrive.Main.Domain.Managers;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Application.Handlers.Auth;
 

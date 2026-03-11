@@ -1,9 +1,6 @@
 ﻿using Hyperdrive.Ai.Application.Commands.Chats;
 using Hyperdrive.Ai.Domain.Managers;
 using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Application.Handlers.Chats;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Hyperdrive.Main.Domain.Brokers;
+﻿namespace Hyperdrive.Main.Domain.Brokers;
 
 /// <summary>
 /// Represents a <see cref="IRabbitBroker{T}"/> interface. Inherits<see cref="IAsyncDisposable"/>

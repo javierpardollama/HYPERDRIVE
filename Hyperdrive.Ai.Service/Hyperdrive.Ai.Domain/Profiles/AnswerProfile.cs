@@ -1,6 +1,5 @@
 ﻿using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Entities;
-using System.Linq;
 
 namespace Hyperdrive.Ai.Domain.Profiles;
 

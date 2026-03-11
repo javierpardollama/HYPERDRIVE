@@ -1,14 +1,10 @@
-﻿using Hyperdrive.Ai.Application.Commands.Messages;
+﻿using Hyperdrive.Ai.Application.Commands.Interactions;
 using Hyperdrive.Ai.Application.Profiles;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Managers;
 using Hyperdrive.Ai.Domain.Profiles;
 using MediatR;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Application.Handlers.Interactions;

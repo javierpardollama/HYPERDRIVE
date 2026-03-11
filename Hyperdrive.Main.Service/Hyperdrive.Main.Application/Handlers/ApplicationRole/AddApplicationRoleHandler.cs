@@ -3,8 +3,6 @@ using Hyperdrive.Main.Application.Profiles;
 using Hyperdrive.Main.Application.ViewModels.Views;
 using Hyperdrive.Main.Domain.Managers;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 using Entities = Hyperdrive.Main.Domain.Entities;
 
 namespace Hyperdrive.Main.Application.Handlers.ApplicationRole;

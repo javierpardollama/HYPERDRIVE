@@ -1,9 +1,6 @@
 ﻿using Hyperdrive.Ai.Application.Profiles;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Application.Handlers;
 

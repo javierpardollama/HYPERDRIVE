@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Hyperdrive.Ai.Domain.Dtos;
+﻿namespace Hyperdrive.Ai.Domain.Dtos;
 
 public class AnswerDto
 {

@@ -3,11 +3,8 @@ using Hyperdrive.Main.Application.ViewModels.Filters;
 using Hyperdrive.Main.Application.ViewModels.Updates;
 using Hyperdrive.Main.Application.ViewModels.Views;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Test.Service.Controllers;
 

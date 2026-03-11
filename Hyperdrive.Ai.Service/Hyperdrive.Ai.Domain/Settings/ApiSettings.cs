@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Hyperdrive.Ai.Domain.Settings;
+﻿namespace Hyperdrive.Ai.Domain.Settings;
 
 /// <summary>
 ///     Represents a <see cref="ApiSettings" /> class

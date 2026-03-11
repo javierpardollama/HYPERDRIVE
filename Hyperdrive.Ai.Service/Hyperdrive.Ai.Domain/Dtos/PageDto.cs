@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Hyperdrive.Ai.Domain.Dtos;
+﻿namespace Hyperdrive.Ai.Domain.Dtos;
 
 /// <summary>
 /// Represents a <see cref="PageDto{T}"/> class.

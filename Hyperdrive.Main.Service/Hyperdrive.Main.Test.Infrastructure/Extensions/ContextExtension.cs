@@ -1,8 +1,5 @@
 ﻿using Hyperdrive.Main.Domain.Entities;
 using Hyperdrive.Main.Infrastructure.Contexts;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 
 namespace Hyperdrive.Main.Test.Infrastructure.Extensions;
 

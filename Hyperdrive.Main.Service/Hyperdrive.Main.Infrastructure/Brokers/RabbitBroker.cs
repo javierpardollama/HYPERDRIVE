@@ -4,11 +4,8 @@ using Hyperdrive.Main.Domain.Settings;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
-using System;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Infrastructure.Brokers;
 

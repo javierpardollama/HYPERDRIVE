@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hyperdrive.Main.Test.Infrastructure.Extensions;
+﻿namespace Hyperdrive.Main.Test.Infrastructure.Extensions;
 
 /// <summary>
 /// Represents a <see cref="FluentExtension"/> class.
@@ -8,7 +6,7 @@ namespace Hyperdrive.Main.Test.Infrastructure.Extensions;
 public static class FluentExtension
 {
     /// <summary>
-    /// 
+    /// Also
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="obj">Injected <see cref="T"/></param>

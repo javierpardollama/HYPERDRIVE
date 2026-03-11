@@ -1,9 +1,6 @@
 ﻿using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Managers;
 using OpenAI.Chat;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 
@@ -14,16 +11,14 @@ public class ChatCompletitionManager : IChatCompletitionManager
 {
     private readonly ChatClient Client;
 
-    private readonly IChatMessageManager ChatMessageManager;
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="ChatCompletitionManager" />
     /// </summary>
     /// <param name="client">Injected <see cref="ChatClient" /></param>
-    public ChatCompletitionManager(ChatClient client, IChatMessageManager chatMessageManager)
+    public ChatCompletitionManager(ChatClient client)
     {
         Client = client;
-        ChatMessageManager = chatMessageManager;
     }
 
     /// <summary>
@@ -38,7 +33,7 @@ public class ChatCompletitionManager : IChatCompletitionManager
             "User" => new UserChatMessage(x.Message),
             "Assistant" => new AssistantChatMessage(x.Message),
             "System" => (ChatMessage)new SystemChatMessage(x.Message),
-            _ => throw new System.NotImplementedException(),
+            _ => throw new NotImplementedException(),
         }).ToList();
 
         var reply = await Client.CompleteChatAsync(msgs);

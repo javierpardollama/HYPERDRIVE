@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hyperdrive.Ai.Application.ViewModels.Views;
+﻿namespace Hyperdrive.Ai.Application.ViewModels.Views;
 
 /// <summary>
 ///     Represents a <see cref="ViewSource" /> class

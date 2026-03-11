@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hyperdrive.Ai.Domain.Dtos;
+﻿namespace Hyperdrive.Ai.Domain.Dtos;
 
 public class SourceDto
 {

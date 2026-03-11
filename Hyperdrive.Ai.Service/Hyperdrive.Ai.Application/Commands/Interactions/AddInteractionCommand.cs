@@ -2,7 +2,7 @@
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
 
-namespace Hyperdrive.Ai.Application.Commands.Messages;
+namespace Hyperdrive.Ai.Application.Commands.Interactions;
 
 /// <summary>
 /// Represents a <see cref="AddInteractionCommand" /> class. Implements <see cref="IRequest{ViewInteraction}" />

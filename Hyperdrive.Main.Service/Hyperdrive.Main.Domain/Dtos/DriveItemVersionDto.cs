@@ -1,5 +1,3 @@
-using System;
-
 namespace Hyperdrive.Main.Domain.Dtos;
 
 /// <summary>

@@ -1,9 +1,6 @@
 ﻿using Hyperdrive.Ai.Domain.Dtos;
 using Hyperdrive.Ai.Domain.Managers;
 using OpenAI.Chat;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 
@@ -32,7 +29,7 @@ public class ChatTitleManager : IChatTitleManager
     {
         var msgs = messages.Select(x => x.Role switch
         {
-            "User" => (ChatMessage)new UserChatMessage(x.Message),
+            "User" => new UserChatMessage(x.Message),
             "Assistant" => (ChatMessage)new AssistantChatMessage(x.Message),
             _ => throw new System.NotImplementedException(),
         }).Append(new SystemChatMessage(@"

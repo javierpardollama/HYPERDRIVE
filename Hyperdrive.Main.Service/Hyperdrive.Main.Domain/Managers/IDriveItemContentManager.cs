@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace Hyperdrive.Main.Domain.Managers;
 
 /// <summary>

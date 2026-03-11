@@ -1,7 +1,6 @@
 ﻿using Hyperdrive.Ai.Domain.Entities.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
 
 namespace Hyperdrive.Ai.Domain.Entities;
 

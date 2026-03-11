@@ -1,15 +1,13 @@
 ﻿using Asp.Versioning;
-using Hyperdrive.Ai.Application.Commands.Messages;
+using Hyperdrive.Ai.Application.Commands.Interactions;
 using Hyperdrive.Ai.Application.Queries.Interactions;
 using Hyperdrive.Ai.Application.ViewModels.Additions;
 using Hyperdrive.Ai.Application.ViewModels.Filters;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using System.Threading.Tasks;
 
 
 namespace Hyperdrive.Ai.Service.Controllers.V1;

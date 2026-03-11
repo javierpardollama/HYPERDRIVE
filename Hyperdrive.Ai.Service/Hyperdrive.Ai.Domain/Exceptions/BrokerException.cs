@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hyperdrive.Ai.Domain.Exceptions;
+﻿namespace Hyperdrive.Ai.Domain.Exceptions;
 
 /// <summary>
 /// Represents a <see cref="BrokerException"/> class. Inherits <see cref="Exception"/>

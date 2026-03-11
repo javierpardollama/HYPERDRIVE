@@ -1,6 +1,5 @@
 using Hyperdrive.Main.Domain.Dtos;
 using Hyperdrive.Main.Domain.Entities;
-using System;
 
 namespace Hyperdrive.Main.Domain.Profiles;
 

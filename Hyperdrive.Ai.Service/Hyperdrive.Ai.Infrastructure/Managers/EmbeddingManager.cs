@@ -1,9 +1,5 @@
 ﻿using Hyperdrive.Ai.Domain.Managers;
 using OpenAI.Embeddings;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 

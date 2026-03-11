@@ -10,8 +10,6 @@ using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
-using System;
-using System.Linq;
 
 namespace Hyperdrive.Ai.Infrastructure.Installers;
 

@@ -3,10 +3,6 @@ using Hyperdrive.Ai.Domain.Managers;
 using Hyperdrive.Ai.Domain.Profiles;
 using Hyperdrive.Ai.Infrastructure.Contexts.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;
 

@@ -3,13 +3,9 @@ using Hyperdrive.Ai.Domain.Exceptions;
 using Hyperdrive.Ai.Domain.Managers;
 using Hyperdrive.Ai.Domain.Profiles;
 using Hyperdrive.Ai.Infrastructure.Contexts.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Entities = Hyperdrive.Ai.Domain.Entities;
 
 namespace Hyperdrive.Ai.Infrastructure.Managers;

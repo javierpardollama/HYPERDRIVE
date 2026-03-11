@@ -8,10 +8,8 @@ using Hyperdrive.Ai.Application.ViewModels.Updates;
 using Hyperdrive.Ai.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Ai.Service.Controllers.V1;
 

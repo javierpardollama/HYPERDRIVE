@@ -1,9 +1,6 @@
 ﻿using Hyperdrive.Main.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Hyperdrive.Main.Domain.Managers
 {

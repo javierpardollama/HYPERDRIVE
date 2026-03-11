@@ -1,6 +1,5 @@
 ﻿using Hyperdrive.Ai.Application.ViewModels.Views;
 using Hyperdrive.Ai.Domain.Dtos;
-using System.Linq;
 
 namespace Hyperdrive.Ai.Application.Profiles;
 
