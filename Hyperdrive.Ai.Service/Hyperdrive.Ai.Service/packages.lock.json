@@ -1135,8 +1135,8 @@
       },
       "MongoDB.EntityFrameworkCore": {
         "type": "Transitive",
-        "resolved": "10.0.0",
-        "contentHash": "brb1VNR3wuAsqklREP5rkUTFFe/QFWI7l40Y/kGIiYsRES8IVsr2NQoNfalFt4Of9c2omEQYQrIPU1Hf3k+7PQ==",
+        "resolved": "10.0.1",
+        "contentHash": "qwuUtM/20u3Dy/ecocYO+bc1rKvffsBe0YAmeuewqA63+9mSteqPgZADqamdOvc3uZe3/wE/VY7HDthyg/uGWg==",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.2",
           "MongoDB.Driver": "3.6.0"
@@ -1507,7 +1507,7 @@
           "Microsoft.Extensions.ServiceDiscovery": "[10.4.0, )",
           "Microsoft.SemanticKernel.Connectors.OpenAI": "[1.73.0, )",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "[10.0.2, )",
-          "MongoDB.EntityFrameworkCore": "[10.0.0, )",
+          "MongoDB.EntityFrameworkCore": "[10.0.1, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.15.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.15.0, )",
           "RabbitMQ.Client": "[7.2.1, )",
