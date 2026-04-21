@@ -1,6 +1,5 @@
 using Hyperdrive.Main.Application.Installers;
 using Hyperdrive.Main.Infrastructure.Installers;
-using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
@@ -12,13 +11,7 @@ var @rabbitSettings = @builder.InstallRabbitSetttings();
 
 @builder.Services.InstallEntityFramework(builder.Configuration);
 
-@builder.Services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.WriteIndented = true;
-                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                });
+@builder.Services.InstallSerializer();
 
 builder.Services.InstallApiVersions();
 
