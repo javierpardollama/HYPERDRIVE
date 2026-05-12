@@ -4,7 +4,7 @@
       <div class="modal-option-image modal-mail-change-image" aria-label="NewEmail"></div>
       <mat-form-field class="form-element">
         <mat-label>NewEmail</mat-label>
-        <input type="email" matInput placeholder="NewEmail" formControlName="NewEmail" spellcheck="false">
+        <input type="email" inputmode="email" matInput placeholder="NewEmail" formControlName="NewEmail" spellcheck="false">
         @if (!formGroup.controls['NewEmail'].valid && formGroup.controls['NewEmail'].touched) {
         <mat-error>
           Required field.

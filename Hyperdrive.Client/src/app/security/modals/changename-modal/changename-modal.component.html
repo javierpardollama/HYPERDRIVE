@@ -5,7 +5,7 @@
       <div class="modal-option-image modal-name-image" aria-label="Name"></div>
       <mat-form-field class="form-element">
         <mat-label>NewFirstName</mat-label>
-        <input matInput placeholder="NewFirstName" formControlName="NewFirstName">
+        <input type="text" inputmode="text" matInput placeholder="NewFirstName" formControlName="NewFirstName">
         @if (!formGroup.controls['NewFirstName'].valid && formGroup.controls['NewFirstName'].touched) {
           <mat-error>
             Required field.
@@ -18,7 +18,7 @@
       <div class="modal-option-image modal-surname-image" aria-label="NewLastName"></div>
       <mat-form-field class="form-element">
         <mat-label>NewLastName</mat-label>
-        <input matInput placeholder="NewLastName" formControlName="NewLastName">
+        <input type="text" inputmode="text" matInput placeholder="NewLastName" formControlName="NewLastName">
         @if (!formGroup.controls['NewLastName'].valid && formGroup.controls['NewLastName'].touched) {
           <mat-error>
             Required field.

@@ -5,7 +5,7 @@
       <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
       <mat-form-field class="form-element">
         <mat-label>Id</mat-label>
-        <input type="number" matInput placeholder="Id" formControlName="Id" readonly>
+        <input type="number" inputmode="numeric" matInput placeholder="Id" formControlName="Id" readonly>
         @if (!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched) {
           <mat-error>
             Required field.

@@ -5,7 +5,7 @@
       <div class="modal-option-image modal-folder-image" aria-label="FileName"></div>
       <mat-form-field class="form-element">
         <mat-label>FileName</mat-label>
-        <input type="text" matInput placeholder="FileName" formControlName="FileName">
+        <input type="text" inputmode="text" matInput placeholder="FileName" formControlName="FileName">
         @if (!formGroup.controls['FileName'].valid && formGroup.controls['FileName'].touched) {
           <mat-error>
             Required field.

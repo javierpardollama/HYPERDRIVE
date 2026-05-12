@@ -4,7 +4,7 @@
       <div class="modal-option-image modal-phone-image" aria-label="NewPhoneNumber"></div>
       <mat-form-field class="form-element">
         <mat-label>NewPhoneNumber</mat-label>
-        <input type="tel" matInput placeholder="NewPhoneNumber" formControlName="NewPhoneNumber" spellcheck="false">
+        <input type="tel" inputmode="tel" matInput placeholder="NewPhoneNumber" formControlName="NewPhoneNumber" spellcheck="false">
         @if (!formGroup.controls['NewPhoneNumber'].valid && formGroup.controls['NewPhoneNumber'].touched) {
           <mat-error>
             Required field.
