@@ -63,12 +63,12 @@
       },
       "Microsoft.SemanticKernel.Connectors.OpenAI": {
         "type": "Direct",
-        "requested": "[1.75.0, )",
-        "resolved": "1.75.0",
-        "contentHash": "PhkZN+dVIx6bBbK/9+KPpeltfUJcwJ0iHH/T3dqI4KjUD6tfbWUMm+GNkiGxv58UIVrG3TLvWeXajm+ElnTcoA==",
+        "requested": "[1.76.0, )",
+        "resolved": "1.76.0",
+        "contentHash": "sVIiaYdjwg/J97y+8ZlwxMHHThOPZxqYNGOVuIF23P1yLxZYFLpKqHTVcPyyQrwo1soYT5uQqi0DddoLML/9vg==",
         "dependencies": {
           "Microsoft.Extensions.AI.OpenAI": "10.5.0",
-          "Microsoft.SemanticKernel.Core": "1.75.0",
+          "Microsoft.SemanticKernel.Core": "1.76.0",
           "OpenAI": "2.10.0"
         }
       },
@@ -999,8 +999,8 @@
       },
       "Microsoft.SemanticKernel.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.75.0",
-        "contentHash": "x3JN7Eo9cNoRDYoqbhNmL1jn0VU/Ruv6MC9aARXGf45aBPh2nko4bdrgTN3Lfd5R3Mw1dZHQKTORPlcWbdQssQ==",
+        "resolved": "1.76.0",
+        "contentHash": "pDLBE+iyZJvPiBXM4KbDCrdEHfPmz8FcjH7Rs0XrIJ6hdyHZFKZEQBfu45nWZ72womQsZxWe9vLrWV0TGAs6aQ==",
         "dependencies": {
           "Microsoft.Bcl.HashCode": "1.1.1",
           "Microsoft.Extensions.AI": "10.5.0",
@@ -1009,10 +1009,10 @@
       },
       "Microsoft.SemanticKernel.Core": {
         "type": "Transitive",
-        "resolved": "1.75.0",
-        "contentHash": "cbQDbHYWU7hvR0j4B4uV9pxj+mL9seZo/130ckdlfbfMGly4mNiYI64DAQ9dF53CM8xt50eBXqmyedYv6DGysg==",
+        "resolved": "1.76.0",
+        "contentHash": "sqvVbsFjkQir7QuxpZHzp4lQ/ZXsPgbsYHfruPJnepie2yuJtqcPVty8d9MdCxq5XgCMZlvH3YzUuSihg1RQCA==",
         "dependencies": {
-          "Microsoft.SemanticKernel.Abstractions": "1.75.0",
+          "Microsoft.SemanticKernel.Abstractions": "1.76.0",
           "System.Numerics.Tensors": "10.0.6"
         }
       },
@@ -1176,8 +1176,8 @@
       },
       "MongoDB.Bson": {
         "type": "Transitive",
-        "resolved": "3.8.0",
-        "contentHash": "HeiOJUylam5nIB7b1EfzlnJbf6A9te79WO6CtsKfp8M/2EeL4SoSQFjmUpJ6/vvuaNKGENXMaX9oUJp9KpHlqw=="
+        "resolved": "3.8.1",
+        "contentHash": "b4jm2QxBQcB3zBBM+l0Jdjmn8TYBB+J0QDNaJypkmR1qDC6v5w8IMeYaFPvn/kqo0PvCUGVSQkXm0nVCBjjNYg=="
       },
       "MongoDB.Driver": {
         "type": "Transitive",
@@ -1502,7 +1502,7 @@
       "hyperdrive.ai.domain": {
         "type": "Project",
         "dependencies": {
-          "MongoDB.Bson": "[3.8.0, )"
+          "MongoDB.Bson": "[3.8.1, )"
         }
       }
     }
