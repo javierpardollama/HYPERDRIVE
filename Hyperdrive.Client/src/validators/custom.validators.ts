@@ -60,13 +60,9 @@ export class CustomValidators {
         };
     }
 
-    public static Empty(): ValidationErrors | null {
-        return (control: AbstractControl): ValidationErrors | null => {
-            const v = control.value;
+    public static Empty(control: AbstractControl): ValidationErrors | null {
+        const isempty = IsEmpty(control.value);
 
-            const isempty = IsEmpty(v);
-
-            return isempty ? { empty: true } : null;
-        };
+        return isempty ? { empty: true } : null;
     }
 }
