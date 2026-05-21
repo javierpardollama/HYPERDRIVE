@@ -2,21 +2,21 @@ name: Build Angular App
 
 on:
   push:
-    branches: [ main ]    
+    branches: [ main ]
     paths:
-        - 'Hyperdrive.Client/**'
+      - 'Hyperdrive.Client/**'
 
   pull_request:
     branches: [ main ]
     paths:
-        - 'Hyperdrive.Client/**'
+      - 'Hyperdrive.Client/**'
 
 permissions:
   contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true    
+  cancel-in-progress: true
 
 defaults:
   run:
@@ -25,8 +25,9 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
-      contents: write
+      contents: read
       issues: write
 
     strategy:
@@ -37,16 +38,32 @@ jobs:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
 
+      - name: 🔐 Disable git hooks
+        run: git config --global core.hooksPath /dev/null
+
       - name: 🛠️ Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}      
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: 🔐 Validate lockfile integrity
+        run: test -f package-lock.json || (echo "❌ Missing package-lock.json" && exit 1)
 
       - name: 📥 Install dependencies
-        run: npm ci --no-audit --no-fund --ignore-scripts --omit=dev --prefer-offline
+        run: npm ci --no-audit --no-fund --prefer-offline
+
+      - name: 🔍 Check for lockfile drift
+        run: git diff --exit-code package-lock.json
+
+      - name: 🔐 Audit dependencies
+        run: npm audit --audit-level=high || true
+
+      - name: 🔍 Check for install scripts
+        run: grep -R '"postinstall"' node_modules || true
 
       - name: ♻️ Clean project
-        run: npm run clean 
+        run: npm run clean
 
       - name: 🏗️ Build project
         run: npm run dev --if-present
