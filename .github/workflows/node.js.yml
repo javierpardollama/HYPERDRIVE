@@ -38,29 +38,19 @@ jobs:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🔐 Disable git hooks
-        run: git config --global core.hooksPath /dev/null
-
       - name: 🛠️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
-      - name: 🔐 Validate lockfile integrity
-        run: test -f package-lock.json || (echo "❌ Missing package-lock.json" && exit 1)
+      - name: 🔐 Exists package-lock.json 
+        run: test -f package-lock.json
 
       - name: 📥 Install dependencies
-        run: npm ci --no-audit --no-fund --prefer-offline
+        run: npm ci --no-audit --no-fund
 
-      - name: 🔍 Check for lockfile drift
+      - name: 🔍 Seek package-lock.json drift
         run: git diff --exit-code package-lock.json
-
-      - name: 🔐 Audit dependencies
-        run: npm audit --audit-level=high || true
-
-      - name: 🔍 Check for install scripts
-        run: grep -R '"postinstall"' node_modules || true
 
       - name: ♻️ Clean project
         run: npm run clean
