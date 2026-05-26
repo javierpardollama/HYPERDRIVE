@@ -6,6 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<NuGetAuditMode>direct</NuGetAuditMode>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<RestoreEnablePackagePruning>true</RestoreEnablePackagePruning>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<UseAppHost>false</UseAppHost>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
