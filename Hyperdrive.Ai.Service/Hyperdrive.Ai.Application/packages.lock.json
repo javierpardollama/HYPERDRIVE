@@ -18,13 +18,13 @@
       },
       "MongoDB.Bson": {
         "type": "Transitive",
-        "resolved": "3.8.1",
-        "contentHash": "b4jm2QxBQcB3zBBM+l0Jdjmn8TYBB+J0QDNaJypkmR1qDC6v5w8IMeYaFPvn/kqo0PvCUGVSQkXm0nVCBjjNYg=="
+        "resolved": "3.9.0",
+        "contentHash": "J6vB61zKwMSfxbkN+/amGvj1qVMDKrKjV3kmoOWttMcv8JJScLDCFh89FyL3f2lDUyJrnfgZCR6/KX+07e99eg=="
       },
       "hyperdrive.ai.domain": {
         "type": "Project",
         "dependencies": {
-          "MongoDB.Bson": "[3.8.1, )"
+          "MongoDB.Bson": "[3.9.0, )"
         }
       }
     }

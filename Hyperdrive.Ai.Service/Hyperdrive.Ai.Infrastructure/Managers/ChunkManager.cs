@@ -66,7 +66,7 @@ public class ChunkManager(IApplicationContext context,
     {
         var @embedding = await embeddingManager.GetEmbedding(@text);
 
-        return await context.Chunk
+        return await Context.Chunk
             .AsQueryable()
             .VectorSearch(x => x.Embedding, new QueryVector(@embedding), 5)
             .ToListAsync();
