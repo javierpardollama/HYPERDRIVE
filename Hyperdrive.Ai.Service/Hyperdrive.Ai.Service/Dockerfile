@@ -2,21 +2,20 @@
 
 # Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
-USER $APP_UID
 WORKDIR /app
 
-# Opcional: fija los puertos HTTP/HTTPS explícitamente (coincide con EXPOSE)
-ENV ASPNETCORE_HTTP_PORTS=http://+:8090
-ENV ASPNETCORE_HTTPS_PORTS=https://+:8091
+# Usa usuario no root
+USER $APP_UID
+
+# Opcional: fija los puertos HTTP/HTTPS expl�citamente (coincide con EXPOSE)
+ENV ASPNETCORE_URLS=http://+:8090;
 
 # Expone sólo los puertos necesarios.
 EXPOSE 8090
-EXPOSE 8091
 
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
-ARG TARGET_ARCH=linux-x64
 
 WORKDIR /src
 
@@ -25,9 +24,10 @@ COPY ["Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj", "Hyperdrive.Ai.Servi
 COPY ["Hyperdrive.Ai.Application/Hyperdrive.Ai.Application.csproj", "Hyperdrive.Ai.Application/"]
 COPY ["Hyperdrive.Ai.Domain/Hyperdrive.Ai.Domain.csproj", "Hyperdrive.Ai.Domain/"]
 COPY ["Hyperdrive.Ai.Infrastructure/Hyperdrive.Ai.Infrastructure.csproj", "Hyperdrive.Ai.Infrastructure/"]
+COPY ["Hyperdrive.Ai/nuget.config", "./nuget.config"]
 
 # Restore del proyecto principal (sin compilar) usando el runtime actual para cache estable
-RUN dotnet restore "./Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj" --locked-mode
+RUN dotnet restore "./Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj" --configfile "./nuget.config" --locked-mode
 
 # Ahora copia el resto del código (esto invalida el caché sólo si cambian fuentes)
 COPY . .
@@ -39,7 +39,6 @@ RUN dotnet build "./Hyperdrive.Ai.Service.csproj" -c $BUILD_CONFIGURATION --no-r
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-ARG TARGET_ARCH=linux-x64
 
 # Publica sin compilar y sin restaurar, reduciendo tamaño final
 RUN dotnet publish "Hyperdrive.Ai.Service.csproj" -c $BUILD_CONFIGURATION --no-restore -o /app/publish 
