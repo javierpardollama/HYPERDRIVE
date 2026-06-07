@@ -23,7 +23,7 @@
     "open-telemetry",
     "openai-api",
     "net10",
-    "angular21"
+    "angular22"
   ],
   "repository": {
     "url": "https://github.com/javierpardollama/HYPERDRIVE"
@@ -47,6 +47,7 @@
     "make": "electron-forge make"
   },
   "private": true,
+  "packageManager": "npm@11.12.1",
   "dependencies": {
     "@angular/animations": "^22.0.0",
     "@angular/cdk": "^22.0.0",
