@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0.
 
+# Installing packages
+To install all required dependencies in a clean and reproducible way, use:
+```bash
+npm ci --no-audit --no-fund
+```
+This command installs packages strictly following the lockfile, ensuring consistent environments across machines.
+
+If you encounter issues related to optional dependencies or platform‑specific packages, try:
+```bash
+npm i --include=optional
+```
+This will reinstall dependencies while including optional modules that may be required on your system.
+
 ## Development server
 
 To start a local development server, run:
