@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { CryptoMeta } from "src/viewmodels/crypto/crytpometa";
-import { DecodeBase64, EncodeBase64 } from "src/utils/byte.utils";
-import { DeriveKey } from "src/utils/crypto.utils";
-import { VaultKeyAppVariants } from "src/variants/vault.keys.variants";
-import { CryptoData } from "src/viewmodels/crypto/cryptodata";
-import { IsEmpty } from "src/utils/object.utils";
+import { CryptoMeta } from "../viewmodels/crypto/crytpometa";
+import { DecodeBase64, EncodeBase64 } from "../utils/byte.utils";
+import { DeriveKey } from "../utils/crypto.utils";
+import { VaultKeyAppVariants } from "../variants/vault.keys.variants";
+import { CryptoData } from "../viewmodels/crypto/cryptodata";
+import { IsEmpty } from "../utils/object.utils";
 
 @Injectable({
     providedIn: 'root',

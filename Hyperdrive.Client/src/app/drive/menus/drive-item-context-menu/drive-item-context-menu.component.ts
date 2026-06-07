@@ -15,7 +15,7 @@ import {
 } from "../../modals/updates/driveitem-share-with-update-modal/driveitem-share-with-update-modal.component";
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import { DriveItemBinaryService } from 'src/services/driveitembinary.service';
+import { DriveItemBinaryService } from '../../../../services/driveitembinary.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 

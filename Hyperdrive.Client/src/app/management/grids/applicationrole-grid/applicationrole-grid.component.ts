@@ -15,8 +15,8 @@ import {
   ApplicationRoleAddModalComponent
 } from '../../modals/additions/applicationrole-add-modal/applicationrole-add-modal.component';
 
-import { FilterPageApplicationRole } from 'src/viewmodels/filters/filterpageapplicationrole';
-import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FilterPageApplicationRole } from '../../../../viewmodels/filters/filterpageapplicationrole';
+import { ViewScroll } from '../../../../viewmodels/views/viewscroll';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';

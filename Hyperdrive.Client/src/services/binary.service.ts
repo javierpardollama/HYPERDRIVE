@@ -6,7 +6,7 @@ import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
 import { Injectable } from '@angular/core';
 
-import { DecodeBlob, EncodeBlob } from 'src/utils/blob.utils';
+import { DecodeBlob, EncodeBlob } from '../utils/blob.utils';
 
 
 @Injectable({

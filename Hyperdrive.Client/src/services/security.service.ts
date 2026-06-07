@@ -20,7 +20,7 @@ import { BaseService } from './base.service';
 
 import { environment } from '../environments/environment';
 
-import { SecurityRefreshTokenReset } from 'src/viewmodels/security/securityrefreshtokenreset';
+import { SecurityRefreshTokenReset } from '../viewmodels/security/securityrefreshtokenreset';
 
 @Injectable({
   providedIn: 'root',

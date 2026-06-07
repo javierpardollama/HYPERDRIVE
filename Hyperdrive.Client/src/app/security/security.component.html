@@ -1,86 +1,127 @@
 <div class="container">
+  <div class="profile-content-line">
+    <strong>Welcome</strong>
+  </div>
 
-    <div class="profile-content-line">
-        <strong>Welcome</strong>
-    </div>
+  <div class="profile-content-line">
+    Manage your info and security to make your experience better.
+  </div>
 
-    <div class="profile-content-line">
-       Manage your info and security to make your experience better.
-    </div>
+  <div class="profile-content-line">This is your profile info:</div>
 
-    <div class="profile-content-line">
-        This is your profile info:
-    </div>
+  <div class="profile-content-line profile-content-line-update">
+    <div
+      class="profile-update-image profile-image"
+      aria-label="LastModified"
+    ></div>
+    <span>{{
+      $safeNavigationMigration(User?.LastModified) | date: "MMM d, y h:mm a"
+    }}</span>
+  </div>
 
-    <div class="profile-content-line profile-content-line-update">
-        <div class="profile-update-image profile-image" aria-label="LastModified"></div>
-        <span>{{User?.LastModified | date: 'MMM d, y h:mm a'}}</span>
-    </div>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Basic info</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="profile-content-line">
+        <p>
+          <em
+            >It's possible that other users might be able to see some of the
+            information</em
+          >
+        </p>
+      </div>
 
-    <mat-accordion>
+      <div class="profile-content-line">
+        <div class="profile-content-cell profile-content-cell-start">
+          <p>Name: {{ User?.FirstName }} {{ User?.LastName }}</p>
+        </div>
+        <div class="profile-content-cell profile-content-cell-end">
+          <button
+            type="button"
+            id="security-name-change-button"
+            mat-raised-button
+            color="primary"
+            (click)="ChangeName()"
+            matTooltip="Change Name"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
 
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Basic info</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="profile-content-line">
-                <p><em>It's possible that other users might be able to see some of the information</em></p>
-            </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Contact info</mat-panel-title>
+      </mat-expansion-panel-header>
 
-            <div class="profile-content-line">
-                <div class="profile-content-cell profile-content-cell-start">
-                    <p>Name: {{User?.FirstName}} {{User?.LastName}}</p>
-                </div>
-                <div class="profile-content-cell profile-content-cell-end">
-                    <button type="button" id="security-name-change-button" mat-raised-button color="primary"
-                        (click)="ChangeName()" matTooltip="Change Name">→</button>
-                </div>
-            </div>
-        </mat-expansion-panel>
+      <div class="profile-content-line">
+        <div class="profile-content-cell profile-content-cell-start">
+          <p>Email: {{ User?.Email }}</p>
+        </div>
+        <div class="profile-content-cell profile-content-cell-end">
+          <button
+            type="button"
+            id="security-email-change-button"
+            mat-raised-button
+            color="primary"
+            (click)="ChangeEmail()"
+            matTooltip="Change Email"
+          >
+            →
+          </button>
+        </div>
+      </div>
+      <div class="profile-content-line">
+        <div class="profile-content-cell profile-content-cell-start">
+          <p>Phone: {{ User?.PhoneNumber }}</p>
+        </div>
+        <div class="profile-content-cell profile-content-cell-end">
+          <button
+            type="button"
+            id="security-phonenumber-change-button"
+            mat-raised-button
+            color="primary"
+            (click)="ChangePhoneNumber()"
+            matTooltip="Change Phone Number"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
 
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Contact info</mat-panel-title>
-            </mat-expansion-panel-header>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Password</mat-panel-title>
+      </mat-expansion-panel-header>
 
-            <div class="profile-content-line">
-                <div class="profile-content-cell profile-content-cell-start">
-                    <p>Email: {{User?.Email}}</p>
-                </div>
-                <div class="profile-content-cell profile-content-cell-end">
-                    <button type="button" id="security-email-change-button" mat-raised-button color="primary"
-                        (click)="ChangeEmail()" matTooltip="Change Email">→</button>
-                </div>
-            </div>
-            <div class="profile-content-line">
-                <div class="profile-content-cell profile-content-cell-start">
-                    <p>Phone: {{User?.PhoneNumber}}</p>
-                </div>
-                <div class="profile-content-cell profile-content-cell-end">
-                    <button type="button" id="security-phonenumber-change-button" mat-raised-button color="primary"
-                        (click)="ChangePhoneNumber()" matTooltip="Change Phone Number">→</button>
-                </div>
-            </div>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Password</mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="profile-content-line">
-                <p><em>If you pick a strong password, you help keep your account safe</em></p>
-            </div>
-            <div class="profile-content-line">
-                <div class="profile-content-cell profile-content-cell-start">
-                    <p>Password: ********</p>
-                </div>
-                <div class="profile-content-cell profile-content-cell-end">
-                    <button type="button" id="security-password-change-button" mat-raised-button color="primary"
-                        (click)="ChangePassword()" matTooltip="Change Password">→</button>
-                </div>
-            </div>
-        </mat-expansion-panel>
-
-    </mat-accordion>
+      <div class="profile-content-line">
+        <p>
+          <em
+            >If you pick a strong password, you help keep your account safe</em
+          >
+        </p>
+      </div>
+      <div class="profile-content-line">
+        <div class="profile-content-cell profile-content-cell-start">
+          <p>Password: ********</p>
+        </div>
+        <div class="profile-content-cell profile-content-cell-end">
+          <button
+            type="button"
+            id="security-password-change-button"
+            mat-raised-button
+            color="primary"
+            (click)="ChangePassword()"
+            matTooltip="Change Password"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

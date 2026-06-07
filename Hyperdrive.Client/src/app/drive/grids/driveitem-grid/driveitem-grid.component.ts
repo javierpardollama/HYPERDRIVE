@@ -14,11 +14,11 @@ import {
     DriveItemFileAddModalComponent
 } from "../../modals/additions/driveitem-file-add-modal/driveitem-file-add-modal.component";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
-import { BinaryService } from 'src/services/binary.service';
-import { BinaryAddDriveItem } from 'src/viewmodels/binary/binaryadddriveitem';
+import { BinaryService } from '../../../../services/binary.service';
+import { BinaryAddDriveItem } from '../../../../viewmodels/binary/binaryadddriveitem';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TextAppVariants } from 'src/variants/text.app.variants';
-import { TimeAppVariants } from 'src/variants/time.app.variants';
+import { TextAppVariants } from '../../../../variants/text.app.variants';
+import { TimeAppVariants } from '../../../../variants/time.app.variants';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -29,9 +29,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { CryptoService } from 'src/services/crypto.service';
-import { DragDropDirective } from 'src/directives/drag-drop.directive';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { CryptoService } from '../../../../services/crypto.service';
+import { DragDropDirective } from '../../../../directives/drag-drop.directive';
+import { VaultKeyAppVariants } from '../../../../variants/vault.keys.variants';
 
 
 @Component({

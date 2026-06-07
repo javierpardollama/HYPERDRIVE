@@ -1,24 +1,39 @@
 <div id="driveitem-file-add-modal" class="container">
   <form [formGroup]="formGroup" class="form" novalidate>
-
     <div class="modal-content-line">
       <div class="modal-option-image modal-file-image" aria-label="File"></div>
       <div class="form-element">
         <mat-label>Data</mat-label>
-        <input #fileInput type="file" placeholder="File" formControlName="File" (change)="onSelectFile(fileInput.files?.[0])">
-        @if (!formGroup.controls['File'].valid && formGroup.controls['File'].touched) {
-        <mat-error>
-          Required field.
-        </mat-error>
+        <input
+          #fileInput
+          type="file"
+          placeholder="File"
+          formControlName="File"
+          (change)="
+            onSelectFile($safeNavigationMigration(fileInput.files?.[0]))
+          "
+        />
+        @if (
+          !formGroup.controls["File"].valid &&
+          formGroup.controls["File"].touched
+        ) {
+          <mat-error> Required field. </mat-error>
         }
       </div>
     </div>
 
     <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
-        [disabled]="!formGroup.valid" matTooltip="Save">Save
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="button"
+        (click)="onSubmit(formGroup.value)"
+        [disabled]="!formGroup.valid"
+        matTooltip="Save"
+      >
+        Save
       </button>
     </div>
-
   </form>
 </div>

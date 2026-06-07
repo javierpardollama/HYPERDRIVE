@@ -22,8 +22,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { CryptoService } from '../../../../../services/crypto.service';
+import { VaultKeyAppVariants } from '../../../../../variants/vault.keys.variants';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

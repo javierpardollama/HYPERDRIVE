@@ -16,7 +16,7 @@ import { FilterPageApplicationRole } from '../viewmodels/filters/filterpageappli
 
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 import { ViewCatalog } from "../viewmodels/views/viewcatalog";
 
 @Injectable({

@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { CryptoService } from '../services/crypto.service';
+import { VaultKeyAppVariants } from '../variants/vault.keys.variants';
 import { ViewApplicationUser } from './../viewmodels/views/viewapplicationuser';
-import { IsEmpty } from 'src/utils/object.utils';
+import { IsEmpty } from '../utils/object.utils';
 
 export const SignInGuard: CanActivateFn = async () => {
     const cryptoService = inject(CryptoService);

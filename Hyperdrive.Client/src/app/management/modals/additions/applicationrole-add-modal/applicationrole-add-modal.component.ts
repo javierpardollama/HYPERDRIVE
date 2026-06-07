@@ -17,9 +17,9 @@ import { ExpressionAppVariants } from '../../../../../variants/expression.app.va
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { ViewApplicationUser } from '../../../../..//viewmodels/views/viewapplicationuser';
+import { CryptoService } from '../../../../..//services/crypto.service';
+import { VaultKeyAppVariants } from '../../../../..//variants/vault.keys.variants';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

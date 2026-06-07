@@ -14,8 +14,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { CryptoService } from '../../services/crypto.service';
+import { VaultKeyAppVariants } from '../../variants/vault.keys.variants';
 
 
 @Component({

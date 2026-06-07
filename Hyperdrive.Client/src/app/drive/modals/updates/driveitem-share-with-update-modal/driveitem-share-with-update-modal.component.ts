@@ -10,13 +10,13 @@ import { ViewDriveItem } from "../../../../../viewmodels/views/viewdriveitem";
 import { ViewCatalog } from "../../../../../viewmodels/views/viewcatalog";
 import { DriveItemService } from "../../../../../services/driveitem.service";
 import { UpdateDriveItemSharedWith } from "../../../../../viewmodels/updates/updatedriveitemsharedwith";
-import { ViewApplicationUser } from 'src/viewmodels/views/viewapplicationuser';
+import { ViewApplicationUser } from '../../../../../viewmodels/views/viewapplicationuser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { CryptoService } from '../../../../..//services/crypto.service';
+import { VaultKeyAppVariants } from '../../../../../variants/vault.keys.variants';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

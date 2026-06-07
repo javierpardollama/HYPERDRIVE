@@ -5,9 +5,9 @@ import { inject } from '@angular/core';
 import { from, switchMap } from 'rxjs';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
-import { IsEmpty } from 'src/utils/object.utils';
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { IsEmpty } from '../utils/object.utils';
+import { CryptoService } from '../services/crypto.service';
+import { VaultKeyAppVariants } from '../variants/vault.keys.variants';
 
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {

@@ -9,8 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
-import { CryptoService } from 'src/services/crypto.service';
-import { VaultKeyAppVariants } from 'src/variants/vault.keys.variants';
+import { CryptoService } from '../../../../services/crypto.service';
+import { VaultKeyAppVariants } from '../../../..//variants/vault.keys.variants';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

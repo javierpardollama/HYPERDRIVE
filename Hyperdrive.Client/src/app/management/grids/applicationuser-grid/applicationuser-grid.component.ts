@@ -11,8 +11,8 @@ import {
     ApplicationUserUpdateModalComponent
 } from '../../modals/updates/applicationuser-update-modal/applicationuser-update-modal.component';
 
-import { FilterPageApplicationUser } from 'src/viewmodels/filters/filterpageapplicationuser';
-import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FilterPageApplicationUser } from '../../../../viewmodels/filters/filterpageapplicationuser';
+import { ViewScroll } from '../../../../viewmodels/views/viewscroll';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
