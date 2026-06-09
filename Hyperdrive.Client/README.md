@@ -20,7 +20,7 @@ This will reinstall dependencies while including optional modules that may be re
 To start a local development server, run:
 
 ```bash
-ng serve
+ng run web
 ```
 
 Once the server is running, open your browser and navigate to `https://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
