@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0.
 
 # Installing packages
-To install all required dependencies in a clean and reproducible way, use:
+To install all the required dependencies in a clean and reproducible way, use:
 ```bash
 npm ci --no-audit --no-fund
 ```

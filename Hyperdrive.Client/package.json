@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@angular/build": "22.0.0",
-    "@angular/cli": "~21.2.6",
+    "@angular/cli": "22.0.0",
     "@angular/compiler-cli": "^22.0.0",
     "@compodoc/compodoc": "^1.2.1",
     "@electron-forge/cli": "^7.11.1",
