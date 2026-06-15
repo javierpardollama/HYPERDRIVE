@@ -20,7 +20,7 @@ This will reinstall dependencies while including optional modules that may be re
 To start a local development server, run:
 
 ```bash
-ng run web
+npm run web
 ```
 
 Once the server is running, open your browser and navigate to `https://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
@@ -50,7 +50,6 @@ Run `npm run stg` to build the project. The build artifacts will be stored in th
 ## Building Production
 
 Run `npm run prod` to build the project. The build artifacts will be stored in the `dist/` directory.
-
 
 ## Additional Resources
 
