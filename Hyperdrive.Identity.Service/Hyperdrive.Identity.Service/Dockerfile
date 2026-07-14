@@ -8,11 +8,11 @@ WORKDIR /app
 USER $APP_UID
 
 # Opcional: fija los puertos HTTP/HTTPS expl�citamente (coincide con EXPOSE)
-ENV ASPNETCORE_URLS=http://+:8080;https://+:8081
+ENV ASPNETCORE_URLS=http://+:8070;https://+:8071
 
 # Expone sólo los puertos necesarios.
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 8070
+EXPOSE 8071
 
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build

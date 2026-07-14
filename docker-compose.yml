@@ -25,7 +25,7 @@ services:
     volumes:
       - pg-db-data:/var/lib/postgresql/data
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      - "5432:5432"
     networks:
       - monitoring
 
@@ -47,25 +47,25 @@ services:
     volumes:
       - atlas-db-data:/data/db
     ports:
-      - "${ATLAS_PORT}:${ATLAS_PORT}"
+      - "27017:27017"
     networks:
       - monitoring
 
-  hyperdrive-main-service:
-    container_name: hyperdrive-main-service
-    image: ${DOCKER_REGISTRY-}hyperdrive-main-service    
+  hyperdrive-identity-service:
+    container_name: hyperdrive-identity-service
+    image: ${DOCKER_REGISTRY-}hyperdrive-identity-service    
     restart: unless-stopped
     init: true
     build:
       context: .
-      dockerfile: Hyperdrive.Main.Service/Hyperdrive.Main.Service/Dockerfile
+      dockerfile: Hyperdrive.Identity.Service/Hyperdrive.Identity.Service/Dockerfile
     env_file:
       - path: .env
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: ${ASPNETCORE_HTTP_PORTS}
-      ASPNETCORE_HTTPS_PORTS: ${ASPNETCORE_HTTPS_PORTS}
+      ASPNETCORE_HTTP_PORTS: 8070
+      ASPNETCORE_HTTPS_PORTS: 8071
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
@@ -74,34 +74,64 @@ services:
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     ports:
-      - "${ASPNETCORE_HTTP_PORTS}:${ASPNETCORE_HTTP_PORTS}"
-      - "${ASPNETCORE_HTTPS_PORTS}:${ASPNETCORE_HTTPS_PORTS}"
+      - "8080:8080"
+      - "8081:8081"
     networks:
       - monitoring
     depends_on:
       - postgres
 
-  hyperdrive-ai-service:
-    container_name: hyperdrive-ai-service
-    image: ${DOCKER_REGISTRY-}hyperdrive-ai-service  
+  hyperdrive-storage-service:
+    container_name: hyperdrive-storage-service
+    image: ${DOCKER_REGISTRY-}hyperdrive-storage-service    
     restart: unless-stopped
     init: true
     build:
       context: .
-      dockerfile: Hyperdrive.Ai.Service/Hyperdrive.Ai.Service/Dockerfile
+      dockerfile: Hyperdrive.Storage.Service/Hyperdrive.Storage.storage/Dockerfile
     env_file:
       - path: .env
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: ${ASPNETCORE_HTTP_PORTS}
-      ASPNETCORE_HTTPS_PORTS: ${ASPNETCORE_HTTPS_PORTS}
+      ASPNETCORE_HTTP_PORTS: 8080
+      ASPNETCORE_HTTPS_PORTS: 8081
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+      APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
+      ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
+      Jwt__JwtAudience: ${JWT_AUDIENCE}    
+      Jwt__JwtAuthority: ${JWT_AUTHORITY}
+      Jwt__JwtIssuer: ${JWT_ISSUER}
+      Jwt__JwtKey: ${JWT_KEY}
+    ports:
+      - "8080:8080
+      - "8081:8081"
+    networks:
+      - monitoring
+    depends_on:
+      - postgres
+
+  hyperdrive-intelligence-service:
+    container_name: hyperdrive-intelligence-service
+    image: ${DOCKER_REGISTRY-}hyperdrive-intelligence-service  
+    restart: unless-stopped
+    init: true
+    build:
+      context: .
+      dockerfile: Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service/Dockerfile
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ASPNETCORE_HTTP_PORTS: 8090
+      ASPNETCORE_HTTPS_PORTS: 8091
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${ATLAS_CONNECTION}      
     ports:
-      - "${ASPNETCORE_HTTP_PORTS}:${ASPNETCORE_HTTP_PORTS}"
-      - "${ASPNETCORE_HTTPS_PORTS}:${ASPNETCORE_HTTPS_PORTS}"
+      - "8090:8090
+      - "8091:8091"
     networks:
       - monitoring
     depends_on:
