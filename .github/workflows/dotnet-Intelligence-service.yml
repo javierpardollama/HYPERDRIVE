@@ -4,12 +4,12 @@ on:
   push:
     branches: [ main ]    
     paths:
-        - 'Hyperdrive.Ai.Service/**'
+        - 'Hyperdrive.Intelligence.Service/**'
 
   pull_request:
     branches: [ main ]
     paths:
-        - 'Hyperdrive.Ai.Service/**'
+        - 'Hyperdrive.Intelligence.Service/**'
 
 permissions:
   contents: read
@@ -20,7 +20,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: Hyperdrive.Ai.Service
+    working-directory: Hyperdrive.Intelligence.Service
 
 jobs:
   build:
@@ -39,10 +39,10 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: 📥 Restore dependencies
-        run: dotnet restore --locked-mode Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj
+        run: dotnet restore --locked-mode Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj
 
       - name: ♻️ Clean project
-        run: dotnet clean Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj
+        run: dotnet clean Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj
 
       - name: 🏗️ Build project
-        run: dotnet build --no-restore Hyperdrive.Ai.Service/Hyperdrive.Ai.Service.csproj    
+        run: dotnet build --no-restore Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj    
