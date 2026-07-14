@@ -1,0 +1,30 @@
+﻿using Hyperdrive.Intelligence.Domain.Settings;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+using OpenAI.Embeddings;
+
+namespace Hyperdrive.Intelligence.Infrastructure.Installers;
+
+/// <summary>
+///     Represents a <see cref="OpenAiInstaller" /> class.
+/// </summary>
+public static class OpenAiInstaller
+{
+    /// <summary>
+    ///     Installs Open Ai
+    /// </summary>
+    /// <param name="this">Injected <see cref="IServiceCollection" /></param>
+    /// <param name="settings">Injected <see cref="OpenAiSettings" /></param>
+    public static void InstallOpenAi(this IServiceCollection @this, OpenAiSettings @settings)
+    {
+        @this.AddSingleton(serviceProvider =>
+        {
+            return new ChatClient(@settings.Chat.Model, @settings.Chat.ApiKey);
+        });
+
+        @this.AddSingleton(serviceProvider =>
+        {
+            return new EmbeddingClient(@settings.Embedding.Model, @settings.Embedding.ApiKey);
+        });
+    }
+}

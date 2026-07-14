@@ -1,0 +1,39 @@
+﻿using Hyperdrive.Intelligence.Domain.Dtos;
+using Hyperdrive.Intelligence.Domain.Entities;
+
+namespace Hyperdrive.Intelligence.Domain.Profiles;
+
+/// <summary>
+/// Represents a <see cref="AnswerProfile"/> class.
+/// </summary>
+public static class AnswerProfile
+{
+    /// <summary>
+    /// Transforms to Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Answer"/></param>
+    /// <returns>Instance of <see cref="AnswerDto"/></returns>
+    public static AnswerDto ToDto(this Answer @entity)
+    {
+        return new AnswerDto
+        {
+            Text = @entity.Content,
+            LastModified = @entity.ModifiedAt ?? @entity.CreatedAt,
+            Sources = [.. entity.Sources.Select(s => s?.ToDto())]
+        };
+    }
+
+    /// <summary>
+    /// Transforms to Message Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Answer"/></param>
+    /// <returns>Instance of <see cref="ChatMessageDto"/></returns>
+    public static ChatMessageDto ToMessageDto(this Answer @entity)
+    {
+        return new ChatMessageDto
+        {
+            Message = @entity.Content,
+            Role = "Assistant"
+        };
+    }
+}
