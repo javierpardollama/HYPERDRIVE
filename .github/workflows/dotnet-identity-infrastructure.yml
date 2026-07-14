@@ -1,0 +1,52 @@
+name: Identity - Test .NET Infrastructure
+
+on:
+  push:
+    branches: [ main ]    
+    paths:
+        - 'Hyperdrive.Identity.Service/**'
+
+  pull_request:
+    branches: [ main ]
+    paths:
+        - 'Hyperdrive.Identity.Service/**'
+
+permissions:
+  contents: read  
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: Hyperdrive.Identity.Service
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v6
+
+      - name: 🛠️ Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'      
+
+      - name: 📥 Restore dependencies
+        run: dotnet restore --locked-mode Hyperdrive.Identity.Test.Infrastructure/Hyperdrive.Identity.Test.Infrastructure.csproj     
+
+      - name: ♻️ Clean project
+        run: dotnet clean Hyperdrive.Identity.Test.Infrastructure/Hyperdrive.Identity.Test.Infrastructure.csproj          
+       
+      - name: 🏗️ Build project
+        run: dotnet build --no-restore Hyperdrive.Identity.Test.Infrastructure/Hyperdrive.Identity.Test.Infrastructure.csproj    
+
+      - name: ✅ Run tests
+        run: dotnet test Hyperdrive.Identity.Test.Infrastructure/Hyperdrive.Identity.Test.Infrastructure.csproj --no-build
+

@@ -1,15 +1,15 @@
-name: Intelligence - Build .NET Service
+name: Storage - Build .NET Service
 
 on:
   push:
     branches: [ main ]    
     paths:
-        - 'Hyperdrive.Intelligence.Service/**'
+        - 'Hyperdrive.Storage.Service/**'
 
   pull_request:
     branches: [ main ]
     paths:
-        - 'Hyperdrive.Intelligence.Service/**'
+        - 'Hyperdrive.Storage.Service/**'
 
 permissions:
   contents: read
@@ -20,7 +20,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: Hyperdrive.Intelligence.Service
+    working-directory: Hyperdrive.Storage.Service
 
 jobs:
   build:
@@ -39,10 +39,10 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: 📥 Restore dependencies
-        run: dotnet restore --locked-mode Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj
+        run: dotnet restore --locked-mode Hyperdrive.Storage.Service/Hyperdrive.Storage.Service.csproj
 
       - name: ♻️ Clean project
-        run: dotnet clean Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj
+        run: dotnet clean Hyperdrive.Storage.Service/Hyperdrive.Storage.Service.csproj
 
       - name: 🏗️ Build project
-        run: dotnet build --no-restore Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj    
+        run: dotnet build --no-restore Hyperdrive.Storage.Service/Hyperdrive.Storage.Service.csproj    
