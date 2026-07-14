@@ -1,27 +1,36 @@
 # HYPERDRIVE
 
-[![Main - Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-infrastructure.yml) 
-[![Main - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-main-service.yml) 
-[![Ai - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-ai-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-ai-service.yml) 
-[![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml)
-
 This project arose as a solution for managing the current state of reserved files, administering the uploading and downloading of supplied files.
 
 ## ARCHITECTURE
 
-This project is built in n layers, following a hexagonal structure (ports - adapters), under a domain-driven design:
+This project is constructed using a micro-services oriented architecture:
 
-1. [Domain](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Domain)
+- IDENTITY
 
-In this layer, business rules are modeled and entities, value objects, etc., are defined.
+[![Identity - Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-identity-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-identity-infrastructure.yml) 
+[![Identity - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-identity-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-identity-service.yml) 
 
-2. [Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Infrastructure)
+.NET MVC Api. In this service, operations related to authentication and security are performed.
 
-In this layer, information is stored and redistributed to the data storage system.
+- STORAGE
 
-3. [Application](https://github.com/javierpardollama/HYPERDRIVE/tree/main/Hyperdrive.Service/Hyperdrive.Application)
+[![Storage - Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-storage-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-storage-infrastructure.yml) 
+[![Storage - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-storage-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-storage-service.yml) 
 
-This layer coordinates the sending and/or receiving of data between the Domain layer and the Infrastructure layer.
+.NET MVC Api. In this service, operations related to file system are performed
+
+- INTELLIGENCE
+
+[![Intelligence - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-Intelligence-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-Intelligence-service.yml)
+
+.NET MVC Api. In this service, operations related to Artificial Intelligence are performed
+
+- CLIENT
+
+[![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml)
+
+Angular Web Application. Provides a unified User Interface to perform all the operations.
 
 ## GETTING STARTED
 
