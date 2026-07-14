@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Hyperdrive.Storage.Application/Hyperdrive.Storage.Application.csproj" />
+  <Project Path="Hyperdrive.Storage.Domain/Hyperdrive.Storage.Domain.csproj" />
+  <Project Path="Hyperdrive.Storage.Infrastructure/Hyperdrive.Storage.Infrastructure.csproj" />
+  <Project Path="Hyperdrive.Storage.Service/Hyperdrive.Storage.Service.csproj" />
+  <Project Path="Hyperdrive.Storage.Test.Infrastructure/Hyperdrive.Storage.Test.Infrastructure.csproj" />
+  <Project Path="Hyperdrive.Storage.Test.Service/Hyperdrive.Storage.Test.Service.csproj" />
+</Solution>
