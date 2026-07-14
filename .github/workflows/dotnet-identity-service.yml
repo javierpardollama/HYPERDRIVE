@@ -1,4 +1,4 @@
-name:   Identity - Build .NET Service
+name: Identity - Build .NET Service
 
 on:
   push:
