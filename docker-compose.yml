@@ -74,8 +74,8 @@ services:
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "8070:8070"
+      - "8071:8071"
     networks:
       - monitoring
     depends_on:
