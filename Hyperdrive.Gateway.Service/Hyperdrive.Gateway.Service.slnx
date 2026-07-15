@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Hyperdrive.Gateway.Application/Hyperdrive.Gateway.Application.csproj" />
+  <Project Path="Hyperdrive.Gateway.Domain/Hyperdrive.Gateway.Domain.csproj" />
+  <Project Path="Hyperdrive.Gateway.Infrastructure/Hyperdrive.Gateway.Infrastructure.csproj" />
+  <Project Path="Hyperdrive.Gateway.Service/Hyperdrive.Gateway.Service.csproj" />
+</Solution>

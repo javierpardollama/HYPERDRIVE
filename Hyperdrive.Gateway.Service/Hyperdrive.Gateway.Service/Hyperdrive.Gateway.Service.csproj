@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <NuGetAuditMode>direct</NuGetAuditMode>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <RestoreEnablePackagePruning>true</RestoreEnablePackagePruning>
+        <UseAppHost>false</UseAppHost>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hyperdrive.Gateway.Application\Hyperdrive.Gateway.Application.csproj" />
+      <ProjectReference Include="..\Hyperdrive.Gateway.Infrastructure\Hyperdrive.Gateway.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

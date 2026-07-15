@@ -1,0 +1,48 @@
+name: Gateway - Build .NET Service
+
+on:
+  push:
+    branches: [ main ]    
+    paths:
+        - 'Hyperdrive.Gateway.Service/**'
+
+  pull_request:
+    branches: [ main ]
+    paths:
+        - 'Hyperdrive.Gateway.Service/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: Hyperdrive.Gateway.Service
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v6
+
+      - name: 🛠️ Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: 📥 Restore dependencies
+        run: dotnet restore --locked-mode Hyperdrive.Gateway.Service/Hyperdrive.Gateway.Service.csproj
+
+      - name: ♻️ Clean project
+        run: dotnet clean Hyperdrive.Gateway.Service/Hyperdrive.Gateway.Service.csproj
+
+      - name: 🏗️ Build project
+        run: dotnet build --no-restore Hyperdrive.Gateway.Service/Hyperdrive.Gateway.Service.csproj    

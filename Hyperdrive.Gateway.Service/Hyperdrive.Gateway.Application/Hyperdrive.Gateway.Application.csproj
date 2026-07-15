@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <NuGetAuditMode>direct</NuGetAuditMode>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <RestoreEnablePackagePruning>true</RestoreEnablePackagePruning>
+        <UseAppHost>false</UseAppHost>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hyperdrive.Gateway.Domain\Hyperdrive.Gateway.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

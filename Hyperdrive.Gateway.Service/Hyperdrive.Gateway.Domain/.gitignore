@@ -1,0 +1,101 @@
+## -----------------------------
+## Visual Studio / .NET
+## -----------------------------
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+
+# MSBuild
+*.cache
+*.dbmdl
+*.dbproj.schemaview
+*.pdb
+
+# Azure
+*.azurePubxml
+PublishProfiles/
+
+# Entity Framework
+migrations/
+
+# IIS Express
+iisexpress/
+*.vspscc
+*.vssscc
+
+# Rider / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Rider plugin caches
+.idea/.idea.*
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/dictionaries
+.idea/**/shelf/
+
+# JetBrains system folders
+.gradle/
+out/
+
+# DotCover
+*.dotCover
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# OS-specific
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+## -----------------------------
+## Optional: Uncomment if needed
+## -----------------------------
+# .env
+# *.log
+# *.tmp

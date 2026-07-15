@@ -3,7 +3,7 @@ using Hyperdrive.Storage.Infrastructure.Installers;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddEnvironmentVariables();
+@builder.Configuration.AddEnvironmentVariables();
 
 var @jwtSettings = @builder.InstallJwtSetttings();
 var @rateSettings = @builder.InstallRateLimitSettings();
@@ -13,7 +13,7 @@ var @rabbitSettings = @builder.InstallRabbitSetttings();
 
 @builder.Services.InstallSerializer();
 
-builder.Services.InstallApiVersions();
+@builder.Services.InstallApiVersions();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 @builder.Services.InstallOpenApi();

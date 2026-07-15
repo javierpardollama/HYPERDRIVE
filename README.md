@@ -6,6 +6,12 @@ This project arose as a solution for managing the current state of reserved file
 
 This project is constructed using a micro-services oriented architecture:
 
+- GATEWAY
+
+[![Identity - Build .NET Service](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-gateway-service.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-gateway-service.yml) 
+
+.NET Api Gateway. Provides a single entry point for client requests.
+
 - IDENTITY
 
 [![Identity - Test .NET Infrastructure](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-identity-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/dotnet-identity-infrastructure.yml) 
