@@ -1,6 +1,5 @@
 using Hyperdrive.Gateway.Application.Installers;
 using Hyperdrive.Gateway.Infrastructure.Installers;
-using Hyperdrive.Storage.Infrastructure.Installers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,19 +8,13 @@ builder.Configuration.AddEnvironmentVariables();
 var @jwtSettings = @builder.InstallJwtSetttings();
 
 @builder.Services.InstallSerializer();
-
 @builder.InstallOpenApi();
 @builder.Services.AddResponseCaching();
-
 @builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);
-
 @builder.Services.InstallProblemDetails();
-
 @builder.InstallAspireServices();
-
 @builder.InstallSecureApi();
-
 @builder.InstallApiGateway();
 
 var @app = @builder.Build();

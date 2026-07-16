@@ -12,37 +12,24 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallEntityFramework(@builder.Configuration);
 @builder.Services.InstallOpenAi(@aiSettings);
-
 @builder.Services.InstallSerializer();
-
 @builder.Services.InstallApiVersions();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 @builder.Services.InstallOpenApi();
-
-// Register the service and implementation for the database context
 @builder.Services.InstallManagers();
 @builder.Services.InstallMediatR();
-
-// Register the Mvc services to the services' container
 @builder.Services.AddResponseCaching();
-
-// Add customized Authentication to the services' container.
 @builder.Services.InstallIdentification(@apiSettings);
 @builder.Services.InstallCors(@apiSettings);
-
 @builder.Services.InstallProblemDetails();
 @builder.Services.InstallRateLimiter(@rateSettings);
-
 @builder.Services.InstallRabbit(@rabbitSettings);
-
 @builder.InstallAspireServices();
-
 @builder.InstallSecureApi();
 
 var @app = @builder.Build();
 
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
+
 // 1. Problem details (error handling)
 @app.UseProblemDetails();
 

@@ -3,35 +3,24 @@ using Hyperdrive.Identity.Infrastructure.Installers;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddEnvironmentVariables();
+@builder.Configuration.AddEnvironmentVariables();
 
 var @jwtSettings = @builder.InstallJwtSetttings();
 var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallEntityFramework(builder.Configuration);
-
 @builder.Services.InstallSerializer();
-
-builder.Services.InstallApiVersions();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+@builder.Services.InstallApiVersions();
 @builder.Services.InstallOpenApi();
-
 @builder.Services.InstallManagers();
 @builder.Services.InstallMediatR();
 @builder.Services.InstallRabbit();
-
 @builder.Services.AddResponseCaching();
-
 @builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);
-
 @builder.Services.InstallProblemDetails();
-
 @builder.Services.InstallRateLimiter(@rateSettings);
-
 @builder.InstallAspireServices();
-
 @builder.InstallSecureApi();
 
 var @app = @builder.Build();

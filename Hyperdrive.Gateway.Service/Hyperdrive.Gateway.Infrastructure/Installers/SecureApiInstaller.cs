@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Hyperdrive.Storage.Infrastructure.Installers;
+namespace Hyperdrive.Gateway.Infrastructure.Installers;
 
 /// <summary>
 ///     Represents a <see cref="SecureApiInstaller" /> class.
