@@ -18,8 +18,7 @@
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
         
         <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.5.0" />
-
-        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.10" />
+       
         <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.8.0" />
         <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.8.0" />
         <PackageReference Include="MMLib.SwaggerForOcelot" Version="10.0.2" />

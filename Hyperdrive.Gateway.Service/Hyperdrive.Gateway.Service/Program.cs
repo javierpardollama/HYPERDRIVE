@@ -8,6 +8,8 @@ builder.Configuration.AddEnvironmentVariables();
 
 var @jwtSettings = @builder.InstallJwtSetttings();
 
+@builder.Services.InstallSerializer();
+
 @builder.InstallOpenApi();
 @builder.Services.AddResponseCaching();
 
@@ -47,7 +49,6 @@ var @app = @builder.Build();
 
 // 7. Performance features
 @app.UseResponseCaching();
-@app.UseRateLimiter();
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
 

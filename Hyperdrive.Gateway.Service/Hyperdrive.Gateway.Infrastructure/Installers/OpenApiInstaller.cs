@@ -14,7 +14,9 @@ public static class OpenApiInstaller
     /// </summary>
     /// <param name="this">Injected <see cref="IHostApplicationBuilder" /></param>
     public static void InstallOpenApi(this IHostApplicationBuilder @this)
-    {
+    { 
+        @this.Services.AddEndpointsApiExplorer();
+        @this.Services.AddSwaggerGen();
         @this.Services.AddSwaggerForOcelot(@this.Configuration);
     }
 

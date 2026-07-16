@@ -69,9 +69,9 @@ public static class AspireInstaller
             })
             .WithTracing(tracing =>
             {
-                tracing.AddAspNetCoreInstrumentation(tracing =>
+                tracing.AddAspNetCoreInstrumentation(options =>
                     // Exclude health check requests from tracing
-                    tracing.Filter = context => !new[] { HealthEndpointPath, AlivenessEndpointPath }.Any(x => context.Request.Path.StartsWithSegments(x))
+                    options.Filter = context => !new[] { HealthEndpointPath, AlivenessEndpointPath }.Any(x => context.Request.Path.StartsWithSegments(x))
                 )
                 .AddHttpClientInstrumentation();
             });
@@ -100,7 +100,7 @@ public static class AspireInstaller
     }
 
     /// <summary>
-    /// Installs Open Telemetry Exporters
+    /// Installs Default Health Checks
     /// </summary>
     /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
     /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
