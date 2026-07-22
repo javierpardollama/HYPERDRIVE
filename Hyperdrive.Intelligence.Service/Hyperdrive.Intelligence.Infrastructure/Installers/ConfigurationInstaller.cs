@@ -11,15 +11,15 @@ namespace Hyperdrive.Intelligence.Infrastructure.Installers;
 public static class ConfigurationInstaller
 {
     /// <summary>
-    ///     Installs Api Settings
+    ///     Installs Jwt Settings
     /// </summary>
     /// <param name="builder">Injected <see cref="IHostApplicationBuilder" /></param>
-    public static ApiSettings InstallApiSetttings(this IHostApplicationBuilder @builder)
+    public static JwtSettings InstallJwtSetttings(this IHostApplicationBuilder @builder)
     {
-        var @jwtSettings = new ApiSettings();
+        var @jwtSettings = new JwtSettings();
 
-        @builder.Configuration.GetSection("Api").Bind(@jwtSettings);
-        @builder.Services.Configure<ApiSettings>(@builder.Configuration.GetSection("Api"));
+        @builder.Configuration.GetSection("Jwt").Bind(@jwtSettings);
+        @builder.Services.Configure<JwtSettings>(@builder.Configuration.GetSection("Jwt"));
 
         return @jwtSettings;
     }
@@ -36,20 +36,6 @@ public static class ConfigurationInstaller
         @builder.Services.Configure<OpenAiSettings>(@builder.Configuration.GetSection("OpenAi"));
 
         return @aiSettings;
-    }
-
-    /// <summary>
-    ///     Installs Rabbit Settings
-    /// </summary>
-    /// <param name="builder">Injected <see cref="IHostApplicationBuilder" /></param>
-    public static RabbitSettings InstallRabbitSetttings(this IHostApplicationBuilder @builder)
-    {
-        var @rabbitSettings = new RabbitSettings();
-
-        @builder.Configuration.GetSection("Rabbit").Bind(@rabbitSettings);
-        @builder.Services.Configure<RabbitSettings>(@builder.Configuration.GetSection("Rabbit"));
-
-        return @rabbitSettings;
     }
 
     /// <summary>

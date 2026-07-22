@@ -24,7 +24,6 @@ public static class ExceptionProfile
             nameof(NullReferenceException) => StatusCodes.Status404NotFound,
             nameof(TimeoutException) => StatusCodes.Status408RequestTimeout,
             nameof(ServiceException) => StatusCodes.Status409Conflict,
-            nameof(BrokerException) => StatusCodes.Status424FailedDependency,
             _ => StatusCodes.Status500InternalServerError
         };
     }

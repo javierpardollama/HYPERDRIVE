@@ -21,7 +21,7 @@ public static class EntityFrameworkInstaller
     {
         @this.AddDbContext<ApplicationContext>(options =>
         {
-            options.UseMongoDB(configuration.GetConnectionString("DefaultConnection"));
+            options.UseMongoDB(configuration.GetConnectionString("DefaultConnection")!);
         });
 
         @this.AddScoped<IApplicationContext, ApplicationContext>();

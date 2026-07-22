@@ -15,7 +15,6 @@ public static class ManagerInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallManagers(this IServiceCollection @this)
     {
-        @this.AddTransient<ICredentialManager, CredentialManager>();
         @this.AddTransient<IDocumentManager, DocumentManager>();
         @this.AddTransient<IEmbeddingManager, EmbeddingManager>();
         @this.AddTransient<IChunkManager, ChunkManager>();

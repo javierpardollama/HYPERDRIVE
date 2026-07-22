@@ -1,9 +1,9 @@
-﻿using System.Net;
-using Hyperdrive.Intelligence.Application.Handlers;
+﻿using System.Text;
 using Hyperdrive.Intelligence.Domain.Settings;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Hyperdrive.Intelligence.Application.Installers;
 
@@ -13,15 +13,36 @@ namespace Hyperdrive.Intelligence.Application.Installers;
 public static class IdentificationInstaller
 {
     /// <summary>
-    ///     Installs Authentication
+    ///     Installs Identification
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
-    /// <param name="settings">Injected <see cref="ApiSettings" /></param>
-    public static void InstallIdentification(this IServiceCollection @this, ApiSettings @settings)
+    /// <param name="settings">Injected <see cref="JwtSettings" /></param>
+    public static void InstallIdentification(this IServiceCollection @this, JwtSettings @settings)
     {
-        @this.AddAuthentication(nameof(AuthenticationSchemes.Basic))
-            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(nameof(AuthenticationSchemes.Basic),
-                options => options.ClaimsIssuer = @settings.ApiIssuer);
+        @this.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.ClaimsIssuer = @settings.JwtIssuer;
+            options.Authority = @settings.JwtAuthority;
+            options.SaveToken = true;
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                RequireAudience = true,
+                RequireExpirationTime = true,
+                RequireSignedTokens = true,
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ClockSkew = TimeSpan.Zero,
+                ValidIssuer = @settings.JwtIssuer,
+                ValidAudiences = @settings.JwtAudiences,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(@settings.JwtKey))
+            };
+        });
     }
 
     /// <summary>
