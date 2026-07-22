@@ -49,16 +49,16 @@
   "private": true,
   "packageManager": "npm@11.12.1",
   "dependencies": {
-    "@angular/animations": "^22.0.6",
-    "@angular/cdk": "^22.0.4",
-    "@angular/common": "^22.0.6",
-    "@angular/compiler": "^22.0.6",
-    "@angular/core": "^22.0.6",
-    "@angular/forms": "^22.0.6",
-    "@angular/material": "^22.0.4",
-    "@angular/platform-browser": "^22.0.6",
-    "@angular/platform-browser-dynamic": "^22.0.6",
-    "@angular/router": "^22.0.6",
+    "@angular/animations": "^22.0.7",
+    "@angular/cdk": "^22.0.5",
+    "@angular/common": "^22.0.7",
+    "@angular/compiler": "^22.0.7",
+    "@angular/core": "^22.0.7",
+    "@angular/forms": "^22.0.7",
+    "@angular/material": "^22.0.5",
+    "@angular/platform-browser": "^22.0.7",
+    "@angular/platform-browser-dynamic": "^22.0.7",
+    "@angular/router": "^22.0.7",
     "@opentelemetry/auto-instrumentations-web": "0.64.0",
     "@opentelemetry/context-zone": "2.8.0",
     "@opentelemetry/exporter-trace-otlp-http": "0.219.0",
@@ -70,9 +70,9 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular/build": "22.0.6",
-    "@angular/cli": "22.0.6",
-    "@angular/compiler-cli": "22.0.6",
+    "@angular/build": "22.0.7",
+    "@angular/cli": "22.0.7",
+    "@angular/compiler-cli": "22.0.7",
     "@compodoc/compodoc": "^1.2.1",
     "@electron-forge/cli": "^7.11.1",
     "@electron-forge/maker-deb": "^7.11.1",
@@ -82,7 +82,7 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.11.1",
     "@electron-forge/plugin-fuses": "^7.11.1",
     "@electron/fuses": "^1.8.0",
-    "electron": "43.1.0",
+    "electron": "43.2.0",
     "typescript": "~6.0.3"
   }
 }
