@@ -24,13 +24,13 @@ public static class OpenApiInstaller
             options.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "1.0",
-                Title = "HyperDrive.Service"
+                Title = "HyperDrive.Identity.Service"
             });
 
             options.DocInclusionPredicate((name, description) => description.GroupName == name);
             options.ResolveConflictingActions(descriptions => descriptions.First());
 
-            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "HyperDrive.Service.xml"));
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "HyperDrive.Identity.Service.xml"));
             options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
             {
                 Name = "Authorization",

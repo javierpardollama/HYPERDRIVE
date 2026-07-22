@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,22 +25,21 @@ public static class OpenApiInstaller
             options.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "1.0",
-                Title = "HyperDrive.Ai.Service"
+                Title = "HyperDrive.Intelligence.Service"
             });
 
             options.DocInclusionPredicate((name, description) => description.GroupName == name);
             options.ResolveConflictingActions(descriptions => descriptions.First());
 
-            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "HyperDrive.Ai.Service.xml"));
-            options.AddSecurityDefinition(nameof(AuthenticationSchemes.Basic), new OpenApiSecurityScheme
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "HyperDrive.Intelligence.Service.xml"));
+            options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
             {
                 Name = "Authorization",
-                Type = SecuritySchemeType.Http,
-                Scheme = nameof(AuthenticationSchemes.Basic),
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = JwtBearerDefaults.AuthenticationScheme,
                 In = ParameterLocation.Header,
-                Description = "Basic Authorization header using the Basic scheme."
+                Description = "Jwt Authorization header using the Bearer scheme."
             });
-
 
 
             options.AddSecurityRequirement((document) => new OpenApiSecurityRequirement
