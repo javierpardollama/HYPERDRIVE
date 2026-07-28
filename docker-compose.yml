@@ -1,8 +1,4 @@
-﻿networks:
-  monitoring:
-    driver: bridge
-
-services:
+﻿services:
   postgres:
     container_name: postgres
     image: postgres
@@ -26,30 +22,6 @@ services:
       - pg-db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    networks:
-      - monitoring
-
-  atlas:
-    container_name: atlas
-    image: mongodb/mongodb-atlas-local:latest   
-    env_file:
-      - path: .env
-        required: true
-    environment:
-      MONGODB_INITDB_ROOT_USERNAME: ${ATLAS_INITDB_ROOT_USERNAME}
-      MONGODB_INITDB_ROOT_PASSWORD: ${ATLAS_INITDB_ROOT_PASSWORD}    
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
-    volumes:
-      - atlas-db-data:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - monitoring
 
   hyperdrive-identity-service:
     container_name: hyperdrive-identity-service
@@ -76,8 +48,6 @@ services:
     ports:
       - "8070:8070"
       - "8071:8071"
-    networks:
-      - monitoring
     depends_on:
       - postgres
 
@@ -104,43 +74,10 @@ services:
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     ports:
-      - "8080:8080
+      - "8080:8080"
       - "8081:8081"
-    networks:
-      - monitoring
     depends_on:
       - postgres
 
-  hyperdrive-intelligence-service:
-    container_name: hyperdrive-intelligence-service
-    image: ${DOCKER_REGISTRY-}hyperdrive-intelligence-service  
-    restart: unless-stopped
-    init: true
-    build:
-      context: .
-      dockerfile: Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service/Dockerfile
-    env_file:
-      - path: .env
-        required: true
-    environment:
-      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: 8090
-      ASPNETCORE_HTTPS_PORTS: 8091
-      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
-      APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-      ConnectionStrings__DefaultConnection: ${ATLAS_CONNECTION}      
-      Jwt__JwtAudience: ${JWT_AUDIENCE}    
-      Jwt__JwtAuthority: ${JWT_AUTHORITY}
-      Jwt__JwtIssuer: ${JWT_ISSUER}
-      Jwt__JwtKey: ${JWT_KEY}
-    ports:
-      - "8090:8090
-      - "8091:8091"
-    networks:
-      - monitoring
-    depends_on:
-      - atlas
-
 volumes:
   pg-db-data:
-  atlas-db-data:
