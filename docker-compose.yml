@@ -23,6 +23,32 @@
     ports:
       - "5432:5432"
 
+  hyperdrive-gateway-service:
+    container_name: hyperdrive-gateway-service
+    image: ${DOCKER_REGISTRY-}hyperdrive-gateway-service
+    restart: unless-stopped
+    init: true
+    build:
+      context: .
+      dockerfile: Hyperdrive.Gateway.Service/Hyperdrive.Gateway.Service/Dockerfile
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ASPNETCORE_HTTP_PORTS: 8060
+      ASPNETCORE_HTTPS_PORTS: 8061
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+      APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
+      ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
+      Jwt__JwtAudience: ${JWT_AUDIENCE}
+      Jwt__JwtAuthority: ${JWT_AUTHORITY}
+      Jwt__JwtIssuer: ${JWT_ISSUER}
+      Jwt__JwtKey: ${JWT_KEY}
+    ports:
+      - "8060:8060"
+      - "8061:8061"
+
   hyperdrive-identity-service:
     container_name: hyperdrive-identity-service
     image: ${DOCKER_REGISTRY-}hyperdrive-identity-service    
