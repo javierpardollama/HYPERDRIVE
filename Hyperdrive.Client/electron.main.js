@@ -11,7 +11,7 @@ const CreateWindow = () => {
         y: 0,
         width: size.width,
         height: size.height,
-        backgroundColor:'#3f51b5',
+        backgroundColor: '#F5F5F5',
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,

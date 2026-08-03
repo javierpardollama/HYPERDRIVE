@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 To install all the required dependencies in a clean and reproducible way, use:
 ```bash
-npm ci --no-audit --no-fund
+npm ci --include=optional --no-audit --no-fund 
 ```
 This command installs packages strictly following the lockfile, ensuring consistent environments across machines.
 

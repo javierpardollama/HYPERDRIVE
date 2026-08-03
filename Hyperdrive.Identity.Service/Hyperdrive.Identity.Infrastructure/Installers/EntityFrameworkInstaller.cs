@@ -43,10 +43,7 @@ public static class EntityFrameworkInstaller
     public static void UseMigrations(this WebApplication @this)
     {
         using var @scope = @this.Services.CreateScope();
-
-        @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.EnsureCreated();
+       
         @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
-
-        // Add other services here
     }
 }
