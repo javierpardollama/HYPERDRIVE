@@ -14,7 +14,6 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 @builder.Services.InstallOpenApi();
 @builder.Services.InstallManagers();
 @builder.Services.InstallMediatR();
-@builder.Services.InstallRabbit();
 @builder.Services.AddResponseCaching();
 @builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);

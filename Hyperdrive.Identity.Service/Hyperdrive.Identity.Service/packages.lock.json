@@ -10,31 +10,31 @@
       },
       "Asp.Versioning.Abstractions": {
         "type": "Transitive",
-        "resolved": "10.1.0",
-        "contentHash": "RwdgC5O0baZ4pt30pAKKPQHq2CV4unBKA4HWoTeu7NY9ZwXM0dWYGf1Ipc5GK0eFBe9cMeqz4pGpPncMz4/ZNQ=="
+        "resolved": "10.2.0",
+        "contentHash": "Jt+Lt4PSAPkXGv7vQwnEe4UXWQvgS2zOMOM4WuYAxH74Ncso9JgwcOyPIZrfmfOv7QUrwTdNGR0BMbS1CuDtNw=="
       },
       "Asp.Versioning.Http": {
         "type": "Transitive",
-        "resolved": "10.0.1",
-        "contentHash": "g0ayV/9ho3tGgooC6eF5p1063I1WzlxFJDYQrigcGnW+mLvui6eXrcW5hzTHhQREroUR3ZwXQrIN2SAIoi+KDw==",
+        "resolved": "10.2.0",
+        "contentHash": "XRLjob+PQd5NGUVKnHY+GPdU4kWSLiA0ZdxlT/DNcFGyY3oqU/IrjuiJM1A96TJoUXyiRD7zEKQHuL84ybgGJw==",
         "dependencies": {
-          "Asp.Versioning.Abstractions": "10.1.0"
+          "Asp.Versioning.Abstractions": "10.2.0"
         }
       },
       "Asp.Versioning.Mvc": {
         "type": "Transitive",
-        "resolved": "10.0.1",
-        "contentHash": "OqoFPKKxXkNmw62H3CgXkPrf1L4PPwwyYr9QMP6itt/khKTIayqaHhK6F2e3jt6KHc4s23cWAUbu+Z5GPEeMaw==",
+        "resolved": "10.2.0",
+        "contentHash": "zHkMeiKyKegLE/KuHI/RScT664U5GdGw3L9V8FevPJEMTzmkSx8Y5zIUjbFiwr7pbBul8f458j0mdY9+5066Hg==",
         "dependencies": {
-          "Asp.Versioning.Http": "10.0.1"
+          "Asp.Versioning.Http": "10.2.0"
         }
       },
       "Asp.Versioning.Mvc.ApiExplorer": {
         "type": "Transitive",
-        "resolved": "10.0.1",
-        "contentHash": "ylPZe+LheFp0pt2tSMq2pPeGAkMLqWVOn5+1/xOB/eUj889n9b35Sny08bSQ0ziAGIFjp3BBTXaYsWJjRoFV4A==",
+        "resolved": "10.2.0",
+        "contentHash": "mAuGBW8o6SU6fi/6IGeiWlCI44wswWnBl7GCiSLLshbxOC+GyL+1jfVok/z7lRC/CsagUCkuxUaeZCFLm4RGcA==",
         "dependencies": {
-          "Asp.Versioning.Mvc": "10.0.1"
+          "Asp.Versioning.Mvc": "10.2.0"
         }
       },
       "Azure.Core": {
@@ -1330,8 +1330,8 @@
       },
       "RabbitMQ.Client": {
         "type": "Transitive",
-        "resolved": "7.2.1",
-        "contentHash": "YKXEfg9fVQiTKgZlvIhAfPSFaamEgi8DsQmisCH0IAsU4FYLrtoguDrDj6JtJVGUt40QPnBLRH6fTQcAC4qsOg=="
+        "resolved": "7.2.2",
+        "contentHash": "k4b6RnTXpLbsF96V93ooNYxgPMnoA2tEm24B6AXNJr1mG8wwNYdA1XJtgU66L5xqeGyveS7SJriRzlX3cbqQNA=="
       },
       "Swashbuckle.AspNetCore": {
         "type": "Transitive",
@@ -1485,7 +1485,7 @@
       "hyperdrive.identity.infrastructure": {
         "type": "Project",
         "dependencies": {
-          "Asp.Versioning.Mvc.ApiExplorer": "[10.0.1, )",
+          "Asp.Versioning.Mvc.ApiExplorer": "[10.2.0, )",
           "Azure.Monitor.OpenTelemetry.AspNetCore": "[1.6.0, )",
           "Hyperdrive.Identity.Domain": "[1.0.0, )",
           "Microsoft.EntityFrameworkCore.InMemory": "[10.0.10, )",
@@ -1496,7 +1496,7 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "[10.0.3, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.17.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.17.0, )",
-          "RabbitMQ.Client": "[7.2.1, )",
+          "RabbitMQ.Client": "[7.2.2, )",
           "Swashbuckle.AspNetCore": "[10.2.3, )"
         }
       }
