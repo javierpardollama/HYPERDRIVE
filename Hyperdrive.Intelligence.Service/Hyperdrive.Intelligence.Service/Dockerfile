@@ -7,7 +7,7 @@ WORKDIR /app
 # Usa usuario no root
 USER $APP_UID
 
-# Opcional: fija los puertos HTTP/HTTPS expl�citamente (coincide con EXPOSE)
+# Opcional: fija los puertos HTTP/HTTPS explícitamente (coincide con EXPOSE)
 ENV ASPNETCORE_URLS=http://+:8090;https://+:8091
 
 # Expone sólo los puertos necesarios.
@@ -25,7 +25,7 @@ COPY ["Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj", 
 COPY ["Hyperdrive.Intelligence.Application/Hyperdrive.Intelligence.Application.csproj", "Hyperdrive.Intelligence.Application/"]
 COPY ["Hyperdrive.Intelligence.Domain/Hyperdrive.Intelligence.Domain.csproj", "Hyperdrive.Intelligence.Domain/"]
 COPY ["Hyperdrive.Intelligence.Infrastructure/Hyperdrive.Intelligence.Infrastructure.csproj", "Hyperdrive.Intelligence.Infrastructure/"]
-COPY ["Hyperdrive.Ai/nuget.config", "./nuget.config"]
+COPY ["Hyperdrive.Intelligence.Service/nuget.config", "./nuget.config"]
 
 # Restore del proyecto principal (sin compilar) usando el runtime actual para cache estable
 RUN dotnet restore "./Hyperdrive.Intelligence.Service/Hyperdrive.Intelligence.Service.csproj" --configfile "./nuget.config" --locked-mode
