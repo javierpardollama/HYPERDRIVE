@@ -31,34 +31,34 @@
       },
       "Asp.Versioning.Abstractions": {
         "type": "Transitive",
-        "resolved": "10.2.0",
-        "contentHash": "Jt+Lt4PSAPkXGv7vQwnEe4UXWQvgS2zOMOM4WuYAxH74Ncso9JgwcOyPIZrfmfOv7QUrwTdNGR0BMbS1CuDtNw==",
+        "resolved": "10.2.1",
+        "contentHash": "jMBztsVim+rYVrkNY23dMuOjTGXGQ9+je1xb3i17KgUof7OcBZtMMDduEWoCQ52SpTlYqKsuzgJyUMCMOFCBfg==",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "10.0.0"
         }
       },
       "Asp.Versioning.Http": {
         "type": "Transitive",
-        "resolved": "10.2.0",
-        "contentHash": "XRLjob+PQd5NGUVKnHY+GPdU4kWSLiA0ZdxlT/DNcFGyY3oqU/IrjuiJM1A96TJoUXyiRD7zEKQHuL84ybgGJw==",
+        "resolved": "10.2.1",
+        "contentHash": "XaVOKS4AV6a6JdFsiuyLkNwU0ilWhUK2U71mBEXJsgi5AGpo24UkfZ4KUhpRGpuMmQNrugS7yxCIscGcnujdFA==",
         "dependencies": {
-          "Asp.Versioning.Abstractions": "10.2.0"
+          "Asp.Versioning.Abstractions": "10.2.1"
         }
       },
       "Asp.Versioning.Mvc": {
         "type": "Transitive",
-        "resolved": "10.2.0",
-        "contentHash": "zHkMeiKyKegLE/KuHI/RScT664U5GdGw3L9V8FevPJEMTzmkSx8Y5zIUjbFiwr7pbBul8f458j0mdY9+5066Hg==",
+        "resolved": "10.2.1",
+        "contentHash": "fMzUraYZOAobKQn2PffrgPsULbCWFeWroYRYndPasxPsiQl1+i8x5qYRuMYZAbzDrBnymPUMBxT2gZG2PwbkcQ==",
         "dependencies": {
-          "Asp.Versioning.Http": "10.2.0"
+          "Asp.Versioning.Http": "10.2.1"
         }
       },
       "Asp.Versioning.Mvc.ApiExplorer": {
         "type": "Transitive",
-        "resolved": "10.2.0",
-        "contentHash": "mAuGBW8o6SU6fi/6IGeiWlCI44wswWnBl7GCiSLLshbxOC+GyL+1jfVok/z7lRC/CsagUCkuxUaeZCFLm4RGcA==",
+        "resolved": "10.2.1",
+        "contentHash": "Tv1megkpUy+3FN9yfVJKIcYMLXTe5CPs4zftBxGaZhADJe6h9CJZ2Okh5cG4PoE7wzHTef+AK++8IuZta3Ppog==",
         "dependencies": {
-          "Asp.Versioning.Mvc": "10.2.0"
+          "Asp.Versioning.Mvc": "10.2.1"
         }
       },
       "Azure.Core": {
@@ -1888,7 +1888,7 @@
       "hyperdrive.storage.infrastructure": {
         "type": "Project",
         "dependencies": {
-          "Asp.Versioning.Mvc.ApiExplorer": "[10.2.0, )",
+          "Asp.Versioning.Mvc.ApiExplorer": "[10.2.1, )",
           "Azure.Monitor.OpenTelemetry.AspNetCore": "[1.6.0, )",
           "Hyperdrive.Storage.Domain": "[1.0.0, )",
           "Microsoft.EntityFrameworkCore.InMemory": "[10.0.10, )",
