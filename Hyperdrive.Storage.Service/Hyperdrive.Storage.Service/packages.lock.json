@@ -538,10 +538,10 @@
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
         "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "/ZV8RMWbWob1ZGsF5f1wVJNNlFLPKCf2ba834PpQiNhirVQ/ksup5SujtuUsvByHEZgv+9dmjC/4Xdi75axmXQ==",
+        "resolved": "10.0.11",
+        "contentHash": "N3+Fs465t08FyrQ+uoQyYH6TehLjtuGr/v5IjlFZANBbsivq9M5xFCVD25Ktq+HpWCfWXIrRjoakgymzO2trlw==",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.10"
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.11"
         }
       },
       "Microsoft.AspNetCore.Razor.Language": {
@@ -1328,11 +1328,6 @@
           "Polly.Core": "8.4.2"
         }
       },
-      "RabbitMQ.Client": {
-        "type": "Transitive",
-        "resolved": "7.2.2",
-        "contentHash": "k4b6RnTXpLbsF96V93ooNYxgPMnoA2tEm24B6AXNJr1mG8wwNYdA1XJtgU66L5xqeGyveS7SJriRzlX3cbqQNA=="
-      },
       "Swashbuckle.AspNetCore": {
         "type": "Transitive",
         "resolved": "10.2.3",
@@ -1479,7 +1474,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.11, )",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "[10.0.10, )"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "[10.0.11, )"
         }
       },
       "hyperdrive.storage.infrastructure": {
@@ -1496,7 +1491,6 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "[10.0.3, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.17.0, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.17.0, )",
-          "RabbitMQ.Client": "[7.2.2, )",
           "Swashbuckle.AspNetCore": "[10.2.3, )"
         }
       }
