@@ -22,8 +22,8 @@
         <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="10.9.0" />
         <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="10.9.0" />
         <PackageReference Include="MMLib.SwaggerForOcelot" Version="10.0.2" />
-        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.17.0" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.17.0" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.18.0" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.18.0" />
     </ItemGroup>
 
     <ItemGroup>
