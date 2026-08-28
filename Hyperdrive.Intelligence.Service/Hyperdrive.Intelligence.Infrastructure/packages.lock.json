@@ -1225,8 +1225,8 @@
       },
       "MongoDB.Bson": {
         "type": "Transitive",
-        "resolved": "3.11.0",
-        "contentHash": "M3yEubl7SbOl6N+m0L4geRejb3jZTXTs4J77fZUeXgireOPzFTT7taZpVSVOVXAMmS2deb6aS1HPe52oxX/Vyg=="
+        "resolved": "3.11.1",
+        "contentHash": "sCHXQZ5GzQy/e7/EVuC+YWoUzHg/V0dB3OfiU5lgG78jrODfsZq53K6h5yskH7Pd2aRmeiPjpIi/u80TxnjxKg=="
       },
       "MongoDB.Driver": {
         "type": "Transitive",
@@ -1561,7 +1561,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.11, )",
-          "MongoDB.Bson": "[3.11.0, )"
+          "MongoDB.Bson": "[3.11.1, )"
         }
       }
     }
