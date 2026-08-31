@@ -2,9 +2,9 @@ import { ViewDriveItemVersion } from '../viewmodels/views/viewdriveitemversion';
 
 import { ViewPage } from '../viewmodels/views/viewpage';
 
-import { FilterPageDriveItemVersion } from '..//viewmodels/filters/filterpagedriveitemversion';
+import { FilterPageDriveItemVersion } from '../viewmodels/filters/filterpagedriveitemversion';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -15,10 +15,7 @@ import { BaseService } from './base.service';
 import { environment } from '../environments/environment';
 
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class DriveItemVersionService extends BaseService {
 
     public constructor() {

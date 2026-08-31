@@ -6,7 +6,7 @@ import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { ViewApplicationRole } from '../viewmodels/views/viewapplicationrole';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { catchError, shareReplay } from 'rxjs/operators';
 
@@ -19,10 +19,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from '../environments/environment';
 import { ViewCatalog } from "../viewmodels/views/viewcatalog";
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class ApplicationRoleService extends BaseService {
 
     public constructor() {

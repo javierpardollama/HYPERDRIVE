@@ -10,7 +10,7 @@ import { SecurityPhoneNumberChange } from '../viewmodels/security/securityphonen
 
 import { SecurityNameChange } from '../viewmodels/security/securitynamechange';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -22,10 +22,7 @@ import { environment } from '../environments/environment';
 
 import { SecurityRefreshTokenReset } from '../viewmodels/security/securityrefreshtokenreset';
 
-@Injectable({
-  providedIn: 'root',
-})
-
+@Service()
 export class SecurityService extends BaseService {
 
   public constructor() {

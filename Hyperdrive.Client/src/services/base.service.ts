@@ -20,7 +20,7 @@ import { inject } from '@angular/core';
 
 export class BaseService {
 
-    protected httpClient = inject(HttpClient);;
+    protected httpClient = inject(HttpClient);
     protected matSnackBar = inject(MatSnackBar);
     protected router = inject(Router);
 

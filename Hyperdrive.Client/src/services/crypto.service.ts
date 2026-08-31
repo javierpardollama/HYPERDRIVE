@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Service } from "@angular/core";
 import { CryptoMeta } from "../viewmodels/crypto/crytpometa";
 import { DecodeBase64, EncodeBase64 } from "../utils/byte.utils";
 import { DeriveKey } from "../utils/crypto.utils";
@@ -6,9 +6,7 @@ import { VaultKeyAppVariants } from "../variants/vault.keys.variants";
 import { CryptoData } from "../viewmodels/crypto/cryptodata";
 import { IsEmpty } from "../utils/object.utils";
 
-@Injectable({
-    providedIn: 'root',
-})
+@Service()
 export class CryptoService {
 
     private CryptoKey?: CryptoKey;
@@ -89,4 +87,4 @@ export class CryptoService {
     public RemoveObject(key: string): void {
         sessionStorage.removeItem(key);
     }
-}   
+}

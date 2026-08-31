@@ -6,7 +6,7 @@ import { AuthSignOut } from '../viewmodels/auth/authsignout';
 
 import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 
@@ -16,10 +16,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from '../environments/environment';
 
-@Injectable({
-  providedIn: 'root',
-})
-
+@Service()
 export class AuthService extends BaseService {
 
   public constructor() {

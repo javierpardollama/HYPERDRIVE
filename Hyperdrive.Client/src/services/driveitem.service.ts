@@ -10,7 +10,7 @@ import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { FilterPageDriveItem } from '../viewmodels/filters/filterpagedriveitem';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -21,10 +21,7 @@ import { BaseService } from './base.service';
 import { environment } from '../environments/environment';
 
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class DriveItemService extends BaseService {
 
     public constructor() {

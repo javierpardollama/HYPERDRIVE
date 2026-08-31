@@ -4,15 +4,12 @@ import { BinaryAddDriveItem } from '../viewmodels/binary/binaryadddriveitem';
 
 import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { DecodeBlob, EncodeBlob } from '../utils/blob.utils';
 
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class BinaryService {
 
     public constructor() {

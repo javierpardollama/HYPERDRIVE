@@ -1,6 +1,6 @@
 import { ViewDriveItemBinary } from '../viewmodels/views/viewdriveitembinary';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -11,10 +11,7 @@ import { BaseService } from './base.service';
 import { environment } from '../environments/environment';
 
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class DriveItemBinaryService extends BaseService {
 
     public constructor() {
