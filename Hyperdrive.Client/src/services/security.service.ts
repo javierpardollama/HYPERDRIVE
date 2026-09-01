@@ -30,32 +30,32 @@ export class SecurityService extends BaseService {
   }
 
   public ResetPassword(viewModel: SecurityPasswordReset): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/password/reset`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/security/password/reset`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ResetPassword', undefined))));
   }
 
   public ChangePassword(viewModel: SecurityPasswordChange): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/password/change`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/security/password/change`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePassword', undefined))));
   }
 
   public ChangeEmail(viewModel: SecurityEmailChange): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/email/change`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/security/email/change`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeEmail', undefined))));
   }
 
   public ChangePhoneNumber(viewModel: SecurityPhoneNumberChange): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/phonenumber/change`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/security/phonenumber/change`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangePhoneNumber', undefined))));
   }
 
   public ChangeName(viewModel: SecurityNameChange): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/name/change`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/security/name/change`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('ChangeName', undefined))));
   }
 
   public RefreshTokens(viewModel: SecurityRefreshTokenReset): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/security/refreshtokens`, viewModel)
+    return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/security/refreshtokens`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('RefreshTokens', undefined))));
   }
 }

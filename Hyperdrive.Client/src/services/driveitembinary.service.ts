@@ -19,12 +19,12 @@ export class DriveItemBinaryService extends BaseService {
     }
 
     public FindLatestDriveItemBinaryByDriveItemId(driveitemid: number): Promise<ViewDriveItemBinary> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/binary/down/last/${driveitemid}`)
+        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/storage/v1/driveitem/binary/down/last/${driveitemid}`)
             .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindLatestDriveItemBinaryByDriveItemId', undefined))));
     }
 
     public FindDriveItemBinaryById(id: number): Promise<ViewDriveItemBinary> {
-        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/v1/driveitem/binary/down/${id}`)
+        return firstValueFrom(this.httpClient.get<ViewDriveItemBinary>(`${environment.Api.Service}api/storage/v1/driveitem/binary/down/${id}`)
             .pipe(catchError(this.HandleError<ViewDriveItemBinary>('FindDriveItemBinaryById', undefined))));
     }
 }

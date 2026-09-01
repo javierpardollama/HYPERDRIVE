@@ -24,17 +24,17 @@ export class AuthService extends BaseService {
   }
 
   public SignIn(viewModel: AuthSignIn): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/v1/auth/in`, viewModel)
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/auth/in`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('SignIn', undefined))));
   }
 
   public JoinIn(viewModel: AuthJoinIn): Promise<ViewApplicationUser> {
-    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/v1/auth/create`, viewModel)
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/auth/create`, viewModel)
       .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined))));
   }
 
   public SignOut(viewModel: AuthSignOut): Promise<any> {
-    return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/v1/auth/out`, viewModel)
+    return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/identity/v1/auth/out`, viewModel)
       .pipe(catchError(this.HandleError<any>('SignOut', undefined))));
   }
 }

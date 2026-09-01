@@ -29,32 +29,32 @@ export class DriveItemService extends BaseService {
     }
 
     public UpdateDriveItemName(viewModel: UpdateDriveItemName): Promise<ViewDriveItem> {
-        return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/v1/driveitem/name/change`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/storage/v1/driveitem/name/change`, viewModel)
             .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItemName', undefined))));
     }
 
     public UpdateDriveItemSharedWith(viewModel: UpdateDriveItemSharedWith): Promise<ViewDriveItem> {
-        return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/v1/driveitem/share`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewDriveItem>(`${environment.Api.Service}api/storage/v1/driveitem/share`, viewModel)
             .pipe(catchError(this.HandleError<ViewDriveItem>('UpdateDriveItemSharedWith', undefined))));
     }
 
     public FindPaginatedDriveItemByApplicationUserId(page: FilterPageDriveItem): Promise<ViewPage<ViewDriveItem>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItem>>(`${environment.Api.Service}api/v1/driveitem/page`, page)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItem>>(`${environment.Api.Service}api/storage/v1/driveitem/page`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItem>>('FindPaginatedDriveItemByApplicationUserId', undefined))));
     }
 
     public FindPaginatedSharedDriveItemByApplicationUserId(page: FilterPageDriveItem): Promise<ViewPage<ViewDriveItem>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItem>>(`${environment.Api.Service}api/v1/driveitem/page/shared`, page)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItem>>(`${environment.Api.Service}api/storage/v1/driveitem/page/shared`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItem>>('FindPaginatedSharedDriveItemByApplicationUserId', undefined))));
     }
 
     public AddDriveItem(viewModel: AddDriveItem): Promise<ViewDriveItem> {
-        return firstValueFrom(this.httpClient.post<ViewDriveItem>(`${environment.Api.Service}api/v1/driveitem/up`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewDriveItem>(`${environment.Api.Service}api/storage/v1/driveitem/up`, viewModel)
             .pipe(catchError(this.HandleError<ViewDriveItem>('AddDriveItem', undefined))));
     }
 
     public RemoveDriveItemById(id: number): Promise<void> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/driveitem/remove/${id}`)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/storage/v1/driveitem/remove/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveDriveItemById', undefined))));
     }
 }

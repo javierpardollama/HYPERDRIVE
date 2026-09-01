@@ -23,12 +23,12 @@ export class DriveItemVersionService extends BaseService {
     }
 
     public FindPaginatedDriveItemVersionByDriveItemId(page: FilterPageDriveItemVersion): Promise<ViewPage<ViewDriveItemVersion>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItemVersion>>(`${environment.Api.Service}api/v1/driveitem/version/page`, page)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewDriveItemVersion>>(`${environment.Api.Service}api/storage/v1/driveitem/version/page`, page)
             .pipe(catchError(this.HandleError<ViewPage<ViewDriveItemVersion>>('FindPaginatedDriveItemVersionByDriveItemId', undefined))));
     }
 
     public TargetDriveItemVersionById(id: number): Promise<void> {
-        return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/v1/driveitem/version/target/${id}`, {})
+        return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/storage/v1/driveitem/version/target/${id}`, {})
             .pipe(catchError(this.HandleError<any>('TargetDriveItemVersionById', undefined))));
     }
 }

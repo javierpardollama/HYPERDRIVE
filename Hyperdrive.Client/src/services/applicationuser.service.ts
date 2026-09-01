@@ -25,12 +25,12 @@ export class ApplicationUserService extends BaseService {
     }
 
     public UpdateApplicationUser(viewModel: UpdateApplicationUser): Promise<ViewApplicationUser> {
-        return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/v1/applicationuser/update`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/applicationuser/update`, viewModel)
             .pipe(catchError(this.HandleError<ViewApplicationUser>('UpdateApplicationUser', undefined))));
     }
 
     public FindAllApplicationUser(): Promise<ViewCatalog[]> {
-        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/applicationuser/all`)
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/identity/v1/applicationuser/all`)
             .pipe(
                 // Cache the latest emission
                 shareReplay({ bufferSize: 1, refCount: true }),
@@ -38,12 +38,12 @@ export class ApplicationUserService extends BaseService {
     }
 
     public FindPaginatedApplicationUser(viewModel: FilterPageApplicationUser): Promise<ViewPage<ViewApplicationUser>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewApplicationUser>>(`${environment.Api.Service}api/v1/applicationuser/page`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewApplicationUser>>(`${environment.Api.Service}api/identity/v1/applicationuser/page`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewApplicationUser>>('FindPaginatedApplicationUser', undefined))));
     }
 
     public RemoveApplicationUserById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/applicationuser/remove/${id}`)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/identity/v1/applicationuser/remove/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveApplicationUserById', undefined))));
     }
 }
