@@ -61,7 +61,7 @@ export class ChangeEmailModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 

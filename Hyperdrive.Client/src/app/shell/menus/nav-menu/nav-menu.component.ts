@@ -10,7 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { CryptoService } from '../../../../services/crypto.service';
-import { VaultKeyAppVariants } from '../../../..//variants/vault.keys.variants';
+import { VaultKeyAppVariants } from '../../../../variants/vault.keys.variants';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -61,6 +61,6 @@ export class NavMenuComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
     }
 }
