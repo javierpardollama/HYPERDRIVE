@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { environment } from '../environments/environment';
 import { NavMenuComponent } from './shell/menus/nav-menu/nav-menu.component';
 
 @Component({
@@ -15,24 +13,8 @@ import { NavMenuComponent } from './shell/menus/nav-menu/nav-menu.component';
   ]
 })
 export class AppComponent {
-  // DI
-  private meta = inject(Meta);
 
   constructor() {
-    this.ApplyContenSecurityPolicy();
-  }
 
-  ApplyContenSecurityPolicy(): void {
-    const content = [
-      `default-src 'self'`,
-      `style-src 'self' 'unsafe-inline'`,
-      `script-src 'self'`,
-      `img-src 'self' data:`,
-      `connect-src 'self' ${environment.Api.Service} ${environment.Otel.Exporter}`,
-      `trusted-types angular angular#bundler`,
-      `require-trusted-types-for 'script'`
-    ].join("; ");
-
-    this.meta.addTag({ 'http-equiv': 'Content-Security-Policy', content });
   }
 }
