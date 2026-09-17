@@ -4,18 +4,18 @@
     "net10.0": {
       "Microsoft.AspNetCore.Authentication.JwtBearer": {
         "type": "Direct",
-        "requested": "[10.0.11, )",
-        "resolved": "10.0.11",
-        "contentHash": "Dy9yElSej0rVQL8LBpCLatWTKXNH6h6VBVFmGndTCf1Wge0jSvH9U8mml6ddVDAQ089q1/fDYlhyukHSgx8unQ==",
+        "requested": "[10.0.12, )",
+        "resolved": "10.0.12",
+        "contentHash": "DeE+Bq2OqB3FikFkZk+7gFBeLOQhkSolejLrbi+a9zpfvXtW1Ff6Nd6DIvHXIm+pc4aM4+52vDy3jnuau0qoUQ==",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.19.2"
         }
       },
       "MongoDB.Bson": {
         "type": "Direct",
-        "requested": "[3.11.1, )",
-        "resolved": "3.11.1",
-        "contentHash": "sCHXQZ5GzQy/e7/EVuC+YWoUzHg/V0dB3OfiU5lgG78jrODfsZq53K6h5yskH7Pd2aRmeiPjpIi/u80TxnjxKg=="
+        "requested": "[3.11.2, )",
+        "resolved": "3.11.2",
+        "contentHash": "KU/swasyhcoi4NoxiY06/zRYCayH128s6Ye9Cm0yCXfyx5mAsnEv2wM+5Hg3iaBiw28we4t6n95Bk6EyrTQx5w=="
       },
       "Microsoft.Bcl.Cryptography": {
         "type": "Transitive",

@@ -18,8 +18,8 @@
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer": {
         "type": "Transitive",
-        "resolved": "10.0.11",
-        "contentHash": "Dy9yElSej0rVQL8LBpCLatWTKXNH6h6VBVFmGndTCf1Wge0jSvH9U8mml6ddVDAQ089q1/fDYlhyukHSgx8unQ==",
+        "resolved": "10.0.12",
+        "contentHash": "DeE+Bq2OqB3FikFkZk+7gFBeLOQhkSolejLrbi+a9zpfvXtW1Ff6Nd6DIvHXIm+pc4aM4+52vDy3jnuau0qoUQ==",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.19.2"
         }
@@ -78,8 +78,8 @@
       },
       "MongoDB.Bson": {
         "type": "Transitive",
-        "resolved": "3.11.1",
-        "contentHash": "sCHXQZ5GzQy/e7/EVuC+YWoUzHg/V0dB3OfiU5lgG78jrODfsZq53K6h5yskH7Pd2aRmeiPjpIi/u80TxnjxKg=="
+        "resolved": "3.11.2",
+        "contentHash": "KU/swasyhcoi4NoxiY06/zRYCayH128s6Ye9Cm0yCXfyx5mAsnEv2wM+5Hg3iaBiw28we4t6n95Bk6EyrTQx5w=="
       },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "Transitive",
@@ -93,8 +93,8 @@
       "hyperdrive.intelligence.domain": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.11, )",
-          "MongoDB.Bson": "[3.11.1, )"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.12, )",
+          "MongoDB.Bson": "[3.11.2, )"
         }
       }
     }
