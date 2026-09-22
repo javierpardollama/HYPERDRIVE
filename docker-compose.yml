@@ -84,7 +84,7 @@
     init: true
     build:
       context: .
-      dockerfile: Hyperdrive.Storage.Service/Hyperdrive.Storage.storage/Dockerfile
+      dockerfile: Hyperdrive.Storage.Service/Hyperdrive.Storage.Service/Dockerfile
     env_file:
       - path: .env
         required: true
