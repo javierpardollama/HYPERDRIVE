@@ -1,9 +1,6 @@
-bin/
-obj/
+**/bin/
+**/obj/
 .git/
-.gitignore
-.idea/
+.v**
 .vscode/
-Dockerfile*
-*.sln
-*.slnx
+.gitignore
