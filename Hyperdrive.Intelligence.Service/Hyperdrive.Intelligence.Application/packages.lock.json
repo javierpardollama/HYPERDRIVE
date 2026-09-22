@@ -78,8 +78,8 @@
       },
       "MongoDB.Bson": {
         "type": "Transitive",
-        "resolved": "3.11.2",
-        "contentHash": "KU/swasyhcoi4NoxiY06/zRYCayH128s6Ye9Cm0yCXfyx5mAsnEv2wM+5Hg3iaBiw28we4t6n95Bk6EyrTQx5w=="
+        "resolved": "3.12.0",
+        "contentHash": "2iYGykWDl6Wkx2GHjWaPEGAS49lxQN5YFFT1a7l/pKraMo1gqT4aZckhwu53WMinQTc10R4FxUHoo7X9M20GFg=="
       },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "Transitive",
@@ -94,7 +94,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.12, )",
-          "MongoDB.Bson": "[3.11.2, )"
+          "MongoDB.Bson": "[3.12.0, )"
         }
       }
     }
