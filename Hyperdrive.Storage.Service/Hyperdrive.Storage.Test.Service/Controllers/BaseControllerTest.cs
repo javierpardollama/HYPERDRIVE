@@ -9,7 +9,7 @@ namespace Hyperdrive.Storage.Test.Service.Controllers;
 
 public class BaseControllerTest
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:5001/api/v1/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8080/api/v1/") };
 
     protected ViewApplicationUser User { get; set; }
 

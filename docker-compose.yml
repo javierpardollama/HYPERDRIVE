@@ -36,7 +36,7 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: 8060      
+      ASPNETCORE_HTTP_PORTS: 8061     
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
@@ -45,7 +45,7 @@
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     ports:
-      - "8060:8060"
+      - "8061:8061"
     
   hyperdrive-identity-service:
     container_name: hyperdrive-identity-service
@@ -60,7 +60,7 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: 8070    
+      ASPNETCORE_HTTPS_PORTS: 8071    
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
@@ -69,7 +69,7 @@
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     ports:
-      - "8070:8070"
+      - "8071:8071"
     depends_on:
       - postgres
 
@@ -86,7 +86,7 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: 8080
+      ASPNETCORE_HTTPS_PORTS: 8081
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
@@ -95,7 +95,7 @@
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     ports:
-      - "8080:8080"     
+      - "8081:8081"     
     depends_on:
       - postgres
 

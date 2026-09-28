@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using Hyperdrive.Storage.Application.ViewModels.Additions;
 using Hyperdrive.Storage.Application.ViewModels.Filters;
 using Hyperdrive.Storage.Application.ViewModels.Views;
-using Hyperdrive.Storage.Test.Service.Controllers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace Hyperdrive.Main.Test.Service.Controllers;
+namespace Hyperdrive.Storage.Test.Service.Controllers;
 
 [TestFixture]
 public class DriveItemVersionControllerTest : BaseControllerTest
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/driveitem") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8080/api/v1/driveitem") };
 
     private ViewDriveItem Archive { get; set; }
 
@@ -21,7 +20,7 @@ public class DriveItemVersionControllerTest : BaseControllerTest
         Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
     }
 
-    [Test, Order(1)]
+    [Test]
     public async Task AddParentDriveItem()
     {
         var content = JsonContent.Create(new AddDriveItem
@@ -39,7 +38,7 @@ public class DriveItemVersionControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(2)]
+    [Test, DependsOnTest("AddParentDriveItem")]
     public async Task FindPaginatedDriveItemVersionByDriveItemId()
     {
         var content = JsonContent.Create(new FilterPageDriveItemVersion
@@ -56,7 +55,7 @@ public class DriveItemVersionControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(3)]
+    [Test, DependsOnTest("FindPaginatedDriveItemVersionByDriveItemId")]
     public async Task RemoveDriveItemById()
     {
         var response = await Client.DeleteAsync($"remove/{Archive.Id}");

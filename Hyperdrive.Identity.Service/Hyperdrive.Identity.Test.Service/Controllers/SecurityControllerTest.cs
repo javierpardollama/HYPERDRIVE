@@ -9,7 +9,7 @@ namespace Hyperdrive.Identity.Test.Service.Controllers;
 [TestFixture]
 public class SecurityControllerTest : BaseControllerTest
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/security/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8071/api/v1/security/") };
 
     [SetUp]
     public new void SetUp()
@@ -17,7 +17,7 @@ public class SecurityControllerTest : BaseControllerTest
         Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
     }
 
-    [Test, Order(1)]
+    [Test]
     public async Task ChangePassword()
     {
         var content = JsonContent.Create(new SecurityPasswordChange
@@ -34,7 +34,7 @@ public class SecurityControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(2)]
+    [Test, DependsOnTest("ChangePassword")]
     public async Task RollbackPassword()
     {
         var content = JsonContent.Create(new SecurityPasswordChange
@@ -51,7 +51,7 @@ public class SecurityControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(3)]
+    [Test, DependsOnTest("RollbackPassword")]
     public async Task ChangeEmail()
     {
         var content = JsonContent.Create(new SecurityEmailChange
@@ -67,7 +67,7 @@ public class SecurityControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(4)]
+    [Test, DependsOnTest("ChangeEmail")]
     public async Task RollbackEmail()
     {
         var content = JsonContent.Create(new SecurityEmailChange
@@ -83,7 +83,7 @@ public class SecurityControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(5)]
+    [Test, DependsOnTest("RollbackEmail")]
     public async Task ChangePhoneNumber()
     {
         var content = JsonContent.Create(new SecurityPhoneNumberChange
@@ -99,7 +99,7 @@ public class SecurityControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(6)]
+    [Test, DependsOnTest("ChangePhoneNumber")]
     public async Task ChangeName()
     {
         var content = JsonContent.Create(new SecurityNameChange
@@ -116,7 +116,7 @@ public class SecurityControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(7)]
+    [Test, DependsOnTest("ChangeName")]
     public async Task RollbackName()
     {
         var content = JsonContent.Create(new SecurityNameChange

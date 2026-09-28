@@ -3,11 +3,11 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 8070
+          "Port": 8071
         }
       ],
       "UpstreamPathTemplate": "/api/identity/{everything}",
@@ -16,11 +16,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 8080
+          "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/storage/{everything}",
@@ -29,11 +29,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 8090
+          "Port": 8091
         }
       ],
       "UpstreamPathTemplate": "/api/intelligence/{everything}",
@@ -48,7 +48,7 @@
         {
           "Name": "Identity Service",
           "Version": "v1",
-          "Url": "http://localhost:8070/swagger/v1/swagger.json"
+          "Url": "https://localhost:8071/swagger/v1/swagger.json"
         }
       ]
     },
@@ -58,7 +58,7 @@
         {
           "Name": "Storage Service",
           "Version": "v1",
-          "Url": "http://localhost:8080/swagger/v1/swagger.json"
+          "Url": "https://localhost:8081/swagger/v1/swagger.json"
         }
       ]
     },
@@ -68,12 +68,12 @@
         {
           "Name": "Intelligence Service",
           "Version": "v1",
-          "Url": "http://localhost:8090/swagger/v1/swagger.json"
+          "Url": "https://localhost:8091/swagger/v1/swagger.json"
         }
       ]
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost"
+    "BaseUrl": "https://localhost"
   }
 }

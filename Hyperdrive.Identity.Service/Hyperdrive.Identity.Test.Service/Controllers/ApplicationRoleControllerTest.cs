@@ -11,7 +11,7 @@ namespace Hyperdrive.Identity.Test.Service.Controllers;
 [TestFixture]
 public class ApplicationRoleControllerTest : BaseControllerTest
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:55897/api/v1/applicationrole/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8071/api/v1/applicationrole/") };
 
     private ViewApplicationRole Role { get; set; }
 
@@ -21,7 +21,7 @@ public class ApplicationRoleControllerTest : BaseControllerTest
         Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, User.Token.Value);
     }
 
-    [Test, Order(1)]
+    [Test]
     public async Task FindAllApplicationRole()
     {
         var response = await Client.GetAsync("all");
@@ -31,7 +31,7 @@ public class ApplicationRoleControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(2)]
+    [Test]
     public async Task FindPaginatedApplicationRole()
     {
         var content = JsonContent.Create(new FilterPageApplicationRole { Index = 0, Size = 20, ApplicationUserId = User.Id });
@@ -43,7 +43,7 @@ public class ApplicationRoleControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(3)]
+    [Test]
     public async Task AddApplicationRole()
     {
         var content = JsonContent.Create(new AddApplicationRole { ApplicationUserId = User.Id, Name = "Dungeon Master", ImageUri = "URL/Dungeon_Master_500px.png" });
@@ -55,7 +55,7 @@ public class ApplicationRoleControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(4)]
+    [Test, DependsOnTest("AddApplicationRole")]
     public async Task UpdateApplicationRole()
     {
         var content = JsonContent.Create(new UpdateApplicationRole { ApplicationUserId = User.Id, Id = Role.Id, Name = "Dungeon Master", ImageUri = "URL/Dungeon_Master_500px.png" });
@@ -67,7 +67,7 @@ public class ApplicationRoleControllerTest : BaseControllerTest
         Assert.Pass();
     }
 
-    [Test, Order(5)]
+    [Test, DependsOnTest("UpdateApplicationRole")]
     public async Task RemoveApplicationRoleById()
     {
         var response = await Client.DeleteAsync($"remove/{Role.Id}");

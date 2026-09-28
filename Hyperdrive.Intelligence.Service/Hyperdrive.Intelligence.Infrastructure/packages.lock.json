@@ -103,12 +103,12 @@
       },
       "MongoDB.EntityFrameworkCore": {
         "type": "Direct",
-        "requested": "[10.0.3, )",
-        "resolved": "10.0.3",
-        "contentHash": "aoq2PxlVSt010Oynux+RbmTsv3WoVLC2ujbObJDAnCFizX1YLmZV5bQt3a0c1xaFk3kvTWnNeZj9xiczOO0Kag==",
+        "requested": "[10.0.4, )",
+        "resolved": "10.0.4",
+        "contentHash": "cRey26mebQ1qjgR4dIn35FkAiVNp4I5TBltSFtUO8flUAaoEH3JzwoEJsrI6jbNxZ1dPUDyPEKc/EZzlXDcwPg==",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.11",
-          "MongoDB.Driver": "3.11.0"
+          "MongoDB.Driver": "3.11.2"
         }
       },
       "OpenTelemetry.Exporter.OpenTelemetryProtocol": {
@@ -1230,11 +1230,11 @@
       },
       "MongoDB.Driver": {
         "type": "Transitive",
-        "resolved": "3.11.0",
-        "contentHash": "xE6TBMsbFL7CYsBKe5S/fC5LYnHXMPwwiZVh7G7lsyNBe6Jr9qUuxt5pWkgb49HC3GlTYIvME1GgkAJgekhG/A==",
+        "resolved": "3.11.2",
+        "contentHash": "ih0sEiM9v6PtL5hReqLCupiWkxKk12E2wo0udybBnMpFhSSREjJ5FxUv3VyClfodhVODjF3Z3XrbXHPfL0NlVw==",
         "dependencies": {
           "DnsClient": "1.6.1",
-          "MongoDB.Bson": "3.11.0",
+          "MongoDB.Bson": "3.11.2",
           "SharpCompress": "0.48.1",
           "Snappier": "1.3.1",
           "ZstdSharp.Port": "0.7.3"

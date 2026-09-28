@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 USER $APP_UID
 
-ENV ASPNETCORE_URLS=http://+:8070
-EXPOSE 8070
+ENV ASPNETCORE_URLS=https://+:8071
+EXPOSE 8071
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
