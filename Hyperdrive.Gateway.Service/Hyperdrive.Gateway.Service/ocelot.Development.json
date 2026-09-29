@@ -6,74 +6,27 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "hyperdrive-identity-service",
           "Port": 8071
         }
       ],
       "UpstreamPathTemplate": "/api/identity/{everything}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
-      "SwaggerKey": "identity"
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTIONS" ]
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "hyperdrive-storage-service",
           "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/storage/{everything}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
-      "SwaggerKey": "storage"
-    },
-    {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8091
-        }
-      ],
-      "UpstreamPathTemplate": "/api/intelligence/{everything}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ],
-      "SwaggerKey": "intelligence"
-    }
-  ],
-  "SwaggerEndPoints": [
-    {
-      "Key": "identity",
-      "Config": [
-        {
-          "Name": "Identity Service",
-          "Version": "v1",
-          "Url": "https://localhost:8071/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "storage",
-      "Config": [
-        {
-          "Name": "Storage Service",
-          "Version": "v1",
-          "Url": "https://localhost:8081/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "intelligence",
-      "Config": [
-        {
-          "Name": "Intelligence Service",
-          "Version": "v1",
-          "Url": "http://localhost:8090/swagger/v1/swagger.json"
-        }
-      ]
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTIONS" ]
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost"
+    "BaseUrl": "https://localhost:8061"
   }
 }

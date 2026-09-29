@@ -7,8 +7,6 @@ builder.Configuration.AddEnvironmentVariables();
 
 var @jwtSettings = @builder.InstallJwtSetttings();
 
-@builder.Services.InstallSerializer();
-@builder.InstallOpenApi();
 @builder.Services.AddResponseCaching();
 @builder.Services.InstallIdentification(@jwtSettings);
 @builder.Services.InstallCors(@jwtSettings);
@@ -27,31 +25,23 @@ var @app = @builder.Build();
 // 2. Routing
 @app.UseRouting();
 
-// 3. OpenAPI (Swagger UI)
-@app.UseOpenApi();
-
-// 4. CORS (must be before endpoints)
+// 3. CORS (must be before endpoints)
 @app.UseCors();
 
-// 5. Security headers
+// 4. Security headers
 @app.UseSecureApi();
 
-// 6. Identification & custom middlewares
+// 5. Identification & custom middlewares
 @app.UseIdentification();
 @app.UseMiddlewares();
 
-// 7. Performance features
-@app.UseResponseCaching();
-@app.UseRequestTimeouts();
-@app.UseOutputCache();
-
-// 8. Health endpoints
+// 6. Health endpoints
 @app.UseDefaultHealthEndpoints();
 
-// 9. Endpoint execution
+// 7. Endpoint execution
 @app.MapControllers();
 
-// 10. Ocelot
+// 8. Ocelot
 await app.UseApiGateway();
 
-@app.Run();
+await @app.RunAsync();

@@ -1,5 +1,6 @@
 using Hyperdrive.Storage.Application.Installers;
 using Hyperdrive.Storage.Infrastructure.Installers;
+using Hyperdrive.Storage.Service.Installers;
 
 var @builder = WebApplication.CreateBuilder(args);
 

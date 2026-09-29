@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi;
 
-namespace Hyperdrive.Identity.Infrastructure.Installers;
+namespace Hyperdrive.Identity.Service.Installers;
 
 /// <summary>
 ///     Represents a <see cref="OpenApiInstaller" /> class.
@@ -17,20 +15,25 @@ public static class OpenApiInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallOpenApi(this IServiceCollection @this)
     {
-        @this.AddEndpointsApiExplorer();
+       @this.AddEndpointsApiExplorer();
 
         @this.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "1.0",
-                Title = "HyperDrive.Identity.Service"
+                Title = $"{Assembly.GetExecutingAssembly().GetName().Name}"
             });
 
             options.DocInclusionPredicate((name, description) => description.GroupName == name);
             options.ResolveConflictingActions(descriptions => descriptions.First());
-
-            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "HyperDrive.Identity.Service.xml"));
+            
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+            if (File.Exists(xmlPath))
+            {
+                options.IncludeXmlComments(xmlPath);
+            }
+            
             options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
             {
                 Name = "Authorization",

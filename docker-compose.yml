@@ -19,7 +19,7 @@
       retries: 10
       start_period: 10s
     volumes:
-      - pg-db-data:/var/lib/postgresql/data
+      - pg-db-data:/var/lib/postgresql
     ports:
       - "5432:5432"
 
@@ -36,14 +36,18 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTP_PORTS: 8061     
+      ASPNETCORE_HTTPS_PORTS: 8061    
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD} 
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-      ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
+      ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
       Jwt__JwtAudience: ${JWT_AUDIENCE}
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
+    volumes:
+      - ./https:/https:ro
     ports:
       - "8061:8061"
     
@@ -60,18 +64,19 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTPS_PORTS: 8071    
+      ASPNETCORE_HTTPS_PORTS: 8071         
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-      ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
+      ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
       Jwt__JwtAudience: ${JWT_AUDIENCE}    
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
-      Jwt__JwtKey: ${JWT_KEY}
+      Jwt__JwtKey: ${JWT_KEY}    
     ports:
       - "8071:8071"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   hyperdrive-storage-service:
     container_name: hyperdrive-storage-service
@@ -86,18 +91,19 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTPS_PORTS: 8081
+      ASPNETCORE_HTTPS_PORTS: 8081      
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-      ConnectionStrings__DefaultConnection: ${PG_CONNECTION}
+      ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
       Jwt__JwtAudience: ${JWT_AUDIENCE}    
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
-      Jwt__JwtKey: ${JWT_KEY}
+      Jwt__JwtKey: ${JWT_KEY}    
     ports:
       - "8081:8081"     
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
 volumes:
   pg-db-data:

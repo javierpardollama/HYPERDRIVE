@@ -1,5 +1,6 @@
 using Hyperdrive.Identity.Application.Installers;
 using Hyperdrive.Identity.Infrastructure.Installers;
+using Hyperdrive.Identity.Service.Installers;
 
 var @builder = WebApplication.CreateBuilder(args);
 
@@ -8,17 +9,17 @@ var @builder = WebApplication.CreateBuilder(args);
 var @jwtSettings = @builder.InstallJwtSetttings();
 var @rateSettings = @builder.InstallRateLimitSettings();
 
-@builder.Services.InstallEntityFramework(builder.Configuration);
-@builder.Services.InstallSerializer();
-@builder.Services.InstallApiVersions();
+@builder.InstallEntityFramework(builder.Configuration);
+@builder.InstallSerializer();
+@builder.InstallApiVersions();
 @builder.Services.InstallOpenApi();
 @builder.Services.InstallManagers();
-@builder.Services.InstallMediatR();
+@builder.InstallMediatR();
 @builder.Services.AddResponseCaching();
-@builder.Services.InstallIdentification(@jwtSettings);
-@builder.Services.InstallCors(@jwtSettings);
-@builder.Services.InstallProblemDetails();
-@builder.Services.InstallRateLimiter(@rateSettings);
+@builder.InstallIdentification(@jwtSettings);
+@builder.InstallCors(@jwtSettings);
+@builder.InstallProblemDetails();
+@builder.InstallRateLimiter(@rateSettings);
 @builder.InstallAspireServices();
 @builder.InstallSecureApi();
 

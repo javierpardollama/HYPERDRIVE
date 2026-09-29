@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi;
 
-namespace Hyperdrive.Storage.Infrastructure.Installers;
+namespace Hyperdrive.Storage.Service.Installers;
 
 /// <summary>
 ///     Represents a <see cref="OpenApiInstaller" /> class.
@@ -24,13 +22,17 @@ public static class OpenApiInstaller
             options.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "1.0",
-                Title = "HyperDrive.Storage.Service"
+                Title = $"{Assembly.GetExecutingAssembly().GetName().Name}"
             });
 
             options.DocInclusionPredicate((name, description) => description.GroupName == name);
             options.ResolveConflictingActions(descriptions => descriptions.First());
 
-            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "HyperDrive.Storage.Service.xml"));
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+            if (File.Exists(xmlPath))
+            {
+                options.IncludeXmlComments(xmlPath);
+            }
             options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
             {
                 Name = "Authorization",
