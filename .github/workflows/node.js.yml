@@ -47,7 +47,7 @@ jobs:
         run: test -f package-lock.json
 
       - name: 📥 Install dependencies
-        run: npm ci --no-audit --no-fund
+        run: npm ci --include=optional --no-audit --no-fund 
 
       - name: 🔍 Seeks package-lock.json drift
         run: git diff --exit-code package-lock.json
