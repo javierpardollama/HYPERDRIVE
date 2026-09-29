@@ -74,6 +74,8 @@
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}    
+    volumes:
+      - ./https:/https:ro
     ports:
       - "8071:8071"
     depends_on:
@@ -103,6 +105,8 @@
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}    
+    volumes:
+      - ./https:/https:ro    
     ports:
       - "8081:8081"     
     depends_on:
