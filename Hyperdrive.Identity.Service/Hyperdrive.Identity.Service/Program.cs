@@ -9,17 +9,17 @@ var @builder = WebApplication.CreateBuilder(args);
 var @jwtSettings = @builder.InstallJwtSetttings();
 var @rateSettings = @builder.InstallRateLimitSettings();
 
-@builder.InstallEntityFramework(builder.Configuration);
-@builder.InstallSerializer();
-@builder.InstallApiVersions();
+@builder.Services.InstallEntityFramework(builder.Configuration);
+@builder.Services.InstallSerializer();
+@builder.Services.InstallApiVersions();
 @builder.Services.InstallOpenApi();
 @builder.Services.InstallManagers();
-@builder.InstallMediatR();
+@builder.Services.InstallMediatR();
 @builder.Services.AddResponseCaching();
-@builder.InstallIdentification(@jwtSettings);
-@builder.InstallCors(@jwtSettings);
-@builder.InstallProblemDetails();
-@builder.InstallRateLimiter(@rateSettings);
+@builder.Services.InstallIdentification(@jwtSettings);
+@builder.Services.InstallCors(@jwtSettings);
+@builder.Services.InstallProblemDetails();
+@builder.Services.InstallRateLimiter(@rateSettings);
 @builder.InstallAspireServices();
 @builder.InstallSecureApi();
 
