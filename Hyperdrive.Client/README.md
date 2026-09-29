@@ -6,13 +6,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 To install all the required dependencies in a clean and reproducible way, use:
 ```bash
-npm ci --include=optional --no-audit --no-fund 
+npm ci --no-audit 
 ```
 This command installs packages strictly following the lockfile, ensuring consistent environments across machines.
 
 If you encounter issues related to optional dependencies or platform‑specific packages, try:
 ```bash
-npm i --include=optional
+npm i
 ```
 This will reinstall dependencies while including optional modules that may be required on your system.
 
