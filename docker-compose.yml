@@ -65,6 +65,8 @@
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
       ASPNETCORE_HTTPS_PORTS: 8071         
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD} 
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
@@ -91,7 +93,9 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTPS_PORTS: 8081      
+      ASPNETCORE_HTTPS_PORTS: 8081   
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD} 
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx   
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
