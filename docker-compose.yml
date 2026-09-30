@@ -38,7 +38,7 @@
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
       ASPNETCORE_HTTPS_PORTS: 8061    
       ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD} 
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
@@ -47,7 +47,7 @@
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}
     volumes:
-      - ./https:/https:ro
+      - ${USERPROFILE}\.aspnet\https:/https:ro
     ports:
       - "8061:8061"
     
@@ -64,9 +64,7 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTPS_PORTS: 8071         
-      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD} 
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+      ASPNETCORE_HTTP_PORTS: 8070       
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
@@ -75,9 +73,9 @@
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}    
     volumes:
-      - ./https:/https:ro
+     - ${USERPROFILE}\.aspnet\https:/https:ro
     ports:
-      - "8071:8071"
+      - "8070:8070"
     depends_on:
       postgres:
         condition: service_healthy
@@ -95,9 +93,7 @@
         required: true
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
-      ASPNETCORE_HTTPS_PORTS: 8081   
-      ASPNETCORE_Kestrel__Certificates__Default__Password: ${CERT_PASSWORD} 
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx   
+      ASPNETCORE_HTTP_PORTS: 8080        
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
       ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
@@ -106,9 +102,9 @@
       Jwt__JwtIssuer: ${JWT_ISSUER}
       Jwt__JwtKey: ${JWT_KEY}    
     volumes:
-      - ./https:/https:ro    
+     - ${USERPROFILE}\.aspnet\https:/https:ro
     ports:
-      - "8081:8081"     
+      - "8080:8080"  
     depends_on:
       postgres:
         condition: service_healthy

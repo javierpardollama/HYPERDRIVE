@@ -16,11 +16,6 @@ public class JwtSettings
     public string JwtIssuer { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="JwtAuthority"/>
-    /// </summary>
-    public string JwtAuthority { get; set; }
-
-    /// <summary>
     /// Gets or Sets <see cref="JwtAudience"/>
     /// </summary>
     public string JwtAudience { get; set; }

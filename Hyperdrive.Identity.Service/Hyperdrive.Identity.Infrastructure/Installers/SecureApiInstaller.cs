@@ -37,8 +37,7 @@ public static class SecureApiInstaller
         if (!@this.Environment.IsDevelopment())
         {
             @this.UseHsts();
-        }
-
-        @this.UseHttpsRedirection();
+            @this.UseHttpsRedirection();
+        }       
     }
 }

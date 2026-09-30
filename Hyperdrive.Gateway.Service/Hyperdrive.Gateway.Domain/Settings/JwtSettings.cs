@@ -13,12 +13,7 @@ public class JwtSettings
     /// <summary>
     /// Gets or Sets <see cref="JwtIssuer"/>
     /// </summary>
-    public string JwtIssuer { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="JwtAuthority"/>
-    /// </summary>
-    public string JwtAuthority { get; set; }
+    public string JwtIssuer { get; set; }  
 
     /// <summary>
     /// Gets or Sets <see cref="JwtAudience"/>

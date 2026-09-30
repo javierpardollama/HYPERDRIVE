@@ -3,11 +3,11 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "hyperdrive-identity-service",
-          "Port": 8071
+          "Port": 8070
         }
       ],
       "UpstreamPathTemplate": "/api/identity/{everything}",
@@ -15,11 +15,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "hyperdrive-storage-service",
-          "Port": 8081
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/api/storage/{everything}",

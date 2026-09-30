@@ -25,8 +25,7 @@ public static class IdentificationInstaller
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(options =>
         {
-            options.ClaimsIssuer = @settings.JwtIssuer;
-            options.Authority = @settings.JwtAuthority;
+            options.ClaimsIssuer = @settings.JwtIssuer;          
             options.SaveToken = true;
             options.TokenValidationParameters = new TokenValidationParameters
             {
