@@ -9,7 +9,7 @@ namespace Hyperdrive.Identity.Test.Service.Controllers;
 [TestFixture]
 public class SecurityControllerTest : BaseControllerTest
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8071/api/v1/security/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8061/api/identity/v1/security/") };
 
     [SetUp]
     public new void SetUp()

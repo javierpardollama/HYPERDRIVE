@@ -183,7 +183,7 @@ public class ApplicationUserManagerTest : BaseManagerTest
     [Test]
     public async Task CheckEmail()
     {
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckEmail("stafford.parker@email.com"));
+        await Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckEmail("stafford.parker@email.com"));
     }
 
     /// <summary>

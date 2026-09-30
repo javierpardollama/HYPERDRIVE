@@ -9,7 +9,7 @@ namespace Hyperdrive.Identity.Test.Service.Controllers;
 
 public class BaseControllerTest
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8071/api/v1/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8061/api/identity/v1/") };
 
     protected ViewApplicationUser User { get; set; }
 
