@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DriveItemService } from "../../../../services/driveitem.service";
 import { ViewDriveItem } from "../../../../viewmodels/views/viewdriveitem";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
@@ -64,6 +64,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     private binaryService = inject(BinaryService);
     private cryptoService = inject(CryptoService);
     bottomSheet = inject(MatBottomSheet);
+    private cdr = inject(ChangeDetectorRef);
 
     public loading: boolean = false;
 
@@ -107,8 +108,12 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
     // Get Data from Service
     public async FindPaginatedDriveItem(): Promise<void> {
         this.loading = true;
+        this.cdr.markForCheck();
+
         const view = await this.driveItemService.FindPaginatedDriveItemByApplicationUserId(this.page);
+        
         this.loading = false;
+        this.cdr.markForCheck();
 
         if (view) {
             this.page.Length = view.Length;

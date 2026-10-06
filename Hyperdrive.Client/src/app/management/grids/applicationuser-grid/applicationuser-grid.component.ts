@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -47,6 +47,7 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
     // DI
     private applicationUserService = inject(ApplicationUserService);
     matDialog = inject(MatDialog);
+    private cdr = inject(ChangeDetectorRef);
 
     public loading: boolean = false;
 
@@ -83,8 +84,12 @@ export class ApplicationUserGridComponent implements OnInit, AfterViewInit, OnDe
     // Get Data from Service
     public async FindPaginatedApplicationUser(): Promise<void> {
         this.loading = true;
+        this.cdr.markForCheck();
+
         const view = await this.applicationUserService.FindPaginatedApplicationUser(this.page);
+
         this.loading = false;
+        this.cdr.markForCheck();
 
         if (view) {
             this.page.Length = view.Length;

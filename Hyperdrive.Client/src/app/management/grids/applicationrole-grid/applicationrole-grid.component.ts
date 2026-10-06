@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -48,6 +48,7 @@ export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDe
   // DI
   private applicationRoleService = inject(ApplicationRoleService);
   matDialog = inject(MatDialog);
+  private cdr = inject(ChangeDetectorRef);
 
   public loading: boolean = false;
 
@@ -84,8 +85,12 @@ export class ApplicationRoleGridComponent implements OnInit, AfterViewInit, OnDe
   // Get Data from Service
   public async FindPaginatedApplicationRole(): Promise<void> {
     this.loading = true;
+    this.cdr.markForCheck();
+
     const view = await this.applicationRoleService.FindPaginatedApplicationRole(this.page);
+
     this.loading = false;
+    this.cdr.markForCheck();
 
     if (view) {
       this.page.Length = view?.Length;
