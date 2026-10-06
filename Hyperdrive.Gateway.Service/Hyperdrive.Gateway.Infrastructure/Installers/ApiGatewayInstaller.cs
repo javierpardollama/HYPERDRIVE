@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.QualityOfService.Polly;
 
 namespace Hyperdrive.Gateway.Infrastructure.Installers;
 
@@ -22,7 +23,8 @@ public static class ApiGatewayInstaller
             .AddOcelot();
         
         @this.Services
-            .AddOcelot(@this.Configuration);
+            .AddOcelot(@this.Configuration)
+            .AddPolly();;
     }
     
     /// <summary>
