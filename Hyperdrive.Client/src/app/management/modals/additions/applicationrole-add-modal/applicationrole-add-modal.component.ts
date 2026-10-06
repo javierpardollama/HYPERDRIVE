@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ViewApplicationUser } from '../../../../..//viewmodels/views/viewapplicationuser';
 import { CryptoService } from '../../../../..//services/crypto.service';
 import { VaultKeyAppVariants } from '../../../../..//variants/vault.keys.variants';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +34,8 @@ import { VaultKeyAppVariants } from '../../../../..//variants/vault.keys.variant
         MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTooltipModule
     ]
 })
 export class ApplicationRoleAddModalComponent implements OnInit {

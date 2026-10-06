@@ -15,16 +15,16 @@
     </div>
 
     <div class="modal-content-line">
-      <div class="modal-option-image modal-role-image" aria-label="ApplicationRolesId"></div>
+      <div class="modal-option-image modal-role-image" aria-label="ApplicationRoleNames"></div>
       <mat-form-field class="search-half-width">
-        <mat-label>ApplicationRolesId</mat-label>
-        <mat-select formControlName="ApplicationRolesId" multiple>
+        <mat-label>ApplicationRoleNames</mat-label>
+        <mat-select formControlName="ApplicationRoleNames" multiple>
           @for (applicationrole of applicationroles; track applicationrole) {
-            <mat-option [value]="applicationrole.Id">
+            <mat-option [value]="applicationrole.Name">
               <span>{{applicationrole.Name}}</span>
             </mat-option>
           }
-          @if (!formGroup.controls['ApplicationRolesId'].valid && formGroup.controls['ApplicationRolesId'].touched) {
+          @if (!formGroup.controls['ApplicationRoleNames'].valid && formGroup.controls['ApplicationRoleNames'].touched) {
             <mat-error
               >
               Required field.

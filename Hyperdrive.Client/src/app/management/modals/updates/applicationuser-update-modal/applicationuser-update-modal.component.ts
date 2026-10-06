@@ -75,7 +75,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
             Id: new FormControl<number>(this.data.Id, [
                 Validators.required
             ]),
-            ApplicationRolesId: new FormControl<number[]>(this.data.ApplicationRoles.map(({ Id }) => Id), [
+            ApplicationRoleNames: new FormControl<string[]>(this.data.ApplicationRoles.map(({ Name }) => Name), [
                 Validators.required]),
             ApplicationUserId: new FormControl<number | undefined>(this.User?.Id, [
                 Validators.required
