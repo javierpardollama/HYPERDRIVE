@@ -144,7 +144,7 @@ public class ApplicationUserManager(
     /// <summary>
     /// Removes Application User
     /// </summary>
-    /// <param name="id">Injected <see cref="ApplicationUser"/></param>
+    /// <param name="user">Injected <see cref="ApplicationUser"/></param>
     /// <returns>Instance of <see cref="Task"/></returns>
     public async Task RemoveApplicationUser(ApplicationUser @user)
     {
@@ -181,7 +181,8 @@ public class ApplicationUserManager(
 
         return @user.ToDto();
     }
-
+    
+    /// <summary>
     /// Adds Application Roles to Application User
     /// </summary>
     /// <param name="roles">Injected <see cref="ICollection{string}"/></param>
@@ -301,6 +302,8 @@ public class ApplicationUserManager(
     {
         ApplicationUserDto @applicationUser = await @userManager.Users
             .TagWith("FindApplicationUserById")
+            .AsNoTracking()
+            .AsSplitQuery()
             .Include(x => x.UserRoles)
             .ThenInclude(x => x.Role)
             .Include(x => x.RefreshTokens)

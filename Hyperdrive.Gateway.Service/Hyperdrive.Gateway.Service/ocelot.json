@@ -14,7 +14,7 @@
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTIONS" ],
       "QoSOptions": {
         "MinimumThroughput": 3,
-        "BreakDuration": 30,
+        "BreakDuration": 30000,
         "Timeout": 10000
       }
     },
@@ -31,7 +31,7 @@
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE", "OPTIONS" ],
       "QoSOptions": {
         "MinimumThroughput": 3,
-        "BreakDuration": 30,
+        "BreakDuration": 30000,
         "Timeout": 10000
       }
     }

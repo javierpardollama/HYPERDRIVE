@@ -20,7 +20,7 @@
       ],
       "QoSOptions": {
         "MinimumThroughput": 3,
-        "BreakDuration": 30,
+        "BreakDuration": 30000,
         "Timeout": 10000
       }
     },
@@ -43,7 +43,7 @@
       ],
       "QoSOptions": {
         "MinimumThroughput": 3,
-        "BreakDuration": 30,
+        "BreakDuration": 30000,
         "Timeout": 10000
       }
     }
