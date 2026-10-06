@@ -1,20 +1,20 @@
 <div class="container">
   <div class="profile-content-line">
-    <strong>Welcome</strong>
+    <strong class="surface-text">Welcome</strong>
   </div>
 
-  <div class="profile-content-line">
+  <div class="profile-content-line surface-text ">
     Manage your info and security to make your experience better.
   </div>
 
-  <div class="profile-content-line">This is your profile info:</div>
+  <div class="profile-content-line surface-text ">This is your profile info:</div>
 
   <div class="profile-content-line profile-content-line-update">
     <div
       class="profile-update-image profile-image"
       aria-label="LastModified"
     ></div>
-    <span>{{
+    <span class="surface-text">{{
       $safeNavigationMigration(User?.LastModified) | date: "MMM d, y h:mm a"
     }}</span>
   </div>

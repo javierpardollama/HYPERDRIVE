@@ -2,6 +2,9 @@
     padding: 24px;
 }
 
+.surface-text {
+    color: var(--mat-sys-on-surface)
+}
 
 .profile-update-image {
     background-image: url('/assets/img/iconos/Update_500px.png');
@@ -35,7 +38,7 @@
 }
 
 .profile-content-line-update {
-    color: #0080ff;
+    color: var(--mat-sys-primary);
     display: flex;
     align-items: center;
     justify-content: center
