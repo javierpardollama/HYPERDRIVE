@@ -24,7 +24,7 @@ public static class ApiGatewayInstaller
         
         @this.Services
             .AddOcelot(@this.Configuration)
-            .AddPolly();;
+            .AddPolly();
     }
     
     /// <summary>
