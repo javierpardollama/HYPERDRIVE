@@ -47,7 +47,7 @@
     "@angular/material": "^22.1.4",
     "@angular/platform-browser": "^22.1.4",
     "@angular/platform-browser-dynamic": "^22.1.4",
-    "@angular/router": "^22.1.4",
+    "@angular/router": "^22.2.1",
     "@opentelemetry/auto-instrumentations-web": "0.64.0",
     "@opentelemetry/context-zone": "2.8.0",
     "@opentelemetry/exporter-trace-otlp-http": "0.219.0",
