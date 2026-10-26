@@ -1196,8 +1196,8 @@
       },
       "MongoDB.Bson": {
         "type": "Transitive",
-        "resolved": "3.12.0",
-        "contentHash": "2iYGykWDl6Wkx2GHjWaPEGAS49lxQN5YFFT1a7l/pKraMo1gqT4aZckhwu53WMinQTc10R4FxUHoo7X9M20GFg=="
+        "resolved": "3.13.0",
+        "contentHash": "jb4fGQIS1bTFSK2336FP3rBHDQ+UiVKdTAZcoWHeed1xlxvmclnHA8Y4CAQa+Y2KWw3Fz9OIAkXH/KXJL9yRGg=="
       },
       "MongoDB.Driver": {
         "type": "Transitive",
@@ -1575,7 +1575,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.13, )",
-          "MongoDB.Bson": "[3.12.0, )"
+          "MongoDB.Bson": "[3.13.0, )"
         }
       },
       "hyperdrive.intelligence.infrastructure": {
