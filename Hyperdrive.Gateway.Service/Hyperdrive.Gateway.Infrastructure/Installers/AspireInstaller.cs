@@ -61,6 +61,7 @@ public static class AspireInstaller
         });
 
         builder.Services.AddOpenTelemetry()
+            .WithLogging()
             .WithMetrics(metrics =>
             {
                 metrics.AddAspNetCoreInstrumentation()
