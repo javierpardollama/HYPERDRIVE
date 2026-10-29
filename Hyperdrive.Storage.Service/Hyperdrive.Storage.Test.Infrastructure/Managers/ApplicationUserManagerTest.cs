@@ -1,3 +1,4 @@
+using Hyperdrive.Storage.Domain.Entities;
 using Hyperdrive.Storage.Infrastructure.Contexts;
 using Hyperdrive.Storage.Infrastructure.Managers;
 using Hyperdrive.Storage.Test.Infrastructure.Extensions;
@@ -74,6 +75,69 @@ public class ApplicationUserManagerTest : BaseManagerTest
     public async Task FindAllApplicationUserByIds()
     {
         await Manager.FindAllApplicationUserByIds([1, 2]);
+
+        Assert.Pass();
+    }
+    
+    /// <summary>
+    /// Removes Application User By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task RemoveApplicationUserById()
+    {
+        await Manager.ReloadApplicationUserById(1);
+
+        Assert.Pass();
+    }
+    
+    /// <summary>
+    /// Updates Application Role
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task UpdateApplicationRole()
+    {
+        var @user = new ApplicationUser
+        {
+            Id = 1,
+            FirstName = "Orlando",
+            LastName = "Dawson"
+        };
+
+        await Manager.UpdateApplicationUser(@user);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    /// Adds Application User
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task AddApplicationUser()
+    {
+        var @user = new ApplicationUser
+        {
+           Id = 7,
+           FirstName = "Leah",
+           LastName = "Stokes"
+        };
+
+        await Manager.AddApplicationUser(@user);
+
+        Assert.Pass();
+    }
+    
+    
+    /// <summary>
+    /// Reloads Application User By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task"/></returns>
+    [Test]
+    public async Task ReloadApplicationUserById()
+    {
+        await Manager.ReloadApplicationUserById(1);
 
         Assert.Pass();
     }
