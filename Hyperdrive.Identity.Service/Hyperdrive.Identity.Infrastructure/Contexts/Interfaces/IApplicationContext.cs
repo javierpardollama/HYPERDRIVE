@@ -49,26 +49,6 @@ public interface IApplicationContext : IDisposable
     DbSet<ApplicationUserRefreshToken> UserRefreshTokens { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItem}"/>
-    /// </summary>
-    DbSet<DriveItem> DriveItems { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserDriveItem}"/>
-    /// </summary>
-    DbSet<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItemInfo}"/>
-    /// </summary>
-    DbSet<DriveItemInfo> DriveItemInfos { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItemContent}"/>
-    /// </summary>
-    DbSet<DriveItemContent> DriveItemContents { get; set; }
-
-    /// <summary>
     /// Saves Changes Syncronously
     /// </summary>
     /// <returns>Instance of <see cref="int"/></returns>
