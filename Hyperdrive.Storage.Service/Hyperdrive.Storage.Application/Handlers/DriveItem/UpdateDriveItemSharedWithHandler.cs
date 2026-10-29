@@ -9,21 +9,17 @@ namespace Hyperdrive.Storage.Application.Handlers.DriveItem;
 public class UpdateDriveItemSharedWithHandler : IRequestHandler<UpdateDriveItemSharedWithCommand, ViewDriveItem>
 {
     private readonly IDriveItemManager _driveItemManager;
-    private readonly IApplicationUserManager _applicationUserManager;
 
-    public UpdateDriveItemSharedWithHandler(IDriveItemManager driveItemManager, IApplicationUserManager applicationUserManager)
+    public UpdateDriveItemSharedWithHandler(IDriveItemManager driveItemManager)
     {
         _driveItemManager = driveItemManager;
-        _applicationUserManager = applicationUserManager;
     }
 
     public async Task<ViewDriveItem> Handle(UpdateDriveItemSharedWithCommand request, CancellationToken cancellationToken)
     {
         var @archive = await _driveItemManager.FindDriveItemById(request.ViewModel.Id);
 
-        var @users = await _applicationUserManager.FindAllApplicationUserByIds(request.ViewModel.ApplicationUserIds);
-
-        await _driveItemManager.AddSharedWith(users, archive);
+        await _driveItemManager.AddSharedWith(request.ViewModel.ApplicationUserIds, archive);
 
         var @dto = await _driveItemManager.ReloadDriveItemById(@archive.Id);
 

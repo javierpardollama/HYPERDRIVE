@@ -1,7 +1,7 @@
 namespace Hyperdrive.Storage.Domain.Dtos;
 
 /// <summary>
-/// Represents a <see cref="ApplicationRoleDto"/> class.
+/// Represents a <see cref="DriveItemBinaryDto"/> class.
 /// </summary>
 public class DriveItemBinaryDto
 {

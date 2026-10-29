@@ -11,12 +11,7 @@ namespace Hyperdrive.Storage.Infrastructure.Contexts;
 /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
 public class ApplicationContext(DbContextOptions<ApplicationContext> options) : DbContext(options), IApplicationContext
 {
- 
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUser}"/>
-    /// </summary>
-    public virtual DbSet<ApplicationUser> Users { get; set; }
-    
+   
     /// <summary>
     /// Gets or Sets <see cref="DbSet{DriveItem}"/>
     /// </summary>

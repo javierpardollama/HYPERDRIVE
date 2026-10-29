@@ -17,11 +17,11 @@ ILogger<DriveItemInfoManager> logger) : BaseManager(context), IDriveItemInfoMana
     /// <summary>
     /// Adds Activity
     /// </summary>
-    /// <param name="driveitemid">Injected <see cref="int"/></param>
+    /// <param name="driveitemid">Injected <see cref="Guid"/></param>
     /// <param name="name">Injected <see cref="string"/></param>
     /// <param name="extension">Injected <see cref="string"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
-    public async Task<DriveItemInfo> AddAsNameInfo(int @driveitemid, string @name, string @extension)
+    public async Task<DriveItemInfo> AddAsNameInfo(Guid @driveitemid, string @name, string @extension)
     {
         DriveItemInfo @version = new()
         {
@@ -51,10 +51,10 @@ ILogger<DriveItemInfoManager> logger) : BaseManager(context), IDriveItemInfoMana
     /// <summary>
     /// Adds Drive Item Info
     /// </summary>
-    /// <param name="driveitemid">Injected <see cref="int"/></param>
+    /// <param name="driveitemid">Injected <see cref="Guid"/></param>
     /// <param name="filename">Injected <see cref="string"/></param>       
     /// <returns>Instance of <see cref="Task{DriveItemInfo}"/></returns>
-    public async Task<DriveItemInfo> AddAsFileNameInfo(int @driveitemid, string @filename)
+    public async Task<DriveItemInfo> AddAsFileNameInfo(Guid @driveitemid, string @filename)
     {
         DriveItemInfo @version = new()
         {

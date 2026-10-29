@@ -177,7 +177,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
     [HttpDelete]
@@ -191,7 +191,7 @@ public class DriveItemController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> RemoveDriveItemById(int @id)
+    public async Task<IActionResult> RemoveDriveItemById(Guid @id)
     {
         await mediator.Send(new RemoveDriveItemByIdCommand { Id = @id });
 

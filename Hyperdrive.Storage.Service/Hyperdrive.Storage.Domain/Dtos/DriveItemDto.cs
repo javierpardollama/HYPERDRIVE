@@ -8,7 +8,7 @@ public class DriveItemDto
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
     /// </summary>
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="LastModified"/>
@@ -16,9 +16,9 @@ public class DriveItemDto
     public DateTime? LastModified { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="By"/>
+    /// Gets or Sets <see cref="ByExternalId"/>
     /// </summary>
-    public CatalogDto By { get; set; }
+    public int ByExternalId { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Folder"/>
@@ -48,7 +48,7 @@ public class DriveItemDto
     /// <summary>
     /// Gets or Sets <see cref="SharedWith"/>
     /// </summary>
-    public virtual ICollection<CatalogDto> SharedWith { get; set; } = [];
+    public virtual ICollection<int> SharedWith { get; set; } = [];
 
     /// <summary>
     /// Gets or Sets <see cref="Downloadeable"/>

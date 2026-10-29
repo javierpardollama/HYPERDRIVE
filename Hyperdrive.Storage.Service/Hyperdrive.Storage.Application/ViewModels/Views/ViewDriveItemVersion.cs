@@ -10,7 +10,7 @@ public class ViewDriveItemVersion : IViewKey, IViewBase
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
     /// </summary>
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="FileName"/>

@@ -59,7 +59,7 @@ public class DriveItemBinaryManagerTest : BaseManagerTest
     [Test]
     public async Task FindDriveItemBinaryById()
     {
-        await Manager.FindDriveItemBinaryById(51);
+        await Manager.FindDriveItemBinaryById(new Guid("f48fcf02-4c03-45f0-a884-9d7d11f6bccc")); //51
 
         Assert.Pass();
     }
@@ -68,7 +68,7 @@ public class DriveItemBinaryManagerTest : BaseManagerTest
     [Test]
     public async Task FindLatestDriveItemBinaryById()
     {
-        await Manager.FindLatestDriveItemBinaryById(5);
+        await Manager.FindLatestDriveItemBinaryById(new Guid("f0354da5-dd9e-4f70-8379-7a0f7dfc67ec")); //5
 
         Assert.Pass();
     }

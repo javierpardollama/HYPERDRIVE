@@ -5,9 +5,8 @@ namespace Hyperdrive.Storage.Application.ViewModels.Views;
 /// <summary>
 /// Represents a <see cref="ViewApplicationUser"/> class. Implements <see cref="IViewKey"/>, <see cref="IViewBase"/>
 /// </summary>
-public class ViewApplicationUser : IViewKey, IViewBase
+public class ViewApplicationUser : IViewBase
 {
-
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
     /// </summary>

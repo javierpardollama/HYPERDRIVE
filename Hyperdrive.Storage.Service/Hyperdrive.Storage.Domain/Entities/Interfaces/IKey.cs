@@ -14,6 +14,6 @@ namespace Hyperdrive.Storage.Domain.Entities.Interfaces
         [Required]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        int Id { get; set; }
+        Guid Id { get; set; }
     }
 }

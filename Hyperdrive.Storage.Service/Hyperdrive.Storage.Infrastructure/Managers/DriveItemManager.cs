@@ -23,9 +23,9 @@ public class DriveItemManager(
     /// <summary>
     /// Finds Drive Item By Id
     /// </summary>
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<DriveItem> FindDriveItemById(int? @id)
+    public async Task<DriveItem> FindDriveItemById(Guid? @id)
     {
         DriveItem @archive = await Context.DriveItems
             .TagWith("FindDriveItemById")
@@ -52,12 +52,12 @@ public class DriveItemManager(
     /// Finds Drive Item By FileName
     /// </summary>
     /// <param name="filename">Injected <see cref="string"/></param>
-    /// <param name="parentid">Injected <see cref="int?"/></param>       
-    /// <param name="userid">Injected <see cref="int"/></param>
+    /// <param name="parentid">Injected <see cref="Guid?"/></param>       
+    /// <param name="userexternalid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<DriveItem> FindDriveItemByFileName(string @filename, int? parentid, int @userid)
+    public async Task<DriveItem> FindDriveItemByFileName(string @filename, Guid? parentid, int @userexternalid)
     {
-        var @expr1 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ById == @userid);
+        var @expr1 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ByExternalId == @userexternalid);
         var @expr2 = (Expression<Func<DriveItemInfo, bool>>)(x => x.FileName == @filename.Trim());
         var @expr3 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ParentId == @parentid);
         var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);
@@ -90,7 +90,7 @@ public class DriveItemManager(
     /// <summary>
     /// Removes Drive Item
     /// </summary>
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="entity">Injected <see cref="DriveItem"/></param>
     /// <returns>Instance of <see cref="Task"/></returns>
     public async Task RemoveDriveItem(DriveItem @entity)
     {
@@ -111,12 +111,12 @@ public class DriveItemManager(
     /// </summary>
     /// <param name="index">Injected <see cref="int"/></param>
     /// <param name="size">Injected <see cref="int"/></param>
-    /// <param name="userid">Injected <see cref="int"/></param>
-    /// <param name="parentid">Injected <see cref="int?"/></param>
+    /// <param name="userexternalid">Injected <see cref="int"/></param>
+    /// <param name="parentid">Injected <see cref="Guid?"/></param>
     /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
-    public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userid, int? parentid)
+    public async Task<PageDto<DriveItemDto>> FindPaginatedDriveItemByApplicationUserId(int @index, int @size, int @userexternalid, Guid? parentid)
     {
-        var @expr1 = (Expression<Func<DriveItem, bool>>)(x => x.ById == @userid);
+        var @expr1 = (Expression<Func<DriveItem, bool>>)(x => x.ByExternalId == @userexternalid);
         var @expr2 = (Expression<Func<DriveItem, bool>>)(x => x.ParentId == @parentid);
         var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2);
 
@@ -136,9 +136,7 @@ public class DriveItemManager(
                 .Include(x => x.Activity)
                 .ThenInclude(x => x.Content)
                 .Include(x => x.Parent)
-                .Include(x => x.By)
                 .Include(x => x.SharedWith)
-                .ThenInclude(x => x.User)
                 .Where(@comboexp)
                 .OrderByDescending(x => x.CreatedAt)
                 .Skip(@index * @size)
@@ -155,18 +153,18 @@ public class DriveItemManager(
     /// </summary>
     /// <param name="index">Injected <see cref="int"/></param>
     /// <param name="size">Injected <see cref="int"/></param>
-    /// <param name="userid">Injected <see cref="int"/></param>
+    /// <param name="userexternalid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{PageDto{DriveItemDto}}"/></returns>
     public async Task<PageDto<DriveItemDto>> FindPaginatedSharedDriveItemWithApplicationUserId(int @index,
                                                                                                int @size,
-                                                                                               int @userid)
+                                                                                               int @userexternalid)
     {
         PageDto<DriveItemDto> @page = new()
         {
             Length = await Context.ApplicationUserDriveItems.TagWith("CountAllSharedDriveItemByApplicationUserId")
                 .AsSplitQuery()
                 .AsNoTracking()
-                .Where(x => x.UserId == @userid)
+                .Where(x => x.ExternalUserId == @userexternalid)
                 .CountAsync(),
             Index = @index,
             Size = @size,
@@ -174,12 +172,10 @@ public class DriveItemManager(
                 .TagWith("FindPaginatedSharedDriveItemByApplicationUserId")
                 .AsSplitQuery()
                 .AsNoTracking()
-                .Include(x => x.User)
                 .Include(x => x.DriveItem.Activity)
                 .ThenInclude(x => x.Content)
-                .Include(x => x.DriveItem.By)
                 .Include(x => x.DriveItem.Parent)
-                .Where(x => x.UserId == @userid)
+                .Where(x => x.ExternalUserId == @userexternalid)
                 .OrderByDescending(x => x.CreatedAt)
                 .Skip(@index * @size)
                 .Take(@size)
@@ -195,17 +191,17 @@ public class DriveItemManager(
     /// <summary>
     /// Adds Drive Item
     /// </summary>
-    /// <param name="parentid">Injected <see cref="int?"/></param>
+    /// <param name="parentid">Injected <see cref="Guid?"/></param>
     /// <param name="folder">Injected <see cref="bool"/></param>
-    /// <param name="byid">Injected <see cref="ApplicationUser"/></param>
+    /// <param name="userexternalid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<DriveItem> AddDriveItem(int? parentid, bool @folder, int @byid)
+    public async Task<DriveItem> AddDriveItem(Guid? parentid, bool @folder, int @userexternalid)
     {
         var @entity = new DriveItem()
         {
             Folder = @folder,
             ParentId = @parentid,
-            ById = @byid
+            ByExternalId = @userexternalid
         };
 
         await Context.DriveItems.AddAsync(@entity);
@@ -227,12 +223,12 @@ public class DriveItemManager(
     /// </summary>
     /// <param name="users">Injected <see cref="IList{ApplicationUser}"/></param>
     /// <param name="entity">Injected <see cref="DriveItem"/></param>
-    public async Task AddSharedWith(IList<ApplicationUser> @users, DriveItem @entity)
+    public async Task AddSharedWith(IList<int> @users, DriveItem @entity)
     {
         var @userDriveItems = users.Select(@user => new ApplicationUserDriveItem()
         {
             DriveItemId = @entity.Id,
-            UserId = @user.Id
+            ExternalUserId = @user
         }).ToList();
 
         await Context.ApplicationUserDriveItems.AddRangeAsync(@userDriveItems);
@@ -251,14 +247,14 @@ public class DriveItemManager(
     /// Checks File Name
     /// </summary>
     /// <param name="filename">Injected <see cref="string"/></param>
-    /// <param name="parentid">Injected <see cref="int"/></param>
-    /// <param name="userid">Injected <see cref="int"/></param>
+    /// <param name="parentid">Injected <see cref="Guid"/></param>
+    /// <param name="userexternalid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{bool}"/></returns>
-    public async Task<bool> CheckFileName(string @filename, int? @parentid, int @userid)
+    public async Task<bool> CheckFileName(string @filename, Guid? @parentid, int @userexternalid)
     {
         var @expr1 = (Expression<Func<DriveItemInfo, bool>>)(x => x.FileName == @filename.Trim());
         var @expr2 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ParentId == @parentid);
-        var @expr3 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ById == @userid);
+        var @expr3 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ByExternalId == @userexternalid);
         var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3);
 
         var @found = await Context.DriveItemInfos
@@ -291,17 +287,17 @@ public class DriveItemManager(
     /// </summary>
     /// <param name="name">Injected <see cref="string"/></param>
     /// <param name="extension">Injected <see cref="string"/></param>
-    /// <param name="id">Injected <see cref="int"/></param>
-    /// <param name="parentid">Injected <see cref="int?"/></param>
-    /// <param name="userid">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
+    /// <param name="parentid">Injected <see cref="Guid?"/></param>
+    /// <param name="userexternalid">Injected <see cref="int"/></param>
     /// <returns>Instance of <see cref="Task{DriveItem}"/></returns>
-    public async Task<bool> CheckName(string @name, int @id, int? @parentid, int userid, string @extension = null)
+    public async Task<bool> CheckName(string @name, Guid @id, Guid? @parentid, int userexternalid, string @extension = null)
     {
         var @expr1 = (Expression<Func<DriveItemInfo, bool>>)(x => x.Name == @name.Trim());
         var @expr2 = (Expression<Func<DriveItemInfo, bool>>)(x => @extension == null || x.Extension == @extension.Trim());
         var @expr3 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ParentId == @parentid);
         var @expr4 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItemId != @id);
-        var @expr5 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ById == @userid);
+        var @expr5 = (Expression<Func<DriveItemInfo, bool>>)(x => x.DriveItem.ByExternalId == @userexternalid);
         var @comboexp = ExpressionCombiner.CombineWithAnd(@expr1, @expr2, @expr3, @expr4, @expr5);
 
         var @found = await Context.DriveItemInfos
@@ -331,9 +327,9 @@ public class DriveItemManager(
     /// <summary>
     /// Reloads Drive Item By Id
     /// </summary>
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemDto}"/></returns>
-    public async Task<DriveItemDto> ReloadDriveItemById(int @id)
+    public async Task<DriveItemDto> ReloadDriveItemById(Guid @id)
     {
         DriveItemDto @archive = await Context.DriveItems
             .TagWith("ReloadDriveItemById")
@@ -342,9 +338,7 @@ public class DriveItemManager(
             .Include(x => x.Activity)
             .ThenInclude(x => x.Content)
             .Include(x => x.Parent)
-            .Include(x => x.By)
             .Include(x => x.SharedWith)
-            .ThenInclude(x => x.User)
             .Where(x => x.Id == @id)
             .Select(x => x.ToDto())
             .FirstOrDefaultAsync();

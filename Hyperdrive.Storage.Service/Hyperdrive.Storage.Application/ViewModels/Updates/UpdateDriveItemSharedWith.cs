@@ -11,5 +11,5 @@ public class UpdateDriveItemSharedWith : UpdateBase
     /// Gets or Sets <see cref="ApplicationUserIds"/>
     /// </summary>
     [Required]
-    public virtual ICollection<int> ApplicationUserIds { get; set; }
+    public virtual IList<int> ApplicationUserIds { get; set; }
 }

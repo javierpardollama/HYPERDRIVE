@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Hyperdrive.Main.Application.Queries.DriveItem;
+using Hyperdrive.Storage.Application.Queries.DriveItem;
 using Hyperdrive.Storage.Application.ViewModels.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -33,7 +34,7 @@ public class DriveItemBinaryController(IMediator @mediator) : ControllerBase
     /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>       
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
     [HttpGet]
@@ -47,7 +48,7 @@ public class DriveItemBinaryController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> FindDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery { Id = @id }));
+    public async Task<IActionResult> FindDriveItemBinaryById(Guid @id) => Ok(value: await mediator.Send(new FindDriveItemBinaryByIdQuery { Id = @id }));
 
     /// <summary>
     /// Finds Latest Drive Item Binary By DriveItem Id
@@ -61,7 +62,7 @@ public class DriveItemBinaryController(IMediator @mediator) : ControllerBase
     /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
     [HttpGet]
@@ -75,5 +76,5 @@ public class DriveItemBinaryController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> FindLatestDriveItemBinaryById(int @id) => Ok(value: await mediator.Send(new FindLatestDriveItemBinaryByIdQuery { Id = @id }));
+    public async Task<IActionResult> FindLatestDriveItemBinaryById(Guid @id) => Ok(value: await mediator.Send(new FindLatestDriveItemBinaryByIdQuery { Id = @id }));
 }

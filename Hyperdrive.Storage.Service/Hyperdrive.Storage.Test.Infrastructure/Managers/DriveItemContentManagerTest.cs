@@ -56,7 +56,7 @@ public class DriveItemContentManagerTest : BaseManagerTest
     [Test]
     public async Task AddAsFileContent()
     {
-        await Manager.AddAsFileContent(51, "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==", false);
+        await Manager.AddAsFileContent(new Guid("f48fcf02-4c03-45f0-a884-9d7d11f6bccc"), "audio/mpeg", 120, "72AQjWn/vBsFvWD+K1c3IA==", false); //51
 
         Assert.Pass();
     }

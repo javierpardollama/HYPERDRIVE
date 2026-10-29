@@ -15,7 +15,7 @@ public class DriveItemContent : IKey, IBase
     [Required]
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="CreatedAt"/>
@@ -70,5 +70,5 @@ public class DriveItemContent : IKey, IBase
     /// Gets or Sets <see cref="DriveItemInfoId"/>
     /// </summary>
     [Required]
-    public int? DriveItemInfoId { get; set; }
+    public Guid? DriveItemInfoId { get; set; }
 }

@@ -11,30 +11,26 @@ public class AddDriveItemHandler : IRequestHandler<AddDriveItemCommand, ViewDriv
     private readonly IDriveItemManager _driveItemManager;
     private readonly IDriveItemInfoManager _driveItemInfoManager;
     private readonly IDriveItemContentManager _driveItemContentManager;
-    private readonly IApplicationUserManager _applicationUserManager;
 
     public AddDriveItemHandler(IDriveItemManager driveItemManager,
         IDriveItemInfoManager driveItemInfoManager,
-        IDriveItemContentManager driveItemContentManager,
-        IApplicationUserManager applicationUserManager)
+        IDriveItemContentManager driveItemContentManager)
     {
         _driveItemManager = driveItemManager;
         _driveItemInfoManager = driveItemInfoManager;
         _driveItemContentManager = driveItemContentManager;
-        _applicationUserManager = applicationUserManager;
     }
 
     public async Task<ViewDriveItem> Handle(AddDriveItemCommand request, CancellationToken cancellationToken)
     {
-        var @by = await _applicationUserManager.FindApplicationUserById(request.ViewModel.ApplicationUserId);
 
         await _driveItemManager.CheckFileName(request.ViewModel.FileName,
                                               request.ViewModel.ParentId,
-                                              @by.Id);
+                                              request.ViewModel.ApplicationUserId);
 
         var @archive = await _driveItemManager.AddDriveItem(request.ViewModel.ParentId,
                                                             request.ViewModel.Folder,
-                                                            @by.Id);
+                                                            request.ViewModel.ApplicationUserId);
 
 
         var @version = await _driveItemInfoManager.AddAsFileNameInfo(@archive.Id, request.ViewModel.FileName);

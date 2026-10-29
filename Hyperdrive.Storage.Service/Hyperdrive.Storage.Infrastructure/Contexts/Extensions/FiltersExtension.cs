@@ -16,9 +16,7 @@ public static class FiltersExtension
     /// <param name="this">Injected <see cref="ModelBuilder"/></param>
     public static void AddCustomizedFilters(this ModelBuilder @this)
     {
-        // Configure entity filters      
-      
-        @this.Entity<ApplicationUser>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        // Configure entity filters    
         @this.Entity<DriveItem>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<ApplicationUserDriveItem>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<DriveItemInfo>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);

@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Hyperdrive.Main.Application.Queries.DriveItem;
 using Hyperdrive.Storage.Application.Commands.DriveItem;
+using Hyperdrive.Storage.Application.Queries.DriveItem;
 using Hyperdrive.Storage.Application.ViewModels.Filters;
 using Hyperdrive.Storage.Application.ViewModels.Views;
 using MediatR;
@@ -64,7 +65,7 @@ public class DriveItemVersionController(IMediator @mediator) : ControllerBase
     /// <response code="424">FailedDependency</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>     
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>   
     [MapToApiVersion(1.0)]
     [HttpPost]
@@ -78,7 +79,7 @@ public class DriveItemVersionController(IMediator @mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> TargetDriveItemVersionById(int @id)
+    public async Task<IActionResult> TargetDriveItemVersionById(Guid @id)
     {
         await mediator.Send(new TargetDriveItemVersionByIdCommand { Id = @id });
 
