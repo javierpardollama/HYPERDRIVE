@@ -51,27 +51,7 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
     /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
     /// </summary>
     public virtual DbSet<ApplicationUserRefreshToken> UserRefreshTokens { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItem}"/>
-    /// </summary>
-    public virtual DbSet<DriveItem> DriveItems { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserDriveItem}"/>
-    /// </summary>
-    public virtual DbSet<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItemInfo}"/>
-    /// </summary>
-    public virtual DbSet<DriveItemInfo> DriveItemInfos { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{DriveItemContent}"/>
-    /// </summary>
-    public virtual DbSet<DriveItemContent> DriveItemContents { get; set; }
-
+   
     /// <summary>
     /// Overrides Model Creation
     /// </summary>

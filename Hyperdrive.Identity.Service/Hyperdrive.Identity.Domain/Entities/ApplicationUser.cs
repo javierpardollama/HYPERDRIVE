@@ -35,12 +35,14 @@ public partial class ApplicationUser : IdentityUser<int>, IKey, IBase
     /// Gets or Sets <see cref="FirstName"/>
     /// </summary>
     [ProtectedPersonalData]
+    [MaxLength(120)]
     public string FirstName { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="LastName"/>
     /// </summary>
     [ProtectedPersonalData]
+    [MaxLength(120)]
     public string LastName { get; set; }
 
     /// <summary>
@@ -66,7 +68,7 @@ public partial class ApplicationUser : IdentityUser<int>, IKey, IBase
     public virtual ICollection<ApplicationUserLogin> UserLogins { get; set; } = [];
 
     /// <summary>
-    /// Gets or Sets <see cref="UserTokens"/>
+    /// Gets or Sets <see cref="Tokens"/>
     /// </summary>
     public virtual ICollection<ApplicationUserToken> Tokens { get; set; } = [];
 
@@ -74,14 +76,4 @@ public partial class ApplicationUser : IdentityUser<int>, IKey, IBase
     /// Gets or Sets <see cref="RefreshTokens"/>
     /// </summary>
     public virtual ICollection<ApplicationUserRefreshToken> RefreshTokens { get; set; } = [];
-
-    /// <summary>
-    /// Gets or Sets <see cref="DriveItems"/>
-    /// </summary>
-    public virtual ICollection<DriveItem> DriveItems { get; set; } = [];
-
-    /// <summary>
-    /// Gets or Sets <see cref="ApplicationUserDriveItems"/>
-    /// </summary>
-    public virtual ICollection<ApplicationUserDriveItem> ApplicationUserDriveItems { get; set; } = [];
 }

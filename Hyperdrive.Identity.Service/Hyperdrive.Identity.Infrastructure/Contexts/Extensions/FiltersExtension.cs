@@ -24,10 +24,6 @@ public static class FiltersExtension
         @this.Entity<ApplicationUserLogin>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<ApplicationUserRole>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<ApplicationUserToken>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
-        @this.Entity<DriveItem>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
-        @this.Entity<ApplicationUserDriveItem>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
-        @this.Entity<DriveItemInfo>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
-        @this.Entity<DriveItemContent>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
         @this.Entity<ApplicationUserRefreshToken>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
 
     }
