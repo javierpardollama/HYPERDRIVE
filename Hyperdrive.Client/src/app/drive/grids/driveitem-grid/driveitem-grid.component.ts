@@ -70,7 +70,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     public ELEMENT_DATA: ViewDriveItem[] = [];
 
-    public displayedColumns: string[] = ['Id', 'Name', 'Folder', 'LastModified', 'SharedWith'];
+    public displayedColumns: string[] = ['Id', 'Name', 'Folder', 'LastModified'];
 
     public dataSource: MatTableDataSource<ViewDriveItem> = new MatTableDataSource<ViewDriveItem>();
 
@@ -111,7 +111,7 @@ export class DriveitemGridComponent implements OnInit, AfterViewInit, OnDestroy 
         this.cdr.markForCheck();
 
         const view = await this.driveItemService.FindPaginatedDriveItemByApplicationUserId(this.page);
-        
+
         this.loading = false;
         this.cdr.markForCheck();
 

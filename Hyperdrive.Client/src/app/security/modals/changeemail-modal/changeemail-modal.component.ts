@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -68,13 +68,13 @@ export class ChangeEmailModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
-                [Validators.required]),
-            NewEmail: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+            ApplicationUserId:[this.User?.Id,
+                [Validators.required]],
+            NewEmail: [TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
                     Validators.email
-                ]),
+                ]],
         });
     }
 

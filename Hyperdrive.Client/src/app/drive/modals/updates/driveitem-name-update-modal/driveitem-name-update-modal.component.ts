@@ -56,18 +56,18 @@ export class DriveitemNameUpdateModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Id: new FormControl<number>(this.data.Id, [Validators.required]),
-            Name: new FormControl<string>(this.data.Name, [
+            Id: [this.data.Id, [Validators.required]],
+            Name: [this.data.Name, [
                 Validators.required,
                 Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
-            ]),
-            Extension: new FormControl<string>(this.data.Extension, [Validators.required]),
-            ParentId: new FormControl<number | undefined>(this.data?.Parent?.Id,
-                []),
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
+            ]],
+            Extension: [this.data.Extension, [Validators.required]],
+            ParentId: [this.data?.Parent?.Id,
+                []],
+            ApplicationUserId: [this.User?.Id,
                 [
                     Validators.required
-                ])
+                ]]
         });
     }
 

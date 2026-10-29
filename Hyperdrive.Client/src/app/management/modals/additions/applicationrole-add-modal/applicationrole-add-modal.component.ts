@@ -63,17 +63,17 @@ export class ApplicationRoleAddModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+            Name: [TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
                     Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
-                ]),
-            ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required]),
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
+                ]],
+            ImageUri: [TextAppVariants.AppEmptyCoreText,
+                [Validators.required]],
+            ApplicationUserId: [this.User?.Id,
                 [
                     Validators.required
-                ])
+                ]]
         });
     }
 

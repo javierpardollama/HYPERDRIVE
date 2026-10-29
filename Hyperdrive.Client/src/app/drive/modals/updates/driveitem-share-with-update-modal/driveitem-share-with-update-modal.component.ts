@@ -64,14 +64,11 @@ export class DriveitemShareWithUpdateModalComponent implements OnInit {
 
     // Form
     CreateForm(): void {
-        this.formGroup = this.formBuilder.group({
-            Id: new FormControl<number>(this.data.Id, [Validators.required]),
-            ApplicationUserIds: new FormControl<number[]>(this.data.SharedWith.map(({ Id }) => Id), [Validators.required]),
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
-                [
-                    Validators.required
-                ])
-        });
+      this.formGroup = this.formBuilder.group({
+        Id: [this.data.Id, [Validators.required]],
+        ApplicationUserIds: [this.data.SharedWith, [Validators.required]],
+        ApplicationUserId: [this.User?.Id, [Validators.required]]
+      });
     }
 
     // Form Actions
