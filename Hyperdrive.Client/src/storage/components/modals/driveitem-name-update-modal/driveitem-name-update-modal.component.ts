@@ -1,0 +1,93 @@
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import { ExpressionAppVariants } from "../../../../shared/variants/expression.app.variants";
+import { TextAppVariants } from "../../../../shared/variants/text.app.variants";
+import { TimeAppVariants } from "../../../../shared/variants/time.app.variants";
+import { ViewDriveItem } from "../../../viewmodels/views/viewdriveitem";
+import { DriveItemService } from "../../../services/driveitem.service";
+import { UpdateDriveItemName } from "../../../viewmodels/updates/updatedriveitemname";
+import { ViewApplicationUser } from '../../../../identity/viewmodels/views/viewapplicationuser';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CryptoService } from '../../../../identity/services/crypto.service';
+import { VaultKeyAppVariants } from '../../../../shared/variants/vault.keys.variants';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-driveitem-name-update-modal',
+    templateUrl: './driveitem-name-update-modal.component.html',
+    styleUrl: './driveitem-name-update-modal.component.scss',
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
+})
+export class DriveitemNameUpdateModalComponent implements OnInit {
+    // DI
+    private driveItemService = inject(DriveItemService);
+    private cryptoService = inject(CryptoService);
+    private formBuilder = inject(FormBuilder);
+    dialogRef = inject<MatDialogRef<DriveitemNameUpdateModalComponent>>(MatDialogRef);
+    private matSnackBar = inject(MatSnackBar);
+    data = inject<ViewDriveItem>(MAT_DIALOG_DATA);
+
+    public formGroup!: FormGroup;
+
+    public User?: ViewApplicationUser;
+
+    // Constructor
+    constructor() {
+    }
+
+    // Life Cicle
+    async ngOnInit(): Promise<void> {
+        this.CreateForm();
+        await this.GetLocalUser();
+    }
+
+    // Form
+    CreateForm(): void {
+        this.formGroup = this.formBuilder.group({
+            Id: [this.data.Id, [Validators.required]],
+            Name: [this.data.Name, [
+                Validators.required,
+                Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
+            ]],
+            Extension: [this.data.Extension, [Validators.required]],
+            ParentId: [this.data?.Parent?.Id,
+                []],
+            ApplicationUserId: [this.User?.Id,
+                [
+                    Validators.required
+                ]]
+        });
+    }
+
+    // Form Actions
+    async onSubmit(viewModel: UpdateDriveItemName): Promise<void> {
+        let item = await this.driveItemService.UpdateDriveItemName(viewModel);
+
+        if (item) {
+            this.matSnackBar.open(
+                TextAppVariants.AppOperationSuccessCoreText,
+                TextAppVariants.AppOkButtonText,
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        }
+
+        this.dialogRef.close();
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
+        this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
+    }
+}

@@ -1,0 +1,73 @@
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+
+import { ViewApplicationUser } from '../../../../identity/viewmodels/views/viewapplicationuser';
+
+import { AuthSignOut } from '../../../../identity/viewmodels/auth/authsignout';
+
+import { Router, RouterModule } from '@angular/router';
+
+import { MatBottomSheetModule, MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CryptoService } from "../../../../identity/services/crypto.service";
+import { AuthService } from "../../../../identity/services/auth.service";
+import { VaultKeyAppVariants } from "../../../../shared/variants/vault.keys.variants";
+
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-profile-context-menu',
+    templateUrl: './profile-context-menu.component.html',
+    styleUrl: './profile-context-menu.component.scss',
+    imports: [
+        MatListModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatBottomSheetModule,
+        RouterModule
+    ]
+})
+export class ProfileContextMenuComponent implements OnInit {
+    // DI
+    sheetRef = inject<MatBottomSheetRef<ProfileContextMenuComponent>>(MatBottomSheetRef);
+    private authService = inject(AuthService);
+    private cryptoService = inject(CryptoService);
+    private router = inject(Router);
+
+    public User?: ViewApplicationUser;
+
+    public constructor() {
+    }
+
+
+    async ngOnInit(): Promise<void> {
+        await this.GetLocalUser()
+    }
+
+    public async Security(): Promise<void> {
+        this.sheetRef.dismiss();
+        await this.router.navigate(['security']);
+    }
+
+    public async SignOut(): Promise<void> {
+        const viewModel: AuthSignOut =
+        {
+            ApplicationUserId: this.User!.Id,
+            ApplicationUserRefreshToken: this.User!.RefreshToken!.Value
+        };
+
+        this.sheetRef.dismiss();
+
+        await this.authService.SignOut(viewModel);
+
+        this.cryptoService.RemoveObject(VaultKeyAppVariants.VAULT_USER_KEY);
+
+        await this.router.navigate(['auth/signin']);
+    }
+
+    // Get User from Storage
+    public async GetLocalUser(): Promise<void> {
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
+    }
+}

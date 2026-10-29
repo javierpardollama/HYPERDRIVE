@@ -1,0 +1,92 @@
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+
+import { Router, RouterModule } from '@angular/router';
+
+import { Location } from '@angular/common';
+
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { SecurityService } from '../../../services/security.service';
+
+import { SecurityPasswordReset } from '../../../viewmodels/security/securitypasswordreset';
+
+import { TextAppVariants } from '../../../../shared/variants/text.app.variants';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TimeAppVariants } from '../../../../shared/variants/time.app.variants';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CryptoService } from '../../../services/crypto.service';
+import { VaultKeyAppVariants } from '../../../../shared/variants/vault.keys.variants';
+
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-resetpassword',
+    templateUrl: './resetpassword.component.html',
+    styleUrls: ['./resetpassword.component.scss'],
+    imports: [
+        FormsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        RouterModule,
+        MatTooltipModule
+    ]
+})
+export class ResetPasswordComponent implements OnInit {
+    // DI
+    private router = inject(Router);
+    private location = inject(Location);
+    private securityService = inject(SecurityService);
+    private cryptoService = inject(CryptoService);
+    private formBuilder = inject(FormBuilder);
+    private matSnackBar = inject(MatSnackBar);
+
+    public formGroup!: FormGroup;
+
+    // Constructor
+    constructor() {
+    }
+
+    // Life Cicle
+    ngOnInit(): void {
+        this.CreateForm();
+    }
+
+    // Form
+    CreateForm(): void {
+        this.formGroup = this.formBuilder.group({
+            Email: [TextAppVariants.AppEmptyCoreText,
+                [
+                    Validators.required,
+                    Validators.email
+                ]],
+            NewPassword: [TextAppVariants.AppEmptyCoreText,
+                [Validators.required]]
+        });
+    }
+
+    // Form Actions
+    async onSubmit(viewModel: SecurityPasswordReset): Promise<void> {
+        let user = await this.securityService.ResetPassword(viewModel);
+
+        if (user) {
+            this.matSnackBar.open(
+                TextAppVariants.AppOperationSuccessCoreText,
+                TextAppVariants.AppOkButtonText,
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+
+            await this.cryptoService.CreateKey(viewModel.NewPassword);
+            await this.cryptoService.StoreObject(VaultKeyAppVariants.VAULT_USER_KEY, user);
+
+            await this.router.navigate(['/']);
+        }
+    }
+
+    onBack(): void {
+        this.location.back();
+    }
+}

@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { AuthGuard } from "../guards/auth.guard";
-import { GuestGuard } from "../guards/guest.guard";
+import { AuthGuard } from "../identity/guards/auth.guard";
+import { GuestGuard } from "../identity/guards/guest.guard";
 
 export const routes: Routes = [
   // 🔒 Authenticated Routes
@@ -15,17 +15,17 @@ export const routes: Routes = [
       },
       {
         path: 'security',
-        loadComponent: () => import('./security/security.component').then((m) => m.SecurityComponent),
+        loadComponent: () => import('../identity/components/pages/security/security.component').then((m) => m.SecurityComponent),
         pathMatch: 'full'
       },
       {
         path: 'management/applicationrole',
-        loadComponent: () => import('./management/grids/applicationrole-grid/applicationrole-grid.component').then((m) => m.ApplicationRoleGridComponent),
+        loadComponent: () => import('../identity/components/grids/applicationrole-grid/applicationrole-grid.component').then((m) => m.ApplicationRoleGridComponent),
         pathMatch: 'full'
       },
       {
         path: 'management/applicationuser',
-        loadComponent: () => import('./management/grids/applicationuser-grid/applicationuser-grid.component').then((m) => m.ApplicationUserGridComponent),
+        loadComponent: () => import('../identity/components/grids/applicationuser-grid/applicationuser-grid.component').then((m) => m.ApplicationUserGridComponent),
         pathMatch: 'full'
       }
     ]
@@ -42,17 +42,17 @@ export const routes: Routes = [
       },
       {
         path: 'joinin',
-        loadComponent: () => import('./auth/joinin/joinin.component').then((m) => m.JoinInComponent),
+        loadComponent: () => import('../identity/components/pages/joinin/joinin.component').then((m) => m.JoinInComponent),
         pathMatch: 'full'
       },
       {
         path: 'signin',
-        loadComponent: () => import('./auth/signin/signin.component').then((m) => m.SignInComponent),
+        loadComponent: () => import('../identity/components/pages/signin/signin.component').then((m) => m.SignInComponent),
         pathMatch: 'full'
       },
       {
         path: 'resetpassword',
-        loadComponent: () => import('./auth/resetpassword/resetpassword.component').then((m) => m.ResetPasswordComponent),
+        loadComponent: () => import('../identity/components/pages/resetpassword/resetpassword.component').then((m) => m.ResetPasswordComponent),
         pathMatch: 'full'
       }
     ]
