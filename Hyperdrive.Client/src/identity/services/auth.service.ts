@@ -1,0 +1,40 @@
+import { AuthJoinIn } from '../viewmodels/auth/authjoinin';
+
+import { AuthSignIn } from '../viewmodels/auth/authsignin';
+
+import { AuthSignOut } from '../viewmodels/auth/authsignout';
+
+import { ViewApplicationUser } from '../viewmodels/views/viewapplicationuser';
+
+import { Service } from '@angular/core';
+
+import { catchError } from 'rxjs/operators';
+
+import { BaseService } from '../../shared/services/base.service';
+
+import { firstValueFrom } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+
+@Service()
+export class AuthService extends BaseService {
+
+  public constructor() {
+    super();
+  }
+
+  public SignIn(viewModel: AuthSignIn): Promise<ViewApplicationUser> {
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/auth/in`, viewModel)
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('SignIn', undefined))));
+  }
+
+  public JoinIn(viewModel: AuthJoinIn): Promise<ViewApplicationUser> {
+    return firstValueFrom(this.httpClient.post<ViewApplicationUser>(`${environment.Api.Service}api/identity/v1/auth/create`, viewModel)
+      .pipe(catchError(this.HandleError<ViewApplicationUser>('JoinIn', undefined))));
+  }
+
+  public SignOut(viewModel: AuthSignOut): Promise<any> {
+    return firstValueFrom(this.httpClient.post<any>(`${environment.Api.Service}api/identity/v1/auth/out`, viewModel)
+      .pipe(catchError(this.HandleError<any>('SignOut', undefined))));
+  }
+}

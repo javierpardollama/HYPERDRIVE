@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NavMenuComponent } from './shell/menus/nav-menu/nav-menu.component';
+import { NavMenuComponent } from '../shell/components/menus/nav-menu/nav-menu.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

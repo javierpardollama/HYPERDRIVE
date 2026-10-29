@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 
 import { routes } from './app.routes';
-import { AuthInterceptor } from '../interceptors/auth.interceptor';
+import { AuthInterceptor } from '../identity/interceptors/auth.interceptor';
 
 export const AppConfig: ApplicationConfig = {
   providers: [

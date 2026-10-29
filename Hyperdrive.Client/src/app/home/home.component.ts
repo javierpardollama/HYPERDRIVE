@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { DriveitemGridComponent } from '../drive/grids/driveitem-grid/driveitem-grid.component';
-import { DriveItemSharedGridComponent } from '../drive/grids/drive-item-shared-grid/drive-item-shared-grid.component';
+import {DriveitemGridComponent} from "../../storage/components/grids/driveitem-grid/driveitem-grid.component";
+import {
+  DriveItemSharedGridComponent
+} from "../../storage/components/grids/drive-item-shared-grid/drive-item-shared-grid.component";
+
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
