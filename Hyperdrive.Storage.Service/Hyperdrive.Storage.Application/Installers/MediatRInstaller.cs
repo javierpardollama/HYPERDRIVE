@@ -1,3 +1,4 @@
+using Hyperdrive.Storage.Application.Handlers.ApplicationUser;
 using Hyperdrive.Storage.Application.Handlers.DriveItem;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +26,11 @@ public static class MediatRInstaller
             cfg.RegisterServicesFromAssemblyContaining<FindLatestDriveItemBinaryByIdHandler>();
             cfg.RegisterServicesFromAssemblyContaining<FindDriveItemBinaryByIdHandler>();
             cfg.RegisterServicesFromAssemblyContaining<TargetDriveItemVersionByIdHandler>();
+            
+            cfg.RegisterServicesFromAssemblyContaining<RemoveApplicationUserByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateApplicationUserHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddApplicationUserHandler>();
+            
         });
     }
 }

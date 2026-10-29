@@ -4,7 +4,7 @@ using Hyperdrive.Storage.Domain.Dtos;
 namespace Hyperdrive.Storage.Application.Profiles;
 
 /// <summary>
-/// Represents a <see cref="ApplicationRoleProfile"/> class.
+/// Represents a <see cref="CatalogProfile"/> class.
 /// </summary>
 public static class CatalogProfile
 {
