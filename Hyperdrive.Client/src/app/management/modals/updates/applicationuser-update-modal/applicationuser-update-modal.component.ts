@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ViewApplicationUser } from '../../../../../viewmodels/views/viewapplicationuser';
 
@@ -72,14 +72,14 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Id: new FormControl<number>(this.data.Id, [
+            Id: [this.data.Id, [
                 Validators.required
-            ]),
-            ApplicationRoleNames: new FormControl<string[]>(this.data.ApplicationRoles.map(({ Name }) => Name), [
-                Validators.required]),
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id, [
+            ]],
+            ApplicationRoleNames: [this.data.ApplicationRoles.map(({ Name }) => Name), [
+                Validators.required]],
+            ApplicationUserId: [this.User?.Id, [
                 Validators.required
-            ])
+            ]]
         });
     }
 
@@ -116,7 +116,7 @@ export class ApplicationUserUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

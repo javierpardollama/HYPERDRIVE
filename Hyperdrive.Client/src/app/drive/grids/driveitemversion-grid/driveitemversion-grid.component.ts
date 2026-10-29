@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -10,9 +9,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ViewScroll } from '../../../../viewmodels/views/viewscroll';
 import { ViewDriveItemVersion } from '../../../../viewmodels/views/viewdriveitemversion';
-import { FilterPageDriveItemVersion } from '../../../..//viewmodels/filters/filterpagedriveitemversion';
+import { FilterPageDriveItemVersion } from '../../../../viewmodels/filters/filterpagedriveitemversion';
 import { FormsModule } from '@angular/forms';
-import { DriveItemVersionService } from '../../../..//services/driveitemversion.service';
+import { DriveItemVersionService } from '../../../../services/driveitemversion.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +32,6 @@ import { DriveItemVersionService } from '../../../..//services/driveitemversion.
 })
 export class DriveitemversionGridComponent implements OnInit, AfterViewInit, OnDestroy {
   // DI
-  matDialog = inject(MatDialog);
   private driveItemVersionService = inject(DriveItemVersionService);
   private cdr = inject(ChangeDetectorRef);
 
@@ -77,7 +75,7 @@ export class DriveitemversionGridComponent implements OnInit, AfterViewInit, OnD
     this.cdr.markForCheck();
 
     const view = await this.driveItemVersionService.FindPaginatedDriveItemVersionByDriveItemId(this.page);
-    
+
     this.loading = false;
     this.cdr.markForCheck();
 

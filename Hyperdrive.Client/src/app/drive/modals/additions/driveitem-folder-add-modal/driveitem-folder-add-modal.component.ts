@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { DriveItemService } from "../../../../../services/driveitem.service";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { TextAppVariants } from "../../../../../variants/text.app.variants";
 import { ExpressionAppVariants } from "../../../../../variants/expression.app.variants";
@@ -55,19 +55,19 @@ export class DriveItemFolderAddModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            ParentId: new FormControl<number | undefined>(this.data,
-                []),
-            FileName: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+            ParentId:[this.data,
+                []],
+            FileName: [TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
                     Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
-                ]),
-            Folder: new FormControl<boolean>(true,
-                [Validators.required]),
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
+                ]],
+            Folder: [true,
+                [Validators.required]],
+            ApplicationUserId: [this.User?.Id,
                 [
                     Validators.required
-                ])
+                ]]
         });
     }
 
@@ -87,7 +87,7 @@ export class DriveItemFolderAddModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

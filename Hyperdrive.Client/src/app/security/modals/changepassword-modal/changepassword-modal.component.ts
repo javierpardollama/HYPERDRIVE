@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -67,12 +67,12 @@ export class ChangePasswordModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
-                [Validators.required]),
-            CurrentPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required]),
-            NewPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required]),
+            ApplicationUserId: [this.User?.Id,
+                [Validators.required]],
+            CurrentPassword: [TextAppVariants.AppEmptyCoreText,
+                [Validators.required]],
+            NewPassword: [TextAppVariants.AppEmptyCoreText,
+                [Validators.required]],
         });
     }
 

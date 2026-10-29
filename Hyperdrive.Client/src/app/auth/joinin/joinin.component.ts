@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 
 import { Router, RouterModule } from '@angular/router';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -54,13 +54,13 @@ export class JoinInComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+            Email:[TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
                     Validators.email
-                ]),
-            Password: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required])
+                ]],
+            Password: [TextAppVariants.AppEmptyCoreText,
+                [Validators.required]]
         });
     }
 

@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 
 import { Location } from '@angular/common';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SecurityService } from '../../../services/security.service';
 
@@ -59,13 +59,13 @@ export class ResetPasswordComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Email: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+            Email: [TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
                     Validators.email
-                ]),
-            NewPassword: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-                [Validators.required])
+                ]],
+            NewPassword: [TextAppVariants.AppEmptyCoreText,
+                [Validators.required]]
         });
     }
 

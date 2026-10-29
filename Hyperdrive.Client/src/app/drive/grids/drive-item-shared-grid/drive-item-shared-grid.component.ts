@@ -59,8 +59,7 @@ export class DriveItemSharedGridComponent
     'Id',
     'Name',
     'Folder',
-    'LastModified',
-    'SharedWith',
+    'LastModified'
   ];
 
   public dataSource: MatTableDataSource<ViewDriveItem> =

@@ -3,19 +3,19 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { ViewApplicationRole } from './../../../../../viewmodels/views/viewapplicationrole';
+import { ViewApplicationRole } from '../../../../../viewmodels/views/viewapplicationrole';
 
-import { UpdateApplicationRole } from './../../../../../viewmodels/updates/updateapplicationrole';
+import { UpdateApplicationRole } from '../../../../../viewmodels/updates/updateapplicationrole';
 
-import { ApplicationRoleService } from './../../../../../services/applicationrole.service';
+import { ApplicationRoleService } from '../../../../../services/applicationrole.service';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
@@ -66,15 +66,15 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            Id: new FormControl<number>(this.data.Id, [Validators.required]),
-            Name: new FormControl<string>(this.data.Name, [
+            Id: [this.data.Id, [Validators.required]],
+            Name: [this.data.Name, [
                 Validators.required,
                 Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
-            ]),
-            ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id, [
+            ]],
+            ImageUri: [this.data.ImageUri, [Validators.required]],
+            ApplicationUserId: [this.User?.Id, [
                 Validators.required
-            ])
+            ]]
         });
     }
 
@@ -106,7 +106,7 @@ export class ApplicationRoleUpdateModalComponent implements OnInit {
 
     // Get User from Storage
     public async GetLocalUser(): Promise<void> {
-        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);;
+        this.User = await this.cryptoService.RetrieveObject<ViewApplicationUser>(VaultKeyAppVariants.VAULT_USER_KEY);
         this.formGroup.patchValue({ ApplicationUserId: this.User?.Id });
     }
 }

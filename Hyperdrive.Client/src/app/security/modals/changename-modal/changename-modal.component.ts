@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -68,16 +68,16 @@ export class ChangeNameModalComponent {
     // Form
     CreateForm(): void {
         this.formGroup = this.formBuilder.group({
-            ApplicationUserId: new FormControl<number | undefined>(this.User?.Id,
-                [Validators.required]),
-            NewFirstName: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+            ApplicationUserId: [this.User?.Id,
+                [Validators.required]],
+            NewFirstName: [TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
-                ]),
-            NewLastName: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+                ]],
+            NewLastName: [TextAppVariants.AppEmptyCoreText,
                 [
                     Validators.required,
-                ]),
+                ]],
         });
     }
 

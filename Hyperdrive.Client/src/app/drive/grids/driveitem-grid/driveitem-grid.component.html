@@ -39,18 +39,6 @@
                 <td mat-cell *matCellDef="let row"> {{row.Folder}} </td>
             </ng-container>
 
-            <!-- SharedWith Column -->
-            <ng-container matColumnDef="SharedWith">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> SharedWith </th>
-                <td mat-cell *matCellDef="let row">
-                    <mat-chip-listbox>
-                        @for (user of row.SharedWith; track user) {
-                        <mat-chip>{{user.Name}}</mat-chip>
-                        }
-                    </mat-chip-listbox>
-                </td>
-            </ng-container>
-
             <!-- LastModified Column -->
             <ng-container matColumnDef="LastModified">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> LastModified </th>
