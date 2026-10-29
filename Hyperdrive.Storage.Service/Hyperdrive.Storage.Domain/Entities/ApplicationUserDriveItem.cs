@@ -5,7 +5,7 @@ using Hyperdrive.Storage.Domain.Entities.Interfaces;
 namespace Hyperdrive.Storage.Domain.Entities;
 
 /// <summary>
-/// Represents a <see cref="ApplicationUserClaim"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
+/// Represents a <see cref="ApplicationUserDriveItem"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
 /// </summary>
 public partial class ApplicationUserDriveItem : IKey, IBase
 {
@@ -15,7 +15,7 @@ public partial class ApplicationUserDriveItem : IKey, IBase
     [Required]
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="CreatedAt"/>
@@ -47,21 +47,16 @@ public partial class ApplicationUserDriveItem : IKey, IBase
     public byte[] Version { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="UserId"/>
+    /// Gets or Sets <see cref="ExternalUserId"/>
     /// </summary>
     [Required]
-    public int UserId { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="User"/>
-    /// </summary>
-    public virtual ApplicationUser User { get; set; }
+    public int ExternalUserId { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="DriveItemId"/>
     /// </summary>
     [Required]
-    public int DriveItemId { get; set; }
+    public Guid DriveItemId { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="DriveItem"/>

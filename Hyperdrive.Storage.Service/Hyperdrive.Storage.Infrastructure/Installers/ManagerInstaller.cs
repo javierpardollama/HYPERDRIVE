@@ -15,8 +15,6 @@ public static class ManagerInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallManagers(this IServiceCollection @this)
     {
-
-        @this.AddTransient<IApplicationUserManager, ApplicationUserManager>();
         @this.AddTransient<IDriveItemManager, DriveItemManager>();
         @this.AddTransient<IDriveItemVersionManager, DriveItemVersionManager>();
         @this.AddTransient<IDriveItemBinaryManager, DriveItemBinaryManager>();

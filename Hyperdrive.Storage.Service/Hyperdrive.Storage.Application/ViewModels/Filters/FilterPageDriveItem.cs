@@ -29,7 +29,7 @@ public class FilterPageDriveItem : IFilterPage
     /// <summary>
     /// Gets or Sets <see cref="ParentId"/>
     /// </summary>
-    public int? ParentId { get; set; }
+    public Guid? ParentId { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="ParentName"/>

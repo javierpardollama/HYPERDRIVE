@@ -21,9 +21,9 @@ public class DriveItemBinaryManager(IApplicationContext context,
     /// <summary>
     /// Finds Latest Drive Item Binary By Drive Item Id
     /// </summary>
-    /// <param name="driveitemid">Injected <see cref="int"/></param>
+    /// <param name="driveitemid">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-    public async Task<DriveItemBinaryDto> FindLatestDriveItemBinaryById(int @driveitemid)
+    public async Task<DriveItemBinaryDto> FindLatestDriveItemBinaryById(Guid @driveitemid)
     {
         DriveItemBinaryDto @binary = await Context.DriveItemContents
             .TagWith("FindLatestDriveItemBinaryById")
@@ -54,9 +54,9 @@ public class DriveItemBinaryManager(IApplicationContext context,
     /// <summary>
     /// Finds Drive Item Binary By Drive Item Info Id
     /// </summary>
-    /// <param name="driveiteminfoid">Injected <see cref="int"/></param>
+    /// <param name="driveiteminfoid">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemBinaryDto}"/></returns>
-    public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(int @driveiteminfoid)
+    public async Task<DriveItemBinaryDto> FindDriveItemBinaryById(Guid @driveiteminfoid)
     {
         DriveItemBinaryDto @binary = await Context.DriveItemContents
                        .TagWith("FindDriveItemBinaryById")

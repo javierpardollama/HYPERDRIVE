@@ -61,7 +61,7 @@ public class DriveItemVersionManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedDriveItemVersionByDriveItemId()
     {
-        await Manager.FindPaginatedDriveItemVersionByDriveItemId(1, 15, 5);
+        await Manager.FindPaginatedDriveItemVersionByDriveItemId(1, 15, new Guid("f0354da5-dd9e-4f70-8379-7a0f7dfc67ec")); //5
 
         Assert.Pass();
     }
@@ -73,7 +73,7 @@ public class DriveItemVersionManagerTest : BaseManagerTest
     [Test]
     public async Task FindDriveItemById()
     {
-        await Manager.FindDriveItemVersionById(51);
+        await Manager.FindDriveItemVersionById(new Guid("f48fcf02-4c03-45f0-a884-9d7d11f6bccc")); //51
         Assert.Pass();
     }
 
@@ -84,7 +84,7 @@ public class DriveItemVersionManagerTest : BaseManagerTest
     [Test]
     public async Task TargetDriveItemVersion()
     {
-        var @entity = Context.DriveItemInfos.First(x => x.Id == 51);
+        var @entity = Context.DriveItemInfos.First(x => x.Id == new Guid("f48fcf02-4c03-45f0-a884-9d7d11f6bccc")); //51
 
         await Manager.TargetDriveItemVersion(@entity);
         Assert.Pass();

@@ -9,11 +9,6 @@ namespace Hyperdrive.Storage.Infrastructure.Contexts.Interfaces;
 public interface IApplicationContext : IDisposable
 {
     /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUser}"/>
-    /// </summary>
-    DbSet<ApplicationUser> Users { get; set; }
-    
-    /// <summary>
     /// Gets or Sets <see cref="DbSet{DriveItem}"/>
     /// </summary>
     DbSet<DriveItem> DriveItems { get; set; }

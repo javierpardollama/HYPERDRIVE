@@ -11,7 +11,7 @@ public class UpdateBase
     /// Gets or Sets <see cref="Id"/>
     /// </summary>
     [Required]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="ApplicationUserId"/>

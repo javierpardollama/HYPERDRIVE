@@ -58,20 +58,20 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public async Task FindDriveItemById()
     {
-        await Manager.FindDriveItemById(1);
+        await Manager.FindDriveItemById(new Guid("9bd5be02-f392-4ca1-923c-6c9753b645e5"));
         Assert.Pass();
     }
 
     [Test]
     public void FindDriveItemByFileName()
     {
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", 5, 1));
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.FindDriveItemByFileName("Wanabe.mp3", new Guid("f0354da5-dd9e-4f70-8379-7a0f7dfc67ec"), 1)); //5
     }
 
     [Test]
     public async Task RemoveDriveItemById()
     {
-        var @item = Context.DriveItems.First(x => x.Id == 1);
+        var @item = Context.DriveItems.First(x => x.Id == new Guid("9bd5be02-f392-4ca1-923c-6c9753b645e5"));
 
         await Manager.RemoveDriveItem(@item);
         Assert.Pass();
@@ -94,7 +94,7 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public async Task AddDriveItem()
     {
-        await Manager.AddDriveItem(1, false, 1);
+        await Manager.AddDriveItem(new Guid("9bd5be02-f392-4ca1-923c-6c9753b645e5"), false, 1);
 
         Assert.Pass();
     }
@@ -102,9 +102,9 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public async Task AddSharedWith()
     {
-        var @item = Context.DriveItems.First(x => x.Id == 1);
+        var @item = Context.DriveItems.First(x => x.Id == new Guid("9bd5be02-f392-4ca1-923c-6c9753b645e5"));
 
-        var @users = Context.Users.Where(x => new List<int>() { 2, 3 }.Contains(x.Id)).ToList();
+        var @users = new List<int>() { 2, 3 };
 
         await Manager.AddSharedWith(users, item);
 
@@ -120,13 +120,13 @@ public class DriveItemManagerTest : BaseManagerTest
     [Test]
     public void CheckName()
     {
-        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", 1, null, 1));
+        Assert.ThrowsAsync<ServiceException>(async () => await Manager.CheckName("Pictures", new Guid("9bd5be02-f392-4ca1-923c-6c9753b645e5"), null, 1)); //1
     }
 
     [Test]
     public async Task ReloadDriveItemById()
     {
-        await Manager.ReloadDriveItemById(1);
+        await Manager.ReloadDriveItemById(new Guid("9bd5be02-f392-4ca1-923c-6c9753b645e5")); //1
 
         Assert.Pass();
     }

@@ -57,7 +57,7 @@ public class DriveItemInfoManagerTest : BaseManagerTest
     [Test]
     public async Task AddAsFileNameInfo()
     {
-        await Manager.AddAsFileNameInfo(5, "Wanabe.mp3");
+        await Manager.AddAsFileNameInfo(new Guid("f0354da5-dd9e-4f70-8379-7a0f7dfc67ec"), "Wanabe.mp3"); //5
 
         Assert.Pass();
     }
@@ -65,7 +65,7 @@ public class DriveItemInfoManagerTest : BaseManagerTest
     [Test]
     public async Task AddAsNameActivity()
     {
-        await Manager.AddAsNameInfo(5, "Spice Girls - Wannabe", "mp3");
+        await Manager.AddAsNameInfo(new Guid("f0354da5-dd9e-4f70-8379-7a0f7dfc67ec"), "Spice Girls - Wannabe", "mp3"); //5
 
         Assert.Pass();
     }

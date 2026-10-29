@@ -21,11 +21,11 @@ public static class DriveItemProfile
             FileName = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.FileName,
             Name = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.Name,
             Extension = @entity.Activity.OrderByDescending(x => x.CreatedAt).FirstOrDefault()?.Extension,
-            By = @entity.By?.ToCatalog(),
+            ByExternalId = @entity.ByExternalId,
             Parent = @entity.Parent?.ToCatalog(),
             Folder = @entity.Folder,
             LastModified = @entity.CreatedAt,
-            SharedWith = [.. @entity.SharedWith.Select(x => x.User.ToCatalog())],
+            SharedWith = [.. @entity.SharedWith.Select(x => x.DriveItem.ByExternalId)],
             Downloadeable = @entity.Activity.OrderByDescending(x => x.CreatedAt).Any(x => x.Content is not null)
         };
     }

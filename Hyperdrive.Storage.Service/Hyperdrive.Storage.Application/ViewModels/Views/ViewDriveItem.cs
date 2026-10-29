@@ -10,7 +10,7 @@ public class ViewDriveItem : IViewKey, IViewBase
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
     /// </summary>
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="LastModified"/>
@@ -18,9 +18,9 @@ public class ViewDriveItem : IViewKey, IViewBase
     public DateTime? LastModified { get; set; }
 
     /// <summary>
-    /// Gets or Sets <see cref="By"/>
+    /// Gets or Sets <see cref="ByExternalId "/>
     /// </summary>
-    public ViewCatalog By { get; set; }
+    public int ByExternalId  { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Folder"/>
@@ -50,7 +50,7 @@ public class ViewDriveItem : IViewKey, IViewBase
     /// <summary>
     /// Gets or Sets <see cref="SharedWith"/>
     /// </summary>
-    public virtual ICollection<ViewCatalog> SharedWith { get; set; } = [];
+    public virtual ICollection<int> SharedWith { get; set; } = [];
 
     /// <summary>
     /// Gets or Sets <see cref="Downloadeable"/>

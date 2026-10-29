@@ -8,5 +8,5 @@ public interface IViewKey
     /// <summary>
     /// Gets or Sets <see cref="Id"/>
     /// </summary>
-    int Id { get; set; }
+    Guid Id { get; set; }
 }

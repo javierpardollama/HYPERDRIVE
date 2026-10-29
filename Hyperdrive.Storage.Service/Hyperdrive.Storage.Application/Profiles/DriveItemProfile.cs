@@ -4,7 +4,7 @@ using Hyperdrive.Storage.Domain.Dtos;
 namespace Hyperdrive.Storage.Application.Profiles;
 
 /// <summary>
-/// Represents a <see cref="ApplicationRoleProfile"/> class.
+/// Represents a <see cref="DriveItemProfile"/> class.
 /// </summary>
 public static class DriveItemProfile
 {
@@ -21,11 +21,11 @@ public static class DriveItemProfile
             FileName = @dto.Name,
             Name = @dto.Name,
             Extension = @dto.Extension,
-            By = @dto.By?.ToViewModel(),
+            ByExternalId = @dto.ByExternalId,
             Parent = @dto.Parent?.ToViewModel(),
             Folder = @dto.Folder,
             LastModified = @dto.LastModified,
-            SharedWith = [.. @dto.SharedWith.Select(x => x.ToViewModel())],
+            SharedWith = [.. @dto.SharedWith.Select(x => x)],
             Downloadeable = @dto.Downloadeable,
         };
     }

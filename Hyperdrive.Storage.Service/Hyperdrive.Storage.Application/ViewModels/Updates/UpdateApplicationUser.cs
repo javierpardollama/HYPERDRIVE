@@ -8,10 +8,10 @@ namespace Hyperdrive.Storage.Application.ViewModels.Updates;
 public class UpdateApplicationUser
 {
     /// <summary>
-    /// Gets or Sets <see cref="Id"/>
+    /// Gets or Sets <see cref="ExternalId"/>
     /// </summary>
     [Required]
-    public int Id { get; set; }
+    public int ExternalId { get; set; }
     
     /// <summary>
     /// Gets or Sets <see cref="FirstName"/>

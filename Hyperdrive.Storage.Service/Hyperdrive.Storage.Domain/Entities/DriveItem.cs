@@ -15,7 +15,7 @@ public class DriveItem : IKey, IBase
     [Required]
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="CreatedAt"/>
@@ -38,17 +38,12 @@ public class DriveItem : IKey, IBase
     /// </summary>
     [Required]
     public bool Deleted { get; set; }
-
+    
     /// <summary>
-    /// Gets or Sets <see cref="ApplicationUser"/>
-    /// </summary>       
-    public virtual ApplicationUser By { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="ById"/>
+    /// Gets or Sets <see cref="ByExternalId"/>
     /// </summary>
     [Required]
-    public int ById { get; set; }
+    public int ByExternalId { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Parent"/>
@@ -58,7 +53,7 @@ public class DriveItem : IKey, IBase
     /// <summary>
     /// Gets or Sets <see cref="ParentId"/>
     /// </summary>        
-    public int? ParentId { get; set; }
+    public Guid? ParentId { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Folder"/>

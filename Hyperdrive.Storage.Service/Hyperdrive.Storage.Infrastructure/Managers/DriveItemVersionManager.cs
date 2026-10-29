@@ -22,9 +22,9 @@ public class DriveItemVersionManager(IApplicationContext context,
     /// </summary>
     /// <param name="index">Injected <see cref="int"/></param>
     /// <param name="size">Injected <see cref="int"/></param>
-    /// <param name="driveitemid">Injected <see cref="int"/></param>
+    /// <param name="driveitemid">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{PageDto{DriveItemVersionDto}}"/></returns>
-    public async Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index, int @size, int @driveitemid)
+    public async Task<PageDto<DriveItemVersionDto>> FindPaginatedDriveItemVersionByDriveItemId(int @index, int @size, Guid @driveitemid)
     {
         PageDto<DriveItemVersionDto> @page = new()
         {
@@ -54,9 +54,9 @@ public class DriveItemVersionManager(IApplicationContext context,
     /// <summary>
     /// Finds Drive Item Version By Id
     /// </summary>
-    /// <param name="id">Injected <see cref="int"/></param>
+    /// <param name="id">Injected <see cref="Guid"/></param>
     /// <returns>Instance of <see cref="Task{DriveItemVersion}"/></returns>
-    public async Task<DriveItemInfo> FindDriveItemVersionById(int @id)
+    public async Task<DriveItemInfo> FindDriveItemVersionById(Guid @id)
     {
         DriveItemInfo @entity = await Context.DriveItemInfos
                        .TagWith("FindDriveItemVersionById")
