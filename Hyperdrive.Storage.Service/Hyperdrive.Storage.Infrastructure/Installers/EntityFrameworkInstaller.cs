@@ -1,9 +1,7 @@
-using Hyperdrive.Storage.Domain.Entities;
 using Hyperdrive.Storage.Infrastructure.Contexts;
 using Hyperdrive.Storage.Infrastructure.Contexts.Interfaces;
 using Hyperdrive.Storage.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,12 +23,8 @@ public static class EntityFrameworkInstaller
         @this.AddDbContext<ApplicationContext>(options =>
         {
             options.AddInterceptors(new SoftDeleteInterceptor());
-            options.UseNpgsql(@configuration.GetConnectionString("DefaultConnection"));
+            options.UseMongoDB(@configuration.GetConnectionString("DefaultConnection")!);
         });
-
-        @this.AddIdentity<ApplicationUser, ApplicationRole>()
-            .AddEntityFrameworkStores<ApplicationContext>()
-            .AddDefaultTokenProviders();
 
         @this.AddScoped<IApplicationContext, ApplicationContext>();
     }

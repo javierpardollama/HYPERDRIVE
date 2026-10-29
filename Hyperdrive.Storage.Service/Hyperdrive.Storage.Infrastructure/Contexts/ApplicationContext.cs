@@ -1,57 +1,22 @@
 ﻿using Hyperdrive.Storage.Domain.Entities;
 using Hyperdrive.Storage.Infrastructure.Contexts.Extensions;
 using Hyperdrive.Storage.Infrastructure.Contexts.Interfaces;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Storage.Infrastructure.Contexts;
 
 /// <summary>
-/// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="IdentityDbContext"/>. Implements <see cref="IApplicationContext"/>.
+/// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="DbContext"/>. Implements <see cref="IApplicationContext"/>.
 /// </summary>    
 /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
-public class ApplicationContext(DbContextOptions<ApplicationContext> options) : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>(options), IApplicationContext
+public class ApplicationContext(DbContextOptions<ApplicationContext> options) : DbContext(options), IApplicationContext
 {
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationRole}"/>
-    /// </summary>
-    public override DbSet<ApplicationRole> Roles { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationRoleClaim}"/>
-    /// </summary>
-    public override DbSet<ApplicationRoleClaim> RoleClaims { get; set; }
-
+ 
     /// <summary>
     /// Gets or Sets <see cref="DbSet{ApplicationUser}"/>
     /// </summary>
-    public override DbSet<ApplicationUser> Users { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserClaim}"/>
-    /// </summary>
-    public override DbSet<ApplicationUserClaim> UserClaims { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserLogin}"/>
-    /// </summary>
-    public override DbSet<ApplicationUserLogin> UserLogins { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserRole}"/>
-    /// </summary>
-    public override DbSet<ApplicationUserRole> UserRoles { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
-    /// </summary>
-    public override DbSet<ApplicationUserToken> UserTokens { get; set; }
-
-    /// <summary>
-    /// Gets or Sets <see cref="DbSet{ApplicationUserToken}"/>
-    /// </summary>
-    public virtual DbSet<ApplicationUserRefreshToken> UserRefreshTokens { get; set; }
-
+    public virtual DbSet<ApplicationUser> Users { get; set; }
+    
     /// <summary>
     /// Gets or Sets <see cref="DbSet{DriveItem}"/>
     /// </summary>
@@ -79,8 +44,6 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.AddCustomizedIdentities();
 
         modelBuilder.AddCustomizedFilters();
     }
