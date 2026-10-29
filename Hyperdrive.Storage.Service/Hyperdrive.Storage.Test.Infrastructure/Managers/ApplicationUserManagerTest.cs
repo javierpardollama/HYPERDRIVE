@@ -35,7 +35,7 @@ public class ApplicationUserManagerTest : BaseManagerTest
 
         InstallLogger();
 
-        Manager = new ApplicationUserManager(Logger, UserManager);
+        Manager = new ApplicationUserManager(Context, Logger);
     }
 
     /// <summary>

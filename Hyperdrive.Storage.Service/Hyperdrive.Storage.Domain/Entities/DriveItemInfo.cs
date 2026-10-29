@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Hyperdrive.Storage.Domain.Entities.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Hyperdrive.Storage.Domain.Entities;
 
 /// <summary>
 /// Represents a <see cref="DriveItemInfo"/> class. Implements <see cref="IKey"/>, <see cref="IBase"/>
 /// </summary>
-[Index(nameof(Name), nameof(Deleted))]
-[Index(nameof(FileName), nameof(Deleted))]
 public class DriveItemInfo : IKey, IBase
 {
     /// <summary>

@@ -17,21 +17,6 @@ namespace Hyperdrive.Storage.Test.Infrastructure.Managers;
 public abstract class BaseManagerTest
 {
     /// <summary>
-    /// Instance of <see cref="UserManager{ApplicationUser}"/>
-    /// </summary>
-    protected UserManager<ApplicationUser> UserManager;
-
-    /// <summary>
-    /// Instance of <see cref="RoleManager{ApplicationRole}"/>
-    /// </summary>
-    protected RoleManager<ApplicationRole> RoleManager;
-
-    /// <summary>
-    /// Instance of <see cref="SignInManager{ApplicationUser}"/>
-    /// </summary>
-    protected SignInManager<ApplicationUser> SignInManager;
-
-    /// <summary>
     ///     Gets or Sets <see cref="IOptions{ApiSettings}" />
     /// </summary>
     protected IOptions<JwtSettings> ApiOptions { get; set; } = Options.Create(new JwtSettings
@@ -84,15 +69,10 @@ public abstract class BaseManagerTest
     {
         Services
             .AddLogging()
-            .AddDbContext<ApplicationContext>(ContextOptionsAction)
-            .AddIdentity<ApplicationUser, ApplicationRole>()
-            .AddEntityFrameworkStores<ApplicationContext>()
-            .AddDefaultTokenProviders();
+            .AddDbContext<ApplicationContext>(ContextOptionsAction);
 
         ServiceProvider = Services.BuildServiceProvider();
-        UserManager = ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        RoleManager = ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
-        SignInManager = ServiceProvider.GetRequiredService<SignInManager<ApplicationUser>>();
+
     }
 
     /// <summary>

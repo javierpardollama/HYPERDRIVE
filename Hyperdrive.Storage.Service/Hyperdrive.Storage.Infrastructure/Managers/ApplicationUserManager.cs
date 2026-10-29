@@ -1,6 +1,7 @@
 ﻿using Hyperdrive.Storage.Domain.Entities;
 using Hyperdrive.Storage.Domain.Exceptions;
 using Hyperdrive.Storage.Domain.Managers;
+using Hyperdrive.Storage.Infrastructure.Contexts.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -8,13 +9,12 @@ using Microsoft.Extensions.Logging;
 namespace Hyperdrive.Storage.Infrastructure.Managers;
 
 /// <summary>
-/// Represents a <see cref="ApplicationUserManager"/> class. Implements <see cref="IApplicationUserManager"/>
+/// Represents a <see cref="ApplicationUserManager"/> class. Inherits <see cref="BaseManager"/>. Implements <see cref="IApplicationUserManager"/>
 /// </summary>    
+/// <param name="context">Injected <see cref="IApplicationContext"/></param>
 /// <param name="logger">Injected <see cref="ILogger{ApplicationUserManager}"/></param>
-/// <param name="userManager">Injected <see cref=" UserManager{ApplicationUser}"/></param>
-public class ApplicationUserManager(
-    ILogger<ApplicationUserManager> @logger,
-    UserManager<ApplicationUser> @userManager) : IApplicationUserManager
+public class ApplicationUserManager(IApplicationContext @context,
+    ILogger<ApplicationUserManager> @logger) :  BaseManager(context), IApplicationUserManager
 {
     /// <summary>
     /// Finds Application User By Id
@@ -23,10 +23,8 @@ public class ApplicationUserManager(
     /// <returns>Instance of <see cref="Task{ApplicationUser}"/></returns>
     public async Task<ApplicationUser> FindApplicationUserById(int @id)
     {
-        ApplicationUser @applicationUser = await @userManager.Users
+        ApplicationUser @applicationUser = await Context.Users
             .TagWith("FindApplicationUserById")
-            .Include(x => x.UserRoles)
-            .ThenInclude(x => x.Role)
             .Where(x => x.Id == @id)
             .FirstOrDefaultAsync();
 

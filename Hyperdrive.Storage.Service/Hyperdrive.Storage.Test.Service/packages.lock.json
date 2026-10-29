@@ -376,6 +376,11 @@
           "Microsoft.TestPlatform.ObjectModel": "18.11.0"
         }
       },
+      "MongoDB.Bson": {
+        "type": "Transitive",
+        "resolved": "3.13.0",
+        "contentHash": "jb4fGQIS1bTFSK2336FP3rBHDQ+UiVKdTAZcoWHeed1xlxvmclnHA8Y4CAQa+Y2KWw3Fz9OIAkXH/KXJL9yRGg=="
+      },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "Transitive",
         "resolved": "8.19.2",
@@ -396,7 +401,8 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[10.0.14, )",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "[10.0.14, )"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "[10.0.14, )",
+          "MongoDB.Bson": "[3.13.0, )"
         }
       }
     }
