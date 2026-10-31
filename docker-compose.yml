@@ -23,6 +23,26 @@
     ports:
       - "5432:5432"
 
+  atlas:
+    container_name: atlas
+    image: mongodb/mongodb-atlas-local:latest   
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: ${ATLAS_INITDB_ROOT_USERNAME}
+      MONGODB_INITDB_ROOT_PASSWORD: ${ATLAS_INITDB_ROOT_PASSWORD}    
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    volumes:
+      - atlas-db-data:/data/db
+    ports:
+      - "27017:27017"
+
   hyperdrive-gateway-service:
     container_name: hyperdrive-gateway-service
     image: ${DOCKER_REGISTRY-}hyperdrive-gateway-service
@@ -94,7 +114,7 @@
       ASPNETCORE_HTTP_PORTS: 8080        
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-      ConnectionStrings__DefaultConnection: Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Host=postgres;Port=5432;Database=${POSTGRES_DB}
+      ConnectionStrings__DefaultConnection: mongodb://${ATLAS_INITDB_ROOT_USERNAME}:${ATLAS_INITDB_ROOT_PASSWORD}@atlas:27017/${ATLAS_DB}
       Jwt__JwtAudience: ${JWT_AUDIENCE}    
       Jwt__JwtAuthority: ${JWT_AUTHORITY}
       Jwt__JwtIssuer: ${JWT_ISSUER}
@@ -102,8 +122,9 @@
     ports:
       - "8080:8080"  
     depends_on:
-      postgres:
+      atlas:
         condition: service_healthy
 
 volumes:
   pg-db-data:
+  atlas-db-data:
