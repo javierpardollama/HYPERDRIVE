@@ -1213,8 +1213,8 @@
       },
       "MongoDB.EntityFrameworkCore": {
         "type": "Transitive",
-        "resolved": "10.0.4",
-        "contentHash": "cRey26mebQ1qjgR4dIn35FkAiVNp4I5TBltSFtUO8flUAaoEH3JzwoEJsrI6jbNxZ1dPUDyPEKc/EZzlXDcwPg==",
+        "resolved": "10.0.5",
+        "contentHash": "i4HkMA8/rrhfPczHF/dWPdIDYZUnRfmi41lLZH9KB1ScbZFr1MIFqcUCERTQH8BlUSZHQ0pcnNlOdJakO7Zuow==",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.11",
           "MongoDB.Driver": "3.11.2"
@@ -1590,7 +1590,7 @@
           "Microsoft.Extensions.ServiceDiscovery": "[10.11.0, )",
           "Microsoft.SemanticKernel.Connectors.OpenAI": "[1.81.0, )",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "[10.0.2, )",
-          "MongoDB.EntityFrameworkCore": "[10.0.4, )",
+          "MongoDB.EntityFrameworkCore": "[10.0.5, )",
           "OpenTelemetry.Exporter.OpenTelemetryProtocol": "[1.20.1, )",
           "OpenTelemetry.Instrumentation.Runtime": "[1.20.1, )",
           "Swashbuckle.AspNetCore": "[10.3.1, )"

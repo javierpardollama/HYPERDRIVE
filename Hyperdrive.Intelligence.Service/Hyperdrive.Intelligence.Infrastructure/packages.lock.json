@@ -103,9 +103,9 @@
       },
       "MongoDB.EntityFrameworkCore": {
         "type": "Direct",
-        "requested": "[10.0.4, )",
-        "resolved": "10.0.4",
-        "contentHash": "cRey26mebQ1qjgR4dIn35FkAiVNp4I5TBltSFtUO8flUAaoEH3JzwoEJsrI6jbNxZ1dPUDyPEKc/EZzlXDcwPg==",
+        "requested": "[10.0.5, )",
+        "resolved": "10.0.5",
+        "contentHash": "i4HkMA8/rrhfPczHF/dWPdIDYZUnRfmi41lLZH9KB1ScbZFr1MIFqcUCERTQH8BlUSZHQ0pcnNlOdJakO7Zuow==",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.11",
           "MongoDB.Driver": "3.11.2"
