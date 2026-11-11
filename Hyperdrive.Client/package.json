@@ -10,7 +10,7 @@
     "document-processing",
     "microservices-architecture",
     "mit-licensed",
-    "net10-ready",
+    "net10",
     "nunit-tests",
     "openapi31"
   ],
