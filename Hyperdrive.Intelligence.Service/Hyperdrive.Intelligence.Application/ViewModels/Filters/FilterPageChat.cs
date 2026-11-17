@@ -11,7 +11,7 @@ public class FilterPageChat
     ///     Gets or Sets <see cref="UserId" />
     /// </summary>
     [Required]
-    public Guid UserId { get; set; }
+    public int UserId { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="Index" />

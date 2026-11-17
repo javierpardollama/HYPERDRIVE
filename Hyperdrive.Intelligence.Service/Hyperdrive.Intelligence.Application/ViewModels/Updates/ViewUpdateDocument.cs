@@ -29,5 +29,5 @@ public class ViewUpdateDocument
     ///     Gets or Sets <see cref="ModifiedBy" />
     /// </summary>
     [Required]
-    public Guid ModifiedBy { get; set; }
+    public int ModifiedBy { get; set; }
 }

@@ -128,9 +128,9 @@ public class ChatManager(IApplicationContext context,
     /// </summary>
     /// <param name="index">Injected <see cref="int" /></param>
     /// <param name="size">Injected <see cref="int" /></param>
-    /// <param name="userid">Injected <see cref="Guid" /></param>
+    /// <param name="userid">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{PageDto{ChatDto}}" /></returns>
-    public async Task<PageDto<ChatDto>> FindPaginatedChat(int @index, int @size, Guid @userid)
+    public async Task<PageDto<ChatDto>> FindPaginatedChat(int @index, int @size, int @userid)
     {
         PageDto<ChatDto> @page = new()
         {
@@ -146,7 +146,7 @@ public class ChatManager(IApplicationContext context,
                         .TagWith("FindPaginatedInteraction")
                         .AsNoTracking()
                         .AsSplitQuery()
-                         .Where(x => x.CreatedBy == userid)
+                        .Where(x => x.CreatedBy == userid)
                         .OrderByDescending(x => x.CreatedAt)
                         .Skip(@index * @size)
                         .Take(@size)

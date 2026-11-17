@@ -16,11 +16,11 @@ public class Interaction : IBase, IKey
 
     [BsonId]
     [BsonElement("created_by")]
-    public Guid CreatedBy { get; set; }
+    public int CreatedBy { get; set; }
 
     [BsonId]
     [BsonElement("modified_by")]
-    public Guid? ModifiedBy { get; set; }
+    public int? ModifiedBy { get; set; }
 
     [BsonElement("modified_at")]
     public DateTime? ModifiedAt { get; set; }
@@ -30,7 +30,7 @@ public class Interaction : IBase, IKey
 
     [BsonId]
     [BsonElement("deleted_by")]
-    public Guid? DeletedBy { get; set; }
+    public int? DeletedBy { get; set; }
 
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;

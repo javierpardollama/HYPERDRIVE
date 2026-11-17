@@ -17,19 +17,19 @@ public class Chunk : IBase, IKey
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [BsonElement("created_by")]
-    public Guid CreatedBy { get; set; }
+    public int CreatedBy { get; set; }
 
     [BsonElement("modified_at")]
     public DateTime? ModifiedAt { get; set; }
 
     [BsonElement("modified_by")]
-    public Guid? ModifiedBy { get; set; }
+    public int? ModifiedBy { get; set; }
 
     [BsonElement("deleted_at")]
     public DateTime? DeletedAt { get; set; }
 
     [BsonElement("deleted_by")]
-    public Guid? DeletedBy { get; set; }
+    public int? DeletedBy { get; set; }
 
     [BsonElement("deleted")]
     public bool Deleted { get; set; } = false;

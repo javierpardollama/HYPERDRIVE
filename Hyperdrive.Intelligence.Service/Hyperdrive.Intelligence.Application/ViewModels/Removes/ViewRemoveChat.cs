@@ -17,5 +17,5 @@ public class ViewRemoveChat
     ///     Gets or Sets <see cref="DeletedBy" />
     /// </summary>
     [Required]
-    public Guid DeletedBy { get; set; }
+    public int DeletedBy { get; set; }
 }

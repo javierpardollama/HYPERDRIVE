@@ -29,5 +29,5 @@ public class ViewAddDocument
     ///     Gets or Sets <see cref="CreatedBy" />
     /// </summary>
     [Required]
-    public Guid CreatedBy { get; set; }
+    public int CreatedBy { get; set; }
 }

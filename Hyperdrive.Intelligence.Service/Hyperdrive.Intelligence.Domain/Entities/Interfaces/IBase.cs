@@ -17,7 +17,7 @@ public interface IBase
     /// Gets or Sets <see cref="CreatedBy"/>
     /// </summary>      
     [Required]
-    public Guid CreatedBy { get; set; }
+    public int CreatedBy { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="ModifiedAt"/>
@@ -27,7 +27,7 @@ public interface IBase
     /// <summary>
     /// Gets or Sets <see cref="ModifiedBy"/>
     /// </summary>      
-    public Guid? ModifiedBy { get; set; }
+    public int? ModifiedBy { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="DeletedAt"/>
@@ -37,7 +37,7 @@ public interface IBase
     /// <summary>
     /// Gets or Sets <see cref="DeletedBy"/>
     /// </summary>      
-    public Guid? DeletedBy { get; set; }
+    public int? DeletedBy { get; set; }
 
     /// <summary>
     /// Gets or Sets <see cref="Deleted"/>
