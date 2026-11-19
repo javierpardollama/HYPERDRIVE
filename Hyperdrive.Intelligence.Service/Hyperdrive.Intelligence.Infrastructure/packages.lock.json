@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net10.0": {
+    "net11.0": {
       "Asp.Versioning.Mvc.ApiExplorer": {
         "type": "Direct",
         "requested": "[10.2.1, )",
@@ -736,8 +736,7 @@
         "resolved": "1.0.0",
         "contentHash": "r12elUp4MRjdnRfxEP+xqVSUUfG3yIJTBEJGwbfvF5oU4m0jb9HC0gFG28V/dAkYGMkRmHVi3qvrnBLQSw9X3Q==",
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "4.5.0",
-          "System.Data.DataSetExtensions": "4.5.0"
+          "System.Configuration.ConfigurationManager": "4.5.0"
         }
       },
       "Microsoft.CodeAnalysis.Features": {
@@ -1301,8 +1300,7 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "NuGet.Configuration": "6.12.1",
-          "NuGet.Versioning": "6.12.1",
-          "System.Security.Cryptography.Pkcs": "6.0.4"
+          "NuGet.Versioning": "6.12.1"
         }
       },
       "NuGet.ProjectModel": {
@@ -1345,10 +1343,7 @@
       "OpenTelemetry.Api": {
         "type": "Transitive",
         "resolved": "1.21.0",
-        "contentHash": "KptD6ThegQORUzwot75zW2AUH6IDyKXH1R2yhovJPYfrzqSgHQidMfVfKLjaYEnJa5ySQgQm0RjuM6X+TCJ9yw==",
-        "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "11.0.0"
-        }
+        "contentHash": "KptD6ThegQORUzwot75zW2AUH6IDyKXH1R2yhovJPYfrzqSgHQidMfVfKLjaYEnJa5ySQgQm0RjuM6X+TCJ9yw=="
       },
       "OpenTelemetry.Api.ProviderBuilderExtensions": {
         "type": "Transitive",
@@ -1516,16 +1511,6 @@
           "System.Security.Cryptography.ProtectedData": "9.0.0"
         }
       },
-      "System.Data.DataSetExtensions": {
-        "type": "Transitive",
-        "resolved": "4.5.0",
-        "contentHash": "221clPs1445HkTBZPL+K9sDBdJRB8UN8rgjO3ztB0CQ26z//fmJXtlsr6whGatscsKGBrhJl5bwJuKSA8mwFOw=="
-      },
-      "System.Diagnostics.DiagnosticSource": {
-        "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "+boRR9uSKiIPtFeRLGwO5xylhDF80xpwM+dmk5jgIqqeUKLbujGkGICMTKqQrBzKO6fIp8BU8DV6YZkQukqo3A=="
-      },
       "System.IdentityModel.Tokens.Jwt": {
         "type": "Transitive",
         "resolved": "8.19.2",
@@ -1549,11 +1534,6 @@
         "type": "Transitive",
         "resolved": "8.0.0",
         "contentHash": "SZxrQ4sQYnIcdwiO3G/lHZopbPYQ2lW0ioT4JezgccWUrKaKbHLJbAGZaDfkYjWcta1pWssAo3MOXLsR0ie4tQ=="
-      },
-      "System.Security.Cryptography.Pkcs": {
-        "type": "Transitive",
-        "resolved": "6.0.4",
-        "contentHash": "LGbXi1oUJ9QgCNGXRO9ndzBL/GZgANcsURpMhNR8uO+rca47SZmciS3RSQUvlQRwK3QHZSHNOXzoMUASKA+Anw=="
       },
       "System.Security.Cryptography.ProtectedData": {
         "type": "Transitive",
