@@ -36,7 +36,7 @@
     "make": "electron-forge make"
   },
   "private": true,
-  "packageManager": "npm@11.12.1",
+  "packageManager": "npm@11.20.0",
   "dependencies": {
     "@angular/animations": "^22.2.6",
     "@angular/cdk": "^22.2.7",
