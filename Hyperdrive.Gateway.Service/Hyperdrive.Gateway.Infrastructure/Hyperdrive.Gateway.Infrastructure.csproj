@@ -21,7 +21,7 @@
        
         <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="11.0.1" />
         <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="11.0.1" />
-        <PackageReference Include="Ocelot.QualityOfService.Polly" Version="25.0.2" />
+        <PackageReference Include="Ocelot.QualityOfService.Polly" Version="25.0.3" />
         <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.21.0" />
         <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.21.0" />
     </ItemGroup>
